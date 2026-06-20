@@ -20,13 +20,15 @@ export function Topbar() {
 
       <div className="flex items-center gap-3">
         <DropdownMenu>
-          <DropdownMenuTrigger>
-            <Button
-              variant="outline"
-              className="h-10 rounded-lg border-input-border bg-white font-[family-name:var(--font-urbanist)] text-sm text-heading"
-            >
-              Quick Actions ⌄
-            </Button>
+          <DropdownMenuTrigger
+            render={
+              <Button
+                variant="outline"
+                className="h-10 rounded-lg border-input-border bg-white font-[family-name:var(--font-urbanist)] text-sm text-heading"
+              />
+            }
+          >
+            Quick Actions ⌄
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             <DropdownMenuItem>Enroll a Child</DropdownMenuItem>
