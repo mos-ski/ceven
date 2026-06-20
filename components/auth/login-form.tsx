@@ -44,7 +44,7 @@ export function LoginForm() {
       )}
 
       <div className="space-y-2">
-        <Label htmlFor="email">Label</Label>
+        <Label htmlFor="email">Email Address</Label>
         <Input
           id="email"
           name="email"
