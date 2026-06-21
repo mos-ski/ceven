@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { ChevronDown, Download, MoreVertical, Printer, Search } from "lucide-react";
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
@@ -375,7 +376,7 @@ function DailyLogsView() {
 
 // ── Page ──────────────────────────────────────────────────────────────────────
 
-export default function DailyOperationsPage() {
+function DailyOperationsContent() {
   const searchParams = useSearchParams();
   const [view, setView] = useState<View>(searchParams.get("tab") === "daily-logs" ? "logs" : "qr");
 
@@ -415,5 +416,13 @@ export default function DailyOperationsPage() {
       {/* View content */}
       {view === "qr" ? <QRStationView /> : <DailyLogsView />}
     </div>
+  );
+}
+
+export default function DailyOperationsPage() {
+  return (
+    <Suspense>
+      <DailyOperationsContent />
+    </Suspense>
   );
 }
