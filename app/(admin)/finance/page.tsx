@@ -217,9 +217,9 @@ function ExpensesTab() {
   return (
     <div className="flex flex-col">
       {/* Analysis Cards */}
-      <div className="mb-6 flex gap-3 overflow-x-auto snap-x snap-mandatory pb-1 lg:grid lg:grid-cols-4 lg:overflow-visible lg:pb-0">
+      <div className="mb-6 grid grid-cols-2 gap-3 lg:gap-4 lg:grid-cols-4">
         {/* Total Expenses */}
-        <div className="min-w-[180px] snap-start flex-1 rounded-xl border border-[#e6ebf3] bg-white p-4">
+        <div className="rounded-xl border border-[#e6ebf3] bg-white p-4">
           <p className="mb-2 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
             Total Expenses
           </p>
@@ -235,7 +235,7 @@ function ExpensesTab() {
         </div>
 
         {/* Payroll */}
-        <div className="min-w-[180px] snap-start flex-1 rounded-xl border border-[#e6ebf3] bg-white p-4">
+        <div className="rounded-xl border border-[#e6ebf3] bg-white p-4">
           <p className="mb-2 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
             Payroll
           </p>
@@ -248,7 +248,7 @@ function ExpensesTab() {
         </div>
 
         {/* Operations */}
-        <div className="min-w-[180px] snap-start flex-1 rounded-xl border border-[#e6ebf3] bg-white p-4">
+        <div className="rounded-xl border border-[#e6ebf3] bg-white p-4">
           <p className="mb-2 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
             Operations
           </p>
@@ -261,7 +261,7 @@ function ExpensesTab() {
         </div>
 
         {/* Pending Invoices */}
-        <div className="min-w-[180px] snap-start flex-1 rounded-xl border border-[#e6ebf3] bg-white p-4">
+        <div className="rounded-xl border border-[#e6ebf3] bg-white p-4">
           <p className="mb-2 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
             Pending Invoices
           </p>

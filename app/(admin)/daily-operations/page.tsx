@@ -255,11 +255,11 @@ function DailyLogsView() {
   return (
     <div className="flex flex-col gap-4">
       {/* Stats row */}
-      <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-1 lg:grid lg:grid-cols-4 lg:overflow-visible lg:pb-0">
+      <div className="grid grid-cols-2 gap-3 lg:gap-4 lg:grid-cols-4">
         {statsCards.map((card) => (
           <div
             key={card.title}
-            className="min-w-[160px] snap-start flex-1 flex-col gap-1 rounded-xl border border-[#e6ebf3] bg-white p-4"
+            className="flex flex-col gap-1 rounded-xl border border-[#e6ebf3] bg-white p-4"
           >
             <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{card.title}</p>
             <p className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">

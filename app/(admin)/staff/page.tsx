@@ -413,29 +413,21 @@ function StaffPageInner() {
         </div>
 
         {/* Stats row */}
-        <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-1 lg:grid lg:grid-cols-4 lg:overflow-visible lg:pb-0">
-          <div className="min-w-[160px] snap-start flex-1">
+        <div className="grid grid-cols-2 gap-3 lg:gap-4 lg:grid-cols-4">
           <StatCard
             label="Total Staff"
             value="15"
             trendLabel="+12.5% vs last month"
             trendUp
           />
-          </div>
-          <div className="min-w-[160px] snap-start flex-1">
           <StatCard label="On Duty Today" value="08" trendLabel="QR Verified" />
-          </div>
-          <div className="min-w-[160px] snap-start flex-1">
           <StatCard label="Absent" value="07" trendLabel="this morning" />
-          </div>
-          <div className="min-w-[160px] snap-start flex-1">
           <StatCard
             label="Average Log Compliance"
             value="90%"
             trendLabel="84% last week ↑"
             trendUp
           />
-          </div>
         </div>
 
         {/* AI Flags Banner */}
