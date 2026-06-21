@@ -1,12 +1,635 @@
-export default function DashboardPage() {
+"use client";
+
+import {
+  AlertTriangle,
+  ArrowUpRight,
+  BarChart2,
+  Bell,
+  Bot,
+  ChevronDown,
+  ClipboardList,
+  FileText,
+  Plus,
+  QrCode,
+  Send,
+  ShieldAlert,
+  TrendingUp,
+  X,
+} from "lucide-react";
+import { useState } from "react";
+import EnrollChildModal from "@/components/dashboard/enroll-child-modal";
+import NotificationPanel from "@/components/dashboard/notification-panel";
+
+// ── Types ─────────────────────────────────────────────────────────────────────
+
+type StatCardData = {
+  label: string;
+  value: string;
+  sub: string;
+  subColor?: string;
+  showTrend?: boolean;
+  showAlert?: boolean;
+};
+
+// ── Static data ───────────────────────────────────────────────────────────────
+
+const statsRow1: StatCardData[] = [
+  { label: "Total Enrolled", value: "00", sub: "+12.5%", subColor: "#006745", showTrend: true },
+  { label: "Present Today", value: "10", sub: "QR Code Checkin", subColor: "#6b7280" },
+  { label: "Absent", value: "07", sub: "No Contact Today", subColor: "#6b7280" },
+  { label: "Staff on Duty", value: "8/12", sub: "Amount Absent", subColor: "#6b7280" },
+];
+
+const statsRow2: StatCardData[] = [
+  { label: "Outstanding Fees", value: "₦1,200,000", sub: "No Unpaid Invoice", subColor: "#cd3030" },
+  { label: "Open Incidents", value: "00", sub: "Urgent Review", subColor: "#f59e0b", showAlert: true },
+  { label: "Reports", value: "37", sub: "7/47 Submitted", subColor: "#6b7280" },
+  { label: "Tasks Overdue", value: "03", sub: "11 Total Pending", subColor: "#6b7280" },
+];
+
+const aiInsights = [
+  {
+    color: "#d4522f",
+    bold: "Zara Mohammed",
+    text: " has been absent 3× this week. Nut allergy on file – flag for welfare check.",
+    tag: "Health & Wellness",
+  },
+  {
+    color: "#27e2a4",
+    bold: "3 invoices",
+    text: " are 7+ days overdue. Mr Okafor historically pays late in Q2 – auto-remind now",
+    tag: "Finance & Invoice",
+  },
+  {
+    color: "#f59e0b",
+    bold: "Lion Class",
+    text: " caregiver logging compliance dropped to 62% this week — below 80% threshold.",
+    tag: "Creche Performance",
+  },
+];
+
+const upcomingEvents = [
+  { date: "July 05", time: "12:00am", title: "Jenita's birthday" },
+  { date: "July 05 – July 10", time: "08:00am", title: "Creche short break" },
+  { date: "July 05 – July 10", time: "08:00am", title: "Parents teachers meeting" },
+];
+
+const roomOccupancy = [
+  { room: "Lion Class", enrolled: 12, present: 10, capacity: 15, pct: 80 },
+  { room: "Tiger Class", enrolled: 9, present: 8, capacity: 12, pct: 67 },
+  { room: "Elephant Class", enrolled: 7, present: 5, capacity: 10, pct: 50 },
+  { room: "Zebra Class", enrolled: 11, present: 9, capacity: 15, pct: 60 },
+];
+
+const liveActivities = [
+  { title: "John's report", desc: "Recently updated with current activity", time: "Date and time" },
+  { title: "New report from Mr Moore", desc: "Recently updated with current activity", time: "Date and time" },
+  { title: "Elena Grace", desc: "Recently updated with current activity", time: "Date and time" },
+  { title: "John's report", desc: "Recently updated with current activity", time: "Date and time" },
+  { title: "John's report", desc: "Recently updated with current activity", time: "Date and time" },
+];
+
+const outstandingPayments = [
+  { child: "King Andrew", cls: "Lion", amount: "₦40,000", dueDate: "Jan 10", status: "Overdue", overdueDays: "10 days" },
+  { child: "King Andrew", cls: "Lion", amount: "₦40,000", dueDate: "Feb 2", status: "Pending" },
+  { child: "King Andrew", cls: "Lion", amount: "₦40,000", dueDate: "May 1", status: "Pending" },
+  { child: "King Andrew", cls: "Lion", amount: "₦40,000", dueDate: "Feb 10", status: "Pending" },
+];
+
+const pendingEnrollments = [
+  { child: "King Andrew", cls: "Lion", status: "Pending", submitted: "Jan 10" },
+  { child: "King Andrew", cls: "Lion", status: "Pending", submitted: "Feb 2" },
+  { child: "King Andrew", cls: "Lion", status: "Pending", submitted: "May 1" },
+  { child: "King Andrew", cls: "Lion", status: "Pending", submitted: "Feb 10" },
+];
+
+const chatMessages = [
+  {
+    role: "ai" as const,
+    text: "Good morning! Here's a quick summary: 3 children flagged for follow-up, 2 invoices overdue, and Lion Class has low logging compliance this week. Want me to draft a staff reminder?",
+  },
+  { role: "user" as const, text: "Yes, draft a reminder for Lion Class staff about logging." },
+  {
+    role: "ai" as const,
+    text: "Done! Here's a draft:\n\n\"Hi Lion Class team, logging compliance this week is at 62% — below our 80% target. Please ensure all activities and meals are logged before end of day. Thank you!\" — Shall I send this?",
+  },
+];
+
+const quickPrompts = [
+  "Summarise today's absences",
+  "Which invoices are overdue?",
+  "Flag welfare concerns",
+];
+
+const quickActions = [
+  { icon: Plus, label: "Add Child", color: "#3b2513" },
+  { icon: QrCode, label: "QR Station", color: "#1d4ed8" },
+  { icon: ClipboardList, label: "New Log", color: "#059669" },
+  { icon: ShieldAlert, label: "Raise Incident", color: "#dc2626" },
+  { icon: FileText, label: "New Invoice", color: "#7c3aed" },
+  { icon: BarChart2, label: "View Reports", color: "#c47b2c" },
+];
+
+// ── Shared sub-components ─────────────────────────────────────────────────────
+
+function LinkArrow({ label }: { label: string }) {
   return (
-    <div className="rounded-xl border border-input-border bg-white p-8">
-      <h1 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-heading">
-        Dashboard
-      </h1>
-      <p className="mt-2 font-[family-name:var(--font-urbanist)] text-sm text-muted-text">
-        Dashboard content is built in the next plan.
-      </p>
+    <button className="flex items-center gap-1 font-[family-name:var(--font-nunito)] text-xs font-bold text-[#3b2513] hover:opacity-70">
+      {label}
+      <ArrowUpRight className="h-4 w-4" />
+    </button>
+  );
+}
+
+function StatusBadge({ label }: { label: string }) {
+  return (
+    <span className="inline-flex items-center rounded-md bg-[#f9f1e6] px-2 py-1 font-[family-name:var(--font-urbanist)] text-xs font-medium text-[#ff9a01]">
+      {label}
+    </span>
+  );
+}
+
+function StatCard({ label, value, sub, subColor = "#6b7280", showTrend, showAlert }: StatCardData) {
+  return (
+    <div className="flex flex-col gap-2 rounded-xl border border-[#e6ebf3] bg-white px-4 py-5">
+      <div className="flex flex-col gap-2">
+        <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6f7682]">{label}</p>
+        <p className="font-[family-name:var(--font-merriweather)] text-2xl lg:text-[32px] font-bold leading-none text-[#2d1810]">
+          {value}
+        </p>
+      </div>
+      <div className="flex items-center gap-1" style={{ color: subColor }}>
+        {showAlert && <AlertTriangle className="h-4 w-4" />}
+        {showTrend && <TrendingUp className="h-4 w-4" />}
+        <span className="font-[family-name:var(--font-nunito)] text-[10px]">{sub}</span>
+      </div>
     </div>
+  );
+}
+
+// ── AI Chat Panel ─────────────────────────────────────────────────────────────
+
+function AIChatPanel({ onClose }: { onClose: () => void }) {
+  const [inputValue, setInputValue] = useState("");
+
+  return (
+    <div className="flex w-full lg:w-[360px] shrink-0 flex-col overflow-hidden rounded-2xl border-l-4 border-[#c47b2c] bg-[#fffcf4] shadow-lg">
+      {/* Header */}
+      <div className="flex items-center justify-between border-b border-[#edd9c0] px-4 py-4">
+        <div className="flex items-center gap-3">
+          <div
+            className="flex h-9 w-9 items-center justify-center rounded-full"
+            style={{ background: "linear-gradient(135deg, #1e2d4a 0%, #3b2513 100%)" }}
+          >
+            <Bot className="h-5 w-5 text-[#ffd58f]" />
+          </div>
+          <div>
+            <p className="font-[family-name:var(--font-nunito)] text-sm font-bold text-[#2d1810]">
+              Ada
+            </p>
+            <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#27e2a4]">
+              • Online
+            </p>
+          </div>
+        </div>
+        <button
+          onClick={onClose}
+          className="flex h-7 w-7 items-center justify-center rounded-md text-[#6b7280] hover:bg-[#edd9c0]"
+        >
+          <X className="h-4 w-4" />
+        </button>
+      </div>
+
+      {/* Messages */}
+      <div className="flex flex-1 flex-col gap-3 overflow-y-auto px-4 py-4">
+        {chatMessages.map((msg, i) => (
+          <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
+            {msg.role === "ai" && (
+              <div
+                className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full mr-2 mt-1"
+                style={{ background: "linear-gradient(135deg, #1e2d4a 0%, #3b2513 100%)" }}
+              >
+                <Bot className="h-3.5 w-3.5 text-[#ffd58f]" />
+              </div>
+            )}
+            <div
+              className={`max-w-[240px] rounded-2xl px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-xs leading-relaxed ${
+                msg.role === "ai"
+                  ? "rounded-tl-sm bg-[#fdf6e8] text-[#2d1810]"
+                  : "rounded-tr-sm bg-[#c47b2c] text-white"
+              }`}
+              style={{ whiteSpace: "pre-line" }}
+            >
+              {msg.text}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Quick Prompts */}
+      <div className="flex flex-wrap gap-2 border-t border-[#edd9c0] px-4 py-3">
+        {quickPrompts.map((prompt) => (
+          <button
+            key={prompt}
+            className="rounded-full border border-[#edd9c0] bg-white px-3 py-1 font-[family-name:var(--font-urbanist)] text-[10px] text-[#6b7280] hover:border-[#c47b2c] hover:text-[#c47b2c]"
+          >
+            {prompt}
+          </button>
+        ))}
+      </div>
+
+      {/* Input */}
+      <div className="flex items-center gap-2 border-t border-[#edd9c0] px-4 py-3">
+        <input
+          type="text"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          placeholder="Ask Ada anything..."
+          className="flex-1 rounded-full border border-[#edd9c0] bg-white px-4 py-2 font-[family-name:var(--font-nunito)] text-xs text-[#2d1810] placeholder:text-[#9ca3af] focus:border-[#c47b2c] focus:outline-none"
+        />
+        <button
+          className="flex h-8 w-8 items-center justify-center rounded-full bg-[#3b2513] text-[#faf2e1] hover:bg-[#2d1810]"
+          onClick={() => setInputValue("")}
+        >
+          <Send className="h-3.5 w-3.5" />
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// ── Page ──────────────────────────────────────────────────────────────────────
+
+export default function DashboardPage() {
+  const [aiPanelOpen, setAiPanelOpen] = useState(false);
+  const [notificationOpen, setNotificationOpen] = useState(false);
+  const [enrollOpen, setEnrollOpen] = useState(false);
+
+  return (
+    <>
+      {/* Main content area — shrinks when AI panel is open */}
+      <div className={`flex gap-4 ${aiPanelOpen ? "items-start" : "flex-col"}`}>
+        {/* Left / main column */}
+        <div className="flex min-w-0 flex-1 flex-col gap-4">
+          {/* 1. Greeting Banner */}
+          <div
+            className="relative overflow-hidden rounded-2xl"
+            style={{
+              background: "linear-gradient(138.9deg, #2d1810 0%, #3d2418 70%, #3d2418 100%)",
+              minHeight: 140,
+            }}
+          >
+            {/* Decorative squiggle watermark */}
+            <div className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 opacity-25">
+              <svg width="400" height="280" viewBox="0 0 400 280" fill="none">
+                <path d="M60 30 C80 90, 40 140, 60 200 C80 260, 40 260, 60 310" stroke="#c47b2c" strokeWidth="2.5" fill="none" />
+                <path d="M150 15 C170 85, 130 140, 150 200 C170 270, 130 270, 150 320" stroke="#c47b2c" strokeWidth="2.5" fill="none" />
+                <path d="M255 40 C275 100, 235 145, 255 210 C275 260, 235 265, 255 315" stroke="#c47b2c" strokeWidth="2.5" fill="none" />
+                <path d="M330 100 C345 145, 320 170, 335 220 C350 265, 325 270, 340 300" stroke="#c47b2c" strokeWidth="2.5" fill="none" />
+              </svg>
+            </div>
+
+            {/* Content */}
+            <div className="relative flex items-center justify-between px-6 py-7">
+              <div className="flex flex-col gap-2">
+                <p className="font-[family-name:var(--font-nunito)] text-xs font-medium text-[#ffd58f]">
+                  Friday, 11 April 2025
+                </p>
+                <h1 className="font-[family-name:var(--font-merriweather)] text-lg sm:text-2xl font-bold text-[#f5edd8]">
+                  Good morning, Amaka 👋
+                </h1>
+                <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#27e2a4] underline decoration-solid">
+                  • Active
+                </span>
+              </div>
+
+              <div className="flex items-center gap-3">
+                {/* Notification bell */}
+                <button
+                  onClick={() => setNotificationOpen((v) => !v)}
+                  className="relative flex h-9 w-9 items-center justify-center rounded-lg border border-[#e0bfa0] text-[#faf2e1] hover:bg-white/10"
+                >
+                  <Bell className="h-4 w-4" />
+                  <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#ef4444] font-[family-name:var(--font-nunito)] text-[9px] font-bold text-white">
+                    4
+                  </span>
+                </button>
+
+                {/* AI chat toggle */}
+                <button
+                  onClick={() => setAiPanelOpen((v) => !v)}
+                  className={`flex items-center gap-1.5 rounded-lg border border-[#e0bfa0] px-4 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1] hover:bg-white/10 ${
+                    aiPanelOpen ? "bg-white/10" : ""
+                  }`}
+                >
+                  <BarChart2 className="h-4 w-4" />
+                  AI Reports
+                </button>
+                <button
+                  onClick={() => setEnrollOpen(true)}
+                  className="rounded-lg bg-[#faf2e1] px-5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#3b2513] shadow-sm hover:bg-white"
+                >
+                  Enroll a Child
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Quick Actions — only visible when AI panel is open */}
+          {aiPanelOpen && (
+            <div className="flex items-center gap-3 overflow-x-auto rounded-xl bg-[#faf2e1] px-4 py-3">
+              {quickActions.map(({ icon: Icon, label, color }) => (
+                <button
+                  key={label}
+                  className="flex shrink-0 flex-col items-center gap-1.5 rounded-xl border border-[#edd9c0] bg-white px-4 py-3 hover:shadow-sm"
+                >
+                  <Icon className="h-5 w-5" style={{ color }} />
+                  <span className="font-[family-name:var(--font-urbanist)] text-xs font-medium text-[#2d1810]">
+                    {label}
+                  </span>
+                </button>
+              ))}
+            </div>
+          )}
+
+          {/* 2. Stats Grid — two rows of four */}
+          <div className="flex flex-col gap-4">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+              {statsRow1.map((card) => (
+                <StatCard key={card.label} {...card} />
+              ))}
+            </div>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+              {statsRow2.map((card) => (
+                <StatCard key={card.label} {...card} />
+              ))}
+            </div>
+          </div>
+
+          {/* 3. Middle Panels */}
+          <div className={`grid gap-4 ${aiPanelOpen ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"}`}>
+            {/* AI Daily Brief */}
+            <div className="flex flex-col gap-4 rounded-xl border border-[#c47b2c] bg-white p-4">
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center justify-between">
+                  <div
+                    className="rounded-full px-3 py-1.5"
+                    style={{ background: "linear-gradient(126.84deg, #1e2d4a 0%, #2d1810 100%)" }}
+                  >
+                    <span className="font-[family-name:var(--font-nunito)] text-[10px] font-medium tracking-wide text-[#f5edd8]">
+                      <span className="text-[#c47b2c]">✦ </span>
+                      AI DAILY BRIEF
+                    </span>
+                  </div>
+                  <LinkArrow label="Open AI Center" />
+                </div>
+                <p className="font-[family-name:var(--font-nunito)] text-sm">
+                  <span className="text-[#6b7280]">Today&apos;s report</span>
+                  <span className="text-black"> - generated 7am</span>
+                </p>
+              </div>
+
+              <div className="flex flex-col gap-4">
+                {aiInsights.map((insight, i) => (
+                  <div
+                    key={i}
+                    className="relative rounded-xl border border-[rgba(45,24,16,0.07)] bg-[#faf2e1] p-3 pl-7"
+                  >
+                    <div
+                      className="absolute left-3 top-4 h-2 w-2 rounded-sm"
+                      style={{ background: insight.color }}
+                    />
+                    <p className="font-[family-name:var(--font-nunito)] text-xs leading-5 text-[#2d1810]">
+                      <span className="font-bold">{insight.bold}</span>
+                      <span className="text-[rgba(45,24,16,0.5)]">{insight.text}</span>
+                    </p>
+                    <div className="mt-2 flex items-center justify-between">
+                      <span className="rounded-full bg-[#edd9c0] px-2 py-1 font-[family-name:var(--font-urbanist)] text-[8px] text-[#6b7280]">
+                        {insight.tag}
+                      </span>
+                      <button className="font-[family-name:var(--font-nunito)] text-xs font-semibold text-[#ba733e] hover:opacity-70">
+                        Take Action
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Upcoming Events (default) OR Room Occupancy (AI panel open) */}
+            {!aiPanelOpen ? (
+              <div className="flex flex-col gap-4 rounded-xl border border-[rgba(45,24,16,0.07)] bg-white p-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="font-[family-name:var(--font-nunito)] text-base font-medium text-black">
+                    Upcoming Events
+                  </h3>
+                  <LinkArrow label="Go to Calendar" />
+                </div>
+
+                <div className="flex flex-col gap-3">
+                  {upcomingEvents.map((event, i) => (
+                    <div key={i} className="flex flex-col gap-2 rounded-xl border border-[#e6ebf3] p-3">
+                      <div className="flex items-center gap-2">
+                        <div className="h-2 w-2 shrink-0 rounded-full bg-[#fe7171]" />
+                        <span className="font-[family-name:var(--font-urbanist)] text-xs text-black">
+                          {event.date}
+                        </span>
+                        <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#9ca3af]">
+                          {event.time}
+                        </span>
+                      </div>
+                      <p className="font-[family-name:var(--font-nunito)] text-sm text-black">
+                        {event.title}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <div className="flex flex-col gap-4 rounded-xl border border-[rgba(45,24,16,0.07)] bg-white p-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="font-[family-name:var(--font-nunito)] text-base font-medium text-black">
+                    Room Occupancy
+                  </h3>
+                  <LinkArrow label="View All" />
+                </div>
+
+                <div className="flex flex-col gap-3">
+                  {roomOccupancy.map((room, i) => (
+                    <div key={i} className="flex flex-col gap-1.5">
+                      <div className="flex items-center justify-between">
+                        <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">
+                          {room.room}
+                        </span>
+                        <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
+                          {room.present}/{room.enrolled} present
+                        </span>
+                      </div>
+                      <div className="h-2 w-full overflow-hidden rounded-full bg-[#f3f4f6]">
+                        <div
+                          className="h-full rounded-full bg-[#c47b2c]"
+                          style={{ width: `${room.pct}%` }}
+                        />
+                      </div>
+                      <span className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">
+                        Capacity: {room.capacity}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Live Activities — only shown when AI panel is closed */}
+            {!aiPanelOpen && (
+              <div className="flex flex-col gap-4 rounded-xl border border-[#e6ebf3] bg-white p-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="font-[family-name:var(--font-nunito)] text-base font-medium text-black">
+                    Live Activities
+                  </h3>
+                  <LinkArrow label="Go to Daily Operations" />
+                </div>
+
+                <div className="flex flex-col">
+                  {liveActivities.map((item, i) => (
+                    <div
+                      key={i}
+                      className="relative border-b border-[#e6ebf3] py-3 pl-5 last:border-b-0"
+                    >
+                      <div className="absolute left-0 top-[18px] h-2 w-2 rounded-full bg-[#fe7171]" />
+                      <div className="flex items-start justify-between gap-2">
+                        <p className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">
+                          {item.title}
+                        </p>
+                        <span className="shrink-0 font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">
+                          {item.time}
+                        </span>
+                      </div>
+                      <p className="mt-0.5 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+                        {item.desc}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* 4. Bottom Tables */}
+          <div className="flex flex-col lg:flex-row gap-4">
+            {/* Outstanding Payments */}
+            <div className="flex min-w-0 flex-[8] flex-col rounded-xl bg-white">
+              <div className="flex items-center justify-between px-4 py-4">
+                <h3 className="font-[family-name:var(--font-nunito)] text-base font-medium text-black">
+                  Outstanding Payments
+                </h3>
+                <LinkArrow label="View All" />
+              </div>
+              <div className="overflow-hidden rounded-xl shadow-[0px_4px_8px_-2px_rgba(16,24,40,0.1),0px_2px_4px_-2px_rgba(16,24,40,0.06)]">
+                <table className="w-full border-collapse">
+                  <thead>
+                    <tr className="bg-[#edd9c0]">
+                      <th className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black">Child</th>
+                      <th className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black">Amount</th>
+                      <th className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black">Due Date</th>
+                      <th className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black">Status</th>
+                      <th className="px-4 py-3 text-center font-[family-name:var(--font-nunito)] text-sm font-normal text-black">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white">
+                    {outstandingPayments.map((row, i) => (
+                      <tr key={i} className="border-t border-[#eaecf0]">
+                        <td className="px-4 py-3">
+                          <div className="flex flex-col gap-0.5">
+                            <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">{row.child}</span>
+                            <span className="font-[family-name:var(--font-nunito)] text-xs text-[#858c98]">🦁 {row.cls}</span>
+                          </div>
+                        </td>
+                        <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm font-medium text-black">{row.amount}</td>
+                        <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm font-medium text-black">{row.dueDate}</td>
+                        <td className="px-4 py-3">
+                          <div className="flex items-center gap-2">
+                            <StatusBadge label={row.status} />
+                            {row.overdueDays && (
+                              <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#cd3030]">{row.overdueDays}</span>
+                            )}
+                          </div>
+                        </td>
+                        <td className="px-4 py-3 text-center">
+                          <button className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810] underline hover:opacity-70">Reminder</button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            {/* Pending Enrollments */}
+            <div className="flex min-w-0 flex-[6] flex-col rounded-xl bg-white">
+              <div className="flex items-center justify-between px-4 py-4">
+                <h3 className="font-[family-name:var(--font-nunito)] text-base font-medium text-black">
+                  Pending Enrollments
+                </h3>
+                <LinkArrow label="View All" />
+              </div>
+              <div className="overflow-hidden rounded-xl shadow-[0px_4px_8px_-2px_rgba(16,24,40,0.1),0px_2px_4px_-2px_rgba(16,24,40,0.06)]">
+                <table className="w-full border-collapse">
+                  <thead>
+                    <tr className="bg-[#edd9c0]">
+                      <th className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black">Submission</th>
+                      <th className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black">Status</th>
+                      <th className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black">Submitted</th>
+                      <th className="px-4 py-3 text-center font-[family-name:var(--font-nunito)] text-sm font-normal text-black">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white">
+                    {pendingEnrollments.map((row, i) => (
+                      <tr key={i} className="border-t border-[#eaecf0]">
+                        <td className="px-4 py-3">
+              <div className="flex flex-wrap items-center gap-3">
+                            <div className="h-5 w-5 shrink-0 rounded-md border border-[#d0d5dd] bg-white" />
+                            <div className="flex flex-col gap-0.5">
+                              <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">{row.child}</span>
+                              <span className="font-[family-name:var(--font-nunito)] text-xs text-[#858c98]">{row.cls}</span>
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-4 py-3">
+                          <StatusBadge label={row.status} />
+                        </td>
+                        <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm font-medium text-black">{row.submitted}</td>
+                        <td className="px-4 py-3 text-center">
+                          <button className="font-[family-name:var(--font-urbanist)] text-xs font-medium text-[#2d1810] underline hover:opacity-70">View</button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Right — AI Chat Panel */}
+        {aiPanelOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 lg:static lg:inset-auto lg:z-auto lg:bg-transparent">
+            <div className="relative w-full max-w-[360px] lg:w-[360px]">
+              <AIChatPanel onClose={() => setAiPanelOpen(false)} />
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Notification panel — floating overlay anchored top-right */}
+      {notificationOpen && (
+        <div className="fixed right-6 top-16 z-40">
+          <NotificationPanel onClose={() => setNotificationOpen(false)} />
+        </div>
+      )}
+
+      {/* Enroll Child Modal */}
+      {enrollOpen && <EnrollChildModal onClose={() => setEnrollOpen(false)} />}
+    </>
   );
 }

@@ -15,13 +15,13 @@ const merriweather = Merriweather({
 });
 
 const urbanist = Urbanist({
-  weight: ["400", "600"],
+  weight: ["400", "500", "600"],
   subsets: ["latin"],
   variable: "--font-urbanist-import",
 });
 
 const nunito = Nunito({
-  weight: ["400", "700"],
+  weight: ["400", "500", "600", "700", "800"],
   subsets: ["latin"],
   variable: "--font-nunito-import",
 });

@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const SESSION_COOKIE = "ceven_admin_session";
-const AUTH_PATHS = ["/login", "/reset-password", "/verify-email"];
+const AUTH_PATHS = ["/login", "/signup", "/reset-password", "/verify-email"];
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const hasSession = request.cookies.get(SESSION_COOKIE)?.value === "active";
   const { pathname } = request.nextUrl;
   const isAuthPath = AUTH_PATHS.some((path) => pathname.startsWith(path));
@@ -20,5 +20,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|.*\\.\\w+$).*)"],
 };

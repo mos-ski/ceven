@@ -1,5 +1,726 @@
-import { PlaceholderSection } from "@/components/admin/placeholder-section";
+"use client";
+
+import { useState } from "react";
+import {
+  ChevronDown,
+  Search,
+  MoreVertical,
+  X,
+  Pencil,
+  Trash2,
+  AlertTriangle,
+} from "lucide-react";
+import Link from "next/link";
+import { StatCard } from "@/components/admin/stat-card";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { STAFF } from "@/lib/mock-data/staff";
+
+type Tab = "Staff Members" | "Attendance Log" | "Role Management";
+
+const TABS: Tab[] = ["Staff Members", "Attendance Log", "Role Management"];
+
+// ─── Staff Members data ───────────────────────────────────────────────────────
+
+const staffData = STAFF;
+
+// ─── Attendance Log data ──────────────────────────────────────────────────────
+
+const attendanceData = [
+  {
+    name: "Mrs. Sarah Okonkwo",
+    email: "sarah.o@udebemcresh.com",
+    days: [true, true, true, false, true, true],
+    compliance: "83%",
+  },
+  {
+    name: "Mr. James Adamu",
+    email: "james.a@udebemcresh.com",
+    days: [false, true, false, true, false, false],
+    compliance: "33%",
+  },
+  {
+    name: "Mrs. Ngozi Eze",
+    email: "ngozi.e@udebemcresh.com",
+    days: [true, true, true, true, true, false],
+    compliance: "83%",
+  },
+  {
+    name: "Mr. Chukwu Bello",
+    email: "chukwu.b@udebemcresh.com",
+    days: [true, true, false, true, true, true],
+    compliance: "83%",
+  },
+  {
+    name: "Mrs. Amaka Taiwo",
+    email: "amaka.t@udebemcresh.com",
+    days: [true, true, true, true, true, true],
+    compliance: "100%",
+  },
+];
+
+// ─── Role Management data ─────────────────────────────────────────────────────
+
+const rolesData = [
+  {
+    role: "Caregiver",
+    created: "01 Sep 2025",
+    team: "Lion Room",
+    access: "Limited",
+    updated: "10 Oct 2025",
+  },
+  {
+    role: "Admin",
+    created: "15 Aug 2025",
+    team: "All Rooms",
+    access: "Full",
+    updated: "01 Oct 2025",
+  },
+  {
+    role: "Marketer",
+    created: "20 Jul 2025",
+    team: "External",
+    access: "View Only",
+    updated: "05 Sep 2025",
+  },
+  {
+    role: "Nurse",
+    created: "12 Jun 2025",
+    team: "Medical",
+    access: "Limited",
+    updated: "20 Aug 2025",
+  },
+];
+
+// ─── Shared sub-components ────────────────────────────────────────────────────
+
+function StatusBadge({ status }: { status: string }) {
+  const styles: Record<string, string> = {
+    Active: "bg-[#ecfff8] border border-[#009061] text-[#009061]",
+    Absent: "bg-[#fff6e6] border border-[#cc8000] text-[#cc8000]",
+    Pending: "bg-[#f3f4f6] border border-[#9ca3af] text-[#6b7280]",
+  };
+
+  return (
+    <span
+      className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${styles[status] ?? styles.Pending}`}
+    >
+      {status}
+    </span>
+  );
+}
+
+function AccessBadge({ access }: { access: string }) {
+  const styles: Record<string, string> = {
+    Full: "bg-[#ecfff8] border border-[#009061] text-[#009061]",
+    Limited: "bg-[#fff6e6] border border-[#cc8000] text-[#cc8000]",
+    "View Only": "bg-[#f3f4f6] border border-[#9ca3af] text-[#6b7280]",
+  };
+
+  return (
+    <span
+      className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${styles[access] ?? styles["View Only"]}`}
+    >
+      {access}
+    </span>
+  );
+}
+
+function ComplianceText({ value }: { value: string }) {
+  const pct = parseInt(value, 10);
+  const color =
+    pct >= 80
+      ? "text-[#009061]"
+      : pct >= 50
+        ? "text-[#f59e0b]"
+        : "text-[#ef4444]";
+  return (
+    <span className={`font-bold font-[family-name:var(--font-nunito)] ${color}`}>
+      {value}
+    </span>
+  );
+}
+
+// ─── Modals ───────────────────────────────────────────────────────────────────
+
+const PERMISSIONS = [
+  ["Children & Parent", "Finance", "Account & Setup"],
+  ["Staff Management", "Communication", "Intelligence"],
+  ["Daily Operations"],
+];
+
+function RoleFormModal({
+  mode,
+  roleName,
+  onClose,
+}: {
+  mode: "create" | "edit";
+  roleName: string | null;
+  onClose: () => void;
+}) {
+  const isEdit = mode === "edit";
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+      <div className="w-full max-w-full sm:max-w-[600px] mx-4 bg-white rounded-2xl shadow-2xl flex flex-col max-h-[90vh]">
+        {/* Header */}
+        <div className="flex items-start justify-between px-6 pt-6 pb-4 border-b border-[#eaecf0]">
+          <div>
+            <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
+              {isEdit ? "Edit Role" : "Create New Role"}
+            </h2>
+            <p className="text-sm text-[#6b7280] font-[family-name:var(--font-nunito)] mt-0.5">
+              {isEdit
+                ? `Editing permissions for the "${roleName}" role.`
+                : "Define a new role and assign permissions."}
+            </p>
+          </div>
+          <button
+            onClick={onClose}
+            className="text-[#6b7280] hover:text-[#2d1810] p-1 rounded"
+            aria-label="Close modal"
+          >
+            <X className="size-5" />
+          </button>
+        </div>
+
+        {/* Body */}
+        <div className="overflow-y-auto px-6 py-5 flex flex-col gap-5">
+          {/* Role Name */}
+          <div className="flex flex-col gap-1.5">
+            <label className="text-sm font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]">
+              Role Name
+            </label>
+            <input
+              type="text"
+              defaultValue={isEdit && roleName ? roleName : ""}
+              placeholder="e.g. Caregiver"
+              className="border border-[#d0d5dd] rounded-lg px-3.5 py-2.5 text-sm font-[family-name:var(--font-nunito)] text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+            />
+          </div>
+
+          {/* Description */}
+          <div className="flex flex-col gap-1.5">
+            <label className="text-sm font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]">
+              Description
+            </label>
+            <textarea
+              rows={3}
+              placeholder="Describe the responsibilities of this role..."
+              className="border border-[#d0d5dd] rounded-lg px-3.5 py-2.5 text-sm font-[family-name:var(--font-nunito)] text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c] resize-none"
+            />
+          </div>
+
+          {/* Invite Staff */}
+          <div className="flex flex-col gap-1.5">
+            <label className="text-sm font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]">
+              Invite Staff
+            </label>
+            <select
+              defaultValue=""
+              className="border border-[#d0d5dd] rounded-lg px-3.5 py-2.5 text-sm font-[family-name:var(--font-nunito)] text-[#6b7280] outline-none focus:ring-2 focus:ring-[#c47b2c] bg-white"
+            >
+              <option value="" disabled>
+                Select staff members
+              </option>
+              {staffData.map((s) => (
+                <option key={s.id} value={s.name}>
+                  {s.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Permissions */}
+          <div className="flex flex-col gap-3">
+            <h3 className="font-[family-name:var(--font-merriweather)] text-sm font-bold text-[#2d1810]">
+              Permissions
+            </h3>
+            <div className="flex flex-col gap-3">
+              {PERMISSIONS.map((row, ri) => (
+                <div key={ri} className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  {row.map((perm) => (
+                    <label
+                      key={perm}
+                      className="flex items-center gap-2 cursor-pointer"
+                    >
+                      <input
+                        type="checkbox"
+                        className="accent-[#3b2513] h-4 w-4"
+                      />
+                      <span className="text-sm font-[family-name:var(--font-nunito)] text-[#2d1810]">
+                        {perm}
+                      </span>
+                    </label>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="border-t border-[#eaecf0] px-6 py-4 flex items-center justify-end gap-3">
+          <button
+            onClick={onClose}
+            className="border border-[#d0d5dd] rounded-lg px-4 py-2 text-sm font-medium font-[family-name:var(--font-nunito)] text-[#2d1810] hover:bg-[#f9fafb]"
+          >
+            Cancel
+          </button>
+          <button className="bg-[#3b2513] text-[#faf2e1] rounded-lg px-4 py-2 text-sm font-medium font-[family-name:var(--font-nunito)]">
+            {isEdit ? "Save Changes" : "Confirm and Save"}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function DeleteRoleModal({
+  roleName,
+  onClose,
+}: {
+  roleName: string | null;
+  onClose: () => void;
+}) {
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+      <div className="w-full max-w-[400px] bg-white rounded-2xl shadow-2xl flex flex-col">
+        {/* Body */}
+        <div className="flex flex-col items-center text-center px-8 pt-8 pb-6 gap-4">
+          <AlertTriangle className="text-[#ef4444]" size={48} />
+          <h2 className="font-[family-name:var(--font-merriweather)] text-xl font-bold text-[#2d1810]">
+            Remove Role
+          </h2>
+          <p className="text-sm font-[family-name:var(--font-nunito)] text-[#6b7280]">
+            {roleName
+              ? `This will permanently remove the "${roleName}" role and affect all staff assigned to it.`
+              : "This will permanently remove the role and affect all staff assigned to it."}{" "}
+            This cannot be undone.
+          </p>
+        </div>
+
+        {/* Footer */}
+        <div className="border-t border-[#eaecf0] px-6 py-4 flex items-center justify-end gap-3">
+          <button
+            onClick={onClose}
+            className="border border-[#d0d5dd] rounded-lg px-4 py-2 text-sm font-medium font-[family-name:var(--font-nunito)] text-[#2d1810] hover:bg-[#f9fafb]"
+          >
+            No, Cancel
+          </button>
+          <button className="bg-[#ef4444] text-white rounded-lg px-4 py-2 text-sm font-medium font-[family-name:var(--font-nunito)]">
+            Yes, Remove
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function StaffPage() {
-  return <PlaceholderSection title="Staff Management" />;
+  const [activeTab, setActiveTab] = useState<Tab>("Staff Members");
+  const [showBanner, setShowBanner] = useState(true);
+
+  // Role modal state
+  const [roleModal, setRoleModal] = useState<
+    "create" | "edit" | "delete" | null
+  >(null);
+  const [selectedRole, setSelectedRole] = useState<string | null>(null);
+
+  function openEdit(role: string) {
+    setSelectedRole(role);
+    setRoleModal("edit");
+  }
+
+  function openDelete(role: string) {
+    setSelectedRole(role);
+    setRoleModal("delete");
+  }
+
+  function closeModal() {
+    setRoleModal(null);
+    setSelectedRole(null);
+  }
+
+  return (
+    <>
+      <div className="space-y-6">
+        {/* Page header */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <h1 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
+            Staff Management
+          </h1>
+          <button className="rounded-lg bg-[#3b2513] px-5 py-2.5 text-sm font-medium text-[#faf2e1] font-[family-name:var(--font-urbanist)]">
+            Add Staff
+          </button>
+        </div>
+
+        {/* Stats row */}
+        <div className="flex flex-wrap gap-4">
+          <StatCard
+            label="Total Staff"
+            value="15"
+            trendLabel="+12.5% vs last month"
+            trendUp
+          />
+          <StatCard label="On Duty Today" value="08" trendLabel="QR Verified" />
+          <StatCard label="Absent" value="07" trendLabel="this morning" />
+          <StatCard
+            label="Average Log Compliance"
+            value="90%"
+            trendLabel="84% last week ↑"
+            trendUp
+          />
+        </div>
+
+        {/* AI Flags Banner */}
+        {showBanner && (
+          <div
+            className="rounded-xl border border-[#1e2d4a] p-4 mb-4"
+            style={{
+              background:
+                "linear-gradient(177.75deg, #faf2e1 0.21%, rgba(196,123,44,0.5) 96.95%)",
+            }}
+          >
+            <div className="flex items-start justify-between gap-4">
+              <div className="space-y-2">
+                <span className="inline-block rounded-full bg-[#1e2d4a] px-2 py-0.5 text-xs text-white">
+                  ✦ Ada AI Flags
+                </span>
+                <p className="font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">
+                  Mrs Anita — compliance at 52% (below 72% threshold)
+                </p>
+                <p className="font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">
+                  Mr Adamu — absent 3 of last 5 days
+                </p>
+              </div>
+              <button
+                onClick={() => setShowBanner(false)}
+                className="shrink-0 text-[#2d1810] hover:text-[#3b2513]"
+                aria-label="Dismiss banner"
+              >
+                <X className="size-4" />
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Tab Nav */}
+        <div className="flex overflow-x-auto border-b border-[#e6ebf3] mb-4">
+          {TABS.map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`whitespace-nowrap px-4 py-2 text-sm font-medium font-[family-name:var(--font-urbanist)] cursor-pointer ${
+                activeTab === tab
+                  ? "border-b-2 border-[#3b2513] text-[#3b2513]"
+                  : "text-[#6b7280] hover:text-[#2d1810]"
+              }`}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
+
+        {/* ── Tab: Staff Members ─────────────────────────────────────────────── */}
+        {activeTab === "Staff Members" && (
+          <div className="rounded-xl bg-white shadow-sm overflow-hidden">
+            {/* Toolbar */}
+            <div className="flex flex-wrap items-center justify-between gap-2 p-4">
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-[family-name:var(--font-nunito)] text-[#6b7280]">
+                  Filter by:
+                </span>
+                <button className="border border-[#d0d5dd] rounded-lg px-3 py-1.5 text-xs font-[family-name:var(--font-nunito)] flex items-center gap-1.5 bg-white cursor-pointer">
+                  Date Added
+                  <ChevronDown className="size-3" />
+                </button>
+                <button className="border border-[#d0d5dd] rounded-lg px-3 py-1.5 text-xs font-[family-name:var(--font-nunito)] flex items-center gap-1.5 bg-white cursor-pointer">
+                  All Status
+                  <ChevronDown className="size-3" />
+                </button>
+              </div>
+              <div className="relative">
+                <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 size-3.5 text-[#6b7280]" />
+                <input
+                  type="text"
+                  placeholder="Search staff..."
+                  className="bg-[#f5edd8] border border-[#d0d5dd] rounded-lg text-xs px-3 py-1.5 pl-8 outline-none focus:ring-1 focus:ring-[#3b2513] font-[family-name:var(--font-nunito)]"
+                />
+              </div>
+            </div>
+
+            {/* Table */}
+            <div className="overflow-x-auto">
+            <table className="w-full text-left">
+              <thead>
+                <tr className="bg-[#edd9c0]">
+                  {[
+                    "Staff",
+                    "Phone Number",
+                    "Date Added",
+                    "Role",
+                    "Status",
+                    "Action",
+                  ].map((h) => (
+                    <th
+                      key={h}
+                      className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]"
+                    >
+                      {h}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-[#eaecf0]">
+                {staffData.map((staff) => (
+                  <tr key={staff.id} className="hover:bg-[#faf9f7]">
+                    <td className="px-4 py-3">
+                      <p className="text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">
+                        {staff.name}
+                      </p>
+                      <p className="text-[10px] text-[#858c98]">
+                        {staff.email}
+                      </p>
+                    </td>
+                    <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">
+                      {staff.phone}
+                    </td>
+                    <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">
+                      {staff.dateAdded}
+                    </td>
+                    <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">
+                      {staff.role}
+                    </td>
+                    <td className="px-4 py-3">
+                      <StatusBadge status={staff.status} />
+                    </td>
+                    <td className="px-4 py-3">
+                      <DropdownMenu>
+                        <DropdownMenuTrigger
+                          render={
+                            <button className="text-[#6b7280] hover:text-[#2d1810] p-1 rounded" />
+                          }
+                        >
+                          <MoreVertical className="size-4" />
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent>
+                          <DropdownMenuItem render={<Link href={`/staff/${staff.id}`} />}>
+                            View Profile
+                          </DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            </div>
+          </div>
+        )}
+
+        {/* ── Tab: Attendance Log ───────────────────────────────────────────── */}
+        {activeTab === "Attendance Log" && (
+          <div className="space-y-4">
+            {/* Toolbar */}
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-xs font-[family-name:var(--font-nunito)] text-[#6b7280]">
+                Filter by:
+              </span>
+              <button className="border border-[#d0d5dd] rounded-lg px-3 py-1.5 text-xs font-[family-name:var(--font-nunito)] flex items-center gap-1.5 bg-white cursor-pointer">
+                Week
+                <ChevronDown className="size-3" />
+              </button>
+              <button className="border border-[#d0d5dd] rounded-lg px-3 py-1.5 text-xs font-[family-name:var(--font-nunito)] flex items-center gap-1.5 bg-white cursor-pointer">
+                All Status
+                <ChevronDown className="size-3" />
+              </button>
+              <div className="w-px h-5 bg-[#d0d5dd] mx-1" />
+              <div className="relative">
+                <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 size-3.5 text-[#6b7280]" />
+                <input
+                  type="text"
+                  placeholder="Search staff..."
+                  className="bg-[#f5edd8] border border-[#d0d5dd] rounded-lg text-xs px-3 py-1.5 pl-8 outline-none focus:ring-1 focus:ring-[#3b2513] font-[family-name:var(--font-nunito)]"
+                />
+              </div>
+            </div>
+
+            {/* Table */}
+            <div className="rounded-xl bg-white shadow-sm overflow-hidden">
+              <div className="overflow-x-auto">
+              <table className="w-full text-left">
+                <thead>
+                  <tr className="bg-[#edd9c0]">
+                    <th className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810] w-8">
+                      <input type="checkbox" className="accent-[#3b2513]" />
+                    </th>
+                    {["Staff", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Compliance Score"].map(
+                      (h) => (
+                        <th
+                          key={h}
+                          className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]"
+                        >
+                          {h}
+                        </th>
+                      )
+                    )}
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-[#eaecf0]">
+                  {attendanceData.map((row) => (
+                    <tr key={row.name} className="hover:bg-[#faf9f7]">
+                      <td className="px-4 py-3">
+                        <input type="checkbox" className="accent-[#3b2513]" />
+                      </td>
+                      <td className="px-4 py-3">
+                        <p className="text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">
+                          {row.name}
+                        </p>
+                        <p className="text-[10px] text-[#858c98]">
+                          {row.email}
+                        </p>
+                      </td>
+                      {row.days.map((present, di) => (
+                        <td key={di} className="px-4 py-3">
+                          {present ? (
+                            <div className="h-7 w-7 rounded-full flex items-center justify-center text-sm bg-[#ecfff8] text-[#009061]">
+                              ✓
+                            </div>
+                          ) : (
+                            <div className="h-7 w-7 rounded-full flex items-center justify-center text-sm bg-[#fff5f5] text-[#ef4444]">
+                              ✗
+                            </div>
+                          )}
+                        </td>
+                      ))}
+                      <td className="px-4 py-3">
+                        <ComplianceText value={row.compliance} />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ── Tab: Role Management ──────────────────────────────────────────── */}
+        {activeTab === "Role Management" && (
+          <div className="space-y-4">
+            {/* Toolbar */}
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
+                Role Log
+              </h2>
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="text-xs font-[family-name:var(--font-nunito)] text-[#6b7280]">
+                  Filter by:
+                </span>
+                <button className="border border-[#d0d5dd] rounded-lg px-3 py-1.5 text-xs font-[family-name:var(--font-nunito)] flex items-center gap-1.5 bg-white cursor-pointer">
+                  Date Created
+                  <ChevronDown className="size-3" />
+                </button>
+                <button className="border border-[#d0d5dd] rounded-lg px-3 py-1.5 text-xs font-[family-name:var(--font-nunito)] flex items-center gap-1.5 bg-white cursor-pointer">
+                  All Access
+                  <ChevronDown className="size-3" />
+                </button>
+                <button
+                  onClick={() => setRoleModal("create")}
+                  className="bg-[#3b2513] text-[#faf2e1] rounded-lg px-4 py-2 text-sm font-medium font-[family-name:var(--font-nunito)]"
+                >
+                  Add New Role
+                </button>
+              </div>
+            </div>
+
+            {/* Table */}
+            <div className="rounded-xl bg-white shadow-sm overflow-hidden">
+              <div className="overflow-x-auto">
+              <table className="w-full text-left">
+                <thead>
+                  <tr className="bg-[#edd9c0]">
+                    {[
+                      "Role Type",
+                      "Date Created",
+                      "Team",
+                      "Access Level",
+                      "Last Updated",
+                      "Action",
+                    ].map((h) => (
+                      <th
+                        key={h}
+                        className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]"
+                      >
+                        {h}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-[#eaecf0]">
+                  {rolesData.map((r) => (
+                    <tr key={r.role} className="hover:bg-[#faf9f7]">
+                      <td className="px-4 py-3 text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">
+                        {r.role}
+                      </td>
+                      <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">
+                        {r.created}
+                      </td>
+                      <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">
+                        {r.team}
+                      </td>
+                      <td className="px-4 py-3">
+                        <AccessBadge access={r.access} />
+                      </td>
+                      <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">
+                        {r.updated}
+                      </td>
+                      <td className="px-4 py-3">
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={() => openEdit(r.role)}
+                            className="text-[#6b7280] hover:text-[#2d1810] p-1 rounded"
+                            aria-label={`Edit ${r.role}`}
+                          >
+                            <Pencil className="size-4" />
+                          </button>
+                          <button
+                            onClick={() => openDelete(r.role)}
+                            className="text-[#ef4444] hover:text-[#dc2626] p-1 rounded"
+                            aria-label={`Delete ${r.role}`}
+                          >
+                            <Trash2 className="size-4" />
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* ── Modals (rendered outside the scrollable content) ─────────────────── */}
+      {(roleModal === "create" || roleModal === "edit") && (
+        <RoleFormModal
+          mode={roleModal}
+          roleName={selectedRole}
+          onClose={closeModal}
+        />
+      )}
+      {roleModal === "delete" && (
+        <DeleteRoleModal roleName={selectedRole} onClose={closeModal} />
+      )}
+    </>
+  );
 }

@@ -7,9 +7,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
+  --font-sans: var(--font-nunito-import);
   --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
+  --font-heading: var(--font-nunito-import);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -143,6 +143,19 @@
   --color-heading: #1F2937;
   --color-muted-text: #6B7280;
   --color-otp-text: #858C98;
+  --color-brand-dark: #3B2513;
+  --color-card-border: #E6EBF3;
+  --color-table-header-bg: #EDD9C0;
+  --color-table-border: #EAECF0;
+  --color-stat-heading: #2D1810;
+  --color-success-text: #009061;
+  --color-badge-warning-bg: #F9F1E6;
+  --color-badge-warning-text: #FF9A01;
+  --color-badge-success-bg: #E1F5EC;
+  --color-error: #CD3030;
+  --color-password-meter-neutral: #6F7682;
+  --color-checkbox-border: #B4BAC6;
+  --color-flag-bg: #E1E6ED;
   --font-mogra: var(--font-mogra-import);
   --font-merriweather: var(--font-merriweather-import);
   --font-urbanist: var(--font-urbanist-import);
@@ -163,4 +176,17 @@
   --color-heading: var(--color-heading);
   --color-muted-text: var(--color-muted-text);
   --color-otp-text: var(--color-otp-text);
+  --color-brand-dark: var(--color-brand-dark);
+  --color-card-border: var(--color-card-border);
+  --color-table-header-bg: var(--color-table-header-bg);
+  --color-table-border: var(--color-table-border);
+  --color-stat-heading: var(--color-stat-heading);
+  --color-success-text: var(--color-success-text);
+  --color-badge-warning-bg: var(--color-badge-warning-bg);
+  --color-badge-warning-text: var(--color-badge-warning-text);
+  --color-badge-success-bg: var(--color-badge-success-bg);
+  --color-error: var(--color-error);
+  --color-password-meter-neutral: var(--color-password-meter-neutral);
+  --color-checkbox-border: var(--color-checkbox-border);
+  --color-flag-bg: var(--color-flag-bg);
 }

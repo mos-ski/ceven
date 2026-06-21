@@ -1,5 +1,6 @@
 import { AuthSplitPanel } from "@/components/auth/auth-split-panel";
-import { VerifyEmailForm } from "@/components/auth/verify-email-form";
+import { SimpleIllustration } from "@/components/auth/illustration-scenes";
+import { OtpForm } from "@/components/auth/otp-form";
 
 export default async function VerifyEmailPage({
   searchParams,
@@ -9,8 +10,8 @@ export default async function VerifyEmailPage({
   const { email } = await searchParams;
 
   return (
-    <AuthSplitPanel illustrationSide="left" illustrationLogo>
-      <VerifyEmailForm email={email ?? ""} />
+    <AuthSplitPanel illustrationSide="left" illustration={<SimpleIllustration />}>
+      <OtpForm email={email ?? ""} nextHref="/login" />
     </AuthSplitPanel>
   );
 }

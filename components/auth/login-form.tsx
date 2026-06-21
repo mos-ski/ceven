@@ -2,10 +2,12 @@
 
 import { useActionState } from "react";
 import Link from "next/link";
+
 import { login } from "@/lib/auth/actions";
+import { AuthField } from "@/components/auth/auth-field";
+import { PasswordField } from "@/components/auth/password-field";
+import { SocialAuthRow } from "@/components/auth/social-auth-row";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 
 type LoginState = { error?: string };
@@ -21,72 +23,79 @@ export function LoginForm() {
   const [state, formAction, isPending] = useActionState(loginAction, {});
 
   return (
-    <form action={formAction} className="space-y-6">
-      <div className="text-center">
-        <span className="font-[family-name:var(--font-mogra)] text-2xl text-sidebar-bg">
-          CEven
-        </span>
-      </div>
-
+    <form action={formAction} className="flex w-full flex-col gap-6">
       <div>
         <h1 className="font-[family-name:var(--font-merriweather)] text-[32px] font-bold text-heading">
           Stay Connected 😊
         </h1>
-        <p className="mt-2 font-[family-name:var(--font-urbanist)] text-base text-muted-text">
+        <p className="mt-1 font-[family-name:var(--font-urbanist)] text-base text-muted-text">
           Good to have you back! Let&apos;s log you in.
         </p>
       </div>
 
-      {state.error && (
-        <p className="font-[family-name:var(--font-urbanist)] text-sm text-red-600">
-          {state.error}
-        </p>
-      )}
-
-      <div className="space-y-2">
-        <Label htmlFor="email">Email Address</Label>
-        <Input
+      <div className="flex flex-col gap-4">
+        <AuthField
           id="email"
           name="email"
           type="email"
+          label="Email"
           placeholder="Enter your email address"
-          required
-          className="h-11 border-input-border"
+          autoComplete="email"
+          disabled={isPending}
         />
-      </div>
 
-      <div className="space-y-2">
-        <Label htmlFor="password">Password</Label>
-        <Input
-          id="password"
-          name="password"
-          type="password"
-          placeholder="••••••••"
-          required
-          className="h-11 border-input-border"
-        />
-      </div>
+        <div className="flex flex-col gap-2">
+          <PasswordField
+            id="password"
+            name="password"
+            label="Password"
+            autoComplete="current-password"
+            disabled={isPending}
+          />
+          <div className="flex items-center justify-between">
+            <label className="flex items-center gap-2 group/field">
+              <Checkbox
+                name="remember"
+                disabled={isPending}
+                className="border-checkbox-border data-checked:border-brand-dark data-checked:bg-brand-dark"
+              />
+              <span className="font-[family-name:var(--font-urbanist)] text-xs text-muted-text">
+                Remember Me
+              </span>
+            </label>
+            <Link
+              href="/reset-password"
+              className="font-[family-name:var(--font-urbanist)] text-xs font-medium text-brand-dark"
+            >
+              Forgot Password
+            </Link>
+          </div>
+        </div>
 
-      <div className="flex items-center justify-between">
-        <label className="flex items-center gap-2 font-[family-name:var(--font-urbanist)] text-xs text-muted-text">
-          <Checkbox name="remember" />
-          Remember Me
-        </label>
-        <Link
-          href="/reset-password"
-          className="font-[family-name:var(--font-urbanist)] text-xs text-sidebar-bg"
+        {state.error && (
+          <p className="font-[family-name:var(--font-urbanist)] text-sm text-error">
+            {state.error}
+          </p>
+        )}
+
+        <Button
+          type="submit"
+          loading={isPending}
+          className="h-11 w-full border border-button-primary-border bg-button-primary-bg font-[family-name:var(--font-urbanist)] text-sm font-semibold text-white hover:bg-button-primary-bg/90"
         >
-          Forgot Password
-        </Link>
+          Log in
+        </Button>
       </div>
 
-      <Button
-        type="submit"
-        disabled={isPending}
-        className="h-11 w-full border border-button-primary-border bg-button-primary-bg text-white hover:bg-button-primary-bg/90"
-      >
-        {isPending ? "Logging in..." : "Log in"}
-      </Button>
+      <div className="flex flex-col items-center gap-4">
+        <SocialAuthRow />
+        <p className="font-[family-name:var(--font-urbanist)] text-sm text-muted-text">
+          Don&apos;t have an account?{" "}
+          <Link href="/signup" className="font-medium text-brand-dark">
+            Get Started
+          </Link>
+        </p>
+      </div>
     </form>
   );
 }

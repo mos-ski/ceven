@@ -18,11 +18,27 @@ export async function login(
   redirect("/dashboard");
 }
 
+export async function signup(formData: FormData): Promise<{ error?: string }> {
+  const email = String(formData.get("email") ?? "");
+
+  if (!email) {
+    return { error: "Please enter a valid email address." };
+  }
+
+  redirect(`/verify-email?email=${encodeURIComponent(email)}`);
+}
+
 export async function requestPasswordReset(
   formData: FormData
 ): Promise<{ ok: true }> {
   const email = String(formData.get("email") ?? "");
-  redirect(`/verify-email?email=${encodeURIComponent(email)}`);
+  redirect(`/reset-password/verify?email=${encodeURIComponent(email)}`);
+}
+
+export async function resetPassword(
+  _formData: FormData
+): Promise<{ error?: string }> {
+  redirect("/login");
 }
 
 export async function logout(): Promise<void> {
