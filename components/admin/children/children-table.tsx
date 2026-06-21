@@ -178,7 +178,8 @@ export function ChildrenTable() {
           </div>
         </div>
       </div>
-      <div className="overflow-x-auto">
+      {/* Desktop table */}
+      <div className="hidden overflow-x-auto lg:block">
         <Table>
           <TableHeader>
             <TableRow className="border-none bg-table-header-bg hover:bg-table-header-bg">
@@ -201,6 +202,45 @@ export function ChildrenTable() {
             ))}
           </TableBody>
         </Table>
+      </div>
+      {/* Mobile card list */}
+      <div className="flex flex-col gap-2 px-4 pb-4 lg:hidden">
+        {CHILDREN.map((child) => (
+          <Link
+            key={child.id}
+            href={`/children/${child.id}`}
+            className="flex items-center justify-between rounded-xl border border-[#eaecf0] p-3 transition-colors hover:bg-[#faf9f7]"
+          >
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#edd9c0] font-[family-name:var(--font-urbanist)] text-xs font-bold text-[#3b2513]">
+                {child.name.split(" ").map(n => n[0]).join("")}
+              </div>
+              <div className="flex flex-col gap-0.5">
+                <div className="flex items-center gap-2">
+                  <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-black">
+                    {child.name}
+                  </span>
+                  <span className={cn("font-[family-name:var(--font-nunito)] text-xs", STATUS_TEXT_CLASS[child.status])}>
+                    {child.status}
+                  </span>
+                </div>
+                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#858c98]">
+                  {child.room} • {child.age} • {child.parentName}
+                </span>
+              </div>
+            </div>
+            <div className="flex flex-col items-end gap-1">
+              <Badge variant="outline" className={FEE_BADGE_CLASS[child.feeStatus]}>
+                {child.feeStatus}
+              </Badge>
+              {child.healthFlag && (
+                <span className="flex items-center gap-1 font-[family-name:var(--font-nunito)] text-[10px] text-red-600">
+                  <Flag className="size-3" /> {child.healthFlag}
+                </span>
+              )}
+            </div>
+          </Link>
+        ))}
       </div>
     </div>
   );

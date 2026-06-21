@@ -1,193 +1,237 @@
-# Communication Module - PRD
+# Communication — Product Requirements Document
 
-## 1. Overview
+## 1. Purpose
 
-The Communication module provides a messaging interface for parent-staff communication. It features a split-panel layout with a message list and conversation view, supporting message composition with AI-assisted content creation and pre-built templates.
-
-**Route:** `/communication`
-**File:** `app/(admin)/communication/page.tsx` (446 lines, client component)
+The Communication module provides a messaging interface for parent-staff communication. It features a split-panel layout with a message list and conversation view, supporting real-time messaging with AI-assisted content creation and pre-built templates for common scenarios.
 
 ---
 
-## 2. Layout
+## 2. Screens
 
-**Split Panel Design:**
+### 2.1 Main Layout
+
+**Page Header:**
+- Title: "Messages"
+- "New Message" primary button
+
+**Split-Panel Design:**
 
 | Panel | Width | Content |
 |---|---|---|
-| Left Panel | 340px | Message list with search and filters |
-| Right Panel | Flex | Conversation view or compose view |
+| Left Panel | 340px | Message list with search, filters, and conversations |
+| Right Panel | Flexible | Active conversation or compose view |
 
 ---
 
-## 3. Left Panel — Message List
+### 2.2 Left Panel — Message List
 
-### 3.1 Header
+**Search & Filters:**
+- Search input ("Search messages...")
+- Date filter button
+- Filter tabs: All Messages, Read, Unread
 
-| Element | Description |
-|---|---|
-| Search Bar | Search by sender name or subject |
-| Date Filter | Filter by date |
-| Filter Tabs | All Messages, Read, Unread |
-
-### 3.2 Message Items
-
-Each message item displays:
-
-| Element | Description |
-|---|---|
-| Avatar | Sender avatar or initials |
-| Sender Name | Parent/staff name |
-| Subject | Message subject line |
-| Preview | First line of message |
-| Timestamp | Time/date sent |
-| Unread Indicator | Blue dot for unread messages |
-| Selected State | Left border highlight when active |
-
----
-
-## 4. Right Panel — Conversation View
-
-### 4.1 Conversation Header
-
-| Element | Description |
-|---|---|
-| Recipient Name | Parent/staff name |
-| Status | "Active Now" indicator (green dot) |
-| Actions | Contact button (phone/email) |
-
-### 4.2 Message Thread
-
-**Message Bubble Layout:**
-
-| Direction | Style |
-|---|---|
-| Received | Left-aligned, light background |
-| Sent | Right-aligned, brown/amber background |
-
+**Message Items:**
 Each message shows:
-- Message text
+- Avatar circle with initials
+- Sender name
+- Message preview (truncated)
 - Timestamp
-- Read receipt indicator
+- Unread indicator dot (gold/amber)
+- Selected state: warm cream background with left border accent
 
-### 4.3 Reply Interface
-
-| Element | Description |
-|---|---|
-| Textarea | Multi-line message input |
-| Emoji Button | Emoji picker (not implemented) |
-| Camera Button | Photo attachment (not implemented) |
-| Attachment Button | File attachment (not implemented) |
-| Send Button | Send message |
+**Empty State:**
+- "No Message Yet" message when no results match the filter
 
 ---
 
-## 5. Right Panel — Compose View
+### 2.3 Right Panel — Conversation View
 
-**Trigger:** "Compose" button or "New Message" action
+Displayed when a message is selected from the list.
 
-### 5.1 Compose Form
+**Header:**
+- Recipient avatar with initials
+- Recipient name
+- "Active Now" green indicator (when applicable)
+- "Contact" button
+- Three-dot menu
 
-| Field | Type | Description |
+**Message Thread:**
+- **Received messages:** Left-aligned, cream background, with sender avatar
+- **Sent messages:** Right-aligned, brown background
+- Messages displayed in chronological order
+
+**Reply Area:**
+- Textarea: "Write a message..."
+- Action icons: Emoji, Camera, Attachment
+- "Send Message" primary button
+
+---
+
+### 2.4 Right Panel — Compose View
+
+Displayed when "New Message" is clicked.
+
+**Header:** "Compose Message"
+
+**Form Fields:**
+- **Recipient:** Dropdown (Select recipient, individual parents, "All Parents")
+- **Subject:** Text input
+- **Message:** Textarea
+
+**AI Create Row:**
+- "AI Create" gradient pill button
+- Quick action pills: "Create incident message", "Create quick reminder", "Button CTA"
+
+**Footer:**
+- Cancel button (outline)
+- "Send Message" button (disabled/greyed when form is empty)
+
+**Templates Section:**
+- 4 template cards in a 2-column grid:
+  - **Incident Report** — for notifying parents of incidents
+  - **Payment Reminder** — for overdue payment reminders
+  - **Absence Notice** — for child absence notifications
+  - **General Update** — for general creche announcements
+- Each card shows the template name and "Use template" link
+
+---
+
+## 3. User Actions Summary
+
+| Action | Where | Result |
 |---|---|---|
-| Recipient | Dropdown | Select parent or "All Parents" |
-| Subject | Text input | Message subject |
-| Message | Textarea | Message body |
+| Select conversation | Message list item | Opens conversation in right panel |
+| Reply to message | Conversation reply area | Sends message to recipient |
+| Compose new message | "New Message" button | Opens compose form |
+| Use AI Create | Compose form | Generates AI-assisted message content |
+| Use template | Templates section | Populates form with template content |
+| Filter messages | Filter tabs | Shows All, Read, or Unread messages |
+| Search messages | Search input | Filters by sender name or subject |
+| Attach file | Attachment icon | Opens file picker (not implemented) |
+| Take photo | Camera icon | Opens camera (not implemented) |
+| Add emoji | Emoji icon | Opens emoji picker (not implemented) |
 
-### 5.2 AI Create Button
+---
 
-**Trigger:** Button in compose interface
-
-**Quick Actions:**
-
-| Action | Description |
-|---|---|
-| Create incident message | AI generates incident notification message |
-| Create quick reminder | AI generates payment/event reminder |
-| Button CTA | AI suggests call-to-action content |
-
-### 5.3 Send Actions
-
-| Action | Description |
-|---|---|
-| Send Message | Send to selected recipient(s) |
-
-### 5.4 Templates Section
-
-Pre-built message templates:
+## 4. Message Templates
 
 | Template | Use Case |
 |---|---|
-| Incident Report | Notify parents of incidents |
-| Payment Reminder | Reminder for overdue payments |
-| Absence Notice | Notification about child absence |
-| General Update | General creche update/announcement |
+| Incident Report | Notify parents when an incident involving their child has occurred |
+| Payment Reminder | Send reminders for overdue tuition payments |
+| Absence Notice | Notify parents about unplanned child absences |
+| General Update | Share general announcements about the crèche |
 
 ---
 
-## 6. Data Model
+## 5. User Stories & Acceptance Criteria
 
-### 6.1 Implicit Models
+### US-1: Admin Views Message List
+**As a** crèche administrator,  
+**I want to** see all my conversations with parents in a list,  
+**so that** I can quickly find and respond to messages.
 
-```typescript
-type Message = {
-  id: string;
-  senderName: string;
-  senderAvatar?: string;
-  subject: string;
-  preview: string;
-  body: string;
-  timestamp: string;
-  isRead: boolean;
-  direction: "received" | "sent";
-};
-
-type Conversation = {
-  id: string;
-  participantName: string;
-  participantAvatar?: string;
-  isActive: boolean;
-  messages: Message[];
-  lastMessage: string;
-  unreadCount: number;
-};
-
-type MessageTemplate = {
-  id: string;
-  name: string;
-  subject: string;
-  body: string;
-  category: string;
-};
-```
+**Acceptance Criteria:**
+- [ ] Left panel shows a list of conversations with: avatar, sender name, message preview, timestamp
+- [ ] Unread messages show a gold/amber dot indicator
+- [ ] Selected conversation is highlighted with warm cream background and left border accent
+- [ ] Empty state shows "No Message Yet" when no results match
+- [ ] List supports search by sender name or subject
+- [ ] Filter tabs allow viewing: All Messages, Read, Unread
 
 ---
 
-## 7. Filter & Search Behavior
+### US-2: Admin Reads a Conversation
+**As a** crèche administrator,  
+**I want to** open a conversation and read the full message thread,  
+**so that** I can understand the context before responding.
 
-| Filter | Behavior |
-|---|---|
-| All Messages | Shows all conversations |
-| Read | Shows only read conversations |
-| Unread | Shows only unread conversations |
-| Search | Filters by sender name or subject text |
-| Date | Filters by message date |
+**Acceptance Criteria:**
+- [ ] Clicking a message opens the conversation in the right panel
+- [ ] Header shows recipient avatar, name, "Active Now" indicator, Contact button
+- [ ] Received messages are left-aligned with cream background and avatar
+- [ ] Sent messages are right-aligned with brown background
+- [ ] Messages are displayed in chronological order
+- [ ] Message thread is scrollable for long conversations
 
 ---
 
-## 8. Gaps & Future Work
+### US-3: Admin Replies to a Message
+**As a** crèche administrator,  
+**I want to** reply to a parent's message directly in the conversation,  
+**so that** I can communicate quickly without leaving the platform.
 
-- No real messaging backend (no email/SMS integration)
+**Acceptance Criteria:**
+- [ ] Reply area shows a textarea with "Write a message..." placeholder
+- [ ] Action icons are available: Emoji, Camera, Attachment
+- [ ] "Send Message" button sends the reply
+- [ ] Sent message appears in the conversation thread
+- [ ] Reply area clears after sending
+
+---
+
+### US-4: Admin Composes a New Message
+**As a** crèche administrator,  
+**I want to** compose a new message to a parent or all parents,  
+**so that** I can proactively communicate important information.
+
+**Acceptance Criteria:**
+- [ ] "New Message" button opens the compose view
+- [ ] Recipient dropdown allows selecting individual parents or "All Parents"
+- [ ] Subject input and Message textarea are available
+- [ ] "Send Message" button is disabled when the form is empty
+- [ ] "Cancel" button closes the compose view without sending
+
+---
+
+### US-5: Admin Uses AI to Create Messages
+**As a** crèche administrator,  
+**I want to** use AI to help draft messages,  
+**so that** I can write professional communications faster.
+
+**Acceptance Criteria:**
+- [ ] "AI Create" gradient pill button is visible in the compose form
+- [ ] Quick action pills are available: "Create incident message", "Create quick reminder", "Button CTA"
+- [ ] Clicking an AI action generates suggested message content
+- [ ] Generated content populates the message textarea
+
+---
+
+### US-6: Admin Uses Message Templates
+**As a** crèche administrator,  
+**I want to** use pre-built message templates for common scenarios,  
+**so that** I can send consistent, professional messages quickly.
+
+**Acceptance Criteria:**
+- [ ] Templates section shows 4 template cards: Incident Report, Payment Reminder, Absence Notice, General Update
+- [ ] Each card shows the template name and "Use template" link
+- [ ] Clicking "Use template" populates the compose form with template content
+- [ ] Templates are displayed in a 2-column grid
+
+---
+
+### US-7: Admin Filters Messages
+**As a** crèche administrator,  
+**I want to** filter my messages by read/unread status,  
+**so that** I can prioritize responding to unread messages.
+
+**Acceptance Criteria:**
+- [ ] Filter tabs show: All Messages, Read, Unread
+- [ ] Clicking a tab filters the message list accordingly
+- [ ] Active filter tab is visually highlighted
+- [ ] Unread filter shows empty state when no unread messages exist
+
+- No real messaging backend — no email or SMS integration
 - No actual message sending or receiving
-- No real-time messaging (no WebSocket)
-- No file upload/attachment functionality
+- No real-time messaging — no WebSocket or live updates
+- No file upload or attachment functionality
 - No emoji picker
 - No message read receipts
-- No message threading/replies
+- No message threading or reply chains
 - No group messaging
 - No notification for new messages
 - No message search within conversation
-- No message deletion/editing
+- No message deletion or editing
 - No rich text formatting
 - No voice messages
-- No translation/multilingual support
+- No translation or multilingual support

@@ -188,7 +188,166 @@ A full-screen overlay modal for enrolling a new child, triggered by the "Enroll 
 
 ---
 
-## 7. Gaps & Future Work
+## 7. User Stories & Acceptance Criteria
+
+### US-1: Admin Views Daily Overview
+**As a** crèche administrator,  
+**I want to** see a summary of today's key metrics when I log in,  
+**so that** I can quickly understand the state of my crèche without navigating to multiple pages.
+
+**Acceptance Criteria:**
+- [ ] Greeting banner displays the current date, a personalized welcome message, and active status
+- [ ] Stats grid shows 8 key metrics: Total Enrolled, Present Today, Absent, Staff on Duty, Outstanding Fees, Open Incidents, Reports, Tasks Overdue
+- [ ] Each stat card displays a label, large value, and colored trend or status indicator
+- [ ] Outstanding Fees value is displayed in Nigerian Naira (₦) with comma formatting
+- [ ] Stats are visible immediately upon page load
+
+---
+
+### US-2: Admin Receives AI Daily Brief
+**As a** crèche administrator,  
+**I want to** receive an AI-generated daily brief highlighting key concerns,  
+**so that** I can prioritize my attention on the most important issues.
+
+**Acceptance Criteria:**
+- [ ] AI Daily Brief panel is visible on the dashboard
+- [ ] Brief contains at least 3 insight cards with colored indicators
+- [ ] Each insight card shows a category tag (Health & Wellness, Finance & Invoice, Creche Performance)
+- [ ] Each insight card has a "Take Action" button
+- [ ] Brief shows a timestamp (e.g., "generated 7am")
+- [ ] "Open AI Center" link navigates to the Intelligence module
+
+---
+
+### US-3: Admin Views Upcoming Events
+**As a** crèche administrator,  
+**I want to** see upcoming events on my dashboard,  
+**so that** I can prepare for birthdays, meetings, and breaks.
+
+**Acceptance Criteria:**
+- [ ] Upcoming Events panel shows at least 3 events
+- [ ] Each event displays date, time, and title
+- [ ] Events have a red dot indicator
+- [ ] "Go to Calendar" link navigates to the calendar module
+
+---
+
+### US-4: Admin Monitors Room Occupancy
+**As a** crèche administrator,  
+**I want to** see real-time room occupancy when the AI panel is open,  
+**so that** I can identify which rooms are full or underutilized.
+
+**Acceptance Criteria:**
+- [ ] Room Occupancy panel replaces Upcoming Events when AI panel is open
+- [ ] Shows occupancy for at least 4 rooms (Lion, Tiger, Elephant, Zebra)
+- [ ] Each room shows present/enrolled count, progress bar, and capacity
+- [ ] Progress bars are color-coded based on occupancy percentage
+- [ ] "View All" link navigates to the room detail page
+
+---
+
+### US-5: Admin Views Outstanding Payments
+**As a** crèche administrator,  
+**I want to** see which families have overdue payments,  
+**so that** I can follow up and collect outstanding fees.
+
+**Acceptance Criteria:**
+- [ ] Outstanding Payments table shows child name, amount, due date, and status
+- [ ] Status badges distinguish between "Overdue" (red) and "Pending" (amber)
+- [ ] Overdue payments show the number of days overdue
+- [ ] Each row has a "Reminder" action button
+- [ ] "View All" link navigates to the full payment history
+
+---
+
+### US-6: Admin Views Pending Enrollments
+**As a** crèche administrator,  
+**I want to** see pending enrollment applications,  
+**so that** I can review and process new enrollments.
+
+**Acceptance Criteria:**
+- [ ] Pending Enrollments table shows child name, class, status, and submission date
+- [ ] Each row has a "View" action button
+- [ ] "View All" link navigates to the full enrollments list
+
+---
+
+### US-7: Admin Enrolls a New Child from Dashboard
+**As a** crèche administrator,  
+**I want to** enroll a new child directly from the dashboard,  
+**so that** I can quickly add a child without navigating away.
+
+**Acceptance Criteria:**
+- [ ] "Enroll a Child" button is visible in the greeting banner
+- [ ] Clicking it opens the enrollment modal
+- [ ] Modal contains 3 sections: Child's Information, Parent/Guardian Info, Subscription & Start Date
+- [ ] Required fields are marked with a red asterisk
+- [ ] Child's Information collects: name, DOB, gender, blood group, room, allergies
+- [ ] Parent Info collects: name, email, phone, consent checkbox
+- [ ] Subscription collects: plan type and start date
+- [ ] Modal has Cancel and "Enroll Child" buttons
+- [ ] Clicking outside the modal or pressing Cancel closes it
+
+---
+
+### US-8: Admin Uses AI Chat Assistant (Ada)
+**As a** crèche administrator,  
+**I want to** ask Ada natural-language questions about my crèche,  
+**so that** I can get quick insights without running reports.
+
+**Acceptance Criteria:**
+- [ ] "AI Reports" toggle button is visible in the greeting banner
+- [ ] Clicking it opens the Ada chat panel as a slide-in from the right
+- [ ] Panel shows Ada's avatar, name, "Online" status, and close button
+- [ ] Chat area displays pre-loaded conversation demonstrating capabilities
+- [ ] User can type a message and send it
+- [ ] Ada responds with a relevant (mock) answer
+- [ ] Quick prompt buttons are available: "Summarise today's absences", "Which invoices are overdue?", "Flag welfare concerns"
+- [ ] Clicking a quick prompt sends it as a message
+
+---
+
+### US-9: Admin Receives Notifications
+**As a** crèche administrator,  
+**I want to** see a notification panel with recent alerts,  
+**so that** I stay informed about incidents, payments, and messages.
+
+**Acceptance Criteria:**
+- [ ] Notification bell icon shows unread count badge
+- [ ] Clicking the bell opens the notification panel as a floating overlay
+- [ ] Panel shows notification items with color-coded left borders and tag pills
+- [ ] Notification types include: AI Alert, Incident, Invoice, Message, Payment
+- [ ] Filter tabs allow filtering by: All, Log Update, Enquiries, Emergency
+- [ ] Unread notifications have a dot indicator and warm background
+- [ ] "Mark All as Read" button clears all unread indicators
+- [ ] Clicking the close button or outside the panel dismisses it
+
+---
+
+### US-10: Admin Uses Quick Actions
+**As a** crèche administrator,  
+**I want to** access common actions quickly from the dashboard,  
+**so that** I can perform frequent tasks without navigating through menus.
+
+**Acceptance Criteria:**
+- [ ] Quick Actions bar appears when the AI panel is open
+- [ ] Shows 6 action buttons: Add Child, QR Station, New Log, Raise Incident, New Invoice, View Reports
+- [ ] Each button has an icon and label
+- [ ] Clicking each button navigates to the corresponding feature or opens the relevant form
+
+---
+
+### US-11: Admin Views Live Activities
+**As a** crèche administrator,  
+**I want to** see a live feed of recent activities,  
+**so that** I can stay updated on what's happening in real time.
+
+**Acceptance Criteria:**
+- [ ] Live Activities panel is visible when the AI panel is closed
+- [ ] Shows at least 5 recent activity items
+- [ ] Each item shows title, description, and timestamp
+- [ ] Items have red dot indicators
+- [ ] "Go to Daily Operations" link navigates to the Daily Operations module
 
 - All stats are static — no real-time data updates
 - No actual AI integration — daily brief and chat responses are hardcoded

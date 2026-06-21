@@ -129,7 +129,103 @@ CEven is an **early-stage prototype / MVP**. The UI is fully designed and built 
 
 ---
 
-## 8. Product Gaps & Future Work
+## 8. User Stories & Acceptance Criteria
+
+### US-1: Admin Accesses the Platform
+**As a** crèche administrator,  
+**I want to** access CEven from any device,  
+**so that** I can manage my crèche from my computer, tablet, or phone.
+
+**Acceptance Criteria:**
+- [ ] Admin can log in from desktop, tablet, and mobile devices
+- [ ] Sidebar collapses to a hamburger menu on mobile
+- [ ] All pages are usable on screens ≥375px wide
+- [ ] Tables scroll horizontally on mobile
+- [ ] Forms and modals adapt to smaller screens
+
+---
+
+### US-2: Admin Navigates Between Modules
+**As a** crèche administrator,  
+**I want to** quickly navigate between all modules from the sidebar,  
+**so that** I can switch tasks without losing context.
+
+**Acceptance Criteria:**
+- [ ] Sidebar shows 8 navigation items: Dashboard, Child Management, Staff Management, Daily Operations, Finance, Communication, Intelligence, Account & Setup
+- [ ] Active module is visually highlighted in the sidebar
+- [ ] Clicking a navigation item loads the corresponding module
+- [ ] Sidebar shows logged-in user name and email at the bottom
+- [ ] "Need Support?" card is visible in the sidebar
+
+---
+
+### US-3: Admin Uses Global Search
+**As a** crèche administrator,  
+**I want to** search across children, staff, invoices, and messages from the top bar,  
+**so that** I can find anything quickly without navigating to specific pages.
+
+**Acceptance Criteria:**
+- [ ] Global search bar is visible in the top bar
+- [ ] Search placeholder reads: "Search..."
+- [ ] Search results include matches across all modules
+
+---
+
+### US-4: Admin Uses Quick Actions
+**As a** crèche administrator,  
+**I want to** access common actions from the top bar,  
+**so that** I can perform frequent tasks with one click.
+
+**Acceptance Criteria:**
+- [ ] "Quick Actions" dropdown is visible in the top bar
+- [ ] Dropdown includes: Enroll a Child, Add Staff, New Invoice
+- [ ] Each action navigates to the corresponding feature or opens the relevant form
+
+---
+
+### US-5: Admin Receives Platform Notifications
+**As a** crèche administrator,  
+**I want to** receive notifications about important events,  
+**so that** I don't miss critical updates.
+
+**Acceptance Criteria:**
+- [ ] Notification bell icon is visible in the top bar with unread count badge
+- [ ] Clicking the bell opens the notification panel
+- [ ] Notifications cover 5 types: AI Alert, Incident, Invoice, Message, Payment
+- [ ] Notifications can be filtered by category
+- [ ] "Mark All as Read" clears unread indicators
+
+---
+
+### US-6: Admin Manages Subscription
+**As a** crèche administrator,  
+**I want to** choose and manage my subscription plan,  
+**so that** I have access to the features my crèche needs.
+
+**Acceptance Criteria:**
+- [ ] Account & Setup module provides a 3-step subscription wizard
+- [ ] 3 plans are available: Seedling, Nestling Pro, Flourish
+- [ ] Admin can choose monthly or yearly billing
+- [ ] Admin can add optional add-ons
+- [ ] Order summary shows total cost including 7.5% VAT
+
+---
+
+### US-7: Admin Gets AI-Powered Insights
+**As a** crèche administrator,  
+**I want to** receive AI-generated insights about my crèche,  
+**so that** I can make informed decisions faster.
+
+**Acceptance Criteria:**
+- [ ] Ada AI assistant is accessible from the Dashboard and Intelligence modules
+- [ ] AI Daily Brief on the Dashboard shows at least 3 actionable insights
+- [ ] Insights are categorized: Health & Wellness, Finance & Invoice, Creche Performance
+- [ ] Each insight has a "Take Action" button
+- [ ] Ada chat responds to natural-language queries with relevant (mock) answers
+
+---
+
+## 9. Product Gaps & Future Work
 
 | Category | Gap |
 |---|---|

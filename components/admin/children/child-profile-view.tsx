@@ -88,11 +88,11 @@ function OverviewTab({ child }: { child: Child }) {
   ];
 
   return (
-    <div className="grid grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
       {/* Left col (span 2) */}
-      <div className="col-span-2 space-y-4">
-        {/* 3×2 info cards */}
-        <div className="grid grid-cols-3 gap-3">
+      <div className="space-y-4 lg:col-span-2">
+        {/* Info cards — 2 cols on mobile, 3 on desktop */}
+        <div className="grid grid-cols-2 gap-3 lg:grid-cols-3">
           {infoCards.map((card) => (
             <div key={card.label} className="rounded-xl border border-[#e6ebf3] bg-white p-3">
               <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{card.label}</p>
@@ -217,7 +217,8 @@ function ActivityLogTab({ child }: { child: Child }) {
             <FilterButton label="Date" />
           </div>
         </div>
-        <table className="w-full border-collapse">
+        {/* Desktop table */}
+        <table className="hidden w-full border-collapse lg:table">
           <thead>
             <tr className="bg-[#edd9c0]">
               {["Date", "Mood", "Meals", "Nap", "Activity", "Caregiver", "Notes"].map((col) => (
@@ -241,6 +242,26 @@ function ActivityLogTab({ child }: { child: Child }) {
             ))}
           </tbody>
         </table>
+        {/* Mobile card list */}
+        <div className="flex flex-col gap-2 px-4 pb-4 lg:hidden">
+          {activityLogRows.map((row, i) => (
+            <div key={i} className="rounded-xl border border-[#eaecf0] p-3">
+              <div className="flex items-center justify-between">
+                <span className="font-[family-name:var(--font-nunito)] text-xs font-medium text-[#2d1810]">{row.date}</span>
+                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{row.caregiver}</span>
+              </div>
+              <div className="mt-2 flex flex-wrap gap-2">
+                <span className="rounded-full bg-[#ecfff8] px-2 py-0.5 font-[family-name:var(--font-urbanist)] text-[10px] text-[#009061]">{row.mood}</span>
+                <span className="rounded-full bg-[#f5f5f5] px-2 py-0.5 font-[family-name:var(--font-urbanist)] text-[10px] text-[#6b7280]">{row.meals}</span>
+                <span className="rounded-full bg-[#f5f5f5] px-2 py-0.5 font-[family-name:var(--font-urbanist)] text-[10px] text-[#6b7280]">Nap: {row.nap}</span>
+                <span className="rounded-full bg-[#f5f5f5] px-2 py-0.5 font-[family-name:var(--font-urbanist)] text-[10px] text-[#6b7280]">{row.activity}</span>
+              </div>
+              {row.notes && (
+                <p className="mt-2 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{row.notes}</p>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -264,7 +285,7 @@ function HealthStatusTab({ child }: { child: Child }) {
   ];
 
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
       <div className="rounded-xl border border-[#e6ebf3] bg-white p-4">
         <p className="mb-4 font-[family-name:var(--font-merriweather)] text-sm font-bold text-[#2d1810]">Health Information</p>
         <div className="space-y-3">
@@ -321,7 +342,8 @@ function PaymentHistoryTab() {
 
       {/* Table */}
       <div className="overflow-hidden rounded-xl bg-white shadow-sm">
-        <table className="w-full border-collapse">
+        {/* Desktop table */}
+        <table className="hidden w-full border-collapse lg:table">
           <thead>
             <tr className="bg-[#edd9c0]">
               {["Room Plan", "Reference ID", "Amount", "Date", "Invoice", "Status", "Action"].map((col) => (
@@ -357,6 +379,27 @@ function PaymentHistoryTab() {
             ))}
           </tbody>
         </table>
+        {/* Mobile card list */}
+        <div className="flex flex-col gap-2 px-4 py-4 lg:hidden">
+          {childPaymentRows.map((row, i) => (
+            <div key={i} className="rounded-xl border border-[#eaecf0] p-3">
+              <div className="flex items-center justify-between">
+                <div className="flex flex-col gap-0.5">
+                  <span className="font-[family-name:var(--font-nunito)] text-sm font-bold text-[#2d1810]">{row.plan}</span>
+                  <span className="font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">{row.boldAmount}</span>
+                </div>
+                <PaymentStatusBadge status={row.status} />
+              </div>
+              <div className="mt-2 flex items-center justify-between">
+                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{row.date} • {row.invoice}</span>
+                <button className="flex items-center gap-1.5 text-[#3b2513] hover:opacity-70">
+                  <Download className="h-3.5 w-3.5" />
+                  <span className="font-[family-name:var(--font-urbanist)] text-[10px]">Receipt</span>
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -374,7 +417,7 @@ function DevelopmentTab() {
   ];
 
   return (
-    <div className="grid grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
       <div className="rounded-xl border border-[#e6ebf3] bg-white p-4">
         <p className="mb-4 font-[family-name:var(--font-merriweather)] text-sm font-bold text-[#2d1810]">Development Milestones</p>
         <div className="space-y-3">
@@ -430,7 +473,7 @@ function ContactTab({ child }: { child: Child }) {
           </button>
         </div>
       </div>
-      <table className="w-full border-collapse">
+      <table className="hidden w-full border-collapse lg:table">
         <thead>
           <tr className="bg-[#edd9c0]">
             {["Name", "Relationship", "Phone", "Email", "Access Level", "Action"].map((col) => (
@@ -467,6 +510,32 @@ function ContactTab({ child }: { child: Child }) {
           ))}
         </tbody>
       </table>
+      {/* Mobile card list */}
+      <div className="flex flex-col gap-2 px-4 py-4 lg:hidden">
+        {contacts.map((c, i) => (
+          <div key={i} className="rounded-xl border border-[#eaecf0] p-3">
+            <div className="flex items-center justify-between">
+              <div className="flex flex-col gap-0.5">
+                <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{c.name}</span>
+                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{c.relationship}</span>
+              </div>
+              {c.access === "Primary" ? (
+                <span className="inline-flex items-center rounded-full bg-[#2d1810] px-2.5 py-0.5 font-[family-name:var(--font-urbanist)] text-xs text-[#faf2e1]">
+                  Primary
+                </span>
+              ) : (
+                <span className="inline-flex items-center rounded-full border border-[#f59e0b] bg-[#fffbeb] px-2.5 py-0.5 font-[family-name:var(--font-urbanist)] text-xs text-[#f59e0b]">
+                  Emergency
+                </span>
+              )}
+            </div>
+            <div className="mt-2 flex items-center justify-between">
+              <span className="font-[family-name:var(--font-nunito)] text-xs text-[#2d1810]">{c.phone}</span>
+              <button className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#3b2513] underline hover:opacity-70">Edit</button>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
@@ -514,32 +583,59 @@ export function ChildProfileView({ child }: { child: Child }) {
 
       {/* Profile Banner */}
       <div
-        className="relative h-[160px] overflow-hidden rounded-2xl"
+        className="relative overflow-hidden rounded-2xl"
         style={{ background: "linear-gradient(135deg, rgb(45,24,16) 0%, rgb(61,36,24) 100%)" }}
       >
         {/* Decorative circles */}
         <div className="absolute -right-8 -top-8 size-40 rounded-full border border-white/10" />
         <div className="absolute -right-16 -top-16 size-64 rounded-full border border-white/5" />
 
-        {/* Avatar */}
-        <div className="absolute left-10 top-1/2 flex size-24 -translate-y-1/2 items-center justify-center rounded-full border-2 border-[#c47b2c]/40 bg-[#c47b2c]/20">
-          <span className="font-[family-name:var(--font-merriweather)] text-3xl font-bold text-[#faf2e1]">
-            {getInitials(child.name)}
-          </span>
+        {/* Mobile layout */}
+        <div className="flex flex-col items-center gap-3 px-5 py-6 sm:hidden">
+          {/* Avatar */}
+          <div className="flex size-16 items-center justify-center rounded-full border-2 border-[#c47b2c]/40 bg-[#c47b2c]/20">
+            <span className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#faf2e1]">
+              {getInitials(child.name)}
+            </span>
+          </div>
+          {/* Info */}
+          <div className="text-center">
+            <span className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#c78c5f]">Child ID: {child.id}</span>
+            <h2 className="font-[family-name:var(--font-merriweather)] text-xl font-bold text-[#f5edd8]">{child.name}</h2>
+            <p className="font-[family-name:var(--font-nunito)] text-xs text-[#c78c5f]">
+              {child.gender === "M" ? "Male" : "Female"} • {child.age} • Blood: {child.bloodGroup}
+            </p>
+            <div className="mt-2 flex items-center justify-center gap-2">
+              <span className={`rounded-full border px-2.5 py-0.5 font-[family-name:var(--font-urbanist)] text-xs ${STATUS_BADGE_CLASS[child.status]}`}>
+                {child.status}
+              </span>
+              <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#c78c5f]">{child.room} Room</span>
+            </div>
+          </div>
         </div>
 
-        {/* Info */}
-        <div className="absolute left-44 top-1/2 -translate-y-1/2">
-          <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#c78c5f]">Child ID: {child.id}</span>
-          <h2 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#f5edd8]">{child.name}</h2>
-          <p className="font-[family-name:var(--font-nunito)] text-xs text-[#c78c5f]">
-            {child.gender === "M" ? "Male" : "Female"} • {child.age} • Blood: {child.bloodGroup}
-          </p>
-          <div className="mt-2 flex items-center gap-2">
-            <span className={`rounded-full border px-2.5 py-0.5 font-[family-name:var(--font-urbanist)] text-xs ${STATUS_BADGE_CLASS[child.status]}`}>
-              {child.status}
+        {/* Desktop layout */}
+        <div className="relative hidden h-[160px] items-center sm:flex">
+          {/* Avatar */}
+          <div className="absolute left-10 top-1/2 flex size-24 -translate-y-1/2 items-center justify-center rounded-full border-2 border-[#c47b2c]/40 bg-[#c47b2c]/20">
+            <span className="font-[family-name:var(--font-merriweather)] text-3xl font-bold text-[#faf2e1]">
+              {getInitials(child.name)}
             </span>
-            <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#c78c5f]">{child.room} Room</span>
+          </div>
+
+          {/* Info */}
+          <div className="absolute left-44 top-1/2 -translate-y-1/2">
+            <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#c78c5f]">Child ID: {child.id}</span>
+            <h2 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#f5edd8]">{child.name}</h2>
+            <p className="font-[family-name:var(--font-nunito)] text-xs text-[#c78c5f]">
+              {child.gender === "M" ? "Male" : "Female"} • {child.age} • Blood: {child.bloodGroup}
+            </p>
+            <div className="mt-2 flex items-center gap-2">
+              <span className={`rounded-full border px-2.5 py-0.5 font-[family-name:var(--font-urbanist)] text-xs ${STATUS_BADGE_CLASS[child.status]}`}>
+                {child.status}
+              </span>
+              <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#c78c5f]">{child.room} Room</span>
+            </div>
           </div>
         </div>
       </div>
@@ -561,13 +657,13 @@ export function ChildProfileView({ child }: { child: Child }) {
       )}
 
       {/* Tab Navigation */}
-      <div className="border-b border-[#eaecf0]">
-        <div className="flex items-center gap-6">
+      <div className="overflow-x-auto border-b border-[#eaecf0]">
+        <div className="flex items-center gap-4 sm:gap-6">
           {tabs.map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`pb-3 font-[family-name:var(--font-urbanist)] text-sm transition-colors ${
+              className={`whitespace-nowrap pb-3 font-[family-name:var(--font-urbanist)] text-sm transition-colors ${
                 activeTab === tab
                   ? "border-b-2 border-[#3b2513] text-[#3b2513]"
                   : "text-[#6b7280] hover:text-[#3b2513]"

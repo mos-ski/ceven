@@ -362,21 +362,29 @@ export default function StaffPage() {
         </div>
 
         {/* Stats row */}
-        <div className="flex flex-wrap gap-4">
+        <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-1 lg:grid lg:grid-cols-4 lg:overflow-visible lg:pb-0">
+          <div className="min-w-[160px] snap-start flex-1">
           <StatCard
             label="Total Staff"
             value="15"
             trendLabel="+12.5% vs last month"
             trendUp
           />
+          </div>
+          <div className="min-w-[160px] snap-start flex-1">
           <StatCard label="On Duty Today" value="08" trendLabel="QR Verified" />
+          </div>
+          <div className="min-w-[160px] snap-start flex-1">
           <StatCard label="Absent" value="07" trendLabel="this morning" />
+          </div>
+          <div className="min-w-[160px] snap-start flex-1">
           <StatCard
             label="Average Log Compliance"
             value="90%"
             trendLabel="84% last week ↑"
             trendUp
           />
+          </div>
         </div>
 
         {/* AI Flags Banner */}
@@ -457,7 +465,7 @@ export default function StaffPage() {
             </div>
 
             {/* Table */}
-            <div className="overflow-x-auto">
+            <div className="hidden overflow-x-auto lg:block">
             <table className="w-full text-left">
               <thead>
                 <tr className="bg-[#edd9c0]">
@@ -522,6 +530,34 @@ export default function StaffPage() {
               </tbody>
             </table>
             </div>
+            {/* Mobile card list */}
+            <div className="flex flex-col gap-2 px-4 pb-4 lg:hidden">
+              {staffData.map((staff) => (
+                <Link
+                  key={staff.id}
+                  href={`/staff/${staff.id}`}
+                  className="flex items-center justify-between rounded-xl border border-[#eaecf0] p-3 transition-colors hover:bg-[#faf9f7]"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#edd9c0] font-[family-name:var(--font-urbanist)] text-xs font-bold text-[#3b2513]">
+                      {staff.name.split(" ").filter(n => !n.startsWith("Mr") && !n.startsWith("Mrs") && !n.startsWith("Ms")).map(n => n[0]).join("").slice(0, 2)}
+                    </div>
+                    <div className="flex flex-col gap-0.5">
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">
+                          {staff.name}
+                        </span>
+                        <StatusBadge status={staff.status} />
+                      </div>
+                      <span className="font-[family-name:var(--font-nunito)] text-xs text-[#858c98]">
+                        {staff.role} • {staff.phone}
+                      </span>
+                    </div>
+                  </div>
+                  <MoreVertical className="size-4 text-[#6b7280]" />
+                </Link>
+              ))}
+            </div>
           </div>
         )}
 
@@ -554,7 +590,7 @@ export default function StaffPage() {
 
             {/* Table */}
             <div className="rounded-xl bg-white shadow-sm overflow-hidden">
-              <div className="overflow-x-auto">
+              <div className="hidden overflow-x-auto lg:block">
               <table className="w-full text-left">
                 <thead>
                   <tr className="bg-[#edd9c0]">
@@ -608,6 +644,36 @@ export default function StaffPage() {
                 </tbody>
               </table>
               </div>
+              {/* Mobile card list */}
+              <div className="flex flex-col gap-2 p-4 lg:hidden">
+                {attendanceData.map((row) => (
+                  <div key={row.name} className="rounded-xl border border-[#eaecf0] p-3">
+                    <div className="flex items-center justify-between">
+                      <div className="flex flex-col gap-0.5">
+                        <span className="text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">
+                          {row.name}
+                        </span>
+                        <span className="text-[10px] text-[#858c98]">{row.email}</span>
+                      </div>
+                      <ComplianceText value={row.compliance} />
+                    </div>
+                    <div className="mt-2 flex items-center gap-1.5">
+                      {["M", "T", "W", "T", "F", "S"].map((day, di) => (
+                        <div
+                          key={di}
+                          className={`flex h-7 w-7 items-center justify-center rounded-full text-[10px] font-medium ${
+                            row.days[di]
+                              ? "bg-[#ecfff8] text-[#009061]"
+                              : "bg-[#fff5f5] text-[#ef4444]"
+                          }`}
+                        >
+                          {day}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         )}
@@ -643,7 +709,7 @@ export default function StaffPage() {
 
             {/* Table */}
             <div className="rounded-xl bg-white shadow-sm overflow-hidden">
-              <div className="overflow-x-auto">
+              <div className="hidden overflow-x-auto lg:block">
               <table className="w-full text-left">
                 <thead>
                   <tr className="bg-[#edd9c0]">
@@ -704,6 +770,38 @@ export default function StaffPage() {
                   ))}
                 </tbody>
               </table>
+              </div>
+              {/* Mobile card list */}
+              <div className="flex flex-col gap-2 p-4 lg:hidden">
+                {rolesData.map((r) => (
+                  <div key={r.role} className="flex items-center justify-between rounded-xl border border-[#eaecf0] p-3">
+                    <div className="flex flex-col gap-0.5">
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">{r.role}</span>
+                        <AccessBadge access={r.access} />
+                      </div>
+                      <span className="font-[family-name:var(--font-nunito)] text-xs text-[#858c98]">
+                        {r.team} • Updated {r.updated}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <button
+                        onClick={() => openEdit(r.role)}
+                        className="text-[#6b7280] hover:text-[#2d1810] p-1 rounded"
+                        aria-label={`Edit ${r.role}`}
+                      >
+                        <Pencil className="size-4" />
+                      </button>
+                      <button
+                        onClick={() => openDelete(r.role)}
+                        className="text-[#ef4444] hover:text-[#dc2626] p-1 rounded"
+                        aria-label={`Delete ${r.role}`}
+                      >
+                        <Trash2 className="size-4" />
+                      </button>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

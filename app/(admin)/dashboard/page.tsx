@@ -290,7 +290,7 @@ export default function DashboardPage() {
             </div>
 
             {/* Content */}
-            <div className="relative flex items-center justify-between px-6 py-7">
+            <div className="relative flex flex-col gap-4 px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:py-7">
               <div className="flex flex-col gap-2">
                 <p className="font-[family-name:var(--font-nunito)] text-xs font-medium text-[#ffd58f]">
                   Friday, 11 April 2025
@@ -303,11 +303,11 @@ export default function DashboardPage() {
                 </span>
               </div>
 
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 sm:gap-3">
                 {/* Notification bell */}
                 <button
                   onClick={() => setNotificationOpen((v) => !v)}
-                  className="relative flex h-9 w-9 items-center justify-center rounded-lg border border-[#e0bfa0] text-[#faf2e1] hover:bg-white/10"
+                  className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#e0bfa0] text-[#faf2e1] hover:bg-white/10"
                 >
                   <Bell className="h-4 w-4" />
                   <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#ef4444] font-[family-name:var(--font-nunito)] text-[9px] font-bold text-white">
@@ -318,18 +318,19 @@ export default function DashboardPage() {
                 {/* AI chat toggle */}
                 <button
                   onClick={() => setAiPanelOpen((v) => !v)}
-                  className={`flex items-center gap-1.5 rounded-lg border border-[#e0bfa0] px-4 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1] hover:bg-white/10 ${
+                  className={`flex shrink-0 items-center gap-1.5 rounded-lg border border-[#e0bfa0] px-3 py-2 font-[family-name:var(--font-urbanist)] text-xs font-medium text-[#faf2e1] hover:bg-white/10 sm:px-4 sm:py-2.5 sm:text-sm ${
                     aiPanelOpen ? "bg-white/10" : ""
                   }`}
                 >
                   <BarChart2 className="h-4 w-4" />
-                  AI Reports
+                  <span className="hidden sm:inline">AI Reports</span>
+                  <span className="sm:hidden">AI</span>
                 </button>
                 <button
                   onClick={() => setEnrollOpen(true)}
-                  className="rounded-lg bg-[#faf2e1] px-5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#3b2513] shadow-sm hover:bg-white"
+                  className="shrink-0 rounded-lg bg-[#faf2e1] px-3 py-2 font-[family-name:var(--font-urbanist)] text-xs font-medium text-[#3b2513] shadow-sm hover:bg-white sm:px-5 sm:py-2.5 sm:text-sm"
                 >
-                  Enroll a Child
+                  Enroll
                 </button>
               </div>
             </div>
@@ -352,16 +353,20 @@ export default function DashboardPage() {
             </div>
           )}
 
-          {/* 2. Stats Grid — two rows of four */}
+          {/* 2. Stats Grid — swipeable on mobile, grid on desktop */}
           <div className="flex flex-col gap-4">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-1 lg:grid lg:grid-cols-4 lg:overflow-visible lg:pb-0">
               {statsRow1.map((card) => (
-                <StatCard key={card.label} {...card} />
+                <div key={card.label} className="min-w-[160px] snap-start flex-1 sm:min-w-[180px] lg:min-w-0">
+                  <StatCard {...card} />
+                </div>
               ))}
             </div>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-1 lg:grid lg:grid-cols-4 lg:overflow-visible lg:pb-0">
               {statsRow2.map((card) => (
-                <StatCard key={card.label} {...card} />
+                <div key={card.label} className="min-w-[160px] snap-start flex-1 sm:min-w-[180px] lg:min-w-0">
+                  <StatCard {...card} />
+                </div>
               ))}
             </div>
           </div>
@@ -516,16 +521,17 @@ export default function DashboardPage() {
           </div>
 
           {/* 4. Bottom Tables */}
-          <div className="flex flex-col lg:flex-row gap-4">
+          <div className="flex flex-col gap-4 lg:flex-row lg:gap-4">
             {/* Outstanding Payments */}
-            <div className="flex min-w-0 flex-[8] flex-col rounded-xl bg-white">
+            <div className="flex min-w-0 flex-1 flex-col rounded-xl bg-white lg:flex-[8]">
               <div className="flex items-center justify-between px-4 py-4">
                 <h3 className="font-[family-name:var(--font-nunito)] text-base font-medium text-black">
                   Outstanding Payments
                 </h3>
                 <LinkArrow label="View All" />
               </div>
-              <div className="overflow-hidden rounded-xl shadow-[0px_4px_8px_-2px_rgba(16,24,40,0.1),0px_2px_4px_-2px_rgba(16,24,40,0.06)]">
+              {/* Desktop table */}
+              <div className="hidden overflow-hidden rounded-xl shadow-[0px_4px_8px_-2px_rgba(16,24,40,0.1),0px_2px_4px_-2px_rgba(16,24,40,0.06)] lg:block">
                 <table className="w-full border-collapse">
                   <thead>
                     <tr className="bg-[#edd9c0]">
@@ -563,17 +569,38 @@ export default function DashboardPage() {
                   </tbody>
                 </table>
               </div>
+              {/* Mobile card list */}
+              <div className="flex flex-col gap-2 px-4 pb-4 lg:hidden">
+                {outstandingPayments.map((row, i) => (
+                  <div key={i} className="flex items-center justify-between rounded-xl border border-[#eaecf0] p-3">
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#edd9c0] font-[family-name:var(--font-urbanist)] text-xs font-bold text-[#3b2513]">
+                        {row.child.split(" ").map(n => n[0]).join("")}
+                      </div>
+                      <div className="flex flex-col gap-0.5">
+                        <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">{row.child}</span>
+                        <span className="font-[family-name:var(--font-nunito)] text-xs text-[#858c98]">{row.amount} • {row.dueDate}</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <StatusBadge label={row.status} />
+                      <button className="font-[family-name:var(--font-urbanist)] text-xs font-medium text-[#2d1810] underline hover:opacity-70">Send</button>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
 
             {/* Pending Enrollments */}
-            <div className="flex min-w-0 flex-[6] flex-col rounded-xl bg-white">
+            <div className="flex min-w-0 flex-1 flex-col rounded-xl bg-white lg:flex-[6]">
               <div className="flex items-center justify-between px-4 py-4">
                 <h3 className="font-[family-name:var(--font-nunito)] text-base font-medium text-black">
                   Pending Enrollments
                 </h3>
                 <LinkArrow label="View All" />
               </div>
-              <div className="overflow-hidden rounded-xl shadow-[0px_4px_8px_-2px_rgba(16,24,40,0.1),0px_2px_4px_-2px_rgba(16,24,40,0.06)]">
+              {/* Desktop table */}
+              <div className="hidden overflow-hidden rounded-xl shadow-[0px_4px_8px_-2px_rgba(16,24,40,0.1),0px_2px_4px_-2px_rgba(16,24,40,0.06)] lg:block">
                 <table className="w-full border-collapse">
                   <thead>
                     <tr className="bg-[#edd9c0]">
@@ -606,6 +633,23 @@ export default function DashboardPage() {
                     ))}
                   </tbody>
                 </table>
+              </div>
+              {/* Mobile card list */}
+              <div className="flex flex-col gap-2 px-4 pb-4 lg:hidden">
+                {pendingEnrollments.map((row, i) => (
+                  <div key={i} className="flex items-center justify-between rounded-xl border border-[#eaecf0] p-3">
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#edd9c0] font-[family-name:var(--font-urbanist)] text-xs font-bold text-[#3b2513]">
+                        {row.child.split(" ").map(n => n[0]).join("")}
+                      </div>
+                      <div className="flex flex-col gap-0.5">
+                        <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">{row.child}</span>
+                        <span className="font-[family-name:var(--font-nunito)] text-xs text-[#858c98]">{row.cls} • {row.submitted}</span>
+                      </div>
+                    </div>
+                    <StatusBadge label={row.status} />
+                  </div>
+                ))}
               </div>
             </div>
           </div>

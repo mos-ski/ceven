@@ -129,7 +129,81 @@ The Authentication module handles account creation, login, email verification, a
 
 ---
 
-## 6. Gaps & Future Work
+## 6. User Stories & Acceptance Criteria
+
+### US-1: Admin Creates an Account
+**As a** crèche administrator,  
+**I want to** create a new CEven account with my creche name, email, and password,  
+**so that** I can access the platform and manage my crèche.
+
+**Acceptance Criteria:**
+- [ ] Signup form collects creche name, email, password, and confirm password
+- [ ] Password strength meter updates in real time as the user types
+- [ ] Password must contain at least 8 characters, 1 uppercase letter, and 1 number or symbol
+- [ ] Terms of Service checkbox must be checked before submission is allowed
+- [ ] On successful signup, user is redirected to email verification OTP screen
+- [ ] User receives a 4-digit OTP via email (simulated)
+- [ ] After OTP verification, account is created and user is redirected to the dashboard
+- [ ] Social auth buttons (Google, Apple) are visible but do not perform real authentication
+
+---
+
+### US-2: Admin Logs In
+**As a** returning crèche administrator,  
+**I want to** log in with my email and password,  
+**so that** I can access my crèche dashboard.
+
+**Acceptance Criteria:**
+- [ ] Login form collects email and password
+- [ ] Password field has a show/hide toggle
+- [ ] "Remember Me" checkbox persists login preference
+- [ ] On successful login, session is established and user is redirected to the dashboard
+- [ ] "Forgot Password?" link navigates to the password reset flow
+- [ ] "Don't have an account? Get Started" link navigates to signup
+- [ ] An authenticated user visiting the login page is automatically redirected to the dashboard
+
+---
+
+### US-3: Admin Resets Password
+**As a** crèche administrator who has forgotten my password,  
+**I want to** reset my password via email verification,  
+**so that** I can regain access to my account.
+
+**Acceptance Criteria:**
+- [ ] User can enter their email address on the password reset request screen
+- [ ] After submission, user receives a 4-digit OTP via email (simulated)
+- [ ] OTP input auto-advances focus between digit boxes
+- [ ] Resend code button becomes available after a 66-second countdown
+- [ ] After OTP verification, user is prompted to enter a new password
+- [ ] New password must meet strength requirements (same as signup)
+- [ ] After successful reset, user is redirected to the login page
+- [ ] User can navigate back to the previous step at any point
+
+---
+
+### US-4: Admin Logs Out
+**As a** crèche administrator,  
+**I want to** log out of my account,  
+**so that** my session is securely terminated.
+
+**Acceptance Criteria:**
+- [ ] Logout button is accessible from the top bar on all admin pages
+- [ ] Clicking logout clears the session
+- [ ] After logout, user is redirected to the login page
+- [ ] Attempting to access any admin page after logout redirects to the login page
+
+---
+
+### US-5: System Enforces Session Security
+**As a** platform administrator,  
+**I want** unauthenticated users to be blocked from accessing admin pages,  
+**so that** the crèche data remains secure.
+
+**Acceptance Criteria:**
+- [ ] Any attempt to access an admin page without a valid session redirects to the login page
+- [ ] Any attempt to access login/signup with a valid session redirects to the dashboard
+- [ ] Session is stored securely (httpOnly cookie)
+- [ ] Logout completely clears the session cookie
 
 - No real OAuth integration — Google and Apple buttons are UI-only
 - No actual email delivery for OTP codes

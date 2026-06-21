@@ -251,11 +251,11 @@ function DailyLogsView() {
   return (
     <div className="flex flex-col gap-4">
       {/* Stats row */}
-      <div className="flex flex-wrap gap-4">
+      <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-1 lg:grid lg:grid-cols-4 lg:overflow-visible lg:pb-0">
         {statsCards.map((card) => (
           <div
             key={card.title}
-            className="flex flex-1 flex-col gap-1 rounded-xl border border-[#e6ebf3] bg-white p-4"
+            className="min-w-[160px] snap-start flex-1 flex-col gap-1 rounded-xl border border-[#e6ebf3] bg-white p-4"
           >
             <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{card.title}</p>
             <p className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
@@ -287,7 +287,7 @@ function DailyLogsView() {
           </div>
         </div>
 
-        <div className="overflow-x-auto">
+        <div className="hidden overflow-x-auto lg:block">
         <table className="w-full border-collapse">
           <thead>
             <tr className="bg-[#edd9c0]">
@@ -339,6 +339,33 @@ function DailyLogsView() {
             ))}
           </tbody>
         </table>
+        </div>
+        {/* Mobile card list */}
+        <div className="flex flex-col gap-2 px-4 pb-4 lg:hidden">
+          {logRows.map((row, i) => (
+            <div key={i} className="rounded-xl border border-[#eaecf0] p-3">
+              <div className="flex items-center justify-between">
+                <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">{row.child}</span>
+                {row.status === "Submitted" ? (
+                  <span className="rounded-full bg-green-50 px-2.5 py-1 font-[family-name:var(--font-urbanist)] text-xs font-medium text-green-600">
+                    Submitted
+                  </span>
+                ) : (
+                  <span className="rounded-full bg-amber-50 px-2.5 py-1 font-[family-name:var(--font-urbanist)] text-xs font-medium text-amber-600">
+                    Pending
+                  </span>
+                )}
+              </div>
+              <div className="mt-1.5 flex items-center gap-2">
+                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{row.type}</span>
+                <span className="text-[#d0d5dd]">•</span>
+                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{row.room}</span>
+                <span className="text-[#d0d5dd]">•</span>
+                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{row.time}</span>
+              </div>
+              <p className="mt-1 font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">by {row.by}</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>

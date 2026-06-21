@@ -133,7 +133,7 @@ function PaymentHistoryTab() {
 
       {/* Table */}
       <div className="overflow-hidden rounded-xl bg-white shadow-sm">
-        <div className="overflow-x-auto">
+        <div className="hidden overflow-x-auto lg:block">
         <table className="w-full border-collapse">
           <thead>
             <tr className="bg-[#edd9c0]">
@@ -185,6 +185,27 @@ function PaymentHistoryTab() {
           </tbody>
         </table>
         </div>
+        {/* Mobile card list */}
+        <div className="flex flex-col gap-2 px-4 py-4 lg:hidden">
+          {paymentRows.map((row, i) => (
+            <div key={i} className="rounded-xl border border-[#eaecf0] p-3">
+              <div className="flex items-center justify-between">
+                <div className="flex flex-col gap-0.5">
+                  <span className="font-[family-name:var(--font-nunito)] text-sm font-bold text-[#2d1810]">{row.plan}</span>
+                  <span className="font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">{row.boldAmount}</span>
+                </div>
+                <PaymentStatusBadge status={row.status} />
+              </div>
+              <div className="mt-2 flex items-center justify-between">
+                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{row.date} • {row.invoice}</span>
+                <button className="flex items-center gap-1.5 text-[#3b2513] hover:opacity-70">
+                  <Download className="h-3.5 w-3.5" />
+                  <span className="font-[family-name:var(--font-urbanist)] text-[10px]">Payslips</span>
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -196,9 +217,9 @@ function ExpensesTab() {
   return (
     <div className="flex flex-col">
       {/* Analysis Cards */}
-      <div className="mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="mb-6 flex gap-3 overflow-x-auto snap-x snap-mandatory pb-1 lg:grid lg:grid-cols-4 lg:overflow-visible lg:pb-0">
         {/* Total Expenses */}
-        <div className="rounded-xl border border-[#e6ebf3] bg-white p-4">
+        <div className="min-w-[180px] snap-start flex-1 rounded-xl border border-[#e6ebf3] bg-white p-4">
           <p className="mb-2 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
             Total Expenses
           </p>
@@ -214,7 +235,7 @@ function ExpensesTab() {
         </div>
 
         {/* Payroll */}
-        <div className="rounded-xl border border-[#e6ebf3] bg-white p-4">
+        <div className="min-w-[180px] snap-start flex-1 rounded-xl border border-[#e6ebf3] bg-white p-4">
           <p className="mb-2 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
             Payroll
           </p>
@@ -227,7 +248,7 @@ function ExpensesTab() {
         </div>
 
         {/* Operations */}
-        <div className="rounded-xl border border-[#e6ebf3] bg-white p-4">
+        <div className="min-w-[180px] snap-start flex-1 rounded-xl border border-[#e6ebf3] bg-white p-4">
           <p className="mb-2 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
             Operations
           </p>
@@ -240,7 +261,7 @@ function ExpensesTab() {
         </div>
 
         {/* Pending Invoices */}
-        <div className="rounded-xl border border-[#e6ebf3] bg-white p-4">
+        <div className="min-w-[180px] snap-start flex-1 rounded-xl border border-[#e6ebf3] bg-white p-4">
           <p className="mb-2 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
             Pending Invoices
           </p>
@@ -278,7 +299,7 @@ function ExpensesTab() {
         </div>
 
         {/* Table */}
-        <div className="overflow-x-auto">
+        <div className="hidden overflow-x-auto lg:block">
         <table className="w-full border-collapse">
           <thead>
             <tr className="bg-[#edd9c0]">
@@ -321,6 +342,24 @@ function ExpensesTab() {
             ))}
           </tbody>
         </table>
+        </div>
+        {/* Mobile card list */}
+        <div className="flex flex-col gap-2 px-4 pb-4 lg:hidden">
+          {invoiceRows.map((row, i) => (
+            <div key={i} className="rounded-xl border border-[#eaecf0] p-3">
+              <div className="flex items-center justify-between">
+                <div className="flex flex-col gap-0.5">
+                  <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">{row.vendor}</span>
+                  <span className="font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">{row.invoice} • {row.category}</span>
+                </div>
+                <InvoiceStatusBadge status={row.status} />
+              </div>
+              <div className="mt-2 flex items-center justify-between">
+                <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">{row.amount}</span>
+                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Due {row.due}</span>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
