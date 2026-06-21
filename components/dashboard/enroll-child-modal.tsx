@@ -2,6 +2,7 @@
 
 import { X, Info } from "lucide-react";
 import { useState } from "react";
+import SuccessModal from "@/components/dashboard/success-modal";
 
 type Props = {
   onClose: () => void;
@@ -9,8 +10,13 @@ type Props = {
 
 const genderOptions = ["Male", "Female", "Other"];
 const bloodGroupOptions = ["A+", "A−", "B+", "B−", "AB+", "AB−", "O+", "O−", "Unknown"];
-const roomOptions = ["Lion Class", "Tiger Class", "Elephant Class", "Zebra Class", "Giraffe Class"];
-const planOptions = ["Monthly – ₦40,000", "Termly – ₦110,000", "Annual – ₦400,000"];
+const roomOptions = ["Toddlers", "Infants", "Fingerlings", "Preschool", "Lion Class", "Tiger Class"];
+const planOptions = [
+  "Free Plan – No Cost (Limited update)",
+  "Premium (Monthly) – ₦9,950",
+  "Premium (Quarterly) – ₦23,880",
+  "Premium (Yearly) – ₦95,520",
+];
 
 function FieldLabel({ children, required }: { children: React.ReactNode; required?: boolean }) {
   return (
@@ -64,6 +70,17 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
 
 export default function EnrollChildModal({ onClose }: Props) {
   const [consentChecked, setConsentChecked] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  if (submitted) {
+    return (
+      <SuccessModal
+        title="Enrollment Successful!"
+        description="You have successfully enrolled this child"
+        onClose={onClose}
+      />
+    );
+  }
 
   return (
     /* Backdrop */
@@ -221,7 +238,10 @@ export default function EnrollChildModal({ onClose }: Props) {
           >
             Cancel
           </button>
-          <button className="rounded-lg bg-[#3b2513] px-5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1] hover:bg-[#2d1810]">
+          <button
+            onClick={() => setSubmitted(true)}
+            className="rounded-lg bg-[#3b2513] px-5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1] hover:bg-[#2d1810]"
+          >
             Enroll Child
           </button>
         </div>

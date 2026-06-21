@@ -2,6 +2,7 @@
 
 import { ChevronDown, Download, MoreVertical, Printer, Search } from "lucide-react";
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -375,7 +376,8 @@ function DailyLogsView() {
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 export default function DailyOperationsPage() {
-  const [view, setView] = useState<View>("qr");
+  const searchParams = useSearchParams();
+  const [view, setView] = useState<View>(searchParams.get("tab") === "daily-logs" ? "logs" : "qr");
 
   return (
     <div className="flex flex-col gap-6">

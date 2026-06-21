@@ -3,167 +3,164 @@
 import { X } from "lucide-react";
 import { useState } from "react";
 
+type NotificationCategory = "Log Update" | "Enquiries" | "Emergency";
+
 type NotificationItem = {
   id: number;
-  borderColor: string;
-  tag: string;
-  tagBg: string;
-  tagColor: string;
+  category: NotificationCategory;
+  emoji: string;
+  bg: string;
+  border: string;
+  titleColor: string;
   title: string;
   desc: string;
   time: string;
-  isUnread?: boolean;
 };
 
 const notifications: NotificationItem[] = [
   {
     id: 1,
-    borderColor: "#9ca3af",
-    tag: "AI Alert",
-    tagBg: "#f3f4f6",
-    tagColor: "#6b7280",
-    title: "Ada flagged 2 children for follow-up",
-    desc: "Zara M. (absent 3×) and Leo A. (allergy record outdated). Review recommended before 12pm.",
-    time: "Just now",
-    isUnread: true,
+    category: "Log Update",
+    emoji: "🤖",
+    bg: "#f4f5f6",
+    border: "#ccd2dc",
+    titleColor: "#1e2d4a",
+    title: "AI Alert: 3 issues detected this morning",
+    desc: "Welfare check · Payment risk · Compliance drop",
+    time: "7:00am",
   },
   {
     id: 2,
-    borderColor: "#ef4444",
-    tag: "Incident",
-    tagBg: "#fef2f2",
-    tagColor: "#ef4444",
-    title: "Minor fall reported — Tiger Room",
-    desc: "Caregiver Ngozi logged a minor fall for Ade B. at 9:14am. Parent has been notified.",
-    time: "14 min ago",
-    isUnread: true,
+    category: "Emergency",
+    emoji: "⚠️",
+    bg: "#ffeded",
+    border: "#cd3030",
+    titleColor: "#cd3030",
+    title: "Incident raised — Emeka Balogun (minor fall)",
+    desc: "Requires parent notification · Ms. Tunde · 9:05am",
+    time: "7:00am",
   },
   {
     id: 3,
-    borderColor: "#d4a96a",
-    tag: "Invoice",
-    tagBg: "#fdf6e8",
-    tagColor: "#b5813d",
-    title: "3 invoices now 7+ days overdue",
-    desc: "Okafor, Bello, and Eze families have unpaid balances. Auto-reminder scheduled for 2pm.",
-    time: "1 hr ago",
-    isUnread: true,
+    category: "Log Update",
+    emoji: "₦",
+    bg: "#faf2e1",
+    border: "#ba733e",
+    titleColor: "#7a4c29",
+    title: "3 invoices overdue — ₦142,000 outstanding",
+    desc: "Okafor · Adeyemi · Balogun",
+    time: "8:00am",
   },
   {
     id: 4,
-    borderColor: "#f59e0b",
-    tag: "Message",
-    tagBg: "#fffbeb",
-    tagColor: "#d97706",
-    title: "New enquiry from Mrs Adeyemi",
-    desc: "Prospective parent asking about availability in Lion Class for September intake.",
-    time: "2 hr ago",
-    isUnread: true,
+    category: "Enquiries",
+    emoji: "💬",
+    bg: "#fff6e6",
+    border: "#ffb537",
+    titleColor: "#a36700",
+    title: "Message from Mrs. Chioma Johnson",
+    desc: "Asking about Amara's day · Received 9:12am",
+    time: "7:50am",
   },
   {
     id: 5,
-    borderColor: "#22c55e",
-    tag: "Payment",
-    tagBg: "#f0fdf4",
-    tagColor: "#16a34a",
-    title: "Payment received — ₦85,000",
-    desc: "Full term fee paid by Mr. Taiwo for Amira T. Receipt sent automatically.",
-    time: "Yesterday",
-    isUnread: false,
+    category: "Log Update",
+    emoji: "✅",
+    bg: "#ecfff8",
+    border: "#10b981",
+    titleColor: "#10b981",
+    title: "Payment received — Mrs. Johnson · ₦45,000",
+    desc: "Amara Johnson · April fee · Confirmed",
+    time: "7:50am",
   },
 ];
 
-const filterTabs = ["All", "Log Update", "Enquiries", "Emergency"];
+const filterTabs = ["All", "Log Update", "Enquiries", "Emergency"] as const;
 
 type Props = {
   onClose: () => void;
 };
 
 export default function NotificationPanel({ onClose }: Props) {
-  const [activeTab, setActiveTab] = useState("All");
+  const [activeTab, setActiveTab] = useState<(typeof filterTabs)[number]>("All");
+
+  const filtered =
+    activeTab === "All" ? notifications : notifications.filter((n) => n.category === activeTab);
 
   return (
-    <div className="flex w-[calc(100vw-2rem)] sm:w-[360px] flex-col overflow-hidden rounded-2xl border border-[#e6ebf3] bg-white shadow-[0_8px_32px_rgba(0,0,0,0.12)]">
+    <div className="flex w-[calc(100vw-2rem)] sm:w-[400px] flex-col gap-6 overflow-hidden rounded-2xl border-4 border-[#edd9c0] bg-white px-5 pb-6 pt-4 shadow-[0_4px_32px_rgba(0,0,0,0.1)]">
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-[#e6ebf3] px-5 py-4">
-        <div className="flex items-center gap-2">
-          <h2 className="font-[family-name:var(--font-nunito)] text-base font-semibold text-[#2d1810]">
+      <div className="flex flex-col gap-4">
+        <div className="flex items-center justify-between">
+          <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#171f26]">
             Notifications
           </h2>
-          <span className="rounded-full bg-[#fdf2e3] px-2 py-0.5 font-[family-name:var(--font-nunito)] text-xs font-semibold text-[#c47b2c]">
-            New Inbox (4)
+          <button
+            onClick={onClose}
+            className="flex h-6 w-6 items-center justify-center text-[#6b7280] hover:text-[#2d1810]"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        </div>
+        <div className="h-px w-full bg-[#e6ebf3]" />
+        <div className="flex items-center justify-between gap-2">
+          <div className="flex items-center gap-1">
+            {filterTabs.map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`rounded-lg px-3 py-2 font-[family-name:var(--font-nunito)] text-xs font-semibold transition-colors ${
+                  activeTab === tab
+                    ? "bg-[#3b2513] text-[#faf2e1]"
+                    : "text-[#3b2513] hover:bg-[#f9fafb]"
+                }`}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
+          <span className="shrink-0 font-[family-name:var(--font-nunito)] text-xs text-[#333]">
+            New Inbox ({notifications.length})
           </span>
         </div>
-        <button
-          onClick={onClose}
-          className="flex h-7 w-7 items-center justify-center rounded-md text-[#6b7280] hover:bg-[#f3f4f6] hover:text-[#2d1810]"
-        >
-          <X className="h-4 w-4" />
-        </button>
-      </div>
-
-      {/* Filter Tabs */}
-      <div className="flex items-center gap-1 border-b border-[#e6ebf3] px-4 pt-3">
-        {filterTabs.map((tab) => (
-          <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
-            className={`rounded-t-md px-3 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium transition-colors ${
-              activeTab === tab
-                ? "border-b-2 border-[#c47b2c] text-[#c47b2c]"
-                : "text-[#6b7280] hover:text-[#2d1810]"
-            }`}
-          >
-            {tab}
-          </button>
-        ))}
       </div>
 
       {/* Notification List */}
-      <div className="flex flex-col overflow-y-auto">
-        {notifications.map((n) => (
+      <div className="flex flex-col gap-2 overflow-y-auto">
+        {filtered.map((n) => (
           <div
             key={n.id}
-            className={`relative border-b border-[#f3f4f6] px-5 py-4 last:border-b-0 ${
-              n.isUnread ? "bg-[#fffcf8]" : "bg-white"
-            }`}
+            className="relative flex h-[60px] items-center rounded-[10px] border px-3"
+            style={{ background: n.bg, borderColor: n.border }}
           >
-            {/* Color left bar */}
-            <div
-              className="absolute left-0 top-4 bottom-4 w-1 rounded-r-full"
-              style={{ background: n.borderColor }}
-            />
-            <div className="flex items-start justify-between gap-3 pl-2">
-              <div className="flex flex-col gap-1.5">
-                <div className="flex items-center gap-2">
-                  <span
-                    className="rounded-full px-2 py-0.5 font-[family-name:var(--font-urbanist)] text-[10px] font-medium"
-                    style={{ background: n.tagBg, color: n.tagColor }}
-                  >
-                    {n.tag}
-                  </span>
-                  {n.isUnread && (
-                    <span className="h-1.5 w-1.5 rounded-full bg-[#c47b2c]" />
-                  )}
-                </div>
-                <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
-                  {n.title}
-                </p>
-                <p className="font-[family-name:var(--font-nunito)] text-xs leading-relaxed text-[#6b7280]">
-                  {n.desc}
-                </p>
-              </div>
-              <span className="shrink-0 font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">
-                {n.time}
-              </span>
+            <span className="shrink-0 text-base">{n.emoji}</span>
+            <div className="ml-3 flex min-w-0 flex-1 flex-col gap-1">
+              <p
+                className="truncate font-[family-name:var(--font-nunito)] text-xs font-semibold"
+                style={{ color: n.titleColor }}
+              >
+                {n.title}
+              </p>
+              <p className="truncate font-[family-name:var(--font-nunito)] text-[10px] text-[#2d1810]/50">
+                {n.desc}
+              </p>
             </div>
+            <span className="shrink-0 pl-2 font-[family-name:var(--font-urbanist)] text-[10px] text-[#2d1810]/50">
+              {n.time}
+            </span>
           </div>
         ))}
+        {filtered.length === 0 && (
+          <p className="py-6 text-center font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+            No notifications in this category.
+          </p>
+        )}
       </div>
 
       {/* Footer */}
-      <div className="border-t border-[#e6ebf3] px-5 py-3">
-        <button className="w-full rounded-lg py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#c47b2c] hover:bg-[#fdf2e3]">
+      <div className="flex flex-col gap-4">
+        <div className="h-px w-full bg-[#e6ebf3]" />
+        <button className="self-end rounded-lg border border-[#3b2513] bg-[#edd9c0] px-3 py-2 font-[family-name:var(--font-nunito)] text-xs font-semibold text-[#3b2513] hover:bg-[#e0bfa0]">
           Mark All as Read
         </button>
       </div>

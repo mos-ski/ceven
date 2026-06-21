@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import {
   ChevronDown,
   Search,
@@ -11,6 +11,7 @@ import {
   AlertTriangle,
 } from "lucide-react";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import { StatCard } from "@/components/admin/stat-card";
 import {
   DropdownMenu,
@@ -19,10 +20,38 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { STAFF } from "@/lib/mock-data/staff";
+import { AddStaffModal } from "@/components/admin/staff/add-staff-modal";
+import { LeaderboardTab } from "@/components/admin/staff/leaderboard-tab";
+import { PayrollTab } from "@/components/admin/staff/payroll-tab";
+import { LeaveManagementTab } from "@/components/admin/staff/leave-management-tab";
+import { ComplianceSafetyTab } from "@/components/admin/staff/compliance-safety-tab";
 
-type Tab = "Staff Members" | "Attendance Log" | "Role Management";
+type Tab =
+  | "Staff Members"
+  | "Attendance Log"
+  | "Role Management"
+  | "Leaderboard"
+  | "Payroll"
+  | "Leave Management"
+  | "Compliance & Safety";
 
-const TABS: Tab[] = ["Staff Members", "Attendance Log", "Role Management"];
+const TABS: Tab[] = [
+  "Staff Members",
+  "Attendance Log",
+  "Role Management",
+  "Leaderboard",
+  "Payroll",
+  "Leave Management",
+  "Compliance & Safety",
+];
+
+// Maps the sidebar's `?tab=` query param values to this page's Tab union.
+const TAB_QUERY_MAP: Record<string, Tab> = {
+  leaderboard: "Leaderboard",
+  payroll: "Payroll",
+  "leave-management": "Leave Management",
+  "compliance-safety": "Compliance & Safety",
+};
 
 // ─── Staff Members data ───────────────────────────────────────────────────────
 
@@ -324,14 +353,33 @@ function DeleteRoleModal({
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function StaffPage() {
-  const [activeTab, setActiveTab] = useState<Tab>("Staff Members");
+  return (
+    <Suspense fallback={null}>
+      <StaffPageInner />
+    </Suspense>
+  );
+}
+
+function StaffPageInner() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const tabParam = searchParams.get("tab");
+  const activeTab: Tab = (tabParam && TAB_QUERY_MAP[tabParam]) || "Staff Members";
+
   const [showBanner, setShowBanner] = useState(true);
+  const [addStaffOpen, setAddStaffOpen] = useState(false);
 
   // Role modal state
   const [roleModal, setRoleModal] = useState<
     "create" | "edit" | "delete" | null
   >(null);
   const [selectedRole, setSelectedRole] = useState<string | null>(null);
+
+  function setActiveTab(tab: Tab) {
+    const query = Object.entries(TAB_QUERY_MAP).find(([, value]) => value === tab)?.[0];
+    router.push(query ? `/staff?tab=${query}` : "/staff");
+  }
 
   function openEdit(role: string) {
     setSelectedRole(role);
@@ -356,7 +404,10 @@ export default function StaffPage() {
           <h1 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
             Staff Management
           </h1>
-          <button className="rounded-lg bg-[#3b2513] px-5 py-2.5 text-sm font-medium text-[#faf2e1] font-[family-name:var(--font-urbanist)]">
+          <button
+            onClick={() => setAddStaffOpen(true)}
+            className="rounded-lg bg-[#3b2513] px-5 py-2.5 text-sm font-medium text-[#faf2e1] font-[family-name:var(--font-urbanist)]"
+          >
             Add Staff
           </button>
         </div>
