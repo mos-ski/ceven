@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDown, Download, Send } from "lucide-react";
+import { ChevronDown, Download, Send, X } from "lucide-react";
 import { useState } from "react";
 
 // ── Static data ────────────────────────────────────────────────────────────────
@@ -129,15 +129,119 @@ function getInitials(name: string) {
     .join("");
 }
 
+// ── ADA Chat Page (mobile fullscreen) ─────────────────────────────────────────
+
+function AdaChatPage({ onClose }: { onClose: () => void }) {
+  const [adaInput, setAdaInput] = useState("");
+
+  return (
+    <div className="fixed inset-0 z-50 flex flex-col bg-[#fffcf4] lg:relative lg:inset-auto lg:z-auto lg:rounded-2xl lg:border lg:border-[#edd9c0]">
+      {/* Header */}
+      <div className="flex items-center justify-between border-b border-[#edd9c0] p-4 shrink-0">
+        <div className="flex items-center">
+          <button onClick={onClose} className="lg:hidden mr-2 p-1 text-[#6b7280] hover:text-[#2d1810]">
+            <X className="h-5 w-5" />
+          </button>
+          <div
+            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm text-white"
+            style={{ background: gradientBg }}
+          >
+            ✦
+          </div>
+          <span className="ml-2 text-sm font-bold font-[family-name:var(--font-nunito)] text-[#c47b2c]">
+            ADA
+          </span>
+          <span className="ml-1.5 h-2 w-2 rounded-full bg-[#22c55e]" />
+          <span className="ml-auto text-xs font-[family-name:var(--font-nunito)] text-[#6b7280]">
+            Professional &amp; Warm
+          </span>
+          <button className="ml-2 cursor-pointer text-[10px] font-[family-name:var(--font-nunito)] text-[#c47b2c] underline">
+            Personalize
+          </button>
+        </div>
+      </div>
+
+      {/* Chat area */}
+      <div className="flex flex-1 flex-col gap-3 overflow-y-auto p-4">
+        {chatMessages.map((msg, i) => (
+          <div
+            key={i}
+            className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
+          >
+            <div
+              className={`max-w-[85%] rounded-2xl p-3 text-xs font-[family-name:var(--font-nunito)] leading-relaxed ${
+                msg.role === "ai"
+                  ? "rounded-tl-none bg-[#fdf6e8] text-[#2d1810]"
+                  : "self-end rounded-tr-none bg-[#c47b2c] text-white"
+              }`}
+              style={{ whiteSpace: "pre-line" }}
+            >
+              {msg.text}
+            </div>
+          </div>
+        ))}
+
+        {/* Typing indicator */}
+        <div className="flex justify-start">
+          <div className="flex items-center gap-1 rounded-2xl rounded-tl-none bg-[#fdf6e8] p-3">
+            <span
+              className="h-2 w-2 rounded-full bg-[#c47b2c] animate-bounce"
+              style={{ animationDelay: "0ms" }}
+            />
+            <span
+              className="h-2 w-2 rounded-full bg-[#c47b2c] animate-bounce"
+              style={{ animationDelay: "150ms" }}
+            />
+            <span
+              className="h-2 w-2 rounded-full bg-[#c47b2c] animate-bounce"
+              style={{ animationDelay: "300ms" }}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Quick prompts */}
+      <div className="flex flex-wrap gap-2 px-4 pb-2">
+        {quickPrompts.map((prompt) => (
+          <button
+            key={prompt}
+            className="cursor-pointer rounded-full border border-[#edd9c0] bg-white px-3 py-1.5 font-[family-name:var(--font-nunito)] text-[10px] text-[#6b7280] hover:border-[#c47b2c] hover:text-[#c47b2c]"
+          >
+            {prompt}
+          </button>
+        ))}
+      </div>
+
+      {/* Ada Input */}
+      <div className="flex items-center gap-2 border-t border-[#edd9c0] p-4 shrink-0">
+        <input
+          type="text"
+          value={adaInput}
+          onChange={(e) => setAdaInput(e.target.value)}
+          placeholder="Ask Ada anything…"
+          className="flex-1 rounded-full border border-[#edd9c0] bg-white px-4 py-2 font-[family-name:var(--font-nunito)] text-sm placeholder:text-[#9ca3af] focus:border-[#c47b2c] focus:outline-none"
+        />
+        <button
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-white"
+          style={{ background: gradientBg }}
+          onClick={() => setAdaInput("")}
+        >
+          <Send className="h-4 w-4" />
+        </button>
+      </div>
+    </div>
+  );
+}
+
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 export default function IntelligencePage() {
-  const [adaInput, setAdaInput] = useState("");
+  const [adaOpen, setAdaOpen] = useState(false);
 
   return (
     <div className="flex flex-col gap-6 font-[family-name:var(--font-nunito)]">
       {/* Page Header */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <h1 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
           AI Command Center
         </h1>
@@ -281,100 +385,27 @@ export default function IntelligencePage() {
           </div>
         </div>
 
-        {/* RIGHT ADA PANEL */}
-        <div className="flex w-full xl:w-[340px] shrink-0 flex-col overflow-hidden rounded-2xl border border-[#edd9c0] bg-[#fffcf4]">
-          {/* Ada Header */}
-          <div className="border-b border-[#edd9c0] p-4">
-            <div className="flex items-center">
-              <div
-                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-sm text-white"
-                style={{ background: gradientBg }}
-              >
-                ✦
-              </div>
-              <span className="ml-2 text-sm font-bold font-[family-name:var(--font-nunito)] text-[#c47b2c]">
-                ADA
-              </span>
-              <span className="ml-1.5 h-2 w-2 rounded-full bg-[#22c55e]" />
-              <span className="ml-auto text-xs font-[family-name:var(--font-nunito)] text-[#6b7280]">
-                Professional &amp; Warm
-              </span>
-              <button className="ml-2 cursor-pointer text-[10px] font-[family-name:var(--font-nunito)] text-[#c47b2c] underline">
-                Personalize
-              </button>
-            </div>
-          </div>
-
-          {/* Chat area */}
-          <div className="flex flex-1 flex-col gap-3 overflow-y-auto p-4">
-            {chatMessages.map((msg, i) => (
-              <div
-                key={i}
-                className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
-              >
-                <div
-                  className={`max-w-[85%] rounded-2xl p-3 text-xs font-[family-name:var(--font-nunito)] leading-relaxed ${
-                    msg.role === "ai"
-                      ? "rounded-tl-none bg-[#fdf6e8] text-[#2d1810]"
-                      : "self-end rounded-tr-none bg-[#c47b2c] text-white"
-                  }`}
-                  style={{ whiteSpace: "pre-line" }}
-                >
-                  {msg.text}
-                </div>
-              </div>
-            ))}
-
-            {/* Typing indicator */}
-            <div className="flex justify-start">
-              <div className="flex items-center gap-1 rounded-2xl rounded-tl-none bg-[#fdf6e8] p-3">
-                <span
-                  className="h-2 w-2 rounded-full bg-[#c47b2c] animate-bounce"
-                  style={{ animationDelay: "0ms" }}
-                />
-                <span
-                  className="h-2 w-2 rounded-full bg-[#c47b2c] animate-bounce"
-                  style={{ animationDelay: "150ms" }}
-                />
-                <span
-                  className="h-2 w-2 rounded-full bg-[#c47b2c] animate-bounce"
-                  style={{ animationDelay: "300ms" }}
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* Quick prompts */}
-          <div className="flex flex-wrap gap-2 px-4 pb-2">
-            {quickPrompts.map((prompt) => (
-              <button
-                key={prompt}
-                className="cursor-pointer rounded-full border border-[#edd9c0] bg-white px-3 py-1.5 font-[family-name:var(--font-nunito)] text-[10px] text-[#6b7280] hover:border-[#c47b2c] hover:text-[#c47b2c]"
-              >
-                {prompt}
-              </button>
-            ))}
-          </div>
-
-          {/* Ada Input */}
-          <div className="flex items-center gap-2 border-t border-[#edd9c0] p-4">
-            <input
-              type="text"
-              value={adaInput}
-              onChange={(e) => setAdaInput(e.target.value)}
-              placeholder="Ask Ada anything…"
-              className="flex-1 rounded-full border border-[#edd9c0] bg-white px-4 py-2 font-[family-name:var(--font-nunito)] text-sm placeholder:text-[#9ca3af] focus:border-[#c47b2c] focus:outline-none"
-            />
-            <button
-              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-white"
-              style={{ background: gradientBg }}
-              onClick={() => setAdaInput("")}
-            >
-              <Send className="h-4 w-4" />
-            </button>
-          </div>
+        {/* RIGHT ADA PANEL — hidden on mobile, FAB replaces it */}
+        <div className="hidden xl:flex w-[340px] shrink-0 flex-col overflow-hidden rounded-2xl border border-[#edd9c0] bg-[#fffcf4]">
+          <AdaChatPage onClose={() => {}} />
         </div>
       </div>
+
+      {/* ADA FAB — visible only on mobile/tablet */}
+      <button
+        onClick={() => setAdaOpen(true)}
+        className="xl:hidden fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full shadow-lg text-white"
+        style={{ background: gradientBg }}
+      >
+        <span className="text-lg">✦</span>
+      </button>
+
+      {/* ADA chat fullscreen overlay on mobile */}
+      {adaOpen && (
+        <div className="xl:hidden">
+          <AdaChatPage onClose={() => setAdaOpen(false)} />
+        </div>
+      )}
     </div>
   );
 }

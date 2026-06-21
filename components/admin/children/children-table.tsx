@@ -158,17 +158,11 @@ function ChildRow({ child }: { child: Child }) {
 export function ChildrenTable() {
   return (
     <div className="overflow-hidden rounded-xl bg-white shadow-sm">
-      <div className="flex flex-wrap items-center justify-between gap-4 p-4">
-        <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-heading">
-          Children Log
-        </h2>
-        <div className="flex items-center gap-3">
-          <span className="font-[family-name:var(--font-nunito)] text-xs text-muted-text">
-            Filter by:
-          </span>
-          <FilterDropdown label="All Rooms" options={ROOMS} />
-          <FilterDropdown label="All Status" options={STATUSES} />
-          <div className="h-6 w-px bg-input-border" />
+      <div className="flex flex-col gap-3 p-4">
+        <div className="flex items-center justify-between">
+          <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-heading">
+            Children Log
+          </h2>
           <div className="relative">
             <Search className="absolute top-1/2 left-2 size-4 -translate-y-1/2 text-muted-text" />
             <Input
@@ -176,6 +170,13 @@ export function ChildrenTable() {
               className="h-8 w-full sm:w-58 rounded-lg border-[rgba(45,24,16,0.12)] bg-[#F5EDD8] pl-8 text-xs"
             />
           </div>
+        </div>
+        <div className="flex items-center gap-3">
+          <span className="font-[family-name:var(--font-nunito)] text-xs text-muted-text">
+            Filter by:
+          </span>
+          <FilterDropdown label="All Rooms" options={ROOMS} />
+          <FilterDropdown label="All Status" options={STATUSES} />
         </div>
       </div>
       {/* Desktop table */}

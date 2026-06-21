@@ -50,29 +50,37 @@ export default function ChildrenPage() {
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-4">
+      <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-1 lg:grid lg:grid-cols-4 lg:overflow-visible lg:pb-0">
+        <div className="min-w-[160px] snap-start flex-1">
         <StatCard
           label="Total Enrolled"
           value={String(CHILDREN_STATS.totalEnrolled).padStart(2, "0")}
           trendLabel="+12.5% vs last month"
           trendUp
         />
+        </div>
+        <div className="min-w-[160px] snap-start flex-1">
         <StatCard
           label="Active"
           value={String(CHILDREN_STATS.active).padStart(2, "0")}
           trendLabel="88% attendance today"
         />
+        </div>
+        <div className="min-w-[160px] snap-start flex-1">
         <StatCard
           label="New This Month"
           value={String(CHILDREN_STATS.newThisMonth).padStart(2, "0")}
           trendLabel="+12.5% vs last month"
           trendUp
         />
+        </div>
+        <div className="min-w-[160px] snap-start flex-1">
         <StatCard
           label="Average Activity Log"
           value={CHILDREN_STATS.averageActivityLog.toFixed(1)}
           trendLabel="logs per child today"
         />
+        </div>
       </div>
 
       <ChildrenTable />

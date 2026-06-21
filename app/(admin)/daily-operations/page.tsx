@@ -82,11 +82,11 @@ function QRStationView() {
   return (
     <div className="flex flex-col gap-4">
       {/* Action buttons */}
-      <div className="flex justify-end gap-3">
-        <button className="rounded-lg border border-[#3b2513] px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#3b2513]">
+      <div className="flex flex-col sm:flex-row sm:justify-end gap-3">
+        <button className="flex-1 sm:flex-initial rounded-lg border border-[#3b2513] px-4 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#3b2513]">
           Log Exception
         </button>
-        <button className="rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]">
+        <button className="flex-1 sm:flex-initial rounded-lg bg-[#3b2513] px-4 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]">
           Manual Check-In
         </button>
       </div>
@@ -197,18 +197,20 @@ function QRStationView() {
               Attendance Grid
             </span>
 
+            {/* Search bar */}
+            <div className="mt-3 flex items-center gap-2 rounded-lg bg-[#f5edd8] px-3 py-1.5">
+              <Search className="h-3.5 w-3.5 text-[#9ca3af]" />
+              <input
+                type="text"
+                placeholder="Search..."
+                className="flex-1 bg-transparent font-[family-name:var(--font-urbanist)] text-xs text-[#2d1810] placeholder:text-[#9ca3af] focus:outline-none"
+              />
+            </div>
+
             {/* Filter bar */}
             <div className="mb-4 mt-3 flex gap-2">
               <FilterDropdown label="All Rooms" />
               <FilterDropdown label="All Users" />
-              <div className="flex flex-1 items-center gap-2 rounded-lg bg-[#f5edd8] px-3 py-1.5">
-                <Search className="h-3.5 w-3.5 text-[#9ca3af]" />
-                <input
-                  type="text"
-                  placeholder="Search..."
-                  className="flex-1 bg-transparent font-[family-name:var(--font-urbanist)] text-xs text-[#2d1810] placeholder:text-[#9ca3af] focus:outline-none"
-                />
-              </div>
             </div>
 
             {/* Grid */}
@@ -392,7 +394,7 @@ function DailyOperationsContent() {
         <div className="flex gap-1 rounded-xl bg-[#f5edd8] p-1">
           <button
             onClick={() => setView("qr")}
-            className={`rounded-lg px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium ${
+            className={`flex-1 rounded-lg px-4 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium ${
               view === "qr"
                 ? "bg-[#3b2513] text-[#faf2e1]"
                 : "border border-[#e6ebf3] bg-white text-[#6b7280]"
@@ -402,7 +404,7 @@ function DailyOperationsContent() {
           </button>
           <button
             onClick={() => setView("logs")}
-            className={`rounded-lg px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium ${
+            className={`flex-1 rounded-lg px-4 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium ${
               view === "logs"
                 ? "bg-[#3b2513] text-[#faf2e1]"
                 : "border border-[#e6ebf3] bg-white text-[#6b7280]"

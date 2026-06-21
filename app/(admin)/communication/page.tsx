@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  ArrowLeft,
   Camera,
   ChevronDown,
   MoreVertical,
@@ -187,17 +188,22 @@ function ConversationView({
   avatar,
   active,
   conversation,
+  onBack,
 }: {
   name: string;
   avatar: string;
   active: boolean;
   conversation: ConversationMessage[];
+  onBack: () => void;
 }) {
   return (
-    <div className="flex flex-col flex-1 overflow-hidden">
+    <div className="flex flex-col h-full overflow-hidden">
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-[#e6ebf3]">
+      <div className="flex items-center justify-between p-4 border-b border-[#e6ebf3] shrink-0">
         <div className="flex items-center gap-2">
+          <button onClick={onBack} className="lg:hidden p-1 -ml-1 text-[#6b7280] hover:text-[#2d1810]">
+            <ArrowLeft className="h-5 w-5" />
+          </button>
           <div className="h-9 w-9 rounded-full bg-[#edd9c0] text-[#3b2513] text-xs font-bold flex items-center justify-center flex-shrink-0">
             {avatar}
           </div>
@@ -228,13 +234,13 @@ function ConversationView({
               <div className="h-8 w-8 rounded-full bg-[#edd9c0] text-[#3b2513] text-xs font-bold flex items-center justify-center flex-shrink-0">
                 {avatar}
               </div>
-              <div className="rounded-2xl rounded-tl-none bg-[#fdf6e8] border border-[#e0bfa0] px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#2d1810] max-w-[70%]">
+              <div className="rounded-2xl rounded-tl-none bg-[#fdf6e8] border border-[#e0bfa0] px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#2d1810] max-w-[80%]">
                 {msg.text}
               </div>
             </div>
           ) : (
             <div key={i} className="flex justify-end">
-              <div className="rounded-2xl rounded-tr-none bg-[#3b2513] text-[#faf2e1] px-4 py-3 text-sm font-[family-name:var(--font-nunito)] max-w-[70%]">
+              <div className="rounded-2xl rounded-tr-none bg-[#3b2513] text-[#faf2e1] px-4 py-3 text-sm font-[family-name:var(--font-nunito)] max-w-[80%]">
                 {msg.text}
               </div>
             </div>
@@ -242,8 +248,8 @@ function ConversationView({
         )}
       </div>
 
-      {/* Reply area */}
-      <div className="border-t border-[#eaeef3] p-4 bg-white">
+      {/* Reply area — fixed at bottom */}
+      <div className="border-t border-[#eaeef3] p-4 bg-white shrink-0">
         <textarea
           rows={2}
           placeholder="Write a message..."
@@ -314,8 +320,8 @@ export default function CommunicationPage() {
 
   return (
     <>
-      {/* Page header */}
-      <div className="flex items-center justify-between mb-4">
+      {/* Page header — hidden when viewing a conversation on mobile */}
+      <div className={`flex items-center justify-between mb-4 ${selectedMessage !== null ? "hidden lg:flex" : ""}`}>
         <h1 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
           Messages
         </h1>
@@ -328,9 +334,9 @@ export default function CommunicationPage() {
       </div>
 
       {/* Split layout */}
-      <div className="flex flex-col lg:flex-row gap-4 h-auto lg:h-[calc(100vh-160px)]">
-        {/* ── LEFT PANEL ── */}
-        <div className="w-full lg:w-[340px] lg:flex-shrink-0 rounded-2xl bg-white shadow-sm flex flex-col overflow-hidden">
+      <div className="flex flex-col h-[calc(100vh-160px)] lg:h-[calc(100vh-160px)]">
+        {/* ── LEFT PANEL — hidden on mobile when conversation is open ── */}
+        <div className={`${selectedMessage !== null ? "hidden lg:flex" : "flex"} w-full lg:w-[340px] lg:flex-shrink-0 rounded-2xl bg-white shadow-sm flex-col overflow-hidden`}>
           {/* Search + date filter */}
           <div className="p-4 flex gap-2">
             <div className="flex-1 relative">
@@ -418,8 +424,8 @@ export default function CommunicationPage() {
           </div>
         </div>
 
-        {/* ── RIGHT PANEL ── */}
-        <div className="flex-1 rounded-2xl bg-white shadow-sm flex flex-col overflow-hidden">
+        {/* ── RIGHT PANEL — full width on mobile when conversation is open ── */}
+        <div className={`${selectedMessage !== null ? "flex" : "hidden lg:flex"} flex-1 rounded-2xl bg-white shadow-sm flex-col overflow-hidden`}>
           {selectedMessage === null && <ComposeView />}
 
           {selectedMessage === 1 && (
@@ -428,6 +434,7 @@ export default function CommunicationPage() {
               avatar="MJ"
               active={true}
               conversation={johnsonConversation}
+              onBack={() => setSelectedMessage(null)}
             />
           )}
 
@@ -437,6 +444,7 @@ export default function CommunicationPage() {
               avatar="MA"
               active={false}
               conversation={adeyemiConversation}
+              onBack={() => setSelectedMessage(null)}
             />
           )}
         </div>

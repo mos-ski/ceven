@@ -168,7 +168,7 @@ function StepIndicator({ currentStep }: StepIndicatorProps) {
 
 function Step1({ onNext }: { onNext: () => void }) {
   return (
-    <div>
+    <div className="pb-8">
       {/* Page header */}
       <h1 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
         Plans & Access
@@ -286,7 +286,7 @@ function Step2({ onBack, onNext }: { onBack: () => void; onNext: () => void }) {
   const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">("monthly");
 
   return (
-    <div>
+    <div className="pb-8">
       <StepIndicator currentStep={2} />
 
       {/* Back button */}
@@ -497,7 +497,7 @@ function Step3({ onBack }: { onBack: () => void }) {
   }
 
   return (
-    <div>
+    <div className="pb-8">
       <StepIndicator currentStep={3} />
 
       {/* Back button */}
