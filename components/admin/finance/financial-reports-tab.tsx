@@ -1,10 +1,21 @@
 "use client";
 
-import { ChevronDown, ChevronLeft, ChevronRight, Download, Search, TrendingDown, TrendingUp } from "lucide-react";
+import {
+  ArrowDownLeft,
+  ArrowUpRight,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  Download,
+  Search,
+  TrendingDown,
+  TrendingUp,
+} from "lucide-react";
 import { useState } from "react";
 
 import {
   CASH_FLOW,
+  CASH_FLOW_SUMMARY,
   COLLECTION_EFFICIENCY,
   PL_EXPENDITURE,
   PL_INCOME,
@@ -14,6 +25,12 @@ import {
   ROOM_PLAN_REVENUE,
   type DonutSegment,
 } from "@/lib/mock-data/finance";
+
+const CASH_FLOW_ICON = {
+  "Cash In": ArrowDownLeft,
+  "Cash Out": ArrowUpRight,
+  "Net Cash Flow": TrendingUp,
+} as const;
 
 function FilterButton({ label }: { label: string }) {
   return (
@@ -314,11 +331,32 @@ export function FinancialReportsTab() {
       </div>
 
       {/* Cash Flow Insight */}
-      <div className="rounded-xl bg-white p-4 shadow-sm">
-        <h2 className="mb-3 font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">
-          Cash Flow Insight
-        </h2>
-        <CashFlowChart />
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+        <div className="rounded-xl bg-white p-4 shadow-sm lg:col-span-2">
+          <h2 className="mb-3 font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">
+            Cash Flow Insight
+          </h2>
+          <CashFlowChart />
+        </div>
+        <div className="flex flex-col gap-3">
+          {CASH_FLOW_SUMMARY.map((s) => {
+            const Icon = CASH_FLOW_ICON[s.label as keyof typeof CASH_FLOW_ICON];
+            return (
+              <div key={s.label} className="flex items-center gap-3 rounded-xl bg-white p-4 shadow-sm">
+                <div className="flex size-9 shrink-0 items-center justify-center rounded-full border border-[#e6ebf3] text-[#3b2513]">
+                  <Icon className="size-4" />
+                </div>
+                <div>
+                  <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{s.label}</p>
+                  <p className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">{s.value}</p>
+                  <p className={`font-[family-name:var(--font-urbanist)] text-xs ${s.trend === "up" ? "text-[#009061]" : "text-[#ef4444]"}`}>
+                    {s.helper}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { AlertTriangle, ChevronDown, MoreVertical, Search } from "lucide-react";
+import { ChevronDown, MoreVertical, Search } from "lucide-react";
 import { useState } from "react";
 
 import { Badge } from "@/components/ui/badge";
@@ -21,14 +21,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { TableCell, TableRow } from "@/components/ui/table";
 import {
   INCIDENTS,
   INCIDENT_TYPES,
@@ -37,14 +30,14 @@ import {
   type IncidentStatus,
 } from "@/lib/mock-data/daily-operations";
 
-const SEVERITY_BADGE_CLASS: Record<IncidentSeverity, string> = {
-  Minor: "border-transparent bg-[#fff6e6] text-[#cc8000]",
-  Moderate: "border-transparent bg-[#fff0e6] text-[#e2622a]",
-  Severe: "border-transparent bg-[#fde8e8] text-[#ef4444]",
+const SEVERITY_DOT_CLASS: Record<IncidentSeverity, string> = {
+  Minor: "bg-[#2d1810]",
+  Moderate: "bg-[#cc8000]",
+  Severe: "bg-[#ef4444]",
 };
 
 const STATUS_BADGE_CLASS: Record<IncidentStatus, string> = {
-  Open: "border-transparent bg-[#fde8e8] text-[#ef4444]",
+  Open: "border-transparent bg-[#f3f4f6] text-[#2d1810]",
   "Under Review": "border-transparent bg-[#fff6e6] text-[#cc8000]",
   Resolved: "border-transparent bg-badge-success-bg text-success-text",
 };
@@ -189,29 +182,38 @@ function ReportIncidentModal({
 function IncidentRow({ incident }: { incident: Incident }) {
   return (
     <TableRow className="border-table-border">
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-black">
-        {incident.child}
+      <TableCell>
+        <input type="checkbox" className="h-4 w-4 accent-[#3b2513]" />
       </TableCell>
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
-        {incident.room}
+      <TableCell>
+        <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-black">
+          {incident.child}
+        </p>
+        <p className="font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">
+          {incident.childInfo}
+        </p>
       </TableCell>
       <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
         {incident.type}
       </TableCell>
       <TableCell>
-        <Badge variant="outline" className={SEVERITY_BADGE_CLASS[incident.severity]}>
+        <span className="inline-flex items-center gap-1.5 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">
+          <span className={`h-2 w-2 rounded-full ${SEVERITY_DOT_CLASS[incident.severity]}`} />
           {incident.severity}
-        </Badge>
+        </span>
+      </TableCell>
+      <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+        {incident.time}
       </TableCell>
       <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
         {incident.reportedBy}
       </TableCell>
       <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
-        {incident.time}
+        {incident.parentNotified ? "Yes" : "No"}
       </TableCell>
       <TableCell>
         <Badge variant="outline" className={STATUS_BADGE_CLASS[incident.status]}>
-          {incident.status}
+          ● {incident.status}
         </Badge>
       </TableCell>
       <TableCell>
@@ -224,10 +226,10 @@ function IncidentRow({ incident }: { incident: Incident }) {
 }
 
 const statsCards = [
-  { value: String(INCIDENTS.length).padStart(2, "0"), label: "logged this week", title: "Total Incidents" },
-  { value: String(INCIDENTS.filter((i) => i.status === "Open").length).padStart(2, "0"), label: "need attention", title: "Open Cases" },
-  { value: String(INCIDENTS.filter((i) => i.severity === "Severe").length).padStart(2, "0"), label: "high priority", title: "Severe Cases" },
-  { value: String(INCIDENTS.filter((i) => i.status === "Resolved").length).padStart(2, "0"), label: "closed out", title: "Resolved" },
+  { value: String(INCIDENTS.filter((i) => i.status === "Open").length).padStart(2, "0"), title: "Open" },
+  { value: "00", title: "This Month" },
+  { value: String(INCIDENTS.filter((i) => i.status === "Resolved").length).padStart(2, "0"), title: "Resolved" },
+  { value: "--/--", title: "Parent Notified" },
 ];
 
 export function HealthIncidentsView() {
@@ -240,38 +242,49 @@ export function HealthIncidentsView() {
           onClick={() => setReportOpen(true)}
           className="h-9 gap-2 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]"
         >
-          <AlertTriangle className="h-4 w-4" />
-          Report Incident
+          Raise Incident
         </Button>
       </div>
 
-      <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-1 lg:grid lg:grid-cols-4 lg:overflow-visible lg:pb-0">
+      <div className="grid grid-cols-2 gap-3 lg:gap-4 lg:grid-cols-4">
         {statsCards.map((card) => (
           <div
             key={card.title}
-            className="min-w-[160px] snap-start flex-1 flex-col gap-1 rounded-xl border border-[#e6ebf3] bg-white p-4"
+            className="flex flex-col gap-1 rounded-xl border border-[#e6ebf3] bg-white p-4"
           >
-            <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{card.title}</p>
+            <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">{card.title}</p>
             <p className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
               {card.value}
             </p>
-            <p className="font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">{card.label}</p>
           </div>
         ))}
+      </div>
+
+      {/* AI Insights Banner */}
+      <div className="flex items-center gap-3 rounded-xl border border-[#e0bfa0] bg-[#fdf6e8] px-4 py-3">
+        <span className="inline-flex items-center gap-1 rounded-full bg-[#e0bfa0] px-2 py-0.5 font-[family-name:var(--font-urbanist)] text-[10px] font-medium text-[#3b2513]">
+          ✦ AI Insights
+        </span>
+        <p className="font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">
+          ⚠ Action required:2 open incidents have not been communicated to parents. <span className="font-bold">CEven</span> policy requires parent notification within 4 hours.
+        </p>
+        <button className="ml-auto text-[#9ca3af] hover:text-[#6b7280]">✕</button>
       </div>
 
       <div className="overflow-hidden rounded-xl bg-white shadow-sm">
         <div className="flex flex-wrap items-center justify-between gap-4 p-4">
           <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
-            Health & Incidents Log
+            Incident Log
           </h2>
           <div className="flex items-center gap-2">
-            <FilterDropdown label="All Severity" options={["All Severity", "Minor", "Moderate", "Severe"]} />
+            <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Filter by:</span>
+            <FilterDropdown label="Severity" options={["All Severity", "Minor", "Moderate", "Severe"]} />
             <FilterDropdown label="All Status" options={["All Status", "Open", "Under Review", "Resolved"]} />
+            <FilterDropdown label="Date" options={["All Dates", "Today", "This Week", "This Month"]} />
             <div className="relative">
               <Search className="absolute top-1/2 left-2 size-4 -translate-y-1/2 text-[#9ca3af]" />
               <Input
-                placeholder="Search incidents..."
+                placeholder="Search children, parents..."
                 className="h-8 w-full sm:w-56 rounded-lg border-[rgba(45,24,16,0.12)] bg-[#f5edd8] pl-8 text-xs"
               />
             </div>
@@ -279,25 +292,28 @@ export function HealthIncidentsView() {
         </div>
 
         <div className="hidden overflow-x-auto lg:block">
-          <Table>
-            <TableHeader>
-              <TableRow className="border-none bg-table-header-bg hover:bg-table-header-bg">
-                <TableHead>Child</TableHead>
-                <TableHead>Room</TableHead>
-                <TableHead>Type</TableHead>
-                <TableHead>Severity</TableHead>
-                <TableHead>Reported By</TableHead>
-                <TableHead>Time</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead className="text-center">Action</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
+          <table className="w-full border-collapse">
+            <thead>
+              <tr className="bg-[#edd9c0]">
+                <th className="w-10 px-4 py-3">
+                  <input type="checkbox" className="h-4 w-4 accent-[#3b2513]" />
+                </th>
+                {["Child", "Type", "Severity", "Report Time", "Reported by", "Parent Notified", "Status", "Action"].map((h) => (
+                  <th
+                    key={h}
+                    className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black"
+                  >
+                    {h}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody className="bg-white">
               {INCIDENTS.map((incident) => (
                 <IncidentRow key={incident.id} incident={incident} />
               ))}
-            </TableBody>
-          </Table>
+            </tbody>
+          </table>
         </div>
 
         {/* Mobile card list */}
@@ -305,28 +321,27 @@ export function HealthIncidentsView() {
           {INCIDENTS.map((incident) => (
             <div key={incident.id} className="rounded-xl border border-[#eaecf0] p-3">
               <div className="flex items-center justify-between">
-                <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
-                  {incident.child}
-                </span>
+                <div>
+                  <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
+                    {incident.child}
+                  </span>
+                  <p className="font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">{incident.childInfo}</p>
+                </div>
                 <Badge variant="outline" className={STATUS_BADGE_CLASS[incident.status]}>
-                  {incident.status}
+                  ● {incident.status}
                 </Badge>
               </div>
               <div className="mt-1.5 flex items-center gap-2">
                 <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{incident.type}</span>
                 <span className="text-[#d0d5dd]">•</span>
-                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{incident.room}</span>
-                <span className="text-[#d0d5dd]">•</span>
-                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{incident.time}</span>
-              </div>
-              <div className="mt-1.5 flex items-center gap-2">
-                <Badge variant="outline" className={SEVERITY_BADGE_CLASS[incident.severity]}>
+                <span className="inline-flex items-center gap-1 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+                  <span className={`h-1.5 w-1.5 rounded-full ${SEVERITY_DOT_CLASS[incident.severity]}`} />
                   {incident.severity}
-                </Badge>
-                <p className="font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">
-                  by {incident.reportedBy}
-                </p>
+                </span>
               </div>
+              <p className="mt-1 font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">
+                {incident.time} • by {incident.reportedBy}
+              </p>
             </div>
           ))}
         </div>

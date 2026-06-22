@@ -1,9 +1,16 @@
 "use client";
 
+import Link from "next/link";
 import { MoreVertical, Search } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { StatCard } from "@/components/admin/stat-card";
 import { PARENTS } from "@/lib/mock-data/children";
 
@@ -50,7 +57,7 @@ export function ParentsTab() {
             </thead>
             <tbody className="bg-white">
               {PARENTS.map((parent) => (
-                <tr key={parent.id} className="border-t border-table-border">
+                <tr key={parent.id} className="border-t border-table-border hover:bg-[#faf9f7]">
                   <td className="px-4 py-3">
                     <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-black">{parent.name}</p>
                     <p className="font-[family-name:var(--font-nunito)] text-[10px] text-otp-text">
@@ -85,9 +92,20 @@ export function ParentsTab() {
                     )}
                   </td>
                   <td className="px-4 py-3">
-                    <button className="flex items-center justify-center text-[#6b7280] hover:text-[#2d1810]">
-                      <MoreVertical className="h-4 w-4" />
-                    </button>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger
+                        render={
+                          <button className="flex items-center justify-center text-[#6b7280] hover:text-[#2d1810]" />
+                        }
+                      >
+                        <MoreVertical className="h-4 w-4" />
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent>
+                        <DropdownMenuItem render={<Link href={`/parents/${parent.id}`} />}>
+                          View Profile
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
                   </td>
                 </tr>
               ))}
@@ -98,7 +116,11 @@ export function ParentsTab() {
         {/* Mobile cards */}
         <div className="flex flex-col gap-2 px-4 pb-4 lg:hidden">
           {PARENTS.map((parent) => (
-            <div key={parent.id} className="rounded-xl border border-[#eaecf0] p-3">
+            <Link
+              key={parent.id}
+              href={`/parents/${parent.id}`}
+              className="block rounded-xl border border-[#eaecf0] p-3 transition-colors hover:bg-[#faf9f7]"
+            >
               <div className="flex items-center justify-between">
                 <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-black">{parent.name}</span>
                 {parent.appStatus === "Installed" ? (
@@ -106,15 +128,15 @@ export function ParentsTab() {
                     Installed
                   </Badge>
                 ) : (
-                  <button className="font-[family-name:var(--font-nunito)] text-xs font-semibold text-brand-dark underline">
+                  <span className="font-[family-name:var(--font-nunito)] text-xs font-semibold text-brand-dark underline">
                     Send App Invite
-                  </button>
+                  </span>
                 )}
               </div>
               <span className="font-[family-name:var(--font-nunito)] text-xs text-[#858c98]">
                 {parent.childName} • {parent.dueAmount ?? "No due payment"}
               </span>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

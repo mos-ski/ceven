@@ -87,20 +87,22 @@ export type ExpenseOverviewStat = {
   label: string;
   value: string;
   helper: string;
+  trend?: "up";
 };
 
 export const EXPENSE_OVERVIEW: ExpenseOverviewStat[] = [
   { label: "Monthly Budget", value: "₦250,000", helper: "12% under forecast" },
-  { label: "Expenses", value: "₦220,000", helper: "8% vs Last Month (52 Transactions)" },
+  { label: "Expenses", value: "₦220,000", helper: "8% vs Last Month (52 Transactions)", trend: "up" },
   { label: "Remaining Budget", value: "₦30,000", helper: "Estimated 11 days remaining" },
   { label: "Pending Approval", value: "2", helper: "₦45k waiting Review Now" },
 ];
 
 export const EXPENSE_BREAKDOWN: DonutSegment[] = [
-  { label: "Payroll - 75%", pct: 76, color: "#bab68d" },
-  { label: "Utilities - 75%", pct: 7, color: "#e2622a" },
-  { label: "Supplies - 75%", pct: 9, color: "#3b2513" },
-  { label: "Rent - 75%", pct: 8, color: "#edd9c0" },
+  { label: "Payroll - 75%", pct: 58, color: "#bab68d" },
+  { label: "Utilities - 75%", pct: 10, color: "#e2622a" },
+  { label: "Supplies - 75%", pct: 12, color: "#3b2513" },
+  { label: "Others - 75%", pct: 9, color: "#c47b2c" },
+  { label: "Rent - 75%", pct: 11, color: "#edd9c0" },
 ];
 
 // ── Financial Reports mock data ──────────────────────────────────────────────
@@ -112,11 +114,11 @@ export type BudgetVsActualRow = {
 };
 
 export const BUDGET_VS_ACTUAL: BudgetVsActualRow[] = [
-  { category: "Payroll", budget: 2200000, actual: 1800000 },
-  { category: "Rent", budget: 400000, actual: 350000 },
-  { category: "Utilities", budget: 150000, actual: 165000 },
-  { category: "Supplies", budget: 500000, actual: 450000 },
-  { category: "Others", budget: 100000, actual: 70000 },
+  { category: "Payroll", budget: 76.91, actual: 88.12 },
+  { category: "Rent", budget: 58.83, actual: 57.1 },
+  { category: "Utilities", budget: 12.58, actual: 14.86 },
+  { category: "Supplies", budget: 14.45, actual: 73.51 },
+  { category: "Others", budget: 83.92, actual: 74.45 },
 ];
 
 export type MonthlyTrendPoint = {
@@ -212,10 +214,11 @@ export const INVOICE_TRACKING: InvoiceTrackingRow[] = [
 // ── Financial Reports: Revenue Breakdown / Room Plans / Cash Flow ───────────
 
 export const REVENUE_BREAKDOWN: DonutSegment[] = [
-  { label: "Tuition fees - 75%", pct: 75, color: "#bab68d" },
-  { label: "Registration - 75%", pct: 8, color: "#e2622a" },
-  { label: "Transport - 75%", pct: 8, color: "#3b2513" },
-  { label: "Meals - 75%", pct: 9, color: "#edd9c0" },
+  { label: "Tuition fees - 75%", pct: 55, color: "#bab68d" },
+  { label: "Registration - 75%", pct: 12, color: "#e2622a" },
+  { label: "Transport - 75%", pct: 10, color: "#3b2513" },
+  { label: "Meals - 75%", pct: 11, color: "#edd9c0" },
+  { label: "Others - 75%", pct: 12, color: "#c47b2c" },
 ];
 
 export type ProfitLossLine = {
@@ -293,6 +296,19 @@ export const CASH_FLOW: CashFlowMonth[] = [
   { month: "Oct", cashIn: 68, cashOut: 50, netCashFlow: 24 },
   { month: "Nov", cashIn: 73, cashOut: 53, netCashFlow: 25 },
   { month: "Dec", cashIn: 77, cashOut: 56, netCashFlow: 26 },
+];
+
+export type CashFlowSummaryStat = {
+  label: string;
+  value: string;
+  helper: string;
+  trend: "up" | "down";
+};
+
+export const CASH_FLOW_SUMMARY: CashFlowSummaryStat[] = [
+  { label: "Cash In", value: "4.8M", helper: "+20% vs last month", trend: "up" },
+  { label: "Cash Out", value: "2.8M", helper: "+10% vs last month", trend: "up" },
+  { label: "Net Cash Flow", value: "4.8M", helper: "-05% vs last month", trend: "down" },
 ];
 
 export type CollectionEfficiencyStat = {

@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDown, MoreVertical, Pill, Search } from "lucide-react";
+import { ChevronDown, MoreVertical, Search } from "lucide-react";
 import { useState } from "react";
 
 import { Badge } from "@/components/ui/badge";
@@ -21,14 +21,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { TableCell, TableRow } from "@/components/ui/table";
 import {
   MEDICATIONS,
   MEDICATION_OPTIONS,
@@ -65,7 +58,7 @@ function FilterDropdown({ label, options }: { label: string; options: string[] }
   );
 }
 
-function LogDoseModal({
+function LogMedicationModal({
   open,
   onOpenChange,
 }: {
@@ -76,7 +69,7 @@ function LogDoseModal({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Log Medication Dose</DialogTitle>
+          <DialogTitle>Log Medication</DialogTitle>
           <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
             Record a medication administered to a child.
           </p>
@@ -181,11 +174,13 @@ function LogDoseModal({
 function MedicationRow({ entry }: { entry: MedicationEntry }) {
   return (
     <TableRow className="border-table-border">
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-black">
-        {entry.child}
-      </TableCell>
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
-        {entry.room}
+      <TableCell>
+        <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-black">
+          {entry.child}
+        </p>
+        <p className="font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">
+          {entry.room}
+        </p>
       </TableCell>
       <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
         {entry.medication}
@@ -199,9 +194,12 @@ function MedicationRow({ entry }: { entry: MedicationEntry }) {
       <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
         {entry.administeredBy ?? "—"}
       </TableCell>
+      <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+        {entry.scheduledTime}
+      </TableCell>
       <TableCell>
         <Badge variant="outline" className={STATUS_BADGE_CLASS[entry.status]}>
-          {entry.status}
+          ● {entry.status === "Scheduled" ? "Due Soon" : entry.status}
         </Badge>
       </TableCell>
       <TableCell>
@@ -213,13 +211,6 @@ function MedicationRow({ entry }: { entry: MedicationEntry }) {
   );
 }
 
-const statsCards = [
-  { value: String(MEDICATIONS.length).padStart(2, "0"), label: "scheduled today", title: "Total Doses" },
-  { value: String(MEDICATIONS.filter((m) => m.status === "Administered").length).padStart(2, "0"), label: "given on time", title: "Administered" },
-  { value: String(MEDICATIONS.filter((m) => m.status === "Scheduled").length).padStart(2, "0"), label: "still due", title: "Pending" },
-  { value: String(MEDICATIONS.filter((m) => m.status === "Missed").length).padStart(2, "0"), label: "need follow-up", title: "Missed" },
-];
-
 export function MedicationView() {
   const [logOpen, setLogOpen] = useState(false);
 
@@ -230,38 +221,23 @@ export function MedicationView() {
           onClick={() => setLogOpen(true)}
           className="h-9 gap-2 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]"
         >
-          <Pill className="h-4 w-4" />
-          Log Dose
+          Log Medication
         </Button>
-      </div>
-
-      <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-1 lg:grid lg:grid-cols-4 lg:overflow-visible lg:pb-0">
-        {statsCards.map((card) => (
-          <div
-            key={card.title}
-            className="min-w-[160px] snap-start flex-1 flex-col gap-1 rounded-xl border border-[#e6ebf3] bg-white p-4"
-          >
-            <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{card.title}</p>
-            <p className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
-              {card.value}
-            </p>
-            <p className="font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">{card.label}</p>
-          </div>
-        ))}
       </div>
 
       <div className="overflow-hidden rounded-xl bg-white shadow-sm">
         <div className="flex flex-wrap items-center justify-between gap-4 p-4">
           <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
-            Medication Schedule
+            Medication Log
           </h2>
           <div className="flex items-center gap-2">
-            <FilterDropdown label="All Rooms" options={["All Rooms", "Lion Class", "Tiger Class", "Bear Class", "Owl Class"]} />
-            <FilterDropdown label="All Status" options={["All Status", "Scheduled", "Administered", "Missed"]} />
+            <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Filter by:</span>
+            <FilterDropdown label="Date" options={["All Dates", "Today", "This Week", "This Month"]} />
+            <FilterDropdown label="Status" options={["All Status", "Administered", "Scheduled", "Missed"]} />
             <div className="relative">
               <Search className="absolute top-1/2 left-2 size-4 -translate-y-1/2 text-[#9ca3af]" />
               <Input
-                placeholder="Search medications..."
+                placeholder="Search children, parents..."
                 className="h-8 w-full sm:w-56 rounded-lg border-[rgba(45,24,16,0.12)] bg-[#f5edd8] pl-8 text-xs"
               />
             </div>
@@ -269,25 +245,25 @@ export function MedicationView() {
         </div>
 
         <div className="hidden overflow-x-auto lg:block">
-          <Table>
-            <TableHeader>
-              <TableRow className="border-none bg-table-header-bg hover:bg-table-header-bg">
-                <TableHead>Child</TableHead>
-                <TableHead>Room</TableHead>
-                <TableHead>Medication</TableHead>
-                <TableHead>Dosage</TableHead>
-                <TableHead>Scheduled Time</TableHead>
-                <TableHead>Administered By</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead className="text-center">Action</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
+          <table className="w-full border-collapse">
+            <thead>
+              <tr className="bg-[#edd9c0]">
+                {["Child", "Medication", "Dose", "Frequency", "Attended by", "Time", "Status", "Action"].map((h) => (
+                  <th
+                    key={h}
+                    className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black"
+                  >
+                    {h}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody className="bg-white">
               {MEDICATIONS.map((entry) => (
                 <MedicationRow key={entry.id} entry={entry} />
               ))}
-            </TableBody>
-          </Table>
+            </tbody>
+          </table>
         </div>
 
         {/* Mobile card list */}
@@ -295,11 +271,14 @@ export function MedicationView() {
           {MEDICATIONS.map((entry) => (
             <div key={entry.id} className="rounded-xl border border-[#eaecf0] p-3">
               <div className="flex items-center justify-between">
-                <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
-                  {entry.child}
-                </span>
+                <div>
+                  <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
+                    {entry.child}
+                  </span>
+                  <p className="font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">{entry.room}</p>
+                </div>
                 <Badge variant="outline" className={STATUS_BADGE_CLASS[entry.status]}>
-                  {entry.status}
+                  ● {entry.status === "Scheduled" ? "Due Soon" : entry.status}
                 </Badge>
               </div>
               <div className="mt-1.5 flex items-center gap-2">
@@ -309,15 +288,12 @@ export function MedicationView() {
                 <span className="text-[#d0d5dd]">•</span>
                 <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{entry.scheduledTime}</span>
               </div>
-              <p className="mt-1 font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">
-                {entry.room}{entry.administeredBy ? ` • by ${entry.administeredBy}` : ""}
-              </p>
             </div>
           ))}
         </div>
       </div>
 
-      <LogDoseModal open={logOpen} onOpenChange={setLogOpen} />
+      <LogMedicationModal open={logOpen} onOpenChange={setLogOpen} />
     </div>
   );
 }

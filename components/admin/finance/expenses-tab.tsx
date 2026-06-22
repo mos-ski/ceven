@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDown, MoreVertical, Search } from "lucide-react";
+import { ChevronDown, MoreVertical, Search, TrendingUp } from "lucide-react";
 import { useState } from "react";
 
 import NewExpenseModal from "@/components/admin/finance/new-expense-modal";
@@ -79,7 +79,7 @@ function BudgetVsActualChart() {
                 />
               </div>
               <span className="w-12 text-right font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">
-                {(row.budget / 1000).toFixed(2)}
+                {row.budget.toFixed(2)}
               </span>
             </div>
             <div className="flex items-center gap-2">
@@ -90,7 +90,7 @@ function BudgetVsActualChart() {
                 />
               </div>
               <span className="w-12 text-right font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">
-                {(row.actual / 1000).toFixed(2)}
+                {row.actual.toFixed(2)}
               </span>
             </div>
           </div>
@@ -131,7 +131,14 @@ export function ExpensesTab() {
           <div key={s.label} className="rounded-xl border border-[#e6ebf3] bg-white p-4">
             <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{s.label}</p>
             <p className="mt-2 font-[family-name:var(--font-merriweather)] text-xl font-bold text-[#2d1810]">{s.value}</p>
-            <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{s.helper}</p>
+            <p
+              className={`mt-1 flex items-center gap-1 font-[family-name:var(--font-urbanist)] text-xs ${
+                s.trend === "up" ? "text-[#009061]" : "text-[#6b7280]"
+              }`}
+            >
+              {s.trend === "up" && <TrendingUp className="size-3" />}
+              {s.helper}
+            </p>
           </div>
         ))}
       </div>

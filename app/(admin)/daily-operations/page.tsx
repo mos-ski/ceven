@@ -1,7 +1,7 @@
 "use client";
 
 import { Suspense } from "react";
-import { ChevronDown, Download, MoreVertical, Printer, Search } from "lucide-react";
+import { ChevronDown, Download, Printer, Search } from "lucide-react";
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 
@@ -31,15 +31,6 @@ type GridCard = {
   type: "IN" | "Absent" | "Pending";
 };
 
-type LogRow = {
-  child: string;
-  type: string;
-  room: string;
-  time: string;
-  by: string;
-  status: "Submitted" | "Pending";
-};
-
 // ── Static data ───────────────────────────────────────────────────────────────
 
 const feedRows: FeedRow[] = [
@@ -55,14 +46,6 @@ const gridCards: GridCard[] = [
   { initials: "CB", name: "Mr. Chukwu", cls: "Owl Class", time: "-", type: "Pending" },
   { initials: "AT", name: "Mrs. Amaka", cls: "Lion Class", time: "8:45 AM", type: "IN" },
   { initials: "FK", name: "Mr. Femi", cls: "Tiger Class", time: "-", type: "Absent" },
-];
-
-const logRows: LogRow[] = [
-  { child: "Amara Okafor", type: "Morning Report", room: "Lion Class", time: "9:30 AM", by: "Mrs. Sarah", status: "Submitted" },
-  { child: "Leo Adamu", type: "Incident Report", room: "Tiger Class", time: "9:45 AM", by: "Mr. James", status: "Pending" },
-  { child: "Zara Mohammed", type: "Photo Upload", room: "Bear Class", time: "10:00 AM", by: "Mrs. Ngozi", status: "Submitted" },
-  { child: "Ade Bello", type: "Morning Report", room: "Owl Class", time: "10:15 AM", by: "Mr. Chukwu", status: "Submitted" },
-  { child: "Mia Taiwo", type: "Medical Note", room: "Lion Class", time: "10:30 AM", by: "Mrs. Amaka", status: "Pending" },
 ];
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -250,47 +233,102 @@ function QRStationView() {
 
 // ── VIEW 2: Daily Logs ────────────────────────────────────────────────────────
 
-const statsCards = [
-  { value: "40", label: "logs submitted", title: "Submitted Today" },
-  { value: "12", label: "awaiting review", title: "Pending Review" },
-  { value: "03", label: "this morning", title: "Incidents Logged" },
-  { value: "27", label: "photos & videos", title: "Media Uploaded" },
+type DailyLogStatus = "Done" | "AI Flag" | "Pending" | null;
+
+type DailyLogRow = {
+  child: string;
+  childInfo: string;
+  room: string;
+  caregiver: string;
+  reportTime: string;
+  mood: string;
+  meal: string;
+  status: DailyLogStatus;
+};
+
+const dailyLogStatsCards = [
+  { value: "40", title: "Submitted Today" },
+  { value: "10", title: "Pending Today", subtitle: "Room 1 • Room 2 • Room 3" },
+  { value: "78%", title: "Today's Compliance" },
 ];
+
+const dailyLogRows: DailyLogRow[] = [
+  { child: "King Andrew", childInfo: "M • 1year 2mnts", room: "Lion", caregiver: "Mr Ben Ayadi", reportTime: "08:20AM", mood: "😊 Happy", meal: "Finished all breakfast and lunch", status: "Done" },
+  { child: "King Andrew", childInfo: "M • 1year 2mnts", room: "Lion", caregiver: "Mr Ben Ayadi", reportTime: "08:20AM", mood: "😊 Happy", meal: "Finished all breakfast and lunch", status: "Done" },
+  { child: "King Andrew", childInfo: "M • 1year 2mnts", room: "Lion", caregiver: "Mr Ben Ayadi", reportTime: "08:20AM", mood: "😊 Happy", meal: "--", status: "AI Flag" },
+  { child: "King Andrew", childInfo: "M • 1year 2mnts", room: "Lion", caregiver: "Mr Ben Ayadi", reportTime: "08:20AM", mood: "😊 Happy", meal: "--", status: "Pending" },
+  { child: "King Andrew", childInfo: "M • 1year 2mnts", room: "Lion", caregiver: "Mr Ben Ayadi", reportTime: "08:20AM", mood: "--", meal: "--", status: null },
+  { child: "King Andrew", childInfo: "M • 1year 2mnts", room: "Lion", caregiver: "Mr Ben Ayadi", reportTime: "08:20AM", mood: "--", meal: "--", status: null },
+  { child: "King Andrew", childInfo: "M • 1year 2mnts", room: "Lion", caregiver: "Mr Ben Ayadi", reportTime: "08:20AM", mood: "--", meal: "--", status: null },
+  { child: "King Andrew", childInfo: "M • 1year 2mnts", room: "Lion", caregiver: "Mr Ben Ayadi", reportTime: "08:20AM", mood: "--", meal: "--", status: null },
+];
+
+function DailyLogStatusBadge({ status }: { status: DailyLogStatus }) {
+  if (status === "Done")
+    return <span className="inline-flex items-center gap-1 rounded-full bg-[#e6f9ee] px-2.5 py-1 font-[family-name:var(--font-urbanist)] text-xs font-medium text-[#009061]">● Done</span>;
+  if (status === "AI Flag")
+    return <span className="inline-flex items-center gap-1 rounded-full bg-[#f3f4f6] px-2.5 py-1 font-[family-name:var(--font-urbanist)] text-xs font-medium text-[#454B54]">● AI Flag</span>;
+  if (status === "Pending")
+    return <span className="inline-flex items-center gap-1 rounded-full bg-[#fff6e6] px-2.5 py-1 font-[family-name:var(--font-urbanist)] text-xs font-medium text-[#cc8000]">● Pending</span>;
+  return <span className="text-[#9ca3af]">--</span>;
+}
 
 function DailyLogsView() {
   return (
     <div className="flex flex-col gap-4">
+      {/* Remind button */}
+      <div className="flex justify-end">
+        <button className="rounded-lg border border-[#3b2513] px-4 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#3b2513] hover:bg-[#3b2513]/5">
+          Remind Caregivers
+        </button>
+      </div>
+
       {/* Stats row */}
-      <div className="grid grid-cols-2 gap-3 lg:gap-4 lg:grid-cols-4">
-        {statsCards.map((card) => (
+      <div className="grid grid-cols-1 gap-3 lg:gap-4 lg:grid-cols-3">
+        {dailyLogStatsCards.map((card) => (
           <div
             key={card.title}
             className="flex flex-col gap-1 rounded-xl border border-[#e6ebf3] bg-white p-4"
           >
-            <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{card.title}</p>
+            <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">{card.title}</p>
             <p className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
               {card.value}
             </p>
-            <p className="font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">{card.label}</p>
+            {card.subtitle && (
+              <p className="font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">{card.subtitle}</p>
+            )}
           </div>
         ))}
       </div>
 
+      {/* AI Insights Banner */}
+      <div className="flex items-center gap-3 rounded-xl border border-[#e0bfa0] bg-[#fdf6e8] px-4 py-3">
+        <span className="inline-flex items-center gap-1 rounded-full bg-[#e0bfa0] px-2 py-0.5 font-[family-name:var(--font-urbanist)] text-[10px] font-medium text-[#3b2513]">
+          ✦ AI Insights
+        </span>
+        <p className="font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">
+          ⚠ Lion and Dolphin rooms have not submitted today. AI has notified caregivers.
+        </p>
+        <button className="ml-auto text-[#9ca3af] hover:text-[#6b7280]">✕</button>
+      </div>
+
       {/* Table */}
-      <div className="mt-4 overflow-hidden rounded-xl bg-white shadow-sm">
+      <div className="overflow-hidden rounded-xl bg-white shadow-sm">
         {/* Toolbar */}
-        <div className="flex items-center justify-between px-4 py-4">
+        <div className="flex flex-wrap items-center justify-between gap-4 px-4 py-4">
           <span className="font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">
-            Daily Logs
+            Today&apos;s Report Status
           </span>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Filter by:</span>
+            <FilterDropdown label="All Status" />
+            <FilterDropdown label="All Room" />
             <FilterDropdown label="Date" />
-            <FilterDropdown label="Room" />
             <div className="flex items-center gap-2 rounded-lg border border-[#e6ebf3] bg-white px-3 py-1.5">
               <Search className="h-3.5 w-3.5 text-[#9ca3af]" />
               <input
                 type="text"
-                placeholder="Search..."
+                placeholder="Search children, parents..."
                 className="font-[family-name:var(--font-urbanist)] text-xs text-[#2d1810] placeholder:text-[#9ca3af] focus:outline-none"
               />
             </div>
@@ -298,84 +336,115 @@ function DailyLogsView() {
         </div>
 
         <div className="hidden overflow-x-auto lg:block">
-        <table className="w-full border-collapse">
-          <thead>
-            <tr className="bg-[#edd9c0]">
-              {["Child", "Activity Type", "Room", "Time", "Logged By", "Status", "Action"].map((h) => (
-                <th
-                  key={h}
-                  className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black"
-                >
-                  {h}
+          <table className="w-full border-collapse">
+            <thead>
+              <tr className="bg-[#edd9c0]">
+                <th className="w-10 px-4 py-3">
+                  <input type="checkbox" className="h-4 w-4 accent-[#3b2513]" />
                 </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody className="bg-white">
-            {logRows.map((row, i) => (
-              <tr key={i} className="border-t border-[#eaecf0]">
-                <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">
-                  {row.child}
-                </td>
-                <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
-                  {row.type}
-                </td>
-                <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
-                  {row.room}
-                </td>
-                <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
-                  {row.time}
-                </td>
-                <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
-                  {row.by}
-                </td>
-                <td className="px-4 py-3">
-                  {row.status === "Submitted" ? (
-                    <span className="rounded-full bg-green-50 px-2.5 py-1 font-[family-name:var(--font-urbanist)] text-xs font-medium text-green-600">
-                      Submitted
-                    </span>
-                  ) : (
-                    <span className="rounded-full bg-amber-50 px-2.5 py-1 font-[family-name:var(--font-urbanist)] text-xs font-medium text-amber-600">
-                      Pending
-                    </span>
-                  )}
-                </td>
-                <td className="px-4 py-3">
-                  <button className="flex items-center justify-center text-[#6b7280] hover:text-[#2d1810]">
-                    <MoreVertical className="h-4 w-4" />
-                  </button>
-                </td>
+                {["Child", "Room", "Caregiver", "Report Time", "Mood", "Meal", "Status", "Action"].map((h) => (
+                  <th
+                    key={h}
+                    className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black"
+                  >
+                    {h}
+                  </th>
+                ))}
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="bg-white">
+              {dailyLogRows.map((row, i) => (
+                <tr key={i} className="border-t border-[#eaecf0]">
+                  <td className="px-4 py-3">
+                    <input type="checkbox" className="h-4 w-4 accent-[#3b2513]" />
+                  </td>
+                  <td className="px-4 py-3">
+                    <p className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">{row.child}</p>
+                    <p className="font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">{row.childInfo}</p>
+                  </td>
+                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+                    {row.room}
+                  </td>
+                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+                    {row.caregiver}
+                  </td>
+                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+                    {row.reportTime}
+                  </td>
+                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+                    {row.mood}
+                  </td>
+                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+                    {row.meal}
+                  </td>
+                  <td className="px-4 py-3">
+                    <DailyLogStatusBadge status={row.status} />
+                  </td>
+                  <td className="px-4 py-3">
+                    {row.status === "Done" || row.status === "AI Flag" ? (
+                      <button className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#3b2513] underline">
+                        View
+                      </button>
+                    ) : row.status === "Pending" ? (
+                      <button className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#3b2513] underline">
+                        Log Now
+                      </button>
+                    ) : (
+                      <button className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#3b2513] underline">
+                        Log Now
+                      </button>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
+
         {/* Mobile card list */}
         <div className="flex flex-col gap-2 px-4 pb-4 lg:hidden">
-          {logRows.map((row, i) => (
+          {dailyLogRows.map((row, i) => (
             <div key={i} className="rounded-xl border border-[#eaecf0] p-3">
               <div className="flex items-center justify-between">
-                <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">{row.child}</span>
-                {row.status === "Submitted" ? (
-                  <span className="rounded-full bg-green-50 px-2.5 py-1 font-[family-name:var(--font-urbanist)] text-xs font-medium text-green-600">
-                    Submitted
-                  </span>
-                ) : (
-                  <span className="rounded-full bg-amber-50 px-2.5 py-1 font-[family-name:var(--font-urbanist)] text-xs font-medium text-amber-600">
-                    Pending
-                  </span>
-                )}
+                <div>
+                  <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">{row.child}</span>
+                  <p className="font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">{row.childInfo}</p>
+                </div>
+                <DailyLogStatusBadge status={row.status} />
               </div>
               <div className="mt-1.5 flex items-center gap-2">
-                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{row.type}</span>
-                <span className="text-[#d0d5dd]">•</span>
                 <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{row.room}</span>
                 <span className="text-[#d0d5dd]">•</span>
-                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{row.time}</span>
+                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{row.caregiver}</span>
+                <span className="text-[#d0d5dd]">•</span>
+                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{row.reportTime}</span>
               </div>
-              <p className="mt-1 font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">by {row.by}</p>
             </div>
           ))}
+        </div>
+
+        {/* Pagination */}
+        <div className="flex items-center justify-between border-t border-[#eaecf0] px-4 py-3">
+          <button className="flex items-center gap-1 font-[family-name:var(--font-urbanist)] text-sm text-[#9ca3af] hover:text-[#2d1810]">
+            ← Previous
+          </button>
+          <div className="flex items-center gap-1">
+            {[1, 2, 3, "...", 8, 9, 10].map((p, i) => (
+              <button
+                key={i}
+                className={`h-8 w-8 rounded-lg text-sm font-medium font-[family-name:var(--font-urbanist)] ${
+                  p === 1
+                    ? "bg-[#3b2513] text-[#faf2e1]"
+                    : "text-[#6b7280] hover:bg-[#f3f4f6]"
+                }`}
+              >
+                {p}
+              </button>
+            ))}
+          </div>
+          <button className="flex items-center gap-1 font-[family-name:var(--font-urbanist)] text-sm text-[#3b2513] font-medium hover:opacity-80">
+            Next →
+          </button>
         </div>
       </div>
     </div>
@@ -386,7 +455,7 @@ function DailyLogsView() {
 
 const SECTION_TITLES: Record<string, string> = {
   "health-incidents": "Health & Incidents",
-  medication: "Medication",
+  medication: "Medications",
   "inventory-supplies": "Inventory & Supplies",
   facilities: "Facilities",
   tasks: "Tasks",

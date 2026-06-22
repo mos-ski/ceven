@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDown, MoreVertical, Wrench, Sparkles } from "lucide-react";
+import { ChevronDown, Wrench, Sparkles } from "lucide-react";
 import { useState } from "react";
 
 import { Badge } from "@/components/ui/badge";
@@ -21,14 +21,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { TableCell, TableRow } from "@/components/ui/table";
 import {
   CLEANING_TASKS,
   FACILITY_AREAS,
@@ -39,11 +32,11 @@ import {
   type FacilityIssueStatus,
 } from "@/lib/mock-data/daily-operations";
 
-const PRIORITY_BADGE_CLASS: Record<FacilityIssuePriority, string> = {
-  Low: "border-transparent bg-[#f3f4f6] text-[#454B54]",
-  Medium: "border-transparent bg-[#fff6e6] text-[#cc8000]",
-  High: "border-transparent bg-[#fde8e8] text-[#ef4444]",
-  Urgent: "border-transparent bg-[#fde8e8] text-[#ef4444]",
+const PRIORITY_DOT_CLASS: Record<FacilityIssuePriority, string> = {
+  Low: "bg-[#2d1810]",
+  Medium: "bg-[#cc8000]",
+  High: "bg-[#ef4444]",
+  Urgent: "bg-[#ef4444]",
 };
 
 const STATUS_BADGE_CLASS: Record<FacilityIssueStatus, string> = {
@@ -244,9 +237,10 @@ function MaintenanceRow({ issue }: { issue: FacilityIssue }) {
         {issue.description}
       </TableCell>
       <TableCell>
-        <Badge variant="outline" className={PRIORITY_BADGE_CLASS[issue.priority]}>
+        <span className="inline-flex items-center gap-1.5 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">
+          <span className={`h-2 w-2 rounded-full ${PRIORITY_DOT_CLASS[issue.priority]}`} />
           {issue.priority}
-        </Badge>
+        </span>
       </TableCell>
       <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
         {issue.reportedBy}
@@ -256,15 +250,15 @@ function MaintenanceRow({ issue }: { issue: FacilityIssue }) {
       </TableCell>
       <TableCell>
         <Badge variant="outline" className={STATUS_BADGE_CLASS[issue.status]}>
-          {issue.status}
+          ● {issue.status}
         </Badge>
       </TableCell>
       <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
         {issue.resolvedDate ?? "—"}
       </TableCell>
       <TableCell>
-        <button className="flex items-center justify-center text-[#6b7280] hover:text-[#2d1810]">
-          <MoreVertical className="h-4 w-4" />
+        <button className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#3b2513] underline">
+          View
         </button>
       </TableCell>
     </TableRow>
@@ -279,32 +273,38 @@ function MaintenanceTable() {
           Maintenance
         </h2>
         <div className="flex items-center gap-2">
+          <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Filter by:</span>
           <FilterDropdown label="All Priority" options={["All Priority", "Low", "Medium", "High", "Urgent"]} />
           <FilterDropdown label="All Status" options={["All Status", "Open", "In Progress", "Resolved"]} />
+          <div className="relative">
+            <Input
+              placeholder="Search children, parents..."
+              className="h-8 w-full sm:w-56 rounded-lg border-[rgba(45,24,16,0.12)] bg-[#f5edd8] text-xs"
+            />
+          </div>
         </div>
       </div>
 
       <div className="hidden overflow-x-auto lg:block">
-        <Table>
-          <TableHeader>
-            <TableRow className="border-none bg-table-header-bg hover:bg-table-header-bg">
-              <TableHead>Request Date</TableHead>
-              <TableHead>Area</TableHead>
-              <TableHead>Issue</TableHead>
-              <TableHead>Priority</TableHead>
-              <TableHead>Reported By</TableHead>
-              <TableHead>Assigned To</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Resolved Date</TableHead>
-              <TableHead className="text-center">Action</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
+        <table className="w-full border-collapse">
+          <thead>
+            <tr className="bg-[#edd9c0]">
+              {["Request Date", "Area", "Issue", "Priority", "Reported By", "Assigned To", "Status", "Resolved Date", "Action"].map((h) => (
+                <th
+                  key={h}
+                  className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black"
+                >
+                  {h}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody className="bg-white">
             {FACILITY_ISSUES.map((issue) => (
               <MaintenanceRow key={issue.id} issue={issue} />
             ))}
-          </TableBody>
-        </Table>
+          </tbody>
+        </table>
       </div>
 
       {/* Mobile card list */}
@@ -316,16 +316,18 @@ function MaintenanceTable() {
                 {issue.area}
               </span>
               <Badge variant="outline" className={STATUS_BADGE_CLASS[issue.status]}>
-                {issue.status}
+                ● {issue.status}
               </Badge>
             </div>
             <p className="mt-1.5 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
               {issue.description}
             </p>
             <div className="mt-1.5 flex items-center gap-2">
-              <Badge variant="outline" className={PRIORITY_BADGE_CLASS[issue.priority]}>
+              <span className="inline-flex items-center gap-1 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+                <span className={`h-1.5 w-1.5 rounded-full ${PRIORITY_DOT_CLASS[issue.priority]}`} />
                 {issue.priority}
-              </Badge>
+              </span>
+              <span className="text-[#d0d5dd]">•</span>
               <p className="font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">
                 {issue.dateReported}
               </p>
@@ -361,7 +363,7 @@ function CleaningCard({ task }: { task: CleaningTask }) {
               : "border-transparent bg-[#fff6e6] text-[#cc8000]"
           }
         >
-          {task.status}
+          ● {task.status}
         </Badge>
         {isDone && <span className="font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">{task.time}</span>}
       </div>
@@ -388,10 +390,10 @@ function CleaningScheduleGrid() {
 }
 
 const facilitiesStatsCards = [
-  { value: String(FACILITY_ISSUES.filter((i) => i.status !== "Resolved").length).padStart(2, "0"), label: "need attention", title: "Open Request" },
-  { value: String(FACILITY_ISSUES.filter((i) => i.status === "Resolved").length).padStart(2, "0"), label: "this month", title: "Resolved This Month" },
-  { value: String(FACILITY_ISSUES.filter((i) => i.status === "In Progress").length).padStart(2, "0"), label: "in progress", title: "Ongoing Maintenance" },
-  { value: "00", label: "scheduled", title: "Next Planned Services" },
+  { value: String(FACILITY_ISSUES.filter((i) => i.status !== "Resolved").length).padStart(2, "0"), title: "Open Request" },
+  { value: String(FACILITY_ISSUES.filter((i) => i.status === "Resolved").length).padStart(2, "0"), title: "Resolved This Month" },
+  { value: String(FACILITY_ISSUES.filter((i) => i.status === "In Progress").length).padStart(2, "0"), title: "Ongoing Maintenance" },
+  { value: "00", title: "Next Planned Services" },
 ];
 
 export function FacilitiesView() {
@@ -421,21 +423,32 @@ export function FacilitiesView() {
         )}
       </div>
 
-      <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-1 lg:grid lg:grid-cols-4 lg:overflow-visible lg:pb-0">
+      <div className="grid grid-cols-2 gap-3 lg:gap-4 lg:grid-cols-4">
         {facilitiesStatsCards.map((card) => (
           <div
             key={card.title}
-            className="min-w-[160px] snap-start flex-1 flex-col gap-1 rounded-xl border border-[#e6ebf3] bg-white p-4"
+            className="flex flex-col gap-1 rounded-xl border border-[#e6ebf3] bg-white p-4"
           >
-            <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{card.title}</p>
+            <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">{card.title}</p>
             <p className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
               {card.value}
             </p>
-            <p className="font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">{card.label}</p>
           </div>
         ))}
       </div>
 
+      {/* AI Insights Banner */}
+      <div className="flex items-center gap-3 rounded-xl border border-[#e0bfa0] bg-[#fdf6e8] px-4 py-3">
+        <span className="inline-flex items-center gap-1 rounded-full bg-[#e0bfa0] px-2 py-0.5 font-[family-name:var(--font-urbanist)] text-[10px] font-medium text-[#3b2513]">
+          ✦ AI Insights
+        </span>
+        <p className="font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">
+          ⚠ Sunflower room changing table broken strap, reported Apr 9. Not yet repaired. Needs to be repaired before next LASG inspection
+        </p>
+        <button className="ml-auto text-[#9ca3af] hover:text-[#6b7280]">✕</button>
+      </div>
+
+      {/* Sub tabs */}
       <div className="flex overflow-x-auto border-b border-[#e6ebf3]">
         {SUB_TABS.map((tab) => (
           <button

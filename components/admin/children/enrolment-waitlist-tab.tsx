@@ -1,7 +1,20 @@
 "use client";
 
 import { useState, type ReactNode } from "react";
-import { ChevronDown, Mail, Phone, Plus, Search, X } from "lucide-react";
+import {
+  AlertTriangle,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  Flame,
+  Mail,
+  MoreVertical,
+  Phone,
+  Plus,
+  Search,
+  Sparkles,
+  X,
+} from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -22,8 +35,24 @@ import {
   TextField,
 } from "@/components/admin/children/form-fields";
 import { SuccessModal } from "@/components/admin/children/success-modal";
-import { ENQUIRIES, ENQUIRY_STATS, type Enquiry, type EnquiryStage } from "@/lib/mock-data/children";
-import { ROOMS } from "@/lib/mock-data/children";
+import {
+  AI_PREDICTS_NOTES,
+  ENQUIRIES,
+  ENQUIRY_URGENCY,
+  ENROLMENT_RECORDS,
+  ENROLMENT_WAITLIST_OVERVIEW,
+  LEAVERS,
+  ROOMS,
+  TRIAL_SESSIONS,
+  WAITLIST,
+  type Enquiry,
+  type EnquiryStage,
+  type EnrolmentStatus,
+  type LeaverRecord,
+  type TrialSession,
+  type TrialSessionStatus,
+  type WaitlistEntry,
+} from "@/lib/mock-data/children";
 import { cn } from "@/lib/utils";
 
 const STAGE_BADGE_CLASS: Record<EnquiryStage, string> = {
@@ -44,6 +73,32 @@ const STAGES: Array<"All Stages" | EnquiryStage> = [
   "Enrolled",
   "Declined",
 ];
+
+const KANBAN_STAGES: EnquiryStage[] = ["Enquiry Received", "Visit Scheduled", "Trial Booked", "Offer Made"];
+
+const ENROLMENT_STATUS_CLASS: Record<EnrolmentStatus, string> = {
+  Overdue: "border-[#d0d5dd] bg-[#f3f4f6] text-[#454B54]",
+  Approved: "border-[#009061] bg-[#ecfff8] text-[#009061]",
+  Declined: "border-[#ef4444] bg-[#fff5f5] text-[#ef4444]",
+  Pending: "border-[#cc8000] bg-[#fff6e6] text-[#cc8000]",
+  "Info Requested": "border-[#cc8000] bg-[#fff6e6] text-[#cc8000]",
+};
+
+const TRIAL_STATUS_DOT_CLASS: Record<TrialSessionStatus, string> = {
+  Upcoming: "bg-[#cc8000]",
+  Successful: "bg-[#009061]",
+  "Not Suitable": "bg-[#cc8000]",
+  "No Show": "bg-[#ef4444]",
+  Rescheduled: "bg-[#9ca3af]",
+};
+
+const TRIAL_STATUS_TEXT_CLASS: Record<TrialSessionStatus, string> = {
+  Upcoming: "text-[#cc8000]",
+  Successful: "text-[#009061]",
+  "Not Suitable": "text-[#cc8000]",
+  "No Show": "text-[#ef4444]",
+  Rescheduled: "text-[#6b7280]",
+};
 
 function FilterDropdown({ label, options }: { label: string; options: string[] }) {
   return (
@@ -428,114 +483,198 @@ function NewEnquiryModal({ open, onOpenChange, onSubmit }: { open: boolean; onOp
   );
 }
 
-// ── Main tab ─────────────────────────────────────────────────────────────────
+// ── Schedule Trial modal (standalone, from Trial Sessions tab) ─────────────
 
-type ModalState =
-  | { kind: "preview"; enquiry: Enquiry }
-  | { kind: "schedule-visit"; enquiry: Enquiry }
-  | { kind: "book-trial"; enquiry: Enquiry }
-  | { kind: "make-offer"; enquiry: Enquiry }
-  | { kind: "decline"; enquiry: Enquiry }
-  | { kind: "request-info"; enquiry: Enquiry }
-  | { kind: "new-enquiry" }
-  | { kind: "success"; heading: string; description: string }
-  | null;
+function ScheduleTrialModal({
+  open,
+  onOpenChange,
+  onSubmit,
+}: {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  onSubmit: () => void;
+}) {
+  return (
+    <PipelineActionModal
+      open={open}
+      onOpenChange={onOpenChange}
+      title="Schedule Trial"
+      submitLabel="Schedule Trial"
+      onSubmit={onSubmit}
+      fields={
+        <>
+          <FieldGroup label="Child" required>
+            <SelectField options={WAITLIST.map((w) => w.childName)} placeholder="Select a waitlisted child" />
+          </FieldGroup>
+          <FieldGroup label="Room / Class" required>
+            <SelectField options={ROOMS.map((r) => `${r.name} (${r.ageRange})`)} placeholder="Select" />
+          </FieldGroup>
+          <div className="grid grid-cols-2 gap-4">
+            <FieldGroup label="Date" required>
+              <TextField placeholder="Set date" type="date" />
+            </FieldGroup>
+            <FieldGroup label="Period">
+              <SelectField options={["1 hour", "2 hours", "1 day"]} placeholder="Select" />
+            </FieldGroup>
+          </div>
+          <FieldGroup label="Assigned To">
+            <SelectField options={["Ms. Nkechi", "Mr. Seun", "Mrs. Sarah Okonkwo"]} placeholder="Select" />
+          </FieldGroup>
+          <FieldGroup label="Notes">
+            <TextAreaField placeholder="eg parent attending too" />
+          </FieldGroup>
+        </>
+      }
+    />
+  );
+}
 
-export function EnrolmentWaitlistTab() {
-  const [modal, setModal] = useState<ModalState>(null);
+// ── Overview stats + AI banner (shared across sub-tabs) ─────────────────────
 
-  const close = () => setModal(null);
+function OverviewStats() {
+  const stats = ENROLMENT_WAITLIST_OVERVIEW;
+  return (
+    <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4">
+      <div className="rounded-xl border border-card-border bg-white p-4">
+        <p className="font-[family-name:var(--font-nunito)] text-sm text-muted-text">Active Enquiries</p>
+        <p className="mt-2 font-[family-name:var(--font-merriweather)] text-[32px] font-bold text-stat-heading">
+          {stats.activeEnquiries}
+        </p>
+        <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#009061]">
+          ↗ {stats.activeEnquiriesTrend}
+        </p>
+      </div>
+      <div className="rounded-xl border border-card-border bg-white p-4">
+        <p className="font-[family-name:var(--font-nunito)] text-sm text-muted-text">Waitlisted</p>
+        <p className="mt-2 font-[family-name:var(--font-merriweather)] text-[32px] font-bold text-stat-heading">
+          {String(stats.waitlisted).padStart(2, "0")}
+        </p>
+        <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{stats.waitlistedByRoom}</p>
+      </div>
+      <div className="rounded-xl border border-card-border bg-white p-4">
+        <p className="font-[family-name:var(--font-nunito)] text-sm text-muted-text">Total Enrolled</p>
+        <p className="mt-2 font-[family-name:var(--font-merriweather)] text-[32px] font-bold text-stat-heading">
+          {stats.totalEnrolled}
+        </p>
+        <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#009061]">↗ {stats.totalEnrolledTrend}</p>
+      </div>
+      <div className="rounded-xl border border-card-border bg-white p-4">
+        <p className="font-[family-name:var(--font-nunito)] text-sm text-muted-text">Leavers</p>
+        <p className="mt-2 font-[family-name:var(--font-merriweather)] text-[32px] font-bold text-stat-heading">
+          {String(stats.leavers).padStart(2, "0")}
+        </p>
+        <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#9ca3af]">Nil</p>
+      </div>
+    </div>
+  );
+}
+
+function AiPredictsBanner({ onDismiss }: { onDismiss: () => void }) {
+  return (
+    <div className="flex items-center gap-4 rounded-xl border border-[#1e2d4a] bg-gradient-to-r from-[#faf2e1] to-[rgba(196,123,44,0.5)] px-4 py-3">
+      <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-[#1e2d4a] px-2.5 py-1 font-[family-name:var(--font-nunito)] text-xs text-white">
+        <Sparkles className="size-3" />
+        AI Predicts
+      </span>
+      <div className="flex flex-1 flex-wrap gap-4 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">
+        {AI_PREDICTS_NOTES.map((note) => (
+          <span key={note}>{note}</span>
+        ))}
+      </div>
+      <button onClick={onDismiss} className="shrink-0 text-[#2d1810] hover:text-[#3b2513]" aria-label="Dismiss">
+        <X className="size-4" />
+      </button>
+    </div>
+  );
+}
+
+// ── Sub-tab: Enrolment ───────────────────────────────────────────────────────
+
+function EnrolmentTab() {
+  const [selected, setSelected] = useState<Set<string>>(new Set());
+
+  function toggle(id: string) {
+    setSelected((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  }
+
+  function toggleAll() {
+    setSelected((prev) => (prev.size === ENROLMENT_RECORDS.length ? new Set() : new Set(ENROLMENT_RECORDS.map((r) => r.id))));
+  }
 
   return (
     <div className="space-y-4">
-      <div className="flex flex-wrap gap-4">
-        <div className="min-w-0 flex-1 rounded-xl border border-card-border bg-white p-4">
-          <p className="font-[family-name:var(--font-nunito)] text-sm text-muted-text">New Enquiries</p>
-          <p className="mt-2 font-[family-name:var(--font-merriweather)] text-[32px] font-bold text-stat-heading">
-            {String(ENQUIRY_STATS.newEnquiries).padStart(2, "0")}
-          </p>
-        </div>
-        <div className="min-w-0 flex-1 rounded-xl border border-card-border bg-white p-4">
-          <p className="font-[family-name:var(--font-nunito)] text-sm text-muted-text">Visits Scheduled</p>
-          <p className="mt-2 font-[family-name:var(--font-merriweather)] text-[32px] font-bold text-stat-heading">
-            {String(ENQUIRY_STATS.visitsScheduled).padStart(2, "0")}
-          </p>
-        </div>
-        <div className="min-w-0 flex-1 rounded-xl border border-card-border bg-white p-4">
-          <p className="font-[family-name:var(--font-nunito)] text-sm text-muted-text">Trials Booked</p>
-          <p className="mt-2 font-[family-name:var(--font-merriweather)] text-[32px] font-bold text-stat-heading">
-            {String(ENQUIRY_STATS.trialsBooked).padStart(2, "0")}
-          </p>
-        </div>
-        <div className="min-w-0 flex-1 rounded-xl border border-card-border bg-white p-4">
-          <p className="font-[family-name:var(--font-nunito)] text-sm text-muted-text">Conversion Rate</p>
-          <p className="mt-2 font-[family-name:var(--font-merriweather)] text-[32px] font-bold text-stat-heading">
-            {ENQUIRY_STATS.conversionRate}%
-          </p>
-        </div>
-      </div>
-
       <div className="overflow-hidden rounded-xl bg-white shadow-sm">
-        <div className="flex flex-wrap items-center justify-between gap-4 p-4">
-          <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-heading">
-            Enrolment &amp; Waitlist
+        <div className="flex flex-wrap items-center justify-between gap-3 p-4">
+          <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
+            Enrolment List
           </h2>
-          <div className="flex items-center gap-3">
-            <FilterDropdown label="All Stages" options={STAGES} />
-            <div className="h-6 w-px bg-input-border" />
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Sort by:</span>
+            <FilterDropdown label="Most Recent" options={["Most Recent", "Oldest"]} />
+            <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Filter by:</span>
+            <FilterDropdown label="All Status" options={["All Status", "Overdue", "Approved", "Declined", "Pending", "Info Requested"]} />
+            <FilterDropdown label="All Rooms" options={["All Rooms", ...ROOMS.map((r) => r.name)]} />
             <div className="relative">
-              <Search className="absolute top-1/2 left-2 size-4 -translate-y-1/2 text-muted-text" />
+              <Search className="absolute top-1/2 left-2 size-4 -translate-y-1/2 text-[#9ca3af]" />
               <Input
-                placeholder="Search enquiries…"
-                className="h-8 w-full sm:w-58 rounded-lg border-[rgba(45,24,16,0.12)] bg-[#F5EDD8] pl-8 text-xs"
+                placeholder="Search date, children, parents..."
+                className="h-8 w-full sm:w-64 rounded-lg border-[rgba(45,24,16,0.12)] bg-[#f5edd8] pl-8 text-xs"
               />
             </div>
-            <Button
-              onClick={() => setModal({ kind: "new-enquiry" })}
-              className="h-9 gap-1.5 rounded-lg bg-brand-dark px-4 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-sidebar-active-text"
-            >
-              <Plus className="size-3.5" />
-              New Enquiry
-            </Button>
           </div>
         </div>
 
         <div className="hidden overflow-x-auto lg:block">
           <table className="w-full border-collapse">
             <thead>
-              <tr className="bg-table-header-bg">
-                {["Child", "Parent", "Inquiry Date", "Stage", "Action"].map((col) => (
-                  <th key={col} className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black">
-                    {col}
+              <tr className="bg-[#edd9c0]">
+                <th className="w-10 px-4 py-3">
+                  <input
+                    type="checkbox"
+                    checked={selected.size === ENROLMENT_RECORDS.length}
+                    onChange={toggleAll}
+                    className="size-4 accent-[#3b2513]"
+                  />
+                </th>
+                {["Child", "Parent Name", "Child Name", "Age", "Room", "Status", "Action"].map((h) => (
+                  <th key={h} className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black">
+                    {h}
                   </th>
                 ))}
               </tr>
             </thead>
             <tbody className="bg-white">
-              {ENQUIRIES.map((enquiry) => (
-                <tr key={enquiry.id} className="border-t border-table-border">
+              {ENROLMENT_RECORDS.map((r) => (
+                <tr key={r.id} className="border-t border-[#eaecf0]">
                   <td className="px-4 py-3">
-                    <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-black">{enquiry.childName}</p>
-                    <p className="font-[family-name:var(--font-nunito)] text-[10px] text-otp-text">
-                      {enquiry.gender} • {enquiry.age}
-                    </p>
+                    <input
+                      type="checkbox"
+                      checked={selected.has(r.id)}
+                      onChange={() => toggle(r.id)}
+                      className="size-4 accent-[#3b2513]"
+                    />
+                  </td>
+                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{r.dateTime}</td>
+                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{r.parentName}</td>
+                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{r.childName}</td>
+                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{r.age}</td>
+                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{r.room}</td>
+                  <td className="px-4 py-3">
+                    <span className="inline-flex items-center gap-1.5">
+                      <Badge variant="outline" className={ENROLMENT_STATUS_CLASS[r.status]}>
+                        {r.status}
+                      </Badge>
+                      {r.status === "Overdue" && <AlertTriangle className="size-3.5 text-[#cc8000]" />}
+                    </span>
                   </td>
                   <td className="px-4 py-3">
-                    <p className="font-[family-name:var(--font-nunito)] text-sm font-bold text-[#454B54]">{enquiry.parentName}</p>
-                    <p className="font-[family-name:var(--font-nunito)] text-[10px] text-otp-text">{enquiry.parentEmail}</p>
-                  </td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{enquiry.inquiryDate}</td>
-                  <td className="px-4 py-3">
-                    <Badge variant="outline" className={STAGE_BADGE_CLASS[enquiry.stage]}>
-                      {enquiry.stage}
-                    </Badge>
-                  </td>
-                  <td className="px-4 py-3">
-                    <button
-                      onClick={() => setModal({ kind: "preview", enquiry })}
-                      className="rounded-lg border border-brand-dark px-3 py-1.5 font-[family-name:var(--font-nunito)] text-xs font-semibold text-brand-dark hover:bg-[#faf6ef]"
-                    >
-                      View
+                    <button className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#3b2513] underline">
+                      View Details
                     </button>
                   </td>
                 </tr>
@@ -546,23 +685,131 @@ export function EnrolmentWaitlistTab() {
 
         {/* Mobile cards */}
         <div className="flex flex-col gap-2 px-4 pb-4 lg:hidden">
-          {ENQUIRIES.map((enquiry) => (
-            <button
-              key={enquiry.id}
-              onClick={() => setModal({ kind: "preview", enquiry })}
-              className="flex items-center justify-between rounded-xl border border-[#eaecf0] p-3 text-left transition-colors hover:bg-[#faf9f7]"
-            >
-              <div className="flex flex-col gap-0.5">
-                <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-black">{enquiry.childName}</span>
-                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#858c98]">
-                  {enquiry.parentName} • {enquiry.inquiryDate}
-                </span>
+          {ENROLMENT_RECORDS.map((r) => (
+            <div key={r.id} className="rounded-xl border border-[#eaecf0] p-3">
+              <div className="flex items-center justify-between">
+                <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{r.childName}</span>
+                <Badge variant="outline" className={ENROLMENT_STATUS_CLASS[r.status]}>
+                  {r.status}
+                </Badge>
               </div>
-              <Badge variant="outline" className={STAGE_BADGE_CLASS[enquiry.stage]}>
-                {enquiry.stage}
-              </Badge>
-            </button>
+              <p className="mt-1 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+                {r.parentName} • {r.room} • {r.age}
+              </p>
+            </div>
           ))}
+        </div>
+
+        <div className="flex items-center justify-between border-t border-[#eaecf0] px-4 py-3">
+          <button className="flex items-center gap-1 font-[family-name:var(--font-nunito)] text-sm text-[#9ca3af]" disabled>
+            <ChevronLeft className="size-4" />
+            Previous
+          </button>
+          <button className="flex items-center gap-1 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280] hover:text-[#2d1810]">
+            Next
+            <ChevronRight className="size-4" />
+          </button>
+        </div>
+      </div>
+
+      {selected.size > 0 && (
+        <div className="fixed inset-x-4 bottom-4 z-30 flex items-center justify-between gap-3 rounded-xl bg-white p-4 shadow-2xl lg:left-[280px] lg:right-8">
+          <span className="font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">
+            {selected.size} children selected
+          </span>
+          <div className="flex gap-3">
+            <button
+              onClick={() => setSelected(new Set())}
+              className="rounded-lg border border-[#d0d5dd] px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810] hover:bg-[#f9fafb]"
+            >
+              Decline all {selected.size}
+            </button>
+            <button
+              onClick={() => setSelected(new Set())}
+              className="rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]"
+            >
+              Approve all {selected.size}
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ── Sub-tab: Enquiry Pipeline (Kanban) ───────────────────────────────────────
+
+function EnquiryCard({ enquiry, onClick }: { enquiry: Enquiry; onClick: () => void }) {
+  const urgency = ENQUIRY_URGENCY[enquiry.id];
+  return (
+    <button
+      onClick={onClick}
+      className="flex w-full flex-col gap-1 rounded-xl border border-[#eaecf0] bg-white p-3 text-left shadow-sm hover:border-[#c47b2c]"
+    >
+      <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{enquiry.childName}</p>
+      <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+        Age: {enquiry.age} Class: {enquiry.preferredRoom}
+      </p>
+      <div className="flex items-center justify-between">
+        <span className="font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">Enquired: {enquiry.inquiryDate}</span>
+        {urgency?.level === "overdue" && (
+          <span className="flex items-center gap-1 font-[family-name:var(--font-urbanist)] text-xs text-[#cc8000]">
+            <AlertTriangle className="size-3" />
+            {urgency.label}
+          </span>
+        )}
+        {urgency?.level === "high-priority" && (
+          <span className="flex items-center gap-1 font-[family-name:var(--font-urbanist)] text-xs text-[#e2622a]">
+            <Flame className="size-3" />
+            {urgency.label}
+          </span>
+        )}
+      </div>
+    </button>
+  );
+}
+
+type PipelineModalState =
+  | { kind: "preview"; enquiry: Enquiry }
+  | { kind: "schedule-visit"; enquiry: Enquiry }
+  | { kind: "book-trial"; enquiry: Enquiry }
+  | { kind: "make-offer"; enquiry: Enquiry }
+  | { kind: "decline"; enquiry: Enquiry }
+  | { kind: "request-info"; enquiry: Enquiry }
+  | { kind: "success"; heading: string; description: string }
+  | null;
+
+function EnquiryPipelineTab() {
+  const [modal, setModal] = useState<PipelineModalState>(null);
+  const close = () => setModal(null);
+
+  return (
+    <>
+      <div className="overflow-hidden rounded-xl bg-white shadow-sm">
+        <div className="p-4">
+          <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
+            Enquiry Pipeline <span className="font-normal text-[#9ca3af]">— Kanban View</span>
+          </h2>
+        </div>
+        <div className="grid grid-cols-1 gap-3 p-4 pt-0 sm:grid-cols-2 lg:grid-cols-4">
+          {KANBAN_STAGES.map((stage) => {
+            const items = ENQUIRIES.filter((e) => e.stage === stage);
+            return (
+              <div key={stage} className="flex flex-col gap-3 rounded-xl bg-[#fdf7ed] p-3">
+                <div className="flex items-center justify-between">
+                  <h3 className="font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">
+                    {stage}
+                  </h3>
+                  <span className="rounded-md bg-[#edd9c0] px-2 py-0.5 font-[family-name:var(--font-nunito)] text-xs font-bold text-[#3b2513]">
+                    {items.length}
+                  </span>
+                </div>
+                {items.map((enquiry) => (
+                  <EnquiryCard key={enquiry.id} enquiry={enquiry} onClick={() => setModal({ kind: "preview", enquiry })} />
+                ))}
+              </div>
+            );
+          })}
         </div>
       </div>
 
@@ -710,23 +957,383 @@ export function EnrolmentWaitlistTab() {
         }
       />
 
-      <NewEnquiryModal
-        open={modal?.kind === "new-enquiry"}
-        onOpenChange={(open) => !open && close()}
-        onSubmit={() =>
-          setModal({
-            kind: "success",
-            heading: "Enquiry Added",
-            description: "The new enquiry has been added to the waitlist.",
-          })
-        }
-      />
-
       <SuccessModal
         open={modal?.kind === "success"}
         onOpenChange={(open) => !open && close()}
         heading={modal?.kind === "success" ? modal.heading : ""}
         description={modal?.kind === "success" ? modal.description : ""}
+      />
+    </>
+  );
+}
+
+// ── Sub-tab: Waitlist ────────────────────────────────────────────────────────
+
+function WaitlistRow({ entry }: { entry: WaitlistEntry }) {
+  return (
+    <tr className="border-t border-[#eaecf0]">
+      <td className="px-4 py-3">
+        <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{entry.childName}</p>
+        <p className="font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">
+          {entry.gender} • Blood: {entry.bloodGroup}
+        </p>
+      </td>
+      <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{entry.roomRequested}</td>
+      <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{entry.dateAdded}</td>
+      <td className="px-4 py-3">
+        <span className="flex items-center gap-1.5 font-[family-name:var(--font-nunito)] text-sm text-[#ef4444]">
+          <span className="size-1.5 rounded-full bg-[#ef4444]" />
+          {entry.waitDays} days
+        </span>
+      </td>
+      <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{entry.enrolledSiblings}</td>
+      <td className="px-4 py-3">
+        <Badge variant="outline" className="border-[#cc8000] bg-[#fff6e6] text-[#cc8000]">
+          {entry.status}
+        </Badge>
+      </td>
+      <td className="px-4 py-3">
+        <button className="flex items-center justify-center text-[#6b7280] hover:text-[#2d1810]">
+          <MoreVertical className="size-4" />
+        </button>
+      </td>
+    </tr>
+  );
+}
+
+function WaitlistTab() {
+  return (
+    <div className="overflow-hidden rounded-xl bg-white shadow-sm">
+      <div className="flex flex-wrap items-center justify-between gap-3 p-4">
+        <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
+          Waitlist <span className="font-normal text-[#9ca3af]">— By Room</span>
+        </h2>
+        <div className="flex items-center gap-2">
+          <FilterDropdown label="All Status" options={["All Status", "Waiting", "Offered", "Expired"]} />
+          <div className="relative">
+            <Search className="absolute top-1/2 left-2 size-4 -translate-y-1/2 text-[#9ca3af]" />
+            <Input
+              placeholder="Search children, parents..."
+              className="h-8 w-full sm:w-56 rounded-lg border-[rgba(45,24,16,0.12)] bg-[#f5edd8] pl-8 text-xs"
+            />
+          </div>
+        </div>
+      </div>
+      <div className="hidden overflow-x-auto lg:block">
+        <table className="w-full border-collapse">
+          <thead>
+            <tr className="bg-[#edd9c0]">
+              <th className="w-10 px-4 py-3" />
+              {["Child", "Room Requested", "Date Added", "Wait Period", "Enrolled Siblings", "Status", "Action"].map((h) => (
+                <th key={h} className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black">
+                  {h}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody className="bg-white">
+            {WAITLIST.map((entry) => (
+              <WaitlistRow key={entry.id} entry={entry} />
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {/* Mobile cards */}
+      <div className="flex flex-col gap-2 px-4 pb-4 lg:hidden">
+        {WAITLIST.map((entry) => (
+          <div key={entry.id} className="rounded-xl border border-[#eaecf0] p-3">
+            <div className="flex items-center justify-between">
+              <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{entry.childName}</span>
+              <Badge variant="outline" className="border-[#cc8000] bg-[#fff6e6] text-[#cc8000]">
+                {entry.status}
+              </Badge>
+            </div>
+            <p className="mt-1 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+              {entry.roomRequested} • Waiting {entry.waitDays} days
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ── Sub-tab: Trial Sessions ──────────────────────────────────────────────────
+
+function TrialSessionRow({ session }: { session: TrialSession }) {
+  return (
+    <tr className="border-t border-[#eaecf0]">
+      <td className="px-4 py-3">
+        <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{session.childName}</p>
+        <p className="font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">
+          {session.gender} • Blood: {session.bloodGroup}
+        </p>
+      </td>
+      <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{session.room}</td>
+      <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{session.trialDate}</td>
+      <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{session.period}</td>
+      <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{session.assignedTo}</td>
+      <td className="px-4 py-3">
+        <span className={cn("flex items-center gap-1.5 font-[family-name:var(--font-nunito)] text-sm", TRIAL_STATUS_TEXT_CLASS[session.status])}>
+          {session.status === "Not Suitable" ? (
+            <AlertTriangle className="size-3.5" />
+          ) : (
+            <span className={cn("size-1.5 rounded-full", TRIAL_STATUS_DOT_CLASS[session.status])} />
+          )}
+          {session.status}
+        </span>
+      </td>
+      <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{session.notes}</td>
+      <td className="px-4 py-3">
+        <button className="flex items-center justify-center text-[#6b7280] hover:text-[#2d1810]">
+          <MoreVertical className="size-4" />
+        </button>
+      </td>
+    </tr>
+  );
+}
+
+function TrialSessionsTab() {
+  const [scheduleOpen, setScheduleOpen] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  return (
+    <>
+      <div className="overflow-hidden rounded-xl bg-white shadow-sm">
+        <div className="flex flex-wrap items-center justify-between gap-3 p-4">
+          <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
+            Scheduled Trial Sessions
+          </h2>
+          <div className="flex flex-wrap items-center gap-2">
+            <Button
+              onClick={() => setScheduleOpen(true)}
+              className="h-9 gap-1.5 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-[#faf2e1]"
+            >
+              Schedule Trial
+            </Button>
+            <FilterDropdown label="All Rooms" options={["All Rooms", ...ROOMS.map((r) => r.name)]} />
+            <FilterDropdown label="All Status" options={["All Status", "Upcoming", "Successful", "Not Suitable", "No Show", "Rescheduled"]} />
+            <div className="relative">
+              <Search className="absolute top-1/2 left-2 size-4 -translate-y-1/2 text-[#9ca3af]" />
+              <Input
+                placeholder="Search children, parents..."
+                className="h-8 w-full sm:w-56 rounded-lg border-[rgba(45,24,16,0.12)] bg-[#f5edd8] pl-8 text-xs"
+              />
+            </div>
+          </div>
+        </div>
+        <div className="hidden overflow-x-auto lg:block">
+          <table className="w-full border-collapse">
+            <thead>
+              <tr className="bg-[#edd9c0]">
+                <th className="w-10 px-4 py-3" />
+                {["Child", "Room", "Trial Date", "Period", "Assigned To", "Status", "Notes", "Action"].map((h) => (
+                  <th key={h} className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black">
+                    {h}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody className="bg-white">
+              {TRIAL_SESSIONS.map((session) => (
+                <TrialSessionRow key={session.id} session={session} />
+              ))}
+            </tbody>
+          </table>
+        </div>
+        {/* Mobile cards */}
+        <div className="flex flex-col gap-2 px-4 pb-4 lg:hidden">
+          {TRIAL_SESSIONS.map((session) => (
+            <div key={session.id} className="rounded-xl border border-[#eaecf0] p-3">
+              <div className="flex items-center justify-between">
+                <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{session.childName}</span>
+                <span className={cn("flex items-center gap-1.5 font-[family-name:var(--font-nunito)] text-xs", TRIAL_STATUS_TEXT_CLASS[session.status])}>
+                  <span className={cn("size-1.5 rounded-full", TRIAL_STATUS_DOT_CLASS[session.status])} />
+                  {session.status}
+                </span>
+              </div>
+              <p className="mt-1 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+                {session.room} • {session.trialDate} • {session.period}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <ScheduleTrialModal
+        open={scheduleOpen}
+        onOpenChange={setScheduleOpen}
+        onSubmit={() => {
+          setScheduleOpen(false);
+          setSuccess(true);
+        }}
+      />
+
+      <SuccessModal
+        open={success}
+        onOpenChange={setSuccess}
+        heading="Trial Scheduled"
+        description="The trial session has been added to the schedule."
+      />
+    </>
+  );
+}
+
+// ── Sub-tab: Leavers ──────────────────────────────────────────────────────────
+
+function LeaverRow({ leaver }: { leaver: LeaverRecord }) {
+  return (
+    <tr className="border-t border-[#eaecf0]">
+      <td className="px-4 py-3">
+        <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{leaver.childName}</p>
+        <p className="font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">
+          {leaver.gender} • Blood: {leaver.bloodGroup}
+        </p>
+      </td>
+      <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">
+        {leaver.roomIcon} {leaver.room}
+      </td>
+      <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{leaver.reason}</td>
+      <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{leaver.lastDay}</td>
+      <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{leaver.noticeGiven}</td>
+      <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{leaver.exitSurvey}</td>
+      <td className="px-4 py-3">
+        <span className="flex items-center gap-1.5 font-[family-name:var(--font-nunito)] text-sm text-[#009061]">
+          <span className="size-1.5 rounded-full bg-[#009061]" />
+          {leaver.dataArchived}
+        </span>
+      </td>
+    </tr>
+  );
+}
+
+function LeaversTab() {
+  return (
+    <div className="overflow-hidden rounded-xl bg-white shadow-sm">
+      <div className="flex flex-wrap items-center justify-between gap-3 p-4">
+        <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
+          Leavers <span className="font-normal text-[#9ca3af]">— This Academic Year</span>
+        </h2>
+        <div className="flex items-center gap-2">
+          <FilterDropdown label="All Rooms" options={["All Rooms", ...ROOMS.map((r) => r.name)]} />
+          <FilterDropdown label="Survey Status" options={["All", "Completed", "Pending", "Not Sent"]} />
+          <div className="relative">
+            <Search className="absolute top-1/2 left-2 size-4 -translate-y-1/2 text-[#9ca3af]" />
+            <Input
+              placeholder="Search children, parents..."
+              className="h-8 w-full sm:w-56 rounded-lg border-[rgba(45,24,16,0.12)] bg-[#f5edd8] pl-8 text-xs"
+            />
+          </div>
+        </div>
+      </div>
+      <div className="hidden overflow-x-auto lg:block">
+        <table className="w-full border-collapse">
+          <thead>
+            <tr className="bg-[#edd9c0]">
+              <th className="w-10 px-4 py-3" />
+              {["Child", "Room", "Reason", "Last Day", "Notice Given", "Exit Survey", "Data Archived"].map((h) => (
+                <th key={h} className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black">
+                  {h}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody className="bg-white">
+            {LEAVERS.map((leaver) => (
+              <LeaverRow key={leaver.id} leaver={leaver} />
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {/* Mobile cards */}
+      <div className="flex flex-col gap-2 px-4 pb-4 lg:hidden">
+        {LEAVERS.map((leaver) => (
+          <div key={leaver.id} className="rounded-xl border border-[#eaecf0] p-3">
+            <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{leaver.childName}</span>
+            <p className="mt-1 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+              {leaver.roomIcon} {leaver.room} • {leaver.reason}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ── Main tab ─────────────────────────────────────────────────────────────────
+
+type EnrolmentSubTab = "Enrolment" | "Enquiry Pipeline" | "Waitlist" | "Trial Sessions" | "Leavers";
+const SUB_TABS: EnrolmentSubTab[] = ["Enrolment", "Enquiry Pipeline", "Waitlist", "Trial Sessions", "Leavers"];
+
+export function EnrolmentWaitlistTab() {
+  const [subTab, setSubTab] = useState<EnrolmentSubTab>("Enrolment");
+  const [showAiBanner, setShowAiBanner] = useState(true);
+  const [newEnquiryOpen, setNewEnquiryOpen] = useState(false);
+  const [enquirySuccess, setEnquirySuccess] = useState(false);
+
+  return (
+    <div className="space-y-4">
+      <OverviewStats />
+
+      {showAiBanner && <AiPredictsBanner onDismiss={() => setShowAiBanner(false)} />}
+
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="flex overflow-x-auto border-b border-[#e6ebf3]">
+          {SUB_TABS.map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setSubTab(tab)}
+              className={`whitespace-nowrap px-4 py-2 text-sm font-medium font-[family-name:var(--font-urbanist)] cursor-pointer ${
+                subTab === tab
+                  ? "border-b-2 border-[#3b2513] text-[#3b2513]"
+                  : "text-[#6b7280] hover:text-[#2d1810]"
+              }`}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
+
+        <DropdownMenu>
+          <DropdownMenuTrigger
+            render={
+              <Button
+                variant="outline"
+                className="h-9 gap-1.5 rounded-lg border-[#d0d5dd] bg-white px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]"
+              />
+            }
+          >
+            Quick Actions
+            <ChevronDown className="size-3.5" />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuItem onClick={() => setNewEnquiryOpen(true)}>
+              <Plus className="size-3.5" />
+              New Enquiry
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+
+      {subTab === "Enrolment" && <EnrolmentTab />}
+      {subTab === "Enquiry Pipeline" && <EnquiryPipelineTab />}
+      {subTab === "Waitlist" && <WaitlistTab />}
+      {subTab === "Trial Sessions" && <TrialSessionsTab />}
+      {subTab === "Leavers" && <LeaversTab />}
+
+      <NewEnquiryModal
+        open={newEnquiryOpen}
+        onOpenChange={setNewEnquiryOpen}
+        onSubmit={() => {
+          setNewEnquiryOpen(false);
+          setEnquirySuccess(true);
+        }}
+      />
+      <SuccessModal
+        open={enquirySuccess}
+        onOpenChange={setEnquirySuccess}
+        heading="Enquiry Added"
+        description="The new enquiry has been added to the waitlist."
       />
     </div>
   );

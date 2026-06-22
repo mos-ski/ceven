@@ -334,7 +334,7 @@ export default function CommunicationPage() {
       </div>
 
       {/* Split layout */}
-      <div className="flex flex-col h-[calc(100vh-160px)] lg:h-[calc(100vh-160px)]">
+      <div className="flex flex-col lg:flex-row h-[calc(100vh-160px)]">
         {/* ── LEFT PANEL — hidden on mobile when conversation is open ── */}
         <div className={`${selectedMessage !== null ? "hidden lg:flex" : "flex"} w-full lg:w-[340px] lg:flex-shrink-0 rounded-2xl bg-white shadow-sm flex-col overflow-hidden`}>
           {/* Search + date filter */}

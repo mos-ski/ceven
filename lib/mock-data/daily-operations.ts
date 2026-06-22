@@ -6,20 +6,24 @@ export type IncidentStatus = "Open" | "Under Review" | "Resolved";
 export type Incident = {
   id: string;
   child: string;
+  childInfo: string;
   room: string;
   type: string;
   severity: IncidentSeverity;
   reportedBy: string;
   time: string;
+  parentNotified: boolean;
   status: IncidentStatus;
 };
 
 export const INCIDENTS: Incident[] = [
-  { id: "inc-1", child: "Amara Okafor", room: "Lion Class", type: "Minor Fall", severity: "Minor", reportedBy: "Mrs. Sarah Okonkwo", time: "9:45 AM", status: "Resolved" },
-  { id: "inc-2", child: "Leo Adamu", room: "Tiger Class", type: "Allergic Reaction", severity: "Severe", reportedBy: "Mr. James Adamu", time: "10:20 AM", status: "Under Review" },
-  { id: "inc-3", child: "Zara Mohammed", room: "Bear Class", type: "Fever", severity: "Moderate", reportedBy: "Mrs. Ngozi Eze", time: "11:05 AM", status: "Open" },
-  { id: "inc-4", child: "Ade Bello", room: "Owl Class", type: "Bump on Head", severity: "Minor", reportedBy: "Mr. Chukwu Bello", time: "1:15 PM", status: "Resolved" },
-  { id: "inc-5", child: "Mia Taiwo", room: "Lion Class", type: "Choking Hazard", severity: "Severe", reportedBy: "Mrs. Amaka Taiwo", time: "2:40 PM", status: "Open" },
+  { id: "inc-1", child: "King Andrew", childInfo: "Lion Class", room: "Lion", type: "Minor fall", severity: "Minor", reportedBy: "Mr Ben Ayadi", time: "Today 08:20AM", parentNotified: true, status: "Open" },
+  { id: "inc-2", child: "King Andrew", childInfo: "M • Blood: O+", room: "Lion", type: "Suspected allergy", severity: "Minor", reportedBy: "Mr Ben Ayadi", time: "Jun 3 08:20AM", parentNotified: true, status: "Resolved" },
+  { id: "inc-3", child: "King Andrew", childInfo: "M • Blood: O+", room: "Lion", type: "Fever", severity: "Severe", reportedBy: "Mr Ben Ayadi", time: "Jun 23 08:20AM", parentNotified: true, status: "Open" },
+  { id: "inc-4", child: "King Andrew", childInfo: "M • Blood: O+", room: "Lion", type: "Temperature", severity: "Moderate", reportedBy: "Mr Ben Ayadi", time: "08:20AM", parentNotified: true, status: "Resolved" },
+  { id: "inc-5", child: "King Andrew", childInfo: "M • Blood: O+", room: "Lion", type: "Slight ..", severity: "Minor", reportedBy: "Mr Ben Ayadi", time: "08:20AM", parentNotified: true, status: "Resolved" },
+  { id: "inc-6", child: "King Andrew", childInfo: "M • Blood: O+", room: "Lion", type: "Minor", severity: "Minor", reportedBy: "Mr Ben Ayadi", time: "08:20AM", parentNotified: true, status: "Resolved" },
+  { id: "inc-7", child: "King Andrew", childInfo: "M • Blood: O+", room: "Lion", type: "Minor", severity: "Minor", reportedBy: "Mr Ben Ayadi", time: "08:20AM", parentNotified: true, status: "Resolved" },
 ];
 
 export const INCIDENT_TYPES = [
@@ -48,11 +52,8 @@ export type MedicationEntry = {
 };
 
 export const MEDICATIONS: MedicationEntry[] = [
-  { id: "med-1", child: "Amara Okafor", room: "Lion Class", medication: "Paracetamol Syrup", dosage: "5ml", scheduledTime: "10:00 AM", administeredBy: "Mrs. Sarah Okonkwo", status: "Administered" },
-  { id: "med-2", child: "Leo Adamu", room: "Tiger Class", medication: "Antihistamine", dosage: "2.5ml", scheduledTime: "12:30 PM", administeredBy: null, status: "Scheduled" },
-  { id: "med-3", child: "Zara Mohammed", room: "Bear Class", medication: "Asthma Inhaler", dosage: "2 puffs", scheduledTime: "9:00 AM", administeredBy: null, status: "Missed" },
-  { id: "med-4", child: "Ade Bello", room: "Owl Class", medication: "Vitamin Drops", dosage: "1ml", scheduledTime: "8:30 AM", administeredBy: "Mr. Chukwu Bello", status: "Administered" },
-  { id: "med-5", child: "Mia Taiwo", room: "Lion Class", medication: "Eczema Cream", dosage: "Apply thin layer", scheduledTime: "2:00 PM", administeredBy: null, status: "Scheduled" },
+  { id: "med-1", child: "King Andrew", room: "Lion Class", medication: "Vitamin D", dosage: "2 drops", scheduledTime: "02:30am", administeredBy: "Mr Ben Ayadi", status: "Administered" },
+  { id: "med-2", child: "King Andrew", room: "Lion Class", medication: "Vitamin D", dosage: "2 drops", scheduledTime: "02:30am", administeredBy: null, status: "Scheduled" },
 ];
 
 export const MEDICATION_OPTIONS = [
@@ -160,11 +161,9 @@ export type FacilityIssue = {
 };
 
 export const FACILITY_ISSUES: FacilityIssue[] = [
-  { id: "fac-1", area: "Lion Classroom", description: "Broken window latch", reportedBy: "Mrs. Sarah Okonkwo", assignedTo: "External artisan", dateReported: "19 Jun 2026", resolvedDate: null, priority: "Medium", status: "In Progress" },
-  { id: "fac-2", area: "Playground", description: "Loose swing chain", reportedBy: "Mr. James Adamu", assignedTo: "Technician", dateReported: "20 Jun 2026", resolvedDate: null, priority: "Urgent", status: "Open" },
-  { id: "fac-3", area: "Kitchen", description: "Leaking sink pipe", reportedBy: "Mrs. Ngozi Eze", assignedTo: "External artisan", dateReported: "17 Jun 2026", resolvedDate: null, priority: "High", status: "Open" },
-  { id: "fac-4", area: "Main Hallway", description: "Flickering light fixture", reportedBy: "Mr. Chukwu Bello", assignedTo: "Technician", dateReported: "14 Jun 2026", resolvedDate: "16 Jun 2026", priority: "Low", status: "Resolved" },
-  { id: "fac-5", area: "Bear Classroom", description: "AC unit not cooling", reportedBy: "Mrs. Amaka Taiwo", assignedTo: "External artisan", dateReported: "21 Jun 2026", resolvedDate: null, priority: "High", status: "Open" },
+  { id: "fac-1", area: "Room 1", description: "05", reportedBy: "Mr Idaosa", assignedTo: "External artisan", dateReported: "Apr 12", resolvedDate: "Apr 16", priority: "Medium", status: "Resolved" },
+  { id: "fac-2", area: "Room 2", description: "0", reportedBy: "Mr Gbenga", assignedTo: "Technician", dateReported: "Apr 20", resolvedDate: "Apr 30", priority: "Low", status: "Open" },
+  { id: "fac-3", area: "Room 1", description: "06", reportedBy: "Mrs Funmi", assignedTo: "External artisan", dateReported: "May 16", resolvedDate: "May 18", priority: "High", status: "Resolved" },
 ];
 
 export const FACILITY_AREAS = [
@@ -193,19 +192,19 @@ export type CleaningTask = {
 
 export const CLEANING_TASKS: CleaningTask[] = [
   { id: "clean-1", room: "Butterfly Room", frequency: "Daily (Morning - 07:00am)", time: "07:30am", status: "Done" },
-  { id: "clean-2", room: "Lion Classroom", frequency: "Daily (Morning - 07:00am)", time: "07:30am", status: "Done" },
-  { id: "clean-3", room: "Tiger Classroom", frequency: "Daily (Morning - 07:00am)", time: "—", status: "Pending" },
-  { id: "clean-4", room: "Bear Classroom", frequency: "Daily (Afternoon - 01:00pm)", time: "—", status: "Pending" },
-  { id: "clean-5", room: "Owl Classroom", frequency: "Daily (Afternoon - 01:00pm)", time: "—", status: "Pending" },
-  { id: "clean-6", room: "Kitchen", frequency: "Twice Daily", time: "—", status: "Pending" },
-  { id: "clean-7", room: "Playground", frequency: "Weekly (Friday)", time: "—", status: "Pending" },
-  { id: "clean-8", room: "Restrooms", frequency: "Twice Daily", time: "—", status: "Pending" },
-  { id: "clean-9", room: "Main Hallway", frequency: "Daily (Morning - 07:00am)", time: "—", status: "Pending" },
+  { id: "clean-2", room: "Butterfly Room", frequency: "Daily (Morning - 07:00am)", time: "07:30am", status: "Done" },
+  { id: "clean-3", room: "Butterfly Room", frequency: "Daily (Morning - 07:00am)", time: "—", status: "Pending" },
+  { id: "clean-4", room: "Butterfly Room", frequency: "Daily (Morning - 07:00am)", time: "—", status: "Pending" },
+  { id: "clean-5", room: "Butterfly Room", frequency: "Daily (Morning - 07:00am)", time: "—", status: "Pending" },
+  { id: "clean-6", room: "Butterfly Room", frequency: "Daily (Morning - 07:00am)", time: "—", status: "Pending" },
+  { id: "clean-7", room: "Butterfly Room", frequency: "Daily (Morning - 07:00am)", time: "—", status: "Pending" },
+  { id: "clean-8", room: "Butterfly Room", frequency: "Daily (Morning - 07:00am)", time: "—", status: "Pending" },
+  { id: "clean-9", room: "Butterfly Room", frequency: "Daily (Morning - 07:00am)", time: "—", status: "Pending" },
 ];
 
 // ─── Tasks ──────────────────────────────────────────────────────────────────────
 
-export type TaskStatus = "To Do" | "In Progress" | "Done" | "Overdue";
+export type TaskStatus = "To Do" | "In Progress" | "Done" | "Overdue" | "Not Started";
 export type TaskPriority = "Low" | "Medium" | "High";
 
 export type TaskSource = "AI Assigned" | "Routine" | "Manual";
@@ -223,11 +222,10 @@ export type StaffTask = {
 };
 
 export const STAFF_TASKS: StaffTask[] = [
-  { id: "task-1", title: "Notify Balogun's Parent", subtitle: "Incident - Minor fall", assignedTo: "Mr. James Adamu", room: "All Rooms", dueDate: "Today 2pm", priority: "Medium", source: "AI Assigned", status: "In Progress" },
-  { id: "task-2", title: "Submit daily report", subtitle: null, assignedTo: "Mrs. Ngozi Eze", room: "Bear Class", dueDate: "21 Jun 2026", priority: "Low", source: "Routine", status: "Overdue" },
-  { id: "task-3", title: "Random task", subtitle: null, assignedTo: "Mrs. Amaka Taiwo", room: "Lion Class", dueDate: "30 Jun 2026", priority: "High", source: "Manual", status: "To Do" },
-  { id: "task-4", title: "Parent teachers meeting note", subtitle: null, assignedTo: "Mrs. Amaka Taiwo", room: "Lion Class", dueDate: "30 Jun 2026", priority: "Low", source: "Routine", status: "Done" },
-  { id: "task-5", title: "Prepare weekly menu", subtitle: null, assignedTo: "Mrs. Sarah Okonkwo", room: "Kitchen", dueDate: "22 Jun 2026", priority: "Medium", source: "Routine", status: "In Progress" },
+  { id: "task-1", title: "Notify Balogun's Parent", subtitle: "Incident - Minor fall", assignedTo: "Mr Idaosa", room: "All Rooms", dueDate: "Today 2pm", priority: "Medium", source: "AI Assigned", status: "In Progress" },
+  { id: "task-2", title: "Submit daily report", subtitle: null, assignedTo: "Mr Gbenga", room: "Bear Class", dueDate: "May 10", priority: "Low", source: "Routine", status: "Overdue" },
+  { id: "task-3", title: "Random task", subtitle: null, assignedTo: "Mrs Funmi", room: "Lion Class", dueDate: "May 30", priority: "High", source: "Manual", status: "Not Started" },
+  { id: "task-4", title: "Parent teachers meeting note", subtitle: null, assignedTo: "Mrs Funmi", room: "Lion Class", dueDate: "May 30", priority: "Low", source: "Routine", status: "Done" },
 ];
 
 export const TASK_ASSIGNEES = [
