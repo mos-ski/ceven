@@ -314,3 +314,115 @@ export const ADA_SUGGESTED_PROMPTS = [
   "At-risk children?",
   "Draft announcement",
 ];
+
+// ── Settings: Security ───────────────────────────────────────────────────────
+
+export const MOCK_SECURITY_PROFILE = {
+  branchName: "Main Branch",
+  email: "admin@stgregcreche.com",
+  phone: "+234 90 9827 2738",
+  activityStatusVisible: false,
+};
+
+// ── Settings: Fee Plans ───────────────────────────────────────────────────────
+
+export type FeePlan = {
+  id: string;
+  name: string;
+  amount: string;
+  cycle: "Termly" | "Monthly" | "Annually";
+  appliesTo: string;
+  status: "Active" | "Draft";
+};
+
+export const FEE_PLANS: FeePlan[] = [
+  { id: "fee-1", name: "Standard Tuition", amount: "₦85,000", cycle: "Termly", appliesTo: "All Rooms", status: "Active" },
+  { id: "fee-2", name: "Infant Care", amount: "₦110,000", cycle: "Termly", appliesTo: "Nursery", status: "Active" },
+  { id: "fee-3", name: "After-School Extension", amount: "₦15,000", cycle: "Monthly", appliesTo: "All Rooms", status: "Active" },
+  { id: "fee-4", name: "Annual Registration", amount: "₦25,000", cycle: "Annually", appliesTo: "New Enrolments", status: "Draft" },
+];
+
+// ── Settings: Admissions ──────────────────────────────────────────────────────
+
+export type AdmissionFormField = {
+  id: string;
+  label: string;
+  description: string;
+  enabled: boolean;
+  required: boolean;
+};
+
+export type AdmissionFormStep = {
+  id: string;
+  title: string;
+  fields: AdmissionFormField[];
+};
+
+export const ADMISSION_FORM_STEPS: AdmissionFormStep[] = [
+  {
+    id: "step-1",
+    title: "Child Information",
+    fields: [
+      { id: "f1", label: "Form Requirements", description: "All requested information for staff", enabled: true, required: true },
+      { id: "f2", label: "Medical History", description: "Allergies, conditions, and medication", enabled: true, required: false },
+    ],
+  },
+  {
+    id: "step-2",
+    title: "Parent/Guardian Information",
+    fields: [
+      { id: "f3", label: "Form Requirements", description: "All requested information for staff", enabled: true, required: true },
+      { id: "f4", label: "Emergency Contact", description: "Secondary contact in case of emergency", enabled: false, required: false },
+    ],
+  },
+];
+
+// ── Settings: AI Settings ─────────────────────────────────────────────────────
+
+export type AiToneOption = {
+  id: string;
+  label: string;
+  description: string;
+};
+
+export const AI_TONE_OPTIONS: AiToneOption[] = [
+  { id: "tone-professional-warm", label: "Professional & Warm", description: "Clear and courteous, with a friendly undertone." },
+  { id: "tone-casual-warm", label: "Casual & Warm", description: "Relaxed and conversational, like a trusted colleague." },
+  { id: "tone-formal-precise", label: "Formal & Precise", description: "Direct and to the point, minimal small talk." },
+  { id: "tone-encouraging-upbeat", label: "Encouraging & Upbeat", description: "Positive and motivating in every response." },
+];
+
+export const AI_GRADIENT_OPTIONS = ["#1e2d4a", "#2d1810", "#c47b2c", "#9a6033"];
+
+export type AiAlertFrequency = "Real-time" | "Hourly digest" | "Daily digest" | "Weekly summary";
+
+export const AI_ALERT_FREQUENCIES: AiAlertFrequency[] = ["Real-time", "Hourly digest", "Daily digest", "Weekly summary"];
+
+export type AiFeatureControl = {
+  id: string;
+  label: string;
+  description: string;
+  enabled: boolean;
+};
+
+export const AI_FEATURE_CONTROLS: AiFeatureControl[] = [
+  { id: "feat-1", label: "Predictive Enrolment Insights", description: "Ada flags at-risk waitlist conversions automatically.", enabled: true },
+  { id: "feat-2", label: "Auto-drafted Announcements", description: "Ada suggests announcement copy from templates.", enabled: true },
+  { id: "feat-3", label: "Financial Anomaly Detection", description: "Ada flags unusual expense or revenue patterns.", enabled: false },
+];
+
+// ── Settings: Other Apps ──────────────────────────────────────────────────────
+
+export type OtherApp = {
+  id: string;
+  name: string;
+  description: string;
+  status: "Connected" | "Not Connected";
+};
+
+export const OTHER_APPS: OtherApp[] = [
+  { id: "app-1", name: "QuickBooks", description: "Sync invoices and expenses with your accounting software.", status: "Connected" },
+  { id: "app-2", name: "Google Calendar", description: "Sync events and staff schedules.", status: "Connected" },
+  { id: "app-3", name: "WhatsApp Business", description: "Send announcements and reminders via WhatsApp.", status: "Not Connected" },
+  { id: "app-4", name: "Zoom", description: "Schedule and host virtual parent-teacher meetings.", status: "Not Connected" },
+];
