@@ -73,5 +73,14 @@ export const NAV_ITEMS: NavItem[] = [
       { label: "Audit Trail", href: "/intelligence", tab: "audit-trail" },
     ],
   },
-  { label: "Account & Setup", href: "/account-setup", icon: "account" },
+  {
+    label: "Account & Setup",
+    href: "/account-setup",
+    icon: "account",
+    subItems: [
+      { label: "Plans & Access", href: "/account-setup" },
+      { label: "Help & Training", href: "/account-setup", tab: "help-training" },
+      { label: "Settings", href: "/account-setup", tab: "settings" },
+    ],
+  },
 ];
