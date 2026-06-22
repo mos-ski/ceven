@@ -1,7 +1,7 @@
 "use client";
 
-import { Suspense, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import { BillingPaymentsTab } from "@/components/admin/finance/billing-payments-tab";
 import { ExpensesTab } from "@/components/admin/finance/expenses-tab";
@@ -17,11 +17,15 @@ const TAB_QUERY_MAP: Record<string, ActiveTab> = {
 const TABS: ActiveTab[] = ["Billing & Payments", "Expenses", "Financial Reports"];
 
 function FinanceContent() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const tabParam = searchParams.get("tab");
-  const [activeTab, setActiveTab] = useState<ActiveTab>(
-    (tabParam && TAB_QUERY_MAP[tabParam]) || "Billing & Payments"
-  );
+  const activeTab: ActiveTab = (tabParam && TAB_QUERY_MAP[tabParam]) || "Billing & Payments";
+
+  function setActiveTab(tab: ActiveTab) {
+    const query = Object.entries(TAB_QUERY_MAP).find(([, value]) => value === tab)?.[0];
+    router.push(query ? `/finance?tab=${query}` : "/finance");
+  }
 
   return (
     <div className="flex flex-col gap-6">

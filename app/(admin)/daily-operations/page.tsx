@@ -2,8 +2,7 @@
 
 import { Suspense } from "react";
 import { ChevronDown, Download, Printer, Search } from "lucide-react";
-import { useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import { FacilitiesView } from "@/components/admin/daily-operations/facilities-view";
 import { HealthIncidentsView } from "@/components/admin/daily-operations/health-incidents-view";
@@ -462,9 +461,14 @@ const SECTION_TITLES: Record<string, string> = {
 };
 
 function DailyOperationsContent() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const tab = searchParams.get("tab");
-  const [view, setView] = useState<View>(tab === "daily-logs" ? "logs" : "qr");
+  const view: View = tab === "daily-logs" ? "logs" : "qr";
+
+  function setView(next: View) {
+    router.push(next === "logs" ? "/daily-operations?tab=daily-logs" : "/daily-operations");
+  }
 
   if (tab && tab in SECTION_TITLES) {
     return (
