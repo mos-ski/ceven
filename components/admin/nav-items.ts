@@ -61,7 +61,16 @@ export const NAV_ITEMS: NavItem[] = [
       { label: "Financial Reports", href: "/finance", tab: "financial-reports" },
     ],
   },
-  { label: "Communication", href: "/communication", icon: "communication" },
+  {
+    label: "Communication",
+    href: "/communication",
+    icon: "communication",
+    subItems: [
+      { label: "Messages", href: "/communication" },
+      { label: "Announcements", href: "/communication", tab: "announcements" },
+      { label: "Events Calendar", href: "/communication", tab: "events-calendar" },
+    ],
+  },
   {
     label: "Intelligence",
     href: "/intelligence",

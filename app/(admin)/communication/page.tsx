@@ -9,7 +9,11 @@ import {
   Search,
   Smile,
 } from "lucide-react";
-import { useState } from "react";
+import { Suspense, useState } from "react";
+import { useSearchParams } from "next/navigation";
+
+import { AnnouncementsTab } from "@/components/admin/communication/announcements-tab";
+import { CalendarTab } from "@/components/admin/communication/calendar-tab";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -306,7 +310,7 @@ const adeyemiConversation: ConversationMessage[] = [
 
 // ── Page ──────────────────────────────────────────────────────────────────────
 
-export default function CommunicationPage() {
+function MessagesView() {
   const [selectedMessage, setSelectedMessage] = useState<number | null>(1);
   const [activeFilter, setActiveFilter] = useState<FilterOption>("All Messages");
 
@@ -450,5 +454,22 @@ export default function CommunicationPage() {
         </div>
       </div>
     </>
+  );
+}
+
+function CommunicationContent() {
+  const searchParams = useSearchParams();
+  const tab = searchParams.get("tab");
+
+  if (tab === "announcements") return <AnnouncementsTab />;
+  if (tab === "events-calendar") return <CalendarTab />;
+  return <MessagesView />;
+}
+
+export default function CommunicationPage() {
+  return (
+    <Suspense>
+      <CommunicationContent />
+    </Suspense>
   );
 }
