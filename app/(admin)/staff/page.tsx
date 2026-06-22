@@ -849,9 +849,22 @@ function StaffPageInner() {
             </div>
           </div>
         )}
+
+        {/* ── Tab: Leaderboard ───────────────────────────────────────────────── */}
+        {activeTab === "Leaderboard" && <LeaderboardTab />}
+
+        {/* ── Tab: Payroll ───────────────────────────────────────────────────── */}
+        {activeTab === "Payroll" && <PayrollTab />}
+
+        {/* ── Tab: Leave Management ──────────────────────────────────────────── */}
+        {activeTab === "Leave Management" && <LeaveManagementTab />}
+
+        {/* ── Tab: Compliance & Safety ───────────────────────────────────────── */}
+        {activeTab === "Compliance & Safety" && <ComplianceSafetyTab />}
       </div>
 
       {/* ── Modals (rendered outside the scrollable content) ─────────────────── */}
+      {addStaffOpen && <AddStaffModal onClose={() => setAddStaffOpen(false)} />}
       {(roleModal === "create" || roleModal === "edit") && (
         <RoleFormModal
           mode={roleModal}

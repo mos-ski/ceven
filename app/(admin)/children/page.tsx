@@ -1,9 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { ChevronDown } from "lucide-react";
 
 import { ChildrenTable } from "@/components/admin/children/children-table";
+import { CaregiversTab } from "@/components/admin/children/caregivers-tab";
+import { EnrolmentWaitlistTab } from "@/components/admin/children/enrolment-waitlist-tab";
+import { RoomsClassesTab } from "@/components/admin/children/rooms-classes-tab";
+import { ParentsTab } from "@/components/admin/children/parents-tab";
 import { StatCard } from "@/components/admin/stat-card";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,10 +18,27 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import EnrollChildModal from "@/components/dashboard/enroll-child-modal";
+import { LogActivityModal, type LogActivityMode } from "@/components/admin/children/log-activity-modal";
 import { CHILDREN_STATS } from "@/lib/mock-data/children";
 
 export default function ChildrenPage() {
+  return (
+    <Suspense fallback={null}>
+      <ChildrenPageInner />
+    </Suspense>
+  );
+}
+
+function ChildrenPageInner() {
+  const searchParams = useSearchParams();
+  const tab = searchParams.get("tab");
   const [enrollOpen, setEnrollOpen] = useState(false);
+  const [logActivityMode, setLogActivityMode] = useState<LogActivityMode | null>(null);
+
+  if (tab === "enrolment-waitlist") return <EnrolmentWaitlistTab />;
+  if (tab === "caregivers") return <CaregiversTab />;
+  if (tab === "rooms-classes") return <RoomsClassesTab />;
+  if (tab === "parents") return <ParentsTab />;
 
   return (
     <div className="space-y-4">
@@ -42,9 +64,9 @@ export default function ChildrenPage() {
               <ChevronDown className="size-4" />
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuItem>Log Daily Report</DropdownMenuItem>
-              <DropdownMenuItem>New Picture/Video</DropdownMenuItem>
-              <DropdownMenuItem>Log Incident</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setLogActivityMode("daily-report")}>Log Daily Report</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setLogActivityMode("media")}>New Picture/Video</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setLogActivityMode("incident")}>Log Incident</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
@@ -78,6 +100,9 @@ export default function ChildrenPage() {
       <ChildrenTable />
 
       {enrollOpen && <EnrollChildModal onClose={() => setEnrollOpen(false)} />}
+      {logActivityMode && (
+        <LogActivityModal mode={logActivityMode} onClose={() => setLogActivityMode(null)} />
+      )}
     </div>
   );
 }

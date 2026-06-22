@@ -37,6 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
+        suppressHydrationWarning
         className={`${mogra.variable} ${merriweather.variable} ${urbanist.variable} ${nunito.variable} font-sans antialiased`}
       >
         {children}

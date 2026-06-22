@@ -11,10 +11,14 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import EnrollChildModal from "@/components/dashboard/enroll-child-modal";
+import NewInvoiceModal from "@/components/dashboard/new-invoice-modal";
 import NotificationPanel from "@/components/dashboard/notification-panel";
+import { AddStaffModal } from "@/components/admin/staff/add-staff-modal";
 
 export function Topbar() {
   const [enrollOpen, setEnrollOpen] = useState(false);
+  const [addStaffOpen, setAddStaffOpen] = useState(false);
+  const [newInvoiceOpen, setNewInvoiceOpen] = useState(false);
   const [notificationOpen, setNotificationOpen] = useState(false);
 
   return (
@@ -39,8 +43,8 @@ export function Topbar() {
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             <DropdownMenuItem onClick={() => setEnrollOpen(true)}>Enroll a Child</DropdownMenuItem>
-            <DropdownMenuItem>Add Staff</DropdownMenuItem>
-            <DropdownMenuItem>New Invoice</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => setAddStaffOpen(true)}>Add Staff</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => setNewInvoiceOpen(true)}>New Invoice</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
 
@@ -72,6 +76,8 @@ export function Topbar() {
       </div>
 
       {enrollOpen && <EnrollChildModal onClose={() => setEnrollOpen(false)} />}
+      {addStaffOpen && <AddStaffModal onClose={() => setAddStaffOpen(false)} />}
+      {newInvoiceOpen && <NewInvoiceModal onClose={() => setNewInvoiceOpen(false)} />}
       {notificationOpen && (
         <div className="fixed right-6 top-16 z-40">
           <NotificationPanel onClose={() => setNotificationOpen(false)} />

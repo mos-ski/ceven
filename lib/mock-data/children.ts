@@ -314,6 +314,8 @@ export const ROOMS: Room[] = [
 
 // ── Parents ───────────────────────────────────────────────────────────────────
 
+export type AppStatus = "Installed" | "Not Installed";
+
 export type Parent = {
   id: string;
   name: string;
@@ -323,6 +325,8 @@ export type Parent = {
   childId: string;
   relationship: string;
   feeStatus: FeeStatus;
+  appStatus: AppStatus;
+  dueAmount: string | null;
 };
 
 export const PARENTS: Parent[] = CHILDREN.map((child, i) => ({
@@ -334,4 +338,6 @@ export const PARENTS: Parent[] = CHILDREN.map((child, i) => ({
   childId: child.id,
   relationship: "Parent/Guardian",
   feeStatus: child.feeStatus,
+  appStatus: i % 3 === 1 ? "Installed" : "Not Installed",
+  dueAmount: child.feeStatus === "Paid" ? null : "₦40,000",
 }));

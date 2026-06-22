@@ -54,6 +54,65 @@ export const ROOM_ENGAGEMENT: RoomEngagement[] = [
   { room: "Owl Class", score: 65 },
 ];
 
+export type AttendanceDay = {
+  day: string;
+  date: string;
+  checkedIn: number;
+  total: number;
+};
+
+export const ATTENDANCE_WEEK: AttendanceDay[] = [
+  { day: "Monday", date: "8/8", checkedIn: 8, total: 8 },
+  { day: "Tuesday", date: "6/8", checkedIn: 6, total: 8 },
+  { day: "Wednesday", date: "8/8", checkedIn: 8, total: 8 },
+  { day: "Thursday", date: "6/8", checkedIn: 6, total: 8 },
+  { day: "Friday", date: "6/8", checkedIn: 6, total: 8 },
+];
+
+export type RevenueMonthPoint = {
+  month: string;
+  billed: number;
+  collected: number;
+};
+
+export const REVENUE_MONTHLY: RevenueMonthPoint[] = [
+  { month: "Jan", billed: 78, collected: 12 },
+  { month: "Feb", billed: 20, collected: 23 },
+  { month: "Mar", billed: 62, collected: 18 },
+  { month: "Apr", billed: 38, collected: 14 },
+  { month: "May", billed: 90, collected: 36 },
+  { month: "Jun", billed: 65, collected: 21 },
+  { month: "Jul", billed: 62, collected: 98 },
+  { month: "Aug", billed: 85, collected: 64 },
+  { month: "Sep", billed: 95, collected: 45 },
+  { month: "Oct", billed: 90, collected: 98 },
+  { month: "Nov", billed: 24, collected: 33 },
+  { month: "Dec", billed: 74, collected: 95 },
+];
+
+export type StaffComplianceRating = {
+  id: string;
+  name: string;
+  role: string;
+  rooms: string;
+  rating: number;
+  note: string;
+  compliancePct: number;
+  highlight?: boolean;
+};
+
+export const STAFF_COMPLIANCE_RATINGS: StaffComplianceRating[] = [
+  { id: "scr-1", name: "Mr John Anderson", role: "Caregiver", rooms: "Room 1 • Room 2", rating: 4.5, note: "Top performer this week", compliancePct: 92, highlight: true },
+  { id: "scr-2", name: "Mr John Anderson", role: "Caregiver", rooms: "Room 1 • Room 2", rating: 4.5, note: "Great work so far", compliancePct: 92 },
+  { id: "scr-3", name: "Mr John Anderson", role: "Caregiver", rooms: "Room 1 • Room 2", rating: 4.5, note: "Great work so far", compliancePct: 92 },
+];
+
+export type AnnouncementType = "Incident" | "General" | "Reminder" | "Emergency";
+
+export const ANNOUNCEMENT_TYPES: AnnouncementType[] = ["Incident", "General", "Reminder", "Emergency"];
+
+export const ANNOUNCEMENT_AUDIENCES = ["All Parents", "All Staff", "Specific Room", "Specific Child"];
+
 // ── Reports tab ──────────────────────────────────────────────────────────────
 
 export type ReportStatus = "Ready" | "Scheduled" | "Generating";

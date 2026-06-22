@@ -5,6 +5,12 @@ import { ChevronDown, Download, MoreVertical, Printer, Search } from "lucide-rea
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 
+import { FacilitiesView } from "@/components/admin/daily-operations/facilities-view";
+import { HealthIncidentsView } from "@/components/admin/daily-operations/health-incidents-view";
+import { InventoryView } from "@/components/admin/daily-operations/inventory-view";
+import { MedicationView } from "@/components/admin/daily-operations/medication-view";
+import { TasksView } from "@/components/admin/daily-operations/tasks-view";
+
 // ── Types ─────────────────────────────────────────────────────────────────────
 
 type View = "qr" | "logs";
@@ -378,9 +384,33 @@ function DailyLogsView() {
 
 // ── Page ──────────────────────────────────────────────────────────────────────
 
+const SECTION_TITLES: Record<string, string> = {
+  "health-incidents": "Health & Incidents",
+  medication: "Medication",
+  "inventory-supplies": "Inventory & Supplies",
+  facilities: "Facilities",
+  tasks: "Tasks",
+};
+
 function DailyOperationsContent() {
   const searchParams = useSearchParams();
-  const [view, setView] = useState<View>(searchParams.get("tab") === "daily-logs" ? "logs" : "qr");
+  const tab = searchParams.get("tab");
+  const [view, setView] = useState<View>(tab === "daily-logs" ? "logs" : "qr");
+
+  if (tab && tab in SECTION_TITLES) {
+    return (
+      <div className="flex flex-col gap-6">
+        <h1 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
+          {SECTION_TITLES[tab]}
+        </h1>
+        {tab === "health-incidents" && <HealthIncidentsView />}
+        {tab === "medication" && <MedicationView />}
+        {tab === "inventory-supplies" && <InventoryView />}
+        {tab === "facilities" && <FacilitiesView />}
+        {tab === "tasks" && <TasksView />}
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col gap-6">

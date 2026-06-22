@@ -4,6 +4,13 @@ import Link from "next/link";
 import { ChevronLeft, ChevronDown, Download, FileText, Image, Search, X } from "lucide-react";
 import { useState } from "react";
 
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { LogActivityModal, type LogActivityMode } from "@/components/admin/children/log-activity-modal";
 import type { Child, ChildStatus } from "@/lib/mock-data/children";
 
 // ── Types ──────────────────────────────────────────────────────────────────────
@@ -545,6 +552,7 @@ function ContactTab({ child }: { child: Child }) {
 export function ChildProfileView({ child }: { child: Child }) {
   const [activeTab, setActiveTab] = useState<ActiveTab>("Overview");
   const [showAiBanner, setShowAiBanner] = useState(true);
+  const [logActivityMode, setLogActivityMode] = useState<LogActivityMode | null>(null);
 
   const tabs: ActiveTab[] = [
     "Overview",
@@ -569,9 +577,21 @@ export function ChildProfileView({ child }: { child: Child }) {
           Back to Children
         </Link>
         <div className="flex items-center gap-3">
-          <button className="rounded-lg border border-[#3b2513] px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm text-[#3b2513]">
-            Log Activity
-          </button>
+          <DropdownMenu>
+            <DropdownMenuTrigger
+              render={
+                <button className="flex items-center gap-1.5 rounded-lg border border-[#3b2513] px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm text-[#3b2513]" />
+              }
+            >
+              Log Activity
+              <ChevronDown className="size-4" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuItem onClick={() => setLogActivityMode("daily-report")}>Log Daily Report</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setLogActivityMode("media")}>New Picture/Video</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => setLogActivityMode("incident")}>Log Incident</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
           <button
             className="rounded-lg px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm text-[#faf2e1]"
             style={{ background: "linear-gradient(135deg, rgb(30,45,74) 0%, rgb(45,24,16) 100%)" }}
@@ -682,6 +702,10 @@ export function ChildProfileView({ child }: { child: Child }) {
       {activeTab === "Payment History" && <PaymentHistoryTab />}
       {activeTab === "Development & Behaviour" && <DevelopmentTab />}
       {activeTab === "Contact" && <ContactTab child={child} />}
+
+      {logActivityMode && (
+        <LogActivityModal mode={logActivityMode} child={child} onClose={() => setLogActivityMode(null)} />
+      )}
     </div>
   );
 }

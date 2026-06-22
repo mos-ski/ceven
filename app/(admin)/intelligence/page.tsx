@@ -1,7 +1,12 @@
 "use client";
 
 import { ChevronDown, Download, Send, X } from "lucide-react";
-import { useState } from "react";
+import { Suspense, useState } from "react";
+import { useSearchParams } from "next/navigation";
+
+import { AnalyticsTab } from "@/components/admin/intelligence/analytics-tab";
+import { AuditTrailTab } from "@/components/admin/intelligence/audit-trail-tab";
+import { ReportsTab } from "@/components/admin/intelligence/reports-tab";
 
 // ── Static data ────────────────────────────────────────────────────────────────
 
@@ -235,7 +240,7 @@ function AdaChatPage({ onClose }: { onClose: () => void }) {
 
 // ── Page ──────────────────────────────────────────────────────────────────────
 
-export default function IntelligencePage() {
+function AICommandCenterView() {
   const [adaOpen, setAdaOpen] = useState(false);
 
   return (
@@ -407,5 +412,39 @@ export default function IntelligencePage() {
         </div>
       )}
     </div>
+  );
+}
+
+const SECTION_TITLES: Record<string, string> = {
+  analytics: "AI Analytics",
+  reports: "Reports",
+  "audit-trail": "Audit Trail",
+};
+
+function IntelligenceContent() {
+  const searchParams = useSearchParams();
+  const tab = searchParams.get("tab");
+
+  if (tab && tab in SECTION_TITLES) {
+    return (
+      <div className="flex flex-col gap-6 font-[family-name:var(--font-nunito)]">
+        <h1 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
+          {SECTION_TITLES[tab]}
+        </h1>
+        {tab === "analytics" && <AnalyticsTab />}
+        {tab === "reports" && <ReportsTab />}
+        {tab === "audit-trail" && <AuditTrailTab />}
+      </div>
+    );
+  }
+
+  return <AICommandCenterView />;
+}
+
+export default function IntelligencePage() {
+  return (
+    <Suspense>
+      <IntelligenceContent />
+    </Suspense>
   );
 }
