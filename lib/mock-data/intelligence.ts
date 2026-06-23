@@ -102,9 +102,11 @@ export type StaffComplianceRating = {
 };
 
 export const STAFF_COMPLIANCE_RATINGS: StaffComplianceRating[] = [
-  { id: "scr-1", name: "Mr John Anderson", role: "Caregiver", rooms: "Room 1 • Room 2", rating: 4.5, note: "Top performer this week", compliancePct: 92, highlight: true },
-  { id: "scr-2", name: "Mr John Anderson", role: "Caregiver", rooms: "Room 1 • Room 2", rating: 4.5, note: "Great work so far", compliancePct: 92 },
-  { id: "scr-3", name: "Mr John Anderson", role: "Caregiver", rooms: "Room 1 • Room 2", rating: 4.5, note: "Great work so far", compliancePct: 92 },
+  { id: "scr-1", name: "Mrs. Sarah Okonkwo", role: "Caregiver", rooms: "Lion Class", rating: 4.8, note: "Top performer this week", compliancePct: 96, highlight: true },
+  { id: "scr-2", name: "Mr. Tunde Bakare", role: "Caregiver", rooms: "Panda Class", rating: 4.3, note: "Consistent logging", compliancePct: 88 },
+  { id: "scr-3", name: "Mrs. Ngozi Eze", role: "Caregiver", rooms: "Owl Class", rating: 3.5, note: "Logging compliance dropped this week", compliancePct: 62 },
+  { id: "scr-4", name: "Mrs. Amaka Taiwo", role: "Caregiver", rooms: "Bear Class", rating: 4.6, note: "Great work so far", compliancePct: 91 },
+  { id: "scr-5", name: "Mr. James Adamu", role: "Marketer", rooms: "External", rating: 3.0, note: "Needs improvement on response time", compliancePct: 45 },
 ];
 
 export type AnnouncementType = "Incident" | "General" | "Reminder" | "Emergency";

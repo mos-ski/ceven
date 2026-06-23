@@ -3,11 +3,14 @@
 import { Star, Sparkles } from "lucide-react";
 import { useState } from "react";
 
+import { StatCard } from "@/components/admin/stat-card";
 import {
+  ANALYTICS_METRICS,
   ANNOUNCEMENT_AUDIENCES,
   ANNOUNCEMENT_TYPES,
   ATTENDANCE_WEEK,
   REVENUE_MONTHLY,
+  ROOM_ENGAGEMENT,
   STAFF_COMPLIANCE_RATINGS,
 } from "@/lib/mock-data/intelligence";
 
@@ -17,10 +20,10 @@ const SUB_TABS: AnalyticsSubTab[] = ["Overview", "Attendance", "Revenue", "Staff
 function AttendanceBarChart() {
   const max = Math.max(...ATTENDANCE_WEEK.map((d) => d.checkedIn));
   return (
-    <div className="flex h-48 items-end gap-4">
+    <div className="flex h-48 items-stretch gap-4">
       {ATTENDANCE_WEEK.map((d) => (
         <div key={d.day} className="flex flex-1 flex-col items-center gap-2">
-          <div className="flex h-full w-full items-end">
+          <div className="flex w-full flex-1 items-end">
             <div
               className="w-full rounded-t bg-[#edd9c0]"
               style={{ height: `${(d.checkedIn / max) * 100}%` }}
@@ -38,10 +41,10 @@ function RevenueBarChart() {
   const max = Math.max(...REVENUE_MONTHLY.flatMap((m) => [m.billed, m.collected]));
   return (
     <div>
-      <div className="flex h-48 items-end gap-2">
+      <div className="flex h-48 items-stretch gap-2">
         {REVENUE_MONTHLY.map((m) => (
           <div key={m.month} className="flex flex-1 flex-col items-center gap-1">
-            <div className="flex h-full w-full items-end justify-center gap-0.5">
+            <div className="flex w-full flex-1 items-end justify-center gap-0.5">
               <div className="w-1/2 rounded-t bg-[#bab68d]" style={{ height: `${(m.billed / max) * 100}%` }} />
               <div className="w-1/2 rounded-t bg-[#edd9c0]" style={{ height: `${(m.collected / max) * 100}%` }} />
             </div>
@@ -123,20 +126,49 @@ function SendAnnouncementForm() {
   );
 }
 
+function RoomEngagementPanel() {
+  return (
+    <div className="rounded-xl bg-white p-4 shadow-sm">
+      <h2 className="mb-3 font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">
+        Room Engagement Score
+      </h2>
+      <div className="flex flex-col gap-3">
+        {ROOM_ENGAGEMENT.map((r) => (
+          <div key={r.room} className="flex flex-col gap-1">
+            <div className="flex items-center justify-between">
+              <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">{r.room}</span>
+              <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{r.score}</span>
+            </div>
+            <div className="h-2 w-full overflow-hidden rounded-full bg-[#f3f4f6]">
+              <div className="h-full rounded-full bg-[#c47b2c]" style={{ width: `${r.score}%` }} />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function OverviewView() {
   return (
-    <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-      <div className="rounded-xl bg-white p-4 shadow-sm">
-        <h2 className="mb-3 font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">
-          Attendance <span className="text-sm font-normal text-[#9ca3af]">(This Week)</span>
-        </h2>
-        <AttendanceBarChart />
+    <div className="flex flex-col gap-4">
+      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+        {ANALYTICS_METRICS.map((m) => (
+          <StatCard key={m.label} label={m.label} value={m.value} trendLabel={m.trendLabel} trendUp={m.trendUp} />
+        ))}
       </div>
-      <div className="rounded-xl bg-white p-4 shadow-sm">
-        <h2 className="mb-3 font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">Revenue</h2>
-        <RevenueBarChart />
-      </div>
-      <div className="lg:col-span-2">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+        <div className="rounded-xl bg-white p-4 shadow-sm">
+          <h2 className="mb-3 font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">
+            Attendance <span className="text-sm font-normal text-[#9ca3af]">(This Week)</span>
+          </h2>
+          <AttendanceBarChart />
+        </div>
+        <div className="rounded-xl bg-white p-4 shadow-sm">
+          <h2 className="mb-3 font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">Revenue</h2>
+          <RevenueBarChart />
+        </div>
+        <RoomEngagementPanel />
         <SendAnnouncementForm />
       </div>
     </div>
