@@ -1,9 +1,11 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import { ChevronDown, Download, Printer, Search } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 
+import { Badge } from "@/components/ui/badge";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { FacilitiesView } from "@/components/admin/daily-operations/facilities-view";
 import { HealthIncidentsView } from "@/components/admin/daily-operations/health-incidents-view";
 import { InventoryView } from "@/components/admin/daily-operations/inventory-view";
@@ -242,6 +244,10 @@ type DailyLogRow = {
   reportTime: string;
   mood: string;
   meal: string;
+  napTime: string;
+  hygiene: string;
+  health: string;
+  note: string;
   status: DailyLogStatus;
 };
 
@@ -252,14 +258,14 @@ const dailyLogStatsCards = [
 ];
 
 const dailyLogRows: DailyLogRow[] = [
-  { child: "King Andrew", childInfo: "M • 1year 2mnts", room: "Lion", caregiver: "Mr Ben Ayadi", reportTime: "08:20AM", mood: "😊 Happy", meal: "Finished all breakfast and lunch", status: "Done" },
-  { child: "King Andrew", childInfo: "M • 1year 2mnts", room: "Lion", caregiver: "Mr Ben Ayadi", reportTime: "08:20AM", mood: "😊 Happy", meal: "Finished all breakfast and lunch", status: "Done" },
-  { child: "King Andrew", childInfo: "M • 1year 2mnts", room: "Lion", caregiver: "Mr Ben Ayadi", reportTime: "08:20AM", mood: "😊 Happy", meal: "--", status: "AI Flag" },
-  { child: "King Andrew", childInfo: "M • 1year 2mnts", room: "Lion", caregiver: "Mr Ben Ayadi", reportTime: "08:20AM", mood: "😊 Happy", meal: "--", status: "Pending" },
-  { child: "King Andrew", childInfo: "M • 1year 2mnts", room: "Lion", caregiver: "Mr Ben Ayadi", reportTime: "08:20AM", mood: "--", meal: "--", status: null },
-  { child: "King Andrew", childInfo: "M • 1year 2mnts", room: "Lion", caregiver: "Mr Ben Ayadi", reportTime: "08:20AM", mood: "--", meal: "--", status: null },
-  { child: "King Andrew", childInfo: "M • 1year 2mnts", room: "Lion", caregiver: "Mr Ben Ayadi", reportTime: "08:20AM", mood: "--", meal: "--", status: null },
-  { child: "King Andrew", childInfo: "M • 1year 2mnts", room: "Lion", caregiver: "Mr Ben Ayadi", reportTime: "08:20AM", mood: "--", meal: "--", status: null },
+  { child: "King Andrew", childInfo: "M • 1year 2mnts", room: "Lion", caregiver: "Mr Ben Ayadi", reportTime: "08:20AM", mood: "😊 Happy", meal: "Finished all breakfast and lunch", napTime: "11:00am • 01:20pm", hygiene: "2 nappy changes, no concerns", health: "No medication administered", note: "Settled quickly after nap, in great spirits all day.", status: "Done" },
+  { child: "King Andrew", childInfo: "M • 1year 2mnts", room: "Lion", caregiver: "Mr Ben Ayadi", reportTime: "08:20AM", mood: "😊 Happy", meal: "Finished all breakfast and lunch", napTime: "11:00am • 01:20pm", hygiene: "2 nappy changes, no concerns", health: "No medication administered", note: "Settled quickly after nap, in great spirits all day.", status: "Done" },
+  { child: "King Andrew", childInfo: "M • 1year 2mnts", room: "Lion", caregiver: "Mr Ben Ayadi", reportTime: "08:20AM", mood: "😊 Happy", meal: "--", napTime: "--", hygiene: "1 nappy change", health: "Vitamin D administered", note: "AI flagged: meal not logged for lunch.", status: "AI Flag" },
+  { child: "King Andrew", childInfo: "M • 1year 2mnts", room: "Lion", caregiver: "Mr Ben Ayadi", reportTime: "08:20AM", mood: "😊 Happy", meal: "--", napTime: "--", hygiene: "--", health: "--", note: "Report not yet submitted.", status: "Pending" },
+  { child: "King Andrew", childInfo: "M • 1year 2mnts", room: "Lion", caregiver: "Mr Ben Ayadi", reportTime: "08:20AM", mood: "--", meal: "--", napTime: "--", hygiene: "--", health: "--", note: "", status: null },
+  { child: "King Andrew", childInfo: "M • 1year 2mnts", room: "Lion", caregiver: "Mr Ben Ayadi", reportTime: "08:20AM", mood: "--", meal: "--", napTime: "--", hygiene: "--", health: "--", note: "", status: null },
+  { child: "King Andrew", childInfo: "M • 1year 2mnts", room: "Lion", caregiver: "Mr Ben Ayadi", reportTime: "08:20AM", mood: "--", meal: "--", napTime: "--", hygiene: "--", health: "--", note: "", status: null },
+  { child: "King Andrew", childInfo: "M • 1year 2mnts", room: "Lion", caregiver: "Mr Ben Ayadi", reportTime: "08:20AM", mood: "--", meal: "--", napTime: "--", hygiene: "--", health: "--", note: "", status: null },
 ];
 
 function DailyLogStatusBadge({ status }: { status: DailyLogStatus }) {
@@ -272,7 +278,67 @@ function DailyLogStatusBadge({ status }: { status: DailyLogStatus }) {
   return <span className="text-[#9ca3af]">--</span>;
 }
 
+function DailyReportDetailsModal({
+  row,
+  onOpenChange,
+}: {
+  row: DailyLogRow | null;
+  onOpenChange: (open: boolean) => void;
+}) {
+  return (
+    <Dialog open={row !== null} onOpenChange={onOpenChange}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>View Details</DialogTitle>
+        </DialogHeader>
+
+        {row && (
+          <>
+            <div className="flex items-center justify-between gap-4 bg-[#faf2e1] px-6 py-4">
+              <div className="flex items-center gap-2">
+                <div className="size-9 rounded-full bg-[#edd9c0]" />
+                <div>
+                  <p className="font-[family-name:var(--font-nunito)] text-sm font-bold text-black">{row.child}</p>
+                  <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{row.childInfo}</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Status</span>
+                <Badge variant="outline" className="border-transparent bg-badge-success-bg text-success-text">
+                  ● {row.status}
+                </Badge>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-6 px-6 py-5">
+              {[
+                ["Mood", row.mood],
+                ["Meal", row.meal],
+                ["Nap Time", row.napTime],
+                ["Hygiene", row.hygiene],
+                ["Health", row.health],
+                ["Note", row.note || "—"],
+                ["Caregiver", row.caregiver],
+                ["Report Time", row.reportTime],
+              ].map(([label, value]) => (
+                <div key={label} className="flex gap-[52px]">
+                  <p className="w-[156px] shrink-0 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#6b7280]">
+                    {label}
+                  </p>
+                  <p className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#1f2937]">{value}</p>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
+      </DialogContent>
+    </Dialog>
+  );
+}
+
 function DailyLogsView() {
+  const [viewingRow, setViewingRow] = useState<DailyLogRow | null>(null);
+
   return (
     <div className="flex flex-col gap-4">
       {/* Remind button */}
@@ -381,7 +447,10 @@ function DailyLogsView() {
                   </td>
                   <td className="px-4 py-3">
                     {row.status === "Done" || row.status === "AI Flag" ? (
-                      <button className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#3b2513] underline">
+                      <button
+                        onClick={() => setViewingRow(row)}
+                        className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#3b2513] underline"
+                      >
                         View
                       </button>
                     ) : row.status === "Pending" ? (
@@ -403,7 +472,11 @@ function DailyLogsView() {
         {/* Mobile card list */}
         <div className="flex flex-col gap-2 px-4 pb-4 lg:hidden">
           {dailyLogRows.map((row, i) => (
-            <div key={i} className="rounded-xl border border-[#eaecf0] p-3">
+            <div
+              key={i}
+              onClick={() => (row.status === "Done" || row.status === "AI Flag") && setViewingRow(row)}
+              className={`rounded-xl border border-[#eaecf0] p-3 ${row.status === "Done" || row.status === "AI Flag" ? "cursor-pointer" : ""}`}
+            >
               <div className="flex items-center justify-between">
                 <div>
                   <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">{row.child}</span>
@@ -446,6 +519,8 @@ function DailyLogsView() {
           </button>
         </div>
       </div>
+
+      <DailyReportDetailsModal row={viewingRow} onOpenChange={(open) => !open && setViewingRow(null)} />
     </div>
   );
 }

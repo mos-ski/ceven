@@ -314,7 +314,103 @@ function NewOrderModal({
   );
 }
 
-function InventoryRow({ item }: { item: InventoryItem }) {
+function UpdateItemModal({
+  item,
+  onOpenChange,
+}: {
+  item: InventoryItem | null;
+  onOpenChange: (open: boolean) => void;
+}) {
+  return (
+    <Dialog open={item !== null} onOpenChange={onOpenChange}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Update Item</DialogTitle>
+          <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+            Add new stock items to inventory
+          </p>
+        </DialogHeader>
+
+        {item && (
+          <div className="flex flex-col gap-4 overflow-y-auto px-6 py-5">
+            <div className="flex flex-col gap-1.5">
+              <Label htmlFor="update-name">Item Name</Label>
+              <Input id="update-name" defaultValue={item.name} className="h-9" />
+            </div>
+
+            <div className="flex flex-col gap-1.5">
+              <Label htmlFor="update-category">Select Category</Label>
+              <select
+                id="update-category"
+                defaultValue={item.category}
+                className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+              >
+                {INVENTORY_CATEGORIES.map((cat) => (
+                  <option key={cat} value={cat}>
+                    {cat}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="flex flex-col gap-1.5">
+              <Label htmlFor="update-unit">Item Unit</Label>
+              <div className="flex items-center gap-2">
+                <Input id="update-unit" type="number" min={0} defaultValue={item.quantity} className="h-9 flex-1" />
+                <span className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">{item.unit}</span>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <div className="flex flex-col gap-1.5">
+                <Label htmlFor="update-min">Minimum Stock</Label>
+                <Input id="update-min" type="number" min={0} defaultValue={item.reorderLevel} className="h-9" />
+              </div>
+              <div className="flex flex-col gap-1.5">
+                <Label htmlFor="update-avail">Available Stock</Label>
+                <Input id="update-avail" type="number" min={0} defaultValue={item.quantity} className="h-9" />
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-1.5">
+              <Label htmlFor="update-status">Status</Label>
+              <select
+                id="update-status"
+                defaultValue={item.status}
+                className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+              >
+                <option value="In Stock">In Stock</option>
+                <option value="Low Stock">Low Stock</option>
+                <option value="Out of Stock">Out of Stock</option>
+              </select>
+            </div>
+          </div>
+        )}
+
+        <DialogFooter>
+          <DialogClose
+            render={
+              <Button
+                variant="outline"
+                className="h-9 rounded-lg border-[#d0d5dd] px-4 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]"
+              />
+            }
+          >
+            Cancel
+          </DialogClose>
+          <Button
+            onClick={() => onOpenChange(false)}
+            className="h-9 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]"
+          >
+            Save & Update
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+function InventoryRow({ item, onUpdate }: { item: InventoryItem; onUpdate: (item: InventoryItem) => void }) {
   return (
     <TableRow className="border-table-border">
       <TableCell className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-black">
@@ -338,7 +434,7 @@ function InventoryRow({ item }: { item: InventoryItem }) {
         </Badge>
       </TableCell>
       <TableCell>
-        <button className="flex items-center justify-center text-[#6b7280] hover:text-[#2d1810]">
+        <button onClick={() => onUpdate(item)} className="flex items-center justify-center text-[#6b7280] hover:text-[#2d1810]">
           <MoreVertical className="h-4 w-4" />
         </button>
       </TableCell>
@@ -424,7 +520,7 @@ const inventoryStatsCards = [
   { value: String(SUPPLY_ORDERS.filter((o) => o.status === "Pending").length).padStart(2, "0"), label: "awaiting delivery", title: "Pending Orders" },
 ];
 
-function StockLevelsTable() {
+function StockLevelsTable({ onUpdate }: { onUpdate: (item: InventoryItem) => void }) {
   return (
     <div className="overflow-hidden rounded-xl bg-white shadow-sm">
       <div className="flex flex-wrap items-center justify-between gap-4 p-4">
@@ -459,7 +555,7 @@ function StockLevelsTable() {
           </TableHeader>
           <TableBody>
             {INVENTORY_ITEMS.map((item) => (
-              <InventoryRow key={item.id} item={item} />
+              <InventoryRow key={item.id} item={item} onUpdate={onUpdate} />
             ))}
           </TableBody>
         </Table>
@@ -468,7 +564,11 @@ function StockLevelsTable() {
       {/* Mobile card list */}
       <div className="flex flex-col gap-2 px-4 pb-4 lg:hidden">
         {INVENTORY_ITEMS.map((item) => (
-          <div key={item.id} className="rounded-xl border border-[#eaecf0] p-3">
+          <div
+            key={item.id}
+            onClick={() => onUpdate(item)}
+            className="cursor-pointer rounded-xl border border-[#eaecf0] p-3"
+          >
             <div className="flex items-center justify-between">
               <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
                 {item.name}
@@ -637,6 +737,7 @@ export function InventoryView() {
   const [addOpen, setAddOpen] = useState(false);
   const [equipmentOpen, setEquipmentOpen] = useState(false);
   const [orderOpen, setOrderOpen] = useState(false);
+  const [updatingItem, setUpdatingItem] = useState<InventoryItem | null>(null);
 
   return (
     <div className="flex flex-col gap-4">
@@ -702,13 +803,14 @@ export function InventoryView() {
         ))}
       </div>
 
-      {subTab === "Stock Levels" && <StockLevelsTable />}
+      {subTab === "Stock Levels" && <StockLevelsTable onUpdate={setUpdatingItem} />}
       {subTab === "Equipment Register" && <EquipmentRegisterTable />}
       {subTab === "Orders" && <OrdersTable />}
 
       <AddRestockModal open={addOpen} onOpenChange={setAddOpen} />
       <RegisterEquipmentModal open={equipmentOpen} onOpenChange={setEquipmentOpen} />
       <NewOrderModal open={orderOpen} onOpenChange={setOrderOpen} />
+      <UpdateItemModal item={updatingItem} onOpenChange={(open) => !open && setUpdatingItem(null)} />
     </div>
   );
 }

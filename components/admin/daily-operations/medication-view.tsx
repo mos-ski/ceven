@@ -171,7 +171,105 @@ function LogMedicationModal({
   );
 }
 
-function MedicationRow({ entry }: { entry: MedicationEntry }) {
+function ViewMedicationModal({
+  entry,
+  onOpenChange,
+}: {
+  entry: MedicationEntry | null;
+  onOpenChange: (open: boolean) => void;
+}) {
+  const [showHistory, setShowHistory] = useState(false);
+
+  return (
+    <Dialog
+      open={entry !== null}
+      onOpenChange={(open) => {
+        if (!open) setShowHistory(false);
+        onOpenChange(open);
+      }}
+    >
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>View Details</DialogTitle>
+        </DialogHeader>
+
+        {entry && (
+          <>
+            <div className="flex items-center justify-between gap-4 bg-[#faf2e1] px-6 py-4">
+              <div>
+                <p className="font-[family-name:var(--font-nunito)] text-sm font-bold text-black">{entry.child}</p>
+                <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{entry.room}</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Status</span>
+                <Badge variant="outline" className={STATUS_BADGE_CLASS[entry.status]}>
+                  ● {entry.status}
+                </Badge>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-6 px-6 py-5">
+              {[
+                ["Medication", entry.medication],
+                ["Dose", entry.dosage],
+                ["Frequency", entry.frequency],
+                ["Attended By", entry.administeredBy ?? "—"],
+                ["Time", entry.scheduledTime],
+                ["Additional Note", entry.note || "—"],
+              ].map(([label, value]) => (
+                <div key={label} className="flex gap-[52px]">
+                  <p className="w-[156px] shrink-0 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#6b7280]">
+                    {label}
+                  </p>
+                  <p className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#1f2937]">{value}</p>
+                </div>
+              ))}
+
+              {entry.history.length > 0 && (
+                <div className="flex flex-col gap-2 pt-4">
+                  <button
+                    onClick={() => setShowHistory((v) => !v)}
+                    className="self-start font-[family-name:var(--font-urbanist)] text-xs font-medium text-black underline"
+                  >
+                    {showHistory ? "Close Past Medications" : "View Past Medications"}
+                  </button>
+                  {showHistory && (
+                    <div className="overflow-hidden rounded-lg">
+                      <table className="w-full border-collapse">
+                        <thead>
+                          <tr className="bg-[#f4f5f6]">
+                            {["Date", "Time", "Medication", "Dose", "Attended by"].map((h) => (
+                              <th key={h} className="px-4 py-2 text-left font-[family-name:var(--font-urbanist)] text-xs font-medium text-black">
+                                {h}
+                              </th>
+                            ))}
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {entry.history.map((h, i) => (
+                            <tr key={i}>
+                              <td className="px-4 py-2 font-[family-name:var(--font-urbanist)] text-xs text-black">{h.date}</td>
+                              <td className="px-4 py-2 font-[family-name:var(--font-urbanist)] text-xs text-black">{h.time}</td>
+                              <td className="px-4 py-2 font-[family-name:var(--font-urbanist)] text-xs text-black">{h.medication}</td>
+                              <td className="px-4 py-2 font-[family-name:var(--font-urbanist)] text-xs text-black">{h.dosage}</td>
+                              <td className="px-4 py-2 font-[family-name:var(--font-urbanist)] text-xs text-black">{h.attendedBy}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          </>
+        )}
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+function MedicationRow({ entry, onView }: { entry: MedicationEntry; onView: (entry: MedicationEntry) => void }) {
   return (
     <TableRow className="border-table-border">
       <TableCell>
@@ -189,7 +287,7 @@ function MedicationRow({ entry }: { entry: MedicationEntry }) {
         {entry.dosage}
       </TableCell>
       <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
-        {entry.scheduledTime}
+        {entry.frequency}
       </TableCell>
       <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
         {entry.administeredBy ?? "—"}
@@ -203,7 +301,7 @@ function MedicationRow({ entry }: { entry: MedicationEntry }) {
         </Badge>
       </TableCell>
       <TableCell>
-        <button className="flex items-center justify-center text-[#6b7280] hover:text-[#2d1810]">
+        <button onClick={() => onView(entry)} className="flex items-center justify-center text-[#6b7280] hover:text-[#2d1810]">
           <MoreVertical className="h-4 w-4" />
         </button>
       </TableCell>
@@ -213,6 +311,7 @@ function MedicationRow({ entry }: { entry: MedicationEntry }) {
 
 export function MedicationView() {
   const [logOpen, setLogOpen] = useState(false);
+  const [viewingEntry, setViewingEntry] = useState<MedicationEntry | null>(null);
 
   return (
     <div className="flex flex-col gap-4">
@@ -260,7 +359,7 @@ export function MedicationView() {
             </thead>
             <tbody className="bg-white">
               {MEDICATIONS.map((entry) => (
-                <MedicationRow key={entry.id} entry={entry} />
+                <MedicationRow key={entry.id} entry={entry} onView={setViewingEntry} />
               ))}
             </tbody>
           </table>
@@ -269,7 +368,11 @@ export function MedicationView() {
         {/* Mobile card list */}
         <div className="flex flex-col gap-2 px-4 pb-4 lg:hidden">
           {MEDICATIONS.map((entry) => (
-            <div key={entry.id} className="rounded-xl border border-[#eaecf0] p-3">
+            <div
+              key={entry.id}
+              onClick={() => setViewingEntry(entry)}
+              className="cursor-pointer rounded-xl border border-[#eaecf0] p-3"
+            >
               <div className="flex items-center justify-between">
                 <div>
                   <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
@@ -294,6 +397,7 @@ export function MedicationView() {
       </div>
 
       <LogMedicationModal open={logOpen} onOpenChange={setLogOpen} />
+      <ViewMedicationModal entry={viewingEntry} onOpenChange={(open) => !open && setViewingEntry(null)} />
     </div>
   );
 }

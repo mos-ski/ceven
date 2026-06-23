@@ -179,7 +179,65 @@ function ReportIncidentModal({
   );
 }
 
-function IncidentRow({ incident }: { incident: Incident }) {
+function ViewIncidentModal({
+  incident,
+  onOpenChange,
+}: {
+  incident: Incident | null;
+  onOpenChange: (open: boolean) => void;
+}) {
+  return (
+    <Dialog open={incident !== null} onOpenChange={onOpenChange}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>View Details</DialogTitle>
+        </DialogHeader>
+
+        {incident && (
+          <>
+            <div className="flex items-center justify-between gap-4 bg-[#faf2e1] px-6 py-4">
+              <div className="flex items-center gap-2">
+                <div className="size-9 rounded-full bg-[#edd9c0]" />
+                <div>
+                  <p className="font-[family-name:var(--font-nunito)] text-sm font-bold text-black">{incident.child}</p>
+                  <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{incident.childInfo}</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Incident Status</span>
+                <Badge variant="outline" className={STATUS_BADGE_CLASS[incident.status]}>
+                  ● {incident.status}
+                </Badge>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-6 px-6 py-5">
+              {[
+                ["Incident Type", incident.type],
+                ["Severity", incident.severity],
+                ["Report Time", incident.time],
+                ["Action(s) Taken", incident.actionsTaken],
+                ["Raised By", incident.reportedBy],
+                ["Additional Note", incident.additionalNote],
+                ["Witness Present", incident.witnessPresent ?? "None"],
+                ["Parent Notified", incident.parentNotified ? "Yes" : "No"],
+              ].map(([label, value]) => (
+                <div key={label} className="flex gap-[52px]">
+                  <p className="w-[156px] shrink-0 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#6b7280]">
+                    {label}
+                  </p>
+                  <p className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#1f2937]">{value}</p>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+function IncidentRow({ incident, onView }: { incident: Incident; onView: (incident: Incident) => void }) {
   return (
     <TableRow className="border-table-border">
       <TableCell>
@@ -217,7 +275,7 @@ function IncidentRow({ incident }: { incident: Incident }) {
         </Badge>
       </TableCell>
       <TableCell>
-        <button className="flex items-center justify-center text-[#6b7280] hover:text-[#2d1810]">
+        <button onClick={() => onView(incident)} className="flex items-center justify-center text-[#6b7280] hover:text-[#2d1810]">
           <MoreVertical className="h-4 w-4" />
         </button>
       </TableCell>
@@ -234,6 +292,7 @@ const statsCards = [
 
 export function HealthIncidentsView() {
   const [reportOpen, setReportOpen] = useState(false);
+  const [viewingIncident, setViewingIncident] = useState<Incident | null>(null);
 
   return (
     <div className="flex flex-col gap-4">
@@ -310,7 +369,7 @@ export function HealthIncidentsView() {
             </thead>
             <tbody className="bg-white">
               {INCIDENTS.map((incident) => (
-                <IncidentRow key={incident.id} incident={incident} />
+                <IncidentRow key={incident.id} incident={incident} onView={setViewingIncident} />
               ))}
             </tbody>
           </table>
@@ -319,7 +378,11 @@ export function HealthIncidentsView() {
         {/* Mobile card list */}
         <div className="flex flex-col gap-2 px-4 pb-4 lg:hidden">
           {INCIDENTS.map((incident) => (
-            <div key={incident.id} className="rounded-xl border border-[#eaecf0] p-3">
+            <div
+              key={incident.id}
+              onClick={() => setViewingIncident(incident)}
+              className="cursor-pointer rounded-xl border border-[#eaecf0] p-3"
+            >
               <div className="flex items-center justify-between">
                 <div>
                   <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
@@ -348,6 +411,7 @@ export function HealthIncidentsView() {
       </div>
 
       <ReportIncidentModal open={reportOpen} onOpenChange={setReportOpen} />
+      <ViewIncidentModal incident={viewingIncident} onOpenChange={(open) => !open && setViewingIncident(null)} />
     </div>
   );
 }

@@ -14,16 +14,19 @@ export type Incident = {
   time: string;
   parentNotified: boolean;
   status: IncidentStatus;
+  actionsTaken: string;
+  additionalNote: string;
+  witnessPresent: string | null;
 };
 
 export const INCIDENTS: Incident[] = [
-  { id: "inc-1", child: "King Andrew", childInfo: "Lion Class", room: "Lion", type: "Minor fall", severity: "Minor", reportedBy: "Mr Ben Ayadi", time: "Today 08:20AM", parentNotified: true, status: "Open" },
-  { id: "inc-2", child: "King Andrew", childInfo: "M • Blood: O+", room: "Lion", type: "Suspected allergy", severity: "Minor", reportedBy: "Mr Ben Ayadi", time: "Jun 3 08:20AM", parentNotified: true, status: "Resolved" },
-  { id: "inc-3", child: "King Andrew", childInfo: "M • Blood: O+", room: "Lion", type: "Fever", severity: "Severe", reportedBy: "Mr Ben Ayadi", time: "Jun 23 08:20AM", parentNotified: true, status: "Open" },
-  { id: "inc-4", child: "King Andrew", childInfo: "M • Blood: O+", room: "Lion", type: "Temperature", severity: "Moderate", reportedBy: "Mr Ben Ayadi", time: "08:20AM", parentNotified: true, status: "Resolved" },
-  { id: "inc-5", child: "King Andrew", childInfo: "M • Blood: O+", room: "Lion", type: "Slight ..", severity: "Minor", reportedBy: "Mr Ben Ayadi", time: "08:20AM", parentNotified: true, status: "Resolved" },
-  { id: "inc-6", child: "King Andrew", childInfo: "M • Blood: O+", room: "Lion", type: "Minor", severity: "Minor", reportedBy: "Mr Ben Ayadi", time: "08:20AM", parentNotified: true, status: "Resolved" },
-  { id: "inc-7", child: "King Andrew", childInfo: "M • Blood: O+", room: "Lion", type: "Minor", severity: "Minor", reportedBy: "Mr Ben Ayadi", time: "08:20AM", parentNotified: true, status: "Resolved" },
+  { id: "inc-1", child: "King Andrew", childInfo: "Lion Class", room: "Lion", type: "Minor fall", severity: "Minor", reportedBy: "Mr Ben Ayadi", time: "Today 08:20AM", parentNotified: true, status: "Open", actionsTaken: "Checked for any inner injury, first aid applied", witnessPresent: "Mr Adebayo", additionalNote: "Child was playing near the climbing frame and lost balance." },
+  { id: "inc-2", child: "King Andrew", childInfo: "M • Blood: O+", room: "Lion", type: "Suspected allergy", severity: "Minor", reportedBy: "Mr Ben Ayadi", time: "Jun 3 08:20AM", parentNotified: true, status: "Resolved", actionsTaken: "Removed allergen, monitored for 30 minutes", witnessPresent: null, additionalNote: "Mild skin reaction after lunch, resolved without medication." },
+  { id: "inc-3", child: "King Andrew", childInfo: "M • Blood: O+", room: "Lion", type: "Fever", severity: "Severe", reportedBy: "Mr Ben Ayadi", time: "Jun 23 08:20AM", parentNotified: true, status: "Open", actionsTaken: "Temperature checked every 30 minutes, parent called", witnessPresent: "Mrs Okonkwo", additionalNote: "Temperature peaked at 39.2°C, parent on the way to pick up." },
+  { id: "inc-4", child: "King Andrew", childInfo: "M • Blood: O+", room: "Lion", type: "Temperature", severity: "Moderate", reportedBy: "Mr Ben Ayadi", time: "08:20AM", parentNotified: true, status: "Resolved", actionsTaken: "Cooled down with damp cloth, fluids given", witnessPresent: null, additionalNote: "Settled after rest." },
+  { id: "inc-5", child: "King Andrew", childInfo: "M • Blood: O+", room: "Lion", type: "Slight ..", severity: "Minor", reportedBy: "Mr Ben Ayadi", time: "08:20AM", parentNotified: true, status: "Resolved", actionsTaken: "First aid applied", witnessPresent: null, additionalNote: "No further action required." },
+  { id: "inc-6", child: "King Andrew", childInfo: "M • Blood: O+", room: "Lion", type: "Minor", severity: "Minor", reportedBy: "Mr Ben Ayadi", time: "08:20AM", parentNotified: true, status: "Resolved", actionsTaken: "First aid applied", witnessPresent: null, additionalNote: "No further action required." },
+  { id: "inc-7", child: "King Andrew", childInfo: "M • Blood: O+", room: "Lion", type: "Minor", severity: "Minor", reportedBy: "Mr Ben Ayadi", time: "08:20AM", parentNotified: true, status: "Resolved", actionsTaken: "First aid applied", witnessPresent: null, additionalNote: "No further action required." },
 ];
 
 export const INCIDENT_TYPES = [
@@ -40,20 +43,58 @@ export const INCIDENT_TYPES = [
 
 export type MedicationStatus = "Scheduled" | "Administered" | "Missed";
 
+export type MedicationHistoryEntry = {
+  date: string;
+  time: string;
+  medication: string;
+  dosage: string;
+  attendedBy: string;
+};
+
 export type MedicationEntry = {
   id: string;
   child: string;
   room: string;
   medication: string;
   dosage: string;
+  frequency: string;
   scheduledTime: string;
   administeredBy: string | null;
   status: MedicationStatus;
+  note: string;
+  history: MedicationHistoryEntry[];
 };
 
 export const MEDICATIONS: MedicationEntry[] = [
-  { id: "med-1", child: "King Andrew", room: "Lion Class", medication: "Vitamin D", dosage: "2 drops", scheduledTime: "02:30am", administeredBy: "Mr Ben Ayadi", status: "Administered" },
-  { id: "med-2", child: "King Andrew", room: "Lion Class", medication: "Vitamin D", dosage: "2 drops", scheduledTime: "02:30am", administeredBy: null, status: "Scheduled" },
+  {
+    id: "med-1",
+    child: "King Andrew",
+    room: "Lion Class",
+    medication: "Vitamin D",
+    dosage: "2 drops",
+    frequency: "Daily (Morning)",
+    scheduledTime: "02:30am",
+    administeredBy: "Mr Ben Ayadi",
+    status: "Administered",
+    note: "No adverse reaction observed.",
+    history: [
+      { date: "Jun 6", time: "08:23am", medication: "Vitamin D", dosage: "2 drops", attendedBy: "Mr Ben" },
+      { date: "Jun 5", time: "08:15am", medication: "Vitamin D", dosage: "2 drops", attendedBy: "Mr Ben" },
+    ],
+  },
+  {
+    id: "med-2",
+    child: "King Andrew",
+    room: "Lion Class",
+    medication: "Vitamin D",
+    dosage: "2 drops",
+    frequency: "Daily (Morning)",
+    scheduledTime: "02:30am",
+    administeredBy: null,
+    status: "Scheduled",
+    note: "",
+    history: [],
+  },
 ];
 
 export const MEDICATION_OPTIONS = [
