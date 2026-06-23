@@ -11,6 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { LogActivityModal, type LogActivityMode } from "@/components/admin/children/log-activity-modal";
+import { LogGrowthModal } from "@/components/admin/children/log-growth-modal";
 import type { Child, ChildStatus } from "@/lib/mock-data/children";
 
 // ── Types ──────────────────────────────────────────────────────────────────────
@@ -277,6 +278,8 @@ function ActivityLogTab({ child }: { child: Child }) {
 // ── Tab: Health Status ────────────────────────────────────────────────────────
 
 function HealthStatusTab({ child }: { child: Child }) {
+  const [growthOpen, setGrowthOpen] = useState(false);
+
   const healthInfo: [string, string][] = [
     ["Height", "82 cm"],
     ["Weight", "11.2 kg"],
@@ -292,9 +295,18 @@ function HealthStatusTab({ child }: { child: Child }) {
   ];
 
   return (
+    <>
     <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
       <div className="rounded-xl border border-[#e6ebf3] bg-white p-4">
-        <p className="mb-4 font-[family-name:var(--font-merriweather)] text-sm font-bold text-[#2d1810]">Health Information</p>
+        <div className="mb-4 flex items-center justify-between">
+          <p className="font-[family-name:var(--font-merriweather)] text-sm font-bold text-[#2d1810]">Health Information</p>
+          <button
+            onClick={() => setGrowthOpen(true)}
+            className="font-[family-name:var(--font-nunito)] text-xs font-semibold text-[#3b2513] underline"
+          >
+            Log Growth
+          </button>
+        </div>
         <div className="space-y-3">
           {healthInfo.map(([k, v]) => (
             <div key={k} className="flex items-start justify-between border-b border-[#f3f4f6] pb-2 last:border-0">
@@ -325,6 +337,10 @@ function HealthStatusTab({ child }: { child: Child }) {
         </div>
       </div>
     </div>
+    {growthOpen && (
+      <LogGrowthModal previousWeight="11.2" previousHeight="82" onClose={() => setGrowthOpen(false)} />
+    )}
+    </>
   );
 }
 
