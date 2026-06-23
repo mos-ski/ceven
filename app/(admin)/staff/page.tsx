@@ -375,6 +375,31 @@ function StaffPageInner() {
   const [addStaffOpen, setAddStaffOpen] = useState(false);
   const [editingMember, setEditingMember] = useState<StaffMember | null>(null);
   const [deactivatingMember, setDeactivatingMember] = useState<StaffMember | null>(null);
+  const [staffSearch, setStaffSearch] = useState("");
+  const [staffStatusFilter, setStaffStatusFilter] = useState<"All Status" | StaffMember["status"]>("All Status");
+  const [staffSort, setStaffSort] = useState<"Newest First" | "Oldest First">("Newest First");
+  const [attendanceSearch, setAttendanceSearch] = useState("");
+  const [roleAccessFilter, setRoleAccessFilter] = useState("All Access");
+
+  const filteredAttendance = attendanceData.filter((row) => {
+    const query = attendanceSearch.trim().toLowerCase();
+    if (query && !row.name.toLowerCase().includes(query) && !row.email.toLowerCase().includes(query)) return false;
+    return true;
+  });
+
+  const filteredRoles = rolesData.filter((r) => roleAccessFilter === "All Access" || r.access === roleAccessFilter);
+
+  const filteredStaff = staffData
+    .filter((staff) => {
+      if (staffStatusFilter !== "All Status" && staff.status !== staffStatusFilter) return false;
+      const query = staffSearch.trim().toLowerCase();
+      if (query && !staff.name.toLowerCase().includes(query) && !staff.email.toLowerCase().includes(query)) return false;
+      return true;
+    })
+    .sort((a, b) => {
+      const diff = new Date(a.dateAdded).getTime() - new Date(b.dateAdded).getTime();
+      return staffSort === "Newest First" ? -diff : diff;
+    });
 
   // Role modal state
   const [roleModal, setRoleModal] = useState<
@@ -494,19 +519,47 @@ function StaffPageInner() {
                 <span className="text-xs font-[family-name:var(--font-nunito)] text-[#6b7280]">
                   Filter by:
                 </span>
-                <button className="border border-[#d0d5dd] rounded-lg px-3 py-1.5 text-xs font-[family-name:var(--font-nunito)] flex items-center gap-1.5 bg-white cursor-pointer">
-                  Date Added
-                  <ChevronDown className="size-3" />
-                </button>
-                <button className="border border-[#d0d5dd] rounded-lg px-3 py-1.5 text-xs font-[family-name:var(--font-nunito)] flex items-center gap-1.5 bg-white cursor-pointer">
-                  All Status
-                  <ChevronDown className="size-3" />
-                </button>
+                <DropdownMenu>
+                  <DropdownMenuTrigger
+                    render={
+                      <button className="border border-[#d0d5dd] rounded-lg px-3 py-1.5 text-xs font-[family-name:var(--font-nunito)] flex items-center gap-1.5 bg-white cursor-pointer" />
+                    }
+                  >
+                    {staffSort}
+                    <ChevronDown className="size-3" />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    {(["Newest First", "Oldest First"] as const).map((option) => (
+                      <DropdownMenuItem key={option} onClick={() => setStaffSort(option)}>
+                        {option}
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+                <DropdownMenu>
+                  <DropdownMenuTrigger
+                    render={
+                      <button className="border border-[#d0d5dd] rounded-lg px-3 py-1.5 text-xs font-[family-name:var(--font-nunito)] flex items-center gap-1.5 bg-white cursor-pointer" />
+                    }
+                  >
+                    {staffStatusFilter}
+                    <ChevronDown className="size-3" />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    {(["All Status", "Active", "Absent", "Pending", "Suspended"] as const).map((option) => (
+                      <DropdownMenuItem key={option} onClick={() => setStaffStatusFilter(option)}>
+                        {option}
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
               <div className="relative">
                 <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 size-3.5 text-[#6b7280]" />
                 <input
                   type="text"
+                  value={staffSearch}
+                  onChange={(e) => setStaffSearch(e.target.value)}
                   placeholder="Search staff..."
                   className="bg-[#f5edd8] border border-[#d0d5dd] rounded-lg text-xs px-3 py-1.5 pl-8 outline-none focus:ring-1 focus:ring-[#3b2513] font-[family-name:var(--font-nunito)]"
                 />
@@ -536,58 +589,75 @@ function StaffPageInner() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#eaecf0]">
-                {staffData.map((staff) => (
-                  <tr key={staff.id} className="hover:bg-[#faf9f7]">
-                    <td className="px-4 py-3">
-                      <p className="text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">
-                        {staff.name}
-                      </p>
-                      <p className="text-[10px] text-[#858c98]">
-                        {staff.email}
-                      </p>
-                    </td>
-                    <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">
-                      {staff.phone}
-                    </td>
-                    <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">
-                      {staff.dateAdded}
-                    </td>
-                    <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">
-                      {staff.role}
-                    </td>
-                    <td className="px-4 py-3">
-                      <StatusBadge status={staff.status} />
-                    </td>
-                    <td className="px-4 py-3">
-                      <DropdownMenu>
-                        <DropdownMenuTrigger
-                          render={
-                            <button className="text-[#6b7280] hover:text-[#2d1810] p-1 rounded" />
-                          }
-                        >
-                          <MoreVertical className="size-4" />
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent>
-                          <DropdownMenuItem render={<Link href={`/staff/${staff.id}`} />}>
-                            View Profile
-                          </DropdownMenuItem>
-                          <DropdownMenuItem onClick={() => setEditingMember(staff)}>
-                            Edit Member
-                          </DropdownMenuItem>
-                          <DropdownMenuItem onClick={() => setDeactivatingMember(staff)}>
-                            Deactivate
-                          </DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
+                {filteredStaff.length === 0 ? (
+                  <tr>
+                    <td colSpan={6} className="py-10 text-center font-[family-name:var(--font-nunito)] text-sm text-[#9ca3af]">
+                      No staff match your search or filters.
                     </td>
                   </tr>
-                ))}
+                ) : (
+                  filteredStaff.map((staff) => (
+                    <tr
+                      key={staff.id}
+                      onClick={() => router.push(`/staff/${staff.id}`)}
+                      className="cursor-pointer hover:bg-[#faf9f7]"
+                    >
+                      <td className="px-4 py-3">
+                        <p className="text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">
+                          {staff.name}
+                        </p>
+                        <p className="text-[10px] text-[#858c98]">
+                          {staff.email}
+                        </p>
+                      </td>
+                      <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">
+                        {staff.phone}
+                      </td>
+                      <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">
+                        {staff.dateAdded}
+                      </td>
+                      <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">
+                        {staff.role}
+                      </td>
+                      <td className="px-4 py-3">
+                        <StatusBadge status={staff.status} />
+                      </td>
+                      <td className="px-4 py-3" onClick={(e) => e.stopPropagation()}>
+                        <DropdownMenu>
+                          <DropdownMenuTrigger
+                            render={
+                              <button className="text-[#6b7280] hover:text-[#2d1810] p-1 rounded" />
+                            }
+                          >
+                            <MoreVertical className="size-4" />
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent>
+                            <DropdownMenuItem render={<Link href={`/staff/${staff.id}`} />}>
+                              View Profile
+                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => setEditingMember(staff)}>
+                              Edit Member
+                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => setDeactivatingMember(staff)}>
+                              Deactivate
+                            </DropdownMenuItem>
+                          </DropdownMenuContent>
+                        </DropdownMenu>
+                      </td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
             </div>
             {/* Mobile card list */}
             <div className="flex flex-col gap-2 px-4 pb-4 lg:hidden">
-              {staffData.map((staff) => (
+              {filteredStaff.length === 0 && (
+                <p className="py-6 text-center font-[family-name:var(--font-nunito)] text-sm text-[#9ca3af]">
+                  No staff match your search or filters.
+                </p>
+              )}
+              {filteredStaff.map((staff) => (
                 <Link
                   key={staff.id}
                   href={`/staff/${staff.id}`}
@@ -637,6 +707,8 @@ function StaffPageInner() {
                 <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 size-3.5 text-[#6b7280]" />
                 <input
                   type="text"
+                  value={attendanceSearch}
+                  onChange={(e) => setAttendanceSearch(e.target.value)}
                   placeholder="Search staff..."
                   className="bg-[#f5edd8] border border-[#d0d5dd] rounded-lg text-xs px-3 py-1.5 pl-8 outline-none focus:ring-1 focus:ring-[#3b2513] font-[family-name:var(--font-nunito)]"
                 />
@@ -665,7 +737,14 @@ function StaffPageInner() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[#eaecf0]">
-                  {attendanceData.map((row) => (
+                  {filteredAttendance.length === 0 ? (
+                    <tr>
+                      <td colSpan={9} className="py-10 text-center font-[family-name:var(--font-nunito)] text-sm text-[#9ca3af]">
+                        No staff match your search.
+                      </td>
+                    </tr>
+                  ) : (
+                  filteredAttendance.map((row) => (
                     <tr key={row.name} className="hover:bg-[#faf9f7]">
                       <td className="px-4 py-3">
                         <input type="checkbox" className="accent-[#3b2513]" />
@@ -695,13 +774,19 @@ function StaffPageInner() {
                         <ComplianceText value={row.compliance} />
                       </td>
                     </tr>
-                  ))}
+                  ))
+                  )}
                 </tbody>
               </table>
               </div>
               {/* Mobile card list */}
               <div className="flex flex-col gap-2 p-4 lg:hidden">
-                {attendanceData.map((row) => (
+                {filteredAttendance.length === 0 && (
+                  <p className="py-6 text-center font-[family-name:var(--font-nunito)] text-sm text-[#9ca3af]">
+                    No staff match your search.
+                  </p>
+                )}
+                {filteredAttendance.map((row) => (
                   <div key={row.name} className="rounded-xl border border-[#eaecf0] p-3">
                     <div className="flex items-center justify-between">
                       <div className="flex flex-col gap-0.5">
@@ -749,10 +834,23 @@ function StaffPageInner() {
                   Date Created
                   <ChevronDown className="size-3" />
                 </button>
-                <button className="border border-[#d0d5dd] rounded-lg px-3 py-1.5 text-xs font-[family-name:var(--font-nunito)] flex items-center gap-1.5 bg-white cursor-pointer">
-                  All Access
-                  <ChevronDown className="size-3" />
-                </button>
+                <DropdownMenu>
+                  <DropdownMenuTrigger
+                    render={
+                      <button className="border border-[#d0d5dd] rounded-lg px-3 py-1.5 text-xs font-[family-name:var(--font-nunito)] flex items-center gap-1.5 bg-white cursor-pointer" />
+                    }
+                  >
+                    {roleAccessFilter}
+                    <ChevronDown className="size-3" />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    {["All Access", "Full", "Limited", "View Only"].map((option) => (
+                      <DropdownMenuItem key={option} onClick={() => setRoleAccessFilter(option)}>
+                        {option}
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
                 <button
                   onClick={() => setRoleModal("create")}
                   className="bg-[#3b2513] text-[#faf2e1] rounded-lg px-4 py-2 text-sm font-medium font-[family-name:var(--font-nunito)]"
@@ -786,7 +884,14 @@ function StaffPageInner() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[#eaecf0]">
-                  {rolesData.map((r) => (
+                  {filteredRoles.length === 0 ? (
+                    <tr>
+                      <td colSpan={6} className="py-10 text-center font-[family-name:var(--font-nunito)] text-sm text-[#9ca3af]">
+                        No roles match this filter.
+                      </td>
+                    </tr>
+                  ) : (
+                  filteredRoles.map((r) => (
                     <tr key={r.role} className="hover:bg-[#faf9f7]">
                       <td className="px-4 py-3 text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">
                         {r.role}
@@ -822,13 +927,19 @@ function StaffPageInner() {
                         </div>
                       </td>
                     </tr>
-                  ))}
+                  ))
+                  )}
                 </tbody>
               </table>
               </div>
               {/* Mobile card list */}
               <div className="flex flex-col gap-2 p-4 lg:hidden">
-                {rolesData.map((r) => (
+                {filteredRoles.length === 0 && (
+                  <p className="py-6 text-center font-[family-name:var(--font-nunito)] text-sm text-[#9ca3af]">
+                    No roles match this filter.
+                  </p>
+                )}
+                {filteredRoles.map((r) => (
                   <div key={r.role} className="flex items-center justify-between rounded-xl border border-[#eaecf0] p-3">
                     <div className="flex flex-col gap-0.5">
                       <div className="flex items-center gap-2">
