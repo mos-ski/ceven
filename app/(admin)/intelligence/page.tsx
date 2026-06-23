@@ -7,6 +7,7 @@ import { useSearchParams } from "next/navigation";
 import { AnalyticsTab } from "@/components/admin/intelligence/analytics-tab";
 import { AuditTrailTab } from "@/components/admin/intelligence/audit-trail-tab";
 import { ReportsTab } from "@/components/admin/intelligence/reports-tab";
+import { getAdaReply } from "@/lib/ada-responses";
 
 // ── Static data ────────────────────────────────────────────────────────────────
 
@@ -138,6 +139,20 @@ function getInitials(name: string) {
 
 function AdaChatPage({ onClose }: { onClose: () => void }) {
   const [adaInput, setAdaInput] = useState("");
+  const [messages, setMessages] = useState(chatMessages);
+  const [isTyping, setIsTyping] = useState(false);
+
+  function send(text: string) {
+    const trimmed = text.trim();
+    if (!trimmed) return;
+    setMessages((prev) => [...prev, { role: "user" as const, text: trimmed }]);
+    setAdaInput("");
+    setIsTyping(true);
+    setTimeout(() => {
+      setMessages((prev) => [...prev, { role: "ai" as const, text: getAdaReply(trimmed) }]);
+      setIsTyping(false);
+    }, 900);
+  }
 
   return (
     <div className="fixed inset-0 z-50 flex flex-col bg-[#fffcf4] lg:relative lg:inset-auto lg:z-auto lg:rounded-2xl lg:border lg:border-[#edd9c0]">
@@ -168,7 +183,7 @@ function AdaChatPage({ onClose }: { onClose: () => void }) {
 
       {/* Chat area */}
       <div className="flex flex-1 flex-col gap-3 overflow-y-auto p-4">
-        {chatMessages.map((msg, i) => (
+        {messages.map((msg, i) => (
           <div
             key={i}
             className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
@@ -187,22 +202,24 @@ function AdaChatPage({ onClose }: { onClose: () => void }) {
         ))}
 
         {/* Typing indicator */}
-        <div className="flex justify-start">
-          <div className="flex items-center gap-1 rounded-2xl rounded-tl-none bg-[#fdf6e8] p-3">
-            <span
-              className="h-2 w-2 rounded-full bg-[#c47b2c] animate-bounce"
-              style={{ animationDelay: "0ms" }}
-            />
-            <span
-              className="h-2 w-2 rounded-full bg-[#c47b2c] animate-bounce"
-              style={{ animationDelay: "150ms" }}
-            />
-            <span
-              className="h-2 w-2 rounded-full bg-[#c47b2c] animate-bounce"
-              style={{ animationDelay: "300ms" }}
-            />
+        {isTyping && (
+          <div className="flex justify-start">
+            <div className="flex items-center gap-1 rounded-2xl rounded-tl-none bg-[#fdf6e8] p-3">
+              <span
+                className="h-2 w-2 rounded-full bg-[#c47b2c] animate-bounce"
+                style={{ animationDelay: "0ms" }}
+              />
+              <span
+                className="h-2 w-2 rounded-full bg-[#c47b2c] animate-bounce"
+                style={{ animationDelay: "150ms" }}
+              />
+              <span
+                className="h-2 w-2 rounded-full bg-[#c47b2c] animate-bounce"
+                style={{ animationDelay: "300ms" }}
+              />
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       {/* Quick prompts */}
@@ -210,6 +227,7 @@ function AdaChatPage({ onClose }: { onClose: () => void }) {
         {quickPrompts.map((prompt) => (
           <button
             key={prompt}
+            onClick={() => send(prompt)}
             className="cursor-pointer rounded-full border border-[#edd9c0] bg-white px-3 py-1.5 font-[family-name:var(--font-nunito)] text-[10px] text-[#6b7280] hover:border-[#c47b2c] hover:text-[#c47b2c]"
           >
             {prompt}
@@ -223,13 +241,14 @@ function AdaChatPage({ onClose }: { onClose: () => void }) {
           type="text"
           value={adaInput}
           onChange={(e) => setAdaInput(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && send(adaInput)}
           placeholder="Ask Ada anything…"
           className="flex-1 rounded-full border border-[#edd9c0] bg-white px-4 py-2 font-[family-name:var(--font-nunito)] text-sm placeholder:text-[#9ca3af] focus:border-[#c47b2c] focus:outline-none"
         />
         <button
           className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-white"
           style={{ background: gradientBg }}
-          onClick={() => setAdaInput("")}
+          onClick={() => send(adaInput)}
         >
           <Send className="h-4 w-4" />
         </button>

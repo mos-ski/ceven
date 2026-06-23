@@ -11,6 +11,7 @@ import {
   SETUP_PROGRESS_PERCENT,
   type RoleGuide,
 } from "@/lib/mock-data/account-setup";
+import { getAdaReply } from "@/lib/ada-responses";
 
 const gradientBg = "linear-gradient(135deg, rgb(30,45,74) 0%, rgb(45,24,16) 100%)";
 
@@ -75,8 +76,30 @@ function FaqAccordion() {
   );
 }
 
+type AdaMessage = { role: "user" | "ai"; text: string };
+
+const INITIAL_ADA_MESSAGES: AdaMessage[] = [
+  { role: "user", text: "How do i generate report that i can send to parents at the end of each day" },
+  {
+    role: "ai",
+    text: 'Head to Daily Operations → Daily Logs, select the children you want to include, then click "Generate Parent Report". You can send it straight from there or download it as a PDF.',
+  },
+];
+
 function AskAdaPanel() {
   const [input, setInput] = useState("");
+  const [messages, setMessages] = useState<AdaMessage[]>(INITIAL_ADA_MESSAGES);
+
+  function send(text: string) {
+    const trimmed = text.trim();
+    if (!trimmed) return;
+    setMessages((prev) => [
+      ...prev,
+      { role: "user", text: trimmed },
+      { role: "ai", text: getAdaReply(trimmed) },
+    ]);
+    setInput("");
+  }
 
   return (
     <div className="flex flex-1 flex-col overflow-hidden rounded-2xl border-l-[3px] border-[rgba(45,24,16,0.1)] bg-[#fffcf4]">
@@ -94,18 +117,34 @@ function AskAdaPanel() {
       </div>
 
       <div className="flex-1 overflow-y-auto px-5 py-4">
-        <div className="flex items-start justify-end gap-2">
-          <div className="max-w-[268px] rounded-tl-[10px] rounded-tr-[10px] rounded-br-[10px] rounded-bl-[2px] border border-[rgba(45,24,16,0.12)] bg-[#fdf6e8] p-3">
-            <p className="font-[family-name:var(--font-nunito)] text-xs font-medium text-[#2d1810]">
-              How do i generate report that i can send to parents at the end of each day
-            </p>
-          </div>
-          <div
-            className="flex size-6 shrink-0 items-center justify-center rounded-xl text-xs font-bold text-white"
-            style={{ background: gradientBg }}
-          >
-            ✦
-          </div>
+        <div className="flex flex-col gap-3">
+          {messages.map((msg, i) =>
+            msg.role === "user" ? (
+              <div key={i} className="flex items-start justify-end gap-2">
+                <div className="max-w-[268px] rounded-tl-[10px] rounded-tr-[10px] rounded-br-[10px] rounded-bl-[2px] border border-[rgba(45,24,16,0.12)] bg-[#fdf6e8] p-3">
+                  <p className="font-[family-name:var(--font-nunito)] text-xs font-medium text-[#2d1810]">{msg.text}</p>
+                </div>
+                <div
+                  className="flex size-6 shrink-0 items-center justify-center rounded-xl text-xs font-bold text-white"
+                  style={{ background: gradientBg }}
+                >
+                  ✦
+                </div>
+              </div>
+            ) : (
+              <div key={i} className="flex items-start gap-2">
+                <div
+                  className="flex size-6 shrink-0 items-center justify-center rounded-xl text-xs font-bold text-white"
+                  style={{ background: gradientBg }}
+                >
+                  ✦
+                </div>
+                <div className="max-w-[268px] rounded-tl-[2px] rounded-tr-[10px] rounded-br-[10px] rounded-bl-[10px] border border-[rgba(45,24,16,0.12)] bg-white p-3">
+                  <p className="font-[family-name:var(--font-nunito)] text-xs font-medium text-[#2d1810]">{msg.text}</p>
+                </div>
+              </div>
+            )
+          )}
         </div>
       </div>
 
@@ -114,7 +153,7 @@ function AskAdaPanel() {
           {ADA_SUGGESTED_PROMPTS.map((prompt) => (
             <button
               key={prompt}
-              onClick={() => setInput(prompt)}
+              onClick={() => send(prompt)}
               className="rounded-full border border-[rgba(45,24,16,0.12)] bg-[#f5edd8] px-3 py-1.5 font-[family-name:var(--font-nunito)] text-[10px] text-[rgba(45,24,16,0.5)]"
             >
               {prompt}
@@ -125,10 +164,12 @@ function AskAdaPanel() {
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && send(input)}
             placeholder="Ask Ada anything…"
             className="h-10 w-full rounded-[10px] border border-[rgba(45,24,16,0.12)] bg-[#f5edd8] px-3 pr-12 font-[family-name:var(--font-nunito)] text-xs font-medium text-[#2d1810] placeholder:text-[rgba(45,24,16,0.5)] outline-none"
           />
           <button
+            onClick={() => send(input)}
             className="absolute top-1/2 right-1.5 flex size-8 -translate-y-1/2 items-center justify-center rounded-[6px] text-white"
             style={{ backgroundImage: "linear-gradient(135deg, rgb(30,45,74) 0%, rgb(196,123,44) 100%)" }}
           >

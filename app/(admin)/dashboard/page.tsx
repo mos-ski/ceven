@@ -25,6 +25,7 @@ import EnrollChildModal from "@/components/dashboard/enroll-child-modal";
 import NotificationPanel from "@/components/dashboard/notification-panel";
 import { LogActivityModal, type LogActivityMode } from "@/components/admin/children/log-activity-modal";
 import NewInvoiceModal from "@/components/admin/finance/new-invoice-modal";
+import { getAdaReply } from "@/lib/ada-responses";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -299,6 +300,18 @@ function StatCard({ label, value, sub, subColor = "#6b7280", showTrend, showAler
 
 function AIChatPanel({ onClose }: { onClose: () => void }) {
   const [inputValue, setInputValue] = useState("");
+  const [messages, setMessages] = useState(chatMessages);
+
+  function send(text: string) {
+    const trimmed = text.trim();
+    if (!trimmed) return;
+    setMessages((prev) => [
+      ...prev,
+      { role: "user" as const, text: trimmed },
+      { role: "ai" as const, text: getAdaReply(trimmed) },
+    ]);
+    setInputValue("");
+  }
 
   return (
     <div className="flex w-full lg:w-[360px] shrink-0 flex-col overflow-hidden rounded-2xl border-l-4 border-[#c47b2c] bg-[#fffcf4] shadow-lg">
@@ -330,7 +343,7 @@ function AIChatPanel({ onClose }: { onClose: () => void }) {
 
       {/* Messages */}
       <div className="flex flex-1 flex-col gap-3 overflow-y-auto px-4 py-4">
-        {chatMessages.map((msg, i) => (
+        {messages.map((msg, i) => (
           <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
             {msg.role === "ai" && (
               <div
@@ -359,6 +372,7 @@ function AIChatPanel({ onClose }: { onClose: () => void }) {
         {quickPrompts.map((prompt) => (
           <button
             key={prompt}
+            onClick={() => send(prompt)}
             className="rounded-full border border-[#edd9c0] bg-white px-3 py-1 font-[family-name:var(--font-urbanist)] text-[10px] text-[#6b7280] hover:border-[#c47b2c] hover:text-[#c47b2c]"
           >
             {prompt}
@@ -372,12 +386,13 @@ function AIChatPanel({ onClose }: { onClose: () => void }) {
           type="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && send(inputValue)}
           placeholder="Ask Ada anything..."
           className="flex-1 rounded-full border border-[#edd9c0] bg-white px-4 py-2 font-[family-name:var(--font-nunito)] text-xs text-[#2d1810] placeholder:text-[#9ca3af] focus:border-[#c47b2c] focus:outline-none"
         />
         <button
           className="flex h-8 w-8 items-center justify-center rounded-full bg-[#3b2513] text-[#faf2e1] hover:bg-[#2d1810]"
-          onClick={() => setInputValue("")}
+          onClick={() => send(inputValue)}
         >
           <Send className="h-3.5 w-3.5" />
         </button>
