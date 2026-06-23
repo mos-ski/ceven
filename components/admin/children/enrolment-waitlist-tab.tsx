@@ -100,7 +100,15 @@ const TRIAL_STATUS_TEXT_CLASS: Record<TrialSessionStatus, string> = {
   Rescheduled: "text-[#6b7280]",
 };
 
-function FilterDropdown({ label, options }: { label: string; options: string[] }) {
+function FilterDropdown({
+  label,
+  options,
+  onSelect,
+}: {
+  label: string;
+  options: string[];
+  onSelect?: (option: string) => void;
+}) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
@@ -116,7 +124,9 @@ function FilterDropdown({ label, options }: { label: string; options: string[] }
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         {options.map((option) => (
-          <DropdownMenuItem key={option}>{option}</DropdownMenuItem>
+          <DropdownMenuItem key={option} onClick={() => onSelect?.(option)}>
+            {option}
+          </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
     </DropdownMenu>
@@ -739,12 +749,30 @@ function EnrolmentTab() {
 
 // ── Sub-tab: Enquiry Pipeline (Kanban) ───────────────────────────────────────
 
-function EnquiryCard({ enquiry, onClick }: { enquiry: Enquiry; onClick: () => void }) {
+function EnquiryCard({
+  enquiry,
+  onClick,
+  onDragStart,
+  dragging,
+}: {
+  enquiry: Enquiry;
+  onClick: () => void;
+  onDragStart: (id: string) => void;
+  dragging: boolean;
+}) {
   const urgency = ENQUIRY_URGENCY[enquiry.id];
   return (
     <button
       onClick={onClick}
-      className="flex w-full flex-col gap-1 rounded-xl border border-[#eaecf0] bg-white p-3 text-left shadow-sm hover:border-[#c47b2c]"
+      draggable
+      onDragStart={(e) => {
+        e.dataTransfer.setData("text/plain", enquiry.id);
+        e.dataTransfer.effectAllowed = "move";
+        onDragStart(enquiry.id);
+      }}
+      className={`flex w-full cursor-grab flex-col gap-1 rounded-xl border border-[#eaecf0] bg-white p-3 text-left shadow-sm hover:border-[#c47b2c] active:cursor-grabbing ${
+        dragging ? "opacity-40" : ""
+      }`}
     >
       <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{enquiry.childName}</p>
       <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
@@ -781,7 +809,14 @@ type PipelineModalState =
 
 function EnquiryPipelineTab() {
   const [modal, setModal] = useState<PipelineModalState>(null);
+  const [enquiries, setEnquiries] = useState<Enquiry[]>(ENQUIRIES);
+  const [draggingId, setDraggingId] = useState<string | null>(null);
+  const [dragOverStage, setDragOverStage] = useState<EnquiryStage | null>(null);
   const close = () => setModal(null);
+
+  function moveEnquiry(id: string, stage: EnquiryStage) {
+    setEnquiries((prev) => prev.map((e) => (e.id === id ? { ...e, stage } : e)));
+  }
 
   return (
     <>
@@ -793,9 +828,26 @@ function EnquiryPipelineTab() {
         </div>
         <div className="grid grid-cols-1 gap-3 p-4 pt-0 sm:grid-cols-2 lg:grid-cols-4">
           {KANBAN_STAGES.map((stage) => {
-            const items = ENQUIRIES.filter((e) => e.stage === stage);
+            const items = enquiries.filter((e) => e.stage === stage);
             return (
-              <div key={stage} className="flex flex-col gap-3 rounded-xl bg-[#fdf7ed] p-3">
+              <div
+                key={stage}
+                onDragOver={(e) => {
+                  e.preventDefault();
+                  setDragOverStage(stage);
+                }}
+                onDragLeave={() => setDragOverStage((s) => (s === stage ? null : s))}
+                onDrop={(e) => {
+                  e.preventDefault();
+                  const id = e.dataTransfer.getData("text/plain");
+                  if (id) moveEnquiry(id, stage);
+                  setDraggingId(null);
+                  setDragOverStage(null);
+                }}
+                className={`flex flex-col gap-3 rounded-xl p-3 transition-colors ${
+                  dragOverStage === stage ? "bg-[#fbe9cf] ring-2 ring-[#c47b2c]" : "bg-[#fdf7ed]"
+                }`}
+              >
                 <div className="flex items-center justify-between">
                   <h3 className="font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">
                     {stage}
@@ -804,8 +856,19 @@ function EnquiryPipelineTab() {
                     {items.length}
                   </span>
                 </div>
+                {items.length === 0 && (
+                  <p className="rounded-lg border border-dashed border-[#e0bfa0] py-4 text-center font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">
+                    Drop here
+                  </p>
+                )}
                 {items.map((enquiry) => (
-                  <EnquiryCard key={enquiry.id} enquiry={enquiry} onClick={() => setModal({ kind: "preview", enquiry })} />
+                  <EnquiryCard
+                    key={enquiry.id}
+                    enquiry={enquiry}
+                    onClick={() => setModal({ kind: "preview", enquiry })}
+                    onDragStart={setDraggingId}
+                    dragging={draggingId === enquiry.id}
+                  />
                 ))}
               </div>
             );
@@ -824,12 +887,14 @@ function EnquiryPipelineTab() {
           else if (action === "make-offer") setModal({ kind: "make-offer", enquiry });
           else if (action === "decline") setModal({ kind: "decline", enquiry });
           else if (action === "request-info") setModal({ kind: "request-info", enquiry });
-          else if (action === "approve")
+          else if (action === "approve") {
+            moveEnquiry(enquiry.id, "Enrolled");
             setModal({
               kind: "success",
               heading: "Request Approved",
               description: "You have accepted the request of this child for enrolment into the creche.",
             });
+          }
         }}
       />
 
@@ -838,13 +903,14 @@ function EnquiryPipelineTab() {
         onOpenChange={(open) => !open && close()}
         title="Schedule Visit"
         submitLabel="Schedule Visit"
-        onSubmit={() =>
+        onSubmit={() => {
+          if (modal?.kind === "schedule-visit") moveEnquiry(modal.enquiry.id, "Visit Scheduled");
           setModal({
             kind: "success",
             heading: "Visit Scheduled",
             description: "You have successfully booked a visit schedule for this enquiry.",
-          })
-        }
+          });
+        }}
         fields={
           <>
             <FieldGroup label="Date" required>
@@ -868,13 +934,14 @@ function EnquiryPipelineTab() {
         onOpenChange={(open) => !open && close()}
         title="Schedule Trial"
         submitLabel="Book Trial"
-        onSubmit={() =>
+        onSubmit={() => {
+          if (modal?.kind === "book-trial") moveEnquiry(modal.enquiry.id, "Trial Booked");
           setModal({
             kind: "success",
             heading: "Trial Booked",
             description: "You have successfully booked a trial schedule for this enquiry.",
-          })
-        }
+          });
+        }}
         fields={
           <>
             <FieldGroup label="Date" required>
@@ -905,13 +972,14 @@ function EnquiryPipelineTab() {
         onOpenChange={(open) => !open && close()}
         title="Make an Offer"
         submitLabel="Send Offer"
-        onSubmit={() =>
+        onSubmit={() => {
+          if (modal?.kind === "make-offer") moveEnquiry(modal.enquiry.id, "Offer Made");
           setModal({
             kind: "success",
             heading: "Offer Sent",
             description: "Your enrolment offer has been sent to the parent/guardian.",
-          })
-        }
+          });
+        }}
         fields={
           <>
             <FieldGroup label="Room / Class" required>
@@ -936,13 +1004,14 @@ function EnquiryPipelineTab() {
       <DeclineReasonModal
         open={modal?.kind === "decline"}
         onOpenChange={(open) => !open && close()}
-        onConfirm={() =>
+        onConfirm={() => {
+          if (modal?.kind === "decline") moveEnquiry(modal.enquiry.id, "Declined");
           setModal({
             kind: "success",
             heading: "Request Declined",
             description: "This request to enroll a child has been declined. The reason will be forwarded to the parent/guardian.",
-          })
-        }
+          });
+        }}
       />
 
       <RequestInfoModal
@@ -967,11 +1036,57 @@ function EnquiryPipelineTab() {
   );
 }
 
+// ── Shared row detail modal ──────────────────────────────────────────────────
+
+function RowDetailModal({
+  open,
+  onOpenChange,
+  title,
+  badge,
+  fields,
+}: {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  title: string;
+  badge?: ReactNode;
+  fields: [string, ReactNode][];
+}) {
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent>
+        <div className="flex items-center justify-between border-b border-[#e6ebf3] px-6 py-5">
+          <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#171f26]">{title}</h2>
+          {badge}
+        </div>
+        <div className="flex flex-col gap-5 px-6 py-5">
+          {fields.map(([label, value]) => (
+            <div key={label} className="flex gap-[52px]">
+              <p className="w-[140px] shrink-0 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#6b7280]">
+                {label}
+              </p>
+              <div className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#1f2937]">{value}</div>
+            </div>
+          ))}
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
 // ── Sub-tab: Waitlist ────────────────────────────────────────────────────────
 
-function WaitlistRow({ entry }: { entry: WaitlistEntry }) {
+const WAITLIST_STATUS_BADGE_CLASS: Record<WaitlistEntry["status"], string> = {
+  Waiting: "border-[#cc8000] bg-[#fff6e6] text-[#cc8000]",
+  Offered: "border-[#009061] bg-[#ecfff8] text-[#009061]",
+  Expired: "border-[#ef4444] bg-[#fff5f5] text-[#ef4444]",
+};
+
+function WaitlistRow({ entry, onView }: { entry: WaitlistEntry; onView: (entry: WaitlistEntry) => void }) {
   return (
-    <tr className="border-t border-[#eaecf0]">
+    <tr onClick={() => onView(entry)} className="cursor-pointer border-t border-[#eaecf0] hover:bg-[#faf9f7]">
+      <td className="w-10 px-4 py-3" onClick={(e) => e.stopPropagation()}>
+        <input type="checkbox" className="size-4 accent-[#3b2513]" />
+      </td>
       <td className="px-4 py-3">
         <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{entry.childName}</p>
         <p className="font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">
@@ -988,12 +1103,12 @@ function WaitlistRow({ entry }: { entry: WaitlistEntry }) {
       </td>
       <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{entry.enrolledSiblings}</td>
       <td className="px-4 py-3">
-        <Badge variant="outline" className="border-[#cc8000] bg-[#fff6e6] text-[#cc8000]">
+        <Badge variant="outline" className={WAITLIST_STATUS_BADGE_CLASS[entry.status]}>
           {entry.status}
         </Badge>
       </td>
-      <td className="px-4 py-3">
-        <button className="flex items-center justify-center text-[#6b7280] hover:text-[#2d1810]">
+      <td className="px-4 py-3" onClick={(e) => e.stopPropagation()}>
+        <button onClick={() => onView(entry)} className="flex items-center justify-center text-[#6b7280] hover:text-[#2d1810]">
           <MoreVertical className="size-4" />
         </button>
       </td>
@@ -1002,6 +1117,16 @@ function WaitlistRow({ entry }: { entry: WaitlistEntry }) {
 }
 
 function WaitlistTab() {
+  const [search, setSearch] = useState("");
+  const [statusFilter, setStatusFilter] = useState("All Status");
+  const [viewing, setViewing] = useState<WaitlistEntry | null>(null);
+
+  const filtered = WAITLIST.filter((entry) => {
+    if (statusFilter !== "All Status" && entry.status !== statusFilter) return false;
+    if (search.trim() && !entry.childName.toLowerCase().includes(search.trim().toLowerCase())) return false;
+    return true;
+  });
+
   return (
     <div className="overflow-hidden rounded-xl bg-white shadow-sm">
       <div className="flex flex-wrap items-center justify-between gap-3 p-4">
@@ -1009,10 +1134,12 @@ function WaitlistTab() {
           Waitlist <span className="font-normal text-[#9ca3af]">— By Room</span>
         </h2>
         <div className="flex items-center gap-2">
-          <FilterDropdown label="All Status" options={["All Status", "Waiting", "Offered", "Expired"]} />
+          <FilterDropdown label={statusFilter} options={["All Status", "Waiting", "Offered", "Expired"]} onSelect={setStatusFilter} />
           <div className="relative">
             <Search className="absolute top-1/2 left-2 size-4 -translate-y-1/2 text-[#9ca3af]" />
             <Input
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
               placeholder="Search children, parents..."
               className="h-8 w-full sm:w-56 rounded-lg border-[rgba(45,24,16,0.12)] bg-[#f5edd8] pl-8 text-xs"
             />
@@ -1032,19 +1159,34 @@ function WaitlistTab() {
             </tr>
           </thead>
           <tbody className="bg-white">
-            {WAITLIST.map((entry) => (
-              <WaitlistRow key={entry.id} entry={entry} />
-            ))}
+            {filtered.length === 0 ? (
+              <tr>
+                <td colSpan={8} className="py-10 text-center font-[family-name:var(--font-nunito)] text-sm text-[#9ca3af]">
+                  No waitlist entries match your search or filters.
+                </td>
+              </tr>
+            ) : (
+              filtered.map((entry) => <WaitlistRow key={entry.id} entry={entry} onView={setViewing} />)
+            )}
           </tbody>
         </table>
       </div>
       {/* Mobile cards */}
       <div className="flex flex-col gap-2 px-4 pb-4 lg:hidden">
-        {WAITLIST.map((entry) => (
-          <div key={entry.id} className="rounded-xl border border-[#eaecf0] p-3">
+        {filtered.length === 0 && (
+          <p className="py-6 text-center font-[family-name:var(--font-nunito)] text-sm text-[#9ca3af]">
+            No waitlist entries match your search or filters.
+          </p>
+        )}
+        {filtered.map((entry) => (
+          <div
+            key={entry.id}
+            onClick={() => setViewing(entry)}
+            className="cursor-pointer rounded-xl border border-[#eaecf0] p-3"
+          >
             <div className="flex items-center justify-between">
               <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{entry.childName}</span>
-              <Badge variant="outline" className="border-[#cc8000] bg-[#fff6e6] text-[#cc8000]">
+              <Badge variant="outline" className={WAITLIST_STATUS_BADGE_CLASS[entry.status]}>
                 {entry.status}
               </Badge>
             </div>
@@ -1054,15 +1196,42 @@ function WaitlistTab() {
           </div>
         ))}
       </div>
+
+      <RowDetailModal
+        open={viewing !== null}
+        onOpenChange={(open) => !open && setViewing(null)}
+        title="Waitlist Entry"
+        badge={
+          viewing && (
+            <Badge variant="outline" className={WAITLIST_STATUS_BADGE_CLASS[viewing.status]}>
+              {viewing.status}
+            </Badge>
+          )
+        }
+        fields={
+          viewing
+            ? [
+                ["Child", `${viewing.childName} (${viewing.gender} • Blood: ${viewing.bloodGroup})`],
+                ["Room Requested", viewing.roomRequested],
+                ["Date Added", viewing.dateAdded],
+                ["Wait Period", `${viewing.waitDays} days`],
+                ["Enrolled Siblings", viewing.enrolledSiblings],
+              ]
+            : []
+        }
+      />
     </div>
   );
 }
 
 // ── Sub-tab: Trial Sessions ──────────────────────────────────────────────────
 
-function TrialSessionRow({ session }: { session: TrialSession }) {
+function TrialSessionRow({ session, onView }: { session: TrialSession; onView: (session: TrialSession) => void }) {
   return (
-    <tr className="border-t border-[#eaecf0]">
+    <tr onClick={() => onView(session)} className="cursor-pointer border-t border-[#eaecf0] hover:bg-[#faf9f7]">
+      <td className="w-10 px-4 py-3" onClick={(e) => e.stopPropagation()}>
+        <input type="checkbox" className="size-4 accent-[#3b2513]" />
+      </td>
       <td className="px-4 py-3">
         <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{session.childName}</p>
         <p className="font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">
@@ -1084,8 +1253,8 @@ function TrialSessionRow({ session }: { session: TrialSession }) {
         </span>
       </td>
       <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{session.notes}</td>
-      <td className="px-4 py-3">
-        <button className="flex items-center justify-center text-[#6b7280] hover:text-[#2d1810]">
+      <td className="px-4 py-3" onClick={(e) => e.stopPropagation()}>
+        <button onClick={() => onView(session)} className="flex items-center justify-center text-[#6b7280] hover:text-[#2d1810]">
           <MoreVertical className="size-4" />
         </button>
       </td>
@@ -1096,6 +1265,17 @@ function TrialSessionRow({ session }: { session: TrialSession }) {
 function TrialSessionsTab() {
   const [scheduleOpen, setScheduleOpen] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [search, setSearch] = useState("");
+  const [roomFilter, setRoomFilter] = useState("All Rooms");
+  const [statusFilter, setStatusFilter] = useState("All Status");
+  const [viewing, setViewing] = useState<TrialSession | null>(null);
+
+  const filtered = TRIAL_SESSIONS.filter((session) => {
+    if (roomFilter !== "All Rooms" && session.room !== roomFilter) return false;
+    if (statusFilter !== "All Status" && session.status !== statusFilter) return false;
+    if (search.trim() && !session.childName.toLowerCase().includes(search.trim().toLowerCase())) return false;
+    return true;
+  });
 
   return (
     <>
@@ -1111,11 +1291,17 @@ function TrialSessionsTab() {
             >
               Schedule Trial
             </Button>
-            <FilterDropdown label="All Rooms" options={["All Rooms", ...ROOMS.map((r) => r.name)]} />
-            <FilterDropdown label="All Status" options={["All Status", "Upcoming", "Successful", "Not Suitable", "No Show", "Rescheduled"]} />
+            <FilterDropdown label={roomFilter} options={["All Rooms", ...ROOMS.map((r) => r.name)]} onSelect={setRoomFilter} />
+            <FilterDropdown
+              label={statusFilter}
+              options={["All Status", "Upcoming", "Successful", "Not Suitable", "No Show", "Rescheduled"]}
+              onSelect={setStatusFilter}
+            />
             <div className="relative">
               <Search className="absolute top-1/2 left-2 size-4 -translate-y-1/2 text-[#9ca3af]" />
               <Input
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search children, parents..."
                 className="h-8 w-full sm:w-56 rounded-lg border-[rgba(45,24,16,0.12)] bg-[#f5edd8] pl-8 text-xs"
               />
@@ -1135,16 +1321,33 @@ function TrialSessionsTab() {
               </tr>
             </thead>
             <tbody className="bg-white">
-              {TRIAL_SESSIONS.map((session) => (
-                <TrialSessionRow key={session.id} session={session} />
-              ))}
+              {filtered.length === 0 ? (
+                <tr>
+                  <td colSpan={9} className="py-10 text-center font-[family-name:var(--font-nunito)] text-sm text-[#9ca3af]">
+                    No trial sessions match your search or filters.
+                  </td>
+                </tr>
+              ) : (
+                filtered.map((session) => (
+                  <TrialSessionRow key={session.id} session={session} onView={setViewing} />
+                ))
+              )}
             </tbody>
           </table>
         </div>
         {/* Mobile cards */}
         <div className="flex flex-col gap-2 px-4 pb-4 lg:hidden">
-          {TRIAL_SESSIONS.map((session) => (
-            <div key={session.id} className="rounded-xl border border-[#eaecf0] p-3">
+          {filtered.length === 0 && (
+            <p className="py-6 text-center font-[family-name:var(--font-nunito)] text-sm text-[#9ca3af]">
+              No trial sessions match your search or filters.
+            </p>
+          )}
+          {filtered.map((session) => (
+            <div
+              key={session.id}
+              onClick={() => setViewing(session)}
+              className="cursor-pointer rounded-xl border border-[#eaecf0] p-3"
+            >
               <div className="flex items-center justify-between">
                 <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{session.childName}</span>
                 <span className={cn("flex items-center gap-1.5 font-[family-name:var(--font-nunito)] text-xs", TRIAL_STATUS_TEXT_CLASS[session.status])}>
@@ -1175,15 +1378,44 @@ function TrialSessionsTab() {
         heading="Trial Scheduled"
         description="The trial session has been added to the schedule."
       />
+
+      <RowDetailModal
+        open={viewing !== null}
+        onOpenChange={(open) => !open && setViewing(null)}
+        title="Trial Session"
+        badge={
+          viewing && (
+            <span className={cn("flex items-center gap-1.5 font-[family-name:var(--font-nunito)] text-sm", TRIAL_STATUS_TEXT_CLASS[viewing.status])}>
+              <span className={cn("size-1.5 rounded-full", TRIAL_STATUS_DOT_CLASS[viewing.status])} />
+              {viewing.status}
+            </span>
+          )
+        }
+        fields={
+          viewing
+            ? [
+                ["Child", `${viewing.childName} (${viewing.gender} • Blood: ${viewing.bloodGroup})`],
+                ["Room", viewing.room],
+                ["Trial Date", viewing.trialDate],
+                ["Period", viewing.period],
+                ["Assigned To", viewing.assignedTo],
+                ["Notes", viewing.notes],
+              ]
+            : []
+        }
+      />
     </>
   );
 }
 
 // ── Sub-tab: Leavers ──────────────────────────────────────────────────────────
 
-function LeaverRow({ leaver }: { leaver: LeaverRecord }) {
+function LeaverRow({ leaver, onView }: { leaver: LeaverRecord; onView: (leaver: LeaverRecord) => void }) {
   return (
-    <tr className="border-t border-[#eaecf0]">
+    <tr onClick={() => onView(leaver)} className="cursor-pointer border-t border-[#eaecf0] hover:bg-[#faf9f7]">
+      <td className="w-10 px-4 py-3" onClick={(e) => e.stopPropagation()}>
+        <input type="checkbox" className="size-4 accent-[#3b2513]" />
+      </td>
       <td className="px-4 py-3">
         <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{leaver.childName}</p>
         <p className="font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">
@@ -1208,6 +1440,18 @@ function LeaverRow({ leaver }: { leaver: LeaverRecord }) {
 }
 
 function LeaversTab() {
+  const [search, setSearch] = useState("");
+  const [roomFilter, setRoomFilter] = useState("All Rooms");
+  const [surveyFilter, setSurveyFilter] = useState("All");
+  const [viewing, setViewing] = useState<LeaverRecord | null>(null);
+
+  const filtered = LEAVERS.filter((leaver) => {
+    if (roomFilter !== "All Rooms" && leaver.room !== roomFilter) return false;
+    if (surveyFilter !== "All" && leaver.exitSurvey !== surveyFilter) return false;
+    if (search.trim() && !leaver.childName.toLowerCase().includes(search.trim().toLowerCase())) return false;
+    return true;
+  });
+
   return (
     <div className="overflow-hidden rounded-xl bg-white shadow-sm">
       <div className="flex flex-wrap items-center justify-between gap-3 p-4">
@@ -1215,11 +1459,17 @@ function LeaversTab() {
           Leavers <span className="font-normal text-[#9ca3af]">— This Academic Year</span>
         </h2>
         <div className="flex items-center gap-2">
-          <FilterDropdown label="All Rooms" options={["All Rooms", ...ROOMS.map((r) => r.name)]} />
-          <FilterDropdown label="Survey Status" options={["All", "Completed", "Pending", "Not Sent"]} />
+          <FilterDropdown label={roomFilter} options={["All Rooms", ...ROOMS.map((r) => r.name)]} onSelect={setRoomFilter} />
+          <FilterDropdown
+            label={surveyFilter === "All" ? "Survey Status" : surveyFilter}
+            options={["All", "Completed", "Pending", "Not Sent"]}
+            onSelect={setSurveyFilter}
+          />
           <div className="relative">
             <Search className="absolute top-1/2 left-2 size-4 -translate-y-1/2 text-[#9ca3af]" />
             <Input
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
               placeholder="Search children, parents..."
               className="h-8 w-full sm:w-56 rounded-lg border-[rgba(45,24,16,0.12)] bg-[#f5edd8] pl-8 text-xs"
             />
@@ -1239,16 +1489,31 @@ function LeaversTab() {
             </tr>
           </thead>
           <tbody className="bg-white">
-            {LEAVERS.map((leaver) => (
-              <LeaverRow key={leaver.id} leaver={leaver} />
-            ))}
+            {filtered.length === 0 ? (
+              <tr>
+                <td colSpan={8} className="py-10 text-center font-[family-name:var(--font-nunito)] text-sm text-[#9ca3af]">
+                  No leavers match your search or filters.
+                </td>
+              </tr>
+            ) : (
+              filtered.map((leaver) => <LeaverRow key={leaver.id} leaver={leaver} onView={setViewing} />)
+            )}
           </tbody>
         </table>
       </div>
       {/* Mobile cards */}
       <div className="flex flex-col gap-2 px-4 pb-4 lg:hidden">
-        {LEAVERS.map((leaver) => (
-          <div key={leaver.id} className="rounded-xl border border-[#eaecf0] p-3">
+        {filtered.length === 0 && (
+          <p className="py-6 text-center font-[family-name:var(--font-nunito)] text-sm text-[#9ca3af]">
+            No leavers match your search or filters.
+          </p>
+        )}
+        {filtered.map((leaver) => (
+          <div
+            key={leaver.id}
+            onClick={() => setViewing(leaver)}
+            className="cursor-pointer rounded-xl border border-[#eaecf0] p-3"
+          >
             <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{leaver.childName}</span>
             <p className="mt-1 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
               {leaver.roomIcon} {leaver.room} • {leaver.reason}
@@ -1256,6 +1521,25 @@ function LeaversTab() {
           </div>
         ))}
       </div>
+
+      <RowDetailModal
+        open={viewing !== null}
+        onOpenChange={(open) => !open && setViewing(null)}
+        title="Leaver Record"
+        fields={
+          viewing
+            ? [
+                ["Child", `${viewing.childName} (${viewing.gender} • Blood: ${viewing.bloodGroup})`],
+                ["Room", `${viewing.roomIcon} ${viewing.room}`],
+                ["Reason", viewing.reason],
+                ["Last Day", viewing.lastDay],
+                ["Notice Given", viewing.noticeGiven],
+                ["Exit Survey", viewing.exitSurvey],
+                ["Data Archived", viewing.dataArchived],
+              ]
+            : []
+        }
+      />
     </div>
   );
 }

@@ -48,6 +48,8 @@ const TABS: Tab[] = [
 
 // Maps the sidebar's `?tab=` query param values to this page's Tab union.
 const TAB_QUERY_MAP: Record<string, Tab> = {
+  "attendance-log": "Attendance Log",
+  "role-management": "Role Management",
   leaderboard: "Leaderboard",
   payroll: "Payroll",
   "leave-management": "Leave Management",

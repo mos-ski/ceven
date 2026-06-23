@@ -1,4 +1,8 @@
+"use client";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useMemo, useState } from "react";
 import { ChevronDown, Flag, MoreVertical, Search } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
@@ -21,6 +25,12 @@ import {
 } from "@/components/ui/table";
 import { cn } from "@/lib/utils";
 import { CHILDREN, type Child, type ChildStatus, type FeeStatus } from "@/lib/mock-data/children";
+import { LogActivityModal, type LogActivityMode } from "@/components/admin/children/log-activity-modal";
+import {
+  ChangeRoomModal,
+  ContactGuardianModal,
+  ReassignCaregiverModal,
+} from "@/components/admin/children/child-row-actions-modals";
 
 const ROOMS = ["All Rooms", "Lion", "Panda", "Owl", "Bear"];
 const STATUSES: Array<"All Status" | ChildStatus> = [
@@ -42,7 +52,15 @@ const FEE_BADGE_CLASS: Record<FeeStatus, string> = {
   Pending: "border-transparent bg-gray-100 text-gray-600",
 };
 
-function FilterDropdown({ label, options }: { label: string; options: string[] }) {
+function FilterDropdown({
+  label,
+  options,
+  onSelect,
+}: {
+  label: string;
+  options: string[];
+  onSelect: (option: string) => void;
+}) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
@@ -58,17 +76,36 @@ function FilterDropdown({ label, options }: { label: string; options: string[] }
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         {options.map((option) => (
-          <DropdownMenuItem key={option}>{option}</DropdownMenuItem>
+          <DropdownMenuItem key={option} onClick={() => onSelect(option)}>
+            {option}
+          </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
     </DropdownMenu>
   );
 }
 
-function ChildRow({ child }: { child: Child }) {
+function ChildRow({
+  child,
+  onLog,
+  onReassign,
+  onChangeRoom,
+  onContact,
+}: {
+  child: Child;
+  onLog: (child: Child, mode: LogActivityMode) => void;
+  onReassign: (child: Child) => void;
+  onChangeRoom: (child: Child) => void;
+  onContact: (child: Child) => void;
+}) {
+  const router = useRouter();
+
   return (
-    <TableRow className="border-table-border">
-      <TableCell className="w-10">
+    <TableRow
+      onClick={() => router.push(`/children/${child.id}`)}
+      className="cursor-pointer border-table-border"
+    >
+      <TableCell className="w-10" onClick={(e) => e.stopPropagation()}>
         <Checkbox />
       </TableCell>
       <TableCell>
@@ -114,7 +151,7 @@ function ChildRow({ child }: { child: Child }) {
           {child.feeStatus}
         </Badge>
       </TableCell>
-      <TableCell>
+      <TableCell onClick={(e) => e.stopPropagation()}>
         <div className="flex items-center justify-center gap-2">
           <DropdownMenu>
             <DropdownMenuTrigger
@@ -129,9 +166,9 @@ function ChildRow({ child }: { child: Child }) {
               <ChevronDown className="size-3" />
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuItem>Log Daily Report</DropdownMenuItem>
-              <DropdownMenuItem>New Picture/Video</DropdownMenuItem>
-              <DropdownMenuItem>Log Incident</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => onLog(child, "daily-report")}>Log Daily Report</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => onLog(child, "media")}>New Picture/Video</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => onLog(child, "incident")}>Log Incident</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
           <DropdownMenu>
@@ -144,9 +181,9 @@ function ChildRow({ child }: { child: Child }) {
               <DropdownMenuItem render={<Link href={`/children/${child.id}`} />}>
                 View Profile
               </DropdownMenuItem>
-              <DropdownMenuItem>Reassign Caregiver</DropdownMenuItem>
-              <DropdownMenuItem>Change Room</DropdownMenuItem>
-              <DropdownMenuItem>Contact Guardian</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => onReassign(child)}>Reassign Caregiver</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => onChangeRoom(child)}>Change Room</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => onContact(child)}>Contact Guardian</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
@@ -156,6 +193,30 @@ function ChildRow({ child }: { child: Child }) {
 }
 
 export function ChildrenTable() {
+  const [search, setSearch] = useState("");
+  const [roomFilter, setRoomFilter] = useState("All Rooms");
+  const [statusFilter, setStatusFilter] = useState<"All Status" | ChildStatus>("All Status");
+
+  const [logTarget, setLogTarget] = useState<{ child: Child; mode: LogActivityMode } | null>(null);
+  const [reassignTarget, setReassignTarget] = useState<Child | null>(null);
+  const [roomTarget, setRoomTarget] = useState<Child | null>(null);
+  const [contactTarget, setContactTarget] = useState<Child | null>(null);
+
+  const filteredChildren = useMemo(() => {
+    const query = search.trim().toLowerCase();
+    return CHILDREN.filter((child) => {
+      if (roomFilter !== "All Rooms" && child.room !== roomFilter) return false;
+      if (statusFilter !== "All Status" && child.status !== statusFilter) return false;
+      if (
+        query &&
+        !child.name.toLowerCase().includes(query) &&
+        !child.parentName.toLowerCase().includes(query)
+      )
+        return false;
+      return true;
+    });
+  }, [search, roomFilter, statusFilter]);
+
   return (
     <div className="overflow-hidden rounded-xl bg-white shadow-sm">
       <div className="flex flex-col gap-3 p-4">
@@ -166,6 +227,8 @@ export function ChildrenTable() {
           <div className="relative">
             <Search className="absolute top-1/2 left-2 size-4 -translate-y-1/2 text-muted-text" />
             <Input
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
               placeholder="Search children, parents…"
               className="h-8 w-full sm:w-58 rounded-lg border-[rgba(45,24,16,0.12)] bg-[#F5EDD8] pl-8 text-xs"
             />
@@ -175,8 +238,12 @@ export function ChildrenTable() {
           <span className="font-[family-name:var(--font-nunito)] text-xs text-muted-text">
             Filter by:
           </span>
-          <FilterDropdown label="All Rooms" options={ROOMS} />
-          <FilterDropdown label="All Status" options={STATUSES} />
+          <FilterDropdown label={roomFilter} options={ROOMS} onSelect={setRoomFilter} />
+          <FilterDropdown
+            label={statusFilter}
+            options={STATUSES}
+            onSelect={(option) => setStatusFilter(option as "All Status" | ChildStatus)}
+          />
         </div>
       </div>
       {/* Desktop table */}
@@ -198,15 +265,35 @@ export function ChildrenTable() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {CHILDREN.map((child) => (
-              <ChildRow key={child.id} child={child} />
-            ))}
+            {filteredChildren.length === 0 ? (
+              <TableRow>
+                <TableCell colSpan={9} className="py-10 text-center font-[family-name:var(--font-nunito)] text-sm text-muted-text">
+                  No children match your search or filters.
+                </TableCell>
+              </TableRow>
+            ) : (
+              filteredChildren.map((child) => (
+                <ChildRow
+                  key={child.id}
+                  child={child}
+                  onLog={(c, mode) => setLogTarget({ child: c, mode })}
+                  onReassign={setReassignTarget}
+                  onChangeRoom={setRoomTarget}
+                  onContact={setContactTarget}
+                />
+              ))
+            )}
           </TableBody>
         </Table>
       </div>
       {/* Mobile card list */}
       <div className="flex flex-col gap-2 px-4 pb-4 lg:hidden">
-        {CHILDREN.map((child) => (
+        {filteredChildren.length === 0 && (
+          <p className="py-6 text-center font-[family-name:var(--font-nunito)] text-sm text-muted-text">
+            No children match your search or filters.
+          </p>
+        )}
+        {filteredChildren.map((child) => (
           <Link
             key={child.id}
             href={`/children/${child.id}`}
@@ -243,6 +330,21 @@ export function ChildrenTable() {
           </Link>
         ))}
       </div>
+
+      {logTarget && (
+        <LogActivityModal
+          mode={logTarget.mode}
+          child={logTarget.child}
+          onClose={() => setLogTarget(null)}
+        />
+      )}
+      {reassignTarget && (
+        <ReassignCaregiverModal child={reassignTarget} onClose={() => setReassignTarget(null)} />
+      )}
+      {roomTarget && <ChangeRoomModal child={roomTarget} onClose={() => setRoomTarget(null)} />}
+      {contactTarget && (
+        <ContactGuardianModal child={contactTarget} onClose={() => setContactTarget(null)} />
+      )}
     </div>
   );
 }

@@ -31,6 +31,8 @@ export const NAV_ITEMS: NavItem[] = [
     icon: "staff",
     subItems: [
       { label: "Staff", href: "/staff" },
+      { label: "Attendance Log", href: "/staff", tab: "attendance-log" },
+      { label: "Role Management", href: "/staff", tab: "role-management" },
       { label: "Leaderboard", href: "/staff", tab: "leaderboard" },
       { label: "Payroll", href: "/staff", tab: "payroll" },
       { label: "Leave Management", href: "/staff", tab: "leave-management" },
