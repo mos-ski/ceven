@@ -53,6 +53,12 @@ const statsRow2: StatCardData[] = [
   { label: "Tasks Overdue", value: "03", sub: "11 Total Pending", subColor: "#6b7280" },
 ];
 
+const INSIGHT_TAG_ROUTES: Record<string, string> = {
+  "Health & Wellness": "/children",
+  "Finance & Invoice": "/finance",
+  "Creche Performance": "/staff?tab=compliance-safety",
+};
+
 const aiInsights = [
   {
     color: "#d4522f",
@@ -251,9 +257,12 @@ function CustomizeQuickActionsModal({
 
 // ── Shared sub-components ─────────────────────────────────────────────────────
 
-function LinkArrow({ label }: { label: string }) {
+function LinkArrow({ label, onClick }: { label: string; onClick?: () => void }) {
   return (
-    <button className="flex items-center gap-1 font-[family-name:var(--font-nunito)] text-xs font-bold text-[#3b2513] hover:opacity-70">
+    <button
+      onClick={onClick}
+      className="flex items-center gap-1 font-[family-name:var(--font-nunito)] text-xs font-bold text-[#3b2513] hover:opacity-70"
+    >
       {label}
       <ArrowUpRight className="h-4 w-4" />
     </button>
@@ -531,7 +540,7 @@ export default function DashboardPage() {
                       AI DAILY BRIEF
                     </span>
                   </div>
-                  <LinkArrow label="Open AI Center" />
+                  <LinkArrow label="Open AI Center" onClick={() => router.push("/intelligence")} />
                 </div>
                 <p className="font-[family-name:var(--font-nunito)] text-sm">
                   <span className="text-[#6b7280]">Today&apos;s report</span>
@@ -557,7 +566,10 @@ export default function DashboardPage() {
                       <span className="rounded-full bg-[#edd9c0] px-2 py-1 font-[family-name:var(--font-urbanist)] text-[8px] text-[#6b7280]">
                         {insight.tag}
                       </span>
-                      <button className="font-[family-name:var(--font-nunito)] text-xs font-semibold text-[#ba733e] hover:opacity-70">
+                      <button
+                        onClick={() => router.push(INSIGHT_TAG_ROUTES[insight.tag] ?? "/intelligence")}
+                        className="font-[family-name:var(--font-nunito)] text-xs font-semibold text-[#ba733e] hover:opacity-70"
+                      >
                         Take Action
                       </button>
                     </div>
@@ -573,7 +585,7 @@ export default function DashboardPage() {
                   <h3 className="font-[family-name:var(--font-nunito)] text-base font-medium text-black">
                     Upcoming Events
                   </h3>
-                  <LinkArrow label="Go to Calendar" />
+                  <LinkArrow label="Go to Calendar" onClick={() => router.push("/communication?tab=events-calendar")} />
                 </div>
 
                 <div className="flex flex-col gap-3">
@@ -601,7 +613,7 @@ export default function DashboardPage() {
                   <h3 className="font-[family-name:var(--font-nunito)] text-base font-medium text-black">
                     Room Occupancy
                   </h3>
-                  <LinkArrow label="View All" />
+                  <LinkArrow label="View All" onClick={() => router.push("/children?tab=rooms-classes")} />
                 </div>
 
                 <div className="flex flex-col gap-3">
@@ -637,7 +649,7 @@ export default function DashboardPage() {
                   <h3 className="font-[family-name:var(--font-nunito)] text-base font-medium text-black">
                     Live Activities
                   </h3>
-                  <LinkArrow label="Go to Daily Operations" />
+                  <LinkArrow label="Go to Daily Operations" onClick={() => router.push("/daily-operations")} />
                 </div>
 
                 <div className="flex flex-col">
@@ -673,7 +685,7 @@ export default function DashboardPage() {
                 <h3 className="font-[family-name:var(--font-nunito)] text-base font-medium text-black">
                   Outstanding Payments
                 </h3>
-                <LinkArrow label="View All" />
+                <LinkArrow label="View All" onClick={() => router.push("/finance")} />
               </div>
               {/* Desktop table */}
               <div className="hidden overflow-hidden rounded-xl shadow-[0px_4px_8px_-2px_rgba(16,24,40,0.1),0px_2px_4px_-2px_rgba(16,24,40,0.06)] lg:block">
@@ -742,7 +754,7 @@ export default function DashboardPage() {
                 <h3 className="font-[family-name:var(--font-nunito)] text-base font-medium text-black">
                   Pending Enrollments
                 </h3>
-                <LinkArrow label="View All" />
+                <LinkArrow label="View All" onClick={() => router.push("/children?tab=enrolment-waitlist")} />
               </div>
               {/* Desktop table */}
               <div className="hidden overflow-hidden rounded-xl shadow-[0px_4px_8px_-2px_rgba(16,24,40,0.1),0px_2px_4px_-2px_rgba(16,24,40,0.06)] lg:block">
