@@ -1,6 +1,6 @@
 "use client";
 
-import { Pencil, Plus } from "lucide-react";
+import { Pencil, Plus, X } from "lucide-react";
 import { useState } from "react";
 
 import { Checkbox } from "@/components/ui/checkbox";
@@ -12,11 +12,13 @@ import {
   AI_GRADIENT_OPTIONS,
   AI_TONE_OPTIONS,
   FEE_PLANS,
+  FEE_PLAN_DURATIONS,
   INITIAL_NOTIFICATION_PREFS,
   MOCK_CRECHE_PROFILE,
   MOCK_SECURITY_PROFILE,
   OTHER_APPS,
   ROLE_TEMPLATES,
+  type FeePlanCycle,
   type NotificationPref,
   type RoleStatus,
   type RoleTemplate,
@@ -258,12 +260,99 @@ function SecuritySection() {
   );
 }
 
+function NewPlanModal({
+  onClose,
+  onCreate,
+}: {
+  onClose: () => void;
+  onCreate: (plan: { name: string; amount: string; cycle: FeePlanCycle }) => void;
+}) {
+  const [name, setName] = useState("");
+  const [amount, setAmount] = useState("");
+  const [cycle, setCycle] = useState<FeePlanCycle>("Daily");
+
+  const canSubmit = name.trim() !== "" && amount.trim() !== "";
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
+      <div className="relative flex max-h-[90vh] w-full max-w-[640px] flex-col overflow-y-auto rounded-[20px] border-6 border-[#faf2e1] bg-white shadow-2xl">
+        <div className="sticky top-0 z-10 flex items-start justify-between border-b border-[#e6ebf3] bg-white px-6 py-5">
+          <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#171f26]">New Plan</h2>
+          <button onClick={onClose} aria-label="Close modal" className="rounded p-1 text-[#6b7280] hover:text-[#2d1810]">
+            <X className="size-5" />
+          </button>
+        </div>
+
+        <div className="flex flex-col gap-4 px-6 py-5">
+          <div className="flex flex-col gap-1">
+            <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">Plan Name</label>
+            <input
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="e.g. Daily"
+              className="h-[52px] w-full rounded-xl border border-[#e6ebf3] px-4 font-[family-name:var(--font-nunito)] text-sm text-[#111] outline-none placeholder:text-[#9ca3af] focus:ring-2 focus:ring-[#c47b2c]"
+            />
+          </div>
+          <div className="flex flex-col gap-1">
+            <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">Amount</label>
+            <input
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              placeholder="₦"
+              className="h-[52px] w-full rounded-xl border border-[#e6ebf3] px-4 font-[family-name:var(--font-nunito)] text-sm text-[#111] outline-none placeholder:text-[#9ca3af] focus:ring-2 focus:ring-[#c47b2c]"
+            />
+          </div>
+          <div className="flex flex-col gap-1">
+            <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">Duration</label>
+            <select
+              value={cycle}
+              onChange={(e) => setCycle(e.target.value as FeePlanCycle)}
+              className="h-[52px] w-full rounded-xl border border-[#e6ebf3] px-4 font-[family-name:var(--font-nunito)] text-sm text-[#111] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+            >
+              {FEE_PLAN_DURATIONS.map((d) => (
+                <option key={d} value={d}>
+                  {d}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        <div className="sticky bottom-0 z-10 flex items-center justify-end gap-4 border-t border-[#e6ebf3] bg-white px-6 py-4">
+          <button
+            onClick={onClose}
+            className="flex h-11 items-center justify-center rounded-lg border border-[#3b2513] px-5 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#3b2513]"
+          >
+            Cancel
+          </button>
+          <button
+            disabled={!canSubmit}
+            onClick={() => {
+              onCreate({ name, amount, cycle });
+              onClose();
+            }}
+            className="flex h-11 w-40 items-center justify-center rounded-lg bg-[#3b2513] font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#faf2e1] disabled:cursor-not-allowed disabled:bg-[#e0bfa0]"
+          >
+            Create Plan
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function FeePlansSection() {
+  const [plans, setPlans] = useState(FEE_PLANS);
+  const [newPlanOpen, setNewPlanOpen] = useState(false);
+
   return (
     <div className="overflow-hidden rounded-xl bg-white shadow-sm">
       <div className="flex flex-wrap items-center justify-between gap-3 p-5">
         <p className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">Fee Plans</p>
-        <button className="flex items-center gap-1.5 rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]">
+        <button
+          onClick={() => setNewPlanOpen(true)}
+          className="flex items-center gap-1.5 rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]"
+        >
           <Plus className="size-3.5" />
           Add Plan
         </button>
@@ -280,7 +369,7 @@ function FeePlansSection() {
             </tr>
           </thead>
           <tbody className="divide-y divide-[#eaecf0]">
-            {FEE_PLANS.map((plan) => (
+            {plans.map((plan) => (
               <tr key={plan.id} className="hover:bg-[#faf9f7]">
                 <td className="px-5 py-3 text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">{plan.name}</td>
                 <td className="px-5 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{plan.amount}</td>
@@ -301,7 +390,7 @@ function FeePlansSection() {
         </table>
       </div>
       <div className="flex flex-col gap-2 p-4 lg:hidden">
-        {FEE_PLANS.map((plan) => (
+        {plans.map((plan) => (
           <div key={plan.id} className="rounded-xl border border-[#eaecf0] p-3">
             <div className="flex items-center justify-between">
               <span className="font-[family-name:var(--font-nunito)] text-sm font-bold text-[#2d1810]">{plan.name}</span>
@@ -313,6 +402,25 @@ function FeePlansSection() {
           </div>
         ))}
       </div>
+
+      {newPlanOpen && (
+        <NewPlanModal
+          onClose={() => setNewPlanOpen(false)}
+          onCreate={({ name, amount, cycle }) =>
+            setPlans((prev) => [
+              ...prev,
+              {
+                id: `fee-${prev.length + 1}`,
+                name,
+                amount: amount.startsWith("₦") ? amount : `₦${amount}`,
+                cycle,
+                appliesTo: "All Rooms",
+                status: "Draft",
+              },
+            ])
+          }
+        />
+      )}
     </div>
   );
 }

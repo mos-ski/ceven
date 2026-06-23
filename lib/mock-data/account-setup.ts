@@ -326,11 +326,15 @@ export const MOCK_SECURITY_PROFILE = {
 
 // ── Settings: Fee Plans ───────────────────────────────────────────────────────
 
+export type FeePlanCycle = "Daily" | "Monthly" | "Termly" | "Annually";
+
+export const FEE_PLAN_DURATIONS: FeePlanCycle[] = ["Daily", "Monthly", "Termly", "Annually"];
+
 export type FeePlan = {
   id: string;
   name: string;
   amount: string;
-  cycle: "Termly" | "Monthly" | "Annually";
+  cycle: FeePlanCycle;
   appliesTo: string;
   status: "Active" | "Draft";
 };
