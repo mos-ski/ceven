@@ -1,4 +1,4 @@
-export type StaffStatus = "Active" | "Absent" | "Pending";
+export type StaffStatus = "Active" | "Absent" | "Pending" | "Suspended";
 
 export type StaffMember = {
   id: string;
@@ -71,6 +71,21 @@ export const STAFF_ROLE_OPTIONS = [
 ] as const;
 
 export const STAFF_CLASS_OPTIONS = ["Lion", "Sun flowers", "Bloomers"] as const;
+
+export const STAFF_PERMISSION_GROUPS = [
+  "Child Management",
+  "Daily Operations",
+  "Staff Management",
+  "Finance",
+  "Communication",
+] as const;
+
+export const DEACTIVATION_REASONS = [
+  "No longer employed at this creche",
+  "On extended leave",
+  "Policy or conduct violation",
+  "Requested by staff member",
+] as const;
 
 // ─── Leaderboard ──────────────────────────────────────────────────────────────
 

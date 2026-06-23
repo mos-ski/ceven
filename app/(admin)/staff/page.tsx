@@ -19,8 +19,9 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { STAFF } from "@/lib/mock-data/staff";
+import { STAFF, type StaffMember } from "@/lib/mock-data/staff";
 import { AddStaffModal } from "@/components/admin/staff/add-staff-modal";
+import { DeactivateMemberModal, EditMemberModal } from "@/components/admin/staff/staff-member-modals";
 import { LeaderboardTab } from "@/components/admin/staff/leaderboard-tab";
 import { PayrollTab } from "@/components/admin/staff/payroll-tab";
 import { LeaveManagementTab } from "@/components/admin/staff/leave-management-tab";
@@ -132,6 +133,7 @@ function StatusBadge({ status }: { status: string }) {
     Active: "bg-[#ecfff8] border border-[#009061] text-[#009061]",
     Absent: "bg-[#fff6e6] border border-[#cc8000] text-[#cc8000]",
     Pending: "bg-[#f3f4f6] border border-[#9ca3af] text-[#6b7280]",
+    Suspended: "bg-[#fde8e8] border border-[#ef4444] text-[#ef4444]",
   };
 
   return (
@@ -369,6 +371,8 @@ function StaffPageInner() {
 
   const [showBanner, setShowBanner] = useState(true);
   const [addStaffOpen, setAddStaffOpen] = useState(false);
+  const [editingMember, setEditingMember] = useState<StaffMember | null>(null);
+  const [deactivatingMember, setDeactivatingMember] = useState<StaffMember | null>(null);
 
   // Role modal state
   const [roleModal, setRoleModal] = useState<
@@ -564,6 +568,12 @@ function StaffPageInner() {
                         <DropdownMenuContent>
                           <DropdownMenuItem render={<Link href={`/staff/${staff.id}`} />}>
                             View Profile
+                          </DropdownMenuItem>
+                          <DropdownMenuItem onClick={() => setEditingMember(staff)}>
+                            Edit Member
+                          </DropdownMenuItem>
+                          <DropdownMenuItem onClick={() => setDeactivatingMember(staff)}>
+                            Deactivate
                           </DropdownMenuItem>
                         </DropdownMenuContent>
                       </DropdownMenu>
@@ -865,6 +875,20 @@ function StaffPageInner() {
 
       {/* ── Modals (rendered outside the scrollable content) ─────────────────── */}
       {addStaffOpen && <AddStaffModal onClose={() => setAddStaffOpen(false)} />}
+      {editingMember && (
+        <EditMemberModal
+          member={editingMember}
+          onClose={() => setEditingMember(null)}
+          onSave={() => setEditingMember(null)}
+        />
+      )}
+      {deactivatingMember && (
+        <DeactivateMemberModal
+          member={deactivatingMember}
+          onClose={() => setDeactivatingMember(null)}
+          onConfirm={() => setDeactivatingMember(null)}
+        />
+      )}
       {(roleModal === "create" || roleModal === "edit") && (
         <RoleFormModal
           mode={roleModal}

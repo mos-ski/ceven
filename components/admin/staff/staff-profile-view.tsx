@@ -32,6 +32,7 @@ const profileBadgeStyles: Record<StaffMember["status"], string> = {
   Active: "border-[#009061] bg-[#ecfff8] text-[#009061]",
   Absent: "border-[#cc8000] bg-[#fff6e6] text-[#cc8000]",
   Pending: "border-[#9ca3af] bg-[#f3f4f6] text-[#6b7280]",
+  Suspended: "border-[#ef4444] bg-[#fde8e8] text-[#ef4444]",
 };
 
 function getInitials(name: string) {
