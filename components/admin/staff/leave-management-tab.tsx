@@ -5,6 +5,12 @@ import { ChevronDown, Check, ChevronLeft, ChevronRight, X } from "lucide-react";
 
 import { StatCard } from "@/components/admin/stat-card";
 import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
   ACTIVE_LEAVE,
   LEAVE_BALANCES,
   LEAVE_BLOCKED_DAYS,
@@ -171,39 +177,83 @@ function CreateLeavePreferenceModal({ onClose }: { onClose: () => void }) {
   );
 }
 
+type LeaveTypeFilter = "All Types" | "Annual" | "Sick" | "Others";
+const LEAVE_TYPE_FILTERS: LeaveTypeFilter[] = ["All Types", "Annual", "Sick", "Others"];
+
 function LeaveBalancesTable() {
+  const [typeFilter, setTypeFilter] = useState<LeaveTypeFilter>("All Types");
+
+  const showAnnual = typeFilter === "All Types" || typeFilter === "Annual";
+  const showSick = typeFilter === "All Types" || typeFilter === "Sick";
+  const showOthers = typeFilter === "All Types" || typeFilter === "Others";
+
   return (
     <div className="overflow-hidden rounded-xl bg-white shadow-sm">
       <div className="flex flex-wrap items-center justify-between gap-3 p-4">
         <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
           Leave Balance (2025)
         </h2>
-        <button className="flex items-center gap-1.5 rounded-lg border border-[#d0d5dd] bg-white px-3 py-1.5 font-[family-name:var(--font-nunito)] text-xs">
-          Leave Type
-          <ChevronDown className="size-3" />
-        </button>
+        <DropdownMenu>
+          <DropdownMenuTrigger
+            render={
+              <button className="flex items-center gap-1.5 rounded-lg border border-[#d0d5dd] bg-white px-3 py-1.5 font-[family-name:var(--font-nunito)] text-xs" />
+            }
+          >
+            {typeFilter}
+            <ChevronDown className="size-3" />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            {LEAVE_TYPE_FILTERS.map((option) => (
+              <DropdownMenuItem key={option} onClick={() => setTypeFilter(option)}>
+                {option}
+              </DropdownMenuItem>
+            ))}
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
       <div className="hidden overflow-x-auto lg:block">
         <table className="w-full text-left">
           <thead>
             <tr className="bg-[#edd9c0]">
-              {["Staff", "Annual Entitled", "Annual Taken", "Annual Left", "Sick Taken", "Sick Remaining", "Others"].map((h) => (
-                <th key={h} className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]">
-                  {h}
-                </th>
-              ))}
+              <th className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]">Staff</th>
+              {showAnnual && (
+                <>
+                  <th className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]">Annual Entitled</th>
+                  <th className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]">Annual Taken</th>
+                  <th className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]">Annual Left</th>
+                </>
+              )}
+              {showSick && (
+                <>
+                  <th className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]">Sick Taken</th>
+                  <th className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]">Sick Remaining</th>
+                </>
+              )}
+              {showOthers && (
+                <th className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]">Others</th>
+              )}
             </tr>
           </thead>
           <tbody className="divide-y divide-[#eaecf0]">
             {LEAVE_BALANCES.map((b) => (
               <tr key={b.id} className="hover:bg-[#faf9f7]">
                 <td className="px-4 py-3 text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">{b.name}</td>
-                <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{b.annualEntitled} days</td>
-                <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{b.annualTaken} days</td>
-                <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{b.annualEntitled - b.annualTaken} days</td>
-                <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{b.sickTaken}</td>
-                <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{b.sickRemaining}</td>
-                <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{b.others}</td>
+                {showAnnual && (
+                  <>
+                    <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{b.annualEntitled} days</td>
+                    <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{b.annualTaken} days</td>
+                    <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{b.annualEntitled - b.annualTaken} days</td>
+                  </>
+                )}
+                {showSick && (
+                  <>
+                    <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{b.sickTaken}</td>
+                    <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{b.sickRemaining}</td>
+                  </>
+                )}
+                {showOthers && (
+                  <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{b.others}</td>
+                )}
               </tr>
             ))}
           </tbody>

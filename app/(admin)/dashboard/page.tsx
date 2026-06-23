@@ -9,16 +9,22 @@ import {
   ChevronDown,
   ClipboardList,
   FileText,
+  Minus,
   Plus,
   QrCode,
   Send,
+  Settings2,
   ShieldAlert,
   TrendingUp,
+  UserPlus,
   X,
 } from "lucide-react";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import EnrollChildModal from "@/components/dashboard/enroll-child-modal";
 import NotificationPanel from "@/components/dashboard/notification-panel";
+import { LogActivityModal, type LogActivityMode } from "@/components/admin/children/log-activity-modal";
+import NewInvoiceModal from "@/components/admin/finance/new-invoice-modal";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -121,14 +127,127 @@ const quickPrompts = [
   "Flag welfare concerns",
 ];
 
-const quickActions = [
-  { icon: Plus, label: "Add Child", color: "#3b2513" },
-  { icon: QrCode, label: "QR Station", color: "#1d4ed8" },
-  { icon: ClipboardList, label: "New Log", color: "#059669" },
-  { icon: ShieldAlert, label: "Raise Incident", color: "#dc2626" },
-  { icon: FileText, label: "New Invoice", color: "#7c3aed" },
-  { icon: BarChart2, label: "View Reports", color: "#c47b2c" },
+type QuickActionId =
+  | "add-child"
+  | "qr-station"
+  | "new-log"
+  | "raise-incident"
+  | "add-caregiver"
+  | "new-invoice"
+  | "view-reports";
+
+const ALL_QUICK_ACTIONS: { id: QuickActionId; icon: typeof Plus; label: string; color: string }[] = [
+  { id: "add-child", icon: Plus, label: "Add Child", color: "#3b2513" },
+  { id: "qr-station", icon: QrCode, label: "QR Station", color: "#1d4ed8" },
+  { id: "new-log", icon: ClipboardList, label: "New Log", color: "#059669" },
+  { id: "raise-incident", icon: ShieldAlert, label: "Raise Incident", color: "#dc2626" },
+  { id: "add-caregiver", icon: UserPlus, label: "Add Caregiver", color: "#0891b2" },
+  { id: "new-invoice", icon: FileText, label: "New Invoice", color: "#7c3aed" },
+  { id: "view-reports", icon: BarChart2, label: "View Reports", color: "#c47b2c" },
 ];
+
+const DEFAULT_QUICK_ACTION_IDS: QuickActionId[] = [
+  "add-child",
+  "qr-station",
+  "new-log",
+  "raise-incident",
+  "new-invoice",
+  "view-reports",
+];
+
+function CustomizeQuickActionsModal({
+  selectedIds,
+  onSave,
+  onClose,
+}: {
+  selectedIds: QuickActionId[];
+  onSave: (ids: QuickActionId[]) => void;
+  onClose: () => void;
+}) {
+  const [selected, setSelected] = useState<QuickActionId[]>(selectedIds);
+
+  function toggle(id: QuickActionId) {
+    setSelected((prev) => (prev.includes(id) ? prev.filter((i) => i !== id) : prev.length < 12 ? [...prev, id] : prev));
+  }
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
+      <div className="relative flex max-h-[90vh] w-full max-w-[680px] flex-col overflow-y-auto rounded-[20px] border-6 border-[#faf2e1] bg-white shadow-2xl">
+        <div className="sticky top-0 z-10 flex items-start justify-between border-b border-[#e6ebf3] bg-white px-6 py-5">
+          <div>
+            <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#171f26]">
+              Customize Quick Actions
+            </h2>
+            <p className="mt-1 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+              Choose which actions appear on your dashboard quick actions bar
+            </p>
+          </div>
+          <button onClick={onClose} aria-label="Close modal" className="rounded p-1 text-[#6b7280] hover:text-[#2d1810]">
+            <X className="size-5" />
+          </button>
+        </div>
+
+        <div className="flex flex-col gap-4 px-6 py-5">
+          <p className="font-[family-name:var(--font-nunito)] text-xs text-black">
+            Selected (<span className="font-semibold">Max of 12</span>)
+          </p>
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+            {ALL_QUICK_ACTIONS.filter((a) => selected.includes(a.id)).map(({ id, icon: Icon, label }) => (
+              <button
+                key={id}
+                onClick={() => toggle(id)}
+                className="relative flex flex-col items-center gap-4 rounded-xl border border-[#d4a67f] bg-[#faf2e1] px-5 py-6"
+              >
+                <Minus className="absolute right-2 top-2 size-5 rounded-full border border-[#d4a67f] bg-white p-0.5 text-[#3b2513]" />
+                <Icon className="size-6 text-[#3b2513]" />
+                <span className="flex items-center gap-1 font-[family-name:var(--font-nunito)] text-xs font-bold text-[#3b2513]">
+                  {label}
+                  <Plus className="size-3.5" />
+                </span>
+              </button>
+            ))}
+          </div>
+
+          <p className="mt-2 font-[family-name:var(--font-nunito)] text-xs text-black">Add actions from below</p>
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+            {ALL_QUICK_ACTIONS.filter((a) => !selected.includes(a.id)).map(({ id, icon: Icon, label }) => (
+              <button
+                key={id}
+                onClick={() => toggle(id)}
+                className="relative flex flex-col items-center gap-4 rounded-xl border border-[#ccd2dc] px-5 py-6"
+              >
+                <Plus className="absolute right-2 top-2 size-5 rounded-full border border-[#ccd2dc] p-0.5 text-[#3b2513]" />
+                <Icon className="size-6 text-[#3b2513]" />
+                <span className="flex items-center gap-1 font-[family-name:var(--font-nunito)] text-xs font-bold text-[#3b2513]">
+                  {label}
+                  <Plus className="size-3.5" />
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="sticky bottom-0 z-10 flex items-center justify-end gap-4 border-t border-[#e6ebf3] bg-white px-6 py-4">
+          <button
+            onClick={onClose}
+            className="flex h-11 items-center justify-center rounded-lg border border-[#3b2513] px-5 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#3b2513]"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={() => {
+              onSave(selected);
+              onClose();
+            }}
+            className="flex h-11 w-40 items-center justify-center rounded-lg bg-[#3b2513] font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#faf2e1]"
+          >
+            Save Changes
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 // ── Shared sub-components ─────────────────────────────────────────────────────
 
@@ -261,9 +380,26 @@ function AIChatPanel({ onClose }: { onClose: () => void }) {
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 export default function DashboardPage() {
+  const router = useRouter();
   const [aiPanelOpen, setAiPanelOpen] = useState(false);
   const [notificationOpen, setNotificationOpen] = useState(false);
   const [enrollOpen, setEnrollOpen] = useState(false);
+  const [logActivityMode, setLogActivityMode] = useState<LogActivityMode | null>(null);
+  const [invoiceOpen, setInvoiceOpen] = useState(false);
+  const [quickActionIds, setQuickActionIds] = useState<QuickActionId[]>(DEFAULT_QUICK_ACTION_IDS);
+  const [customizeOpen, setCustomizeOpen] = useState(false);
+
+  const quickActions = ALL_QUICK_ACTIONS.filter((a) => quickActionIds.includes(a.id));
+
+  function handleQuickAction(id: QuickActionId) {
+    if (id === "add-child") setEnrollOpen(true);
+    else if (id === "qr-station") router.push("/daily-operations");
+    else if (id === "new-log") setLogActivityMode("daily-report");
+    else if (id === "raise-incident") setLogActivityMode("incident");
+    else if (id === "add-caregiver") router.push("/children?tab=caregivers");
+    else if (id === "new-invoice") setInvoiceOpen(true);
+    else if (id === "view-reports") router.push("/intelligence?tab=reports");
+  }
 
   return (
     <>
@@ -339,9 +475,10 @@ export default function DashboardPage() {
           {/* Quick Actions — only visible when AI panel is open */}
           {aiPanelOpen && (
             <div className="flex items-center gap-3 overflow-x-auto rounded-xl bg-[#faf2e1] px-4 py-3">
-              {quickActions.map(({ icon: Icon, label, color }) => (
+              {quickActions.map(({ id, icon: Icon, label, color }) => (
                 <button
                   key={label}
+                  onClick={() => handleQuickAction(id)}
                   className="flex shrink-0 flex-col items-center gap-1.5 rounded-xl border border-[#edd9c0] bg-white px-4 py-3 hover:shadow-sm"
                 >
                   <Icon className="h-5 w-5" style={{ color }} />
@@ -350,6 +487,14 @@ export default function DashboardPage() {
                   </span>
                 </button>
               ))}
+              <button
+                onClick={() => setCustomizeOpen(true)}
+                aria-label="Customize Quick Actions"
+                className="flex shrink-0 flex-col items-center gap-1.5 rounded-xl border border-dashed border-[#d4a67f] bg-white px-4 py-3 text-[#3b2513] hover:shadow-sm"
+              >
+                <Settings2 className="h-5 w-5" />
+                <span className="font-[family-name:var(--font-urbanist)] text-xs font-medium">Customize</span>
+              </button>
             </div>
           )}
 
@@ -674,6 +819,17 @@ export default function DashboardPage() {
 
       {/* Enroll Child Modal */}
       {enrollOpen && <EnrollChildModal onClose={() => setEnrollOpen(false)} />}
+      {logActivityMode && (
+        <LogActivityModal mode={logActivityMode} onClose={() => setLogActivityMode(null)} />
+      )}
+      <NewInvoiceModal open={invoiceOpen} onOpenChange={setInvoiceOpen} />
+      {customizeOpen && (
+        <CustomizeQuickActionsModal
+          selectedIds={quickActionIds}
+          onSave={setQuickActionIds}
+          onClose={() => setCustomizeOpen(false)}
+        />
+      )}
     </>
   );
 }

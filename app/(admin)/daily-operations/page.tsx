@@ -5,12 +5,24 @@ import { ChevronDown, Download, Printer, Search } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import { Badge } from "@/components/ui/badge";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { FacilitiesView } from "@/components/admin/daily-operations/facilities-view";
 import { HealthIncidentsView } from "@/components/admin/daily-operations/health-incidents-view";
 import { InventoryView } from "@/components/admin/daily-operations/inventory-view";
 import { MedicationView } from "@/components/admin/daily-operations/medication-view";
 import { TasksView } from "@/components/admin/daily-operations/tasks-view";
+import { CHILDREN } from "@/lib/mock-data/children";
+import { STAFF } from "@/lib/mock-data/staff";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -68,15 +80,216 @@ function FilterDropdown({ label }: { label: string }) {
 
 // ── VIEW 1: Reception QR Station ──────────────────────────────────────────────
 
+const CHECK_IN_ACTIONS = ["Check In", "Check Out"];
+const EXCEPTION_TYPES = ["Late pickup", "Unauthorized pickup", "No ID presented", "QR scanner offline", "Other"];
+
+function ManualCheckInModal({ open, onOpenChange }: { open: boolean; onOpenChange: (open: boolean) => void }) {
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Manual Check-In</DialogTitle>
+          <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+            Check in manually for one or 2 reasons
+          </p>
+        </DialogHeader>
+
+        <div className="flex flex-col gap-4 overflow-y-auto px-6 py-5">
+          <div className="flex flex-col gap-1.5">
+            <Label htmlFor="checkin-action">Action</Label>
+            <select
+              id="checkin-action"
+              defaultValue=""
+              className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+            >
+              <option value="" disabled>
+                Select
+              </option>
+              {CHECK_IN_ACTIONS.map((a) => (
+                <option key={a} value={a}>
+                  {a}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <Label htmlFor="checkin-name">Name</Label>
+            <select
+              id="checkin-name"
+              defaultValue=""
+              className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+            >
+              <option value="" disabled>
+                Child Name
+              </option>
+              {CHILDREN.map((c) => (
+                <option key={c.id} value={c.name}>
+                  {c.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <Label htmlFor="checkin-time">Time</Label>
+            <Input id="checkin-time" type="time" className="h-9" />
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <Label htmlFor="checkin-reason">Reason For Override</Label>
+            <textarea
+              id="checkin-reason"
+              rows={3}
+              placeholder="Why this check-in is being recorded manually..."
+              className="resize-none rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+            />
+          </div>
+        </div>
+
+        <DialogFooter>
+          <DialogClose
+            render={
+              <Button
+                variant="outline"
+                className="h-9 rounded-lg border-[#d0d5dd] px-4 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]"
+              />
+            }
+          >
+            Cancel
+          </DialogClose>
+          <Button
+            onClick={() => onOpenChange(false)}
+            className="h-9 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]"
+          >
+            Confirm and Record
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+function LogExceptionModal({ open, onOpenChange }: { open: boolean; onOpenChange: (open: boolean) => void }) {
+  const [personType, setPersonType] = useState<"Staff" | "Child">("Staff");
+
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Log Exception</DialogTitle>
+          <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+            Check in manually for one or 2 reasons
+          </p>
+        </DialogHeader>
+
+        <div className="flex flex-col gap-4 overflow-y-auto px-6 py-5">
+          <div className="flex flex-col gap-1.5">
+            <Label htmlFor="exception-person">Person</Label>
+            <select
+              id="exception-person"
+              value={personType}
+              onChange={(e) => setPersonType(e.target.value as "Staff" | "Child")}
+              className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+            >
+              <option value="Staff">Staff</option>
+              <option value="Child">Child</option>
+            </select>
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <Label htmlFor="exception-name">Name</Label>
+            <select
+              id="exception-name"
+              defaultValue=""
+              className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+            >
+              <option value="" disabled>
+                Person&apos;s name
+              </option>
+              {(personType === "Staff" ? STAFF : CHILDREN).map((p) => (
+                <option key={p.id} value={p.name}>
+                  {p.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <Label htmlFor="exception-type">Exception Type</Label>
+            <select
+              id="exception-type"
+              defaultValue=""
+              className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+            >
+              <option value="" disabled>
+                Select
+              </option>
+              {EXCEPTION_TYPES.map((t) => (
+                <option key={t} value={t}>
+                  {t}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <Label htmlFor="exception-time">Time</Label>
+            <Input id="exception-time" type="time" className="h-9" />
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <Label htmlFor="exception-note">Additional Note</Label>
+            <textarea
+              id="exception-note"
+              rows={3}
+              placeholder="Describe the exception..."
+              className="resize-none rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+            />
+          </div>
+        </div>
+
+        <DialogFooter>
+          <DialogClose
+            render={
+              <Button
+                variant="outline"
+                className="h-9 rounded-lg border-[#d0d5dd] px-4 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]"
+              />
+            }
+          >
+            Cancel
+          </DialogClose>
+          <Button
+            onClick={() => onOpenChange(false)}
+            className="h-9 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]"
+          >
+            Log Exception
+          </Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
 function QRStationView() {
+  const [checkInOpen, setCheckInOpen] = useState(false);
+  const [exceptionOpen, setExceptionOpen] = useState(false);
+
   return (
     <div className="flex flex-col gap-4">
       {/* Action buttons */}
       <div className="flex flex-col sm:flex-row sm:justify-end gap-3">
-        <button className="flex-1 sm:flex-initial rounded-lg border border-[#3b2513] px-4 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#3b2513]">
+        <button
+          onClick={() => setExceptionOpen(true)}
+          className="flex-1 sm:flex-initial rounded-lg border border-[#3b2513] px-4 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#3b2513]"
+        >
           Log Exception
         </button>
-        <button className="flex-1 sm:flex-initial rounded-lg bg-[#3b2513] px-4 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]">
+        <button
+          onClick={() => setCheckInOpen(true)}
+          className="flex-1 sm:flex-initial rounded-lg bg-[#3b2513] px-4 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]"
+        >
           Manual Check-In
         </button>
       </div>
@@ -228,6 +441,9 @@ function QRStationView() {
           </div>
         </div>
       </div>
+
+      <ManualCheckInModal open={checkInOpen} onOpenChange={setCheckInOpen} />
+      <LogExceptionModal open={exceptionOpen} onOpenChange={setExceptionOpen} />
     </div>
   );
 }
