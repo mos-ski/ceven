@@ -31,8 +31,8 @@ function FinanceContent() {
 
   return (
     <div className="flex flex-col gap-6">
-      {/* Wallet — full width, always visible */}
-      <WalletTab />
+      {/* Wallet — only show when no tab is active (i.e. user clicked "Wallet" in sidebar) */}
+      {!activeTab && <WalletTab />}
 
       {/* Sub-tabs for other finance sections — only show when a tab is active */}
       {activeTab && (

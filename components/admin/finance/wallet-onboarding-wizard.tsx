@@ -1,13 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { Check, ChevronRight, Building2, CreditCard, ShieldCheck } from "lucide-react";
+import { Check, ChevronRight, Building2, CreditCard, ShieldCheck, X } from "lucide-react";
 
 import { NIGERIAN_BANKS, checkNameMatch } from "@/lib/mock-data/wallet";
 
 type Props = {
   open: boolean;
   onComplete: () => void;
+  onClose: () => void;
 };
 
 const STEPS = [
@@ -24,7 +25,7 @@ function FieldLabel({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function WalletOnboardingWizard({ open, onComplete }: Props) {
+export default function WalletOnboardingWizard({ open, onComplete, onClose }: Props) {
   const [step, setStep] = useState<1 | 2 | 3>(1);
   const [businessName, setBusinessName] = useState("Greg Creche Limited");
   const [rcNumber, setRcNumber] = useState("");
@@ -74,16 +75,26 @@ export default function WalletOnboardingWizard({ open, onComplete }: Props) {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
       <div className="mx-4 flex w-full max-w-[560px] flex-col overflow-hidden rounded-2xl bg-white shadow-2xl">
         {/* Header */}
-        <div className="border-b border-[#eaecf0] px-6 pb-4 pt-6">
-          <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
-            Set Up Your Wallet
-          </h2>
-          <p className="mt-1 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
-            Complete these steps to activate your crèche wallet
-          </p>
+        <div className="flex items-start justify-between border-b border-[#eaecf0] px-6 pb-4 pt-6">
+          <div>
+            <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
+              Set Up Your Wallet
+            </h2>
+            <p className="mt-1 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+              Complete these steps to activate your crèche wallet
+            </p>
+          </div>
+          <button
+            onClick={onClose}
+            className="rounded p-1 text-[#6b7280] hover:text-[#2d1810]"
+          >
+            <X className="size-5" />
+            <span className="sr-only">Close</span>
+          </button>
+        </div>
 
-          {/* Step indicator */}
-          <div className="mt-4 flex items-center gap-2">
+        {/* Step indicator */}
+        <div className="flex items-center gap-2 px-6 pt-4">
             {STEPS.map((s, i) => (
               <div key={s.num} className="flex items-center gap-2">
                 <div
@@ -107,7 +118,6 @@ export default function WalletOnboardingWizard({ open, onComplete }: Props) {
                 {i < STEPS.length - 1 && <ChevronRight className="size-3 text-[#d0d5dd]" />}
               </div>
             ))}
-          </div>
         </div>
 
         {/* Body */}

@@ -62,7 +62,7 @@ export default function WalletTab() {
   });
 
   if (onboardingState === "wizard") {
-    return <WalletOnboardingWizard open onComplete={() => setOnboardingState("complete")} />;
+    return <WalletOnboardingWizard open onComplete={() => setOnboardingState("complete")} onClose={() => setOnboardingState("empty")} />;
   }
 
   if (onboardingState === "empty") {
