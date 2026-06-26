@@ -7,10 +7,12 @@ import { useState } from "react";
 
 type ButtonStyle = "outline" | "current";
 
+type BillingCycle = "monthly" | "quarterly" | "yearly";
+
 type Plan = {
   name: string;
-  price: string;
-  period: string;
+  /** Monthly base price in ₦ */
+  monthlyPrice: number;
   desc: string;
   features: string[];
   button: string;
@@ -37,8 +39,7 @@ type AddOn = {
 const plans: Plan[] = [
   {
     name: "Seedling",
-    price: "₦18,500",
-    period: "/month",
+    monthlyPrice: 18500,
     desc: "Perfect for small creches just getting started.",
     features: ["Up to 20 children", "2 staff accounts", "Basic reporting", "Email support"],
     button: "Subscribe",
@@ -47,8 +48,7 @@ const plans: Plan[] = [
   },
   {
     name: "Nestling Pro",
-    price: "₦45,000",
-    period: "/month",
+    monthlyPrice: 45000,
     desc: "Our most popular plan for growing creches.",
     features: [
       "Up to 60 children",
@@ -64,8 +64,7 @@ const plans: Plan[] = [
   },
   {
     name: "Flourish",
-    price: "₦85,000",
-    period: "/month",
+    monthlyPrice: 85000,
     desc: "For established creches with multiple rooms.",
     features: [
       "Unlimited children",
@@ -80,6 +79,30 @@ const plans: Plan[] = [
     hasAddOns: true,
   },
 ];
+
+// ── Pricing helpers ─────────────────────────────────────────────────────────
+
+function formatNaira(amount: number): string {
+  return `₦${amount.toLocaleString("en-NG")}`;
+}
+
+function getPriceForCycle(monthlyPrice: number, cycle: BillingCycle): number {
+  if (cycle === "quarterly") return Math.round(monthlyPrice * 3 * 0.95); // 5% discount
+  if (cycle === "yearly") return Math.round(monthlyPrice * 12 * 0.8); // 20% discount
+  return monthlyPrice;
+}
+
+function getPerMonthPrice(monthlyPrice: number, cycle: BillingCycle): number {
+  if (cycle === "quarterly") return Math.round(monthlyPrice * 0.95); // 5% discount
+  if (cycle === "yearly") return Math.round(monthlyPrice * 0.8); // 20% discount
+  return monthlyPrice;
+}
+
+function getBillingLabel(cycle: BillingCycle): string {
+  if (cycle === "quarterly") return "/quarter";
+  if (cycle === "yearly") return "/year";
+  return "/month";
+}
 
 const comparisonRows: ComparisonRow[] = [
   { feature: "Children Limit", seedling: "Up to 20", nestling: "Up to 60", flourish: "Unlimited" },
@@ -174,6 +197,8 @@ function StepIndicator({ currentStep, hasAddOns }: { currentStep: 2 | 3 | 4; has
 // ── Step 1: Choose Plan ─────────────────────────────────────────────────────
 
 function Step1({ onNext }: { onNext: (plan: Plan) => void }) {
+  const [billingCycle, setBillingCycle] = useState<BillingCycle>("monthly");
+
   return (
     <div className="pb-8">
       <h1 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
@@ -183,45 +208,79 @@ function Step1({ onNext }: { onNext: (plan: Plan) => void }) {
         Manage your creche subscription and access settings.
       </p>
 
+      {/* Billing cycle toggle */}
+      <div className="mt-6 flex items-center justify-center">
+        <div className="inline-flex rounded-lg border border-[#e6ebf3] bg-white p-1">
+          {(["monthly", "quarterly", "yearly"] as BillingCycle[]).map((cycle) => (
+            <button
+              key={cycle}
+              onClick={() => setBillingCycle(cycle)}
+              className={`rounded-md px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium transition-colors ${
+                billingCycle === cycle
+                  ? "bg-[#3b2513] text-[#faf2e1]"
+                  : "text-[#6b7280] hover:text-[#2d1810]"
+              }`}
+            >
+              {cycle.charAt(0).toUpperCase() + cycle.slice(1)}
+              {cycle === "quarterly" && (
+                <span className="ml-1 text-[10px] text-[#009061]">Save 5%</span>
+              )}
+              {cycle === "yearly" && (
+                <span className="ml-1 text-[10px] text-[#009061]">Save 20%</span>
+              )}
+            </button>
+          ))}
+        </div>
+      </div>
+
       <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {plans.map((plan) => (
-          <div key={plan.name} className="flex flex-col gap-4 rounded-2xl border border-[#edd9c0] bg-white p-6">
-            <div className="flex flex-col gap-1">
-              <p className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
-                {plan.name}
-              </p>
-              <div className="flex items-baseline gap-1">
-                <span className="font-[family-name:var(--font-merriweather)] text-3xl font-bold text-[#2d1810]">
-                  {plan.price}
-                </span>
-                <span className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">{plan.period}</span>
+        {plans.map((plan) => {
+          const total = getPriceForCycle(plan.monthlyPrice, billingCycle);
+          const perMonth = getPerMonthPrice(plan.monthlyPrice, billingCycle);
+          return (
+            <div key={plan.name} className="flex flex-col gap-4 rounded-2xl border border-[#edd9c0] bg-white p-6">
+              <div className="flex flex-col gap-1">
+                <p className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
+                  {plan.name}
+                </p>
+                <div className="flex items-baseline gap-1">
+                  <span className="font-[family-name:var(--font-merriweather)] text-3xl font-bold text-[#2d1810]">
+                    {formatNaira(total)}
+                  </span>
+                  <span className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+                    {getBillingLabel(billingCycle)}
+                  </span>
+                </div>
+                <p className="font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">
+                  {formatNaira(perMonth)}/month{billingCycle !== "monthly" && " (billed " + billingCycle + ")"}
+                </p>
+                <p className="mt-1 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">{plan.desc}</p>
               </div>
-              <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">{plan.desc}</p>
+
+              <ul className="flex flex-col gap-2">
+                {plan.features.map((feature) => (
+                  <li key={feature} className="font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">
+                    <span className="mr-2 text-[#009061]">✓</span>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+
+              {plan.buttonStyle === "current" ? (
+                <button className="w-full rounded-lg border border-[#d4a67f] bg-[#e0bfa0] py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#3b2513]">
+                  {plan.button}
+                </button>
+              ) : (
+                <button
+                  className="w-full rounded-lg border border-[#3b2513] py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#3b2513]"
+                  onClick={() => onNext(plan)}
+                >
+                  {plan.button}
+                </button>
+              )}
             </div>
-
-            <ul className="flex flex-col gap-2">
-              {plan.features.map((feature) => (
-                <li key={feature} className="font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">
-                  <span className="mr-2 text-[#009061]">✓</span>
-                  {feature}
-                </li>
-              ))}
-            </ul>
-
-            {plan.buttonStyle === "current" ? (
-              <button className="w-full rounded-lg border border-[#d4a67f] bg-[#e0bfa0] py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#3b2513]">
-                {plan.button}
-              </button>
-            ) : (
-              <button
-                className="w-full rounded-lg border border-[#3b2513] py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#3b2513]"
-                onClick={() => onNext(plan)}
-              >
-                {plan.button}
-              </button>
-            )}
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       <div className="mt-8 overflow-hidden rounded-2xl bg-white shadow-sm">
@@ -288,7 +347,10 @@ function PlanPeriodAndBilling({
   hasAddOns: boolean;
   baseCharges: { label: string; value: string }[];
 }) {
-  const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">("monthly");
+  const [billingCycle, setBillingCycle] = useState<BillingCycle>("monthly");
+
+  const total = getPriceForCycle(plan.monthlyPrice, billingCycle);
+  const perMonth = getPerMonthPrice(plan.monthlyPrice, billingCycle);
 
   return (
     <div className="pb-8">
@@ -312,33 +374,38 @@ function PlanPeriodAndBilling({
                   {plan.name}
                 </p>
               </div>
-              <div className="flex gap-6">
-                <label className="flex items-center gap-2">
-                  <input
-                    type="radio"
-                    name="billing"
-                    checked={billingCycle === "monthly"}
-                    onChange={() => setBillingCycle("monthly")}
-                    className="accent-[#3b2513]"
-                  />
-                  <span className="font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">Monthly</span>
-                </label>
-                <label className="flex items-center gap-2">
-                  <input
-                    type="radio"
-                    name="billing"
-                    checked={billingCycle === "yearly"}
-                    onChange={() => setBillingCycle("yearly")}
-                    className="accent-[#3b2513]"
-                  />
-                  <span className="font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">Yearly</span>
-                </label>
+              <div className="flex gap-4">
+                {(["monthly", "quarterly", "yearly"] as BillingCycle[]).map((cycle) => (
+                  <label key={cycle} className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="radio"
+                      name="billing"
+                      checked={billingCycle === cycle}
+                      onChange={() => setBillingCycle(cycle)}
+                      className="accent-[#3b2513]"
+                    />
+                    <span className="font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">
+                      {cycle.charAt(0).toUpperCase() + cycle.slice(1)}
+                    </span>
+                    {cycle === "quarterly" && (
+                      <span className="rounded-full bg-[#ecfff8] px-1.5 py-0.5 text-[10px] font-semibold text-[#009061]">-5%</span>
+                    )}
+                    {cycle === "yearly" && (
+                      <span className="rounded-full bg-[#ecfff8] px-1.5 py-0.5 text-[10px] font-semibold text-[#009061]">-20%</span>
+                    )}
+                  </label>
+                ))}
               </div>
             </div>
 
             <p className="mt-1 font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
-              {plan.price} <span className="font-[family-name:var(--font-nunito)] text-xs font-normal text-[#6b7280]">/ Per Month</span>
+              {formatNaira(total)} <span className="font-[family-name:var(--font-nunito)] text-xs font-normal text-[#6b7280]">{getBillingLabel(billingCycle)}</span>
             </p>
+            {billingCycle !== "monthly" && (
+              <p className="font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">
+                {formatNaira(perMonth)}/month equivalent
+              </p>
+            )}
 
             <div className="my-4 border-t border-[#edd9c0]" />
 
@@ -350,7 +417,9 @@ function PlanPeriodAndBilling({
               <div className="flex items-center justify-between">
                 <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">Next Payment Due:</p>
                 <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
-                  July 28, 2026
+                  {billingCycle === "monthly" && "July 28, 2026"}
+                  {billingCycle === "quarterly" && "September 28, 2026"}
+                  {billingCycle === "yearly" && "June 28, 2027"}
                 </p>
               </div>
             </div>
@@ -426,14 +495,14 @@ function PlanPeriodAndBilling({
 
             <div className="flex justify-between font-[family-name:var(--font-nunito)] text-sm">
               <span className="font-bold text-[#2d1810]">Total Amount</span>
-              <span className="font-bold text-[#2d1810]">₦43,000</span>
+              <span className="font-bold text-[#2d1810]">{formatNaira(total)}</span>
             </div>
 
             <button
               onClick={onPay}
               className="mt-4 w-full rounded-lg bg-[#3b2513] py-3 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]"
             >
-              Pay ₦43,000.00
+              Pay {formatNaira(total)}.00
             </button>
           </div>
         </div>
@@ -479,7 +548,7 @@ function ConfigureAddOns({
             <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Subscribe for</p>
             <p className="font-[family-name:var(--font-merriweather)] text-xl font-bold text-[#2d1810]">{plan.name}</p>
             <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
-              {plan.price} <span className="text-xs">/ Per Month</span>
+              {formatNaira(plan.monthlyPrice)} <span className="text-xs">/ Per Month</span>
             </p>
           </div>
 
