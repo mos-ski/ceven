@@ -6,15 +6,17 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { BillingPaymentsTab } from "@/components/admin/finance/billing-payments-tab";
 import { ExpensesTab } from "@/components/admin/finance/expenses-tab";
 import { FinancialReportsTab } from "@/components/admin/finance/financial-reports-tab";
+import WalletTab from "@/components/admin/finance/wallet-tab";
 
-type ActiveTab = "Billing & Payments" | "Expenses" | "Financial Reports";
+type ActiveTab = "Wallet" | "Billing & Payments" | "Expenses" | "Financial Reports";
 
 const TAB_QUERY_MAP: Record<string, ActiveTab> = {
+  "billing-payments": "Billing & Payments",
   expenses: "Expenses",
   "financial-reports": "Financial Reports",
 };
 
-const TABS: ActiveTab[] = ["Billing & Payments", "Expenses", "Financial Reports"];
+const TABS: ActiveTab[] = ["Wallet", "Billing & Payments", "Expenses", "Financial Reports"];
 
 function FinanceContent() {
   const router = useRouter();
@@ -54,6 +56,7 @@ function FinanceContent() {
       </div>
 
       {/* Tab content */}
+      {activeTab === "Wallet" && <WalletTab />}
       {activeTab === "Billing & Payments" && <BillingPaymentsTab />}
       {activeTab === "Expenses" && <ExpensesTab />}
       {activeTab === "Financial Reports" && <FinancialReportsTab />}
