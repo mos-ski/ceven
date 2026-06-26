@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import {
   ChevronDown,
   Headphones,
@@ -32,6 +32,7 @@ const ICONS: Record<NavItem["icon"], React.ComponentType<{ className?: string }>
 };
 
 export function Sidebar() {
+  const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const activeTab = searchParams.get("tab");
@@ -133,6 +134,26 @@ export function Sidebar() {
                         const isSubActive =
                           isSectionActive && (sub.tab ?? null) === (activeTab ?? null);
                         const href = sub.tab ? `${sub.href}?tab=${sub.tab}` : sub.href;
+
+                        if (!sub.tab) {
+                          return (
+                            <button
+                              key={sub.label}
+                              onClick={() => {
+                                router.push(href);
+                                setMobileOpen(false);
+                              }}
+                              className={`h-10 rounded-lg py-2.5 pl-10 pr-2 text-left font-[family-name:var(--font-nunito)] text-sm ${
+                                isSubActive
+                                  ? "bg-brand-dark text-sidebar-active-text"
+                                  : "text-sidebar-inactive-text"
+                              }`}
+                            >
+                              {sub.label}
+                            </button>
+                          );
+                        }
+
                         return (
                           <Link
                             key={sub.label}
