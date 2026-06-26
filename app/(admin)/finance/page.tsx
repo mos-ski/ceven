@@ -11,6 +11,7 @@ import WalletTab from "@/components/admin/finance/wallet-tab";
 type ActiveTab = "Wallet" | "Billing & Payments" | "Expenses" | "Financial Reports";
 
 const TAB_QUERY_MAP: Record<string, ActiveTab> = {
+  wallet: "Wallet",
   "billing-payments": "Billing & Payments",
   expenses: "Expenses",
   "financial-reports": "Financial Reports",
@@ -22,7 +23,7 @@ function FinanceContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const tabParam = searchParams.get("tab");
-  const activeTab: ActiveTab = (tabParam && TAB_QUERY_MAP[tabParam]) || "Billing & Payments";
+  const activeTab: ActiveTab = (tabParam && TAB_QUERY_MAP[tabParam]) || "Wallet";
 
   function setActiveTab(tab: ActiveTab) {
     const query = Object.entries(TAB_QUERY_MAP).find(([, value]) => value === tab)?.[0];
