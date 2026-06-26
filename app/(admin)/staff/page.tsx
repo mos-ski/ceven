@@ -23,7 +23,6 @@ import { STAFF, type StaffMember } from "@/lib/mock-data/staff";
 import { AddStaffModal } from "@/components/admin/staff/add-staff-modal";
 import { DeactivateMemberModal, EditMemberModal } from "@/components/admin/staff/staff-member-modals";
 import { LeaderboardTab } from "@/components/admin/staff/leaderboard-tab";
-import { PayrollTab } from "@/components/admin/staff/payroll-tab";
 import { LeaveManagementTab } from "@/components/admin/staff/leave-management-tab";
 import { ComplianceSafetyTab } from "@/components/admin/staff/compliance-safety-tab";
 
@@ -32,7 +31,6 @@ type Tab =
   | "Attendance Log"
   | "Role Management"
   | "Leaderboard"
-  | "Payroll"
   | "Leave Management"
   | "Compliance & Safety";
 
@@ -41,7 +39,6 @@ const TABS: Tab[] = [
   "Attendance Log",
   "Role Management",
   "Leaderboard",
-  "Payroll",
   "Leave Management",
   "Compliance & Safety",
 ];
@@ -51,7 +48,6 @@ const TAB_QUERY_MAP: Record<string, Tab> = {
   "attendance-log": "Attendance Log",
   "role-management": "Role Management",
   leaderboard: "Leaderboard",
-  payroll: "Payroll",
   "leave-management": "Leave Management",
   "compliance-safety": "Compliance & Safety",
 };
@@ -975,9 +971,6 @@ function StaffPageInner() {
 
         {/* ── Tab: Leaderboard ───────────────────────────────────────────────── */}
         {activeTab === "Leaderboard" && <LeaderboardTab />}
-
-        {/* ── Tab: Payroll ───────────────────────────────────────────────────── */}
-        {activeTab === "Payroll" && <PayrollTab />}
 
         {/* ── Tab: Leave Management ──────────────────────────────────────────── */}
         {activeTab === "Leave Management" && <LeaveManagementTab />}

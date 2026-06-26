@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { ChevronDown, X } from "lucide-react";
+import { useState, useMemo } from "react";
+import { ChevronDown, X, AlertTriangle, Wallet, CheckCircle2 } from "lucide-react";
+import Link from "next/link";
 
 import { StatCard } from "@/components/admin/stat-card";
 import {
@@ -11,6 +12,7 @@ import {
   type PayrollStatus,
   type SalarySetup,
 } from "@/lib/mock-data/staff";
+import { WALLET_BALANCE } from "@/lib/mock-data/wallet";
 
 const STATUS_STYLES: Record<PayrollStatus, string> = {
   Paid: "bg-[#ecfff8] border border-[#009061] text-[#009061]",
@@ -33,8 +35,48 @@ function formatCurrency(value: number) {
   return `₦${value.toLocaleString("en-NG")}`;
 }
 
-function RunPayrollModal({ onClose }: { onClose: () => void }) {
-  const totalNet = PAYROLL.reduce((sum, p) => sum + p.netPay, 0);
+// ─── Run Payroll Modal ──────────────────────────────────────────────────────
+
+function RunPayrollModal({
+  selectedIds,
+  totalAmount,
+  onClose,
+}: {
+  selectedIds: string[];
+  totalAmount: number;
+  onClose: () => void;
+}) {
+  const [paid, setPaid] = useState(false);
+  const walletBalance = WALLET_BALANCE.available;
+  const hasEnough = walletBalance >= totalAmount;
+
+  if (paid) {
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
+        <div className="flex w-full max-w-[480px] flex-col rounded-2xl bg-white shadow-2xl">
+          <div className="flex flex-col items-center px-6 pt-10 pb-6 text-center gap-4">
+            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#ecfff8]">
+              <CheckCircle2 className="size-8 text-[#009061]" />
+            </div>
+            <h2 className="font-[family-name:var(--font-merriweather)] text-xl font-bold text-[#2d1810]">
+              Payroll Processed
+            </h2>
+            <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+              {selectedIds.length} staff member{selectedIds.length > 1 ? "s" : ""} paid successfully. Total: {formatCurrency(totalAmount)}
+            </p>
+          </div>
+          <div className="border-t border-[#eaecf0] px-6 py-4 flex justify-center">
+            <button
+              onClick={onClose}
+              className="rounded-lg bg-[#3b2513] px-6 py-2.5 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]"
+            >
+              Done
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
@@ -42,10 +84,10 @@ function RunPayrollModal({ onClose }: { onClose: () => void }) {
         <div className="flex items-start justify-between border-b border-[#eaecf0] px-6 pt-6 pb-4">
           <div>
             <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
-              Run Payroll
+              Confirm Payroll
             </h2>
             <p className="mt-0.5 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
-              Review and confirm this month&apos;s payroll run.
+              Review and confirm this payroll run.
             </p>
           </div>
           <button
@@ -57,13 +99,28 @@ function RunPayrollModal({ onClose }: { onClose: () => void }) {
             <X className="size-5" />
           </button>
         </div>
+
         <div className="flex flex-col gap-4 px-6 py-5">
+          {/* Wallet balance */}
+          <div className="flex items-center justify-between rounded-lg bg-[#faf9f7] px-4 py-3">
+            <div className="flex items-center gap-2">
+              <Wallet className="size-4 text-[#6b7280]" />
+              <span className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+                Wallet Balance
+              </span>
+            </div>
+            <span className="font-[family-name:var(--font-nunito)] text-sm font-bold text-[#2d1810]">
+              {formatCurrency(walletBalance)}
+            </span>
+          </div>
+
+          {/* Summary */}
           <div className="flex items-center justify-between rounded-lg bg-[#faf9f7] px-4 py-3">
             <span className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
-              Staff Included
+              Staff to Pay
             </span>
             <span className="font-[family-name:var(--font-nunito)] text-sm font-bold text-[#2d1810]">
-              {PAYROLL.length}
+              {selectedIds.length}
             </span>
           </div>
           <div className="flex items-center justify-between rounded-lg bg-[#faf9f7] px-4 py-3">
@@ -71,20 +128,33 @@ function RunPayrollModal({ onClose }: { onClose: () => void }) {
               Total Net Pay
             </span>
             <span className="font-[family-name:var(--font-merriweather)] text-base font-bold text-[#3b2513]">
-              {formatCurrency(totalNet)}
+              {formatCurrency(totalAmount)}
             </span>
           </div>
-          <div className="flex flex-col gap-1.5">
-            <label className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
-              Pay Date
-            </label>
-            <input
-              type="text"
-              defaultValue="30 Oct 2025"
-              className="rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
-            />
-          </div>
+
+          {/* Insufficient balance warning */}
+          {!hasEnough && (
+            <div className="flex items-start gap-3 rounded-lg border border-[#ef4444] bg-[#fff5f5] px-4 py-3">
+              <AlertTriangle className="mt-0.5 size-5 shrink-0 text-[#ef4444]" />
+              <div className="flex flex-col gap-1">
+                <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#ef4444]">
+                  Insufficient Balance
+                </p>
+                <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+                  You need {formatCurrency(totalAmount - walletBalance)} more to complete this payroll. Top up your wallet to proceed.
+                </p>
+                <Link
+                  href="/finance"
+                  onClick={onClose}
+                  className="mt-1 inline-block w-fit rounded-lg bg-[#3b2513] px-4 py-1.5 font-[family-name:var(--font-nunito)] text-xs font-medium text-[#faf2e1]"
+                >
+                  Top Up Wallet
+                </Link>
+              </div>
+            </div>
+          )}
         </div>
+
         <div className="flex items-center justify-end gap-3 border-t border-[#eaecf0] px-6 py-4">
           <button
             type="button"
@@ -95,16 +165,19 @@ function RunPayrollModal({ onClose }: { onClose: () => void }) {
           </button>
           <button
             type="button"
-            onClick={onClose}
-            className="rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]"
+            disabled={!hasEnough}
+            onClick={() => setPaid(true)}
+            className="rounded-lg px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium disabled:cursor-not-allowed disabled:opacity-50 bg-[#3b2513] text-[#faf2e1]"
           >
-            Confirm &amp; Run Payroll
+            Confirm &amp; Pay
           </button>
         </div>
       </div>
     </div>
   );
 }
+
+// ─── New Salary Setup Modal ─────────────────────────────────────────────────
 
 function NewSalarySetupModal({ onClose }: { onClose: () => void }) {
   return (
@@ -225,6 +298,8 @@ function NewSalarySetupModal({ onClose }: { onClose: () => void }) {
   );
 }
 
+// ─── Payroll History ────────────────────────────────────────────────────────
+
 function PayrollHistoryTable() {
   return (
     <div className="overflow-hidden rounded-xl bg-white shadow-sm">
@@ -288,6 +363,8 @@ function PayrollHistoryTable() {
     </div>
   );
 }
+
+// ─── Salary Setup ───────────────────────────────────────────────────────────
 
 function SalarySetupRow({ setup }: { setup: SalarySetup }) {
   return (
@@ -356,35 +433,86 @@ function SalarySetupTable() {
   );
 }
 
-function ThisMonthTable({ onRunPayroll }: { onRunPayroll: () => void }) {
+// ─── This Month (Payment Flow) ──────────────────────────────────────────────
+
+function ThisMonthPaymentFlow({ onOpenModal }: { onOpenModal: (ids: string[], total: number) => void }) {
+  const [selected, setSelected] = useState<Set<string>>(new Set());
+
+  const toggleAll = () => {
+    if (selected.size === PAYROLL.length) {
+      setSelected(new Set());
+    } else {
+      setSelected(new Set(PAYROLL.map((p) => p.id)));
+    }
+  };
+
+  const toggleOne = (id: string) => {
+    setSelected((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
+
+  const selectedTotal = useMemo(
+    () => PAYROLL.filter((p) => selected.has(p.id)).reduce((sum, p) => sum + p.netPay, 0),
+    [selected],
+  );
+
+  const allSelected = selected.size === PAYROLL.length;
+
   return (
-    <>
-      {/* Toolbar */}
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
-          Payroll Log (This Month)
-        </h2>
-        <div className="flex flex-wrap items-center gap-2">
-          <button className="flex items-center gap-1.5 rounded-lg border border-[#d0d5dd] bg-white px-3 py-1.5 font-[family-name:var(--font-nunito)] text-xs">
-            All Role
-            <ChevronDown className="size-3" />
-          </button>
+    <div className="space-y-4">
+      {/* Selected total bar */}
+      {selected.size > 0 && (
+        <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-[#e6ebf3] bg-white p-4 shadow-sm">
+          <div className="flex items-center gap-4">
+            <span className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+              {selected.size} staff selected
+            </span>
+            <span className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#3b2513]">
+              {formatCurrency(selectedTotal)}
+            </span>
+          </div>
           <button
-            onClick={onRunPayroll}
-            className="rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]"
+            disabled={selected.size === 0}
+            onClick={() => onOpenModal(Array.from(selected), selectedTotal)}
+            className="rounded-lg bg-[#3b2513] px-5 py-2.5 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1] disabled:cursor-not-allowed disabled:opacity-50"
           >
-            Approve &amp; Run Payroll
+            Pay Selected
           </button>
         </div>
-      </div>
+      )}
 
-      {/* Table */}
+      {/* Staff payment list */}
       <div className="overflow-hidden rounded-xl bg-white shadow-sm">
+        <div className="flex flex-wrap items-center justify-between gap-3 p-4">
+          <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
+            Staff Payment List
+          </h2>
+          <div className="flex flex-wrap items-center gap-2">
+            <button className="flex items-center gap-1.5 rounded-lg border border-[#d0d5dd] bg-white px-3 py-1.5 font-[family-name:var(--font-nunito)] text-xs">
+              All Role
+              <ChevronDown className="size-3" />
+            </button>
+          </div>
+        </div>
+
+        {/* Desktop table */}
         <div className="hidden overflow-x-auto lg:block">
           <table className="w-full text-left">
             <thead>
               <tr className="bg-[#edd9c0]">
-                {["Staff", "Base Salary", "Bonuses", "Deductions", "Net Pay", "Pay Date", "Status"].map((h) => (
+                <th className="px-4 py-3 w-10">
+                  <input
+                    type="checkbox"
+                    checked={allSelected}
+                    onChange={toggleAll}
+                    className="accent-[#3b2513]"
+                  />
+                </th>
+                {["Staff", "Role", "Net Pay", "Status"].map((h) => (
                   <th
                     key={h}
                     className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]"
@@ -396,27 +524,32 @@ function ThisMonthTable({ onRunPayroll }: { onRunPayroll: () => void }) {
             </thead>
             <tbody className="divide-y divide-[#eaecf0]">
               {PAYROLL.map((p) => (
-                <tr key={p.id} className="hover:bg-[#faf9f7]">
+                <tr
+                  key={p.id}
+                  onClick={() => toggleOne(p.id)}
+                  className={`cursor-pointer transition-colors ${
+                    selected.has(p.id) ? "bg-[#faf5ee]" : "hover:bg-[#faf9f7]"
+                  }`}
+                >
+                  <td className="px-4 py-3">
+                    <input
+                      type="checkbox"
+                      checked={selected.has(p.id)}
+                      onChange={() => toggleOne(p.id)}
+                      onClick={(e) => e.stopPropagation()}
+                      className="accent-[#3b2513]"
+                    />
+                  </td>
                   <td className="px-4 py-3">
                     <p className="text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">
                       {p.name}
                     </p>
-                    <p className="text-[10px] text-[#858c98]">{p.role}</p>
                   </td>
                   <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">
-                    {formatCurrency(p.baseSalary)}
-                  </td>
-                  <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#009061]">
-                    +{formatCurrency(p.bonuses)}
-                  </td>
-                  <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#ef4444]">
-                    -{formatCurrency(p.deductions)}
+                    {p.role}
                   </td>
                   <td className="px-4 py-3 text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">
                     {formatCurrency(p.netPay)}
-                  </td>
-                  <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">
-                    {p.payDate}
                   </td>
                   <td className="px-4 py-3">
                     <StatusBadge status={p.status} />
@@ -426,20 +559,38 @@ function ThisMonthTable({ onRunPayroll }: { onRunPayroll: () => void }) {
             </tbody>
           </table>
         </div>
+
         {/* Mobile card list */}
         <div className="flex flex-col gap-2 p-4 lg:hidden">
           {PAYROLL.map((p) => (
-            <div key={p.id} className="rounded-xl border border-[#eaecf0] p-3">
+            <div
+              key={p.id}
+              onClick={() => toggleOne(p.id)}
+              className={`rounded-xl border p-3 cursor-pointer transition-colors ${
+                selected.has(p.id)
+                  ? "border-[#3b2513] bg-[#faf5ee]"
+                  : "border-[#eaecf0] hover:bg-[#faf9f7]"
+              }`}
+            >
               <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">
-                    {p.name}
-                  </p>
-                  <p className="text-[10px] text-[#858c98]">{p.role}</p>
+                <div className="flex items-center gap-3">
+                  <input
+                    type="checkbox"
+                    checked={selected.has(p.id)}
+                    onChange={() => toggleOne(p.id)}
+                    onClick={(e) => e.stopPropagation()}
+                    className="accent-[#3b2513]"
+                  />
+                  <div>
+                    <p className="text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">
+                      {p.name}
+                    </p>
+                    <p className="text-[10px] text-[#858c98]">{p.role}</p>
+                  </div>
                 </div>
                 <StatusBadge status={p.status} />
               </div>
-              <div className="mt-2 flex items-center justify-between">
+              <div className="mt-2 flex items-center justify-between pl-9">
                 <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
                   Net Pay
                 </span>
@@ -451,14 +602,16 @@ function ThisMonthTable({ onRunPayroll }: { onRunPayroll: () => void }) {
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
+// ─── Main Component ─────────────────────────────────────────────────────────
+
 export function PayrollTab() {
   const [subTab, setSubTab] = useState<PayrollSubTab>("This Month");
-  const [runOpen, setRunOpen] = useState(false);
   const [setupOpen, setSetupOpen] = useState(false);
+  const [payModal, setPayModal] = useState<{ ids: string[]; total: number } | null>(null);
 
   const totalNet = PAYROLL.reduce((sum, p) => sum + p.netPay, 0);
   const paidCount = PAYROLL.filter((p) => p.status === "Paid").length;
@@ -474,12 +627,6 @@ export function PayrollTab() {
             className="rounded-lg border border-[#3b2513] px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#3b2513]"
           >
             New Salary Setup
-          </button>
-          <button
-            onClick={() => setRunOpen(true)}
-            className="rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]"
-          >
-            New Payroll
           </button>
         </div>
 
@@ -516,12 +663,22 @@ export function PayrollTab() {
           ))}
         </div>
 
-        {subTab === "This Month" && <ThisMonthTable onRunPayroll={() => setRunOpen(true)} />}
+        {subTab === "This Month" && (
+          <ThisMonthPaymentFlow
+            onOpenModal={(ids, total) => setPayModal({ ids, total })}
+          />
+        )}
         {subTab === "Payroll History" && <PayrollHistoryTable />}
         {subTab === "Salary Setup" && <SalarySetupTable />}
       </div>
 
-      {runOpen && <RunPayrollModal onClose={() => setRunOpen(false)} />}
+      {payModal && (
+        <RunPayrollModal
+          selectedIds={payModal.ids}
+          totalAmount={payModal.total}
+          onClose={() => setPayModal(null)}
+        />
+      )}
       {setupOpen && <NewSalarySetupModal onClose={() => setSetupOpen(false)} />}
     </>
   );
