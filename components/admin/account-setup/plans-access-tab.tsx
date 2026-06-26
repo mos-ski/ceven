@@ -252,7 +252,7 @@ function Step1({ onNext }: { onNext: (plan: Plan) => void }) {
                   </span>
                 </div>
                 <p className="font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">
-                  {formatNaira(perMonth)}/month{billingCycle !== "monthly" && " (billed " + billingCycle + ")"}
+                  {billingCycle !== "monthly" && `${formatNaira(perMonth)}/month (billed ${billingCycle})`}
                 </p>
                 {plan.desc && (
                 <p className="mt-1 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">{plan.desc}</p>
