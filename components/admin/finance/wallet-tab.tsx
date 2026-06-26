@@ -46,7 +46,12 @@ function FilterButton({ label }: { label: string }) {
 }
 
 export default function WalletTab() {
-  const [onboardingState, setOnboardingState] = useState<"empty" | "wizard" | "complete">("empty");
+  const [onboardingState, setOnboardingState] = useState<"empty" | "wizard" | "complete">(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("ceven-wallet-onboarding") === "complete" ? "complete" : "empty";
+    }
+    return "empty";
+  });
   const [withdrawalOpen, setWithdrawalOpen] = useState(false);
   const [depositOpen, setDepositOpen] = useState(false);
   const [bankUpdateOpen, setBankUpdateOpen] = useState(false);
@@ -62,7 +67,16 @@ export default function WalletTab() {
   });
 
   if (onboardingState === "wizard") {
-    return <WalletOnboardingWizard open onComplete={() => setOnboardingState("complete")} onClose={() => setOnboardingState("empty")} />;
+    return (
+      <WalletOnboardingWizard
+        open
+        onComplete={() => {
+          localStorage.setItem("ceven-wallet-onboarding", "complete");
+          setOnboardingState("complete");
+        }}
+        onClose={() => setOnboardingState("empty")}
+      />
+    );
   }
 
   if (onboardingState === "empty") {
