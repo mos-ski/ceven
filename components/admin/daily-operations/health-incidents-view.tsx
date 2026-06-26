@@ -42,7 +42,15 @@ const STATUS_BADGE_CLASS: Record<IncidentStatus, string> = {
   Resolved: "border-transparent bg-badge-success-bg text-success-text",
 };
 
-function FilterDropdown({ label, options }: { label: string; options: string[] }) {
+function FilterDropdown({
+  label,
+  options,
+  onSelect,
+}: {
+  label: string;
+  options: string[];
+  onSelect?: (option: string) => void;
+}) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
@@ -58,7 +66,9 @@ function FilterDropdown({ label, options }: { label: string; options: string[] }
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         {options.map((option) => (
-          <DropdownMenuItem key={option}>{option}</DropdownMenuItem>
+          <DropdownMenuItem key={option} onClick={() => onSelect?.(option)}>
+            {option}
+          </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
     </DropdownMenu>
@@ -239,8 +249,8 @@ function ViewIncidentModal({
 
 function IncidentRow({ incident, onView }: { incident: Incident; onView: (incident: Incident) => void }) {
   return (
-    <TableRow className="border-table-border">
-      <TableCell>
+    <TableRow onClick={() => onView(incident)} className="cursor-pointer border-table-border">
+      <TableCell onClick={(e) => e.stopPropagation()}>
         <input type="checkbox" className="h-4 w-4 accent-[#3b2513]" />
       </TableCell>
       <TableCell>
@@ -293,6 +303,17 @@ const statsCards = [
 export function HealthIncidentsView() {
   const [reportOpen, setReportOpen] = useState(false);
   const [viewingIncident, setViewingIncident] = useState<Incident | null>(null);
+  const [search, setSearch] = useState("");
+  const [severityFilter, setSeverityFilter] = useState("All Severity");
+  const [statusFilter, setStatusFilter] = useState("All Status");
+
+  const filteredIncidents = INCIDENTS.filter((incident) => {
+    if (severityFilter !== "All Severity" && incident.severity !== severityFilter) return false;
+    if (statusFilter !== "All Status" && incident.status !== statusFilter) return false;
+    const query = search.trim().toLowerCase();
+    if (query && !incident.child.toLowerCase().includes(query) && !incident.type.toLowerCase().includes(query)) return false;
+    return true;
+  });
 
   return (
     <div className="flex flex-col gap-4">
@@ -337,12 +358,14 @@ export function HealthIncidentsView() {
           </h2>
           <div className="flex items-center gap-2">
             <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Filter by:</span>
-            <FilterDropdown label="Severity" options={["All Severity", "Minor", "Moderate", "Severe"]} />
-            <FilterDropdown label="All Status" options={["All Status", "Open", "Under Review", "Resolved"]} />
+            <FilterDropdown label={severityFilter} options={["All Severity", "Minor", "Moderate", "Severe"]} onSelect={setSeverityFilter} />
+            <FilterDropdown label={statusFilter} options={["All Status", "Open", "Under Review", "Resolved"]} onSelect={setStatusFilter} />
             <FilterDropdown label="Date" options={["All Dates", "Today", "This Week", "This Month"]} />
             <div className="relative">
               <Search className="absolute top-1/2 left-2 size-4 -translate-y-1/2 text-[#9ca3af]" />
               <Input
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search children, parents..."
                 className="h-8 w-full sm:w-56 rounded-lg border-[rgba(45,24,16,0.12)] bg-[#f5edd8] pl-8 text-xs"
               />
@@ -368,16 +391,29 @@ export function HealthIncidentsView() {
               </tr>
             </thead>
             <tbody className="bg-white">
-              {INCIDENTS.map((incident) => (
-                <IncidentRow key={incident.id} incident={incident} onView={setViewingIncident} />
-              ))}
+              {filteredIncidents.length === 0 ? (
+                <tr>
+                  <td colSpan={9} className="py-10 text-center font-[family-name:var(--font-nunito)] text-sm text-[#9ca3af]">
+                    No incidents match your search or filters.
+                  </td>
+                </tr>
+              ) : (
+                filteredIncidents.map((incident) => (
+                  <IncidentRow key={incident.id} incident={incident} onView={setViewingIncident} />
+                ))
+              )}
             </tbody>
           </table>
         </div>
 
         {/* Mobile card list */}
         <div className="flex flex-col gap-2 px-4 pb-4 lg:hidden">
-          {INCIDENTS.map((incident) => (
+          {filteredIncidents.length === 0 && (
+            <p className="py-6 text-center font-[family-name:var(--font-nunito)] text-sm text-[#9ca3af]">
+              No incidents match your search or filters.
+            </p>
+          )}
+          {filteredIncidents.map((incident) => (
             <div
               key={incident.id}
               onClick={() => setViewingIncident(incident)}

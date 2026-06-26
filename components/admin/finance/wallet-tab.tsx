@@ -18,6 +18,7 @@ import {
 import WalletOnboardingWizard from "./wallet-onboarding-wizard";
 import WithdrawalRequestModal from "./withdrawal-request-modal";
 import BankAccountUpdateModal from "./bank-account-update-modal";
+import DepositInfoModal from "./deposit-info-modal";
 
 const CATEGORY_FILTERS: WalletTransactionCategory[] = [
   "Tuition",
@@ -45,8 +46,9 @@ function FilterButton({ label }: { label: string }) {
 }
 
 export default function WalletTab() {
-  const [onboardingComplete, setOnboardingComplete] = useState(true);
+  const [onboardingComplete, setOnboardingComplete] = useState(false);
   const [withdrawalOpen, setWithdrawalOpen] = useState(false);
+  const [depositOpen, setDepositOpen] = useState(false);
   const [bankUpdateOpen, setBankUpdateOpen] = useState(false);
   const [typeFilter, setTypeFilter] = useState<"All" | WalletTransactionType>("All");
   const [categoryFilter, setCategoryFilter] = useState<"All" | WalletTransactionCategory>("All");
@@ -96,7 +98,10 @@ export default function WalletTab() {
             <ArrowUpRight className="size-4" />
             Withdraw
           </button>
-          <button className="flex items-center gap-2 rounded-lg border border-white/30 bg-white/10 px-4 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-white hover:bg-white/20">
+          <button
+            onClick={() => setDepositOpen(true)}
+            className="flex items-center gap-2 rounded-lg border border-white/30 bg-white/10 px-4 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-white hover:bg-white/20"
+          >
             <ArrowDownLeft className="size-4" />
             Deposit
           </button>
@@ -355,6 +360,7 @@ export default function WalletTab() {
       </div>
 
       <WithdrawalRequestModal open={withdrawalOpen} onOpenChange={setWithdrawalOpen} />
+      <DepositInfoModal open={depositOpen} onOpenChange={setDepositOpen} />
       <BankAccountUpdateModal open={bankUpdateOpen} onOpenChange={setBankUpdateOpen} />
     </div>
   );

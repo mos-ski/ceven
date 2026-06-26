@@ -62,7 +62,15 @@ const ORDER_STATUS_BADGE_CLASS: Record<OrderStatus, string> = {
 type InventorySubTab = "Stock Levels" | "Equipment Register" | "Orders";
 const SUB_TABS: InventorySubTab[] = ["Stock Levels", "Equipment Register", "Orders"];
 
-function FilterDropdown({ label, options }: { label: string; options: string[] }) {
+function FilterDropdown({
+  label,
+  options,
+  onSelect,
+}: {
+  label: string;
+  options: string[];
+  onSelect?: (option: string) => void;
+}) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
@@ -78,7 +86,9 @@ function FilterDropdown({ label, options }: { label: string; options: string[] }
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         {options.map((option) => (
-          <DropdownMenuItem key={option}>{option}</DropdownMenuItem>
+          <DropdownMenuItem key={option} onClick={() => onSelect?.(option)}>
+            {option}
+          </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
     </DropdownMenu>
