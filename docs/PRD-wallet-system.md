@@ -5,8 +5,8 @@
 | **Product** | CEven — Crèche ERP Operating System |
 | **Feature** | Wallet System (Finance Module) |
 | **Document** | Product Requirements Document |
-| **Version** | 1.0 |
-| **Status** | Draft |
+| **Version** | 1.1 |
+| **Status** | Active |
 | **Owner** | Product (Adedamola Adewale) |
 | **Screen ID** | `sc-wallet` |
 | **Plan tier** | All Plans |
@@ -56,9 +56,47 @@ The Wallet is CEven's operational bank account ledger — a single, real-time vi
 
 ## 3. Wallet Onboarding (KYC/KYB)
 
-Before a crèche can use the wallet, the **Owner** must complete a one-time onboarding flow. This is triggered when any user first navigates to the Wallet screen or clicks a wallet-related action.
+Before a crèche can use the wallet, the **Owner** must complete a one-time onboarding flow. This is triggered when any user first navigates to the Wallet screen.
 
-### 3.1 Onboarding Flow (3-Step Wizard)
+### 3.1 Onboarding States
+
+The wallet has three distinct states, persisted in `localStorage`:
+
+| State | Behaviour |
+|---|---|
+| **Empty (Not Started)** | Wallet screen shows a dashed-border empty state card with wallet icon, description, and "Get Started" CTA. |
+| **In Progress (Wizard)** | 3-step modal wizard opens. Can be closed via X button (returns to empty state). |
+| **Completed** | Wallet is fully active. Onboarding never reappears. State saved to `localStorage` under key `ceven-wallet-onboarding`. |
+
+### 3.2 Empty State Screen
+
+When onboarding has not been started, the Finance page shows:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  Finance                                                     │
+│                                                             │
+│  ┌ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┐  │
+│  │  ╭─────╮                                               │  │
+│  │  │  💳  │  Set Up Your Wallet                          │  │
+│  │  ╰─────╯  Your wallet lets you track all money        │  │
+│  │            flowing in and out of your crèche.          │  │
+│  │            Deposits are automatic when parents pay     │  │
+│  │            invoices via Paystack.                      │  │
+│  │                                                       │  │
+│  │            [+ Get Started]                             │  │
+│  │            Takes about 2 minutes to complete           │  │
+│  └ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ┘  │
+└─────────────────────────────────────────────────────────────┘
+```
+
+- Dashed border (`border-dashed`)
+- Centred layout with wallet icon, heading, description, and "Get Started" CTA
+- Clicking "Get Started" opens the onboarding wizard
+
+### 3.3 Onboarding Wizard (3-Step Modal)
+
+The wizard is a fixed modal with a close (X) button in the header. Closing returns to the empty state.
 
 **Step 1 — Business Information**
 | Field | Required | Notes |
@@ -71,47 +109,119 @@ Before a crèche can use the wallet, the **Owner** must complete a one-time onbo
 **Step 2 — Bank Account Details**
 | Field | Required | Notes |
 |---|---|---|
-| Bank Name | Yes | Dropdown of Nigerian banks (Paystack bank list) |
+| Bank Name | Yes | Dropdown of Nigerian banks (25 banks supported) |
 | Account Number | Yes | 10-digit; triggers Paystack account name fetch on blur |
 | Account Name | Yes (auto) | Auto-fetched from Paystack after account number + bank are entered |
 | Account Type | Yes (auto) | Savings / Current — auto-fetched |
 
 - **Name Matching Rule:** After auto-fetch, the system checks for ≥50% string resemblance between the fetched account name and the crèche profile name (fuzzy match). If it fails, a warning banner appears: *"The account name does not match your crèche name. Withdrawals to personal accounts require CEven support approval."* The user can still proceed but the account is flagged as "personal" in the system.
+- **Matching indicator:** Green success banner when names match, amber warning when they don't.
 
 **Step 3 — OTP Verification**
 | Field | Required | Notes |
 |---|---|---|
 | OTP | Yes | 6-digit code sent to the Owner's registered phone number via Paystack |
 
-- On successful OTP verification, the wallet is activated.
-- If the Owner abandons mid-flow, the wallet shows a persistent **"Complete Setup"** banner on subsequent visits. The wizard resumes from the last incomplete step.
+- Three states within Step 3: "Send OTP" → "Enter OTP" → "Verified ✓"
+- On successful OTP verification, wallet is activated and state saved to `localStorage`.
+- Resend OTP option available.
 
-### 3.2 Onboarding States
+### 3.4 Onboarding Flow Diagram
 
-| State | Behaviour |
-|---|---|
-| **Not Started** | Wallet screen shows a full-page onboarding prompt with a "Get Started" CTA. |
-| **In Progress** | Banner shows current step (e.g. "Step 2 of 3 — Bank Details"). Wizard resumes from last step. |
-| **Completed** | Wallet is fully active. Onboarding prompt never reappears. |
-| **Failed / Rejected** | If OTP fails or Paystack rejects the account, show error with "Retry" CTA. |
+```
+                    ┌──────────────────────┐
+                    │  User clicks "Wallet" │
+                    │  in Finance sidebar   │
+                    └──────────┬───────────┘
+                               │
+                    ┌──────────▼───────────┐
+                    │  Check localStorage   │
+                    │  ceven-wallet-        │
+                    │  onboarding           │
+                    └──────────┬───────────┘
+                               │
+                ┌──────────────┼──────────────┐
+                │              │              │
+        ┌───────▼──────┐ ┌────▼─────┐ ┌──────▼──────┐
+        │   "empty"    │ │ "wizard" │ │  "complete"  │
+        │  (not set)   │ │(partial) │ │   (set)      │
+        └───────┬──────┘ └────┬─────┘ └──────┬──────┘
+                │              │              │
+        ┌───────▼──────┐ ┌────▼─────┐ ┌──────▼──────┐
+        │  Empty State │ │  Resume  │ │   Wallet    │
+        │  "Get        │ │  Wizard  │ │   Screen    │
+        │  Started"    │ │  at last │ │   (full)    │
+        └───────┬──────┘ │  step    │ └─────────────┘
+                │         └────┬─────┘
+                │              │
+        ┌───────▼──────┐      │
+        │  Click "Get  │      │
+        │  Started"    │      │
+        └───────┬──────┘      │
+                │              │
+        ┌───────▼──────────────▼──────┐
+        │     STEP 1: Business Info   │
+        │  Business Name, RC, Type,   │
+        │  BVN                        │
+        └──────────────┬──────────────┘
+                       │
+              [Continue] [X Close → Empty]
+                       │
+        ┌──────────────▼──────────────┐
+        │    STEP 2: Bank Details     │
+        │  Bank, Account Number,      │
+        │  Auto-fetch name,           │
+        │  ≥50% name match check      │
+        └──────────────┬──────────────┘
+                       │
+              [Continue] [Back] [X Close → Empty]
+                       │
+        ┌──────────────▼──────────────┐
+        │    STEP 3: OTP Verify       │
+        │  Send OTP → Enter OTP →     │
+        │  Verify                     │
+        └──────────────┬──────────────┘
+                       │
+                    [Verify]
+                       │
+        ┌──────────────▼──────────────┐
+        │     ✅ Wallet Activated!    │
+        │  Save to localStorage       │
+        │  → Navigate to Wallet       │
+        └──────────────┬──────────────┘
+                       │
+              [Go to Wallet]
+                       │
+        ┌──────────────▼──────────────┐
+        │      WALLET SCREEN          │
+        │  Balance, Stats, Txns,      │
+        │  Bank Account               │
+        └─────────────────────────────┘
+```
 
 ---
 
 ## 4. Wallet Screen (`sc-wallet`)
 
-### 4.1 Layout
+### 4.1 Navigation & Layout
 
-The Wallet is a dedicated screen within the Finance module, positioned above the existing Billing & Payments / Expenses / Financial Reports tabs.
+The Wallet is the **default view** of the Finance module. It is NOT a tab — it is the full Finance page when no sub-tab is active.
+
+- **Sidebar:** "Wallet" is the first item under Finance group. Clicking it navigates to `/finance` (no query param).
+- **Other finance sections** (Billing & Payments, Expenses, Financial Reports) are separate sidebar items that navigate to `/finance?tab=billing-payments`, etc.
+- **No tab bar** on the page — navigation is handled entirely via the sidebar.
+- **Page title:** Each view shows its own title ("Wallet", "Billing & Payments", "Expenses", "Financial Reports").
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │  WALLET                                                     │
 │                                                             │
 │  ┌──────────────────────────────────────────────────────┐   │
-│  │  Balance Card                                        │   │
-│  │  Available Balance: ₦1,245,000.00                    │   │
+│  │  Balance Card (dark gradient)                        │   │
+│  │  💳 Wallet Balance                                   │   │
+│  │  ₦1,245,000                                          │   │
 │  │  Pending In: ₦85,000  │  Pending Out: ₦120,000      │   │
-│  │  [Deposit]  [Withdraw]                               │   │
+│  │  [Withdraw]  [Deposit]                               │   │
 │  └──────────────────────────────────────────────────────┘   │
 │                                                             │
 │  ┌──────────────┐ ┌──────────────┐ ┌──────────────┐        │
@@ -120,19 +230,23 @@ The Wallet is a dedicated screen within the Finance module, positioned above the
 │  │ This Month   │ │ This Month   │ │ This Month    │        │
 │  └──────────────┘ └──────────────┘ └──────────────┘        │
 │                                                             │
-│  Transaction History                                        │
+│  Pending Approvals (if any)                                 │
 │  ┌──────────────────────────────────────────────────────┐   │
-│  │ Filters: [All ▾] [Category ▾] [Date Range] [Search] │   │
-│  ├──────────────────────────────────────────────────────┤   │
-│  │ Date │ Type │ Category │ Description │ Amount │ Status│  │
-│  │ ...  │ ...  │ ...      │ ...         │ ...    │ ...   │  │
+│  │ ₦85,000 → GTBank ••••4567  [Approve] [Reject]       │   │
 │  └──────────────────────────────────────────────────────┘   │
 │                                                             │
+│  Transaction History                                        │
 │  ┌──────────────────────────────────────────────────────┐   │
-│  │ Bank Account                                         │   │
-│  │ GTBank — ••••4567  (Business Account)                │   │
-│  │ Account Name: Greg Creche Limited                     │   │
-│  │ [Update Bank Details]                                │   │
+│  │ Filters: [All Types ▾] [All Categories ▾] [Search]  │   │
+│  ├──────────────────────────────────────────────────────┤   │
+│  │ Date │ Type │ Category │ Description │ Amount │ Stat │  │
+│  │ ...  │ ...  │ ...      │ ...         │ ...    │ ...  │  │
+│  └──────────────────────────────────────────────────────┘   │
+│                                                             │
+│  Bank Account                                               │
+│  ┌──────────────────────────────────────────────────────┐   │
+│  │ GTBank — ••••4567  (Business)                        │   │
+│  │ Account Name: Greg Creche Limited  [Update]          │   │
 │  └──────────────────────────────────────────────────────┘   │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -141,11 +255,12 @@ The Wallet is a dedicated screen within the Finance module, positioned above the
 
 | Element | Spec |
 |---|---|
-| **Available Balance** | Real-time balance (credits - debits). Displayed in ₦ with commas. |
+| **Style** | Dark gradient background (`from-[#3b2513] to-[#5b391e]`), white text |
+| **Available Balance** | Real-time balance (credits - debits). Displayed in ₦ with commas. Large Merriweather font. |
 | **Pending In** | Sum of deposits awaiting Paystack settlement (T+1). Shown as informational. |
 | **Pending Out** | Sum of withdrawal requests approved but not yet processed by Paystack. |
-| **Deposit CTA** | Opens deposit flow (see §5.1). |
-| **Withdraw CTA** | Opens withdrawal flow (see §5.2). |
+| **Withdraw CTA** | Light button with arrow icon. Opens withdrawal flow (see §5.2). |
+| **Deposit CTA** | Semi-transparent button with arrow icon. Opens deposit info modal (see §5.1). |
 
 ### 4.3 Summary Stat Cards (3)
 
@@ -155,35 +270,43 @@ The Wallet is a dedicated screen within the Finance module, positioned above the
 | **Total Out** | Sum of all debited withdrawals for the current calendar month. |
 | **Net Flow** | Total In minus Total Out for the current calendar month. Green if positive, red if negative. |
 
-### 4.4 Transaction History Table
+### 4.4 Pending Approvals Section
+
+- Only visible when there are withdrawals with status "Pending Approval".
+- Amber background with warning styling.
+- Shows each pending withdrawal with: amount, destination bank/account, requester name, timestamp.
+- Approve (green) and Reject (red) buttons for each request.
+
+### 4.5 Transaction History Table
 
 | Column | Description |
 |---|---|
 | **Date & Time** | Format: `DD MMM YYYY, HH:mm` |
-| **Type** | Badge: Credit (green) / Debit (red) |
-| **Category** | Sub-category badge (see §6) |
-| **Description** | Human-readable: e.g. "Payment from Mrs. Okafor — Tuition (September)" |
-| **Amount** | ₦ amount with + (credit) or - (debit) prefix |
-| **Status** | Completed (green) / Pending (amber) / Failed (red) |
-| **Actions** | Kebab menu: View Details, Download Receipt |
+| **Type** | Badge: Credit (green, `#009061`) / Debit (red, `#cd3030`) with arrow icon |
+| **Category** | Sub-category text |
+| **Description** | Human-readable: e.g. "Payment from Mrs. Okafor — September Tuition" |
+| **Amount** | ₦ amount with + (credit) or - (debit) prefix, colour-coded |
+| **Status** | Completed (green) / Pending (amber) / Failed (red) / Rejected (red) / Expired (grey) |
+| **Actions** | "Details" link |
 
 **Filters:**
-- Type filter: All / Credit / Debit
-- Category filter: All / Tuition / Admission Fee / Payroll / Rent / Supplies / Utilities / Refund / Other
-- Date range picker
-- Search by description or transaction reference
+- Type dropdown: All Types / Credit / Debit
+- Category dropdown: All Categories / Tuition / Admission Fee / Payroll / Rent / Supplies / Utilities / Refund / Other
+- Search input with search icon
 
-**Pagination:** 20 transactions per page.
+**Responsive:**
+- Desktop (≥1024px): Full table layout
+- Mobile (<1024px): Card-based layout with type badge, amount, description, and metadata
 
-### 4.5 Bank Account Card
+### 4.6 Bank Account Card
 
 | Element | Spec |
 |---|---|
-| **Bank Name** | Displayed (e.g. "GTBank") |
+| **Bank Name** | Displayed (e.g. "Guaranty Trust Bank") |
 | **Account Number** | Masked (e.g. "••••4567") |
 | **Account Name** | Full name as verified |
-| **Account Type Badge** | Business Account (green) / Personal Account (amber) |
-| **Update CTA** | Opens bank details update flow (see §5.3) |
+| **Account Type Badge** | Business Account (green `#009061`) / Personal Account (amber `#cc8000`) |
+| **Update CTA** | "Update" link — opens bank details update flow (see §5.3) |
 
 ---
 
@@ -193,14 +316,21 @@ The Wallet is a dedicated screen within the Finance module, positioned above the
 
 Deposits are **automated** — the admin does not manually initiate them. When a parent pays an invoice via Paystack, the wallet is auto-credited.
 
-**However**, the deposit flow is triggered in two places:
+**Deposit Info Modal:**
 
-1. **From the Wallet screen** — "Deposit" CTA opens a modal that shows:
-   - A message: *"Deposits are automatic. When a parent pays an invoice via Paystack, funds are credited to your wallet automatically."*
-   - A CTA: "Go to Billing" → navigates to Billing & Payments screen.
-   - No manual deposit entry form (offline deposits are bookkeeping, not wallet).
+Clicking the "Deposit" button opens a modal showing:
 
-2. **From the Dashboard quick actions or Billing screen** — when a parent makes a Paystack payment, the wallet is credited automatically in the background.
+1. **Header:** "Deposit Funds" with green info banner explaining auto-credit.
+2. **Paystack Account Details:**
+   - Bank: Wema Bank
+   - Account Name: Swayosoo/Sway Creche
+   - Account Number: 8012345678
+   - **Copy Account Number** button with clipboard icon (shows green checkmark on copy)
+3. **Info bullets:**
+   - Deposits are credited automatically via Paystack
+   - Settlement takes T+1 (typically next business day)
+   - Transaction fee is auto-deducted per deposit
+4. **Footer:** "Done" button to close
 
 **Auto-Credit Logic:**
 - When an invoice status changes to "Paid" via Paystack, the wallet is credited with the invoice amount minus Paystack transaction fee.
@@ -209,51 +339,63 @@ Deposits are **automated** — the admin does not manually initiate them. When a
 
 ### 5.2 Withdrawal Flow
 
-Admins can request withdrawals. The flow:
+Admins can request withdrawals. The flow is a 3-step modal:
 
 **Step 1 — Enter Amount**
+- Available balance displayed at the top.
 - Admin enters the withdrawal amount in ₦.
 - Minimum balance check: withdrawal cannot reduce the available balance below ₦1,000.
-- If insufficient funds, show: *"Insufficient balance. Available: ₦X,XXX"*
-- Show the Paystack transaction fee for this amount (if applicable).
+- If insufficient funds: red error text *"Insufficient balance. Available: ₦X,XXX"*
+- If below minimum: red error text *"Minimum balance of ₦1,000 must be maintained."*
+- Payout account card showing registered bank details with account type badge.
+- Optional note/reason input.
+- "Continue" button (disabled until valid).
 
-**Step 2 — Select Destination**
-- Dropdown shows the registered primary bank account.
-- If the account is a Personal Account, show a notice: *"This is a personal account. Business accounts are recommended for withdrawals."*
-- Admin confirms the destination account.
+**Step 2 — Review & Confirm**
+- Summary card with: amount, destination bank + masked account, account name, remaining balance after withdrawal, note (if provided).
+- Info text: "This withdrawal will be sent to the owner for approval."
+- "Back" and "Confirm Withdrawal" buttons.
+- Loading state during confirmation.
 
-**Step 3 — Review & Confirm**
-- Summary: Amount, Destination (masked account number), Fee, Net amount to be received.
-- Admin enters a note/reason (optional).
-- "Confirm Withdrawal" button → submits the withdrawal request.
+**Step 3 — Success**
+- Green checkmark icon.
+- "Withdrawal Request Sent" heading.
+- Confirmation message with amount.
+- "Done" button closes modal.
 
 **Post-Submission:**
 - The withdrawal is logged as a pending debit in the transaction history.
-- The owner receives a notification (in-app + optional SMS) with the withdrawal details.
-- The owner can approve or reject from the notification or the Wallet screen.
+- The owner receives an in-app notification with the withdrawal details.
+- The owner can approve or reject from the notification or the Pending Approvals section on the Wallet screen.
 - On approval: Paystack Transfer is initiated. Status changes to "Processing" → "Completed" (or "Failed" if Paystack rejects).
 - On rejection: Status changes to "Rejected" with the owner's rejection reason.
 
 ### 5.3 Update Bank Details Flow
 
-The owner can update the registered bank account at any time.
+The owner can update the registered bank account at any time. The flow is a 3-step modal:
 
 **Step 1 — Enter New Details**
 | Field | Required | Notes |
 |---|---|---|
-| Bank Name | Yes | Dropdown of Nigerian banks |
-| Account Number | Yes | 10-digit; triggers auto-fetch |
+| Current Account | Display | Shows existing bank details (read-only) |
+| New Bank Name | Yes | Dropdown of 25 Nigerian banks |
+| New Account Number | Yes | 10-digit; triggers auto-fetch on blur |
 | Account Name | Yes (auto) | Auto-fetched from Paystack |
-| RC Number | No | If business account |
 
-**Step 2 — Name Matching**
-- System checks ≥50% resemblance between fetched account name and crèche profile name.
-- If match passes: proceed to Step 3.
-- If match fails: warning banner — *"Account name does not match crèche name. This account will be flagged as personal. Business account updates are recommended."* User can proceed or go back.
+- Loading spinner during account name fetch.
+- Green success banner when name matches crèche profile.
+- Amber warning banner when name doesn't match (flagged as personal).
 
-**Step 3 — OTP Verification**
-- 6-digit OTP sent to the Owner's registered phone.
-- On success: bank details are updated. Old account is retained in transaction history for reference.
+**Step 2 — OTP Verification**
+- 6-digit OTP input with spaced characters.
+- "Verify & Update" button.
+- "Resend OTP" link.
+
+**Step 3 — Success**
+- Green checkmark icon.
+- "Bank Account Updated" heading.
+- Confirmation with new bank and masked account number.
+- "Done" button closes modal.
 
 ---
 
@@ -294,7 +436,7 @@ The owner can update the registered bank account at any time.
 ### 7.2 Approval Flow
 
 1. Admin submits withdrawal request → status = **"Pending Approval"**.
-2. Owner receives in-app notification (and optional SMS) with request details.
+2. Owner receives in-app notification with request details.
 3. Owner can:
    - **Approve** → status = **"Processing"** → Paystack Transfer initiated.
    - **Reject** → status = **"Rejected"** → Admin notified with rejection reason.
@@ -346,16 +488,40 @@ The owner can update the registered bank account at any time.
 - **Pending In** = sum of Paystack payments received but not yet settled (T+1).
 - **Pending Out** = sum of approved withdrawals awaiting Paystack transfer completion.
 - **Available Balance** = settled balance (can be withdrawn).
-- The dashboard shows: *"Transfer request sent"* on submission, *"Transfer completed"* on success. No T+1 terminology exposed to the user.
+- The wallet shows: *"Transfer request sent"* on submission, *"Transfer completed"* on success. No T+1 terminology exposed to the user.
 
 ---
 
-## 9. Dashboard Integration
+## 9. Navigation & Information Architecture
 
-The Wallet does **not** appear as a KPI card on the main Dashboard. However:
+### 9.1 Sidebar Structure
 
-- The **Finance stat cards** on the Dashboard should include wallet balance as a reference point (or link to the Wallet screen).
-- The Wallet screen is accessible from the Finance sidebar group, positioned above the existing tabs.
+```
+Finance (CreditCard icon)
+├── Wallet              → /finance          (default view)
+├── Billing & Payments  → /finance?tab=billing-payments
+├── Expenses            → /finance?tab=expenses
+└── Financial Reports   → /finance?tab=financial-reports
+```
+
+- "Wallet" uses `router.push()` (not a Link) to force navigation even when already on `/finance`.
+- Other items use Next.js `<Link>` with query params.
+- Active state highlighting: the current sub-item gets dark background + light text.
+
+### 9.2 Page Routing
+
+| URL | View |
+|---|---|
+| `/finance` | Wallet (empty state or full wallet) |
+| `/finance?tab=billing-payments` | Billing & Payments |
+| `/finance?tab=expenses` | Expenses |
+| `/finance?tab=financial-reports` | Financial Reports |
+
+### 9.3 localStorage Persistence
+
+| Key | Value | Purpose |
+|---|---|---|
+| `ceven-wallet-onboarding` | `"complete"` | Tracks whether onboarding has been completed. Once set, wallet always shows directly. |
 
 ---
 
@@ -397,7 +563,6 @@ The wallet is available on **All Plans** — it is a core financial feature, not
 | **Withdrawal expires (48h unactioned)** | Status = "Expired". Funds remain in wallet. Admin notified. |
 | **Bank account name mismatch** | Warning banner. Account flagged as "Personal". Withdrawals held for Super Admin review. |
 | **OTP fails 3 times** | Lock wallet actions for 15 minutes. Show: *"Too many attempts. Try again in 15 minutes."* |
-| **Owner abandons onboarding** | Wallet shows "Complete Setup" banner. Wizard resumes from last step. |
 | **Paystack outage** | Wallet shows cached balance. Deposits/withdrawals show "Pending" with a note: *"Payments may take longer to process. We'll notify you when complete."* |
 
 ---
@@ -419,31 +584,65 @@ The wallet is available on **All Plans** — it is a core financial feature, not
 
 ## 14. Acceptance Criteria (Screen-Level)
 
-- [ ] Wallet screen is accessible from the Finance sidebar group.
-- [ ] Onboarding wizard (3 steps) blocks wallet access until completed.
-- [ ] Onboarding wizard resumes from last step if abandoned.
-- [ ] Balance card shows available balance, pending in, pending out.
-- [ ] Deposit CTA explains automated flow and links to Billing.
-- [ ] Withdrawal flow: amount entry → destination selection → review & confirm.
-- [ ] Minimum balance of ₦1,000 enforced on withdrawals.
-- [ ] Withdrawal requests send notification to Owner for approval.
-- [ ] Owner can approve/reject from notification or Wallet screen.
-- [ ] Rejected withdrawals show the rejection reason.
-- [ ] Expired withdrawals (48h) auto-expire and notify admin.
-- [ ] Bank account details card shows masked account number, name, type badge.
-- [ ] Bank update flow: enter details → name match check → OTP verification.
-- [ ] ≥50% name resemblance check between account name and crèche profile.
-- [ ] Personal account flag triggers Super Admin review hold.
-- [ ] Transaction history table with filters (type, category, date, search).
-- [ ] Transactions show: date, type badge, category, description, amount, status.
-- [ ] Pagination at 20 transactions per page.
-- [ ] 3 summary stat cards: Total In, Total Out, Net Flow (current month).
-- [ ] Paystack fees auto-deducted and logged on each transaction.
-- [ ] All wallet actions logged to the Audit Trail.
-- [ ] OTP verification for onboarding and bank detail updates.
-- [ ] 3-attempt OTP lockout with 15-minute cooldown.
-- [ ] Responsive at 1440px and 768px.
-- [ ] No console errors.
+### Wallet Empty State
+- [ ] Empty state shows when `localStorage` key `ceven-wallet-onboarding` is not set.
+- [ ] Empty state has dashed border, wallet icon, heading, description, and "Get Started" button.
+- [ ] "Get Started" opens the onboarding wizard.
+
+### Onboarding Wizard
+- [ ] Wizard is a fixed modal with close (X) button.
+- [ ] Close button returns to empty state.
+- [ ] Step indicator shows 3 steps with checkmarks for completed steps.
+- [ ] Step 1: Business Name, RC Number, Account Type, BVN fields.
+- [ ] Step 2: Bank dropdown, account number with auto-fetch, name match indicator.
+- [ ] Step 3: OTP send, enter, verify flow.
+- [ ] ≥50% name match check with green/amber feedback.
+- [ ] On completion, saves to `localStorage` and shows wallet.
+- [ ] "Back" button navigates between steps.
+
+### Wallet Screen
+- [ ] "Wallet" page title displayed.
+- [ ] Balance card with dark gradient, available balance, pending in/out.
+- [ ] Withdraw button opens withdrawal modal.
+- [ ] Deposit button opens deposit info modal.
+- [ ] 3 stat cards: Total In, Total Out, Net Flow.
+- [ ] Pending approvals section (visible when pending withdrawals exist).
+- [ ] Approve and Reject buttons on pending withdrawals.
+- [ ] Transaction history with type/category/search filters.
+- [ ] Desktop table and mobile card layout.
+- [ ] Bank account card with masked number, type badge, update link.
+
+### Deposit Modal
+- [ ] Shows Paystack account details (bank, name, number).
+- [ ] Copy account number button with checkmark confirmation.
+- [ ] Info bullets about auto-credit and settlement.
+- [ ] "Done" button closes modal.
+
+### Withdrawal Modal
+- [ ] Step 1: Amount input with balance validation (min ₦1,000).
+- [ ] Step 2: Review summary with destination, amount, remaining balance.
+- [ ] Step 3: Success confirmation.
+- [ ] Back button on each step.
+- [ ] Loading states during confirmation.
+
+### Bank Update Modal
+- [ ] Shows current account details.
+- [ ] Bank dropdown and account number input with auto-fetch.
+- [ ] Name match indicator (green/amber).
+- [ ] OTP verification step.
+- [ ] Success confirmation.
+
+### Navigation
+- [ ] "Wallet" in sidebar navigates to `/finance`.
+- [ ] Billing/Expenses/Reports in sidebar navigate with `?tab=` param.
+- [ ] Wallet only shows when no tab param is active.
+- [ ] Other finance sections only show when their tab param is active.
+- [ ] No tab bar on the page — sidebar handles all navigation.
+
+### Responsive
+- [ ] Layout works at 1440px, 1024px, and 768px.
+- [ ] Transaction history switches to card layout on mobile.
+- [ ] All modals are scrollable on small screens.
 
 ---
 

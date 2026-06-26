@@ -19,13 +19,16 @@ import {
   UserPlus,
   X,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import EnrollChildModal from "@/components/dashboard/enroll-child-modal";
 import NotificationPanel from "@/components/dashboard/notification-panel";
 import { LogActivityModal, type LogActivityMode } from "@/components/admin/children/log-activity-modal";
 import NewInvoiceModal from "@/components/admin/finance/new-invoice-modal";
 import { getAdaReply } from "@/lib/ada-responses";
+import { useDashboardStats, formatLastUpdated } from "@/lib/dashboard-data";
+import OnboardingChecklist from "@/components/dashboard/onboarding-checklist";
+import AiRiskBadge, { calculateRisk } from "@/components/dashboard/ai-risk-badge";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -38,21 +41,36 @@ type StatCardData = {
   showAlert?: boolean;
 };
 
+// ── Activity feed types ──────────────────────────────────────────────────────
+
+type ActivityType = "health" | "finance" | "staff" | "compliance" | "operations" | "enrolment";
+
+const ACTIVITY_COLORS: Record<ActivityType, string> = {
+  health: "#dc2626",
+  finance: "#059669",
+  staff: "#2563eb",
+  compliance: "#d97706",
+  operations: "#6b7280",
+  enrolment: "#7c3aed",
+};
+
+type ActivityFeedItem = {
+  title: string;
+  desc: string;
+  time: string;
+  type: ActivityType;
+  typeLabel: string;
+};
+
+const liveActivities: ActivityFeedItem[] = [
+  { title: "Zara Mohammed absent", desc: "No contact from parent today", time: "2 min ago", type: "health", typeLabel: "Health" },
+  { title: "Payment received — ₦85,000", desc: "King Andrew monthly fee", time: "15 min ago", type: "finance", typeLabel: "Finance" },
+  { title: "Mr Moore submitted daily log", desc: "Lion Class activities logged", time: "1 hour ago", type: "operations", typeLabel: "Operations" },
+  { title: "DBS check expiring", desc: "Grace Nka — expires in 12 days", time: "2 hours ago", type: "compliance", typeLabel: "Compliance" },
+  { title: "New enrolment application", desc: "Tunde Adeyemi — Tiger Class", time: "3 hours ago", type: "enrolment", typeLabel: "Enrolment" },
+];
+
 // ── Static data ───────────────────────────────────────────────────────────────
-
-const statsRow1: StatCardData[] = [
-  { label: "Total Enrolled", value: "00", sub: "+12.5%", subColor: "#006745", showTrend: true },
-  { label: "Present Today", value: "10", sub: "QR Code Checkin", subColor: "#6b7280" },
-  { label: "Absent", value: "07", sub: "No Contact Today", subColor: "#6b7280" },
-  { label: "Staff on Duty", value: "8/12", sub: "Amount Absent", subColor: "#6b7280" },
-];
-
-const statsRow2: StatCardData[] = [
-  { label: "Outstanding Fees", value: "₦1,200,000", sub: "No Unpaid Invoice", subColor: "#cd3030" },
-  { label: "Open Incidents", value: "00", sub: "Urgent Review", subColor: "#f59e0b", showAlert: true },
-  { label: "Reports", value: "37", sub: "7/47 Submitted", subColor: "#6b7280" },
-  { label: "Tasks Overdue", value: "03", sub: "11 Total Pending", subColor: "#6b7280" },
-];
 
 const INSIGHT_TAG_ROUTES: Record<string, string> = {
   "Health & Wellness": "/children",
@@ -94,26 +112,18 @@ const roomOccupancy = [
   { room: "Zebra Class", enrolled: 11, present: 9, capacity: 15, pct: 60 },
 ];
 
-const liveActivities = [
-  { title: "John's report", desc: "Recently updated with current activity", time: "Date and time" },
-  { title: "New report from Mr Moore", desc: "Recently updated with current activity", time: "Date and time" },
-  { title: "Elena Grace", desc: "Recently updated with current activity", time: "Date and time" },
-  { title: "John's report", desc: "Recently updated with current activity", time: "Date and time" },
-  { title: "John's report", desc: "Recently updated with current activity", time: "Date and time" },
-];
-
 const outstandingPayments = [
-  { child: "King Andrew", cls: "Lion", amount: "₦40,000", dueDate: "Jan 10", status: "Overdue", overdueDays: "10 days" },
-  { child: "King Andrew", cls: "Lion", amount: "₦40,000", dueDate: "Feb 2", status: "Pending" },
-  { child: "King Andrew", cls: "Lion", amount: "₦40,000", dueDate: "May 1", status: "Pending" },
-  { child: "King Andrew", cls: "Lion", amount: "₦40,000", dueDate: "Feb 10", status: "Pending" },
+  { child: "King Andrew", cls: "Lion", amount: "₦40,000", dueDate: "Jan 10", status: "Overdue", overdueDays: 10 },
+  { child: "Chidera Nwosu", cls: "Tiger", amount: "₦40,000", dueDate: "Feb 2", status: "Pending", overdueDays: 5 },
+  { child: "Emeka Obi", cls: "Elephant", amount: "₦40,000", dueDate: "May 1", status: "Pending", overdueDays: 2 },
+  { child: "Aisha Bello", cls: "Zebra", amount: "₦40,000", dueDate: "Feb 10", status: "Pending", overdueDays: 0 },
 ];
 
 const pendingEnrollments = [
-  { child: "King Andrew", cls: "Lion", status: "Pending", submitted: "Jan 10" },
-  { child: "King Andrew", cls: "Lion", status: "Pending", submitted: "Feb 2" },
-  { child: "King Andrew", cls: "Lion", status: "Pending", submitted: "May 1" },
-  { child: "King Andrew", cls: "Lion", status: "Pending", submitted: "Feb 10" },
+  { child: "Tunde Adeyemi", cls: "Tiger", status: "Pending", submitted: "Jan 10" },
+  { child: "Ngozi Okoro", cls: "Lion", status: "Pending", submitted: "Feb 2" },
+  { child: "Yemi Afolabi", cls: "Elephant", status: "Pending", submitted: "May 1" },
+  { child: "Funke Alabi", cls: "Zebra", status: "Pending", submitted: "Feb 10" },
 ];
 
 const chatMessages = [
@@ -134,32 +144,16 @@ const quickPrompts = [
   "Flag welfare concerns",
 ];
 
-type QuickActionId =
-  | "add-child"
-  | "qr-station"
-  | "new-log"
-  | "raise-incident"
-  | "add-caregiver"
-  | "new-invoice"
-  | "view-reports";
+// ── PRD-compliant 5 quick actions ────────────────────────────────────────────
+
+type QuickActionId = "add-child" | "qr-station" | "new-log" | "new-invoice" | "view-reports";
 
 const ALL_QUICK_ACTIONS: { id: QuickActionId; icon: typeof Plus; label: string; color: string }[] = [
   { id: "add-child", icon: Plus, label: "Add Child", color: "#3b2513" },
   { id: "qr-station", icon: QrCode, label: "QR Station", color: "#1d4ed8" },
   { id: "new-log", icon: ClipboardList, label: "New Log", color: "#059669" },
-  { id: "raise-incident", icon: ShieldAlert, label: "Raise Incident", color: "#dc2626" },
-  { id: "add-caregiver", icon: UserPlus, label: "Add Caregiver", color: "#0891b2" },
   { id: "new-invoice", icon: FileText, label: "New Invoice", color: "#7c3aed" },
   { id: "view-reports", icon: BarChart2, label: "View Reports", color: "#c47b2c" },
-];
-
-const DEFAULT_QUICK_ACTION_IDS: QuickActionId[] = [
-  "add-child",
-  "qr-station",
-  "new-log",
-  "raise-incident",
-  "new-invoice",
-  "view-reports",
 ];
 
 function CustomizeQuickActionsModal({
@@ -196,7 +190,7 @@ function CustomizeQuickActionsModal({
 
         <div className="flex flex-col gap-4 px-6 py-5">
           <p className="font-[family-name:var(--font-nunito)] text-xs text-black">
-            Selected (<span className="font-semibold">Max of 12</span>)
+            Selected (<span className="font-semibold">Max of 5</span>)
           </p>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
             {ALL_QUICK_ACTIONS.filter((a) => selected.includes(a.id)).map(({ id, icon: Icon, label }) => (
@@ -278,12 +272,26 @@ function StatusBadge({ label }: { label: string }) {
   );
 }
 
-function StatCard({ label, value, sub, subColor = "#6b7280", showTrend, showAlert }: StatCardData) {
+// ── Stat Card with pulse animation ──────────────────────────────────────────
+
+function StatCard({ label, value, sub, subColor = "#6b7280", showTrend, showAlert, isRefreshing }: StatCardData & { isRefreshing?: boolean }) {
+  const prevValueRef = useRef(value);
+  const [isPulsing, setIsPulsing] = useState(false);
+
+  useEffect(() => {
+    if (prevValueRef.current !== value) {
+      setIsPulsing(true);
+      const timer = setTimeout(() => setIsPulsing(false), 1000);
+      prevValueRef.current = value;
+      return () => clearTimeout(timer);
+    }
+  }, [value]);
+
   return (
-    <div className="flex flex-col gap-2 rounded-xl border border-[#e6ebf3] bg-white px-4 py-5">
+    <div className={`flex flex-col gap-2 rounded-xl border border-[#e6ebf3] bg-white px-4 py-5 transition-all duration-300 ${isPulsing ? "ring-2 ring-[#c47b2c]/30" : ""}`}>
       <div className="flex flex-col gap-2">
         <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6f7682]">{label}</p>
-        <p className="font-[family-name:var(--font-merriweather)] text-2xl lg:text-[32px] font-bold leading-none text-[#2d1810]">
+        <p className={`font-[family-name:var(--font-merriweather)] text-2xl lg:text-[32px] font-bold leading-none text-[#2d1810] transition-all duration-300 ${isPulsing ? "scale-105" : "scale-100"}`}>
           {value}
         </p>
       </div>
@@ -405,12 +413,13 @@ function AIChatPanel({ onClose }: { onClose: () => void }) {
 
 export default function DashboardPage() {
   const router = useRouter();
+  const { stats, lastUpdated, isRefreshing } = useDashboardStats(30000);
   const [aiPanelOpen, setAiPanelOpen] = useState(false);
   const [notificationOpen, setNotificationOpen] = useState(false);
   const [enrollOpen, setEnrollOpen] = useState(false);
   const [logActivityMode, setLogActivityMode] = useState<LogActivityMode | null>(null);
   const [invoiceOpen, setInvoiceOpen] = useState(false);
-  const [quickActionIds, setQuickActionIds] = useState<QuickActionId[]>(DEFAULT_QUICK_ACTION_IDS);
+  const [quickActionIds, setQuickActionIds] = useState<QuickActionId[]>(["add-child", "qr-station", "new-log", "new-invoice", "view-reports"]);
   const [customizeOpen, setCustomizeOpen] = useState(false);
 
   const quickActions = ALL_QUICK_ACTIONS.filter((a) => quickActionIds.includes(a.id));
@@ -419,11 +428,23 @@ export default function DashboardPage() {
     if (id === "add-child") setEnrollOpen(true);
     else if (id === "qr-station") router.push("/daily-operations");
     else if (id === "new-log") setLogActivityMode("daily-report");
-    else if (id === "raise-incident") setLogActivityMode("incident");
-    else if (id === "add-caregiver") router.push("/children?tab=caregivers");
     else if (id === "new-invoice") setInvoiceOpen(true);
     else if (id === "view-reports") router.push("/intelligence?tab=reports");
   }
+
+  const greetingDate = new Date().toLocaleDateString("en-NG", {
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
+  const getGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour < 12) return "Good morning";
+    if (hour < 17) return "Good afternoon";
+    return "Good evening";
+  };
 
   return (
     <>
@@ -453,10 +474,10 @@ export default function DashboardPage() {
             <div className="relative flex flex-col gap-4 px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:py-7">
               <div className="flex flex-col gap-2">
                 <p className="font-[family-name:var(--font-nunito)] text-xs font-medium text-[#ffd58f]">
-                  Friday, 11 April 2025
+                  {greetingDate}
                 </p>
                 <h1 className="font-[family-name:var(--font-merriweather)] text-lg sm:text-2xl font-bold text-[#f5edd8]">
-                  Good morning, Amaka 👋
+                  {getGreeting()}, Amaka 👋
                 </h1>
                 <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#27e2a4] underline decoration-solid">
                   • Active
@@ -496,7 +517,7 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          {/* Quick Actions — only visible when AI panel is open */}
+          {/* Quick Actions — visible when AI panel is open */}
           {aiPanelOpen && (
             <div className="flex items-center gap-3 overflow-x-auto rounded-xl bg-[#faf2e1] px-4 py-3">
               {quickActions.map(({ id, icon: Icon, label, color }) => (
@@ -522,22 +543,32 @@ export default function DashboardPage() {
             </div>
           )}
 
+          {/* Onboarding Checklist */}
+          <OnboardingChecklist />
+
           {/* 2. Stats Grid — swipeable on mobile, grid on desktop */}
           <div className="flex flex-col gap-4">
             <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-1 lg:grid lg:grid-cols-4 lg:overflow-visible lg:pb-0">
-              {statsRow1.map((card) => (
+              {(stats?.row1 ?? []).map((card) => (
                 <div key={card.label} className="min-w-[160px] snap-start flex-1 sm:min-w-[180px] lg:min-w-0">
-                  <StatCard {...card} />
+                  <StatCard {...card} isRefreshing={isRefreshing} />
                 </div>
               ))}
             </div>
             <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-1 lg:grid lg:grid-cols-4 lg:overflow-visible lg:pb-0">
-              {statsRow2.map((card) => (
+              {(stats?.row2 ?? []).map((card) => (
                 <div key={card.label} className="min-w-[160px] snap-start flex-1 sm:min-w-[180px] lg:min-w-0">
-                  <StatCard {...card} />
+                  <StatCard {...card} isRefreshing={isRefreshing} />
                 </div>
               ))}
             </div>
+            {/* Last updated timestamp */}
+            {lastUpdated && (
+              <p className="font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">
+                Last updated: {formatLastUpdated(lastUpdated)}
+                {isRefreshing && <span className="ml-2 text-[#c47b2c]">Refreshing...</span>}
+              </p>
+            )}
           </div>
 
           {/* 3. Middle Panels */}
@@ -657,12 +688,12 @@ export default function DashboardPage() {
               </div>
             )}
 
-            {/* Live Activities — only shown when AI panel is closed */}
+            {/* Activity Feed — coloured dots by type */}
             {!aiPanelOpen && (
               <div className="flex flex-col gap-4 rounded-xl border border-[#e6ebf3] bg-white p-4">
                 <div className="flex items-center justify-between">
                   <h3 className="font-[family-name:var(--font-nunito)] text-base font-medium text-black">
-                    Live Activities
+                    Activity Feed
                   </h3>
                   <LinkArrow label="Go to Daily Operations" onClick={() => router.push("/daily-operations")} />
                 </div>
@@ -673,11 +704,25 @@ export default function DashboardPage() {
                       key={i}
                       className="relative border-b border-[#e6ebf3] py-3 pl-5 last:border-b-0"
                     >
-                      <div className="absolute left-0 top-[18px] h-2 w-2 rounded-full bg-[#fe7171]" />
+                      <div
+                        className="absolute left-0 top-[18px] h-2 w-2 rounded-full"
+                        style={{ backgroundColor: ACTIVITY_COLORS[item.type] }}
+                      />
                       <div className="flex items-start justify-between gap-2">
-                        <p className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">
-                          {item.title}
-                        </p>
+                        <div>
+                          <p className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">
+                            {item.title}
+                          </p>
+                          <span
+                            className="inline-block mt-0.5 rounded-full px-1.5 py-0.5 font-[family-name:var(--font-urbanist)] text-[8px] font-medium"
+                            style={{
+                              backgroundColor: `${ACTIVITY_COLORS[item.type]}15`,
+                              color: ACTIVITY_COLORS[item.type],
+                            }}
+                          >
+                            {item.typeLabel}
+                          </span>
+                        </div>
                         <span className="shrink-0 font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">
                           {item.time}
                         </span>
@@ -694,7 +739,7 @@ export default function DashboardPage() {
 
           {/* 4. Bottom Tables */}
           <div className="flex flex-col gap-4 lg:flex-row lg:gap-4">
-            {/* Outstanding Payments */}
+            {/* Outstanding Payments — with AI Risk column */}
             <div className="flex min-w-0 flex-1 flex-col rounded-xl bg-white lg:flex-[8]">
               <div className="flex items-center justify-between px-4 py-4">
                 <h3 className="font-[family-name:var(--font-nunito)] text-base font-medium text-black">
@@ -711,6 +756,7 @@ export default function DashboardPage() {
                       <th className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black">Amount</th>
                       <th className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black">Due Date</th>
                       <th className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black">Status</th>
+                      <th className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black">AI Risk</th>
                       <th className="px-4 py-3 text-center font-[family-name:var(--font-nunito)] text-sm font-normal text-black">Action</th>
                     </tr>
                   </thead>
@@ -728,10 +774,20 @@ export default function DashboardPage() {
                         <td className="px-4 py-3">
                           <div className="flex items-center gap-2">
                             <StatusBadge label={row.status} />
-                            {row.overdueDays && (
-                              <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#cd3030]">{row.overdueDays}</span>
-                            )}
+                            <span
+                              className={`font-[family-name:var(--font-nunito)] text-sm font-medium ${
+                                row.overdueDays > 7 ? "text-[#cd3030]" : row.overdueDays > 3 ? "text-[#d97706]" : "text-[#6b7280]"
+                              }`}
+                            >
+                              {row.overdueDays > 0 ? `${row.overdueDays} days` : ""}
+                            </span>
                           </div>
+                        </td>
+                        <td className="px-4 py-3">
+                          <AiRiskBadge
+                            level={calculateRisk(row.overdueDays)}
+                            overdueDays={row.overdueDays}
+                          />
                         </td>
                         <td className="px-4 py-3 text-center">
                           <button className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810] underline hover:opacity-70">Reminder</button>
@@ -755,7 +811,10 @@ export default function DashboardPage() {
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
-                      <StatusBadge label={row.status} />
+                      <AiRiskBadge
+                        level={calculateRisk(row.overdueDays)}
+                        overdueDays={row.overdueDays}
+                      />
                       <button className="font-[family-name:var(--font-urbanist)] text-xs font-medium text-[#2d1810] underline hover:opacity-70">Send</button>
                     </div>
                   </div>
@@ -786,7 +845,7 @@ export default function DashboardPage() {
                     {pendingEnrollments.map((row, i) => (
                       <tr key={i} className="border-t border-[#eaecf0]">
                         <td className="px-4 py-3">
-              <div className="flex flex-wrap items-center gap-3">
+                          <div className="flex flex-wrap items-center gap-3">
                             <div className="h-5 w-5 shrink-0 rounded-md border border-[#d0d5dd] bg-white" />
                             <div className="flex flex-col gap-0.5">
                               <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">{row.child}</span>
