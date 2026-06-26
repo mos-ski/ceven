@@ -23,6 +23,11 @@ function FinanceContent() {
 
   return (
     <div className="flex flex-col gap-6">
+      {/* Page header */}
+      <h1 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
+        Finance
+      </h1>
+
       {/* Wallet — only show when no tab is active (i.e. user clicked "Wallet" in sidebar) */}
       {!activeTab && <WalletTab />}
 
