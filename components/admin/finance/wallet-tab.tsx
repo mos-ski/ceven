@@ -93,6 +93,11 @@ export default function WalletTab() {
 
   return (
     <div className="flex flex-col gap-4">
+      {/* Page header */}
+      <h1 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
+        Wallet
+      </h1>
+
       {/* Balance Card */}
       <div className="rounded-2xl bg-gradient-to-br from-[#3b2513] to-[#5b391e] p-6 text-white">
         <div className="flex items-center gap-2">
