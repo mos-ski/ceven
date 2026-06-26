@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDown, Download, Search, Wallet, ArrowDownLeft, ArrowUpRight, Building2, ChevronRight } from "lucide-react";
+import { ChevronDown, Download, Search, Wallet, ArrowDownLeft, ArrowUpRight, Building2, ChevronRight, Plus } from "lucide-react";
 import { useState } from "react";
 
 import {
@@ -46,7 +46,7 @@ function FilterButton({ label }: { label: string }) {
 }
 
 export default function WalletTab() {
-  const [onboardingComplete, setOnboardingComplete] = useState(false);
+  const [onboardingState, setOnboardingState] = useState<"empty" | "wizard" | "complete">("empty");
   const [withdrawalOpen, setWithdrawalOpen] = useState(false);
   const [depositOpen, setDepositOpen] = useState(false);
   const [bankUpdateOpen, setBankUpdateOpen] = useState(false);
@@ -61,8 +61,34 @@ export default function WalletTab() {
     return true;
   });
 
-  if (!onboardingComplete) {
-    return <WalletOnboardingWizard open onComplete={() => setOnboardingComplete(true)} />;
+  if (onboardingState === "wizard") {
+    return <WalletOnboardingWizard open onComplete={() => setOnboardingState("complete")} />;
+  }
+
+  if (onboardingState === "empty") {
+    return (
+      <div className="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-[#e6ebf3] bg-white py-16 px-6">
+        <div className="flex size-16 items-center justify-center rounded-full bg-[#f5edd8]">
+          <Wallet className="size-8 text-[#3b2513]" />
+        </div>
+        <h2 className="mt-4 font-[family-name:var(--font-merriweather)] text-xl font-bold text-[#2d1810]">
+          Set Up Your Wallet
+        </h2>
+        <p className="mt-2 max-w-sm text-center font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+          Your wallet lets you track all money flowing in and out of your crèche. Deposits are automatic when parents pay invoices via Paystack.
+        </p>
+        <button
+          onClick={() => setOnboardingState("wizard")}
+          className="mt-6 flex items-center gap-2 rounded-lg border border-[#d4a67f] bg-[#3b2513] px-6 py-3 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#faf2e1] hover:bg-[#2d1810]"
+        >
+          <Plus className="size-4" />
+          Get Started
+        </button>
+        <p className="mt-3 font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">
+          Takes about 2 minutes to complete
+        </p>
+      </div>
+    );
   }
 
   return (

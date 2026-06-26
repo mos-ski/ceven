@@ -58,6 +58,7 @@ export const NAV_ITEMS: NavItem[] = [
     href: "/finance",
     icon: "finance",
     subItems: [
+      { label: "Wallet", href: "/finance" },
       { label: "Billing & Payments", href: "/finance", tab: "billing-payments" },
       { label: "Expenses", href: "/finance", tab: "expenses" },
       { label: "Financial Reports", href: "/finance", tab: "financial-reports" },
