@@ -75,7 +75,7 @@ export default function AiRiskBadge({ level, overdueDays, planTier = "flourish" 
         {/* Tooltip */}
         <div className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 -translate-x-1/2 opacity-0 transition-opacity group-hover:opacity-100">
           <div className="whitespace-nowrap rounded-lg bg-[#2d1810] px-3 py-1.5 font-[family-name:var(--font-nunito)] text-[10px] text-white shadow-lg">
-            Upgrade to Nestling Pro to unlock AI Risk
+            Upgrade to Nuture Pro to unlock AI Risk
             <div className="absolute left-1/2 top-full -translate-x-1/2 border-4 border-transparent border-t-[#2d1810]" />
           </div>
         </div>

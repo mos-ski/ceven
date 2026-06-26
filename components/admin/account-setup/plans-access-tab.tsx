@@ -38,20 +38,20 @@ type AddOn = {
 
 const plans: Plan[] = [
   {
-    name: "Seedling",
+    name: "Nuture",
     monthlyPrice: 18500,
-    desc: "Perfect for small creches just getting started.",
-    features: ["Up to 20 children", "2 staff accounts", "Basic reporting", "Email support"],
+    desc: "",
+    features: ["Up to 10 children", "2 staff accounts", "Basic reporting", "Email support"],
     button: "Subscribe",
     buttonStyle: "outline",
     hasAddOns: false,
   },
   {
-    name: "Nestling Pro",
+    name: "Nuture Pro",
     monthlyPrice: 45000,
-    desc: "Our most popular plan for growing creches.",
+    desc: "",
     features: [
-      "Up to 60 children",
+      "Up to 35 children",
       "10 staff accounts",
       "AI reports & insights",
       "Priority support",
@@ -63,9 +63,9 @@ const plans: Plan[] = [
     hasAddOns: true,
   },
   {
-    name: "Flourish",
+    name: "Nuture Max",
     monthlyPrice: 85000,
-    desc: "For established creches with multiple rooms.",
+    desc: "",
     features: [
       "Unlimited children",
       "Unlimited staff",
@@ -87,13 +87,13 @@ function formatNaira(amount: number): string {
 }
 
 function getPriceForCycle(monthlyPrice: number, cycle: BillingCycle): number {
-  if (cycle === "quarterly") return Math.round(monthlyPrice * 3 * 0.95); // 5% discount
+  if (cycle === "quarterly") return Math.round(monthlyPrice * 3 * 0.85); // 15% discount
   if (cycle === "yearly") return Math.round(monthlyPrice * 12 * 0.8); // 20% discount
   return monthlyPrice;
 }
 
 function getPerMonthPrice(monthlyPrice: number, cycle: BillingCycle): number {
-  if (cycle === "quarterly") return Math.round(monthlyPrice * 0.95); // 5% discount
+  if (cycle === "quarterly") return Math.round(monthlyPrice * 0.85); // 15% discount
   if (cycle === "yearly") return Math.round(monthlyPrice * 0.8); // 20% discount
   return monthlyPrice;
 }
@@ -105,7 +105,7 @@ function getBillingLabel(cycle: BillingCycle): string {
 }
 
 const comparisonRows: ComparisonRow[] = [
-  { feature: "Children Limit", seedling: "Up to 20", nestling: "Up to 60", flourish: "Unlimited" },
+  { feature: "Children Limit", seedling: "Up to 10", nestling: "Up to 35", flourish: "Unlimited" },
   { feature: "Staff Accounts", seedling: "2 accounts", nestling: "10 accounts", flourish: "Unlimited" },
   { feature: "AI Reports", seedling: "✗", nestling: "✓", flourish: "✓" },
   { feature: "Ada AI Assistant", seedling: "✗", nestling: "✓", flourish: "✓" },
@@ -223,7 +223,7 @@ function Step1({ onNext }: { onNext: (plan: Plan) => void }) {
             >
               {cycle.charAt(0).toUpperCase() + cycle.slice(1)}
               {cycle === "quarterly" && (
-                <span className="ml-1 text-[10px] text-[#009061]">Save 5%</span>
+                <span className="ml-1 text-[10px] text-[#009061]">Save 15%</span>
               )}
               {cycle === "yearly" && (
                 <span className="ml-1 text-[10px] text-[#009061]">Save 20%</span>
@@ -254,7 +254,9 @@ function Step1({ onNext }: { onNext: (plan: Plan) => void }) {
                 <p className="font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">
                   {formatNaira(perMonth)}/month{billingCycle !== "monthly" && " (billed " + billingCycle + ")"}
                 </p>
+                {plan.desc && (
                 <p className="mt-1 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">{plan.desc}</p>
+              )}
               </div>
 
               <ul className="flex flex-col gap-2">
@@ -295,13 +297,13 @@ function Step1({ onNext }: { onNext: (plan: Plan) => void }) {
                   Feature
                 </th>
                 <th className="px-5 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
-                  Seedling
+                  Nuture
                 </th>
                 <th className="px-5 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
-                  Nestling Pro
+                  Nuture Pro
                 </th>
                 <th className="px-5 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
-                  Flourish
+                  Nuture Max
                 </th>
               </tr>
             </thead>
@@ -388,7 +390,7 @@ function PlanPeriodAndBilling({
                       {cycle.charAt(0).toUpperCase() + cycle.slice(1)}
                     </span>
                     {cycle === "quarterly" && (
-                      <span className="rounded-full bg-[#ecfff8] px-1.5 py-0.5 text-[10px] font-semibold text-[#009061]">-5%</span>
+                      <span className="rounded-full bg-[#ecfff8] px-1.5 py-0.5 text-[10px] font-semibold text-[#009061]">-15%</span>
                     )}
                     {cycle === "yearly" && (
                       <span className="rounded-full bg-[#ecfff8] px-1.5 py-0.5 text-[10px] font-semibold text-[#009061]">-20%</span>
