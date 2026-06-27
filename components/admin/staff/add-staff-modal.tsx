@@ -29,6 +29,8 @@ type BulkStaffRow = {
   phone: string;
   role: string;
   salary: number;
+  deductions: number;
+  netPay: number;
   bankName: string;
   accountNumber: string;
   selected: boolean;
@@ -37,10 +39,10 @@ type BulkStaffRow = {
 // ── Mock extracted data from "Excel" ────────────────────────────────────────
 
 const MOCK_EXTRACTED: BulkStaffRow[] = [
-  { id: "be-1", name: "Adebayo Okafor", email: "adebayo.o@udebemcresh.com", phone: "+234 80 1234 5678", role: "Caregiver", salary: 180000, bankName: "GT Bank", accountNumber: "0123456789", selected: true },
-  { id: "be-2", name: "Chidinma Nwosu", email: "chidinma.n@udebemcresh.com", phone: "+234 70 2345 6789", role: "Cook", salary: 150000, bankName: "Access Bank", accountNumber: "9876543210", selected: true },
-  { id: "be-3", name: "Emeka Obi", email: "emeka.o@udebemcresh.com", phone: "+234 81 3456 7890", role: "Driver", salary: 120000, bankName: "First Bank", accountNumber: "5678901234", selected: true },
-  { id: "be-4", name: "Fatima Abubakar", email: "fatima.a@udebemcresh.com", phone: "+234 90 4567 8901", role: "Caregiver", salary: 180000, bankName: "UBA", accountNumber: "3456789012", selected: true },
+  { id: "be-1", name: "Adebayo Okafor", email: "adebayo.o@udebemcresh.com", phone: "+234 80 1234 5678", role: "Caregiver", salary: 180000, deductions: 23000, netPay: 157000, bankName: "GT Bank", accountNumber: "0123456789", selected: true },
+  { id: "be-2", name: "Chidinma Nwosu", email: "chidinma.n@udebemcresh.com", phone: "+234 70 2345 6789", role: "Cook", salary: 150000, deductions: 18000, netPay: 132000, bankName: "Access Bank", accountNumber: "9876543210", selected: true },
+  { id: "be-3", name: "Emeka Obi", email: "emeka.o@udebemcresh.com", phone: "+234 81 3456 7890", role: "Driver", salary: 120000, deductions: 15000, netPay: 105000, bankName: "First Bank", accountNumber: "5678901234", selected: true },
+  { id: "be-4", name: "Fatima Abubakar", email: "fatima.a@udebemcresh.com", phone: "+234 90 4567 8901", role: "Caregiver", salary: 180000, deductions: 23000, netPay: 157000, bankName: "UBA", accountNumber: "3456789012", selected: true },
 ];
 
 // ── Helpers ─────────────────────────────────────────────────────────────────
@@ -116,6 +118,16 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
   const [accountNumber, setAccountNumber] = useState("");
   const [pensionPin, setPensionPin] = useState("");
   const [taxId, setTaxId] = useState("");
+  const [taxEnabled, setTaxEnabled] = useState(false);
+  const [taxMode, setTaxMode] = useState<"percent" | "fixed">("percent");
+  const [taxValue, setTaxValue] = useState("");
+  const [pensionEnabled, setPensionEnabled] = useState(false);
+  const [pensionMode, setPensionMode] = useState<"percent" | "fixed">("percent");
+  const [pensionValue, setPensionValue] = useState("");
+  const [otherEnabled, setOtherEnabled] = useState(false);
+  const [otherName, setOtherName] = useState("");
+  const [otherMode, setOtherMode] = useState<"percent" | "fixed">("fixed");
+  const [otherValue, setOtherValue] = useState("");
   const [idDoc, setIdDoc] = useState<UploadedDoc | null>(null);
   const [workDoc, setWorkDoc] = useState<UploadedDoc | null>(null);
 
@@ -125,6 +137,13 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
 
   const canStep1 = name.trim() !== "" && email.trim() !== "" && phone.trim() !== "" && role !== "";
   const canStep2 = employmentType !== "" && basicSalary.trim() !== "" && bankName.trim() !== "" && accountNumber.trim() !== "";
+
+  const salaryNum = Number(basicSalary) || 0;
+  const taxDeduction = taxEnabled ? (taxMode === "percent" ? Math.round(salaryNum * (Number(taxValue) || 0) / 100) : Number(taxValue) || 0) : 0;
+  const pensionDeduction = pensionEnabled ? (pensionMode === "percent" ? Math.round(salaryNum * (Number(pensionValue) || 0) / 100) : Number(pensionValue) || 0) : 0;
+  const otherDeduction = otherEnabled ? (otherMode === "percent" ? Math.round(salaryNum * (Number(otherValue) || 0) / 100) : Number(otherValue) || 0) : 0;
+  const totalDeductions = taxDeduction + pensionDeduction + otherDeduction;
+  const netPay = salaryNum - totalDeductions;
 
   const handleManualSubmit = useCallback(() => {
     onClose();
@@ -257,54 +276,108 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
                   className="h-[52px] w-full rounded-xl border border-[#dcdcdc] px-4 font-[family-name:var(--font-urbanist)] text-sm text-black outline-none placeholder:text-[#7e7e7e] focus:ring-2 focus:ring-[#c47b2c]"
                 />
               </div>
+
+              {/* ── Deductions ──────────────────────────────────── */}
+              <div className="h-px w-full bg-[#e6ebf3]" />
+              <p className="font-[family-name:var(--font-merriweather)] text-sm font-bold text-[#2d1810]">
+                Deductions
+              </p>
+
+              {/* Tax */}
+              <div className="flex flex-col gap-2 rounded-xl border border-[#e6ebf3] p-4">
+                <div className="flex items-center justify-between">
+                  <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">Tax</span>
+                  <button type="button" onClick={() => setTaxEnabled((v) => !v)} className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full transition-colors ${taxEnabled ? "bg-[#3b2513]" : "bg-[#d0d5dd]"}`}>
+                    <span className={`inline-block size-5 rounded-full bg-white shadow transition-transform mt-0.5 ${taxEnabled ? "translate-x-5" : "translate-x-0.5"}`} />
+                  </button>
+                </div>
+                {taxEnabled && (
+                  <div className="flex gap-2">
+                    <div className="flex rounded-lg border border-[#d0d5dd] overflow-hidden">
+                      <button type="button" onClick={() => setTaxMode("percent")} className={`px-3 py-2 text-xs font-medium font-[family-name:var(--font-urbanist)] ${taxMode === "percent" ? "bg-[#3b2513] text-[#faf2e1]" : "bg-white text-[#6b7280]"}`}>%</button>
+                      <button type="button" onClick={() => setTaxMode("fixed")} className={`px-3 py-2 text-xs font-medium font-[family-name:var(--font-urbanist)] ${taxMode === "fixed" ? "bg-[#3b2513] text-[#faf2e1]" : "bg-white text-[#6b7280]"}`}>₦</button>
+                    </div>
+                    <input type="number" value={taxValue} onChange={(e) => setTaxValue(e.target.value)} placeholder={taxMode === "percent" ? "e.g. 10" : "e.g. 18000"} className="h-10 flex-1 rounded-lg border border-[#dcdcdc] px-3 font-[family-name:var(--font-urbanist)] text-sm text-black outline-none placeholder:text-[#7e7e7e] focus:ring-1 focus:ring-[#c47b2c]" />
+                  </div>
+                )}
+              </div>
+
+              {/* Pension */}
+              <div className="flex flex-col gap-2 rounded-xl border border-[#e6ebf3] p-4">
+                <div className="flex items-center justify-between">
+                  <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">Pension</span>
+                  <button type="button" onClick={() => setPensionEnabled((v) => !v)} className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full transition-colors ${pensionEnabled ? "bg-[#3b2513]" : "bg-[#d0d5dd]"}`}>
+                    <span className={`inline-block size-5 rounded-full bg-white shadow transition-transform mt-0.5 ${pensionEnabled ? "translate-x-5" : "translate-x-0.5"}`} />
+                  </button>
+                </div>
+                {pensionEnabled && (
+                  <div className="flex gap-2">
+                    <div className="flex rounded-lg border border-[#d0d5dd] overflow-hidden">
+                      <button type="button" onClick={() => setPensionMode("percent")} className={`px-3 py-2 text-xs font-medium font-[family-name:var(--font-urbanist)] ${pensionMode === "percent" ? "bg-[#3b2513] text-[#faf2e1]" : "bg-white text-[#6b7280]"}`}>%</button>
+                      <button type="button" onClick={() => setPensionMode("fixed")} className={`px-3 py-2 text-xs font-medium font-[family-name:var(--font-urbanist)] ${pensionMode === "fixed" ? "bg-[#3b2513] text-[#faf2e1]" : "bg-white text-[#6b7280]"}`}>₦</button>
+                    </div>
+                    <input type="number" value={pensionValue} onChange={(e) => setPensionValue(e.target.value)} placeholder={pensionMode === "percent" ? "e.g. 8" : "e.g. 14400"} className="h-10 flex-1 rounded-lg border border-[#dcdcdc] px-3 font-[family-name:var(--font-urbanist)] text-sm text-black outline-none placeholder:text-[#7e7e7e] focus:ring-1 focus:ring-[#c47b2c]" />
+                  </div>
+                )}
+              </div>
+
+              {/* Other */}
+              <div className="flex flex-col gap-2 rounded-xl border border-[#e6ebf3] p-4">
+                <div className="flex items-center justify-between">
+                  <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">Other</span>
+                  <button type="button" onClick={() => setOtherEnabled((v) => !v)} className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full transition-colors ${otherEnabled ? "bg-[#3b2513]" : "bg-[#d0d5dd]"}`}>
+                    <span className={`inline-block size-5 rounded-full bg-white shadow transition-transform mt-0.5 ${otherEnabled ? "translate-x-5" : "translate-x-0.5"}`} />
+                  </button>
+                </div>
+                {otherEnabled && (
+                  <div className="flex flex-col gap-2">
+                    <input type="text" value={otherName} onChange={(e) => setOtherName(e.target.value)} placeholder="e.g. HMO, Housing Loan" className="h-10 w-full rounded-lg border border-[#dcdcdc] px-3 font-[family-name:var(--font-urbanist)] text-sm text-black outline-none placeholder:text-[#7e7e7e] focus:ring-1 focus:ring-[#c47b2c]" />
+                    <div className="flex gap-2">
+                      <div className="flex rounded-lg border border-[#d0d5dd] overflow-hidden">
+                        <button type="button" onClick={() => setOtherMode("percent")} className={`px-3 py-2 text-xs font-medium font-[family-name:var(--font-urbanist)] ${otherMode === "percent" ? "bg-[#3b2513] text-[#faf2e1]" : "bg-white text-[#6b7280]"}`}>%</button>
+                        <button type="button" onClick={() => setOtherMode("fixed")} className={`px-3 py-2 text-xs font-medium font-[family-name:var(--font-urbanist)] ${otherMode === "fixed" ? "bg-[#3b2513] text-[#faf2e1]" : "bg-white text-[#6b7280]"}`}>₦</button>
+                      </div>
+                      <input type="number" value={otherValue} onChange={(e) => setOtherValue(e.target.value)} placeholder={otherMode === "percent" ? "e.g. 5" : "e.g. 10000"} className="h-10 flex-1 rounded-lg border border-[#dcdcdc] px-3 font-[family-name:var(--font-urbanist)] text-sm text-black outline-none placeholder:text-[#7e7e7e] focus:ring-1 focus:ring-[#c47b2c]" />
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Net Pay */}
+              {salaryNum > 0 && (
+                <div className="rounded-xl bg-[#faf5ee] border border-[#e6ebf3] p-4">
+                  <div className="flex items-center justify-between">
+                    <span className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">Total Deductions</span>
+                    <span className="font-[family-name:var(--font-nunito)] text-sm font-bold text-[#ef4444]">-{formatCurrency(totalDeductions)}</span>
+                  </div>
+                  <div className="mt-2 flex items-center justify-between border-t border-[#e6ebf3] pt-2">
+                    <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">Net Pay</span>
+                    <span className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#3b2513]">{formatCurrency(netPay)}</span>
+                  </div>
+                </div>
+              )}
+
+              {/* Bank Details */}
+              <div className="h-px w-full bg-[#e6ebf3]" />
+              <p className="font-[family-name:var(--font-merriweather)] text-sm font-bold text-[#2d1810]">
+                Bank Details
+              </p>
               <div className="flex flex-col gap-1">
-                <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">
-                  Bank Name
-                </label>
-                <input
-                  type="text"
-                  value={bankName}
-                  onChange={(e) => setBankName(e.target.value)}
-                  placeholder="e.g. GT Bank"
-                  className="h-[52px] w-full rounded-xl border border-[#dcdcdc] px-4 font-[family-name:var(--font-urbanist)] text-sm text-black outline-none placeholder:text-[#7e7e7e] focus:ring-2 focus:ring-[#c47b2c]"
-                />
+                <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">Bank Name</label>
+                <input type="text" value={bankName} onChange={(e) => setBankName(e.target.value)} placeholder="e.g. GT Bank" className="h-[52px] w-full rounded-xl border border-[#dcdcdc] px-4 font-[family-name:var(--font-urbanist)] text-sm text-black outline-none placeholder:text-[#7e7e7e] focus:ring-2 focus:ring-[#c47b2c]" />
               </div>
               <div className="flex flex-col gap-1">
-                <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">
-                  Account Number
-                </label>
-                <input
-                  type="text"
-                  value={accountNumber}
-                  onChange={(e) => setAccountNumber(e.target.value)}
-                  placeholder="e.g. 0123456789"
-                  className="h-[52px] w-full rounded-xl border border-[#dcdcdc] px-4 font-[family-name:var(--font-urbanist)] text-sm text-black outline-none placeholder:text-[#7e7e7e] focus:ring-2 focus:ring-[#c47b2c]"
-                />
+                <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">Account Number</label>
+                <input type="text" value={accountNumber} onChange={(e) => setAccountNumber(e.target.value)} placeholder="e.g. 0123456789" className="h-[52px] w-full rounded-xl border border-[#dcdcdc] px-4 font-[family-name:var(--font-urbanist)] text-sm text-black outline-none placeholder:text-[#7e7e7e] focus:ring-2 focus:ring-[#c47b2c]" />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1">
-                  <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">
-                    Pension PIN
-                  </label>
-                  <input
-                    type="text"
-                    value={pensionPin}
-                    onChange={(e) => setPensionPin(e.target.value)}
-                    placeholder="PEN..."
-                    className="h-[52px] w-full rounded-xl border border-[#dcdcdc] px-4 font-[family-name:var(--font-urbanist)] text-sm text-black outline-none placeholder:text-[#7e7e7e] focus:ring-2 focus:ring-[#c47b2c]"
-                  />
+                  <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">Pension PIN</label>
+                  <input type="text" value={pensionPin} onChange={(e) => setPensionPin(e.target.value)} placeholder="PEN..." className="h-[52px] w-full rounded-xl border border-[#dcdcdc] px-4 font-[family-name:var(--font-urbanist)] text-sm text-black outline-none placeholder:text-[#7e7e7e] focus:ring-2 focus:ring-[#c47b2c]" />
                 </div>
                 <div className="flex flex-col gap-1">
-                  <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">
-                    Tax ID
-                  </label>
-                  <input
-                    type="text"
-                    value={taxId}
-                    onChange={(e) => setTaxId(e.target.value)}
-                    placeholder="TIN..."
-                    className="h-[52px] w-full rounded-xl border border-[#dcdcdc] px-4 font-[family-name:var(--font-urbanist)] text-sm text-black outline-none placeholder:text-[#7e7e7e] focus:ring-2 focus:ring-[#c47b2c]"
-                  />
+                  <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">Tax ID</label>
+                  <input type="text" value={taxId} onChange={(e) => setTaxId(e.target.value)} placeholder="TIN..." className="h-[52px] w-full rounded-xl border border-[#dcdcdc] px-4 font-[family-name:var(--font-urbanist)] text-sm text-black outline-none placeholder:text-[#7e7e7e] focus:ring-2 focus:ring-[#c47b2c]" />
                 </div>
               </div>
             </div>
@@ -459,7 +532,7 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
                       <th className="px-4 py-3 w-10">
                         <input type="checkbox" checked={bulkRows.length > 0 && bulkRows.every((r) => r.selected)} onChange={toggleAllBulk} className="accent-[#3b2513]" />
                       </th>
-                      {["Staff", "Role", "Salary", "Bank", "Account"].map((h) => (
+                      {["Staff", "Role", "Salary", "Deductions", "Net Pay", "Bank", "Account"].map((h) => (
                         <th key={h} className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]">{h}</th>
                       ))}
                     </tr>
@@ -475,7 +548,9 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
                           <p className="text-[10px] text-[#858c98]">{row.email}</p>
                         </td>
                         <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{row.role}</td>
-                        <td className="px-4 py-3 text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">{formatCurrency(row.salary)}</td>
+                        <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{formatCurrency(row.salary)}</td>
+                        <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#ef4444]">-{formatCurrency(row.deductions)}</td>
+                        <td className="px-4 py-3 text-sm font-bold font-[family-name:var(--font-nunito)] text-[#3b2513]">{formatCurrency(row.netPay)}</td>
                         <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{row.bankName}</td>
                         <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{row.accountNumber}</td>
                       </tr>
@@ -492,7 +567,9 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
                       <input type="checkbox" checked={row.selected} onChange={() => toggleBulkRow(row.id)} onClick={(e) => e.stopPropagation()} className="accent-[#3b2513]" />
                       <div className="flex-1">
                         <p className="text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">{row.name}</p>
-                        <p className="text-[10px] text-[#858c98]">{row.role} • {formatCurrency(row.salary)}</p>
+                        <p className="text-[10px] text-[#858c98]">{row.role}</p>
+                        <p className="text-[10px] text-[#858c98]">{formatCurrency(row.salary)} salary • -{formatCurrency(row.deductions)} deductions</p>
+                        <p className="text-xs font-bold text-[#3b2513]">Net: {formatCurrency(row.netPay)}</p>
                         <p className="text-[10px] text-[#858c98]">{row.bankName} — {row.accountNumber}</p>
                       </div>
                     </div>
