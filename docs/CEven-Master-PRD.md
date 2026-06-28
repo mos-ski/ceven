@@ -92,8 +92,7 @@ CEven uses a persistent left sidebar organised into 7 groups, plus a notificatio
 - **Parents** — Parent directory, app adoption tracking, payment risk.
 - **Enrolment & Waitlist** — Pipeline kanban, waitlist, trial sessions, leavers.
 - **Child Development** — Milestones, observations, growth records, SEND register.
-- **Staff** — Directory, QR attendance, log compliance tracking.
-- **Payroll** — Monthly payroll run, salary setup, payslip history.
+- **Staff** — Directory, QR attendance, log compliance tracking, role management, leaderboard.
 - **Leave Management** — Leave requests, approval flow, balances, calendar.
 - **Compliance & Safety** — DBS register, fire drills, food hygiene, risk assessments, safeguarding.
 - **Rooms & Classes** — Room cards with live occupancy and capacity.
@@ -108,8 +107,10 @@ CEven uses a persistent left sidebar organised into 7 groups, plus a notificatio
 - **Tasks** — Task list, AI auto-assignment, priority and overdue tracking.
 
 **FINANCE**
+- **Wallet** — Wallet balance, transactions, deposits, withdrawals.
 - **Billing & Payments** — Tuition invoicing, collection tracking, AI risk scoring.
 - **Expenses** — Operating expense log, budget tracking, receipt management.
+- **Payroll** — Staff payment list with selectable checkboxes, wallet balance check, payroll history, salary setup with deduction configuration.
 - **Financial Reports** — P&L, revenue by room, cost analysis, AI financial narrative.
 
 **COMMUNICATION**

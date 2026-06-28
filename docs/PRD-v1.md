@@ -91,13 +91,12 @@ CEven Admin uses a persistent left sidebar for navigation organised into 7 group
 - **Parents** — Parent directory, app adoption tracking, payment risk
 - **Enrolment & Waitlist** — Pipeline kanban, waitlist, trial sessions, leavers
 - **Child Development** — Milestones, observations, growth records, SEND register
-- **Staff** — Directory, QR attendance, log compliance tracking
-- **Payroll** — Monthly payroll run, salary setup, payslip history
+- **Staff** — Directory, QR attendance, log compliance tracking, role management, leaderboard
 - **Leave Management** — Leave requests, approval flow, balances, calendar
 - **Compliance & Safety** — DBS register, fire drills, food hygiene, risk assessments, safeguarding
 - **Rooms & Classes** — Room cards with live occupancy and capacity
 
-> **Note:** the PRD lists all 9 of the above as flat peer items in one nav group. The current build instead splits these into two separate top-level groups ("Child Management" and "Staff Management") and nests Payroll/Leave/Compliance as tabs under Staff. See gap-analysis memory for details.
+> **Note:** the PRD originally listed Payroll under Children & People. Payroll has been moved to the Finance module — see Finance section below. The current build splits these into separate top-level groups ("Child Management", "Staff Management", and "Finance").
 
 **DAILY OPERATIONS**
 - **Reception / QR** — Live check-in/out grid, QR scanner station, exception log
@@ -109,8 +108,10 @@ CEven Admin uses a persistent left sidebar for navigation organised into 7 group
 - **Tasks** — Task list, AI auto-assignment, priority and overdue tracking
 
 **FINANCE**
+- **Wallet** — Wallet balance, transactions, deposits, withdrawals
 - **Billing & Payments** — Invoice management, collection tracking, AI risk scoring
 - **Expenses** — Expense log, budget tracking, receipt management
+- **Payroll** — Staff payment list with selectable checkboxes, wallet balance check, payroll history, salary setup with deduction configuration (% or fixed)
 - **Financial Reports** — P&L, revenue by room, cost analysis, AI financial narrative
 
 **COMMUNICATION**

@@ -27,7 +27,7 @@ The Staff Management module provides tools for managing nursery staff, tracking 
 - Dismissible gradient banner showing Ada-generated compliance alerts
 - Examples: "Mrs Anita — compliance at 52% (below 72% threshold)", "Mr Adamu — absent 3 of last 5 days"
 
-**Tab Navigation (3 tabs):**
+**Tab Navigation (6 tabs):**
 
 ---
 
@@ -46,7 +46,7 @@ The Staff Management module provides tools for managing nursery staff, tracking 
 | Date Added | When the staff member was added |
 | Role | Staff role (Caregiver, Admin, Marketer, etc.) |
 | Status | Active (green), Absent (amber), or Pending (grey) badge |
-| Action | Three-dot menu → View Profile |
+| Action | Three-dot menu → View Profile, Edit Member, Deactivate |
 
 ---
 
@@ -87,7 +87,155 @@ The Staff Management module provides tools for managing nursery staff, tracking 
 
 ---
 
-### 2.2 Role Form Modal (Create/Edit)
+#### Tab 4: Leaderboard
+
+Staff performance leaderboard with rankings based on log compliance, attendance score, incidents logged, parent rating, and total points.
+
+---
+
+#### Tab 5: Leave Management
+
+Leave request management with approval flow, leave balances, calendar view, and active/upcoming leave tracking.
+
+---
+
+#### Tab 6: Compliance & Safety
+
+Compliance tracking including DBS/Police Checks, Fire & Safety Drills, Food Hygiene logs, and Risk Assessments. Each section shows compliant items, due items, overdue items, and next inspection dates.
+
+---
+
+### 2.2 Add Staff Modal — Choice Screen
+
+When the admin clicks "Add Staff", a modal opens with two options:
+
+**Option 1: Manual Entry**
+- Add one staff member at a time with full details
+- 3-step wizard: Staff Information → Salary Details → Documents
+
+**Option 2: Bulk Upload**
+- Import multiple staff from an Excel spreadsheet
+- Upload file → System extracts data → Review & confirm
+
+---
+
+### 2.3 Manual Entry — Step 1: Staff Information
+
+**Form Fields:**
+
+| Field | Type | Required |
+|---|---|---|
+| Name | Text input | Yes |
+| Email Address | Email input | Yes |
+| Phone Number | Phone input | Yes |
+| Assign Role | Dropdown (Team Member, Lead Caregiver, Caregiver, Cook, Driver, Cleaner, Nanny) | Yes |
+| Assign Class | Dropdown (Lion, Sun flowers, Bloomers) | No |
+
+**Footer:** Back (→ choice screen), Continue
+
+---
+
+### 2.4 Manual Entry — Step 2: Salary Details
+
+**Employment & Salary:**
+
+| Field | Type | Required |
+|---|---|---|
+| Employment Type | Dropdown (Full time, Contract, Part time) | Yes |
+| Basic Salary | Number input (₦) | Yes |
+
+**Deductions Section:**
+
+Three toggleable deduction types, each with a %/₦ mode switch:
+
+| Deduction | Toggle | Mode | Input |
+|---|---|---|---|
+| Tax | On/Off switch | % or ₦ | Value (percentage or fixed amount) |
+| Pension | On/Off switch | % or ₦ | Value (percentage or fixed amount) |
+| Other | On/Off switch | % or ₦ | Custom name (e.g. HMO, Housing Loan) + value |
+
+When a deduction is toggled on, the admin selects % or ₦ mode and enters a value. The system calculates:
+- **Total Deductions** — sum of all active deductions (displayed in red)
+- **Net Pay** — Basic Salary minus Total Deductions (displayed prominently)
+
+**Bank Details:**
+
+| Field | Type | Required |
+|---|---|---|
+| Bank Name | Text input | Yes |
+| Account Number | Text input | Yes |
+| Pension PIN | Text input | No |
+| Tax ID | Text input | No |
+
+**Footer:** Back (→ Step 1), Continue
+
+---
+
+### 2.5 Manual Entry — Step 3: Documents (Optional)
+
+This step can be skipped and documents added later.
+
+**Document Uploads:**
+
+| Document | Format |
+|---|---|
+| ID Verification (NIN, National ID, Driver's License, Passport) | PDF, JPEG, Max 650 KB |
+| Work Experience | PDF, JPEG, Max 650 KB |
+
+Each upload shows a drag-and-drop zone with "Tap to Upload" link. Uploaded files display name, size, progress bar, and delete button.
+
+**Footer:** Back (→ Step 2), "Save & Add Another", "Add Staff"
+
+---
+
+### 2.6 Bulk Upload — Upload Screen
+
+**Upload Area:**
+- Drag & drop zone for Excel files
+- Supports .xlsx, .xls, .csv — Max 5 MB
+- Shows file name, size, and progress bar after upload
+
+**Footer:** Back (→ choice screen), "Extract & Review"
+
+---
+
+### 2.7 Bulk Upload — Preview Screen
+
+After clicking "Extract & Review", the system displays all staff extracted from the file.
+
+**Preview Table:**
+
+| Column | Content |
+|---|---|
+| Checkbox | Select/deselect individual staff |
+| Staff | Name + email |
+| Role | Staff role |
+| Salary | Basic salary (₦) |
+| Deductions | Total deductions (₦, red) |
+| Net Pay | Calculated net pay (₦, bold) |
+| Bank | Bank name |
+| Account | Account number |
+
+- "Select All" / "Deselect All" toggle
+- Selected count shown in header (e.g., "3 of 4 staff selected")
+- Mobile: card layout with checkboxes
+
+**Footer:** Back (→ upload screen), "Confirm & Add" (disabled if 0 selected)
+
+---
+
+### 2.8 Bulk Upload — Confirmation
+
+Success screen showing:
+- Green checkmark icon
+- Count of staff added (e.g., "4 Staff Added")
+- "All selected staff have been imported and are ready for payroll"
+
+**Footer:** "Done" button closes modal
+
+---
+
+### 2.9 Role Form Modal (Create/Edit)
 
 **Header:**
 - "Create New Role" or "Edit Role"
@@ -163,8 +311,12 @@ The Staff Management module provides tools for managing nursery staff, tracking 
 
 | Action | Where | Result |
 |---|---|---|
-| Add staff | Header button | Opens staff creation form |
+| Add staff | Header button | Opens choice modal (Manual Entry or Bulk Upload) |
+| Add staff manually | Choice modal → Manual Entry | 3-step wizard: info, salary/deductions, documents |
+| Bulk import staff | Choice modal → Bulk Upload | Upload Excel → extract → review → confirm |
 | View profile | Staff table row menu | Navigates to staff profile |
+| Edit member | Staff table row menu | Opens edit modal |
+| Deactivate member | Staff table row menu | Opens deactivation confirmation |
 | Create role | Role Management toolbar | Opens role creation modal |
 | Edit role | Role table row action | Opens role edit modal |
 | Delete role | Role table row action | Opens delete confirmation modal |
@@ -302,12 +454,42 @@ Compliance is calculated based on the percentage of daily logs submitted on time
 - [ ] "Export Log" button allows downloading the staff member's activity log
 - [ ] Confirmation is required before suspend/disable actions
 
+---
+
+### US-9: Admin Adds Staff Manually
+**As a** crèche administrator,  
+**I want to** add a new staff member by filling in their details step by step,  
+**so that** their salary and bank info are ready for payroll.
+
+**Acceptance Criteria:**
+- [ ] Clicking "Add Staff" opens a choice modal with "Manual Entry" and "Bulk Upload" options
+- [ ] Manual Entry opens a 3-step wizard: Staff Information → Salary Details → Documents
+- [ ] Step 1 collects: Name, Email, Phone, Role (required), Class (optional)
+- [ ] Step 2 collects: Employment Type, Basic Salary, Deductions (Tax, Pension, Other — each toggleable with % or ₦ mode), Bank Name, Account Number, Pension PIN, Tax ID
+- [ ] Deductions calculate live: Total Deductions and Net Pay are displayed as the user enters values
+- [ ] Step 3 for documents is optional and can be skipped
+- [ ] "Save & Add Another" saves and resets the form; "Add Staff" saves and closes
+
+---
+
+### US-10: Admin Bulk Imports Staff from Excel
+**As a** crèche administrator,  
+**I want to** upload an Excel file to import multiple staff at once,  
+**so that** I don't have to enter each staff member manually.
+
+**Acceptance Criteria:**
+- [ ] Bulk Upload option shows a drag-and-drop zone for .xlsx, .xls, or .csv files (max 5 MB)
+- [ ] After upload, "Extract & Review" button processes the file
+- [ ] Preview table shows all extracted staff with: name, email, role, salary, deductions, net pay, bank, account number
+- [ ] Each row has a checkbox; "Select All" / "Deselect All" toggle is available
+- [ ] "Confirm & Add" imports only selected staff
+- [ ] Success confirmation shows count of staff added
+
 - No real staff CRUD — cannot actually create, update, or delete staff
 - No real attendance tracking — no check-in/check-out system
 - No document upload or download functionality
 - No real compliance scoring algorithm
 - No email or invitation system for new staff
-- No payroll integration
 - No shift scheduling
 - No performance review system
 - No real-time attendance updates
