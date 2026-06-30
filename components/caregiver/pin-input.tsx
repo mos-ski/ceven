@@ -8,14 +8,6 @@ type Props = {
 };
 
 export function PinInput({ value, onChange, label, length = 6 }: Props) {
-  function handleKey(key: string) {
-    if (key === "backspace") {
-      onChange(value.slice(0, -1));
-    } else if (value.length < length && /^\d$/.test(key)) {
-      onChange(value + key);
-    }
-  }
-
   return (
     <div>
       <p className="mb-2 text-sm font-medium text-gray-700">{label}</p>
