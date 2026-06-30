@@ -10,8 +10,7 @@ export default function SplashPage() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      const onboardingSeen = cgGet("onboarding");
-      router.replace(onboardingSeen ? "/caregiver/auth" : "/caregiver/onboarding");
+      router.replace("/caregiver/home");
     }, 1500);
     return () => clearTimeout(timer);
   }, [router]);

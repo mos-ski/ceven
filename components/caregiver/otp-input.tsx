@@ -33,10 +33,6 @@ export function OtpInput({ value, onChange, length = 6 }: Props) {
 
       {/* Numeric keypad */}
       <div className="mt-2 rounded-t-3xl bg-gray-100 px-4 pt-4 pb-2">
-        {/* Display row */}
-        <div className="mb-2 flex h-10 items-center justify-center rounded-lg bg-white text-base font-mono text-gray-500">
-          {value || ""}
-        </div>
         {/* Keys */}
         {[["1", "2", "3"], ["4", "5", "6"], ["7", "8", "9"], ["", "0", "backspace"]].map(
           (row, ri) => (
