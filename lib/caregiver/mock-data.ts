@@ -234,3 +234,126 @@ export const mockDailyReport: DailyReport = {
     },
   ],
 };
+
+// ── Notifications ─────────────────────────────────────────────
+export type Notification = {
+  id: string;
+  title: string;
+  body: string;
+  time: string;
+  read: boolean;
+  type: "task" | "report" | "chat" | "incident" | "fee";
+};
+
+export const mockNotifications: Notification[] = [
+  { id: "notif-1", title: "Task Reminder", body: "Give medicine to Tosin in 30 minutes", time: "09:30 AM", read: false, type: "task" },
+  { id: "notif-2", title: "Daily Report Ready", body: "Liam's daily report for today is ready to view", time: "08:00 AM", read: false, type: "report" },
+  { id: "notif-3", title: "New Message", body: "Mercy Itom sent you a message", time: "Yesterday", read: true, type: "chat" },
+  { id: "notif-4", title: "Incident Logged", body: "A minor incident was logged for Noah Davies", time: "Yesterday", read: true, type: "incident" },
+  { id: "notif-5", title: "Fee Due", body: "October term fees are due in 3 days", time: "2 days ago", read: true, type: "fee" },
+];
+
+// ── Fee / Invoices ─────────────────────────────────────────────
+export type FeeInvoice = {
+  id: string;
+  term: string;
+  amount: string;
+  dueDate: string;
+  status: "paid" | "pending" | "overdue";
+  child: string;
+};
+
+export const mockFees: FeeInvoice[] = [
+  { id: "fee-1", term: "October Term 2024", amount: "₦45,000", dueDate: "Oct 31, 2024", status: "pending", child: "Liam Smith" },
+  { id: "fee-2", term: "September Term 2024", amount: "₦45,000", dueDate: "Sep 30, 2024", status: "paid", child: "Liam Smith" },
+  { id: "fee-3", term: "August Term 2024", amount: "₦40,000", dueDate: "Aug 31, 2024", status: "paid", child: "Liam Smith" },
+  { id: "fee-4", term: "October Term 2024", amount: "₦45,000", dueDate: "Oct 31, 2024", status: "overdue", child: "Olivia Brown" },
+];
+
+// ── Gallery ─────────────────────────────────────────────────────
+export type GalleryPhoto = {
+  id: string;
+  label: string;
+  caption: string;
+  date: string;
+  child: string;
+};
+
+export const mockGallery: GalleryPhoto[] = [
+  { id: "photo-1", label: "Playtime", caption: "Liam having fun with blocks", date: "Jan 9, 2026", child: "Liam Smith" },
+  { id: "photo-2", label: "Art & Craft", caption: "Olivia's painting session", date: "Jan 9, 2026", child: "Olivia Brown" },
+  { id: "photo-3", label: "Story Time", caption: "Group story time after lunch", date: "Jan 8, 2026", child: "All" },
+  { id: "photo-4", label: "Outdoor Play", caption: "Noah on the slide", date: "Jan 8, 2026", child: "Noah Davies" },
+  { id: "photo-5", label: "Snack Time", caption: "Healthy snacks for all", date: "Jan 7, 2026", child: "All" },
+  { id: "photo-6", label: "Nap Time", caption: "Everyone resting", date: "Jan 7, 2026", child: "All" },
+];
+
+// ── Incidents ───────────────────────────────────────────────────
+export type Incident = {
+  id: string;
+  title: string;
+  description: string;
+  child: string;
+  severity: "minor" | "moderate" | "severe";
+  time: string;
+  date: string;
+  action: string;
+};
+
+export const mockIncidents: Incident[] = [
+  {
+    id: "inc-1",
+    title: "Minor Fall",
+    description: "Noah slipped near the slide during outdoor play.",
+    child: "Noah Davies",
+    severity: "minor",
+    time: "10:30 AM",
+    date: "Jan 8, 2026",
+    action: "Applied cold compress. Parents informed.",
+  },
+  {
+    id: "inc-2",
+    title: "Allergic Reaction",
+    description: "Tosin showed mild rash after snack time.",
+    child: "Tosin Adeyemi",
+    severity: "moderate",
+    time: "02:00 PM",
+    date: "Jan 7, 2026",
+    action: "Administered antihistamine. Parents called immediately.",
+  },
+];
+
+// ── Attendance ──────────────────────────────────────────────────
+export type AttendanceRecord = {
+  childId: string;
+  childName: string;
+  avatarInitials: string;
+  room: string;
+  status: "present" | "absent" | "late";
+  checkInTime: string | null;
+};
+
+export const mockAttendance: AttendanceRecord[] = [
+  { childId: "child-1", childName: "Liam Smith", avatarInitials: "LS", room: "Toddler", status: "present", checkInTime: "08:05 AM" },
+  { childId: "child-2", childName: "Olivia Brown", avatarInitials: "OB", room: "Toddler", status: "present", checkInTime: "08:20 AM" },
+  { childId: "child-3", childName: "Noah Davies", avatarInitials: "ND", room: "Nursery", status: "late", checkInTime: "09:15 AM" },
+  { childId: "child-4", childName: "Johnson Emma", avatarInitials: "JE", room: "Toddler", status: "absent", checkInTime: null },
+  { childId: "child-5", childName: "Tosin Adeyemi", avatarInitials: "TA", room: "Nursery", status: "present", checkInTime: "08:10 AM" },
+];
+
+// ── Child extended details (for profile page) ────────────────────
+export type ChildProfile = Child & {
+  gender: string;
+  dob: string;
+  enrollDate: string;
+  bloodGroup: string;
+  notes: string;
+};
+
+export const mockChildProfiles: ChildProfile[] = [
+  { id: "child-1", name: "Liam Smith", age: "3 Years", room: "Toddler", gender: "Male", dob: "March 14, 2022", enrollDate: "January 10, 2024", bloodGroup: "O+", notes: "Very energetic, loves puzzles. Needs nap at 1pm.", alerts: [{ type: "info", label: "Nap Time", detail: "Needs nap at 1:00 PM" }], parentContact: { id: "contact-1", name: "James Miller", avatarInitials: "JM" } },
+  { id: "child-2", name: "Olivia Brown", age: "2 Years", room: "Toddler", gender: "Female", dob: "June 22, 2022", enrollDate: "March 5, 2024", bloodGroup: "A+", notes: "Shy at first but warms up quickly. Loves painting.", alerts: [], parentContact: { id: "contact-2", name: "Sarah Brown", avatarInitials: "SB" } },
+  { id: "child-3", name: "Noah Davies", age: "4 Years", room: "Nursery", gender: "Male", dob: "September 3, 2021", enrollDate: "February 1, 2024", bloodGroup: "B+", notes: "Peanut allergy — EpiPen always in his bag. Very social.", alerts: [{ type: "warning", label: "Allergy", detail: "Peanut allergy — EpiPen in bag" }], parentContact: { id: "contact-3", name: "Tom Davies", avatarInitials: "TD" } },
+  { id: "child-4", name: "Johnson Emma", age: "3 Years", room: "Toddler", gender: "Female", dob: "December 11, 2021", enrollDate: "April 15, 2024", bloodGroup: "AB+", notes: "Loves storytime. Often asks for extra snacks.", alerts: [], parentContact: { id: "contact-4", name: "Kate Johnson", avatarInitials: "KJ" } },
+  { id: "child-5", name: "Tosin Adeyemi", age: "2 Years", room: "Nursery", gender: "Female", dob: "January 30, 2023", enrollDate: "May 20, 2024", bloodGroup: "O-", notes: "Medication at 10am if needed. Very calm temperament.", alerts: [{ type: "info", label: "Medication", detail: "Calpol at 10:00 AM if needed" }], parentContact: { id: "contact-5", name: "Mercy Itom", avatarInitials: "MI" } },
+];
