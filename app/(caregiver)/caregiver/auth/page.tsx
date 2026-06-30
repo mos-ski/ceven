@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, Users } from "lucide-react";
 import { OtpInput } from "@/components/caregiver/otp-input";
-import { cgGet } from "@/lib/caregiver/storage";
 
 type Role = "parents" | "caregivers";
 
@@ -36,11 +35,11 @@ export default function AuthPage() {
     return `${m}:${sec}`;
   }
 
-  function handleLogin() {
-    if (otp.length !== 6) return;
-    const pinConfigured = cgGet("pin");
-    router.push(pinConfigured ? "/caregiver/home" : "/caregiver/auth/pin");
-  }
+  useEffect(() => {
+    if (otp.length === 6) {
+      router.replace("/caregiver/home");
+    }
+  }, [otp, router]);
 
   const greeting = role === "parents" ? "Welcome Parent 👋" : "Welcome Caregiver 👋";
 
@@ -109,14 +108,11 @@ export default function AuthPage() {
           )}
         </p>
 
-        {/* Login button */}
-        <button
-          onClick={handleLogin}
-          disabled={otp.length !== 6}
-          className="w-full rounded-xl bg-cg-accent-muted py-3.5 text-base font-semibold text-cg-brand disabled:opacity-40"
-        >
-          Login
-        </button>
+        {otp.length === 6 && (
+          <p className="mt-2 text-center text-sm font-semibold text-cg-accent animate-pulse">
+            Logging in…
+          </p>
+        )}
       </div>
     </div>
   );

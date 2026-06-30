@@ -7,7 +7,7 @@ export default function ParentRoot() {
   const router = useRouter();
 
   useEffect(() => {
-    router.replace("/caregiver/home");
+    router.replace("/caregiver/auth");
   }, [router]);
 
   return null;
