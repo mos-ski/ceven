@@ -1,13 +1,12 @@
 "use client";
 
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, ChevronDown } from "lucide-react";
 import { ChildCard } from "@/components/caregiver/child-card";
-import { mockChildren, mockClassrooms } from "@/lib/caregiver/mock-data";
+import { mockChildren } from "@/lib/caregiver/mock-data";
 
 export default function ChildrenPage() {
-  const [selectedClassroom, setSelectedClassroom] = useState("all");
+  const selectedClassroom = "all";
   const router = useRouter();
 
   const filtered = selectedClassroom === "all"
