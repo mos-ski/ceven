@@ -12,20 +12,23 @@ export function ChildCard({ child }: Props) {
 
   return (
     <div className="overflow-hidden rounded-2xl bg-white shadow-sm">
-      <button
-        onClick={() => setExpanded(!expanded)}
-        className="flex w-full items-center justify-between px-4 py-3.5"
-      >
-        <div className="flex items-center gap-3">
+      {/* Header row: name links to profile, chevron toggles expand */}
+      <div className="flex w-full items-center justify-between px-4 py-3.5">
+        <Link
+          href={`/caregiver/children/${child.id}`}
+          className="flex flex-1 items-center gap-3"
+        >
           <span className="text-xl">🐻</span>
           <span className="text-sm font-semibold text-cg-brand">{child.name}</span>
-        </div>
-        {expanded ? (
-          <ChevronUp size={18} className="text-gray-400" />
-        ) : (
-          <ChevronDown size={18} className="text-gray-400" />
-        )}
-      </button>
+        </Link>
+        <button onClick={() => setExpanded(!expanded)} className="ml-2 p-1">
+          {expanded ? (
+            <ChevronUp size={18} className="text-gray-400" />
+          ) : (
+            <ChevronDown size={18} className="text-gray-400" />
+          )}
+        </button>
+      </div>
 
       {expanded && (
         <div className="border-t border-gray-100 px-4 pb-4">
