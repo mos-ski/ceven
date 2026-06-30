@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Bell, CalendarDays } from "lucide-react";
 import { BottomNav } from "@/components/caregiver/bottom-nav";
 import { LogSheet } from "@/components/caregiver/log-sheet";
@@ -30,9 +31,9 @@ export default function TasksPage() {
               <p className="text-xs font-semibold text-cg-brand">{mockUser.name}</p>
             </div>
           </div>
-          <button className="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-sm">
+          <Link href="/caregiver/notifications" className="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-sm">
             <Bell size={18} className="text-gray-500" />
-          </button>
+          </Link>
         </div>
 
         {/* Tab switcher */}

@@ -36,9 +36,9 @@ export default function HomePage() {
               <p className="text-xs font-semibold text-cg-brand">{mockUser.name}</p>
             </div>
           </div>
-          <button className="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-sm">
+          <Link href="/caregiver/notifications" className="flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-sm">
             <Bell size={18} className="text-gray-500" />
-          </button>
+          </Link>
         </div>
 
         {/* Stat cards */}
