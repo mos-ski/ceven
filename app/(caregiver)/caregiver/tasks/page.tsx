@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Bell, CalendarDays } from "lucide-react";
 import { BottomNav } from "@/components/caregiver/bottom-nav";
+import { LogSheet } from "@/components/caregiver/log-sheet";
 import { TaskCard } from "@/components/caregiver/task-card";
 import { mockTasks, mockUser } from "@/lib/caregiver/mock-data";
 
@@ -72,6 +73,7 @@ export default function TasksPage() {
         </div>
       </div>
 
+      <LogSheet />
       <BottomNav />
     </div>
   );

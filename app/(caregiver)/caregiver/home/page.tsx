@@ -14,6 +14,7 @@ import { BottomNav } from "@/components/caregiver/bottom-nav";
 import { StatCard } from "@/components/caregiver/stat-card";
 import { QuickActionCard } from "@/components/caregiver/quick-action-card";
 import { useLogSheet } from "@/components/caregiver/log-sheet-context";
+import { LogSheet } from "@/components/caregiver/log-sheet";
 import { mockUser, mockClassrooms, mockChildren } from "@/lib/caregiver/mock-data";
 
 export default function HomePage() {
@@ -79,6 +80,7 @@ export default function HomePage() {
         </div>
       </div>
 
+      <LogSheet />
       <BottomNav />
     </div>
   );
