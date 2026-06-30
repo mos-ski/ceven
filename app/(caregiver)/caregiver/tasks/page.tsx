@@ -6,19 +6,29 @@ import { Bell, CalendarDays } from "lucide-react";
 import { BottomNav } from "@/components/caregiver/bottom-nav";
 import { LogSheet } from "@/components/caregiver/log-sheet";
 import { TaskCard } from "@/components/caregiver/task-card";
+import { TaskDetailSheet } from "@/components/caregiver/task-detail-sheet";
 import { mockTasks, mockUser } from "@/lib/caregiver/mock-data";
+import type { Task } from "@/lib/caregiver/mock-data";
 
 type Tab = "pending" | "completed";
 
 export default function TasksPage() {
   const [tab, setTab] = useState<Tab>("pending");
+  const [tasks, setTasks] = useState(mockTasks);
+  const [selectedTask, setSelectedTask] = useState<Task | null>(null);
 
-  const pending = mockTasks.filter((t) => t.status === "pending");
-  const completed = mockTasks.filter((t) => t.status === "completed");
+  const pending = tasks.filter((t) => t.status === "pending");
+  const completed = tasks.filter((t) => t.status === "completed");
   const displayed = tab === "pending" ? pending : completed;
 
+  function markComplete(id: string) {
+    setTasks((prev) =>
+      prev.map((t) => (t.id === id ? { ...t, status: "completed" as const } : t))
+    );
+  }
+
   return (
-    <div className="flex flex-1 flex-col bg-cg-bg">
+    <div className="relative flex flex-1 flex-col bg-cg-bg">
       <div className="flex-1 overflow-y-auto px-4 pt-2 pb-4">
         {/* Header */}
         <div className="mb-5 flex items-center justify-between">
@@ -67,13 +77,26 @@ export default function TasksPage() {
         {/* Task list */}
         <div className="rounded-2xl bg-white px-4">
           {displayed.length > 0 ? (
-            displayed.map((task) => <TaskCard key={task.id} task={task} />)
+            displayed.map((task) => (
+              <button
+                key={task.id}
+                className="w-full text-left"
+                onClick={() => setSelectedTask(task)}
+              >
+                <TaskCard task={task} />
+              </button>
+            ))
           ) : (
             <p className="py-8 text-center text-sm text-gray-400">No tasks here.</p>
           )}
         </div>
       </div>
 
+      <TaskDetailSheet
+        task={selectedTask}
+        onClose={() => setSelectedTask(null)}
+        onMarkComplete={markComplete}
+      />
       <LogSheet />
       <BottomNav />
     </div>
