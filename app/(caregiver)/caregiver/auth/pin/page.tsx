@@ -48,7 +48,7 @@ export default function PinPage() {
 
   return (
     <div className="flex flex-1 flex-col items-center justify-center bg-black/40 p-6">
-      <div className="w-full rounded-2xl bg-white p-6">
+      <div className="w-full overflow-y-auto rounded-2xl bg-white p-6">
         {/* Header */}
         <div className="mb-6 flex items-center justify-between">
           <h2 className="text-lg font-bold text-cg-brand">Setup Login PIN</h2>

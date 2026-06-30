@@ -51,7 +51,7 @@ export default function AuthPage() {
         <ArrowLeft size={16} className="text-gray-600" />
       </button>
 
-      <div className="flex flex-1 flex-col px-6">
+      <div className="flex flex-1 flex-col overflow-y-auto px-6">
         <h1
           className="mb-1 text-2xl font-bold text-cg-brand"
           style={{ fontFamily: "var(--font-merriweather)" }}

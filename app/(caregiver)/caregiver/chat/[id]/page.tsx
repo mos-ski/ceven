@@ -16,7 +16,7 @@ export default function ActiveChatPage({
   const router = useRouter();
   const [input, setInput] = useState("");
 
-  const thread = mockChatThreads.find((t) => t.id === id) ?? mockChatThreads[0];
+  const thread = mockChatThreads.find((t) => t.id === id || t.contact.id === id) ?? mockChatThreads[0];
   const [messages, setMessages] = useState<Message[]>(thread.messages);
 
   function handleSend() {

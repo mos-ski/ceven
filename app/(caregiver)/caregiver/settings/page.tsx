@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { User, Bell, Lock, HelpCircle, LogOut, ChevronRight } from "lucide-react";
 import { BottomNav } from "@/components/caregiver/bottom-nav";
 import { LogSheet } from "@/components/caregiver/log-sheet";
-import { cgClearAll } from "@/lib/caregiver/storage";
+import { cgRemove } from "@/lib/caregiver/storage";
 import { mockUser } from "@/lib/caregiver/mock-data";
 
 const SETTINGS_ROWS = [
@@ -18,7 +18,9 @@ export default function SettingsPage() {
   const router = useRouter();
 
   function handleLogOut() {
-    cgClearAll();
+    cgRemove("pin");
+    cgRemove("userName");
+    cgRemove("userRole");
     router.replace("/caregiver/auth");
   }
 
