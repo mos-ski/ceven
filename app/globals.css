@@ -160,6 +160,18 @@
   --font-merriweather: var(--font-merriweather-import);
   --font-urbanist: var(--font-urbanist-import);
   --font-nunito: var(--font-nunito-import);
+  /* Caregiver app tokens */
+  --color-cg-bg: #F5F0E8;
+  --color-cg-surface: #FFFFFF;
+  --color-cg-brand: #3B2513;
+  --color-cg-accent: #C9956A;
+  --color-cg-accent-muted: #E0BFA0;
+  --color-cg-onboarding-bg: #B07D2A;
+  --color-cg-stat-pink: #FCE8F3;
+  --color-cg-stat-teal: #E4F5F3;
+  --color-cg-quick-action: #F5ECD9;
+  --color-cg-sent-bubble: #007AFF;
+  --color-cg-pending-badge: #E5E7EB;
 }
 
 @theme inline {
@@ -189,4 +201,15 @@
   --color-password-meter-neutral: var(--color-password-meter-neutral);
   --color-checkbox-border: var(--color-checkbox-border);
   --color-flag-bg: var(--color-flag-bg);
+  --color-cg-bg: var(--color-cg-bg);
+  --color-cg-surface: var(--color-cg-surface);
+  --color-cg-brand: var(--color-cg-brand);
+  --color-cg-accent: var(--color-cg-accent);
+  --color-cg-accent-muted: var(--color-cg-accent-muted);
+  --color-cg-onboarding-bg: var(--color-cg-onboarding-bg);
+  --color-cg-stat-pink: var(--color-cg-stat-pink);
+  --color-cg-stat-teal: var(--color-cg-stat-teal);
+  --color-cg-quick-action: var(--color-cg-quick-action);
+  --color-cg-sent-bubble: var(--color-cg-sent-bubble);
+  --color-cg-pending-badge: var(--color-cg-pending-badge);
 }
