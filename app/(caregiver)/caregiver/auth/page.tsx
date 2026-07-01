@@ -41,9 +41,9 @@ function AuthForm() {
 
   useEffect(() => {
     if (otp.length === 6) {
-      router.replace("/caregiver/home");
+      router.replace(role === "parents" ? "/parent/home" : "/caregiver/home");
     }
-  }, [otp, router]);
+  }, [otp, router, role]);
 
   const greeting =
     role === "parents" ? "Welcome Parent 👋" : "Welcome Caregiver 👋";
