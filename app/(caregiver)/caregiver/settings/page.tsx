@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { User, Bell, Lock, HelpCircle, LogOut, ChevronRight } from "lucide-react";
 import { BottomNav } from "@/components/caregiver/bottom-nav";
@@ -8,10 +9,10 @@ import { cgRemove } from "@/lib/caregiver/storage";
 import { mockUser } from "@/lib/caregiver/mock-data";
 
 const SETTINGS_ROWS = [
-  { icon: User, label: "Edit Profile" },
-  { icon: Bell, label: "Notifications" },
-  { icon: Lock, label: "Change PIN" },
-  { icon: HelpCircle, label: "Help & Support" },
+  { icon: User, label: "Edit Profile", href: "/caregiver/settings/profile" },
+  { icon: Bell, label: "Notifications", href: "/caregiver/settings/notifications" },
+  { icon: Lock, label: "Change PIN", href: "/caregiver/settings/pin" },
+  { icon: HelpCircle, label: "Help & Support", href: "/caregiver/settings/help" },
 ] as const;
 
 export default function SettingsPage() {
@@ -49,9 +50,10 @@ export default function SettingsPage() {
 
         {/* Settings rows */}
         <div className="rounded-2xl bg-white shadow-sm">
-          {SETTINGS_ROWS.map(({ icon: Icon, label }, i) => (
-            <button
+          {SETTINGS_ROWS.map(({ icon: Icon, label, href }, i) => (
+            <Link
               key={label}
+              href={href}
               className={`flex w-full items-center justify-between px-4 py-4 text-sm font-medium text-cg-brand ${
                 i < SETTINGS_ROWS.length - 1 ? "border-b border-gray-100" : ""
               }`}
@@ -61,7 +63,7 @@ export default function SettingsPage() {
                 {label}
               </div>
               <ChevronRight size={16} className="text-gray-300" />
-            </button>
+            </Link>
           ))}
         </div>
 
