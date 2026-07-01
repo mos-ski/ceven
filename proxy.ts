@@ -4,8 +4,13 @@ const SESSION_COOKIE = "ceven_admin_session";
 const AUTH_PATHS = ["/login", "/signup", "/reset-password", "/verify-email"];
 
 export function proxy(request: NextRequest) {
-  const hasSession = request.cookies.get(SESSION_COOKIE)?.value === "active";
   const { pathname } = request.nextUrl;
+
+  if (pathname.startsWith("/caregiver") || pathname.startsWith("/parent")) {
+    return NextResponse.next();
+  }
+
+  const hasSession = request.cookies.get(SESSION_COOKIE)?.value === "active";
   const isAuthPath = AUTH_PATHS.some((path) => pathname.startsWith(path));
 
   if (!hasSession && !isAuthPath) {
