@@ -1,16 +1,20 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { useRouter } from "next/navigation";
+import { Suspense, useState, useEffect, useRef } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { ArrowLeft, Users } from "lucide-react";
 import { OtpInput } from "@/components/caregiver/otp-input";
 
 type Role = "parents" | "caregivers";
 
-export default function AuthPage() {
-  const [role, setRole] = useState<Role>("caregivers");
+function AuthForm() {
+  const searchParams = useSearchParams();
+  const initialRole: Role =
+    searchParams.get("role") === "parents" ? "parents" : "caregivers";
+
+  const [role, setRole] = useState<Role>(initialRole);
   const [otp, setOtp] = useState("");
-  const [countdown, setCountdown] = useState(600); // 10 min in seconds
+  const [countdown, setCountdown] = useState(600);
   const [canResend, setCanResend] = useState(false);
   const router = useRouter();
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -41,11 +45,11 @@ export default function AuthPage() {
     }
   }, [otp, router]);
 
-  const greeting = role === "parents" ? "Welcome Parent 👋" : "Welcome Caregiver 👋";
+  const greeting =
+    role === "parents" ? "Welcome Parent 👋" : "Welcome Caregiver 👋";
 
   return (
     <div className="flex flex-1 flex-col bg-white">
-      {/* Back arrow */}
       <button className="m-4 flex h-8 w-8 items-center justify-center rounded-full border border-gray-200">
         <ArrowLeft size={16} className="text-gray-600" />
       </button>
@@ -82,12 +86,10 @@ export default function AuthPage() {
           </button>
         </div>
 
-        {/* OTP label */}
         <p className="mb-3 text-sm font-semibold text-gray-700">OTP</p>
 
         <OtpInput value={otp} onChange={setOtp} length={6} />
 
-        {/* Countdown */}
         <p className="my-4 text-center text-sm text-gray-500">
           {canResend ? (
             <button
@@ -103,7 +105,9 @@ export default function AuthPage() {
           ) : (
             <>
               Resend Code in{" "}
-              <span className="font-bold text-gray-700">{formatCountdown(countdown)}</span>
+              <span className="font-bold text-gray-700">
+                {formatCountdown(countdown)}
+              </span>
             </>
           )}
         </p>
@@ -115,5 +119,13 @@ export default function AuthPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function AuthPage() {
+  return (
+    <Suspense>
+      <AuthForm />
+    </Suspense>
   );
 }
