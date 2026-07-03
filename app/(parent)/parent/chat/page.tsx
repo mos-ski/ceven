@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Search } from "lucide-react";
 import { ParentBottomNav } from "@/components/parent/bottom-nav";
 import { mockChatThreads } from "@/lib/parent/mock-data";
 
 export default function ChatPage() {
+  const router = useRouter();
   const [query, setQuery] = useState("");
 
   const filtered = query
@@ -48,6 +50,7 @@ export default function ChatPage() {
               {threads.map((thread) => (
                 <button
                   key={thread.id}
+                  onClick={() => router.push(`/parent/chat/${thread.id}`)}
                   className="flex w-full items-center gap-3 px-4 py-3 text-left"
                 >
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cg-brand text-xs font-bold text-white">
