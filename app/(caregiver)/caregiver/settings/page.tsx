@@ -26,7 +26,7 @@ export default function SettingsPage() {
   }
 
   return (
-    <div className="flex flex-1 flex-col bg-cg-bg">
+    <div className="relative flex flex-1 flex-col bg-cg-bg">
       <div className="flex-1 overflow-y-auto px-4 pt-4 pb-4">
         <h1
           className="mb-6 text-xl font-bold text-cg-brand"

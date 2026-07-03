@@ -1,20 +1,21 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, Plus } from "lucide-react";
+import { ChevronDown, Plus, X } from "lucide-react";
 import { useLogSheet } from "./log-sheet-context";
 
 const MOOD_OPTIONS = [
-  "🤩 Playful",
   "😄 Happy",
-  "😴 Sleepy",
   "😢 Sad",
-  "😠 Fussy",
-  "😐 Calm",
+  "😒 Moody",
+  "🤩 Playful",
+  "💬 Interactive",
+  "😴 Tired",
+  "😭 Crying",
 ];
 
 export function LogReportForm() {
-  const [mood, setMood] = useState("");
+  const [selectedMoods, setSelectedMoods] = useState<string[]>([]);
   const [showMoodDropdown, setShowMoodDropdown] = useState(false);
   const [meal, setMeal] = useState("");
   const [naps, setNaps] = useState([{ from: "", to: "" }]);
@@ -23,6 +24,16 @@ export function LogReportForm() {
   const [healthSafety, setHealthSafety] = useState("");
   const [medications, setMedications] = useState("");
   const { close } = useLogSheet();
+
+  function toggleMood(m: string) {
+    setSelectedMoods((prev) =>
+      prev.includes(m) ? prev.filter((x) => x !== m) : [...prev, m]
+    );
+  }
+
+  function removeMood(m: string) {
+    setSelectedMoods((prev) => prev.filter((x) => x !== m));
+  }
 
   function addNap() {
     setNaps((prev) => [...prev, { from: "", to: "" }]);
@@ -44,25 +55,70 @@ export function LogReportForm() {
             onClick={() => setShowMoodDropdown((v) => !v)}
             className="flex w-full items-center justify-between rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm"
           >
-            <span className={mood ? "text-cg-brand" : "text-gray-300"}>
-              {mood || "Select mood observation"}
+            <span className={selectedMoods.length > 0 ? "text-cg-brand" : "text-gray-300"}>
+              {selectedMoods.length === 0
+                ? "Select mood observation"
+                : selectedMoods.length === 1
+                ? selectedMoods[0]
+                : "Multiple moods"}
             </span>
             <ChevronDown size={16} className="text-gray-400" />
           </button>
+
           {showMoodDropdown && (
             <div className="absolute z-10 mt-1 w-full overflow-hidden rounded-xl border border-gray-100 bg-white shadow-lg">
-              {MOOD_OPTIONS.map((m) => (
+              {MOOD_OPTIONS.map((m) => {
+                const checked = selectedMoods.includes(m);
+                return (
+                  <button
+                    key={m}
+                    onClick={() => toggleMood(m)}
+                    className="flex w-full items-center justify-between px-4 py-3 text-left text-sm text-cg-brand hover:bg-gray-50"
+                  >
+                    <span>{m}</span>
+                    <span
+                      className={`flex h-4 w-4 items-center justify-center rounded border ${
+                        checked
+                          ? "border-cg-accent bg-cg-accent text-white"
+                          : "border-gray-300"
+                      }`}
+                    >
+                      {checked && (
+                        <svg viewBox="0 0 10 8" className="h-2.5 w-2.5 fill-white">
+                          <path d="M1 4l3 3 5-6" stroke="white" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      )}
+                    </span>
+                  </button>
+                );
+              })}
+              <div className="border-t border-gray-100 px-4 py-2.5">
                 <button
-                  key={m}
-                  onClick={() => { setMood(m); setShowMoodDropdown(false); }}
-                  className="w-full px-4 py-3 text-left text-sm text-cg-brand hover:bg-gray-50"
+                  onClick={() => setShowMoodDropdown(false)}
+                  className="w-full rounded-lg bg-cg-brand py-2 text-xs font-semibold text-white"
                 >
-                  {m}
+                  Done
                 </button>
-              ))}
+              </div>
             </div>
           )}
         </div>
+
+        {selectedMoods.length > 0 && (
+          <div className="mt-2 flex flex-wrap gap-1.5">
+            {selectedMoods.map((m) => (
+              <span
+                key={m}
+                className="flex items-center gap-1 rounded-full bg-cg-quick-action px-3 py-1 text-xs font-medium text-cg-brand"
+              >
+                {m}
+                <button onClick={() => removeMood(m)}>
+                  <X size={11} className="text-cg-accent" />
+                </button>
+              </span>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Meal */}

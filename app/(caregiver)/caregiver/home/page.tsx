@@ -21,7 +21,7 @@ import { LogSheet } from "@/components/caregiver/log-sheet";
 import { mockUser, mockClassrooms, mockChildren } from "@/lib/caregiver/mock-data";
 
 export default function HomePage() {
-  const { openActivity, openReport } = useLogSheet();
+  const { openActivity } = useLogSheet();
   const router = useRouter();
 
   return (
@@ -67,7 +67,7 @@ export default function HomePage() {
         {/* Quick Actions — Row 1 */}
         <div className="mb-3 flex gap-3">
           <QuickActionCard icon={ClipboardList} label="Log Activity" onClick={openActivity} />
-          <QuickActionCard icon={FileText} label="Log Report" onClick={openReport} />
+          <QuickActionCard icon={FileText} label="Log Report" onClick={() => router.push("/caregiver/report")} />
           <QuickActionCard icon={MessageSquare} label="Chat" onClick={() => router.push("/caregiver/chat")} />
         </div>
         {/* Quick Actions — Row 2 */}
