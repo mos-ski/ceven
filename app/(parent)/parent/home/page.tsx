@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Bell, MessageSquare, Bookmark, Play, Clock, LayoutGrid } from "lucide-react";
 import { ParentBottomNav } from "@/components/parent/bottom-nav";
 import { mockParentUser, mockFeedPosts } from "@/lib/parent/mock-data";
@@ -10,6 +11,7 @@ type Tab = "moments" | "special";
 
 export default function ParentHomePage() {
   const [tab, setTab] = useState<Tab>("moments");
+  const router = useRouter();
 
   return (
     <div className="flex min-h-0 flex-1 flex-col bg-[#fffefa]">
@@ -65,7 +67,11 @@ export default function ParentHomePage() {
           mockFeedPosts.length > 0 ? (
             <div className="flex flex-col gap-4">
               {mockFeedPosts.map((post) => (
-                <div key={post.id} className="overflow-hidden rounded-2xl bg-white shadow-sm">
+                <div
+                  key={post.id}
+                  onClick={() => router.push("/parent/gallery")}
+                  className="overflow-hidden rounded-2xl bg-white shadow-sm cursor-pointer active:scale-[0.98] transition-transform"
+                >
                   {/* Photo/Video placeholder */}
                   <div className="relative h-52 bg-cg-quick-action">
                     {/* Tag badge */}
@@ -92,7 +98,7 @@ export default function ParentHomePage() {
                       <span className="text-xs text-gray-300">·</span>
                       <span className="text-xs text-gray-400">Posted by {post.postedBy}</span>
                     </div>
-                    <div className="flex items-center gap-4 border-t border-gray-50 pt-2">
+                    <div className="flex items-center gap-4 border-t border-gray-50 pt-2" onClick={(e) => e.stopPropagation()}>
                       <button className="flex items-center gap-1.5 text-xs text-gray-400">
                         <MessageSquare size={14} />
                         Comment
