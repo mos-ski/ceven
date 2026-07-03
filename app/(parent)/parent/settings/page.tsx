@@ -32,7 +32,7 @@ export default function ParentSettingsPage() {
   }
 
   return (
-    <div className="flex flex-1 flex-col overflow-hidden">
+    <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
       {/* Brown header with decorative circles + profile */}
       <div className="relative overflow-hidden bg-[#7A4C29] pb-16 pt-12 px-6">
         <div className="pointer-events-none absolute -top-16 -right-16 h-[352px] w-[352px] rounded-full bg-[#D4A67F] opacity-25" />
@@ -60,7 +60,7 @@ export default function ParentSettingsPage() {
         </div>
       </div>
 
-      <div className="flex flex-1 flex-col overflow-y-auto bg-white">
+      <div className="flex min-h-0 flex-1 flex-col overflow-y-auto bg-white">
         {/* Pull wrapper up to overlap header */}
         <div className="-mt-8 flex flex-1 flex-col rounded-t-3xl bg-white px-6 pt-5">
 

@@ -19,7 +19,7 @@ export default function CrecheDiscoveryPage() {
     : mockCreches;
 
   return (
-    <div className="flex flex-1 flex-col">
+    <div className="flex min-h-0 flex-1 flex-col">
       {/* Brown header with search */}
       <div className="shrink-0 bg-cg-brand px-6 pb-6 pt-4">
         <button

@@ -48,7 +48,7 @@ export default function NotificationsPage() {
   ];
 
   return (
-    <div className="flex flex-1 flex-col bg-[#f4f5f6]">
+    <div className="flex min-h-0 flex-1 flex-col bg-[#f4f5f6]">
       {/* Header */}
       <div className="shrink-0 bg-white px-6 pb-4 pt-4">
         <div className="mb-4 flex items-center gap-3">

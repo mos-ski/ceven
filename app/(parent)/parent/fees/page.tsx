@@ -15,7 +15,7 @@ export default function FeesPage() {
   const router = useRouter();
 
   return (
-    <div className="flex flex-1 flex-col bg-cg-bg">
+    <div className="flex min-h-0 flex-1 flex-col bg-cg-bg">
       <div className="flex items-center gap-3 bg-white px-4 py-3 shadow-sm">
         <button onClick={() => router.back()}>
           <ArrowLeft size={20} className="text-gray-600" />
@@ -23,7 +23,7 @@ export default function FeesPage() {
         <h1 className="text-base font-bold text-cg-brand">Fees &amp; Invoices</h1>
       </div>
 
-      <div className="flex flex-1 flex-col gap-3 overflow-y-auto px-4 py-4">
+      <div className="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto px-4 py-4">
         {/* Summary card */}
         <div className="rounded-2xl bg-cg-brand p-4 text-white">
           <p className="text-xs opacity-70">Outstanding Balance</p>

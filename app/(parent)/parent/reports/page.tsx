@@ -171,7 +171,7 @@ export default function ReportsPage() {
   const progress = ((reportIndex + 1) / total) * 100;
 
   return (
-    <div className="flex flex-1 flex-col overflow-hidden bg-[#F9F5F0]">
+    <div className="flex min-h-0 flex-1 flex-col overflow-hidden bg-[#F9F5F0]">
       {/* AppBar */}
       <div className="shrink-0 bg-white px-5 pt-12 pb-4">
         <div className="flex items-center justify-between">

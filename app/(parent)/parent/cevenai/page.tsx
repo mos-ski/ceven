@@ -300,7 +300,7 @@ export default function CEvenAIPage() {
   const isEmpty = messages.length === 0 && !isTyping;
 
   return (
-    <div className="flex flex-1 flex-col bg-[#fffefa]">
+    <div className="flex min-h-0 flex-1 flex-col bg-[#fffefa]">
       {/* Header */}
       <div className="shrink-0 flex items-center px-6 pt-4 pb-3">
         <button
@@ -329,7 +329,7 @@ export default function CEvenAIPage() {
         {isEmpty ? (
           <div className="flex h-full flex-col">
             {/* Hero */}
-            <div className="flex flex-1 flex-col items-center justify-center text-center">
+            <div className="flex min-h-0 flex-1 flex-col items-center justify-center text-center">
               <div className="mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-[#F3EDE5]">
                 <Sparkles size={30} className="text-cg-brand" />
               </div>

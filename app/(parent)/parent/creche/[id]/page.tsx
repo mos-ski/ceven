@@ -155,7 +155,7 @@ export default function CrecheDetailPage({ params }: { params: Promise<{ id: str
       )}
       {showSuccess && <SuccessModal onClose={() => setShowSuccess(false)} />}
 
-      <div className="flex flex-1 flex-col bg-white">
+      <div className="flex min-h-0 flex-1 flex-col bg-white">
         {/* Photo header */}
         <div className="relative shrink-0 h-52 bg-cg-quick-action">
           <button

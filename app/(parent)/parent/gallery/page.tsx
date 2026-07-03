@@ -18,7 +18,7 @@ export default function GalleryPage() {
   );
 
   return (
-    <div className="flex flex-1 flex-col bg-cg-bg">
+    <div className="flex min-h-0 flex-1 flex-col bg-cg-bg">
       <div className="flex items-center gap-3 bg-white px-4 py-3 shadow-sm">
         <button onClick={() => router.back()}>
           <ArrowLeft size={20} className="text-gray-600" />

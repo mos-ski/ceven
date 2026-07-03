@@ -10,7 +10,7 @@ export default function ChildPage() {
   const router = useRouter();
 
   return (
-    <div className="flex flex-1 flex-col bg-cg-bg">
+    <div className="flex min-h-0 flex-1 flex-col bg-cg-bg">
       <div className="flex-1 overflow-y-auto px-4 pt-2 pb-4">
         {/* Header */}
         <div className="mb-5 flex items-center justify-between">

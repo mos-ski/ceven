@@ -55,7 +55,7 @@ export default function ChatConversationPage({ params }: { params: Promise<{ id:
   }
 
   return (
-    <div className="flex flex-1 flex-col bg-[#FFFEFA]">
+    <div className="flex min-h-0 flex-1 flex-col bg-[#FFFEFA]">
       {/* Top nav */}
       <div className="shrink-0 bg-[#FAFAFA] px-4 pt-12 pb-3 shadow-sm">
         <div className="flex items-center gap-3">
