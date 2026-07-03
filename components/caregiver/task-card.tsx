@@ -24,10 +24,12 @@ export function TaskCard({ task }: Props) {
         className={`mt-0.5 shrink-0 rounded-full px-3 py-1 text-xs font-medium ${
           task.status === "completed"
             ? "bg-green-100 text-green-700"
+            : task.status === "undone"
+            ? "bg-red-100 text-red-600"
             : "bg-cg-pending-badge text-gray-500"
         }`}
       >
-        {task.status === "completed" ? "Completed" : "Pending"}
+        {task.status === "completed" ? "Completed" : task.status === "undone" ? "Undone" : "Pending"}
       </span>
     </div>
   );

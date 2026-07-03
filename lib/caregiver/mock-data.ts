@@ -36,7 +36,8 @@ export type Task = {
   description: string;
   dueTime: string;
   reminderTime: string;
-  status: "pending" | "completed";
+  status: "pending" | "completed" | "undone";
+  images?: string[];
 };
 
 export type Message = {
@@ -136,7 +137,7 @@ export const mockTasks: Task[] = [
   {
     id: "task-1",
     title: "Give medicine to Tosin",
-    description: "Kindly give her the drugs when needed.",
+    description: "Lorem ipsum dolor sit amet consectetur. Sit eu interdum scelerisque velit. Diam nisi integer egestas convallis pharetra cras volutpat purus quisque. Nunc quam eu at feugiat in fringilla.",
     dueTime: "10:00am",
     reminderTime: "09:00am",
     status: "pending",
@@ -144,7 +145,7 @@ export const mockTasks: Task[] = [
   {
     id: "task-2",
     title: "Give medicine to Tosin",
-    description: "Kindly give her the drugs when needed.",
+    description: "Kindly give her the prescribed medication when needed. Ensure proper dosage.",
     dueTime: "10:00am",
     reminderTime: "09:00am",
     status: "pending",
@@ -152,7 +153,7 @@ export const mockTasks: Task[] = [
   {
     id: "task-3",
     title: "Give medicine to Tosin",
-    description: "Kindly give her the drugs when needed.",
+    description: "Kindly give her the prescribed medication when needed. Ensure proper dosage.",
     dueTime: "10:00am",
     reminderTime: "09:00am",
     status: "pending",
@@ -160,10 +161,19 @@ export const mockTasks: Task[] = [
   {
     id: "task-4",
     title: "Give medicine to Tosin",
-    description: "Kindly give her the drugs when needed.",
-    dueTime: "10:30am",
-    reminderTime: "09:30am",
+    description: "Lorem ipsum dolor sit amet consectetur. Sit eu interdum scelerisque velit. Diam nisi integer egestas convallis pharetra cras volutpat purus quisque. Nunc quam eu at feugiat in fringilla.",
+    dueTime: "10:00am",
+    reminderTime: "09:00am",
     status: "completed",
+    images: ["/caregiver/placeholder-playtime.jpg"],
+  },
+  {
+    id: "task-5",
+    title: "Give medicine to Tosin",
+    description: "Lorem ipsum dolor sit amet consectetur. Sit eu interdum scelerisque velit.",
+    dueTime: "10:00am",
+    reminderTime: "09:00am",
+    status: "undone",
   },
 ];
 

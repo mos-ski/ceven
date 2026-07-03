@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Bell, CalendarDays } from "lucide-react";
+import { Bell, CalendarDays, ClipboardList } from "lucide-react";
 import { BottomNav } from "@/components/caregiver/bottom-nav";
 import { LogSheet } from "@/components/caregiver/log-sheet";
 import { TaskCard } from "@/components/caregiver/task-card";
 import { TaskDetailSheet } from "@/components/caregiver/task-detail-sheet";
+import { CalendarPicker } from "@/components/caregiver/calendar-picker";
 import { mockTasks, mockUser } from "@/lib/caregiver/mock-data";
 import type { Task } from "@/lib/caregiver/mock-data";
 
@@ -16,15 +17,20 @@ export default function TasksPage() {
   const [tab, setTab] = useState<Tab>("pending");
   const [tasks, setTasks] = useState(mockTasks);
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
+  const [showCalendar, setShowCalendar] = useState(false);
 
   const pending = tasks.filter((t) => t.status === "pending");
-  const completed = tasks.filter((t) => t.status === "completed");
+  const completed = tasks.filter((t) => t.status === "completed" || t.status === "undone");
   const displayed = tab === "pending" ? pending : completed;
 
-  function markComplete(id: string) {
-    setTasks((prev) =>
-      prev.map((t) => (t.id === id ? { ...t, status: "completed" as const } : t))
-    );
+  function markDone(id: string) {
+    setTasks((prev) => prev.map((t) => (t.id === id ? { ...t, status: "completed" as const } : t)));
+    setSelectedTask(null);
+  }
+
+  function markUndone(id: string) {
+    setTasks((prev) => prev.map((t) => (t.id === id ? { ...t, status: "undone" as const } : t)));
+    setSelectedTask(null);
   }
 
   return (
@@ -67,36 +73,47 @@ export default function TasksPage() {
         </div>
 
         {/* Filter */}
-        <div className="mb-2 flex justify-end">
-          <button className="flex items-center gap-1.5 text-xs font-medium text-gray-500">
+        <div className="mb-3 flex justify-end">
+          <button
+            onClick={() => setShowCalendar(true)}
+            className="flex items-center gap-1.5 text-xs font-medium text-gray-500"
+          >
             <CalendarDays size={14} />
             Filter by date
           </button>
         </div>
 
-        {/* Task list */}
-        <div className="rounded-2xl bg-white px-4">
-          {displayed.length > 0 ? (
-            displayed.map((task) => (
-              <button
-                key={task.id}
-                className="w-full text-left"
-                onClick={() => setSelectedTask(task)}
-              >
+        {/* Task list or empty state */}
+        {displayed.length > 0 ? (
+          <div className="rounded-2xl bg-white px-4">
+            {displayed.map((task) => (
+              <button key={task.id} className="w-full text-left" onClick={() => setSelectedTask(task)}>
                 <TaskCard task={task} />
               </button>
-            ))
-          ) : (
-            <p className="py-8 text-center text-sm text-gray-400">No tasks here.</p>
-          )}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <div className="flex flex-col items-center justify-center py-16 text-center">
+            <div className="mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-cg-brand/10">
+              <ClipboardList size={36} className="text-cg-brand" />
+            </div>
+            <p className="text-base font-bold text-cg-brand">No Task Available Yet!</p>
+            <p className="mt-1 text-xs text-gray-400">Completed tasks will appear here once available.</p>
+          </div>
+        )}
       </div>
 
-      <TaskDetailSheet
-        task={selectedTask}
-        onClose={() => setSelectedTask(null)}
-        onMarkComplete={markComplete}
-      />
+      {selectedTask && (
+        <TaskDetailSheet
+          task={selectedTask}
+          onClose={() => setSelectedTask(null)}
+          onMarkDone={markDone}
+          onMarkUndone={markUndone}
+        />
+      )}
+
+      {showCalendar && <CalendarPicker onClose={() => setShowCalendar(false)} />}
+
       <LogSheet />
       <BottomNav />
     </div>
