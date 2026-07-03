@@ -55,7 +55,7 @@ function CreateTaskModal({ onClose, onCreate }: { onClose: () => void; onCreate:
 
   if (success) {
     return (
-      <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/30">
+      <div className="absolute inset-0 z-50 flex items-end justify-center bg-black/30">
         <div className="w-full max-w-[430px] rounded-t-2xl bg-white pb-8 pt-5">
           <div className="flex justify-end px-5 pb-2">
             <button onClick={() => { onCreate({ title, description, scheduledTime, reminderTime, comment }); onClose(); }} className="flex h-7 w-7 items-center justify-center rounded-full bg-gray-100">
@@ -81,7 +81,7 @@ function CreateTaskModal({ onClose, onCreate }: { onClose: () => void; onCreate:
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/30">
+    <div className="absolute inset-0 z-50 flex items-end justify-center bg-black/30">
       <div className="w-full max-w-[430px] rounded-t-2xl bg-white pb-8 pt-5">
         <div className="mb-4 flex items-center justify-between px-5">
           <h3 className="text-base font-semibold text-gray-800">Create New Task</h3>
@@ -132,7 +132,7 @@ function CreateTaskModal({ onClose, onCreate }: { onClose: () => void; onCreate:
 
 function TaskDetailsModal({ task, onClose }: { task: Task; onClose: () => void }) {
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/30">
+    <div className="absolute inset-0 z-50 flex items-end justify-center bg-black/30">
       <div className="w-full max-w-[430px] rounded-t-2xl bg-white pb-8 pt-5">
         <div className="mb-4 flex items-center justify-between px-5">
           <h3 className="text-base font-semibold text-gray-800">Task Details</h3>
@@ -222,7 +222,7 @@ export default function ParentHomePage() {
   }
 
   return (
-    <div className="flex min-h-0 flex-1 flex-col bg-[#fffefa]">
+    <div className="relative flex min-h-0 flex-1 flex-col bg-[#fffefa]">
       {showCreateTask && (
         <CreateTaskModal onClose={() => setShowCreateTask(false)} onCreate={handleCreateTask} />
       )}

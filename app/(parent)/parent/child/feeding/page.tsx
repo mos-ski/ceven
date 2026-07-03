@@ -28,7 +28,7 @@ const SCHEDULE_TYPES: ScheduleType[] = ["Daily", "Specific Days", "Every X Hours
 
 function ModalShell({ title, onClose, children }: { title: string; onClose: () => void; children: React.ReactNode }) {
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/30">
+    <div className="absolute inset-0 z-50 flex items-end justify-center bg-black/30">
       <div className="w-full max-w-[430px] rounded-t-2xl bg-white pb-8 pt-5">
         <div className="mb-1 flex items-center justify-between px-5">
           <h3 className="text-base font-semibold text-gray-800">{title}</h3>
@@ -190,7 +190,7 @@ export default function FeedingPage() {
         />
       )}
 
-      <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
+      <div className="relative flex min-h-0 flex-1 flex-col overflow-hidden">
         {/* Brown header */}
         <div className="relative shrink-0 overflow-hidden bg-cg-brand px-6 pb-8 pt-4">
           <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-white/10" />

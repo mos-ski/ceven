@@ -43,7 +43,7 @@ const IMMUN_STATUSES = ["Done", "Pending", "Not Applicable"] as const;
 // ─── Reusable Modal Shell ───────────────────────────────────────────────────────
 function ModalShell({ title, onClose, children }: { title: string; onClose: () => void; children: React.ReactNode }) {
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/30 sm:items-center">
+    <div className="absolute inset-0 z-50 flex items-end justify-center bg-black/30 sm:items-center">
       <div className="w-full max-w-[375px] rounded-t-2xl bg-white pb-8 pt-5 sm:rounded-2xl">
         <div className="mb-4 flex items-center justify-between px-5">
           <h3 className="text-base font-semibold text-gray-800">{title}</h3>
@@ -447,7 +447,7 @@ export default function ChildHealthPage() {
         />
       )}
 
-      <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
+      <div className="relative flex min-h-0 flex-1 flex-col overflow-hidden">
         {/* Brown header */}
         <div className="shrink-0 bg-cg-brand px-6 pb-8 pt-4">
           <button onClick={() => router.back()} className="mb-3 flex h-8 w-8 items-center justify-center rounded-full bg-white/20">

@@ -65,7 +65,7 @@ function CalendarPicker({
   const cells: (number | null)[] = [...Array(firstDay).fill(null), ...Array.from({ length: days }, (_, i) => i + 1)];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
+    <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/30">
       <div className="mx-6 w-full max-w-[342px] rounded-2xl bg-white p-5 shadow-xl">
         {/* Close */}
         <div className="mb-4 flex justify-end">
@@ -116,7 +116,7 @@ function CalendarPicker({
 // ─── Gender Picker ──────────────────────────────────────────────────────────────
 function GenderPicker({ value, onChange, onClose }: { value: string; onChange: (v: string) => void; onClose: () => void }) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
+    <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/30">
       <div className="mx-6 w-full max-w-[342px] rounded-2xl bg-white p-5 shadow-xl">
         <div className="mb-4 flex justify-end">
           <button onClick={onClose} className="flex h-7 w-7 items-center justify-center rounded-full bg-gray-100">
@@ -141,7 +141,7 @@ function GenderPicker({ value, onChange, onClose }: { value: string; onChange: (
 // ─── Success Modal ──────────────────────────────────────────────────────────────
 function SuccessModal({ onClose }: { onClose: () => void }) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
+    <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/30">
       <div className="mx-6 w-full max-w-[342px] rounded-2xl bg-white px-8 py-10 shadow-xl text-center">
         <button onClick={onClose} className="absolute right-4 top-4 flex h-7 w-7 items-center justify-center rounded-full bg-gray-100">
           <X size={14} className="text-gray-500" />
@@ -218,7 +218,7 @@ export default function AddChildPage() {
         />
       )}
 
-      <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
+      <div className="relative flex min-h-0 flex-1 flex-col overflow-hidden">
         {/* Brown header */}
         <div className="shrink-0 bg-cg-brand px-6 pb-8 pt-4">
           <button onClick={() => router.back()} className="mb-4 flex h-8 w-8 items-center justify-center rounded-full bg-white/20">
