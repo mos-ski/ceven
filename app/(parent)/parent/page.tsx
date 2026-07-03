@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 export default function ParentRoot() {
   const router = useRouter();
   useEffect(() => {
-    router.replace("/caregiver/auth?role=parents");
+    router.replace("/parent/auth");
   }, [router]);
   return null;
 }

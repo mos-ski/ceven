@@ -136,8 +136,220 @@ export const mockChatThreads: ChatThread[] = [
   },
 ];
 
+export type FeedPost = {
+  id: string;
+  tag: string;
+  caption: string;
+  postedBy: string;
+  timeAgo: string;
+  hasVideo: boolean;
+};
+
+export type AiMessage = {
+  id: string;
+  role: "user" | "ai";
+  content: string;
+};
+
+export const mockFeedPosts: FeedPost[] = [
+  {
+    id: "post-1",
+    tag: "Playtime",
+    caption: "Esther had a wonderful time playing with her friends today!",
+    postedBy: "Sarah Johnson",
+    timeAgo: "2 hours ago",
+    hasVideo: false,
+  },
+  {
+    id: "post-2",
+    tag: "Art & Craft",
+    caption: "Art session: Esther created a beautiful, painting!",
+    postedBy: "Sarah Johnson",
+    timeAgo: "2 hours ago",
+    hasVideo: true,
+  },
+  {
+    id: "post-3",
+    tag: "Story Time",
+    caption: "Esther loved today's story about the little elephant!",
+    postedBy: "Ms Anu",
+    timeAgo: "5 hours ago",
+    hasVideo: false,
+  },
+];
+
+export const mockAiMessages: AiMessage[] = [
+  { id: "ai-1", role: "user", content: "Can you summarize today's report for my child?" },
+  { id: "ai-2", role: "ai", content: "Hello! How may I assist you today?" },
+  { id: "ai-3", role: "user", content: "Show me what you can do" },
+  {
+    id: "ai-4",
+    role: "ai",
+    content:
+      "Of course! As an AI language model, I am designed to assist with a variety of tasks. Here are some examples of what I can do:\n• Answer questions: Just ask me anything you like!\n• Generate text: I can write |",
+  },
+];
+
 export const mockNotifications: Notification[] = [
   { id: "notif-1", title: "Daily Report Ready", body: "Liam's daily report for today is ready to view", time: "08:00 AM", read: false, type: "report" },
   { id: "notif-2", title: "Fee Due", body: "January term fees are due in 5 days", time: "2 days ago", read: true, type: "fee" },
   { id: "notif-3", title: "New Message", body: "Ms Anu sent you a message", time: "Yesterday", read: true, type: "chat" },
+];
+
+// ─── Rich Notifications ────────────────────────────────────────────────────────
+export type NotifIcon = "video" | "photo" | "alert" | "clock" | "videocam" | "report" | "chat" | "fee";
+
+export type RichNotification = {
+  id: string;
+  title: string;
+  body: string;
+  time: string;
+  read: boolean;
+  icon: NotifIcon;
+  day: string;
+};
+
+export const mockRichNotifications: RichNotification[] = [
+  { id: "rn-1", title: "Art & Craft", body: "Art session: Esther created a beautiful painting! 🎨", time: "09:30 AM", read: false, icon: "video", day: "Today" },
+  { id: "rn-2", title: "Playtime", body: "Esther had a wonderful time playing with her friends today!", time: "08:25 AM", read: false, icon: "photo", day: "Today" },
+  { id: "rn-3", title: "Emergency Contact", body: "Lorem ipsum dolor sit amet consectetur. Morbi imperdiet vitae id felis in volutpat justo ut ut.", time: "09:30 AM", read: true, icon: "alert", day: "Today" },
+  { id: "rn-4", title: "Screen Time Limit Reac...", body: "Ethan has reached the 2-hour screen time limit you set today.", time: "09:30 AM", read: false, icon: "clock", day: "Yesterday" },
+  { id: "rn-5", title: "Video Call", body: "Ava installed \"TikTok\" on her device for entertainment", time: "09:30 AM", read: false, icon: "videocam", day: "Yesterday" },
+  { id: "rn-6", title: "Emergency Signal Sent", body: "An emergency signal was sent from Ethan's device.", time: "09:30 AM", read: true, icon: "alert", day: "Yesterday" },
+  { id: "rn-7", title: "Daily Report Ready", body: "Liam's daily report for today is ready to view", time: "08:00 AM", read: true, icon: "report", day: "Yesterday" },
+];
+
+// ─── Creche Data ───────────────────────────────────────────────────────────────
+export type CrecheRoom = {
+  id: string;
+  name: string;
+  ageRange: string;
+  spots: number;
+  pricing: { label: string; amount: string; unit: string }[];
+};
+
+export type Creche = {
+  id: string;
+  name: string;
+  location: string;
+  distance: string;
+  rating: number;
+  spots: number;
+  phone: string;
+  description: string;
+  ageRange: string;
+  features: string[];
+  hours: string;
+  isOpen: boolean;
+  address: string;
+  careFromPrice: string;
+  rooms: CrecheRoom[];
+  policies: string[];
+};
+
+const STANDARD_PRICING = [
+  { label: "Full Day", amount: "$65", unit: "Day" },
+  { label: "Half Day", amount: "$40", unit: "Day" },
+  { label: "Hourly Rate", amount: "$12", unit: "Hour" },
+  { label: "Weekly", amount: "$300", unit: "Week" },
+  { label: "Monthly", amount: "$1,100", unit: "Month" },
+];
+
+const STANDARD_POLICIES = [
+  "Operating hours: 6:30 AM – 6:30 PM. Late pickup fee: $2 per minute after 6:30 PM.",
+  "Health requirements: Current immunization records and annual health exams required.",
+  "Illness policy: Children must be symptom-free for 24 hours before returning.",
+  "Tuition is non-refundable and due weekly by Friday for the following week.",
+  "30-day written notice required for enrolment changes.",
+  "We provide all meals and snacks following USDA guidelines.",
+  "Classroom parties limited to birthdays and major holidays.",
+];
+
+export const mockCreches: Creche[] = [
+  {
+    id: "creche-1",
+    name: "St. Greg Creche",
+    location: "Victoria Island, Lagos",
+    distance: "0.7 km",
+    rating: 4.0,
+    spots: 5,
+    phone: "+23452268769",
+    description: "A nurturing environment where children explore, learn, and grow through play-based learning and individualised attention.",
+    ageRange: "Ages 6months - 5years",
+    features: ["Montessori certified", "Security cameras", "Daily report via app"],
+    hours: "9 AM - 10 PM",
+    isOpen: true,
+    address: "Block A25, 1004...",
+    careFromPrice: "$12",
+    rooms: [
+      { id: "r-1", name: "Infant Room", ageRange: "6-12 months", spots: 5, pricing: STANDARD_PRICING },
+      { id: "r-2", name: "Toddler Room", ageRange: "1-2 years", spots: 5, pricing: STANDARD_PRICING },
+      { id: "r-3", name: "Preschool Room", ageRange: "3-5 years", spots: 10, pricing: STANDARD_PRICING },
+    ],
+    policies: STANDARD_POLICIES,
+  },
+  {
+    id: "creche-2",
+    name: "Favor Creche",
+    location: "Lekki, Lagos",
+    distance: "1.2 km",
+    rating: 4.5,
+    spots: 25,
+    phone: "+23452268799",
+    description: "A warm and welcoming space where every child thrives through structured play, creative arts, and individualised care.",
+    ageRange: "Ages 3months - 4years",
+    features: ["Outdoor playground", "CCTV monitoring", "Daily report via app"],
+    hours: "7 AM - 7 PM",
+    isOpen: true,
+    address: "12 Admiralty Way, Lekki Phase 1",
+    careFromPrice: "$10",
+    rooms: [
+      { id: "r-4", name: "Infant Room", ageRange: "3-12 months", spots: 8, pricing: STANDARD_PRICING },
+      { id: "r-5", name: "Toddler Room", ageRange: "1-2 years", spots: 12, pricing: STANDARD_PRICING },
+      { id: "r-6", name: "Pre-K Room", ageRange: "3-4 years", spots: 15, pricing: STANDARD_PRICING },
+    ],
+    policies: STANDARD_POLICIES,
+  },
+  {
+    id: "creche-3",
+    name: "Gracious Creche",
+    location: "Lekki, Lagos",
+    distance: "1.5 km",
+    rating: 3.5,
+    spots: 7,
+    phone: "+23452268811",
+    description: "A safe and stimulating environment for early learners, with a focus on holistic child development and parental engagement.",
+    ageRange: "Ages 6months - 5years",
+    features: ["Qualified caregivers", "Nutritious meals", "Daily report via app"],
+    hours: "7:30 AM - 6 PM",
+    isOpen: true,
+    address: "45 Freedom Way, Lekki Phase 2",
+    careFromPrice: "$8",
+    rooms: [
+      { id: "r-7", name: "Infant Room", ageRange: "6-12 months", spots: 3, pricing: STANDARD_PRICING },
+      { id: "r-8", name: "Toddler Room", ageRange: "1-2 years", spots: 4, pricing: STANDARD_PRICING },
+    ],
+    policies: STANDARD_POLICIES,
+  },
+  {
+    id: "creche-4",
+    name: "TT Creche",
+    location: "Lekki, Lagos",
+    distance: "1.8 km",
+    rating: 4.0,
+    spots: 2,
+    phone: "+23452268822",
+    description: "Small-group, relationship-focused care with a gentle approach to early childhood education.",
+    ageRange: "Ages 3months - 3years",
+    features: ["Low child-to-caregiver ratio", "Weekly parent updates", "Daily report via app"],
+    hours: "8 AM - 6 PM",
+    isOpen: false,
+    address: "7 Orchid Road, Lekki",
+    careFromPrice: "$11",
+    rooms: [
+      { id: "r-9", name: "Infant Room", ageRange: "3-12 months", spots: 2, pricing: STANDARD_PRICING },
+      { id: "r-10", name: "Toddler Room", ageRange: "1-3 years", spots: 4, pricing: STANDARD_PRICING },
+    ],
+    policies: STANDARD_POLICIES,
+  },
 ];
