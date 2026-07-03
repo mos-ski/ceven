@@ -54,7 +54,7 @@ export default function AttendancePage() {
   const late = records.filter((r) => r.status === "late").length;
 
   return (
-    <div className="flex flex-1 flex-col bg-cg-bg">
+    <div className="relative flex flex-1 flex-col bg-cg-bg">
       <div className="flex items-center gap-3 bg-white px-4 py-3 shadow-sm">
         <button onClick={() => router.back()}>
           <ArrowLeft size={20} className="text-gray-600" />

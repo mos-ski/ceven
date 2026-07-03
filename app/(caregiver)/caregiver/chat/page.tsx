@@ -28,7 +28,7 @@ export default function ChatPage() {
   );
 
   return (
-    <div className="flex flex-1 flex-col bg-cg-bg">
+    <div className="relative flex flex-1 flex-col bg-cg-bg">
       <div className="flex-1 overflow-y-auto pb-4">
         {/* Search bar */}
         <div className="px-4 pt-3 pb-2">

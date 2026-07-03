@@ -244,7 +244,7 @@ export default function DevelopmentPage() {
         />
       )}
 
-      <div className="flex min-h-0 flex-1 flex-col">
+      <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
         {/* Brown header */}
         <div className="relative shrink-0 overflow-hidden bg-cg-brand px-6 pb-8 pt-4">
           <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-white/10" />

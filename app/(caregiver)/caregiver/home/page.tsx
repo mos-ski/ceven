@@ -25,7 +25,7 @@ export default function HomePage() {
   const router = useRouter();
 
   return (
-    <div className="flex flex-1 flex-col bg-cg-bg">
+    <div className="relative flex flex-1 flex-col bg-cg-bg">
       {/* Scrollable content */}
       <div className="flex-1 overflow-y-auto px-4 pt-2 pb-4">
         {/* Header */}

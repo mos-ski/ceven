@@ -218,7 +218,7 @@ export default function AddChildPage() {
         />
       )}
 
-      <div className="flex flex-1 flex-col">
+      <div className="flex min-h-0 flex-1 flex-col overflow-hidden">
         {/* Brown header */}
         <div className="shrink-0 bg-cg-brand px-6 pb-8 pt-4">
           <button onClick={() => router.back()} className="mb-4 flex h-8 w-8 items-center justify-center rounded-full bg-white/20">

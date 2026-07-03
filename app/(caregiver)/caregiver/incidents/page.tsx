@@ -18,7 +18,7 @@ export default function IncidentsPage() {
   const { openIncident } = useLogSheet();
 
   return (
-    <div className="flex flex-1 flex-col bg-cg-bg">
+    <div className="relative flex flex-1 flex-col bg-cg-bg">
       <div className="flex items-center justify-between bg-white px-4 py-3 shadow-sm">
         <div className="flex items-center gap-3">
           <button onClick={() => router.back()}>
