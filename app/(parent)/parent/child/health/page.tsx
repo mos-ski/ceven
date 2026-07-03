@@ -612,7 +612,7 @@ export default function ChildHealthPage() {
             </div>
 
             <button
-              onClick={() => router.push("/parent/home")}
+              onClick={() => router.push("/parent/child/feeding")}
               className="mt-2 w-full rounded-lg bg-cg-brand py-3 text-sm font-semibold text-white"
             >
               Continue
