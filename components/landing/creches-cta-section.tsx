@@ -1,0 +1,40 @@
+import Link from "next/link";
+
+export function CrechesCTASection() {
+  return (
+    <section className="bg-[#C8823A] px-12 py-24 text-center">
+      <div className="max-w-2xl mx-auto">
+        <h2 className="text-[#FAF2E1] text-4xl font-bold leading-[1.2] mb-4">
+          Ready to be the crèche<br />
+          that stands out?
+        </h2>
+        <p className="text-[#FAF2E1]/80 text-base mb-10">
+          Download CEven. Built for Nigerian crèches. Set up in 15 minutes.
+        </p>
+        <div className="flex items-center justify-center gap-4">
+          <Link
+            href="#"
+            className="flex items-center gap-2.5 bg-[#FAF2E1] text-[#3B2513] text-sm font-semibold px-6 py-3.5 rounded-full hover:bg-white transition-colors"
+          >
+            <PlayStoreIcon />
+            Download on Google Play
+          </Link>
+          <Link
+            href="/for-parents"
+            className="flex items-center gap-2 border border-[#FAF2E1]/60 text-[#FAF2E1] text-sm font-medium px-6 py-3.5 rounded-full hover:border-[#FAF2E1] hover:bg-[#FAF2E1]/10 transition-colors"
+          >
+            For Parents <span>↗</span>
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function PlayStoreIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M3 20.5v-17c0-.83 1-.83 1.5-.5l14 8.5c.5.3.5 1.2 0 1.5L4.5 21c-.5.33-1.5.33-1.5-.5z" />
+    </svg>
+  );
+}

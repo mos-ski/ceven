@@ -2,11 +2,16 @@ import { NextRequest, NextResponse } from "next/server";
 
 const SESSION_COOKIE = "ceven_admin_session";
 const AUTH_PATHS = ["/login", "/signup", "/reset-password", "/verify-email"];
+const PUBLIC_PATHS = ["/", "/about", "/for-creches", "/for-parents", "/contact"];
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   if (pathname.startsWith("/caregiver") || pathname.startsWith("/parent")) {
+    return NextResponse.next();
+  }
+
+  if (PUBLIC_PATHS.some((p) => pathname === p || pathname.startsWith(p + "/"))) {
     return NextResponse.next();
   }
 
