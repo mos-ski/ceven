@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const BULLET_POINTS = [
   "You leave before sunrise because the Third Mainland is already moving.",
   "The crèche on Victoria Island doesn't have a parent portal — just a WhatsApp group of 31 unread messages.",
@@ -23,19 +25,20 @@ const CALLOUTS = [
 
 export function AmbitionsSection() {
   return (
-    <section className="bg-[#F5EFE4] px-12 py-20">
+    <section className="bg-[#F5EFE4] px-4 sm:px-8 lg:px-16 py-16 sm:py-20">
       <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-2 gap-16 items-start">
-          <div>
-            <div className="w-full h-[380px] rounded-2xl overflow-hidden bg-[#D4C4B0] mb-0 relative">
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-[#8B7355]/40 text-sm">Photo placeholder</span>
-              </div>
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-start">
+          <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden">
+            <Image
+              src="/Frame 1686561190.png"
+              alt="Children at a crèche"
+              fill
+              className="object-cover"
+            />
           </div>
 
           <div>
-            <h2 className="text-[#1A1208] text-3xl font-bold leading-snug mb-3">
+            <h2 className="text-[#1A1208] text-2xl sm:text-3xl font-bold leading-snug mb-3">
               For the busy work mornings.<br />
               For your career and ambitions
             </h2>
@@ -55,11 +58,11 @@ export function AmbitionsSection() {
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-5 mt-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mt-8">
           {CALLOUTS.map((callout) => (
             <div
               key={callout.title}
-              className="bg-[#FFF9F0] border border-[#E8DDD0] rounded-2xl p-6"
+              className="bg-[#FFF9F0] border border-[#E8DDD0] rounded-2xl p-5 sm:p-6"
             >
               <h4 className="text-[#1A1208] text-base font-bold mb-2">
                 {callout.title}

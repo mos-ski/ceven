@@ -21,27 +21,27 @@ const TESTIMONIALS = [
 
 export function TestimonialsSection() {
   return (
-    <section className="bg-white px-12 py-20">
+    <section className="bg-white px-4 sm:px-8 lg:px-16 py-16 sm:py-20">
       <div className="max-w-6xl mx-auto">
-        <div className="mb-12">
+        <div className="mb-10 sm:mb-12">
           <p className="text-[#9B9B9B] text-xs font-semibold uppercase tracking-widest mb-4">
             What People Say
           </p>
-          <h2 className="text-[#1A1208] text-4xl font-bold leading-[1.2]">
+          <h2 className="text-[#1A1208] text-2xl sm:text-3xl lg:text-4xl font-bold leading-[1.2]">
             The proof is in<br />
             the peace of mind.
           </h2>
         </div>
 
-        <div className="grid grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {TESTIMONIALS.map((t) => (
             <div
               key={t.name}
-              className="bg-[#F8F6F3] border border-[#E8E4DE] rounded-2xl p-7"
+              className="bg-[#F8F6F3] border border-[#E8E4DE] rounded-2xl p-6 sm:p-7"
             >
               <QuoteIcon />
-              <p className="text-[#1A1208] text-base leading-relaxed mt-4 mb-6">
-                "{t.quote}"
+              <p className="text-[#1A1208] text-sm sm:text-base leading-relaxed mt-4 mb-6">
+                &ldquo;{t.quote}&rdquo;
               </p>
               <div>
                 <p className="text-[#9A6033] font-semibold text-sm">{t.name}</p>

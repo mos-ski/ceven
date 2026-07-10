@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Mogra, Merriweather, Urbanist, Nunito } from "next/font/google";
+import { Mogra, Merriweather, Urbanist, Nunito, Fraunces, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
 const mogra = Mogra({
@@ -26,6 +26,18 @@ const nunito = Nunito({
   variable: "--font-nunito-import",
 });
 
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  axes: ["SOFT", "WONK", "opsz"],
+  variable: "--font-fraunces",
+});
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  weight: ["400", "500", "600", "700"],
+  subsets: ["latin"],
+  variable: "--font-plus-jakarta-sans",
+});
+
 export const metadata: Metadata = {
   title: "CEven Admin",
   description: "CEven Admin Portal",
@@ -38,7 +50,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         suppressHydrationWarning
-        className={`${mogra.variable} ${merriweather.variable} ${urbanist.variable} ${nunito.variable} font-sans antialiased`}
+        className={`${mogra.variable} ${merriweather.variable} ${urbanist.variable} ${nunito.variable} ${fraunces.variable} ${plusJakartaSans.variable} font-sans antialiased`}
       >
         {children}
       </body>

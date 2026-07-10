@@ -25,7 +25,7 @@ const FEATURES = [
 
 export function CrechesPlatformSection() {
   return (
-    <section className="bg-[#F5EFE4] px-12 py-20">
+    <section className="bg-[#F5EFE4] px-4 sm:px-8 lg:px-16 py-16 sm:py-20">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-[#1A1208] text-4xl font-bold leading-[1.2] mb-3">
@@ -45,7 +45,7 @@ export function CrechesPlatformSection() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-10 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 items-start">
           <div>
             <div className="bg-white rounded-2xl border border-[#E8DDD0] shadow-sm overflow-hidden">
               <div className="bg-[#F8F5F0] px-4 py-3 flex items-center gap-2 border-b border-[#E8DDD0]">

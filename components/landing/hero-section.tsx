@@ -4,72 +4,119 @@ import { LandingNav } from "./nav";
 
 export function HeroSection() {
   return (
-    <section className="bg-[#3B2513] min-h-[700px] relative overflow-hidden">
-      <LandingNav />
+    <section className="bg-[#FAF2E1] relative overflow-hidden">
+      <LandingNav variant="light" />
 
-      <div className="flex items-center justify-between px-12 pt-10 pb-0 relative z-10">
-        <div className="max-w-[560px]">
-          <div className="inline-flex items-center gap-2 bg-[#5B391E] text-[#FAF2E1]/80 text-xs font-medium px-4 py-1.5 rounded-full mb-8">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#9A6033]" />
-            For you · Children Connected
+      <div className="flex flex-col lg:flex-row items-start justify-between px-4 sm:px-8 lg:px-16 pt-4 pb-0 relative min-h-[auto] lg:min-h-[660px] gap-8">
+        {/* Left: text content */}
+        <div className="flex flex-col gap-4 max-w-[641px] pt-8 lg:pt-14 text-center lg:text-left w-full">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 bg-[rgba(59,37,19,0.12)] border border-[rgba(255,195,68,0.5)] rounded-[6px] pl-1 pr-2 py-1 w-fit">
+            <div className="bg-white rounded-[4px] px-2 py-1">
+              <span className="font-[family-name:var(--font-plus-jakarta-sans)] font-medium text-sm text-black leading-5">
+                For you:
+              </span>
+            </div>
+            <span className="font-[family-name:var(--font-plus-jakarta-sans)] font-medium text-sm text-black leading-5">
+              Childcare, Connected
+            </span>
           </div>
 
-          <h1 className="text-[#FAF2E1] text-5xl leading-[1.15] font-bold mb-6">
-            Show up at work.<br />
-            <em className="not-italic text-[#C8823A]">Be present</em>{" "}
-            at home
-          </h1>
+          {/* Headline + subtitle */}
+          <div className="flex flex-col gap-4">
+            <h1
+              className="font-[family-name:var(--font-fraunces)] font-semibold text-[#3b2513] leading-[1.1] text-[40px] sm:text-[56px] lg:text-[72px] xl:text-[80px]"
+              style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}
+            >
+              Show up at work.
+              <br />
+              <em
+                className="font-[family-name:var(--font-fraunces)] italic text-[#c78c5f] not-italic"
+                style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1', fontStyle: "italic" }}
+              >
+                Be present
+              </em>{" "}
+              at home
+            </h1>
 
-          <p className="text-[#FAF2E1]/60 text-base leading-relaxed mb-10 max-w-[440px]">
-            CEven provides real-time visibility into your child's daily
-            experiences and wellbeing, enabling seamless communication between
-            parents and caregivers.
-          </p>
+            <p className="font-[family-name:var(--font-plus-jakarta-sans)] font-normal text-[#3d444f] text-[18px] xl:text-[20px] leading-[1.6]">
+              CEven provides real-time visibility into your child&apos;s daily
+              experiences and wellbeing, enabling seamless communication between
+              parents and caregivers.
+            </p>
+          </div>
 
-          <div className="flex items-center gap-4">
+          {/* CTAs */}
+          <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mt-2">
             <Link
               href="#"
-              className="flex items-center gap-2.5 bg-[#FAF2E1] text-[#3B2513] text-sm font-semibold px-5 py-3 rounded-full hover:bg-white transition-colors"
+              className="relative flex items-center gap-1 pl-1.5 pr-4 py-0.5 rounded-[12px] bg-[#3b2513] shadow-[inset_0px_4px_12px_0px_rgba(255,255,255,0.12)] hover:bg-[#5b3921] transition-colors"
             >
-              <PlayStoreIcon />
-              Download on Google Play
+              <div className="relative w-[46px] h-[46px] shrink-0">
+                <Image
+                  src="/google_play_icon.png.png"
+                  alt="Google Play"
+                  fill
+                  sizes="46px"
+                  className="object-contain"
+                />
+              </div>
+              <span className="font-[family-name:var(--font-plus-jakarta-sans)] font-medium text-[#faf2e1] text-[16px] leading-5 whitespace-nowrap">
+                Download on Google Play
+              </span>
             </Link>
+
             <Link
               href="/for-parents"
-              className="text-[#FAF2E1]/80 text-sm font-medium hover:text-[#FAF2E1] transition-colors flex items-center gap-1"
+              className="flex items-center justify-center gap-2 border border-[#3b2513] h-[50px] w-[162px] rounded-[12px] px-4 hover:bg-[#3b2513]/5 transition-colors"
             >
-              For Parents <span>→</span>
+              <span className="font-[family-name:var(--font-plus-jakarta-sans)] font-semibold text-[#3b2513] text-[16px] leading-5">
+                For Parents
+              </span>
+              <ArrowBendUpRight />
             </Link>
           </div>
         </div>
 
-        <div className="relative w-[380px] h-[520px] flex-shrink-0">
-          <div className="absolute inset-0 flex items-end justify-center">
-            <div className="w-[240px] h-[480px] bg-[#5B391E]/40 rounded-[40px] border border-[#FAF2E1]/10 flex items-center justify-center overflow-hidden">
-              <div className="w-full h-full bg-gradient-to-br from-[#5B391E]/60 to-[#3B2513]/80 flex items-center justify-center">
-                <span className="text-[#FAF2E1]/20 text-xs text-center px-6">Phone mockup</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="absolute bottom-0 left-0 right-0">
-        <svg viewBox="0 0 1280 60" preserveAspectRatio="none" className="w-full h-16 block">
-          <path
-            d="M0,60 L0,30 C50,5 100,55 150,30 C200,5 250,52 300,28 C350,4 400,50 450,28 C500,6 550,52 600,30 C650,8 700,54 750,32 C800,10 850,56 900,34 C950,12 1000,58 1050,36 C1100,14 1150,60 1200,38 C1230,27 1260,46 1280,36 L1280,60 Z"
-            fill="#F5EFE4"
+        {/* Right: phone mockup */}
+        <div className="relative shrink-0 w-full max-w-[320px] sm:max-w-[400px] lg:w-[480px] lg:max-w-none xl:w-[540px] self-end mx-auto lg:mx-0 -mb-1">
+          <Image
+            src="/hero-phone-mockup.png"
+            alt="CEven app on iPhone"
+            width={563}
+            height={800}
+            className="object-contain w-full"
+            priority
           />
-        </svg>
+        </div>
       </div>
     </section>
   );
 }
 
-function PlayStoreIcon() {
+function ArrowBendUpRight() {
   return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M3 20.5v-17c0-.83 1-.83 1.5-.5l14 8.5c.5.3.5 1.2 0 1.5L4.5 21c-.5.33-1.5.33-1.5-.5z" />
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M10 3.5L14 7.5L10 11.5"
+        stroke="#3b2513"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M2 12.5C2 12.5 2 7.5 7 7.5H14"
+        stroke="#3b2513"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }

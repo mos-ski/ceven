@@ -1,7 +1,7 @@
 export function CrechesTransparencySection() {
   return (
-    <section className="bg-white px-12 py-20">
-      <div className="max-w-6xl mx-auto grid grid-cols-2 gap-16 items-center">
+    <section className="bg-white px-4 sm:px-8 lg:px-16 py-16 sm:py-20">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-center">
         <div className="space-y-8">
           <div>
             <p className="text-[#1A1208] text-6xl font-black mb-2">3x</p>

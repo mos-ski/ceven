@@ -33,7 +33,7 @@ export function ParentsFAQSection() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section className="bg-[#F5EFE4] px-12 py-20">
+    <section className="bg-[#F5EFE4] px-4 sm:px-8 lg:px-16 py-16 sm:py-20">
       <div className="max-w-3xl mx-auto">
         <div className="mb-10">
           <div className="inline-flex items-center bg-[#EDE8E0] text-[#3B2513] text-xs font-semibold tracking-widest uppercase px-4 py-1.5 rounded-full border border-[#D4C4B0] mb-6">

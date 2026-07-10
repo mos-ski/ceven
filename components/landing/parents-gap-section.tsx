@@ -1,11 +1,11 @@
 export function ParentsGapSection() {
   return (
-    <section className="bg-[#3B2513] px-12 py-20">
+    <section className="bg-[#3B2513] px-4 sm:px-8 lg:px-16 py-16 sm:py-20">
       <div className="max-w-3xl mx-auto">
         <p className="text-[#FAF2E1]/50 text-xs font-semibold uppercase tracking-widest mb-6">
           The Thing Nobody Talks About
         </p>
-        <h2 className="font-[family-name:var(--font-merriweather-import)] text-[#FAF2E1] text-4xl font-bold leading-[1.2] mb-8">
+        <h2 className="font-[family-name:var(--font-merriweather-import)] text-[#FAF2E1] text-2xl sm:text-3xl lg:text-4xl font-bold leading-[1.2] mb-6 sm:mb-8">
           The gap between work and home<br />
           shouldn't cost you peace of mind
         </h2>

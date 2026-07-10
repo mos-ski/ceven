@@ -54,7 +54,7 @@ const TIMELINE = [
 
 export function CrechesTimelineSection() {
   return (
-    <section className="bg-white px-12 py-20">
+    <section className="bg-white px-16 py-20">
       <div className="max-w-4xl mx-auto">
         <div className="mb-14">
           <div className="inline-flex items-center border border-[#3B2513]/20 text-[#3B2513] text-xs font-medium px-4 py-1.5 rounded-full mb-6">

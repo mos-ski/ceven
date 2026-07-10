@@ -23,7 +23,7 @@ const TESTIMONIALS = [
 
 export function CrechesTestimonialsSection() {
   return (
-    <section className="bg-white px-12 py-20">
+    <section className="bg-white px-4 sm:px-8 lg:px-16 py-16 sm:py-20">
       <div className="max-w-6xl mx-auto">
         <div className="mb-12">
           <div className="inline-flex items-center border border-[#3B2513]/20 text-[#3B2513] text-xs font-semibold tracking-widest uppercase px-4 py-1.5 rounded-full mb-6">
@@ -39,7 +39,7 @@ export function CrechesTestimonialsSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-3 gap-5 mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-8 sm:mb-10">
           {TESTIMONIALS.map((t) => (
             <div key={t.name} className="bg-[#F8F6F3] border border-[#E8E4DE] rounded-2xl p-7">
               <QuoteIcon />

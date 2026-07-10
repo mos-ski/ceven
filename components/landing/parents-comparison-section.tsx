@@ -18,7 +18,7 @@ const WITH = [
 
 export function ParentsComparisonSection() {
   return (
-    <section className="bg-white px-12 py-20">
+    <section className="bg-white px-4 sm:px-8 lg:px-16 py-16 sm:py-20">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-14">
           <div className="inline-flex items-center border border-[#3B2513]/20 text-[#3B2513] text-xs font-semibold tracking-widest uppercase px-4 py-1.5 rounded-full mb-6">
@@ -31,7 +31,7 @@ export function ParentsComparisonSection() {
           <p className="text-[#6B5744] text-base">The same day. Two very different experiences.</p>
         </div>
 
-        <div className="grid grid-cols-2 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10 sm:mb-12">
           <div>
             <h3 className="text-[#1A1208] text-xl font-bold mb-2">Without CEven</h3>
             <p className="text-[#9B9B9B] text-sm mb-6">You miss out on most moments of your child's life</p>

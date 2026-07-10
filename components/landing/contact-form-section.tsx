@@ -21,8 +21,8 @@ export function ContactFormSection() {
     <section className="relative bg-white">
       <CloudWaveTop />
 
-      <div className="px-12 py-20">
-        <div className="max-w-6xl mx-auto grid grid-cols-2 gap-20 items-start">
+      <div className="px-4 sm:px-8 lg:px-16 py-14 sm:py-20">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-20 items-start">
           <div>
             <p className="font-[family-name:var(--font-mogra-import)] text-[#1A1208] text-4xl mb-5">
               CEven
@@ -67,7 +67,7 @@ export function ContactFormSection() {
                 </p>
 
                 <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-[#3B2513] text-xs font-semibold mb-1.5">
                         First Name
@@ -94,7 +94,7 @@ export function ContactFormSection() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-[#3B2513] text-xs font-semibold mb-1.5">
                         Email Address

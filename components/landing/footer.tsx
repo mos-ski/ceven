@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const FOOTER_LINKS = {
   Audience: [
@@ -12,9 +13,9 @@ const FOOTER_LINKS = {
     { label: "Contact Us", href: "/contact" },
   ],
   Legal: [
-    { label: "Privacy Policy", href: "#" },
-    { label: "Terms of Service", href: "#" },
-    { label: "Data & Children", href: "#" },
+    { label: "Privacy Policy", href: "/privacy-policy" },
+    { label: "Terms of Service", href: "/terms-of-service" },
+    { label: "Data & Children", href: "/data-and-children" },
   ],
 };
 
@@ -22,21 +23,26 @@ export function LandingFooter() {
   return (
     <footer className="relative bg-[#3B2010]">
       <CloudWaveTop />
-      <div className="px-12 pt-16 pb-8">
-        <div className="flex justify-between items-start mb-12">
-          <div>
-            <div className="flex items-center gap-2 bg-[#FAF2E1] rounded-xl px-4 py-2.5 w-fit mb-4">
-              <CevenIcon />
-              <span className="text-[#3B2513] font-bold text-base tracking-tight">CEven</span>
+      <div className="px-4 sm:px-8 lg:px-16 pt-12 pb-8">
+        <div className="flex flex-col gap-10 md:flex-row md:justify-between md:items-start mb-10">
+          <div className="flex-shrink-0">
+            <div className="mb-4">
+              <Image
+                src="/Frame 1686561079.png"
+                alt="CEven"
+                width={120}
+                height={46}
+                className="h-10 w-auto brightness-0 invert opacity-90"
+              />
             </div>
-            <p className="text-[#FAF2E1] text-lg font-medium mb-1">Life made easier for families</p>
+            <p className="text-[#FAF2E1] text-base font-medium mb-1">Life made easier for families</p>
             <p className="text-[#FAF2E1]/60 text-sm">
               A product by{" "}
               <span className="text-[#9A6033] font-medium">Swayosoo™</span>
             </p>
           </div>
 
-          <div className="flex gap-20">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 md:gap-16">
             {Object.entries(FOOTER_LINKS).map(([category, links]) => (
               <div key={category}>
                 <p className="text-[#9A6033] text-sm font-semibold mb-4">{category}</p>
@@ -57,7 +63,7 @@ export function LandingFooter() {
           </div>
         </div>
 
-        <div className="border-t border-[#FAF2E1]/10 pt-6 flex justify-between items-center">
+        <div className="border-t border-[#FAF2E1]/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-2">
           <p className="text-[#FAF2E1]/50 text-sm">
             © 2025 CEven by Swayosoo™. All rights reserved.
           </p>
@@ -71,26 +77,12 @@ export function LandingFooter() {
 function CloudWaveTop() {
   return (
     <div className="w-full overflow-hidden leading-none">
-      <svg
-        viewBox="0 0 1280 90"
-        preserveAspectRatio="none"
-        className="w-full h-20 block"
-        style={{ background: "#F5EFE4" }}
-      >
-        <path
-          d="M0,90 L0,50 C40,20 80,70 120,45 C160,20 200,65 240,42 C280,18 320,68 360,44 C400,20 440,66 480,42 C520,18 560,64 600,40 C640,16 680,62 720,40 C760,18 800,64 840,42 C880,20 920,66 960,44 C1000,22 1040,68 1080,46 C1120,24 1160,70 1200,48 C1220,37 1250,55 1280,45 L1280,90 Z"
-          fill="#3B2010"
-        />
-      </svg>
+      <img
+        src="/Footer/Frame 1686561081.svg"
+        alt=""
+        role="presentation"
+        style={{ width: "100%", height: "80px", display: "block", objectFit: "fill" }}
+      />
     </div>
-  );
-}
-
-function CevenIcon() {
-  return (
-    <svg width="22" height="22" viewBox="0 0 20 20" fill="none">
-      <circle cx="7" cy="10" r="6" fill="#9A6033" />
-      <circle cx="13" cy="10" r="6" fill="#4A7C59" opacity="0.9" />
-    </svg>
   );
 }

@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export function CrechesCTASection() {
   return (
-    <section className="bg-[#C8823A] px-12 py-24 text-center">
+    <section className="bg-[#C8823A] px-4 sm:px-8 lg:px-16 py-16 sm:py-24 text-center">
       <div className="max-w-2xl mx-auto">
         <h2 className="text-[#FAF2E1] text-4xl font-bold leading-[1.2] mb-4">
           Ready to be the crèche<br />
@@ -11,7 +11,7 @@ export function CrechesCTASection() {
         <p className="text-[#FAF2E1]/80 text-base mb-10">
           Download CEven. Built for Nigerian crèches. Set up in 15 minutes.
         </p>
-        <div className="flex items-center justify-center gap-4">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
           <Link
             href="#"
             className="flex items-center gap-2.5 bg-[#FAF2E1] text-[#3B2513] text-sm font-semibold px-6 py-3.5 rounded-full hover:bg-white transition-colors"

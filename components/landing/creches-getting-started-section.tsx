@@ -24,7 +24,7 @@ const STEPS = [
 
 export function CrechesGettingStartedSection() {
   return (
-    <section className="bg-[#1C2B3A] px-12 py-20">
+    <section className="bg-[#1C2B3A] px-4 sm:px-8 lg:px-16 py-16 sm:py-20">
       <div className="max-w-6xl mx-auto">
         <div className="mb-14">
           <div className="inline-flex items-center border border-[#FAF2E1]/30 text-[#FAF2E1]/70 text-xs font-medium px-4 py-1.5 rounded-full mb-6">
@@ -42,7 +42,7 @@ export function CrechesGettingStartedSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
           {STEPS.map((step) => (
             <div key={step.number}>
               <p className="text-[#FAF2E1]/10 text-7xl font-black mb-6 leading-none select-none">

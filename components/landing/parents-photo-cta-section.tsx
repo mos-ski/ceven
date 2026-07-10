@@ -1,13 +1,21 @@
+import Image from "next/image";
+
 export function ParentsPhotoCTASection() {
   return (
-    <section className="relative bg-[#3B2513] overflow-hidden min-h-[340px] flex items-center">
-      <div className="absolute inset-0 bg-gradient-to-r from-[#1A1208]/80 to-[#3B2513]/40" />
-      <div className="relative z-10 px-12 py-20 max-w-2xl">
-        <h2 className="text-[#FAF2E1] text-4xl font-bold leading-[1.2] mb-4">
+    <section className="relative overflow-hidden min-h-[340px] sm:min-h-[420px] flex items-center">
+      <Image
+        src="/255fa3500055ffd7821889527696eab502edda6a.jpg"
+        alt=""
+        fill
+        className="object-cover object-top"
+      />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#1A1208]/85 via-[#1A1208]/60 to-transparent" />
+      <div className="relative z-10 px-4 sm:px-8 lg:px-16 py-16 sm:py-20 max-w-2xl">
+        <h2 className="text-[#FAF2E1] text-2xl sm:text-3xl lg:text-4xl font-bold leading-[1.2] mb-4">
           Let's help you be part of every<br />
           moment of your child's life
         </h2>
-        <p className="text-[#FAF2E1]/60 text-base leading-relaxed mb-8">
+        <p className="text-[#FAF2E1]/70 text-sm sm:text-base leading-relaxed mb-8">
           Start your easier and better parenting journey with CEven.
         </p>
         <a
@@ -24,8 +32,12 @@ export function ParentsPhotoCTASection() {
 
 function PlayStoreIcon() {
   return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M3 20.5v-17c0-.83 1-.83 1.5-.5l14 8.5c.5.3.5 1.2 0 1.5L4.5 21c-.5.33-1.5.33-1.5-.5z" />
-    </svg>
+    <Image
+      src="/google-play-icon.png"
+      alt=""
+      width={16}
+      height={16}
+      className="w-4 h-4"
+    />
   );
 }

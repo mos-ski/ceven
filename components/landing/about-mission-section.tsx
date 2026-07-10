@@ -1,6 +1,6 @@
 export function AboutMissionSection() {
   return (
-    <section className="bg-[#F5EFE4] px-12 py-20">
+    <section className="bg-[#F5EFE4] px-4 sm:px-8 lg:px-16 py-16 sm:py-20">
       <div className="max-w-6xl mx-auto">
         <div className="mb-12">
           <div className="inline-flex items-center border border-[#3B2513]/30 text-[#3B2513] text-xs font-semibold tracking-widest uppercase px-4 py-1.5 rounded-full mb-6">
@@ -11,7 +11,7 @@ export function AboutMissionSection() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-2 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
           <div>
             <p className="text-[#9A6033] text-sm font-semibold mb-4">Our Vision</p>
             <h3 className="text-[#1A1208] text-xl font-bold leading-snug mb-4">
