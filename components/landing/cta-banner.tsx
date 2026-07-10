@@ -7,7 +7,7 @@ export function CtaBanner() {
   return (
     <section className="relative overflow-hidden">
       <Image
-        src="/3b109c5ee8eaa69ab9b1eea0de7680e0edffd7c5.jpg"
+        src="/CTA.png"
         alt=""
         fill
         className="object-cover"
