@@ -29,6 +29,7 @@ const nunito = Nunito({
 const fraunces = Fraunces({
   subsets: ["latin"],
   axes: ["SOFT", "WONK", "opsz"],
+  style: ["normal", "italic"],
   variable: "--font-fraunces",
 });
 

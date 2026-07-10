@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { FadeUp } from "@/components/animations/fade-up";
 
 export function ParentsPhotoCTASection() {
   return (
@@ -10,22 +13,22 @@ export function ParentsPhotoCTASection() {
         className="object-cover object-top"
       />
       <div className="absolute inset-0 bg-gradient-to-r from-[#1A1208]/85 via-[#1A1208]/60 to-transparent" />
-      <div className="relative z-10 px-4 sm:px-8 lg:px-16 py-16 sm:py-20 max-w-2xl">
+      <FadeUp className="relative z-10 px-4 sm:px-8 lg:px-16 py-16 sm:py-20 max-w-2xl">
         <h2 className="text-[#FAF2E1] text-2xl sm:text-3xl lg:text-4xl font-bold leading-[1.2] mb-4">
-          Let's help you be part of every<br />
-          moment of your child's life
+          Let&apos;s help you be part of every<br />
+          moment of your child&apos;s life
         </h2>
         <p className="text-[#FAF2E1]/70 text-sm sm:text-base leading-relaxed mb-8">
           Start your easier and better parenting journey with CEven.
         </p>
         <a
           href="#"
-          className="inline-flex items-center gap-2.5 bg-[#FAF2E1] text-[#3B2513] text-sm font-semibold px-6 py-3.5 rounded-full hover:bg-white transition-colors"
+          className="inline-flex items-center gap-2.5 bg-[#FAF2E1] text-[#3B2513] text-sm font-semibold px-6 py-3.5 rounded-full hover:bg-white hover:scale-[1.03] transition-all duration-150"
         >
           <PlayStoreIcon />
           Download on Google Play
         </a>
-      </div>
+      </FadeUp>
     </section>
   );
 }

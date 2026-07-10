@@ -1,4 +1,8 @@
+"use client";
+
 import Link from "next/link";
+import { FadeUp } from "@/components/animations/fade-up";
+import { Stagger, StaggerItem } from "@/components/animations/stagger";
 
 const FEATURE_PILLS = [
   { emoji: "📋", label: "Daily Reports" },
@@ -72,114 +76,77 @@ export function FeaturesSection() {
       <div className="max-w-6xl mx-auto">
 
         {/* Headline */}
-        <div className="text-center mb-10">
-          <h2 className="font-[family-name:var(--font-fraunces)] text-black text-3xl sm:text-4xl lg:text-5xl font-normal leading-[1.2] mb-4">
-            Everything you need.<br />
-            Nothing you don't.
-          </h2>
-          <p className="text-[#6b7280] text-xl font-medium">
-            Built around the moments that matter most.
-          </p>
-        </div>
+        <FadeUp>
+          <div className="text-center mb-10">
+            <h2
+              className="font-[family-name:var(--font-fraunces)] text-black text-3xl sm:text-4xl lg:text-5xl font-normal leading-[1.2] mb-4"
+              style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}
+            >
+              Everything you need.<br />
+              Nothing you don&apos;t.
+            </h2>
+            <p className="text-[#6b7280] text-xl font-medium">
+              Built around the moments that matter most.
+            </p>
+          </div>
+        </FadeUp>
 
         {/* Feature pills */}
-        <div className="flex flex-wrap justify-center gap-3 mb-20">
+        <Stagger className="flex flex-wrap justify-center gap-3 mb-20">
           {FEATURE_PILLS.map((pill) => (
-            <span
-              key={pill.label}
-              className="flex items-center gap-2 bg-[rgba(89,61,0,0.08)] text-[#3b2513] text-[15px] px-4 py-2 rounded-full border border-[#3b2513]"
-            >
-              <span className="text-lg leading-none">{pill.emoji}</span>
-              {pill.label}
-            </span>
+            <StaggerItem key={pill.label}>
+              <span className="flex items-center gap-2 bg-[rgba(89,61,0,0.08)] text-[#3b2513] text-[15px] px-4 py-2 rounded-full border border-[#3b2513] hover:scale-105 transition-transform duration-150 cursor-default">
+                <span className="text-lg leading-none">{pill.emoji}</span>
+                {pill.label}
+              </span>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
 
         {/* Section label */}
-        <div className="mb-8">
+        <FadeUp className="mb-8">
           <p className="text-black text-xl font-normal mb-3">
             Built for both
           </p>
           <h3 className="text-black text-4xl font-semibold">
             Two users. One platform.
           </h3>
-        </div>
+        </FadeUp>
 
         {/* Two column layout */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-start">
 
           {/* For parents — no card */}
-          <div className="flex flex-col gap-10">
-            <div className="flex flex-col gap-8">
-              <div className="flex flex-col gap-3">
-                <p className="text-[#3b2513] text-[28px] font-semibold leading-tight">
-                  For parents
-                </p>
-                <p className="text-[#6b7280] text-base">
-                  For the parents who care
-                </p>
-              </div>
-
-              <div className="flex flex-col gap-5">
-                <div className="flex flex-col gap-3">
-                  <h4 className="font-[family-name:var(--font-fraunces)] text-[#3b2513] text-[28px] font-normal leading-snug">
-                    For working parents who{" "}
-                    <em className="text-[#c78c5f] font-semibold">love fiercely</em>{" "}
-                    and hustle hard
-                  </h4>
-                  <p className="text-[#6b7280] text-base leading-relaxed">
-                    You didn't leave your child to not care. You left because
-                    providing matters. CEven lets you do both.
-                  </p>
-                </div>
-
-                <ul className="flex flex-col gap-4">
-                  {PARENT_BULLETS.map((b) => (
-                    <li key={b} className="flex items-center gap-3">
-                      <CheckIcon />
-                      <span className="text-black text-base font-light">{b}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            <Link
-              href="/for-parents"
-              className="inline-flex items-center gap-2 border border-[#3b2513] text-[#3b2513] text-base font-semibold px-5 py-3 rounded-xl hover:bg-[#3b2513] hover:text-[#faf2e1] transition-colors w-fit"
-            >
-              Everything for parents
-              <ArrowUpRight />
-            </Link>
-          </div>
-
-          {/* For crèches — translucent card with golden shadow */}
-          <div className="bg-[rgba(56,38,22,0.08)] border border-[#3b2513] rounded-[40px] overflow-hidden shadow-[0px_4px_32px_0px_rgba(255,195,68,0.24)]">
-            <div className="p-8 flex flex-col gap-10">
+          <FadeUp delay={0}>
+            <div className="flex flex-col gap-10">
               <div className="flex flex-col gap-8">
                 <div className="flex flex-col gap-3">
                   <p className="text-[#3b2513] text-[28px] font-semibold leading-tight">
-                    For crèches
+                    For parents
                   </p>
                   <p className="text-[#6b7280] text-base">
-                    For the organizations ready for growth
+                    For the parents who care
                   </p>
                 </div>
 
                 <div className="flex flex-col gap-5">
                   <div className="flex flex-col gap-3">
-                    <h4 className="font-[family-name:var(--font-fraunces)] text-black text-[28px] font-normal leading-snug">
-                      For crèches that want to be{" "}
-                      <em className="text-[#c78c5f] font-semibold">unforgettable</em>
+                    <h4
+                      className="font-[family-name:var(--font-fraunces)] text-[#3b2513] text-[28px] font-normal leading-snug"
+                      style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}
+                    >
+                      For working parents who{" "}
+                      <em className="text-[#c78c5f] font-semibold italic">love fiercely</em>{" "}
+                      and hustle hard
                     </h4>
                     <p className="text-[#6b7280] text-base leading-relaxed">
-                      The crèches families recommend are the ones that communicate.
-                      CEven makes that effortless.
+                      You didn&apos;t leave your child to not care. You left because
+                      providing matters. CEven lets you do both.
                     </p>
                   </div>
 
                   <ul className="flex flex-col gap-4">
-                    {CRECHE_BULLETS.map((b) => (
+                    {PARENT_BULLETS.map((b) => (
                       <li key={b} className="flex items-center gap-3">
                         <CheckIcon />
                         <span className="text-black text-base font-light">{b}</span>
@@ -190,14 +157,65 @@ export function FeaturesSection() {
               </div>
 
               <Link
-                href="/for-creches"
-                className="relative inline-flex items-center gap-2 bg-[#3b2513] text-[#faf2e1] text-base font-medium px-6 py-3 rounded-xl hover:bg-[#2a1a0d] transition-colors w-fit shadow-[inset_0px_4px_12px_0px_rgba(255,255,255,0.12)]"
+                href="/for-parents"
+                className="inline-flex items-center gap-2 border border-[#3b2513] text-[#3b2513] text-base font-semibold px-5 py-3 rounded-xl hover:bg-[#3b2513] hover:text-[#faf2e1] transition-colors w-fit"
               >
-                Everything for crèches
+                Everything for parents
                 <ArrowUpRight />
               </Link>
             </div>
-          </div>
+          </FadeUp>
+
+          {/* For crèches — translucent card with golden shadow */}
+          <FadeUp delay={0.15}>
+            <div className="bg-[rgba(56,38,22,0.08)] border border-[#3b2513] rounded-[40px] overflow-hidden shadow-[0px_4px_32px_0px_rgba(255,195,68,0.24)]">
+              <div className="p-8 flex flex-col gap-10">
+                <div className="flex flex-col gap-8">
+                  <div className="flex flex-col gap-3">
+                    <p className="text-[#3b2513] text-[28px] font-semibold leading-tight">
+                      For crèches
+                    </p>
+                    <p className="text-[#6b7280] text-base">
+                      For the organizations ready for growth
+                    </p>
+                  </div>
+
+                  <div className="flex flex-col gap-5">
+                    <div className="flex flex-col gap-3">
+                      <h4
+                        className="font-[family-name:var(--font-fraunces)] text-black text-[28px] font-normal leading-snug"
+                        style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}
+                      >
+                        For crèches that want to be{" "}
+                        <em className="text-[#c78c5f] font-semibold italic">unforgettable</em>
+                      </h4>
+                      <p className="text-[#6b7280] text-base leading-relaxed">
+                        The crèches families recommend are the ones that communicate.
+                        CEven makes that effortless.
+                      </p>
+                    </div>
+
+                    <ul className="flex flex-col gap-4">
+                      {CRECHE_BULLETS.map((b) => (
+                        <li key={b} className="flex items-center gap-3">
+                          <CheckIcon />
+                          <span className="text-black text-base font-light">{b}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                <Link
+                  href="/for-creches"
+                  className="relative inline-flex items-center gap-2 bg-[#3b2513] text-[#faf2e1] text-base font-medium px-6 py-3 rounded-xl hover:bg-[#2a1a0d] transition-colors w-fit shadow-[inset_0px_4px_12px_0px_rgba(255,255,255,0.12)]"
+                >
+                  Everything for crèches
+                  <ArrowUpRight />
+                </Link>
+              </div>
+            </div>
+          </FadeUp>
 
         </div>
       </div>

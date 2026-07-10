@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { FadeUp } from "@/components/animations/fade-up";
+import { Stagger, StaggerItem } from "@/components/animations/stagger";
 
 export function ContactFormSection() {
   const [form, setForm] = useState({
@@ -23,134 +25,148 @@ export function ContactFormSection() {
 
       <div className="px-4 sm:px-8 lg:px-16 py-14 sm:py-20">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-20 items-start">
-          <div>
-            <p className="font-[family-name:var(--font-mogra-import)] text-[#1A1208] text-4xl mb-5">
-              CEven
-            </p>
-            <p className="text-[#6B5744] text-base leading-relaxed mb-10">
-              A childcare management app by Swayosoo.<br />
-              Building digital ecosystems for African families.
-            </p>
+          <FadeUp delay={0}>
+            <div>
+              <p className="font-[family-name:var(--font-mogra-import)] text-[#1A1208] text-4xl mb-5">
+                CEven
+              </p>
+              <p className="text-[#6B5744] text-base leading-relaxed mb-10">
+                A childcare management app by Swayosoo.<br />
+                Building digital ecosystems for African families.
+              </p>
 
-            <div className="space-y-5">
-              <div className="flex items-center gap-3">
-                <PinIcon />
-                <span className="text-[#3B2513] text-base">Lagos, Nigeria.</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <MailIcon />
-                <a
-                  href="mailto:support@ceven.app"
-                  className="text-[#3B2513] text-base hover:text-[#9A6033] transition-colors"
-                >
-                  support@ceven.app
-                </a>
+              <div className="space-y-5">
+                <div className="flex items-center gap-3">
+                  <PinIcon />
+                  <span className="text-[#3B2513] text-base">Lagos, Nigeria.</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <MailIcon />
+                  <a
+                    href="mailto:support@ceven.app"
+                    className="text-[#3B2513] text-base hover:text-[#9A6033] transition-colors"
+                  >
+                    support@ceven.app
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
+          </FadeUp>
 
-          <div className="bg-[#EBEBEB] border border-[#C8B49A] rounded-3xl p-8">
-            {sent ? (
-              <div className="py-12 text-center">
-                <p className="text-[#1A1208] text-2xl font-bold mb-3">Message sent!</p>
-                <p className="text-[#6B5744] text-base">
-                  We'll get back to you as soon as we can.
-                </p>
-              </div>
-            ) : (
-              <>
-                <h2 className="text-[#1A1208] text-2xl font-bold mb-1">
-                  Send us a message.
-                </h2>
-                <p className="text-[#6B5744] text-sm mb-7">
-                  We read every message and reply as soon as we can
-                </p>
+          <FadeUp delay={0.15}>
+            <div className="bg-[#EBEBEB] border border-[#C8B49A] rounded-3xl p-8">
+              {sent ? (
+                <div className="py-12 text-center">
+                  <p className="text-[#1A1208] text-2xl font-bold mb-3">Message sent!</p>
+                  <p className="text-[#6B5744] text-base">
+                    We&apos;ll get back to you as soon as we can.
+                  </p>
+                </div>
+              ) : (
+                <>
+                  <h2 className="text-[#1A1208] text-2xl font-bold mb-1">
+                    Send us a message.
+                  </h2>
+                  <p className="text-[#6B5744] text-sm mb-7">
+                    We read every message and reply as soon as we can
+                  </p>
 
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-[#3B2513] text-xs font-semibold mb-1.5">
-                        First Name
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="Ngozi"
-                        value={form.firstName}
-                        onChange={(e) => setForm({ ...form, firstName: e.target.value })}
-                        className="w-full bg-white border border-[#D4C4B0] rounded-xl px-4 py-3 text-sm text-[#1A1208] placeholder:text-[#9B9B9B] focus:outline-none focus:border-[#9A6033] transition-colors"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-[#3B2513] text-xs font-semibold mb-1.5">
-                        Last Name
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="Adeyemi"
-                        value={form.lastName}
-                        onChange={(e) => setForm({ ...form, lastName: e.target.value })}
-                        className="w-full bg-white border border-[#D4C4B0] rounded-xl px-4 py-3 text-sm text-[#1A1208] placeholder:text-[#9B9B9B] focus:outline-none focus:border-[#9A6033] transition-colors"
-                      />
-                    </div>
-                  </div>
+                  <form onSubmit={handleSubmit} className="space-y-5">
+                    <Stagger className="space-y-5">
+                      <StaggerItem>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-[#3B2513] text-xs font-semibold mb-1.5">
+                              First Name
+                            </label>
+                            <input
+                              type="text"
+                              placeholder="Ngozi"
+                              value={form.firstName}
+                              onChange={(e) => setForm({ ...form, firstName: e.target.value })}
+                              className="w-full bg-white border border-[#D4C4B0] rounded-xl px-4 py-3 text-sm text-[#1A1208] placeholder:text-[#9B9B9B] focus:outline-none focus:border-[#9A6033] focus:scale-[1.01] transition-all duration-150"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-[#3B2513] text-xs font-semibold mb-1.5">
+                              Last Name
+                            </label>
+                            <input
+                              type="text"
+                              placeholder="Adeyemi"
+                              value={form.lastName}
+                              onChange={(e) => setForm({ ...form, lastName: e.target.value })}
+                              className="w-full bg-white border border-[#D4C4B0] rounded-xl px-4 py-3 text-sm text-[#1A1208] placeholder:text-[#9B9B9B] focus:outline-none focus:border-[#9A6033] focus:scale-[1.01] transition-all duration-150"
+                            />
+                          </div>
+                        </div>
+                      </StaggerItem>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-[#3B2513] text-xs font-semibold mb-1.5">
-                        Email Address
-                      </label>
-                      <input
-                        type="email"
-                        placeholder="ngozi@example.com"
-                        value={form.email}
-                        onChange={(e) => setForm({ ...form, email: e.target.value })}
-                        className="w-full bg-white border border-[#D4C4B0] rounded-xl px-4 py-3 text-sm text-[#1A1208] placeholder:text-[#9B9B9B] focus:outline-none focus:border-[#9A6033] transition-colors"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-[#3B2513] text-xs font-semibold mb-1.5">
-                        I am a...
-                      </label>
-                      <div className="relative">
-                        <select
-                          value={form.role}
-                          onChange={(e) => setForm({ ...form, role: e.target.value })}
-                          className="w-full bg-white border border-[#D4C4B0] rounded-xl px-4 py-3 text-sm text-[#9B9B9B] focus:outline-none focus:border-[#9A6033] transition-colors appearance-none"
+                      <StaggerItem>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          <div>
+                            <label className="block text-[#3B2513] text-xs font-semibold mb-1.5">
+                              Email Address
+                            </label>
+                            <input
+                              type="email"
+                              placeholder="ngozi@example.com"
+                              value={form.email}
+                              onChange={(e) => setForm({ ...form, email: e.target.value })}
+                              className="w-full bg-white border border-[#D4C4B0] rounded-xl px-4 py-3 text-sm text-[#1A1208] placeholder:text-[#9B9B9B] focus:outline-none focus:border-[#9A6033] focus:scale-[1.01] transition-all duration-150"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-[#3B2513] text-xs font-semibold mb-1.5">
+                              I am a...
+                            </label>
+                            <div className="relative">
+                              <select
+                                value={form.role}
+                                onChange={(e) => setForm({ ...form, role: e.target.value })}
+                                className="w-full bg-white border border-[#D4C4B0] rounded-xl px-4 py-3 text-sm text-[#9B9B9B] focus:outline-none focus:border-[#9A6033] focus:scale-[1.01] transition-all duration-150 appearance-none"
+                              >
+                                <option value="" disabled>Select one</option>
+                                <option value="parent">Parent</option>
+                                <option value="creche">Crèche Operator</option>
+                                <option value="journalist">Journalist</option>
+                                <option value="other">Other</option>
+                              </select>
+                              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[#6B5744] pointer-events-none text-xs">▾</span>
+                            </div>
+                          </div>
+                        </div>
+                      </StaggerItem>
+
+                      <StaggerItem>
+                        <div>
+                          <label className="block text-[#3B2513] text-xs font-semibold mb-1.5">
+                            Message
+                          </label>
+                          <textarea
+                            placeholder="Tell us what's on your mind..."
+                            value={form.message}
+                            onChange={(e) => setForm({ ...form, message: e.target.value })}
+                            rows={5}
+                            className="w-full bg-white border border-[#D4C4B0] rounded-xl px-4 py-3 text-sm text-[#1A1208] placeholder:text-[#9B9B9B] focus:outline-none focus:border-[#9A6033] focus:scale-[1.01] transition-all duration-150 resize-none"
+                          />
+                        </div>
+                      </StaggerItem>
+
+                      <StaggerItem>
+                        <button
+                          type="submit"
+                          className="bg-[#3B2513] text-[#FAF2E1] text-sm font-semibold px-8 py-3.5 rounded-full hover:bg-[#5B391E] hover:scale-[1.03] active:scale-[0.98] transition-all duration-150"
                         >
-                          <option value="" disabled>Select one</option>
-                          <option value="parent">Parent</option>
-                          <option value="creche">Crèche Operator</option>
-                          <option value="journalist">Journalist</option>
-                          <option value="other">Other</option>
-                        </select>
-                        <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[#6B5744] pointer-events-none text-xs">▾</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-[#3B2513] text-xs font-semibold mb-1.5">
-                      Message
-                    </label>
-                    <textarea
-                      placeholder="Tell us what's on your mind..."
-                      value={form.message}
-                      onChange={(e) => setForm({ ...form, message: e.target.value })}
-                      rows={5}
-                      className="w-full bg-white border border-[#D4C4B0] rounded-xl px-4 py-3 text-sm text-[#1A1208] placeholder:text-[#9B9B9B] focus:outline-none focus:border-[#9A6033] transition-colors resize-none"
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="bg-[#3B2513] text-[#FAF2E1] text-sm font-semibold px-8 py-3.5 rounded-full hover:bg-[#5B391E] transition-colors"
-                  >
-                    Send Message
-                  </button>
-                </form>
-              </>
-            )}
-          </div>
+                          Send Message
+                        </button>
+                      </StaggerItem>
+                    </Stagger>
+                  </form>
+                </>
+              )}
+            </div>
+          </FadeUp>
         </div>
       </div>
 

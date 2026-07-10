@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { FadeUp } from "@/components/animations/fade-up";
+import { Stagger, StaggerItem } from "@/components/animations/stagger";
 
 const FAQS = [
   {
@@ -35,38 +37,39 @@ export function ParentsFAQSection() {
   return (
     <section className="bg-[#F5EFE4] px-4 sm:px-8 lg:px-16 py-16 sm:py-20">
       <div className="max-w-3xl mx-auto">
-        <div className="mb-10">
+        <FadeUp className="mb-10">
           <div className="inline-flex items-center bg-[#EDE8E0] text-[#3B2513] text-xs font-semibold tracking-widest uppercase px-4 py-1.5 rounded-full border border-[#D4C4B0] mb-6">
             Questions?
           </div>
           <h2 className="text-[#1A1208] text-4xl font-bold leading-[1.2]">
             Things parents<br />ask us first.
           </h2>
-        </div>
+        </FadeUp>
 
-        <div className="space-y-3">
+        <Stagger className="space-y-3">
           {FAQS.map((faq, i) => (
-            <div
-              key={i}
-              className="bg-[#FFF9F0] border border-[#E8DDD0] rounded-2xl overflow-hidden"
-            >
-              <button
-                className="w-full flex items-center justify-between px-6 py-5 text-left"
-                onClick={() => setOpen(open === i ? null : i)}
+            <StaggerItem key={i}>
+              <div
+                className="bg-[#FFF9F0] border border-[#E8DDD0] rounded-2xl overflow-hidden hover:-translate-y-0.5 transition-transform duration-150"
               >
-                <span className="text-[#1A1208] text-sm font-medium pr-4">{faq.q}</span>
-                <span className="text-[#9A6033] flex-shrink-0 text-xl leading-none">
-                  {open === i ? "−" : "+"}
-                </span>
-              </button>
-              {open === i && (
-                <div className="px-6 pb-5">
-                  <p className="text-[#6B5744] text-sm leading-relaxed">{faq.a}</p>
-                </div>
-              )}
-            </div>
+                <button
+                  className="w-full flex items-center justify-between px-6 py-5 text-left"
+                  onClick={() => setOpen(open === i ? null : i)}
+                >
+                  <span className="text-[#1A1208] text-sm font-medium pr-4">{faq.q}</span>
+                  <span className="text-[#9A6033] flex-shrink-0 text-xl leading-none">
+                    {open === i ? "−" : "+"}
+                  </span>
+                </button>
+                {open === i && (
+                  <div className="px-6 pb-5">
+                    <p className="text-[#6B5744] text-sm leading-relaxed">{faq.a}</p>
+                  </div>
+                )}
+              </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );

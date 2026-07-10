@@ -45,7 +45,7 @@ export function LandingNav({ variant = "dark" }: { variant?: "dark" | "light" })
               <Link
                 key={link.href}
                 href={link.href}
-                className={`px-3 py-1.5 text-sm transition-colors rounded-full relative ${isActive ? activeClass : inactiveClass}`}
+                className={`px-3 py-1.5 text-sm transition-all duration-150 rounded-full relative hover:scale-[1.03] ${isActive ? activeClass : inactiveClass}`}
               >
                 {link.label}
               </Link>
@@ -56,7 +56,7 @@ export function LandingNav({ variant = "dark" }: { variant?: "dark" | "light" })
         {/* Desktop CTA */}
         <Link
           href="#"
-          className={`hidden md:flex items-center font-[family-name:var(--font-plus-jakarta-sans)] font-medium text-base px-6 h-10 rounded-[8px] transition-colors shadow-[inset_0px_4px_12px_0px_rgba(255,255,255,0.12)] ${
+          className={`hidden md:flex items-center font-[family-name:var(--font-plus-jakarta-sans)] font-medium text-base px-6 h-10 rounded-[8px] transition-all duration-150 hover:scale-[1.04] active:scale-[0.97] shadow-[inset_0px_4px_12px_0px_rgba(255,255,255,0.12)] ${
             isDark
               ? "bg-[#3B2513] hover:bg-[#5B391E] text-[#FAF2E1]"
               : "bg-[#3B2513] hover:bg-[#5B391E] text-[#FAF2E1]"

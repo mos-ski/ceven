@@ -1,4 +1,8 @@
+"use client";
+
 import Link from "next/link";
+import { FadeUp } from "@/components/animations/fade-up";
+import { Stagger, StaggerItem } from "@/components/animations/stagger";
 
 const TESTIMONIALS = [
   {
@@ -23,9 +27,9 @@ const TESTIMONIALS = [
 
 export function CrechesTestimonialsSection() {
   return (
-    <section className="bg-white px-4 sm:px-8 lg:px-16 py-16 sm:py-20">
-      <div className="max-w-6xl mx-auto">
-        <div className="mb-12">
+    <section className="relative z-10 bg-white px-4 pb-16 pt-16 sm:px-8 sm:pb-20 sm:pt-20 lg:px-16">
+      <div className="max-w-6xl mx-auto relative z-10">
+        <FadeUp className="mb-12">
           <div className="inline-flex items-center border border-[#3B2513]/20 text-[#3B2513] text-xs font-semibold tracking-widest uppercase px-4 py-1.5 rounded-full mb-6">
             What Your Parents Need
           </div>
@@ -37,26 +41,28 @@ export function CrechesTestimonialsSection() {
           <p className="text-[#6B5744] text-base mt-4">
             Know what working parents need — and show them you already provide it.
           </p>
-        </div>
+        </FadeUp>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-8 sm:mb-10">
+        <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-8 sm:mb-10">
           {TESTIMONIALS.map((t) => (
-            <div key={t.name} className="bg-[#F8F6F3] border border-[#E8E4DE] rounded-2xl p-7">
-              <QuoteIcon />
-              <p className="text-[#1A1208] text-base leading-relaxed mt-4 mb-6">
-                "{t.quote}"
-              </p>
-              <div>
-                <p className="text-[#9A6033] font-semibold text-sm">{t.name}</p>
-                <p className="text-[#9B9B9B] text-xs mt-0.5">{t.role}</p>
+            <StaggerItem key={t.name}>
+              <div className="bg-[#F8F6F3] border border-[#E8E4DE] rounded-2xl p-7 hover:-translate-y-1 hover:shadow-md transition-all duration-200">
+                <QuoteIcon />
+                <p className="text-[#1A1208] text-base leading-relaxed mt-4 mb-6">
+                  &ldquo;{t.quote}&rdquo;
+                </p>
+                <div>
+                  <p className="text-[#9A6033] font-semibold text-sm">{t.name}</p>
+                  <p className="text-[#9B9B9B] text-xs mt-0.5">{t.role}</p>
+                </div>
               </div>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
 
         <Link
           href="/contact"
-          className="inline-block bg-[#3B2513] text-[#FAF2E1] text-sm font-semibold px-7 py-3.5 rounded-full hover:bg-[#5B391E] transition-colors"
+          className="inline-block bg-[#3B2513] text-[#FAF2E1] text-sm font-semibold px-7 py-3.5 rounded-full hover:bg-[#5B391E] hover:scale-[1.03] transition-all duration-150"
         >
           Reach Out To Us
         </Link>

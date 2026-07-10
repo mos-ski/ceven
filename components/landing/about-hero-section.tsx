@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { LandingNav } from "./nav";
+import { FadeUp } from "@/components/animations/fade-up";
 
 export function AboutHeroSection() {
   return (
@@ -10,45 +13,53 @@ export function AboutHeroSection() {
       <div className="px-4 sm:px-8 lg:px-16 pt-8 pb-12 sm:pb-16 relative z-10">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="max-w-[520px] text-center md:text-left">
-            <div className="inline-flex items-center gap-2 bg-[#5B391E] text-[#FAF2E1]/70 text-xs font-medium px-4 py-1.5 rounded-full mb-6 sm:mb-8">
-              Our Story
-            </div>
+            <FadeUp delay={0}>
+              <div className="inline-flex items-center gap-2 bg-[#5B391E] text-[#FAF2E1]/70 text-xs font-medium px-4 py-1.5 rounded-full mb-6 sm:mb-8">
+                Our Story
+              </div>
+            </FadeUp>
 
-            <h1 className="text-[#FAF2E1] text-3xl sm:text-4xl lg:text-5xl leading-[1.15] font-bold mb-5 sm:mb-6">
-              Built from a quiet,<br />
-              <em className="text-[#C8823A] italic">very familiar guilt.</em>
-            </h1>
+            <FadeUp delay={0.1}>
+              <h1 className="text-[#FAF2E1] text-3xl sm:text-4xl lg:text-5xl leading-[1.15] font-bold mb-5 sm:mb-6">
+                Built from a quiet,<br />
+                <em className="text-[#C8823A] italic">very familiar guilt.</em>
+              </h1>
+            </FadeUp>
 
-            <p className="text-[#FAF2E1]/60 text-sm sm:text-base leading-relaxed mb-8 sm:mb-10 max-w-[420px] mx-auto md:mx-0">
-              CEven didn&apos;t start in a boardroom. It started with a new mother, a
-              new job, and a question she couldn&apos;t stop asking herself.
-            </p>
+            <FadeUp delay={0.2}>
+              <p className="text-[#FAF2E1]/60 text-sm sm:text-base leading-relaxed mb-8 sm:mb-10 max-w-[420px] mx-auto md:mx-0">
+                CEven didn&apos;t start in a boardroom. It started with a new mother, a
+                new job, and a question she couldn&apos;t stop asking herself.
+              </p>
+            </FadeUp>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-3 sm:gap-4">
-              <Link
-                href="#"
-                className="flex items-center gap-2.5 bg-[#FAF2E1] text-[#3B2513] text-sm font-semibold px-5 py-3 rounded-full hover:bg-white transition-colors"
-              >
-                <Image src="/google-play-icon.png" alt="" width={16} height={16} className="w-4 h-4" />
-                Download on Google Play
-              </Link>
-              <Link
-                href="/for-parents"
-                className="text-[#FAF2E1]/70 text-sm font-medium hover:text-[#FAF2E1] transition-colors flex items-center gap-1"
-              >
-                For Parents <span>→</span>
-              </Link>
-            </div>
+            <FadeUp delay={0.3}>
+              <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-3 sm:gap-4">
+                <Link
+                  href="#"
+                  className="flex items-center gap-2.5 bg-[#FAF2E1] text-[#3B2513] text-sm font-semibold px-5 py-3 rounded-full hover:bg-white hover:scale-[1.03] transition-all duration-150"
+                >
+                  <Image src="/google-play-icon.png" alt="" width={16} height={16} className="w-4 h-4" />
+                  Download on Google Play
+                </Link>
+                <Link
+                  href="/for-parents"
+                  className="text-[#FAF2E1]/70 text-sm font-medium hover:text-[#FAF2E1] hover:scale-[1.03] transition-all duration-150 flex items-center gap-1"
+                >
+                  For Parents <span>→</span>
+                </Link>
+              </div>
+            </FadeUp>
           </div>
 
-          <div className="relative w-full max-w-[380px] h-[320px] sm:h-[380px] flex-shrink-0">
+          <FadeUp delay={0.15} amount={0.1} className="relative w-full max-w-[380px] h-[320px] sm:h-[380px] flex-shrink-0">
             <Image
-              src="/Frame 1686561188.png"
-              alt="Mother and child"
+              src="/Frame 1686561190.png"
+              alt="Children at a crèche"
               fill
               className="object-contain"
             />
-          </div>
+          </FadeUp>
         </div>
       </div>
 

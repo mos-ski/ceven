@@ -1,3 +1,8 @@
+"use client";
+
+import { FadeUp } from "@/components/animations/fade-up";
+import { Stagger, StaggerItem } from "@/components/animations/stagger";
+
 const STEPS = [
   {
     number: "01",
@@ -26,7 +31,7 @@ export function CrechesGettingStartedSection() {
   return (
     <section className="bg-[#1C2B3A] px-4 sm:px-8 lg:px-16 py-16 sm:py-20">
       <div className="max-w-6xl mx-auto">
-        <div className="mb-14">
+        <FadeUp className="mb-14">
           <div className="inline-flex items-center border border-[#FAF2E1]/30 text-[#FAF2E1]/70 text-xs font-medium px-4 py-1.5 rounded-full mb-6">
             Getting Started
           </div>
@@ -40,22 +45,24 @@ export function CrechesGettingStartedSection() {
             No implementation team needed. No training week. Just download, set up, and
             start logging.
           </p>
-        </div>
+        </FadeUp>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+        <Stagger className="grid grid-cols-1 sm:grid-cols-3 gap-8">
           {STEPS.map((step) => (
-            <div key={step.number}>
-              <p className="text-[#FAF2E1]/10 text-7xl font-black mb-6 leading-none select-none">
-                {step.number}
-              </p>
-              <div className="w-12 h-12 bg-[#FAF2E1]/10 border border-[#FAF2E1]/20 rounded-xl flex items-center justify-center mb-5">
-                {step.icon}
+            <StaggerItem key={step.number}>
+              <div>
+                <p className="text-[#FAF2E1]/10 text-7xl font-black mb-6 leading-none select-none">
+                  {step.number}
+                </p>
+                <div className="w-12 h-12 bg-[#FAF2E1]/10 border border-[#FAF2E1]/20 rounded-xl flex items-center justify-center mb-5 hover:scale-110 hover:bg-[#FAF2E1]/20 transition-all duration-200">
+                  {step.icon}
+                </div>
+                <h3 className="text-[#FAF2E1] text-xl font-bold mb-3">{step.title}</h3>
+                <p className="text-[#FAF2E1]/50 text-sm leading-relaxed">{step.description}</p>
               </div>
-              <h3 className="text-[#FAF2E1] text-xl font-bold mb-3">{step.title}</h3>
-              <p className="text-[#FAF2E1]/50 text-sm leading-relaxed">{step.description}</p>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );

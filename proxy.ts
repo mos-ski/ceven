@@ -2,7 +2,16 @@ import { NextRequest, NextResponse } from "next/server";
 
 const SESSION_COOKIE = "ceven_admin_session";
 const AUTH_PATHS = ["/login", "/signup", "/reset-password", "/verify-email"];
-const PUBLIC_PATHS = ["/", "/about", "/for-creches", "/for-parents", "/contact"];
+const PUBLIC_PATHS = [
+  "/",
+  "/about",
+  "/for-creches",
+  "/for-parents",
+  "/contact",
+  "/privacy-policy",
+  "/terms-of-service",
+  "/data-and-children",
+];
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
