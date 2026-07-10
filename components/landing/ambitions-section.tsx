@@ -55,6 +55,7 @@ export function AmbitionsSection() {
                   src="/Frame 1686561188.png"
                   alt="Mother and child"
                   fill
+                  sizes="220px"
                   className="object-cover"
                 />
               </div>
@@ -76,14 +77,17 @@ export function AmbitionsSection() {
           </FadeUp>
 
           {/* Right: 3 stacked bordered cards */}
-          <Stagger className="flex flex-col gap-4">
-            {CALLOUTS.map((callout, i) => (
+          <Stagger className="flex flex-col gap-8">
+            {CALLOUTS.map((callout) => (
               <StaggerItem key={callout.title}>
-                <div className="bg-[#FFF9F0] border border-[#E8DDD0] rounded-2xl p-5 sm:p-6 hover:-translate-y-0.5 hover:shadow-sm transition-all duration-150">
-                  <h4 className="text-[#1A1208] text-base font-bold mb-2">
+                <div className="bg-[rgba(59,37,19,0.08)] border border-[#3b2513] rounded-xl px-4 py-3 hover:-translate-y-0.5 hover:shadow-sm transition-all duration-150">
+                  <h4
+                    className="font-[family-name:var(--font-fraunces)] text-black text-lg sm:text-xl font-normal mb-2"
+                    style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}
+                  >
                     {callout.title}
                   </h4>
-                  <p className="text-[#6B5744] text-sm leading-relaxed">
+                  <p className="font-[family-name:var(--font-plus-jakarta-sans)] text-[#6b7280] text-sm sm:text-base leading-relaxed">
                     {callout.body}
                   </p>
                 </div>
