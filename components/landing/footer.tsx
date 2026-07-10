@@ -37,7 +37,7 @@ export function LandingFooter() {
                   alt="CEven"
                   width={120}
                   height={46}
-                  className="h-10 w-auto brightness-0 invert opacity-90"
+                  className="h-10 w-auto"
                 />
               </div>
               <p className="text-[#FAF2E1] text-base font-medium mb-1">Life made easier for families</p>

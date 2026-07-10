@@ -11,7 +11,8 @@ export function HeroSection() {
     <section className="bg-[#FAF2E1] relative overflow-hidden">
       <LandingNav variant="light" />
 
-      <div className="flex flex-col lg:flex-row items-start justify-between px-4 sm:px-8 lg:px-16 pt-4 pb-0 relative min-h-[auto] lg:min-h-[660px] gap-8">
+      <div className="px-4 sm:px-8 lg:px-16 pt-4 pb-0 relative">
+        <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-start justify-between min-h-[auto] lg:min-h-[660px] gap-8">
         {/* Left: text content */}
         <div className="flex flex-col gap-4 max-w-[641px] pt-8 lg:pt-14 text-center lg:text-left w-full">
           {/* Badge */}
@@ -106,6 +107,7 @@ export function HeroSection() {
             />
           </FadeUp>
         </MouseParallax>
+        </div>
       </div>
     </section>
   );

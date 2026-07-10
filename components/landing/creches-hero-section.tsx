@@ -28,7 +28,7 @@ export function CrechesHeroSection() {
             </Stagger>
 
             <FadeUp delay={0.1}>
-              <h1 className="text-[#1A1208] text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.15] mb-5 sm:mb-6">
+              <h1 className="font-[family-name:var(--font-fraunces)] text-[#1A1208] text-3xl sm:text-4xl lg:text-5xl font-semibold leading-[1.15] mb-5 sm:mb-6" style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}>
                 Be one of the crèches<br />
                 parents recommend
               </h1>

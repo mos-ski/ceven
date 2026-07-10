@@ -35,7 +35,7 @@ export function CrechesGettingStartedSection() {
           <div className="inline-flex items-center border border-[#FAF2E1]/30 text-[#FAF2E1]/70 text-xs font-medium px-4 py-1.5 rounded-full mb-6">
             Getting Started
           </div>
-          <h2 className="text-[#FAF2E1] text-4xl font-bold leading-[1.2] mb-4">
+          <h2 className="font-[family-name:var(--font-fraunces)] text-[#FAF2E1] text-4xl font-semibold leading-[1.2] mb-4" style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}>
             Live in{" "}
             <em className="not-italic text-[#C8823A]">15 minutes.</em>
             <br />

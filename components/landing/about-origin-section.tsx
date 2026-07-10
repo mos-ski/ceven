@@ -9,7 +9,7 @@ export function AboutOriginSection() {
     <section className="bg-[#F5EFE4] px-4 sm:px-8 lg:px-16 py-16 sm:py-20">
       <div className="max-w-6xl mx-auto">
         <FadeUp className="text-center mb-10 sm:mb-14">
-          <h2 className="text-[#1A1208] text-2xl sm:text-3xl lg:text-4xl font-bold mb-2">
+          <h2 className="font-[family-name:var(--font-fraunces)] text-[#1A1208] text-2xl sm:text-3xl lg:text-4xl font-semibold mb-2" style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}>
             Where CEven came from?
           </h2>
           <p className="text-[#6B5744] text-sm sm:text-base">Let&apos;s walk through a quick story.</p>

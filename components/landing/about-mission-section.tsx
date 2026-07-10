@@ -10,7 +10,7 @@ export function AboutMissionSection() {
           <div className="inline-flex items-center border border-[#3B2513]/30 text-[#3B2513] text-xs font-semibold tracking-widest uppercase px-4 py-1.5 rounded-full mb-6">
             What Drives Us
           </div>
-          <h2 className="font-[family-name:var(--font-merriweather-import)] text-[#1A1208] text-4xl font-bold">
+          <h2 className="font-[family-name:var(--font-fraunces)] text-[#1A1208] text-4xl font-semibold" style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}>
             Mission &amp; Vision
           </h2>
         </FadeUp>

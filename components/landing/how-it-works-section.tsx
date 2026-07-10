@@ -36,7 +36,7 @@ export function HowItWorksSection() {
             <div className="inline-flex items-center bg-[#FAF2E1] text-[#1A1208] text-xs font-semibold px-4 py-1.5 rounded-full mb-6">
               How it works
             </div>
-            <h2 className="text-[#FAF2E1] text-2xl sm:text-3xl lg:text-4xl font-bold leading-[1.2] mb-4">
+            <h2 className="font-[family-name:var(--font-fraunces)] text-[#FAF2E1] text-2xl sm:text-3xl lg:text-4xl font-semibold leading-[1.2] mb-4" style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}>
               Simple by design.<br />
               <em className="not-italic text-[#C8823A]">Powerful</em> by outcome.
             </h2>

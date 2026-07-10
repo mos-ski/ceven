@@ -16,7 +16,7 @@ export function CtaBanner() {
       <div className="absolute inset-0 bg-[#9A6033]/70" />
       <FadeUp>
         <div className="relative z-10 px-4 sm:px-8 lg:px-16 py-20 sm:py-24 text-center max-w-3xl mx-auto">
-          <h2 className="text-[#FAF2E1] text-2xl sm:text-3xl lg:text-4xl font-bold leading-[1.2] mb-5">
+          <h2 className="font-[family-name:var(--font-fraunces)] text-[#FAF2E1] text-2xl sm:text-3xl lg:text-4xl font-semibold leading-[1.2] mb-5" style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}>
             Childcare support is now in<br />
             your pocket
           </h2>

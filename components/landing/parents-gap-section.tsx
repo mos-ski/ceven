@@ -10,7 +10,7 @@ export function ParentsGapSection() {
           <p className="text-[#FAF2E1]/50 text-xs font-semibold uppercase tracking-widest mb-6">
             The Thing Nobody Talks About
           </p>
-          <h2 className="font-[family-name:var(--font-merriweather-import)] text-[#FAF2E1] text-2xl sm:text-3xl lg:text-4xl font-bold leading-[1.2] mb-6 sm:mb-8">
+          <h2 className="font-[family-name:var(--font-fraunces)] text-[#FAF2E1] text-2xl sm:text-3xl lg:text-4xl font-semibold leading-[1.2] mb-6 sm:mb-8" style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}>
             The gap between work and home<br />
             shouldn&apos;t cost you peace of mind
           </h2>

@@ -67,7 +67,7 @@ export function CrechesTimelineSection() {
           <div className="inline-flex items-center border border-[#3B2513]/20 text-[#3B2513] text-xs font-medium px-4 py-1.5 rounded-full mb-6">
             A full day with CEven
           </div>
-          <h2 className="text-[#1A1208] text-4xl font-bold leading-[1.2]">
+          <h2 className="font-[family-name:var(--font-fraunces)] text-[#1A1208] text-4xl font-semibold leading-[1.2]" style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}>
             Sunrise to sunset.<br />
             Every moment is accounted for.
           </h2>

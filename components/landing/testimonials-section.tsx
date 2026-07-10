@@ -33,7 +33,7 @@ export function TestimonialsSection() {
             <p className="text-[#9B9B9B] text-xs font-semibold uppercase tracking-widest mb-4">
               What People Say
             </p>
-            <h2 className="text-[#1A1208] text-2xl sm:text-3xl lg:text-4xl font-bold leading-[1.2]">
+            <h2 className="font-[family-name:var(--font-fraunces)] text-[#1A1208] text-2xl sm:text-3xl lg:text-4xl font-semibold leading-[1.2]" style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}>
               The proof is in<br />
               the peace of mind.
             </h2>
