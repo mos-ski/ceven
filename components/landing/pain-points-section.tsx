@@ -49,7 +49,7 @@ const PAIN_POINTS = [
 
 export function PainPointsSection() {
   return (
-    <section className="bg-white relative">
+    <section className="bg-white relative z-10 -mt-16 sm:-mt-20">
       <CloudWaveTop />
 
       <div className="px-4 sm:px-8 lg:px-16 py-16 sm:py-20">
