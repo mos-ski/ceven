@@ -50,13 +50,13 @@ export function AmbitionsSection() {
           {/* Left: circular photo + bullet list */}
           <FadeUp delay={0.05}>
             <div className="flex flex-col gap-8">
-              <div className="relative w-[200px] sm:w-[220px] aspect-square rounded-full overflow-hidden shrink-0 mx-auto lg:mx-0">
+              <div className="w-[200px] sm:w-[240px] shrink-0 mx-auto lg:mx-0">
                 <Image
-                  src="/Frame 1686561188.png"
+                  src="/Vector.png"
                   alt="Mother and child"
-                  fill
-                  sizes="220px"
-                  className="object-cover"
+                  width={240}
+                  height={280}
+                  className="w-full h-auto object-contain"
                 />
               </div>
 
