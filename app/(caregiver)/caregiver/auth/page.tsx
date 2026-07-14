@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { ArrowLeft, User, Users } from "lucide-react";
 import Link from "next/link";
 import { OtpInput } from "@/components/caregiver/otp-input";
-import { cgGet } from "@/lib/caregiver/storage";
 
 type Role = "parent" | "caregiver";
 
@@ -54,8 +53,7 @@ function AuthForm() {
     if (role === "parent") {
       router.replace("/parent/home");
     } else {
-      const pinSet = cgGet("pin");
-      router.replace(pinSet ? "/caregiver/home" : "/caregiver/auth/pin");
+      router.replace("/caregiver/home");
     }
   }, [otp, router, role]);
 

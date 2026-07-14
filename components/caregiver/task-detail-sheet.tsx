@@ -199,7 +199,7 @@ export function TaskDetailSheet({ task, onClose, onMarkDone, onMarkUndone }: Pro
             <div className="p-4">
               <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl bg-gray-200">
                 <img
-                  src="/caregiver/placeholder-playtime.jpg"
+                  src={task.images?.[0] ?? "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=900&q=80"}
                   alt="Task evidence"
                   className="h-full w-full object-cover"
                   onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}

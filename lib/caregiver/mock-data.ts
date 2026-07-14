@@ -165,7 +165,7 @@ export const mockTasks: Task[] = [
     dueTime: "10:00am",
     reminderTime: "09:00am",
     status: "completed",
-    images: ["/caregiver/placeholder-playtime.jpg"],
+    images: ["https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=900&q=80"],
   },
   {
     id: "task-5",
@@ -238,9 +238,14 @@ export const mockDailyReport: DailyReport = {
   medications: "Nil",
   photos: [
     {
-      src: "/caregiver/placeholder-playtime.jpg",
+      src: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=1200&q=80",
       caption: "Esther had a wonderful time playing with her friends today!",
       label: "Playtime",
+    },
+    {
+      src: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1200&q=80",
+      caption: "Esther explored finger painting during art time.",
+      label: "Art & Craft",
     },
   ],
 };
@@ -287,15 +292,16 @@ export type GalleryPhoto = {
   caption: string;
   date: string;
   child: string;
+  image: string;
 };
 
 export const mockGallery: GalleryPhoto[] = [
-  { id: "photo-1", label: "Playtime", caption: "Liam having fun with blocks", date: "Jan 9, 2026", child: "Liam Smith" },
-  { id: "photo-2", label: "Art & Craft", caption: "Olivia's painting session", date: "Jan 9, 2026", child: "Olivia Brown" },
-  { id: "photo-3", label: "Story Time", caption: "Group story time after lunch", date: "Jan 8, 2026", child: "All" },
-  { id: "photo-4", label: "Outdoor Play", caption: "Noah on the slide", date: "Jan 8, 2026", child: "Noah Davies" },
-  { id: "photo-5", label: "Snack Time", caption: "Healthy snacks for all", date: "Jan 7, 2026", child: "All" },
-  { id: "photo-6", label: "Nap Time", caption: "Everyone resting", date: "Jan 7, 2026", child: "All" },
+  { id: "photo-1", label: "Playtime", caption: "Liam having fun with blocks", date: "Jan 9, 2026", child: "Liam Smith", image: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=900&q=80" },
+  { id: "photo-2", label: "Art & Craft", caption: "Olivia's painting session", date: "Jan 9, 2026", child: "Olivia Brown", image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=900&q=80" },
+  { id: "photo-3", label: "Story Time", caption: "Group story time after lunch", date: "Jan 8, 2026", child: "All", image: "https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=900&q=80" },
+  { id: "photo-4", label: "Outdoor Play", caption: "Noah on the slide", date: "Jan 8, 2026", child: "Noah Davies", image: "https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&w=900&q=80" },
+  { id: "photo-5", label: "Snack Time", caption: "Healthy snacks for all", date: "Jan 7, 2026", child: "All", image: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=900&q=80" },
+  { id: "photo-6", label: "Nap Time", caption: "Everyone resting", date: "Jan 7, 2026", child: "All", image: "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=900&q=80" },
 ];
 
 // ── Incidents ───────────────────────────────────────────────────

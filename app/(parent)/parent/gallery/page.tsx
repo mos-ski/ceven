@@ -1,14 +1,18 @@
 "use client";
 
+import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, Image as ImageIcon } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { ParentBottomNav } from "@/components/parent/bottom-nav";
 import { mockGallery } from "@/lib/parent/mock-data";
+import { StoryViewer } from "@/components/gallery/story-viewer";
 
 export default function GalleryPage() {
   const router = useRouter();
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const photos = mockGallery;
 
-  const grouped = mockGallery.reduce<Record<string, typeof mockGallery>>(
+  const grouped = photos.reduce<Record<string, typeof photos>>(
     (acc, photo) => {
       if (!acc[photo.date]) acc[photo.date] = [];
       acc[photo.date].push(photo);
@@ -32,9 +36,18 @@ export default function GalleryPage() {
             <p className="mb-2 text-xs font-semibold text-gray-400">{date}</p>
             <div className="grid grid-cols-2 gap-3">
               {photos.map((photo) => (
-                <div key={photo.id} className="overflow-hidden rounded-2xl bg-white shadow-sm">
-                  <div className="relative flex h-32 items-center justify-center bg-cg-quick-action">
-                    <ImageIcon size={32} className="text-cg-accent-muted" />
+                <button
+                  key={photo.id}
+                  onClick={() => setActiveIndex(mockGallery.findIndex((item) => item.id === photo.id))}
+                  className="overflow-hidden rounded-2xl bg-white text-left shadow-sm active:scale-[0.98]"
+                >
+                  <div className="relative h-32 overflow-hidden bg-cg-quick-action">
+                    <img
+                      src={photo.image}
+                      alt={photo.caption}
+                      className="h-full w-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
                     <div className="absolute left-2 top-2 rounded-md bg-cg-brand px-2 py-0.5 text-[10px] font-semibold text-white">
                       {photo.label}
                     </div>
@@ -42,7 +55,7 @@ export default function GalleryPage() {
                   <div className="p-2.5">
                     <p className="leading-relaxed text-[10px] text-gray-400">{photo.caption}</p>
                   </div>
-                </div>
+                </button>
               ))}
             </div>
           </div>
@@ -50,6 +63,13 @@ export default function GalleryPage() {
       </div>
 
       <ParentBottomNav />
+      {activeIndex !== null && (
+        <StoryViewer
+          photos={mockGallery}
+          initialIndex={activeIndex}
+          onClose={() => setActiveIndex(null)}
+        />
+      )}
     </div>
   );
 }

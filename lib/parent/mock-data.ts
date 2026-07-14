@@ -40,6 +40,7 @@ export type GalleryPhoto = {
   label: string;
   caption: string;
   date: string;
+  image: string;
 };
 
 export type ChatThread = {
@@ -86,7 +87,7 @@ export const mockDailyReports: DailyReport[] = [
     napDuration: "1hr 30mins",
     hygiene: "2 urine, 1 poop",
     activities: "Block building, outdoor play, story time",
-    photo: "/parent/placeholder-playtime.jpg",
+    photo: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=1200&q=80",
     photoCaption: "Liam had a wonderful time playing with blocks today!",
   },
   {
@@ -98,7 +99,7 @@ export const mockDailyReports: DailyReport[] = [
     napDuration: "1hr 30mins",
     hygiene: "3 urine, 1 poop",
     activities: "Art & craft, music time, outdoor play",
-    photo: "/parent/placeholder-art.jpg",
+    photo: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1200&q=80",
     photoCaption: "Liam enjoyed painting during art time.",
   },
 ];
@@ -110,11 +111,11 @@ export const mockFees: FeeInvoice[] = [
 ];
 
 export const mockGallery: GalleryPhoto[] = [
-  { id: "photo-1", label: "Playtime", caption: "Liam having fun with blocks", date: "Jan 9, 2026" },
-  { id: "photo-2", label: "Art & Craft", caption: "Liam's painting session", date: "Jan 9, 2026" },
-  { id: "photo-3", label: "Story Time", caption: "Group story time after lunch", date: "Jan 8, 2026" },
-  { id: "photo-4", label: "Outdoor Play", caption: "Liam on the slide", date: "Jan 8, 2026" },
-  { id: "photo-5", label: "Snack Time", caption: "Healthy snacks with friends", date: "Jan 7, 2026" },
+  { id: "photo-1", label: "Playtime", caption: "Liam having fun with blocks", date: "Jan 9, 2026", image: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=900&q=80" },
+  { id: "photo-2", label: "Art & Craft", caption: "Liam's painting session", date: "Jan 9, 2026", image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=900&q=80" },
+  { id: "photo-3", label: "Story Time", caption: "Group story time after lunch", date: "Jan 8, 2026", image: "https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=900&q=80" },
+  { id: "photo-4", label: "Outdoor Play", caption: "Liam on the slide", date: "Jan 8, 2026", image: "https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&w=900&q=80" },
+  { id: "photo-5", label: "Snack Time", caption: "Healthy snacks with friends", date: "Jan 7, 2026", image: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=900&q=80" },
 ];
 
 export const mockChatThreads: ChatThread[] = [
@@ -143,6 +144,7 @@ export type FeedPost = {
   postedBy: string;
   timeAgo: string;
   hasVideo: boolean;
+  image: string;
 };
 
 export type AiMessage = {
@@ -159,6 +161,7 @@ export const mockFeedPosts: FeedPost[] = [
     postedBy: "Sarah Johnson",
     timeAgo: "2 hours ago",
     hasVideo: false,
+    image: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=1200&q=80",
   },
   {
     id: "post-2",
@@ -167,6 +170,7 @@ export const mockFeedPosts: FeedPost[] = [
     postedBy: "Sarah Johnson",
     timeAgo: "2 hours ago",
     hasVideo: true,
+    image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1200&q=80",
   },
   {
     id: "post-3",
@@ -175,6 +179,7 @@ export const mockFeedPosts: FeedPost[] = [
     postedBy: "Ms Anu",
     timeAgo: "5 hours ago",
     hasVideo: false,
+    image: "https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=1200&q=80",
   },
 ];
 

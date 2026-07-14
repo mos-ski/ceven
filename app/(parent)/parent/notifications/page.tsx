@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, Bell, Play, Image, AlertTriangle, Clock, Video, FileText } from "lucide-react";
-import { mockRichNotifications, type NotifIcon } from "@/lib/parent/mock-data";
+import { mockChild, mockRichNotifications, type NotifIcon, type RichNotification } from "@/lib/parent/mock-data";
+import { getAcceptedIndependentCaregiverRelationships } from "@/lib/independent-caregiver-invites";
 
 // ─── Icon map ─────────────────────────────────────────────────────────────────
 function NotifIconBadge({ icon }: { icon: NotifIcon }) {
@@ -28,8 +29,42 @@ function NotifIconBadge({ icon }: { icon: NotifIcon }) {
 export default function NotificationsPage() {
   const router = useRouter();
   const [tab, setTab] = useState<"all" | "unread">("all");
+  const [inviteNotifications, setInviteNotifications] = useState<RichNotification[]>(() =>
+    getAcceptedIndependentCaregiverRelationships(mockChild.id).map((invite) => ({
+      id: `invite-accepted-${invite.code}`,
+      title: "Caregiver accepted",
+      body: `${invite.caregiverName} accepted your invite for ${invite.childName}.`,
+      time: "Now",
+      read: false,
+      icon: "chat",
+      day: "Today",
+    }))
+  );
 
-  const allNotifs = mockRichNotifications;
+  function refreshInviteNotifications() {
+    setInviteNotifications(
+      getAcceptedIndependentCaregiverRelationships(mockChild.id).map((invite) => ({
+        id: `invite-accepted-${invite.code}`,
+        title: "Caregiver accepted",
+        body: `${invite.caregiverName} accepted your invite for ${invite.childName}.`,
+        time: "Now",
+        read: false,
+        icon: "chat",
+        day: "Today",
+      }))
+    );
+  }
+
+  useEffect(() => {
+    window.addEventListener("storage", refreshInviteNotifications);
+    window.addEventListener("ceven-independent-invites-updated", refreshInviteNotifications);
+    return () => {
+      window.removeEventListener("storage", refreshInviteNotifications);
+      window.removeEventListener("ceven-independent-invites-updated", refreshInviteNotifications);
+    };
+  }, []);
+
+  const allNotifs = [...inviteNotifications, ...mockRichNotifications];
   const unread = allNotifs.filter((n) => !n.read);
 
   const displayed = tab === "all" ? allNotifs : unread;

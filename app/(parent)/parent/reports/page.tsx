@@ -21,6 +21,7 @@ const REPORTS = [
     hygiene: "2 urine, 1 poop",
     photoCaption: "Esther had a wonderful time playing with her friends today!",
     photoTag: "Playtime",
+    photo: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=1200&q=80",
   },
   {
     date: "Thursday, January 23, 2025",
@@ -33,6 +34,7 @@ const REPORTS = [
     hygiene: "3 urine, 2 poop",
     photoCaption: "Esther enjoyed painting during art time.",
     photoTag: "Art & Craft",
+    photo: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1200&q=80",
   },
 ];
 
@@ -139,17 +141,15 @@ function CalendarModal({
   );
 }
 
-// ─── Placeholder photo ────────────────────────────────────────────────────────
+// ─── Moment photo ─────────────────────────────────────────────────────────────
 
-function PhotoPlaceholder({ tag }: { tag: string }) {
+function MomentPhoto({ tag, src, caption }: { tag: string; src: string; caption: string }) {
   return (
     <div className="relative h-44 w-full overflow-hidden rounded-2xl bg-amber-100">
-      <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <div className="mb-2 h-16 w-16 rounded-full bg-amber-200 opacity-60" />
-        <div className="h-8 w-32 rounded-lg bg-amber-200 opacity-40" />
-      </div>
+      <img src={src} alt={caption} className="h-full w-full object-cover" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
       <div className="absolute left-3 top-3">
-        <span className="rounded-full bg-white/80 px-2.5 py-0.5 text-xs font-semibold text-gray-700">
+        <span className="rounded-full bg-white/90 px-2.5 py-0.5 text-xs font-semibold text-gray-700">
           {tag}
         </span>
       </div>
@@ -295,7 +295,7 @@ export default function ReportsPage() {
         {/* Photo carousel */}
         <div className="mb-4 rounded-2xl bg-white p-4 shadow-sm">
           <p className="mb-3 text-sm font-semibold text-gray-800">Today&apos;s Moments</p>
-          <PhotoPlaceholder tag={report.photoTag} />
+          <MomentPhoto tag={report.photoTag} src={report.photo} caption={report.photoCaption} />
 
           {/* Dots */}
           <div className="mt-3 flex justify-center gap-1.5">

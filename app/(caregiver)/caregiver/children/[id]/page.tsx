@@ -4,15 +4,26 @@ import { use } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, MessageSquare, AlertTriangle, Info } from "lucide-react";
 import Link from "next/link";
-import { mockChildProfiles } from "@/lib/caregiver/mock-data";
+import { mockChildProfiles, type ChildProfile } from "@/lib/caregiver/mock-data";
+import { getAcceptedCaregiverChildren } from "@/lib/independent-caregiver-invites";
 
 export default function ChildProfilePage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   const router = useRouter();
-  const child = mockChildProfiles.find((c) => c.id === id) ?? mockChildProfiles[0];
+  const familyChild = getAcceptedCaregiverChildren().find((c) => c.id === id);
+  const child: ChildProfile = mockChildProfiles.find((c) => c.id === id) ?? {
+    ...(familyChild ?? mockChildProfiles[0]),
+    gender: "Not specified",
+    dob: "Shared by parent",
+    enrollDate: "Accepted invite",
+    bloodGroup: "Not specified",
+    notes: familyChild
+      ? "This child was added through a parent-invited independent caregiver relationship."
+      : mockChildProfiles[0].notes,
+  };
 
   return (
-    <div className="flex flex-1 flex-col bg-cg-bg">
+    <div className="flex min-h-0 flex-1 flex-col bg-cg-bg">
       {/* Header */}
       <div className="flex items-center gap-3 bg-white px-4 py-3 shadow-sm">
         <button onClick={() => router.back()}>
@@ -21,7 +32,7 @@ export default function ChildProfilePage({ params }: { params: Promise<{ id: str
         <h1 className="text-base font-bold text-cg-brand">Child Profile</h1>
       </div>
 
-      <div className="flex-1 overflow-y-auto px-4 py-4 flex flex-col gap-4">
+      <div className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto px-4 pb-8 pt-4">
         {/* Avatar + name */}
         <div className="flex flex-col items-center gap-2 py-4">
           <div className="flex h-20 w-20 items-center justify-center rounded-full bg-cg-brand text-2xl font-bold text-white">

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Bell, MessageSquare, Bookmark, Play, Clock, LayoutGrid, Plus, X, CheckCircle2, Clock3, AlarmClock } from "lucide-react";
+import { Bell, MessageSquare, Bookmark, Play, Clock, LayoutGrid, Plus, X, CheckCircle2, Clock3, AlarmClock, UsersRound } from "lucide-react";
 import { ParentBottomNav } from "@/components/parent/bottom-nav";
 import { mockParentUser, mockFeedPosts } from "@/lib/parent/mock-data";
 
@@ -244,11 +244,11 @@ export default function ParentHomePage() {
           </div>
           <div className="flex items-center gap-2">
             <Link
-              href="/parent/child/add"
-              className="flex items-center gap-1.5 rounded-full bg-cg-brand px-3 py-2 text-xs font-semibold text-white"
+              href="/parent/children"
+              aria-label="My children"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-[#f4f5f6] text-cg-brand"
             >
-              <Plus size={12} />
-              Add Child
+              <UsersRound size={18} />
             </Link>
             <Link
               href="/parent/notifications"
@@ -292,8 +292,13 @@ export default function ParentHomePage() {
                   onClick={() => router.push("/parent/gallery")}
                   className="overflow-hidden rounded-2xl bg-white shadow-sm cursor-pointer active:scale-[0.98] transition-transform"
                 >
-                  {/* Photo/Video placeholder */}
-                  <div className="relative h-52 bg-cg-quick-action">
+                  <div className="relative h-52 overflow-hidden bg-cg-quick-action">
+                    <img
+                      src={post.image}
+                      alt={post.caption}
+                      className="h-full w-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
                     <div className="absolute left-3 top-3 rounded-md bg-cg-brand px-2.5 py-1 text-[11px] font-semibold text-white">
                       {post.tag}
                     </div>
@@ -302,9 +307,6 @@ export default function ParentHomePage() {
                         <Play size={14} className="ml-0.5 text-cg-brand" fill="currentColor" />
                       </div>
                     )}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="h-16 w-16 rounded-full bg-cg-accent-muted/40" />
-                    </div>
                   </div>
 
                   <div className="px-4 py-3">
@@ -359,6 +361,14 @@ export default function ParentHomePage() {
           </div>
         )}
       </div>
+
+      <Link
+        href="/parent/child/add"
+        aria-label="Add child"
+        className="absolute bottom-[86px] right-5 z-30 flex h-14 w-14 items-center justify-center rounded-full bg-cg-brand text-white shadow-[0_12px_30px_rgba(59,37,19,0.28)] active:scale-95"
+      >
+        <Plus size={24} />
+      </Link>
 
       <ParentBottomNav />
     </div>

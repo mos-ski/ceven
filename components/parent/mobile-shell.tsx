@@ -25,6 +25,8 @@ const MOBILE_RESET = `
       flex: 1 !important;
     }
     .p-shell-island, .p-shell-chrome { display: none !important; }
+    .p-shell-content { padding-top: 0 !important; }
+    .p-shell-status { display: none !important; }
   }
 `;
 
@@ -84,8 +86,35 @@ export function MobileShell({ children }: { children: React.ReactNode }) {
               }}
             />
 
+            <div
+              className="p-shell-status"
+              style={{
+                position: "absolute",
+                top: 18,
+                left: 28,
+                right: 28,
+                zIndex: 45,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                color: "#111",
+                fontFamily: "var(--font-nunito)",
+                fontSize: 12,
+                fontWeight: 800,
+                pointerEvents: "none",
+              }}
+            >
+              <span>9:41</span>
+              <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                <span style={{ width: 15, height: 10, border: "1.6px solid #111", borderRadius: 3, display: "inline-block", position: "relative" }}>
+                  <span style={{ position: "absolute", inset: 2, borderRadius: 1.5, background: "#111" }} />
+                </span>
+              </div>
+            </div>
+
             {/* Content wrapper */}
             <div
+              className="p-shell-content"
               style={{
                 flex: 1,
                 minHeight: 0,
@@ -93,6 +122,7 @@ export function MobileShell({ children }: { children: React.ReactNode }) {
                 flexDirection: "column",
                 overflow: "hidden",
                 fontFamily: "var(--font-nunito)",
+                paddingTop: 52,
               }}
             >
               {children}
