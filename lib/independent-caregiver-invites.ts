@@ -50,7 +50,7 @@ const SEEDED_INVITES: IndependentCaregiverInvite[] = [
     code: "used-demo",
     caregiverName: "Ms Anu",
     caregiverPhone: "+2348012345678",
-    childId: "child-1",
+    childId: "used-demo-child",
     childName: "Liam Smith",
     childAge: "3 Years",
     childRoom: "Toddler Room",
@@ -93,7 +93,11 @@ function readStoredInvites(): IndependentCaregiverInvite[] {
   }
 
   try {
-    const parsed = JSON.parse(raw) as IndependentCaregiverInvite[];
+    const parsed = (JSON.parse(raw) as IndependentCaregiverInvite[]).map((invite) =>
+      invite.code === "used-demo" && invite.childId === "child-1"
+        ? { ...invite, childId: "used-demo-child" }
+        : invite
+    );
     const codes = new Set(parsed.map((invite) => invite.code));
     const merged = [...parsed, ...SEEDED_INVITES.filter((invite) => !codes.has(invite.code))];
     if (merged.length !== parsed.length) {
