@@ -215,10 +215,15 @@ export default function ParentHomePage() {
   const [tasks, setTasks] = useState<Task[]>(INITIAL_TASKS);
   const [showCreateTask, setShowCreateTask] = useState(false);
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
+  const [showKidsTooltip, setShowKidsTooltip] = useState(true);
 
   function handleCreateTask(data: Omit<Task, "id" | "status">) {
     const newTask: Task = { ...data, id: `task-${Date.now()}`, status: "Pending" };
     setTasks((prev) => [...prev, newTask]);
+  }
+
+  function dismissKidsTooltip() {
+    setShowKidsTooltip(false);
   }
 
   return (
@@ -243,13 +248,38 @@ export default function ParentHomePage() {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <Link
-              href="/parent/children"
-              aria-label="My children"
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-[#f4f5f6] text-cg-brand"
-            >
-              <UsersRound size={18} />
-            </Link>
+            <div className="relative">
+              <Link
+                href="/parent/children"
+                aria-describedby={showKidsTooltip ? "kids-management-tooltip" : undefined}
+                aria-label="My children"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-[#f4f5f6] text-cg-brand"
+              >
+                <UsersRound size={18} />
+              </Link>
+              {showKidsTooltip && (
+                <div
+                  id="kids-management-tooltip"
+                  role="tooltip"
+                  className="absolute right-0 top-12 z-40 w-44 rounded-lg bg-cg-brand px-3 py-2 text-white shadow-[0_12px_28px_rgba(59,37,19,0.22)]"
+                >
+                  <span className="absolute -top-1.5 right-4 h-3 w-3 rotate-45 bg-cg-brand" />
+                  <div className="relative flex items-start gap-2">
+                    <p className="flex-1 text-xs font-semibold leading-snug">
+                      Manage your kids here
+                    </p>
+                    <button
+                      type="button"
+                      aria-label="Dismiss kids management tooltip"
+                      onClick={dismissKidsTooltip}
+                      className="-mr-1 -mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-white/80 transition-colors hover:bg-white/10 hover:text-white"
+                    >
+                      <X size={13} />
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
             <Link
               href="/parent/notifications"
               className="flex h-10 w-10 items-center justify-center rounded-full bg-[#f4f5f6]"
