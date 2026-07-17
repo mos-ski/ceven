@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const SESSION_COOKIE = "ceven_admin_session";
-const AUTH_PATHS = ["/login", "/signup", "/reset-password", "/verify-email"];
 const PUBLIC_PATHS = [
   "/",
   "/about",
@@ -25,14 +24,15 @@ export function proxy(request: NextRequest) {
   }
 
   const hasSession = request.cookies.get(SESSION_COOKIE)?.value === "active";
-  const isAuthPath = AUTH_PATHS.some((path) => pathname.startsWith(path));
 
-  if (!hasSession && !isAuthPath) {
-    return NextResponse.redirect(new URL("/login", request.url));
-  }
-
-  if (hasSession && isAuthPath) {
-    return NextResponse.redirect(new URL("/admin/v2/dashboard", request.url));
+  if (!hasSession) {
+    const response = NextResponse.redirect(new URL("/admin/v1/dashboard", request.url));
+    response.cookies.set(SESSION_COOKIE, "active", {
+      httpOnly: true,
+      sameSite: "lax",
+      path: "/",
+    });
+    return response;
   }
 
   return NextResponse.next();
