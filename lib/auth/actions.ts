@@ -15,7 +15,7 @@ export async function login(
   }
 
   await setSession();
-  redirect("/dashboard");
+  redirect("/admin/v2/dashboard");
 }
 
 export async function signup(formData: FormData): Promise<{ error?: string }> {

@@ -32,7 +32,7 @@ export function proxy(request: NextRequest) {
   }
 
   if (hasSession && isAuthPath) {
-    return NextResponse.redirect(new URL("/dashboard", request.url));
+    return NextResponse.redirect(new URL("/admin/v2/dashboard", request.url));
   }
 
   return NextResponse.next();

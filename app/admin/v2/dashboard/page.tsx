@@ -73,9 +73,9 @@ const liveActivities: ActivityFeedItem[] = [
 // ── Static data ───────────────────────────────────────────────────────────────
 
 const INSIGHT_TAG_ROUTES: Record<string, string> = {
-  "Health & Wellness": "/children",
-  "Finance & Invoice": "/finance",
-  "Creche Performance": "/staff?tab=compliance-safety",
+  "Health & Wellness": "/admin/v2/children",
+  "Finance & Invoice": "/admin/v2/finance",
+  "Creche Performance": "/admin/v2/staff?tab=compliance-safety",
 };
 
 const aiInsights = [
@@ -426,10 +426,10 @@ export default function DashboardPage() {
 
   function handleQuickAction(id: QuickActionId) {
     if (id === "add-child") setEnrollOpen(true);
-    else if (id === "qr-station") router.push("/daily-operations");
+    else if (id === "qr-station") router.push("/admin/v2/daily-operations");
     else if (id === "new-log") setLogActivityMode("daily-report");
     else if (id === "new-invoice") setInvoiceOpen(true);
-    else if (id === "view-reports") router.push("/intelligence?tab=reports");
+    else if (id === "view-reports") router.push("/admin/v2/intelligence?tab=reports");
   }
 
   const greetingDate = new Date().toLocaleDateString("en-NG", {
@@ -586,7 +586,7 @@ export default function DashboardPage() {
                       AI DAILY BRIEF
                     </span>
                   </div>
-                  <LinkArrow label="Open AI Center" onClick={() => router.push("/intelligence")} />
+                  <LinkArrow label="Open AI Center" onClick={() => router.push("/admin/v2/intelligence")} />
                 </div>
                 <p className="font-[family-name:var(--font-nunito)] text-sm">
                   <span className="text-[#6b7280]">Today&apos;s report</span>
@@ -613,7 +613,7 @@ export default function DashboardPage() {
                         {insight.tag}
                       </span>
                       <button
-                        onClick={() => router.push(INSIGHT_TAG_ROUTES[insight.tag] ?? "/intelligence")}
+                        onClick={() => router.push(INSIGHT_TAG_ROUTES[insight.tag] ?? "/admin/v2/intelligence")}
                         className="font-[family-name:var(--font-nunito)] text-xs font-semibold text-[#ba733e] hover:opacity-70"
                       >
                         Take Action
@@ -631,7 +631,7 @@ export default function DashboardPage() {
                   <h3 className="font-[family-name:var(--font-nunito)] text-base font-medium text-black">
                     Upcoming Events
                   </h3>
-                  <LinkArrow label="Go to Calendar" onClick={() => router.push("/communication?tab=events-calendar")} />
+                  <LinkArrow label="Go to Calendar" onClick={() => router.push("/admin/v2/communication?tab=events-calendar")} />
                 </div>
 
                 <div className="flex flex-col gap-3">
@@ -659,7 +659,7 @@ export default function DashboardPage() {
                   <h3 className="font-[family-name:var(--font-nunito)] text-base font-medium text-black">
                     Room Occupancy
                   </h3>
-                  <LinkArrow label="View All" onClick={() => router.push("/children?tab=rooms-classes")} />
+                  <LinkArrow label="View All" onClick={() => router.push("/admin/v2/children?tab=rooms-classes")} />
                 </div>
 
                 <div className="flex flex-col gap-3">
@@ -695,7 +695,7 @@ export default function DashboardPage() {
                   <h3 className="font-[family-name:var(--font-nunito)] text-base font-medium text-black">
                     Activity Feed
                   </h3>
-                  <LinkArrow label="Go to Daily Operations" onClick={() => router.push("/daily-operations")} />
+                  <LinkArrow label="Go to Daily Operations" onClick={() => router.push("/admin/v2/daily-operations")} />
                 </div>
 
                 <div className="flex flex-col">
@@ -745,7 +745,7 @@ export default function DashboardPage() {
                 <h3 className="font-[family-name:var(--font-nunito)] text-base font-medium text-black">
                   Outstanding Payments
                 </h3>
-                <LinkArrow label="View All" onClick={() => router.push("/finance")} />
+                <LinkArrow label="View All" onClick={() => router.push("/admin/v2/finance")} />
               </div>
               {/* Desktop table */}
               <div className="hidden overflow-hidden rounded-xl shadow-[0px_4px_8px_-2px_rgba(16,24,40,0.1),0px_2px_4px_-2px_rgba(16,24,40,0.06)] lg:block">
@@ -828,7 +828,7 @@ export default function DashboardPage() {
                 <h3 className="font-[family-name:var(--font-nunito)] text-base font-medium text-black">
                   Pending Enrollments
                 </h3>
-                <LinkArrow label="View All" onClick={() => router.push("/children?tab=enrolment-waitlist")} />
+                <LinkArrow label="View All" onClick={() => router.push("/admin/v2/children?tab=enrolment-waitlist")} />
               </div>
               {/* Desktop table */}
               <div className="hidden overflow-hidden rounded-xl shadow-[0px_4px_8px_-2px_rgba(16,24,40,0.1),0px_2px_4px_-2px_rgba(16,24,40,0.06)] lg:block">

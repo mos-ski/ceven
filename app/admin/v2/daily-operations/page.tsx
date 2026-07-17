@@ -758,7 +758,7 @@ function DailyOperationsContent() {
   const view: View = tab === "daily-logs" ? "logs" : "qr";
 
   function setView(next: View) {
-    router.push(next === "logs" ? "/daily-operations?tab=daily-logs" : "/daily-operations");
+    router.push(next === "logs" ? "/admin/v2/daily-operations?tab=daily-logs" : "/admin/v2/daily-operations");
   }
 
   if (tab && tab in SECTION_TITLES) {

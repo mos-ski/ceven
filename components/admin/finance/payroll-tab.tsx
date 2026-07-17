@@ -144,7 +144,7 @@ function RunPayrollModal({
                   You need {formatCurrency(totalAmount - walletBalance)} more to complete this payroll. Top up your wallet to proceed.
                 </p>
                 <Link
-                  href="/finance"
+                  href="/admin/v2/finance"
                   onClick={onClose}
                   className="mt-1 inline-block w-fit rounded-lg bg-[#3b2513] px-4 py-1.5 font-[family-name:var(--font-nunito)] text-xs font-medium text-[#faf2e1]"
                 >

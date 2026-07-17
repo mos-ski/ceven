@@ -405,7 +405,7 @@ function StaffPageInner() {
 
   function setActiveTab(tab: Tab) {
     const query = Object.entries(TAB_QUERY_MAP).find(([, value]) => value === tab)?.[0];
-    router.push(query ? `/staff?tab=${query}` : "/staff");
+    router.push(query ? `/staff?tab=${query}` : "/admin/v2/staff");
   }
 
   function openEdit(role: string) {

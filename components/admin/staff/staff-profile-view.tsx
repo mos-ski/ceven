@@ -55,7 +55,7 @@ export function StaffProfileView({ staff }: { staff: StaffMember }) {
       {/* Page Header */}
       <div className="flex items-center justify-between">
         <Link
-          href="/staff"
+          href="/admin/v2/staff"
           className="flex items-center gap-2 font-[family-name:var(--font-urbanist)] text-sm text-[#3b2513]"
         >
           <ChevronLeft className="size-4" />

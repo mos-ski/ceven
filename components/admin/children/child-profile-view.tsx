@@ -586,7 +586,7 @@ export function ChildProfileView({ child }: { child: Child }) {
       {/* Page header */}
       <div className="flex items-center justify-between">
         <Link
-          href="/children"
+          href="/admin/v2/children"
           className="flex items-center gap-2 font-[family-name:var(--font-urbanist)] text-sm text-[#3b2513]"
         >
           <ChevronLeft className="size-4" />
