@@ -36,10 +36,9 @@ export default function EnrollmentDetailPage({ params }: { params: Promise<{ id:
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-[280px_1fr]">
         <div className="flex flex-col items-center gap-3 rounded-xl border border-gray-200 bg-white p-6">
-          <div className="h-24 w-24 rounded-full bg-gray-200 overflow-hidden">
-            <div className="flex h-full w-full items-center justify-center text-3xl font-bold text-gray-400">
-              {child.childName.charAt(0)}
-            </div>
+          <div className="h-24 w-24 overflow-hidden rounded-full bg-gray-200">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={child.photo} alt={child.childName} className="h-full w-full object-cover" />
           </div>
           <h2 className="text-lg font-bold text-gray-800">{child.childName}</h2>
           <div className="flex w-full flex-col gap-1">

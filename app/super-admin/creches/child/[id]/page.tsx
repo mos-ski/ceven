@@ -27,9 +27,8 @@ export default function ChildProfilePage() {
         <div className="flex flex-col gap-4">
           <div className="flex flex-col items-center gap-3 rounded-xl border border-card-border bg-white p-6">
             <div className="flex size-20 items-center justify-center overflow-hidden rounded-full bg-[#edd9c0]">
-              <span className="font-[family-name:var(--font-nunito)] text-2xl font-bold text-brand-dark">
-                {profile.firstName[0]}{profile.lastName[0]}
-              </span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={profile.photo} alt={childName} className="h-full w-full object-cover" />
             </div>
             <p className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-heading">
               {childName}

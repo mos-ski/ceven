@@ -208,13 +208,13 @@ export const APPROVED_CRECHES: ApprovedCreche[] = [
   { id: "cre-1", requestDate: "16 Jul 2026 4:01pm", crecheName: "Aorthar Creche", email: "aorthardesignteam@gmail.com", phone: "09058653400", state: "lagos", caregiversCount: 1, status: "approved" },
   { id: "cre-2", requestDate: "10 Jul 2026 6:25pm", crecheName: "Mavin", email: "mavin@yopmail.com", phone: "07066370235", state: "lagos", caregiversCount: 1, status: "approved" },
   { id: "cre-3", requestDate: "20 May 2026 11:29am", crecheName: "Little Angels", email: "littleangels@yopmail.com", phone: "08078185665", state: "lagos", caregiversCount: 2, status: "approved" },
-  { id: "cre-4", requestDate: "15 May 2026 12:19pm", crecheName: "primary Cheche", email: "misael@yopmail.com", phone: "+1234567890", state: "Lagos", caregiversCount: 0, status: "approved" },
+  { id: "cre-4", requestDate: "15 May 2026 12:19pm", crecheName: "primary Cheche", email: "misael@yopmail.com", phone: "08134567890", state: "Lagos", caregiversCount: 3, status: "approved" },
   { id: "cre-5", requestDate: "7 May 2026 11:21am", crecheName: "Eggshells Tots and Kiddies", email: "eggshells@yopmail.com", phone: "09000012233", state: "lagos", caregiversCount: 4, status: "approved" },
-  { id: "cre-6", requestDate: "20 Apr 2026 5:18pm", crecheName: "Rubels and Angel Creche", email: "beatriceo.luwakemisola@gmail.com", phone: "+1234567890", state: "Lagos", caregiversCount: 11, status: "approved" },
+  { id: "cre-6", requestDate: "20 Apr 2026 5:18pm", crecheName: "Rubels and Angel Creche", email: "beatriceo.luwakemisola@gmail.com", phone: "08145678901", state: "Lagos", caregiversCount: 11, status: "approved" },
   { id: "cre-7", requestDate: "3 Apr 2026 8:23pm", crecheName: "Sebi Creche", email: "lolamichaelodukoya@gmail.com", phone: "08186793931", state: "lagos", caregiversCount: 2, status: "approved" },
   { id: "cre-8", requestDate: "25 Mar 2026 11:07am", crecheName: "Davida", email: "boluwatifetoluwaloju@gmail.com", phone: "07088771472", state: "lagos", caregiversCount: 2, status: "approved" },
-  { id: "cre-9", requestDate: "24 Mar 2026 9:32pm", crecheName: "Lagos Creche", email: "alt.gl-eowu6qos@yopmail.com", phone: "08165084064", state: "abia", caregiversCount: 0, status: "approved" },
-  { id: "cre-10", requestDate: "24 Mar 2026 9:16pm", crecheName: "Pulcehr", email: "oyinkansolababalola@gmail.com", phone: "Nil", state: "Nil", caregiversCount: 0, status: "approved" },
+  { id: "cre-9", requestDate: "24 Mar 2026 9:32pm", crecheName: "Lagos Creche", email: "alt.gl-eowu6qos@yopmail.com", phone: "08165084064", state: "abia", caregiversCount: 5, status: "approved" },
+  { id: "cre-10", requestDate: "24 Mar 2026 9:16pm", crecheName: "Pulcehr", email: "oyinkansolababalola@gmail.com", phone: "08176543210", state: "Ogun", caregiversCount: 2, status: "approved" },
 ];
 
 // ── Caregivers (per-creche staff, platform-wide view) ───────────────────────
@@ -253,6 +253,7 @@ export type ChildProfile = {
   id: string;
   firstName: string;
   lastName: string;
+  photo: string;
   gender: string;
   parentName: string;
   parentEmail: string;
@@ -288,16 +289,22 @@ export type ChildProfile = {
 
 export const CHILD_PROFILES: ChildProfile[] = [
   {
-    id: "child-1", firstName: "Philip", lastName: "Adewale", gender: "Male",
+    id: "child-1", firstName: "Philip", lastName: "Adewale",
+    photo: "https://images.unsplash.com/photo-1522771930-78848d9293e8?w=200&h=200&fit=crop&q=80",
+    gender: "Male",
     parentName: "Adedamola Adewale", parentEmail: "adewaledamola52@yahoo.com",
-    emergencyContactName: "-", emergencyContact: "-", dateOfBirth: "25 Apr 2024",
+    emergencyContactName: "Tess Adewale", emergencyContact: "08099818202", dateOfBirth: "25 Apr 2024",
     medical: {
       allergies: "None reported", chronicConditions: "None reported", bloodGroup: "O+", medication: "None",
-      pediatricianName: "-", pediatricianPhone: "-", pediatricianHospital: "-", immunizationHistory: "Up to date",
+      pediatricianName: "Dr. Ngozi Umeh", pediatricianPhone: "08023456789", pediatricianHospital: "St Nicholas Hospital, Lagos", immunizationHistory: "Up to date",
     },
-    dietary: { feedingType: "Solid foods", favoriteMeals: "Rice, banana", dislikedFoods: "-", dietaryRestriction: "None" },
-    development: { sleepTime: "", comfortItems: "-", toiletTraining: "In progress", milestone: "Walking", communicationStyle: "Words and gestures", behaviorNotes: "-" },
-    activityLog: [{ date: "16 Jul 2026 1:00am", totalLogs: 1 }],
+    dietary: { feedingType: "Solid foods", favoriteMeals: "Rice, banana", dislikedFoods: "Vegetables", dietaryRestriction: "None" },
+    development: { sleepTime: "1pm - 3pm", comfortItems: "Blanket", toiletTraining: "In progress", milestone: "Walking", communicationStyle: "Words and gestures", behaviorNotes: "Energetic, enjoys outdoor play." },
+    activityLog: [
+      { date: "16 Jul 2026 1:00am", totalLogs: 1 },
+      { date: "15 Jul 2026 3:20pm", totalLogs: 3 },
+      { date: "14 Jul 2026 11:05am", totalLogs: 2 },
+    ],
   },
 ];
 
@@ -310,7 +317,13 @@ export type PlatformNotification = {
   message: string;
 };
 
-export const PLATFORM_NOTIFICATIONS: PlatformNotification[] = [];
+export const PLATFORM_NOTIFICATIONS: PlatformNotification[] = [
+  { id: "not-1", time: "17 Jul 2026 5:30pm", title: "New Creche Enrollment", message: "Ringo Daycare submitted a new enrollment request awaiting review." },
+  { id: "not-2", time: "16 Jul 2026 4:05pm", title: "Creche Approved", message: "Aorthar Creche's application was approved and is now live on the platform." },
+  { id: "not-3", time: "15 Jul 2026 9:00am", title: "Payment Received", message: "Premium Test subscription payment of ₦3,000 received from a parent account." },
+  { id: "not-4", time: "12 Jul 2026 2:15pm", title: "Subscription Expiring Soon", message: "8 creche subscriptions are due for renewal within the next 7 days." },
+  { id: "not-5", time: "8 Jun 2026 6:20pm", title: "New Creche Enrollment", message: "Asurabillions creche submitted a new enrollment request awaiting review." },
+];
 
 // ── Subscription management ──────────────────────────────────────────────────
 
@@ -326,8 +339,8 @@ export type SubscriptionPlan = {
 };
 
 export const SUBSCRIPTION_PLANS: SubscriptionPlan[] = [
-  { id: "plan-1", dateCreated: "24 Mar 2026 8:51am", planName: "Pro Features for Creche", duration: ["monthly", "quarterly", "yearly"], subscribers: 0, recipient: "creche admin", revenue: "₦0", status: "active" },
-  { id: "plan-2", dateCreated: "24 Mar 2026 8:51am", planName: "Starter Features for Creche", duration: ["monthly", "quarterly", "yearly"], subscribers: 0, recipient: "creche admin", revenue: "₦0", status: "active" },
+  { id: "plan-1", dateCreated: "24 Mar 2026 8:51am", planName: "Pro Features for Creche", duration: ["monthly", "quarterly", "yearly"], subscribers: 9, recipient: "creche admin", revenue: "₦166,500", status: "active" },
+  { id: "plan-2", dateCreated: "24 Mar 2026 8:51am", planName: "Starter Features for Creche", duration: ["monthly", "quarterly", "yearly"], subscribers: 4, recipient: "creche admin", revenue: "₦38,000", status: "active" },
   { id: "plan-3", dateCreated: "24 Mar 2026 8:51am", planName: "Premium Features for Parents", duration: ["daily", "monthly", "quarterly", "yearly"], subscribers: 35, recipient: "parent", revenue: "₦149,250", status: "inactive" },
   { id: "plan-4", dateCreated: "24 Mar 2026 8:51am", planName: "Premium Test (1hr Trial)", duration: ["hourly"], subscribers: 126, recipient: "parent", revenue: "₦3,000", status: "active" },
 ];
@@ -342,10 +355,16 @@ export type Subscriber = {
   status: "active" | "inactive";
 };
 
-export const SUBSCRIBERS: Subscriber[] = [];
+export const SUBSCRIBERS: Subscriber[] = [
+  { id: "sub-1", expiryDate: "24 Aug 2026", crecheName: "Aorthar Creche", enrolledChildren: 12, revenue: "₦18,500", payment: "Card", status: "active" },
+  { id: "sub-2", expiryDate: "10 Aug 2026", crecheName: "Mavin", enrolledChildren: 8, revenue: "₦18,500", payment: "Bank Transfer", status: "active" },
+  { id: "sub-3", expiryDate: "3 Aug 2026", crecheName: "Little Angels", enrolledChildren: 15, revenue: "₦18,500", payment: "Card", status: "active" },
+  { id: "sub-4", expiryDate: "20 Jul 2026", crecheName: "Rubels and Angel Creche", enrolledChildren: 31, revenue: "₦38,500", payment: "Card", status: "active" },
+  { id: "sub-5", expiryDate: "5 Jul 2026", crecheName: "Sebi Creche", enrolledChildren: 10, revenue: "₦9,500", payment: "Bank Transfer", status: "inactive" },
+];
 
 export const SUBSCRIPTION_STATS = {
-  totalCreches: 0,
+  totalCreches: 10,
   monthlyRevenue: "₦51,050",
   activeSubscriptions: 4,
   expiredOverdue: 62,
@@ -354,7 +373,7 @@ export const SUBSCRIPTION_STATS = {
 // ── Engagement metrics ────────────────────────────────────────────────────────
 
 export const ENGAGEMENT_STATS = {
-  daily: { parents: 0, caregivers: 0 },
-  weekly: { parents: 0, caregivers: 0 },
+  daily: { parents: 18.4, caregivers: 26.7 },
+  weekly: { parents: 45.2, caregivers: 52.9 },
   monthly: { parents: 83.3, caregivers: 10.8 },
 };
