@@ -3,9 +3,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Bell, MessageSquare, Bookmark, Play, Clock, LayoutGrid, Plus, X, CheckCircle2, Clock3, AlarmClock, UsersRound } from "lucide-react";
+import { Bell, MessageSquare, Bookmark, Play, Clock, LayoutGrid, Plus, X, CheckCircle2, Clock3, AlarmClock, UsersRound, LogIn } from "lucide-react";
 import { ParentBottomNav } from "@/components/parent/bottom-nav";
-import { mockParentUser, mockFeedPosts } from "@/lib/parent/mock-data";
+import { mockParentUser, mockFeedPosts, mockChild, mockAttendanceHistory } from "@/lib/parent/mock-data";
 
 type Tab = "moments" | "special";
 
@@ -294,6 +294,22 @@ export default function ParentHomePage() {
             </Link>
           </div>
         </div>
+
+        {/* Today's check-in status */}
+        <Link
+          href="/parent/attendance"
+          className="mt-3 flex items-center gap-2.5 rounded-xl bg-emerald-50 px-3.5 py-2.5"
+        >
+          <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-white">
+            <LogIn size={13} />
+          </span>
+          <p className="flex-1 text-xs font-semibold text-emerald-800">
+            {mockAttendanceHistory[0].checkInTime
+              ? `${mockChild.name} checked in at ${mockAttendanceHistory[0].checkInTime}`
+              : `${mockChild.name} hasn't checked in yet today`}
+          </p>
+          <span className="text-[10px] font-semibold text-emerald-600">Details</span>
+        </Link>
 
         {/* Tab switcher */}
         <div className="mt-3 flex rounded-lg bg-[#f4f5f6] p-[3px]">

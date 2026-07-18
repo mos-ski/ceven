@@ -1,11 +1,11 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { ArrowLeft, AlertTriangle } from "lucide-react";
-import { mockIncidents } from "@/lib/caregiver/mock-data";
+import { ArrowLeft, AlertTriangle, BellRing, BellOff } from "lucide-react";
 import { BottomNav } from "@/components/caregiver/bottom-nav";
 import { LogSheet } from "@/components/caregiver/log-sheet";
 import { useLogSheet } from "@/components/caregiver/log-sheet-context";
+import type { Incident } from "@/lib/caregiver/mock-data";
 
 const SEVERITY_STYLES = {
   minor: "bg-amber-100 text-amber-700",
@@ -13,9 +13,15 @@ const SEVERITY_STYLES = {
   severe: "bg-red-100 text-red-700",
 };
 
+const STATUS_STYLES: Record<Incident["status"], string> = {
+  Open: "bg-blue-100 text-blue-700",
+  "Under Review": "bg-amber-100 text-amber-700",
+  Resolved: "bg-emerald-100 text-emerald-700",
+};
+
 export default function IncidentsPage() {
   const router = useRouter();
-  const { openIncident } = useLogSheet();
+  const { openIncident, incidents } = useLogSheet();
 
   return (
     <div className="relative flex flex-1 flex-col bg-cg-bg">
@@ -32,7 +38,7 @@ export default function IncidentsPage() {
       </div>
 
       <div className="flex-1 overflow-y-auto px-4 py-4 flex flex-col gap-3">
-        {mockIncidents.map((inc) => (
+        {incidents.map((inc) => (
           <div key={inc.id} className="rounded-2xl bg-white p-4">
             <div className="flex items-start justify-between gap-2 mb-2">
               <div className="flex items-center gap-2">
@@ -51,8 +57,28 @@ export default function IncidentsPage() {
               <span>·</span>
               <span>{inc.date}</span>
             </div>
+
+            <div className="mb-3 flex items-center gap-2">
+              <span className={`rounded-full px-2.5 py-1 text-[10px] font-semibold ${STATUS_STYLES[inc.status]}`}>
+                {inc.status}
+              </span>
+              <span className="flex items-center gap-1 text-[10px] font-medium text-gray-400">
+                {inc.parentNotified ? (
+                  <>
+                    <BellRing size={11} className="text-emerald-500" /> Parent notified
+                  </>
+                ) : (
+                  <>
+                    <BellOff size={11} /> Parent not notified
+                  </>
+                )}
+              </span>
+            </div>
+
             <div className="rounded-xl bg-gray-50 px-3 py-2.5">
-              <p className="text-[10px] font-semibold text-gray-400 mb-1">Action Taken</p>
+              <p className="text-[10px] font-semibold text-gray-400 mb-1">
+                {inc.status === "Resolved" ? "Resolution" : "Action Taken So Far"}
+              </p>
               <p className="text-xs text-gray-600">{inc.action}</p>
             </div>
           </div>

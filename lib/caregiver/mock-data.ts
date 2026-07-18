@@ -305,6 +305,8 @@ export const mockGallery: GalleryPhoto[] = [
 ];
 
 // ── Incidents ───────────────────────────────────────────────────
+export type IncidentStatus = "Open" | "Under Review" | "Resolved";
+
 export type Incident = {
   id: string;
   title: string;
@@ -314,6 +316,8 @@ export type Incident = {
   time: string;
   date: string;
   action: string;
+  status: IncidentStatus;
+  parentNotified: boolean;
 };
 
 export const mockIncidents: Incident[] = [
@@ -326,6 +330,8 @@ export const mockIncidents: Incident[] = [
     time: "10:30 AM",
     date: "Jan 8, 2026",
     action: "Applied cold compress. Parents informed.",
+    status: "Resolved",
+    parentNotified: true,
   },
   {
     id: "inc-2",
@@ -336,6 +342,8 @@ export const mockIncidents: Incident[] = [
     time: "02:00 PM",
     date: "Jan 7, 2026",
     action: "Administered antihistamine. Parents called immediately.",
+    status: "Under Review",
+    parentNotified: true,
   },
 ];
 
@@ -347,14 +355,39 @@ export type AttendanceRecord = {
   room: string;
   status: "present" | "absent" | "late";
   checkInTime: string | null;
+  checkOutTime: string | null;
+  pickedUpBy: string | null;
 };
 
 export const mockAttendance: AttendanceRecord[] = [
-  { childId: "child-1", childName: "Liam Smith", avatarInitials: "LS", room: "Toddler", status: "present", checkInTime: "08:05 AM" },
-  { childId: "child-2", childName: "Olivia Brown", avatarInitials: "OB", room: "Toddler", status: "present", checkInTime: "08:20 AM" },
-  { childId: "child-3", childName: "Noah Davies", avatarInitials: "ND", room: "Nursery", status: "late", checkInTime: "09:15 AM" },
-  { childId: "child-4", childName: "Johnson Emma", avatarInitials: "JE", room: "Toddler", status: "absent", checkInTime: null },
-  { childId: "child-5", childName: "Tosin Adeyemi", avatarInitials: "TA", room: "Nursery", status: "present", checkInTime: "08:10 AM" },
+  { childId: "child-1", childName: "Liam Smith", avatarInitials: "LS", room: "Toddler", status: "present", checkInTime: "08:05 AM", checkOutTime: null, pickedUpBy: null },
+  { childId: "child-2", childName: "Olivia Brown", avatarInitials: "OB", room: "Toddler", status: "present", checkInTime: "08:20 AM", checkOutTime: null, pickedUpBy: null },
+  { childId: "child-3", childName: "Noah Davies", avatarInitials: "ND", room: "Nursery", status: "late", checkInTime: "09:15 AM", checkOutTime: null, pickedUpBy: null },
+  { childId: "child-4", childName: "Johnson Emma", avatarInitials: "JE", room: "Toddler", status: "absent", checkInTime: null, checkOutTime: null, pickedUpBy: null },
+  { childId: "child-5", childName: "Tosin Adeyemi", avatarInitials: "TA", room: "Nursery", status: "present", checkInTime: "08:10 AM", checkOutTime: null, pickedUpBy: null },
+];
+
+// ── Medication ────────────────────────────────────────────────────
+export type MedicationStatus = "scheduled" | "administered" | "missed";
+
+export type MedicationDose = {
+  id: string;
+  childId: string;
+  childName: string;
+  medication: string;
+  dosage: string;
+  scheduledTime: string;
+  status: MedicationStatus;
+  administeredBy: string | null;
+  administeredAt: string | null;
+  note: string | null;
+};
+
+export const mockMedicationDoses: MedicationDose[] = [
+  { id: "med-1", childId: "child-5", childName: "Tosin Adeyemi", medication: "Calpol", dosage: "5ml", scheduledTime: "10:00 AM", status: "administered", administeredBy: "Ms Anu", administeredAt: "10:05 AM", note: "Given with water, no issues." },
+  { id: "med-2", childId: "child-3", childName: "Noah Davies", medication: "Antihistamine (Piriton)", dosage: "2.5ml", scheduledTime: "02:00 PM", status: "scheduled", administeredBy: null, administeredAt: null, note: null },
+  { id: "med-3", childId: "child-5", childName: "Tosin Adeyemi", medication: "Calpol", dosage: "5ml", scheduledTime: "04:00 PM", status: "scheduled", administeredBy: null, administeredAt: null, note: null },
+  { id: "med-4", childId: "child-1", childName: "Liam Smith", medication: "Vitamin D drops", dosage: "1 drop", scheduledTime: "08:30 AM", status: "administered", administeredBy: "Ms Anu", administeredAt: "08:32 AM", note: null },
 ];
 
 // ── Child extended details (for profile page) ────────────────────

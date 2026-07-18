@@ -44,8 +44,26 @@ export default function AttendancePage() {
                   minute: "2-digit",
                 }) + " AM"
               : null,
+          checkOutTime: next === "present" ? null : r.checkOutTime,
         };
       })
+    );
+  }
+
+  function checkOut(childId: string) {
+    setRecords((prev) =>
+      prev.map((r) =>
+        r.childId === childId
+          ? {
+              ...r,
+              checkOutTime:
+                new Date().toLocaleTimeString("en-GB", {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                }) + " PM",
+            }
+          : r
+      )
     );
   }
 
@@ -89,15 +107,26 @@ export default function AttendancePage() {
                   <p className="text-sm font-semibold text-cg-brand">{record.childName}</p>
                   <p className="text-xs text-gray-400">
                     {record.room} · {record.checkInTime ?? "Not checked in"}
+                    {record.checkOutTime ? ` · Out ${record.checkOutTime}` : ""}
                   </p>
                 </div>
-                <button
-                  onClick={() => toggleStatus(record.childId)}
-                  className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold capitalize ${STATUS_STYLES[record.status]}`}
-                >
-                  {STATUS_ICONS[record.status]}
-                  {record.status}
-                </button>
+                <div className="flex shrink-0 flex-col items-end gap-1.5">
+                  <button
+                    onClick={() => toggleStatus(record.childId)}
+                    className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold capitalize ${STATUS_STYLES[record.status]}`}
+                  >
+                    {STATUS_ICONS[record.status]}
+                    {record.status}
+                  </button>
+                  {record.status === "present" && !record.checkOutTime && (
+                    <button
+                      onClick={() => checkOut(record.childId)}
+                      className="text-[10px] font-semibold text-gray-400 underline"
+                    >
+                      Check out
+                    </button>
+                  )}
+                </div>
               </div>
               {i < records.length - 1 && <div className="mx-4 border-b border-gray-100" />}
             </div>

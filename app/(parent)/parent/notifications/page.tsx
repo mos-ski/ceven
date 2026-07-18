@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, Bell, Play, Image, AlertTriangle, Clock, Video, FileText } from "lucide-react";
+import { ArrowLeft, Bell, Play, Image, AlertTriangle, Clock, Video, FileText, LogIn, Pill } from "lucide-react";
 import { mockChild, mockRichNotifications, type NotifIcon, type RichNotification } from "@/lib/parent/mock-data";
 import { getAcceptedIndependentCaregiverRelationships } from "@/lib/independent-caregiver-invites";
 
@@ -17,6 +17,8 @@ function NotifIconBadge({ icon }: { icon: NotifIcon }) {
     report:   { bg: "bg-cg-quick-action", el: <FileText size={14} className="text-cg-brand" /> },
     chat:     { bg: "bg-green-50",  el: <Bell size={14} className="text-green-500" /> },
     fee:      { bg: "bg-orange-50", el: <FileText size={14} className="text-orange-500" /> },
+    checkin:  { bg: "bg-emerald-50", el: <LogIn size={14} className="text-emerald-500" /> },
+    medication: { bg: "bg-pink-50", el: <Pill size={14} className="text-pink-500" /> },
   };
   const { bg, el } = map[icon] ?? map.report;
   return (

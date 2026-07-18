@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { Bell, CheckCircle2, Copy, Send, ShieldCheck, Trash2, UserPlus, X } from "lucide-react";
+import { Bell, CheckCircle2, Copy, LogIn, AlertTriangle, Send, ShieldCheck, Trash2, UserPlus, X } from "lucide-react";
 import { ParentBottomNav } from "@/components/parent/bottom-nav";
-import { mockChild, mockParentUser } from "@/lib/parent/mock-data";
+import { mockChild, mockParentUser, mockAttendanceHistory, mockChildIncidents, mockChildMedication } from "@/lib/parent/mock-data";
 import {
   createIndependentCaregiverInvite,
   formatInviteExpiry,
@@ -140,6 +140,61 @@ export default function ChildPage() {
               <span className="text-sm text-gray-500">Age</span>
               <span className="text-sm font-semibold text-cg-brand">{mockChild.age}</span>
             </div>
+
+            <div className="grid grid-cols-2 gap-3 border-b border-gray-100 pb-4">
+              <Link href="/parent/attendance" className="rounded-xl bg-emerald-50 p-3">
+                <div className="mb-1.5 flex items-center gap-1.5 text-emerald-700">
+                  <LogIn size={13} />
+                  <span className="text-[11px] font-semibold">Today</span>
+                </div>
+                <p className="text-xs font-bold text-emerald-800">
+                  {mockAttendanceHistory[0].checkInTime
+                    ? `Checked in ${mockAttendanceHistory[0].checkInTime}`
+                    : "Not checked in yet"}
+                </p>
+              </Link>
+              <Link href="/parent/incidents" className="rounded-xl bg-amber-50 p-3">
+                <div className="mb-1.5 flex items-center gap-1.5 text-amber-700">
+                  <AlertTriangle size={13} />
+                  <span className="text-[11px] font-semibold">Incidents</span>
+                </div>
+                <p className="text-xs font-bold text-amber-800">
+                  {mockChildIncidents.length === 0 ? "None reported" : `${mockChildIncidents.length} reported`}
+                </p>
+              </Link>
+            </div>
+
+            <div className="border-b border-gray-100 pb-4">
+              <p className="mb-2 text-sm text-gray-500">Today&apos;s medication</p>
+              {mockChildMedication.filter((m) => m.date === "Today").length === 0 ? (
+                <p className="text-xs text-gray-400">No medication scheduled today.</p>
+              ) : (
+                <div className="space-y-2">
+                  {mockChildMedication
+                    .filter((m) => m.date === "Today")
+                    .map((dose) => (
+                      <div key={dose.id} className="flex items-center justify-between rounded-xl bg-pink-50 px-3 py-2.5">
+                        <div>
+                          <p className="text-xs font-bold text-cg-brand">{dose.medication} · {dose.dosage}</p>
+                          <p className="text-[11px] text-gray-500">Scheduled {dose.scheduledTime}</p>
+                        </div>
+                        <span
+                          className={`rounded-full px-2.5 py-1 text-[10px] font-semibold capitalize ${
+                            dose.status === "administered"
+                              ? "bg-emerald-100 text-emerald-700"
+                              : dose.status === "missed"
+                                ? "bg-red-100 text-red-700"
+                                : "bg-blue-100 text-blue-700"
+                          }`}
+                        >
+                          {dose.status === "administered" ? `Given ${dose.administeredAt}` : dose.status}
+                        </span>
+                      </div>
+                    ))}
+                </div>
+              )}
+            </div>
+
             <div>
               <div className="mb-3 flex items-center justify-between">
                 <span className="text-sm text-gray-500">Independent caregiver</span>

@@ -201,8 +201,76 @@ export const mockNotifications: Notification[] = [
   { id: "notif-3", title: "New Message", body: "Ms Anu sent you a message", time: "Yesterday", read: true, type: "chat" },
 ];
 
+// ─── Attendance (check-in / check-out) ──────────────────────────────────────
+export type AttendanceStatus = "present" | "absent" | "late";
+
+export type AttendanceEvent = {
+  date: string;
+  shortDate: string;
+  status: AttendanceStatus;
+  checkInTime: string | null;
+  checkOutTime: string | null;
+  pickedUpBy: string | null;
+  exception: string | null;
+};
+
+export const mockAttendanceHistory: AttendanceEvent[] = [
+  { date: "Today", shortDate: "Jan 9", status: "present", checkInTime: "08:05 AM", checkOutTime: null, pickedUpBy: null, exception: null },
+  { date: "Yesterday", shortDate: "Jan 8", status: "present", checkInTime: "08:12 AM", checkOutTime: "04:20 PM", pickedUpBy: "James Miller (Dad)", exception: null },
+  { date: "Wed, Jan 7", shortDate: "Jan 7", status: "present", checkInTime: "07:58 AM", checkOutTime: "05:45 PM", pickedUpBy: "Aunty Bisi (authorized)", exception: null },
+  { date: "Tue, Jan 6", shortDate: "Jan 6", status: "late", checkInTime: "09:20 AM", checkOutTime: "04:15 PM", pickedUpBy: "James Miller (Dad)", exception: null },
+  { date: "Mon, Jan 5", shortDate: "Jan 5", status: "present", checkInTime: "08:00 AM", checkOutTime: "06:10 PM", pickedUpBy: "Unrecognized pickup", exception: "Pickup attempted by someone not on the authorized list — front desk verified ID and contacted parent before release." },
+  { date: "Fri, Jan 2", shortDate: "Jan 2", status: "absent", checkInTime: null, checkOutTime: null, pickedUpBy: null, exception: null },
+];
+
+// ─── Incidents ───────────────────────────────────────────────────────────────
+export type IncidentStatus = "Open" | "Under Review" | "Resolved";
+
+export type ChildIncident = {
+  id: string;
+  title: string;
+  description: string;
+  severity: "minor" | "moderate" | "severe";
+  time: string;
+  date: string;
+  status: IncidentStatus;
+  actionTaken: string;
+};
+
+export const mockChildIncidents: ChildIncident[] = [
+  {
+    id: "inc-1",
+    title: "Minor Bump",
+    description: "Liam bumped his knee while playing during outdoor time.",
+    severity: "minor",
+    time: "10:30 AM",
+    date: "Jan 8, 2026",
+    status: "Resolved",
+    actionTaken: "Applied a cold compress, Liam was back to playing within minutes. No further action needed.",
+  },
+];
+
+// ─── Medication ────────────────────────────────────────────────────────────
+export type MedicationDoseStatus = "scheduled" | "administered" | "missed";
+
+export type ChildMedicationDose = {
+  id: string;
+  medication: string;
+  dosage: string;
+  scheduledTime: string;
+  status: MedicationDoseStatus;
+  administeredBy: string | null;
+  administeredAt: string | null;
+  date: string;
+};
+
+export const mockChildMedication: ChildMedicationDose[] = [
+  { id: "med-1", medication: "Vitamin D drops", dosage: "1 drop", scheduledTime: "08:30 AM", status: "administered", administeredBy: "Ms Anu", administeredAt: "08:32 AM", date: "Today" },
+  { id: "med-2", medication: "Vitamin D drops", dosage: "1 drop", scheduledTime: "08:30 AM", status: "administered", administeredBy: "Ms Anu", administeredAt: "08:35 AM", date: "Yesterday" },
+];
+
 // ─── Rich Notifications ────────────────────────────────────────────────────────
-export type NotifIcon = "video" | "photo" | "alert" | "clock" | "videocam" | "report" | "chat" | "fee";
+export type NotifIcon = "video" | "photo" | "alert" | "clock" | "videocam" | "report" | "chat" | "fee" | "checkin" | "medication";
 
 export type RichNotification = {
   id: string;
@@ -215,9 +283,12 @@ export type RichNotification = {
 };
 
 export const mockRichNotifications: RichNotification[] = [
+  { id: "rn-checkin-1", title: "Checked In", body: "Liam checked in at 08:05 AM", time: "08:05 AM", read: false, icon: "checkin", day: "Today" },
+  { id: "rn-med-1", title: "Medication Given", body: "Vitamin D drops administered by Ms Anu at 08:32 AM", time: "08:32 AM", read: false, icon: "medication", day: "Today" },
   { id: "rn-1", title: "Art & Craft", body: "Art session: Esther created a beautiful painting! 🎨", time: "09:30 AM", read: false, icon: "video", day: "Today" },
   { id: "rn-2", title: "Playtime", body: "Esther had a wonderful time playing with her friends today!", time: "08:25 AM", read: false, icon: "photo", day: "Today" },
   { id: "rn-3", title: "Emergency Contact", body: "Lorem ipsum dolor sit amet consectetur. Morbi imperdiet vitae id felis in volutpat justo ut ut.", time: "09:30 AM", read: true, icon: "alert", day: "Today" },
+  { id: "rn-pickup-exception", title: "Unrecognized Pickup Attempt", body: "Someone not on your authorized pickup list attempted to collect Liam. Front desk verified ID before release.", time: "06:10 PM", read: true, icon: "alert", day: "Yesterday" },
   { id: "rn-4", title: "Screen Time Limit Reac...", body: "Ethan has reached the 2-hour screen time limit you set today.", time: "09:30 AM", read: false, icon: "clock", day: "Yesterday" },
   { id: "rn-5", title: "Video Call", body: "Ava installed \"TikTok\" on her device for entertainment", time: "09:30 AM", read: false, icon: "videocam", day: "Yesterday" },
   { id: "rn-6", title: "Emergency Signal Sent", body: "An emergency signal was sent from Ethan's device.", time: "09:30 AM", read: true, icon: "alert", day: "Yesterday" },

@@ -12,6 +12,8 @@ import {
   CalendarCheck,
   CreditCard,
   Images,
+  Pill,
+  AlertTriangle,
 } from "lucide-react";
 import { BottomNav } from "@/components/caregiver/bottom-nav";
 import { StatCard } from "@/components/caregiver/stat-card";
@@ -71,10 +73,15 @@ export default function HomePage() {
           <QuickActionCard icon={MessageSquare} label="Chat" onClick={() => router.push("/caregiver/chat")} />
         </div>
         {/* Quick Actions — Row 2 */}
-        <div className="flex gap-3">
+        <div className="mb-3 flex gap-3">
           <QuickActionCard icon={CalendarCheck} label="Attendance" onClick={() => router.push("/caregiver/attendance")} />
           <QuickActionCard icon={CreditCard} label="Fees" onClick={() => router.push("/caregiver/fees")} />
           <QuickActionCard icon={Images} label="Gallery" onClick={() => router.push("/caregiver/gallery")} />
+        </div>
+        {/* Quick Actions — Row 3 */}
+        <div className="flex gap-3">
+          <QuickActionCard icon={Pill} label="Medication" onClick={() => router.push("/caregiver/medication")} />
+          <QuickActionCard icon={AlertTriangle} label="Incidents" onClick={() => router.push("/caregiver/incidents")} />
         </div>
       </div>
 
