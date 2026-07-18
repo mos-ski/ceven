@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Bell, CheckCircle2, Copy, LogIn, AlertTriangle, Send, ShieldCheck, Trash2, UserPlus, X } from "lucide-react";
 import { ParentBottomNav } from "@/components/parent/bottom-nav";
 import { mockChild, mockParentUser, mockAttendanceHistory, mockChildIncidents, mockChildMedication } from "@/lib/parent/mock-data";
+import { NewBadge } from "@/components/parent/new-badge";
 import {
   createIndependentCaregiverInvite,
   formatInviteExpiry,
@@ -142,7 +143,8 @@ export default function ChildPage() {
             </div>
 
             <div className="grid grid-cols-2 gap-3 border-b border-gray-100 pb-4">
-              <Link href="/parent/attendance" className="rounded-xl bg-emerald-50 p-3">
+              <Link href="/parent/attendance" className="relative rounded-xl bg-emerald-50 p-3">
+                <NewBadge className="absolute right-2 top-2" />
                 <div className="mb-1.5 flex items-center gap-1.5 text-emerald-700">
                   <LogIn size={13} />
                   <span className="text-[11px] font-semibold">Today</span>
@@ -153,7 +155,8 @@ export default function ChildPage() {
                     : "Not checked in yet"}
                 </p>
               </Link>
-              <Link href="/parent/incidents" className="rounded-xl bg-amber-50 p-3">
+              <Link href="/parent/incidents" className="relative rounded-xl bg-amber-50 p-3">
+                <NewBadge className="absolute right-2 top-2" />
                 <div className="mb-1.5 flex items-center gap-1.5 text-amber-700">
                   <AlertTriangle size={13} />
                   <span className="text-[11px] font-semibold">Incidents</span>
@@ -165,7 +168,10 @@ export default function ChildPage() {
             </div>
 
             <div className="border-b border-gray-100 pb-4">
-              <p className="mb-2 text-sm text-gray-500">Today&apos;s medication</p>
+              <div className="mb-2 flex items-center gap-2">
+                <p className="text-sm text-gray-500">Today&apos;s medication</p>
+                <NewBadge />
+              </div>
               {mockChildMedication.filter((m) => m.date === "Today").length === 0 ? (
                 <p className="text-xs text-gray-400">No medication scheduled today.</p>
               ) : (

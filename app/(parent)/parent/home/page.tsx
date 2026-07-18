@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { Bell, MessageSquare, Bookmark, Play, Clock, LayoutGrid, Plus, X, CheckCircle2, Clock3, AlarmClock, UsersRound, LogIn } from "lucide-react";
 import { ParentBottomNav } from "@/components/parent/bottom-nav";
 import { mockParentUser, mockFeedPosts, mockChild, mockAttendanceHistory } from "@/lib/parent/mock-data";
+import { NewBadge } from "@/components/parent/new-badge";
 
 type Tab = "moments" | "special";
 
@@ -308,6 +309,7 @@ export default function ParentHomePage() {
               ? `${mockChild.name} checked in at ${mockAttendanceHistory[0].checkInTime}`
               : `${mockChild.name} hasn't checked in yet today`}
           </p>
+          <NewBadge />
           <span className="text-[10px] font-semibold text-emerald-600">Details</span>
         </Link>
 

@@ -5,6 +5,7 @@ import { ArrowLeft, AlertTriangle, BellRing, BellOff } from "lucide-react";
 import { BottomNav } from "@/components/caregiver/bottom-nav";
 import { LogSheet } from "@/components/caregiver/log-sheet";
 import { useLogSheet } from "@/components/caregiver/log-sheet-context";
+import { NewBadge } from "@/components/caregiver/new-badge";
 import type { Incident } from "@/lib/caregiver/mock-data";
 
 const SEVERITY_STYLES = {
@@ -31,6 +32,7 @@ export default function IncidentsPage() {
             <ArrowLeft size={20} className="text-gray-600" />
           </button>
           <h1 className="text-base font-bold text-cg-brand">Incidents</h1>
+          <NewBadge />
         </div>
         <button onClick={openIncident} className="rounded-xl bg-cg-brand px-4 py-2 text-xs font-semibold text-white">
           + Log

@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { ArrowLeft, LogIn, LogOut, AlertTriangle } from "lucide-react";
 import { mockChild, mockAttendanceHistory, type AttendanceStatus } from "@/lib/parent/mock-data";
+import { NewBadge } from "@/components/parent/new-badge";
 
 const STATUS_STYLES: Record<AttendanceStatus, string> = {
   present: "bg-emerald-100 text-emerald-700",
@@ -21,7 +22,10 @@ export default function ParentAttendancePage() {
           <ArrowLeft size={20} className="text-gray-600" />
         </button>
         <div>
-          <h1 className="text-base font-bold text-cg-brand">Arrivals & Pickups</h1>
+          <div className="flex items-center gap-2">
+            <h1 className="text-base font-bold text-cg-brand">Arrivals & Pickups</h1>
+            <NewBadge />
+          </div>
           <p className="text-xs text-gray-400">For {mockChild.name}</p>
         </div>
       </div>

@@ -6,6 +6,7 @@ import { ArrowLeft, Pill, CheckCircle2, XCircle, Clock } from "lucide-react";
 import { mockMedicationDoses, mockUser, type MedicationDose, type MedicationStatus } from "@/lib/caregiver/mock-data";
 import { BottomNav } from "@/components/caregiver/bottom-nav";
 import { LogSheet } from "@/components/caregiver/log-sheet";
+import { NewBadge } from "@/components/caregiver/new-badge";
 
 const STATUS_STYLES: Record<MedicationStatus, string> = {
   scheduled: "bg-blue-50 text-blue-700",
@@ -69,6 +70,7 @@ export default function MedicationPage() {
           <ArrowLeft size={20} className="text-gray-600" />
         </button>
         <h1 className="text-base font-bold text-cg-brand">Medication</h1>
+        <NewBadge />
       </div>
 
       <div className="flex-1 overflow-y-auto px-4 py-4">

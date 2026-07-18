@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { ArrowLeft, AlertTriangle, CheckCircle2 } from "lucide-react";
 import { mockChild, mockChildIncidents, type IncidentStatus } from "@/lib/parent/mock-data";
+import { NewBadge } from "@/components/parent/new-badge";
 
 const SEVERITY_STYLES: Record<string, string> = {
   minor: "bg-amber-100 text-amber-700",
@@ -26,7 +27,10 @@ export default function ParentIncidentsPage() {
           <ArrowLeft size={20} className="text-gray-600" />
         </button>
         <div>
-          <h1 className="text-base font-bold text-cg-brand">Incidents</h1>
+          <div className="flex items-center gap-2">
+            <h1 className="text-base font-bold text-cg-brand">Incidents</h1>
+            <NewBadge />
+          </div>
           <p className="text-xs text-gray-400">For {mockChild.name}</p>
         </div>
       </div>

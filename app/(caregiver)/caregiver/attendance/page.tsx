@@ -7,6 +7,7 @@ import { mockAttendance } from "@/lib/caregiver/mock-data";
 import type { AttendanceRecord } from "@/lib/caregiver/mock-data";
 import { BottomNav } from "@/components/caregiver/bottom-nav";
 import { LogSheet } from "@/components/caregiver/log-sheet";
+import { NewBadge } from "@/components/caregiver/new-badge";
 
 const STATUS_STYLES: Record<AttendanceRecord["status"], string> = {
   present: "bg-green-100 text-green-700",
@@ -135,6 +136,9 @@ export default function AttendancePage() {
 
         <p className="mt-3 text-center text-xs text-gray-400">
           Tap a status to cycle: Present → Late → Absent
+        </p>
+        <p className="mt-1.5 flex items-center justify-center gap-1.5 text-center text-xs text-gray-400">
+          <NewBadge /> &quot;Check out&quot; is new — tap it once a child has been picked up.
         </p>
       </div>
 

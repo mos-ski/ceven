@@ -80,8 +80,8 @@ export default function HomePage() {
         </div>
         {/* Quick Actions — Row 3 */}
         <div className="flex gap-3">
-          <QuickActionCard icon={Pill} label="Medication" onClick={() => router.push("/caregiver/medication")} />
-          <QuickActionCard icon={AlertTriangle} label="Incidents" onClick={() => router.push("/caregiver/incidents")} />
+          <QuickActionCard icon={Pill} label="Medication" onClick={() => router.push("/caregiver/medication")} isNew />
+          <QuickActionCard icon={AlertTriangle} label="Incidents" onClick={() => router.push("/caregiver/incidents")} isNew />
         </div>
       </div>
 
