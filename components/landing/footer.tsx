@@ -25,7 +25,7 @@ const FOOTER_LINKS = {
 
 export function LandingFooter() {
   return (
-    <footer className="relative bg-[#3B2010]">
+    <footer className="relative bg-[#3B2513]">
       <CloudWaveTop />
       <FadeUp amount={0.05}>
         <div className="px-4 sm:px-8 lg:px-16 pt-12 pb-8">

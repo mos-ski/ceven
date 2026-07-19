@@ -1,141 +1,148 @@
-"use client";
-
-import Link from "next/link";
 import Image from "next/image";
-import { LandingNav } from "./nav";
-import { FadeUp } from "@/components/animations/fade-up";
-import { MouseParallax } from "@/components/animations/mouse-parallax";
+import Link from "next/link";
+
+const TABS = ["Attendance", "Billing", "Communication", "Registration", "Paperwork", "Payroll", "AI"];
+
+const LOGOS = [
+  { src: "/hero/logo-gan-sinai.png",  alt: "Gan Sinai Early Learning Center",          w: 103, h: 36 },
+  { src: "/hero/logo-yakima.png",     alt: "Yakima Valley Memorial",                   w: 119, h: 31 },
+  { src: "/hero/logo-child-dev.png",  alt: "Child Development Consortium of LA",       w: 176, h: 40 },
+  { src: "/hero/logo-st-john.png",    alt: "St. John Lutheran Church",                 w: 103, h: 30 },
+  { src: "/hero/logo-weston.png",     alt: "The Weston School Early Childhood",        w: 179, h: 54 },
+];
 
 export function HeroSection() {
   return (
-    <section className="bg-[#FAF2E1] relative overflow-hidden">
-      <LandingNav variant="light" />
+    <section className="bg-[#FAF2E1] overflow-hidden">
 
-      <div className="px-4 sm:px-8 lg:px-16 pt-4 pb-0 relative">
-        <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-start justify-between min-h-[auto] lg:min-h-[660px] gap-8">
-        {/* Left: text content */}
-        <div className="flex flex-col gap-4 max-w-[641px] pt-8 lg:pt-14 text-center lg:text-left w-full">
-          {/* Badge */}
-          <FadeUp delay={0}>
-            <div className="inline-flex items-center gap-2 bg-[rgba(59,37,19,0.12)] border border-[rgba(255,195,68,0.5)] rounded-[6px] pl-1 pr-2 py-1 w-fit">
-              <div className="bg-white rounded-[4px] px-2 py-1">
-                <span className="font-[family-name:var(--font-plus-jakarta-sans)] font-medium text-sm text-black leading-5">
-                  For you:
-                </span>
-              </div>
-              <span className="font-[family-name:var(--font-plus-jakarta-sans)] font-medium text-sm text-black leading-5">
-                Childcare, Connected
-              </span>
-            </div>
-          </FadeUp>
-
-          {/* Headline + subtitle */}
-          <div className="flex flex-col gap-4">
-            <FadeUp delay={0.1}>
-              <h1
-                className="font-[family-name:var(--font-fraunces)] font-semibold text-[#3b2513] leading-[1.1] text-[40px] sm:text-[56px] lg:text-[72px] xl:text-[80px]"
-                style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}
-              >
-                Show up at work.
-                <br />
-                <em
-                  className="font-[family-name:var(--font-fraunces)] italic text-[#c78c5f] not-italic"
-                  style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1', fontStyle: "italic" }}
-                >
-                  Be present
-                </em>{" "}
-                at home
-              </h1>
-            </FadeUp>
-
-            <FadeUp delay={0.2}>
-              <p className="font-[family-name:var(--font-plus-jakarta-sans)] font-normal text-[#3d444f] text-[18px] xl:text-[20px] leading-[1.6]">
-                CEven provides real-time visibility into your child&apos;s daily
-                experiences and wellbeing, enabling seamless communication between
-                parents and caregivers.
-              </p>
-            </FadeUp>
+      {/* Badge */}
+      <div className="flex justify-center pt-3">
+        <div className="flex items-center overflow-hidden" style={{ borderRadius: "4.5px" }}>
+          <div className="bg-white px-[8.7px] py-[4.3px]">
+            <span className="font-[family-name:var(--font-plus-jakarta-sans)] font-medium text-[15px] text-black leading-[21.7px] whitespace-nowrap">
+              For you:
+            </span>
           </div>
-
-          {/* CTAs */}
-          <FadeUp delay={0.3}>
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mt-2">
-              <Link
-                href="#"
-                className="relative flex items-center gap-1 pl-1.5 pr-4 py-0.5 rounded-[12px] bg-[#3b2513] shadow-[inset_0px_4px_12px_0px_rgba(255,255,255,0.12)] hover:bg-[#5b3921] hover:scale-[1.03] active:scale-[0.98] transition-all duration-150"
-              >
-                <div className="relative w-[46px] h-[46px] shrink-0">
-                  <Image
-                    src="/google_play_icon.png.png"
-                    alt="Google Play"
-                    fill
-                    sizes="46px"
-                    className="object-contain"
-                  />
-                </div>
-                <span className="font-[family-name:var(--font-plus-jakarta-sans)] font-medium text-[#faf2e1] text-[16px] leading-5 whitespace-nowrap">
-                  Download on Google Play
-                </span>
-              </Link>
-
-              <Link
-                href="/for-parents"
-                className="flex items-center justify-center gap-2 border border-[#3b2513] h-[50px] w-[162px] rounded-[12px] px-4 hover:bg-[#3b2513]/5 hover:scale-[1.03] active:scale-[0.98] transition-all duration-150"
-              >
-                <span className="font-[family-name:var(--font-plus-jakarta-sans)] font-semibold text-[#3b2513] text-[16px] leading-5">
-                  For Parents
-                </span>
-                <ArrowBendUpRight />
-              </Link>
-            </div>
-          </FadeUp>
-        </div>
-
-        {/* Right: phone mockup */}
-        <MouseParallax
-          strength={10}
-          className="relative shrink-0 w-full max-w-[320px] sm:max-w-[400px] lg:w-[480px] lg:max-w-none xl:w-[540px] self-end mx-auto lg:mx-0 -mb-1"
-        >
-          <FadeUp delay={0.15} amount={0.1}>
-            <Image
-              src="/hero-phone-mockup.png"
-              alt="CEven app on iPhone"
-              width={563}
-              height={800}
-              className="object-contain w-full"
-              priority
-            />
-          </FadeUp>
-        </MouseParallax>
+          <div className="bg-[rgba(12,12,12,0.05)] px-[9px] py-[4.3px]">
+            <span className="font-[family-name:var(--font-plus-jakarta-sans)] font-medium text-[15px] text-black leading-[21.7px] whitespace-nowrap">
+              Childcare, Connected
+            </span>
+          </div>
         </div>
       </div>
-    </section>
-  );
-}
 
-function ArrowBendUpRight() {
-  return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 16 16"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M10 3.5L14 7.5L10 11.5"
-        stroke="#3b2513"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M2 12.5C2 12.5 2 7.5 7 7.5H14"
-        stroke="#3b2513"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
+      {/* Headline + body + CTA */}
+      <div className="text-center px-4 mt-[14px]">
+        <h1
+          className="font-[family-name:var(--font-fraunces)] font-semibold text-[#3b2513] mx-auto"
+          style={{
+            fontVariationSettings: '"SOFT" 0, "WONK" 1',
+            fontSize: "clamp(38px, 5vw, 72px)",
+            letterSpacing: "-0.06em",
+            lineHeight: "1.208",
+            maxWidth: "862px",
+          }}
+        >
+          Be the creche parents choose. And{" "}
+          <span className="text-[#c17c45] italic">never leave</span>
+          {"."}
+        </h1>
+
+        <p
+          className="font-[family-name:var(--font-urbanist-import)] font-normal text-[#3d444f] text-[16px] leading-[24px] mx-auto mt-[22px]"
+          style={{ maxWidth: "518px" }}
+        >
+          CEven turns your daily operations into the reason parents trust you — real-time updates, accountable staff, a business that runs like the professional operation it already is.
+        </p>
+
+        <div className="mt-[24px] flex flex-col items-center gap-[15px]">
+          <Link
+            href="/contact"
+            className="inline-flex items-center justify-center bg-[#3b2513] text-[#faf2e1] font-[family-name:var(--font-plus-jakarta-sans)] font-medium text-[16px] leading-[20px] h-[48px] px-6 rounded-[12px] shadow-[inset_0px_4px_12px_0px_rgba(255,255,255,0.12)] hover:opacity-90 transition-opacity"
+          >
+            Get a Free Demo
+          </Link>
+
+          <p className="font-[family-name:var(--font-urbanist-import)] font-normal text-[#3d444f] text-[16px] leading-[28px]">
+            Already Joined CEven?{" "}
+            <Link
+              href="#"
+              className="underline decoration-solid underline-offset-2 hover:opacity-70 transition-opacity"
+            >
+              Login Now
+            </Link>
+          </p>
+        </div>
+      </div>
+
+      {/* Dashboard */}
+      <div className="mt-[20px] px-4 flex justify-center">
+        <div
+          className="w-full bg-[rgba(255,255,255,0.46)]"
+          style={{ maxWidth: "980px", borderRadius: "8px 8px 0 0" }}
+        >
+          {/* Tabs row */}
+          <div className="bg-white border-b border-[rgba(68,25,6,0.08)] flex">
+            {TABS.map((tab, i) => (
+              <div
+                key={tab}
+                className="flex-1 flex items-center justify-center px-1 py-3 relative"
+              >
+                <span
+                  className="font-['Inter'] font-semibold text-[14px] leading-[20px] whitespace-nowrap"
+                  style={{ color: i === 0 ? "#233243" : "#667085" }}
+                >
+                  {tab}
+                </span>
+                {i === 0 && (
+                  <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-[#3b2513] rounded-full" />
+                )}
+              </div>
+            ))}
+          </div>
+
+          {/* Screenshot */}
+          <div className="bg-[rgba(68,25,6,0.04)] p-[8px]">
+            <div className="overflow-hidden rounded-sm shadow-[0px_1px_1px_0.5px_rgba(68,25,6,0.04),0px_3px_3px_1.5px_rgba(68,25,6,0.04),0px_6px_6px_-3px_rgba(68,25,6,0.04),0px_12px_12px_-6px_rgba(68,25,6,0.04),0px_24px_24px_-12px_rgba(68,25,6,0.04)]">
+              <Image
+                src="/hero/dashboard.png"
+                alt="CEven admin dashboard"
+                width={964}
+                height={557}
+                className="w-full h-auto block"
+                priority
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Logo marquee */}
+      <div className="py-10">
+        <p className="font-['Inter'] font-medium text-[15px] leading-[21.9px] text-[#6a7074] text-center tracking-[-0.024em] mb-5 px-4">
+          Join 500,000+ owners, directors, teachers, and families already on Playground
+        </p>
+
+        <div className="relative overflow-hidden">
+          <div className="absolute left-0 top-0 bottom-0 w-24 z-10 bg-gradient-to-r from-[#FAF2E1] to-transparent pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-24 z-10 bg-gradient-to-l from-[#FAF2E1] to-transparent pointer-events-none" />
+
+          <div className="flex gap-10 items-center animate-marquee" style={{ width: "max-content" }}>
+            {[...Array(6)].flatMap(() => LOGOS).map((logo, i) => (
+              <div key={i} className="shrink-0 flex items-center justify-center h-[60px]">
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  width={logo.w}
+                  height={logo.h}
+                  className="object-contain max-h-[54px] w-auto opacity-70"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+    </section>
   );
 }

@@ -1,28 +1,30 @@
-<svg width="1280" height="288" viewBox="0 0 1280 288" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="1205" cy="116" r="75" fill="#3B2513"/>
-<circle cx="1130" cy="164" r="75" fill="#3B2513"/>
-<ellipse cx="51" cy="47" rx="51" ry="47" transform="matrix(-1 0 0 1 220 38)" fill="#3B2513"/>
-<circle cx="1125" cy="105" r="45" fill="#3B2513"/>
-<ellipse cx="81" cy="75" rx="81" ry="75" transform="matrix(-1 0 0 1 198 72)" fill="#3B2513"/>
-<circle cx="674" cy="190" r="75" fill="#3B2513"/>
-<ellipse cx="50.5" cy="47" rx="50.5" ry="47" transform="matrix(-1 0 0 1 660 108)" fill="#3B2513"/>
-<circle cx="559" cy="197" r="75" fill="#3B2513"/>
-<ellipse cx="81" cy="75" rx="81" ry="75" transform="matrix(-1 0 0 1 825 108)" fill="#3B2513"/>
-<circle cx="1027" cy="177" r="75" fill="#3B2513"/>
-<ellipse cx="81" cy="75" rx="81" ry="75" transform="matrix(-1 0 0 1 331 138)" fill="#3B2513"/>
-<circle cx="941.5" cy="163.5" r="51.5" fill="#3B2513"/>
-<ellipse cx="55.5" cy="51.5" rx="55.5" ry="51.5" transform="matrix(-1 0 0 1 408 118)" fill="#3B2513"/>
-<circle cx="885.5" cy="187.5" r="51.5" fill="#3B2513"/>
-<ellipse cx="56" cy="51.5" rx="56" ry="51.5" transform="matrix(-1 0 0 1 483 148)" fill="#3B2513"/>
-<circle cx="1065.5" cy="131.5" r="51.5" fill="#3B2513"/>
-<ellipse cx="56" cy="51.5" rx="56" ry="51.5" transform="matrix(-1 0 0 1 259 85)" fill="#3B2513"/>
-<circle cx="787" cy="137" r="39" fill="#3B2513"/>
-<ellipse cx="56" cy="51.5" rx="56" ry="51.5" transform="matrix(-1 0 0 1 565 118)" fill="#3B2513"/>
-<circle cx="495.5" cy="153.5" r="51.5" fill="#3B2513"/>
-<ellipse cx="56" cy="51.5" rx="56" ry="51.5" transform="matrix(-1 0 0 1 890 108)" fill="#3B2513"/>
-<circle cx="697.5" cy="107.5" r="29.5" fill="#3B2513"/>
-<ellipse cx="32" cy="29.5" rx="32" ry="29.5" transform="matrix(-1 0 0 1 566 81)" fill="#3B2513"/>
-<ellipse cx="81" cy="75" rx="81" ry="75" transform="matrix(-1 0 0 1 149 61)" fill="#3B2513"/>
-<circle cx="1260" cy="75" r="75" fill="#3B2513"/>
-<ellipse cx="81" cy="75" rx="81" ry="75" transform="matrix(-1 0 0 1 89 20)" fill="#3B2513"/>
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 2099.22 429.386" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Frame 1686561081">
+<circle id="Ellipse 1" cx="1905.4" cy="172.948" r="111.819" fill="var(--fill-0, #3B2513)"/>
+<circle id="Ellipse 2" cx="1793.58" cy="244.512" r="111.819" fill="var(--fill-0, #3B2513)"/>
+<ellipse id="Ellipse 15" cx="76.0371" cy="70.0734" rx="76.0371" ry="70.0734" transform="matrix(-1 0 0 1 436.84 56.6551)" fill="var(--fill-0, #3B2513)"/>
+<circle id="Ellipse 12" cx="1786.13" cy="156.547" r="67.0915" fill="var(--fill-0, #3B2513)"/>
+<ellipse id="Ellipse 16" cx="120.765" cy="111.819" rx="120.765" ry="111.819" transform="matrix(-1 0 0 1 404.04 107.347)" fill="var(--fill-0, #3B2513)"/>
+<circle id="Ellipse 9" cx="1113.72" cy="283.275" r="111.819" fill="var(--fill-0, #3B2513)"/>
+<ellipse id="Ellipse 18" cx="75.2916" cy="70.0734" rx="75.2916" ry="70.0734" transform="matrix(-1 0 0 1 1092.85 161.02)" fill="var(--fill-0, #3B2513)"/>
+<circle id="Ellipse 10" cx="942.263" cy="293.713" r="111.819" fill="var(--fill-0, #3B2513)"/>
+<ellipse id="Ellipse 19" cx="120.765" cy="111.819" rx="120.765" ry="111.819" transform="matrix(-1 0 0 1 1338.85 161.02)" fill="var(--fill-0, #3B2513)"/>
+<circle id="Ellipse 3" cx="1640.02" cy="263.893" r="111.819" fill="var(--fill-0, #3B2513)"/>
+<ellipse id="Ellipse 20" cx="120.765" cy="111.819" rx="120.765" ry="111.819" transform="matrix(-1 0 0 1 602.333 205.748)" fill="var(--fill-0, #3B2513)"/>
+<circle id="Ellipse 4" cx="1512.54" cy="243.767" r="76.7825" fill="var(--fill-0, #3B2513)"/>
+<ellipse id="Ellipse 21" cx="82.7462" cy="76.7825" rx="82.7462" ry="76.7825" transform="matrix(-1 0 0 1 717.134 175.929)" fill="var(--fill-0, #3B2513)"/>
+<circle id="Ellipse 5" cx="1429.05" cy="279.548" r="76.7825" fill="var(--fill-0, #3B2513)"/>
+<ellipse id="Ellipse 22" cx="83.4917" cy="76.7825" rx="83.4917" ry="76.7825" transform="matrix(-1 0 0 1 828.953 220.657)" fill="var(--fill-0, #3B2513)"/>
+<circle id="Ellipse 6" cx="1697.42" cy="196.056" r="76.7825" fill="var(--fill-0, #3B2513)"/>
+<ellipse id="Ellipse 23" cx="83.4917" cy="76.7825" rx="83.4917" ry="76.7825" transform="matrix(-1 0 0 1 494.986 126.729)" fill="var(--fill-0, #3B2513)"/>
+<circle id="Ellipse 7" cx="1282.19" cy="204.257" r="58.146" fill="var(--fill-0, #3B2513)"/>
+<ellipse id="Ellipse 24" cx="83.4917" cy="76.7825" rx="83.4917" ry="76.7825" transform="matrix(-1 0 0 1 951.209 175.929)" fill="var(--fill-0, #3B2513)"/>
+<circle id="Ellipse 11" cx="847.59" cy="228.857" r="76.7825" fill="var(--fill-0, #3B2513)"/>
+<ellipse id="Ellipse 25" cx="83.4917" cy="76.7825" rx="83.4917" ry="76.7825" transform="matrix(-1 0 0 1 1435.76 161.02)" fill="var(--fill-0, #3B2513)"/>
+<circle id="Ellipse 8" cx="1148.76" cy="160.274" r="43.9822" fill="var(--fill-0, #3B2513)"/>
+<ellipse id="Ellipse 26" cx="47.7095" cy="43.9822" rx="47.7095" ry="43.9822" transform="matrix(-1 0 0 1 952.7 120.765)" fill="var(--fill-0, #3B2513)"/>
+<ellipse id="Ellipse 14" cx="120.765" cy="111.819" rx="120.765" ry="111.819" transform="matrix(-1 0 0 1 330.985 90.9463)" fill="var(--fill-0, #3B2513)"/>
+<circle id="Ellipse 13" cx="1987.4" cy="111.819" r="111.819" fill="var(--fill-0, #3B2513)"/>
+<ellipse id="Ellipse 17" cx="120.765" cy="111.819" rx="120.765" ry="111.819" transform="matrix(-1 0 0 1 241.529 29.8192)" fill="var(--fill-0, #3B2513)"/>
+</g>
 </svg>

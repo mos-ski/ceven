@@ -1,73 +1,64 @@
-"use client";
+import Image from "next/image";
 
-import { FadeUp } from "@/components/animations/fade-up";
-import { Stagger, StaggerItem } from "@/components/animations/stagger";
-
-const TESTIMONIALS = [
-  {
-    quote:
-      "I used to call the crèche twice before noon. Now I don't. I see everything before they could even pick up.",
-    name: "Chiamaka O.",
-    role: "Working mother, Ikeja · Mother of two",
-  },
-  {
-    quote:
-      "Our parents stopped worrying because they stopped wondering. Our reviews changed. Our referrals doubled.",
-    name: "Mrs. Adeyemi",
-    role: "Owner, Sunflower Crèche · Lekki Phase 1",
-  },
-  {
-    quote:
-      "The first time I got a lunch report in the middle of a meeting, I almost cried. I felt like I was there.",
-    name: "Emeka N.",
-    role: "Father, first-time parent · Victoria Island",
-  },
-];
+const STARS = [0, 1, 2, 3, 4];
 
 export function TestimonialsSection() {
   return (
-    <section className="bg-white px-4 sm:px-8 lg:px-16 py-16 sm:py-20">
-      <div className="max-w-6xl mx-auto">
-        <FadeUp>
-          <div className="mb-10 sm:mb-12">
-            <p className="text-[#9B9B9B] text-xs font-semibold uppercase tracking-widest mb-4">
-              What People Say
-            </p>
-            <h2 className="font-[family-name:var(--font-fraunces)] text-[#1A1208] text-2xl sm:text-3xl lg:text-4xl font-semibold leading-[1.2]" style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}>
-              The proof is in<br />
-              the peace of mind.
-            </h2>
-          </div>
-        </FadeUp>
+    <section className="bg-[#FAF2E1] py-12 sm:py-16 lg:py-24 px-4 sm:px-8">
+      <div className="max-w-[1280px] mx-auto">
+        <div className="bg-[#233243] rounded-[24px] overflow-hidden flex flex-col md:flex-row">
+          {/* Left: quote */}
+          <div className="flex-1 p-8 sm:p-12 lg:p-16 flex flex-col gap-8">
+            {/* Stars */}
+            <div className="flex gap-1">
+              {STARS.map((i) => (
+                <svg key={i} width="20" height="20" viewBox="0 0 20 20" fill="#FEC84B">
+                  <path d="M10 1.5l2.47 5.01 5.53.8-4 3.9.94 5.49L10 14.02l-4.94 2.68.94-5.49-4-3.9 5.53-.8L10 1.5z" />
+                </svg>
+              ))}
+            </div>
 
-        <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {TESTIMONIALS.map((t) => (
-            <StaggerItem key={t.name}>
-              <div className="bg-[#F8F6F3] border border-[#E8E4DE] rounded-2xl p-6 sm:p-7 hover:-translate-y-1 hover:shadow-md transition-all duration-200">
-                <QuoteIcon />
-                <p className="text-[#1A1208] text-sm sm:text-base leading-relaxed mt-4 mb-6">
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-                <div>
-                  <p className="text-[#9A6033] font-semibold text-sm">{t.name}</p>
-                  <p className="text-[#9B9B9B] text-xs mt-0.5">{t.role}</p>
-                </div>
+            {/* Quote */}
+            <p
+              className="font-['Inter'] font-medium text-white leading-[1.22] tracking-[-0.02em]"
+              style={{ fontSize: "clamp(20px, 2.6vw, 36px)" }}
+            >
+              I used to call the creche just to check my son had eaten lunch. Now I just&hellip; know. That&apos;s the whole thing.
+            </p>
+
+            {/* Attribution */}
+            <div className="flex flex-col gap-1">
+              <p className="font-['Inter'] font-semibold text-white text-[18px] leading-[28px]">
+                — Renee Wells
+              </p>
+              <p className="font-['Inter'] font-normal text-[#e4e7ec] text-[16px] leading-[24px]">
+                Product Designer, Quotient
+              </p>
+            </div>
+          </div>
+
+          {/* Right: photo with play button */}
+          <div className="relative w-full md:w-[420px] lg:w-[480px] shrink-0 min-h-[300px] md:min-h-0">
+            <Image
+              src="/pain-points/testimonial-photo.png"
+              alt="Parent with child"
+              fill
+              className="object-cover object-center"
+            />
+            {/* Play button overlay */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="relative w-24 h-24 backdrop-blur-[9.6px] rounded-full overflow-hidden">
+                <Image
+                  src="/pain-points/play-button.png"
+                  alt="Play video"
+                  fill
+                  className="object-contain"
+                />
               </div>
-            </StaggerItem>
-          ))}
-        </Stagger>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
-  );
-}
-
-function QuoteIcon() {
-  return (
-    <svg width="28" height="20" viewBox="0 0 28 20" fill="none">
-      <path
-        d="M0 20V12C0 8.667 0.833 5.917 2.5 3.75 4.167 1.583 6.583 0.333 9.75 0L11 2.25C9.167 2.583 7.75 3.375 6.75 4.625 5.75 5.875 5.25 7.333 5.25 9H10V20H0ZM17 20V12C17 8.667 17.833 5.917 19.5 3.75 21.167 1.583 23.583 0.333 26.75 0L28 2.25C26.167 2.583 24.75 3.375 23.75 4.625 22.75 5.875 22.25 7.333 22.25 9H27V20H17Z"
-        fill="#D4C4B0"
-      />
-    </svg>
   );
 }
