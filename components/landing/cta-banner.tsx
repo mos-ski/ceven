@@ -43,10 +43,10 @@ export function CtaBanner() {
           {/* Heading */}
           <div className="flex flex-col gap-4 max-w-[739px]">
             <h2 className="font-[family-name:var(--font-merriweather-import)] font-bold text-black text-[28px] sm:text-[36px] lg:text-[46px] leading-[1.2]">
-              You weren&apos;t there. Now you don&apos;t have to guess what happened.
+              Take CEven with you, wherever the day happens.
             </h2>
             <p className="font-[family-name:var(--font-plus-jakarta-sans)] font-medium text-[#6b7280] text-[16px] sm:text-[18px] lg:text-[24px] leading-normal max-w-[702px]">
-              No more piecing the day together from a tired handoff at pickup.
+              Available for parents and caregivers, on iOS and Android.
             </p>
           </div>
 
@@ -110,47 +110,6 @@ export function CtaBanner() {
               </li>
             ))}
           </ul>
-        </div>
-
-        {/* ── Testimonial card ── */}
-        <div className="bg-[#233243] rounded-[24px] overflow-hidden flex flex-col lg:flex-row">
-          {/* Left: quote */}
-          <div className="flex-1 p-8 sm:p-12 lg:p-16 flex flex-col gap-8">
-            <div className="flex flex-col gap-6">
-              {/* Stars */}
-              <div className="flex gap-1">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <svg key={i} width="20" height="20" viewBox="0 0 20 20" fill="#FEC84B">
-                    <path d="M10 1.667l2.575 5.217 5.758.836-4.166 4.062.983 5.735L10 14.792l-5.15 2.725.983-5.735L1.667 7.72l5.758-.836L10 1.667z" />
-                  </svg>
-                ))}
-              </div>
-              {/* Quote */}
-              <p className="font-medium text-white text-[24px] sm:text-[28px] lg:text-[36px] leading-[1.3] tracking-[-0.02em]">
-                I used to call the creche just to check my son had eaten lunch. Now I just… know. That&apos;s the whole thing.
-              </p>
-            </div>
-            {/* Attribution */}
-            <div className="flex flex-col gap-1">
-              <p className="font-semibold text-white text-[18px] leading-[28px]">
-                — Renee Wells
-              </p>
-              <p className="text-[#e4e7ec] text-[16px] leading-[24px]">
-                Product Designer, Quotient
-              </p>
-            </div>
-          </div>
-
-          {/* Right: photo */}
-          <div className="relative lg:w-[480px] h-[280px] sm:h-[360px] lg:h-auto shrink-0">
-            <Image
-              src="/dl-testimonial-photo.png"
-              alt="Happy mother with child"
-              fill
-              className="object-cover object-center"
-              sizes="(max-width: 1024px) 100vw, 480px"
-            />
-          </div>
         </div>
 
       </div>
