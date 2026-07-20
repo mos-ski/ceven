@@ -19,7 +19,7 @@ async function signupAction(
   return signup(formData);
 }
 
-export function SignUpForm() {
+export function SignUpForm({ defaultEmail }: { defaultEmail?: string }) {
   const [state, formAction, isPending] = useActionState(signupAction, {});
 
   return (
@@ -49,6 +49,7 @@ export function SignUpForm() {
           label="Email Address"
           placeholder="Enter your official email address"
           autoComplete="email"
+          defaultValue={defaultEmail}
           disabled={isPending}
         />
         <PasswordField
