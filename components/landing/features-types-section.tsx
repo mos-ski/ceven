@@ -91,7 +91,7 @@ export function FeaturesTypesSection() {
             <div className="relative shrink-0 w-full lg:w-[420px] xl:w-[510px] h-[300px] sm:h-[400px] lg:h-[524px] self-end">
               <Image
                 src="/features-types-photo-blob.png"
-                alt="A mother holding her baby close"
+                alt="Children learning and playing together at a crèche"
                 fill
                 className="object-contain object-bottom"
                 priority

@@ -1,6 +1,5 @@
 import { HeroSection } from "@/components/landing/hero-section";
 import { PainPointsSection } from "@/components/landing/pain-points-section";
-import { FeaturesSection } from "@/components/landing/features-section";
 import { ParentFeaturesSection } from "@/components/landing/parent-features-section";
 import { CaregiverFeaturesSection } from "@/components/landing/caregiver-features-section";
 import { AdminFeaturesSection } from "@/components/landing/admin-features-section";
@@ -14,7 +13,6 @@ export default function HomePage() {
     <>
       <HeroSection />
       <PainPointsSection />
-      <FeaturesSection />
       <ParentFeaturesSection />
       <CaregiverFeaturesSection />
       <AdminFeaturesSection />

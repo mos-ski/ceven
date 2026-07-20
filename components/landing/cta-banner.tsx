@@ -1,116 +1,104 @@
-import Image from "next/image";
 import Link from "next/link";
+import { FadeUp } from "@/components/animations/fade-up";
+import { Stagger, StaggerItem } from "@/components/animations/stagger";
 
-const CHECKLIST = [
-  "Real-time push notifications for every update",
-  "Full compiled day report waiting at pickup",
-  "Two-way messaging with your child's caregiver",
-  "Instant emergency alerts when seconds count",
+const ROLES = [
+  {
+    label: "I'm an admin or director",
+    href: "/contact",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 21V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14" stroke="#c78c5f" strokeWidth="1.8" strokeLinecap="round" />
+        <path d="M1 21h22M9 21v-5h6v5" stroke="#c78c5f" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        <rect x="9" y="7" width="2.5" height="3" rx="0.5" fill="#c78c5f" />
+        <rect x="12.5" y="7" width="2.5" height="3" rx="0.5" fill="#c78c5f" />
+        <rect x="9" y="12" width="2.5" height="3" rx="0.5" fill="#c78c5f" />
+        <rect x="12.5" y="12" width="2.5" height="3" rx="0.5" fill="#c78c5f" />
+      </svg>
+    ),
+  },
+  {
+    label: "I'm a staff member",
+    href: "/contact",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="8" r="4" stroke="#c78c5f" strokeWidth="1.8" />
+        <path d="M4 20c0-3.314 3.582-6 8-6s8 2.686 8 6" stroke="#c78c5f" strokeWidth="1.8" strokeLinecap="round" />
+      </svg>
+    ),
+  },
+  {
+    label: "I'm a parent or guardian",
+    href: "/contact",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 21C12 21 4 16.5 4 10a4 4 0 0 1 8 0 4 4 0 0 1 8 0c0 6.5-8 11-8 11Z" stroke="#c78c5f" strokeWidth="1.8" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
 ];
 
 export function CtaBanner() {
   return (
-    <section className="bg-[#FAF2E1] px-4 sm:px-8 lg:px-16 pt-16 sm:pt-20 lg:pt-24 pb-16 sm:pb-20">
-      <div className="max-w-[1280px] mx-auto flex flex-col gap-6 sm:gap-8">
+    <section className="bg-[#c78c5f] py-16 sm:py-20 lg:py-24 px-4 sm:px-8">
+      <div className="max-w-[702px] mx-auto flex flex-col items-center gap-6 text-center">
 
-        {/* ── Phone mockups floating above the pill ── */}
-        <div className="relative flex items-end justify-center gap-2 sm:gap-6 z-10 -mb-24 sm:-mb-32 lg:-mb-40 px-4">
-          <div className="relative w-[160px] sm:w-[210px] lg:w-[260px] aspect-[323/688] drop-shadow-xl">
-            <Image
-              src="/dl-phone-1.png"
-              alt="CEven daily report screen"
-              fill
-              className="object-contain"
-              sizes="(max-width: 640px) 160px, (max-width: 1024px) 210px, 260px"
-              priority
-            />
-          </div>
-          <div className="relative w-[160px] sm:w-[210px] lg:w-[260px] aspect-[323/688] rotate-[7deg] drop-shadow-xl mb-6 sm:mb-10">
-            <Image
-              src="/dl-phone-2.png"
-              alt="CEven arrivals and pickups screen"
-              fill
-              className="object-contain"
-              sizes="(max-width: 640px) 160px, (max-width: 1024px) 210px, 260px"
-              priority
-            />
-          </div>
-        </div>
-
-        {/* ── White pill container ── */}
-        <div className="bg-white rounded-[48px] sm:rounded-[72px] lg:rounded-[100px] pt-28 sm:pt-40 lg:pt-48 pb-12 sm:pb-16 px-6 sm:px-12 lg:px-16 flex flex-col items-center gap-6 sm:gap-8 text-center">
+        <FadeUp className="flex flex-col items-center gap-6 w-full">
+          {/* Overline */}
+          <p className="font-[family-name:var(--font-plus-jakarta-sans)] font-semibold text-[#f7f9ff]/80 text-[14px] sm:text-[16px] leading-[24px] uppercase tracking-widest">
+            #1 childcare management software
+          </p>
 
           {/* Heading */}
-          <div className="flex flex-col gap-4 max-w-[739px]">
-            <h2 className="font-[family-name:var(--font-merriweather-import)] font-bold text-black text-[28px] sm:text-[36px] lg:text-[46px] leading-[1.2]">
-              Take CEven with you, wherever the day happens.
-            </h2>
-            <p className="font-[family-name:var(--font-plus-jakarta-sans)] font-medium text-[#6b7280] text-[16px] sm:text-[18px] lg:text-[24px] leading-normal max-w-[702px]">
-              Available for parents and caregivers, on iOS and Android.
-            </p>
-          </div>
+          <h2
+            className="font-[family-name:var(--font-fraunces)] font-bold text-white text-[32px] sm:text-[44px] lg:text-[48px] leading-[1.18] tracking-[-0.02em]"
+            style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}
+          >
+            Ready to be the crèche<br className="hidden sm:block" /> that stands out?
+          </h2>
 
-          {/* Download buttons */}
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            {/* Google Play */}
-            <Link
-              href="#"
-              className="relative flex items-center gap-1 pl-1.5 pr-4 py-0.5 rounded-[12px] bg-[#3b2513] shadow-[inset_0px_4px_12px_0px_rgba(255,255,255,0.12)] hover:opacity-90 transition-opacity"
-            >
-              <div className="relative w-[46px] h-[46px] shrink-0">
-                <Image
-                  src="/dl-google-play.png"
-                  alt="Google Play"
-                  fill
-                  className="object-contain"
-                  sizes="46px"
-                />
-              </div>
-              <span className="font-[family-name:var(--font-plus-jakarta-sans)] font-medium text-[#faf2e1] text-[16px] leading-[20px] whitespace-nowrap">
-                Google Play
-              </span>
-            </Link>
+          {/* Subtext */}
+          <p className="font-[family-name:var(--font-plus-jakarta-sans)] font-semibold text-[#faf2e1] text-[16px] sm:text-[18px] lg:text-[20px] leading-[24px]">
+            Download CEven. Built for Nigerian crèches. Set up in 15 minutes.
+          </p>
+        </FadeUp>
 
-            {/* App Store */}
-            <Link
-              href="#"
-              className="flex items-center gap-2 h-[50px] px-4 rounded-[12px] border border-[#3d444f] hover:bg-[#3d444f]/5 transition-colors"
-            >
-              <div className="relative w-6 h-6 shrink-0">
-                <Image
-                  src="/dl-apple-icon.png"
-                  alt="Apple"
-                  fill
-                  className="object-contain"
-                  sizes="24px"
-                />
-              </div>
-              <span className="font-[family-name:var(--font-plus-jakarta-sans)] font-semibold text-[#3d444f] text-[16px] leading-[20px] whitespace-nowrap">
-                App Store
-              </span>
-            </Link>
-          </div>
-
-          {/* Checklist */}
-          <ul className="flex flex-col gap-4 items-start max-w-[391px] w-full">
-            {CHECKLIST.map((item) => (
-              <li key={item} className="flex items-center gap-3">
-                <div className="relative w-6 h-6 shrink-0">
-                  <Image
-                    src="/dl-check.png"
-                    alt=""
-                    fill
-                    className="object-contain"
-                    sizes="24px"
-                  />
-                </div>
-                <span className="font-[family-name:var(--font-plus-jakarta-sans)] font-light text-black text-[16px] leading-[24px]">
-                  {item}
-                </span>
-              </li>
+        {/* Role selector */}
+        <FadeUp className="w-full max-w-[390px] flex flex-col gap-4 mt-2" delay={0.1}>
+          <p className="font-[family-name:var(--font-plus-jakarta-sans)] font-semibold text-white text-[18px] sm:text-[20px] leading-[1.4]">
+            First, tell us about yourself.
+          </p>
+          <Stagger className="flex flex-col gap-3">
+            {ROLES.map((role) => (
+              <StaggerItem key={role.label}>
+                <Link
+                  href={role.href}
+                  className="group flex items-center gap-4 bg-[#f7f9ff] border-2 border-[#ebeff4] rounded-2xl px-4 sm:px-6 py-[17px] hover:border-[#c78c5f]/40 hover:shadow-md transition-all duration-150"
+                >
+                  <div className="w-11 h-11 rounded-xl bg-[#eef1ff] flex items-center justify-center shrink-0">
+                    {role.icon}
+                  </div>
+                  <span className="font-[family-name:var(--font-plus-jakarta-sans)] font-semibold text-[#233243] text-[15px] sm:text-[18px] leading-[24px] flex-1 text-left">
+                    {role.label}
+                  </span>
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 text-[#c78c5f] group-hover:translate-x-0.5 transition-transform">
+                    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </Link>
+              </StaggerItem>
             ))}
-          </ul>
-        </div>
+          </Stagger>
+        </FadeUp>
+
+        {/* Login note */}
+        <FadeUp delay={0.2}>
+          <p className="font-[family-name:var(--font-plus-jakarta-sans)] text-white text-[14px] sm:text-[16px] leading-[24px]">
+            Already Joined CEven?{" "}
+            <Link href="/login" className="underline underline-offset-2 hover:opacity-80 transition-opacity font-semibold">
+              Login Now
+            </Link>
+          </p>
+        </FadeUp>
 
       </div>
     </section>

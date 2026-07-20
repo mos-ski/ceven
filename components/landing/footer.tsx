@@ -2,8 +2,6 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { FadeUp } from "@/components/animations/fade-up";
-import { Stagger, StaggerItem } from "@/components/animations/stagger";
 
 const FOOTER_LINKS = {
   Audience: [
@@ -25,72 +23,86 @@ const FOOTER_LINKS = {
 
 export function LandingFooter() {
   return (
-    <footer className="relative bg-[#3B2513]">
-      <CloudWaveTop />
-      <FadeUp amount={0.05}>
-        <div className="px-4 sm:px-8 lg:px-16 pt-12 pb-8">
+    <footer className="relative bg-[#3b2513] overflow-hidden">
+      {/* Wave divider */}
+      <div className="w-full overflow-hidden leading-none -mb-1">
+        <img
+          src="/Footer/Frame 1686561081.svg"
+          alt=""
+          role="presentation"
+          style={{ width: "100%", height: "clamp(60px, 8vw, 110px)", display: "block", objectFit: "fill" }}
+        />
+      </div>
+
+      {/* Main footer content */}
+      <div className="px-6 sm:px-10 lg:px-16 pt-10 pb-6">
+        <div className="max-w-[1600px] mx-auto">
+
+          {/* Top row: logo left, nav right */}
           <div className="flex flex-col gap-10 md:flex-row md:justify-between md:items-start mb-10">
-            <div className="flex-shrink-0">
-              <div className="mb-4">
+
+            {/* Logo + tagline */}
+            <div className="flex flex-col gap-4 flex-shrink-0">
+              <div className="bg-white rounded-[48px] shadow-[0px_4px_2px_rgba(0,0,0,0.25)] px-5 py-3 w-fit">
                 <Image
                   src="/Frame 1686561079.png"
                   alt="CEven"
-                  width={120}
-                  height={46}
-                  className="h-10 w-auto"
+                  width={174}
+                  height={50}
+                  className="h-[42px] w-auto"
                 />
               </div>
-              <p className="text-[#FAF2E1] text-base font-medium mb-1">Life made easier for families</p>
-              <p className="text-[#FAF2E1]/60 text-sm">
-                A product by{" "}
-                <span className="text-[#9A6033] font-medium">Swayosoo™</span>
-              </p>
+              <div className="flex flex-col gap-1">
+                <p className="font-[family-name:var(--font-plus-jakarta-sans)] text-white text-[20px] sm:text-[24px] leading-[28px]">
+                  Life made easier for families
+                </p>
+                <p className="font-[family-name:var(--font-plus-jakarta-sans)] text-[#faf2e1] text-[14px] sm:text-[16px] leading-[28px]">
+                  A product by{" "}
+                  <span className="font-semibold text-[#c78c5f]">Swayosoo™</span>
+                </p>
+              </div>
             </div>
 
-            <Stagger className="grid grid-cols-2 sm:grid-cols-3 gap-8 md:gap-16">
+            {/* Nav columns */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 lg:gap-[72px]">
               {Object.entries(FOOTER_LINKS).map(([category, links]) => (
-                <StaggerItem key={category}>
-                  <div>
-                    <p className="text-[#9A6033] text-sm font-semibold mb-4">{category}</p>
-                    <ul className="space-y-3">
-                      {links.map((link) => (
-                        <li key={link.label}>
-                          <Link
-                            href={link.href}
-                            className="text-[#FAF2E1]/70 text-sm hover:text-[#FAF2E1] hover:translate-x-0.5 transition-all duration-150 inline-block"
-                          >
-                            {link.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </StaggerItem>
+                <div key={category} className="flex flex-col gap-3">
+                  <p className="font-[family-name:var(--font-plus-jakarta-sans)] font-semibold text-[#c78c5f] text-[14px] sm:text-[16px] leading-[28px]">
+                    {category}
+                  </p>
+                  <ul className="flex flex-col gap-2">
+                    {links.map((link) => (
+                      <li key={link.label}>
+                        <Link
+                          href={link.href}
+                          className="font-[family-name:var(--font-plus-jakarta-sans)] font-semibold text-[#faf2e1] text-[14px] sm:text-[16px] leading-[28px] hover:text-white hover:translate-x-0.5 transition-all duration-150 inline-block"
+                        >
+                          {link.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               ))}
-            </Stagger>
+            </div>
+
           </div>
 
-          <div className="border-t border-[#FAF2E1]/10 pt-6 flex flex-col sm:flex-row justify-between items-center gap-2">
-            <p className="text-[#FAF2E1]/50 text-sm">
+          {/* Divider */}
+          <div className="border-t border-[#faf2e1]/15 mb-5" />
+
+          {/* Copyright bar */}
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-2">
+            <p className="font-[family-name:var(--font-plus-jakarta-sans)] text-[#979797] text-[13px] sm:text-[16px] leading-[28px]">
               © 2025 CEven by Swayosoo™. All rights reserved.
             </p>
-            <p className="text-[#FAF2E1]/50 text-sm">Lagos, Nigeria</p>
+            <p className="font-[family-name:var(--font-plus-jakarta-sans)] font-semibold text-[#faf2e1] text-[13px] sm:text-[16px] leading-[28px]">
+              Lagos, Nigeria
+            </p>
           </div>
-        </div>
-      </FadeUp>
-    </footer>
-  );
-}
 
-function CloudWaveTop() {
-  return (
-    <div className="w-full overflow-hidden leading-none">
-      <img
-        src="/Footer/Frame 1686561081.svg"
-        alt=""
-        role="presentation"
-        style={{ width: "100%", height: "80px", display: "block", objectFit: "fill" }}
-      />
-    </div>
+        </div>
+      </div>
+    </footer>
   );
 }

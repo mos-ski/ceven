@@ -4,11 +4,12 @@ const STARS = [0, 1, 2, 3, 4];
 
 export function TestimonialsSection() {
   return (
-    <section className="bg-[#FAF2E1] py-12 sm:py-16 lg:py-24 px-4 sm:px-8">
-      <div className="max-w-[1280px] mx-auto">
+    <section className="bg-[#faf2e1] py-12 sm:py-16 lg:py-24 px-4 sm:px-8">
+      <div className="max-w-[1280px] mx-auto px-0 sm:px-8">
         <div className="bg-[#233243] rounded-[24px] overflow-hidden flex flex-col md:flex-row">
+
           {/* Left: quote */}
-          <div className="flex-1 p-8 sm:p-12 lg:p-16 flex flex-col gap-8">
+          <div className="flex-1 p-8 sm:p-12 lg:p-16 flex flex-col gap-8 justify-center">
             {/* Stars */}
             <div className="flex gap-1">
               {STARS.map((i) => (
@@ -20,8 +21,8 @@ export function TestimonialsSection() {
 
             {/* Quote */}
             <p
-              className="font-['Inter'] font-medium text-white leading-[1.22] tracking-[-0.02em]"
-              style={{ fontSize: "clamp(20px, 2.6vw, 36px)" }}
+              className="font-['Inter'] font-medium text-white tracking-[-0.02em]"
+              style={{ fontSize: "clamp(20px, 2.6vw, 36px)", lineHeight: "1.22" }}
             >
               I used to call the creche just to check my son had eaten lunch. Now I just&hellip; know. That&apos;s the whole thing.
             </p>
@@ -38,18 +39,19 @@ export function TestimonialsSection() {
           </div>
 
           {/* Right: photo with play button */}
-          <div className="relative w-full md:w-[420px] lg:w-[480px] shrink-0 min-h-[300px] md:min-h-0">
+          <div className="relative w-full md:w-[420px] lg:w-[480px] shrink-0 min-h-[320px] md:min-h-[448px]">
             <Image
-              src="/pain-points/testimonial-photo.png"
-              alt="Parent with child"
+              src="/landing/parents-app/testimonial-photo.png"
+              alt="Parent holding child"
               fill
               className="object-cover object-center"
+              sizes="(max-width: 768px) 100vw, 480px"
             />
             {/* Play button overlay */}
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="relative w-24 h-24 backdrop-blur-[9.6px] rounded-full overflow-hidden">
+              <div className="relative w-24 h-24" style={{ backdropFilter: "blur(9.6px)" }}>
                 <Image
-                  src="/pain-points/play-button.png"
+                  src="/landing/parents-app/play-button.png"
                   alt="Play video"
                   fill
                   className="object-contain"
@@ -57,6 +59,7 @@ export function TestimonialsSection() {
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>
