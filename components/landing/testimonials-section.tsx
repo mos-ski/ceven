@@ -49,14 +49,14 @@ export function TestimonialsSection() {
             />
             {/* Play button overlay */}
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="relative w-24 h-24" style={{ backdropFilter: "blur(9.6px)" }}>
-                <Image
-                  src="/landing/parents-app/play-button.png"
-                  alt="Play video"
-                  fill
-                  className="object-contain"
-                />
-              </div>
+              <img
+                src="/landing/parents-app/play-button.svg"
+                alt="Play video"
+                width={96}
+                height={96}
+                style={{ backdropFilter: "blur(9.6px)" }}
+                className="w-24 h-24"
+              />
             </div>
           </div>
 

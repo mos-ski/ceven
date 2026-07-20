@@ -6,7 +6,7 @@ import { Stagger, StaggerItem } from "@/components/animations/stagger";
 
 export function CaregiverFeaturesSection() {
   return (
-    <section className="bg-white py-16 sm:py-24 px-4 sm:px-8 lg:px-16">
+    <section className="bg-[#faf2e1] py-16 sm:py-24 px-4 sm:px-8 lg:px-16">
       <div className="max-w-6xl mx-auto">
         <FadeUp>
           <div className="text-center mb-10 sm:mb-14">

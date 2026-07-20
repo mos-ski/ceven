@@ -5,7 +5,6 @@ import { CaregiverFeaturesSection } from "@/components/landing/caregiver-feature
 import { AdminFeaturesSection } from "@/components/landing/admin-features-section";
 import { FeaturesTypesSection } from "@/components/landing/features-types-section";
 import { FamiliesPartnersSection } from "@/components/landing/families-partners-section";
-import { TestimonialsSection } from "@/components/landing/testimonials-section";
 import { CtaBanner } from "@/components/landing/cta-banner";
 
 export default function HomePage() {
@@ -18,7 +17,6 @@ export default function HomePage() {
       <AdminFeaturesSection />
       <FeaturesTypesSection />
       <FamiliesPartnersSection />
-      <TestimonialsSection />
       <CtaBanner />
     </>
   );
