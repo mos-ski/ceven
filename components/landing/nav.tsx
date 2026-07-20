@@ -55,7 +55,7 @@ export function LandingNav({ variant = "dark" }: { variant?: "dark" | "light" })
 
         {/* Desktop CTA */}
         <Link
-          href="#"
+          href="/get-started"
           className={`hidden md:flex items-center font-[family-name:var(--font-urbanist-import)] font-medium text-base px-6 h-10 rounded-[8px] transition-all duration-150 hover:scale-[1.04] active:scale-[0.97] shadow-[inset_0px_4px_12px_0px_rgba(255,255,255,0.12)] ${
             isDark
               ? "bg-[#3B2513] hover:bg-[#5B391E] text-[#FAF2E1]"
@@ -124,7 +124,7 @@ export function LandingNav({ variant = "dark" }: { variant?: "dark" | "light" })
 
             <div className="mt-8">
               <Link
-                href="#"
+                href="/get-started"
                 onClick={() => setOpen(false)}
                 className={`text-sm font-semibold px-8 py-3.5 rounded-full ${
                   isDark
