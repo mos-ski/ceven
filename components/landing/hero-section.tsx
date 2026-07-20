@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -9,6 +9,8 @@ const TABS = [
   { label: "Billing", src: "/hero/tab-billing.jpg", alt: "Billing and payments dashboard in CEven" },
   { label: "Payroll", src: "/hero/tab-payroll.jpg", alt: "Staff payroll log in the CEven admin dashboard" },
   { label: "Behaviour", src: "/hero/tab-behaviour.jpg", alt: "Child development and behaviour tracking in CEven" },
+  { label: "Staff Management", src: "/hero/tab-staff-management.png", alt: "Staff management dashboard in CEven" },
+  { label: "AI", src: "/hero/tab-ai.png", alt: "AI center dashboard in CEven" },
 ];
 
 const LOGOS = [
@@ -21,6 +23,13 @@ const LOGOS = [
 
 export function HeroSection() {
   const [activeTab, setActiveTab] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setActiveTab((prev) => (prev + 1) % TABS.length);
+    }, 3000);
+    return () => clearInterval(id);
+  }, [activeTab]);
 
   return (
     <section className="bg-[#FAF2E1] overflow-hidden min-h-screen py-16">
@@ -89,7 +98,12 @@ export function HeroSection() {
                   {tab.label}
                 </span>
                 {i === activeTab && (
-                  <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-[#3b2513] rounded-full" />
+                  <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-[#3b2513]/15 rounded-full overflow-hidden">
+                    <span
+                      key={activeTab}
+                      className="block h-full bg-[#3b2513] rounded-full animate-tab-progress"
+                    />
+                  </span>
                 )}
               </button>
             ))}

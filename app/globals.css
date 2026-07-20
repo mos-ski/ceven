@@ -230,3 +230,12 @@
 .animate-fade-in {
   animation: fade-in 0.35s ease-out;
 }
+
+@keyframes tab-progress {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+
+.animate-tab-progress {
+  animation: tab-progress 3s linear;
+}

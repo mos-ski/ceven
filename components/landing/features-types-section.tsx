@@ -113,7 +113,7 @@ export function FeaturesTypesSection() {
         </div>
 
         {/* ── Right column: crossfading images ── */}
-        <div className="relative shrink-0 w-full lg:w-[420px] xl:w-[510px] h-[300px] sm:h-[400px] lg:h-[524px] self-end">
+        <div className="relative shrink-0 w-full lg:w-[420px] xl:w-[510px] h-[300px] sm:h-[400px] lg:h-[524px] self-center">
           {TYPES.map((t, i) => (
             <Image
               key={t.image}
