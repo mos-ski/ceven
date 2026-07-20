@@ -120,7 +120,7 @@ export function PainPointsSection() {
 
         {/* ── Testimonial ── */}
         <FadeUp delay={0.15}>
-          <div className="pb-4 sm:pb-6 lg:pb-10 px-4 sm:px-8 lg:px-[12%] mt-6 sm:mt-10 lg:mt-14">
+          <div className="pb-10 sm:pb-14 lg:pb-20 px-4 sm:px-8 lg:px-[12%] mt-10 sm:mt-16 lg:mt-24">
             <div className="bg-[#233243] rounded-[24px] overflow-hidden flex flex-col md:flex-row">
 
               {/* Left: quote */}
