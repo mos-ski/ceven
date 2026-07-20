@@ -64,9 +64,9 @@ function CardShell({ children, className = "" }: { children: React.ReactNode; cl
    Figma: text top-left (max-w ~48%), moment photo lower-left, daily log right column */
 function Card1() {
   return (
-    <CardShell className="h-[440px] sm:h-[460px]">
+    <CardShell className="h-auto sm:h-[460px] pb-7 sm:pb-0">
       {/* Text — top-left, z above images */}
-      <div className="absolute top-0 left-0 z-10 pt-7 px-7 max-w-[52%]">
+      <div className="pt-7 px-7 sm:absolute sm:top-0 sm:left-0 sm:z-10 sm:max-w-[52%]">
         <h3 className="font-[family-name:var(--font-urbanist-import)] font-bold text-[#1c1917] text-[15px] sm:text-[17px] leading-snug tracking-[-0.02em] mb-2">
           See what your child is doing, right now
         </h3>
@@ -76,26 +76,28 @@ function Card1() {
       </div>
 
       {/* Moment post photo — lower left */}
-      <div className="absolute rounded-xl overflow-hidden"
-        style={{ left: '4%', top: '37%', width: '36%', bottom: '2%' }}>
+      <div
+        className="relative h-[220px] mx-7 mt-5 rounded-xl overflow-hidden sm:absolute sm:h-auto sm:mx-0 sm:mt-0 sm:left-[4%] sm:top-[37%] sm:w-[36%] sm:bottom-[2%]"
+      >
         <Image
           src="/landing/parent-features/moment-photo.png"
           alt="Child playtime moment post"
           fill
           className="object-cover object-top"
-          sizes="(max-width: 1024px) 36vw, 18vw"
+          sizes="(max-width: 640px) 85vw, (max-width: 1024px) 36vw, 18vw"
         />
       </div>
 
       {/* Daily log app — right column, starts from near top */}
-      <div className="absolute rounded-xl overflow-hidden"
-        style={{ left: '57%', top: '7%', width: '36%', bottom: 0 }}>
+      <div
+        className="relative h-[260px] mx-7 mt-4 rounded-xl overflow-hidden sm:absolute sm:h-auto sm:mx-0 sm:mt-0 sm:left-[57%] sm:top-[7%] sm:w-[36%] sm:bottom-0"
+      >
         <Image
           src="/landing/parent-features/daily-log-app.png"
           alt="Daily activity log app"
           fill
           className="object-cover object-top"
-          sizes="(max-width: 1024px) 36vw, 18vw"
+          sizes="(max-width: 640px) 85vw, (max-width: 1024px) 36vw, 18vw"
         />
       </div>
     </CardShell>

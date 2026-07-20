@@ -49,9 +49,9 @@ export function PainPointsSection() {
           </FadeUp>
 
           {/* White pill card — overlaps bottom half of phones */}
-          <div className="bg-white rounded-[56px] sm:rounded-[80px] lg:rounded-[113px] overflow-hidden -mt-24 sm:-mt-32 lg:-mt-40 relative z-0">
+          <div className="bg-white rounded-[56px] sm:rounded-[80px] lg:rounded-[113px] overflow-hidden -mt-[170px] sm:-mt-[210px] lg:-mt-[250px] relative z-0">
             <FadeUp delay={0.1}>
-              <div className="flex flex-col items-center gap-6 sm:gap-8 px-6 sm:px-12 lg:px-16 pt-28 sm:pt-36 lg:pt-44 pb-10 sm:pb-12 lg:pb-14 text-center">
+              <div className="flex flex-col items-center gap-6 sm:gap-8 px-6 sm:px-12 lg:px-16 pt-[186px] sm:pt-[226px] lg:pt-[266px] pb-10 sm:pb-12 lg:pb-14 text-center">
 
               <div className="flex flex-col gap-4 max-w-[740px]">
                 <h2

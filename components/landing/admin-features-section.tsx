@@ -64,9 +64,9 @@ function CardShell({ children, className = "" }: { children: React.ReactNode; cl
    pie chart white card right-center (~51% left, ~22% top) */
 function Card1() {
   return (
-    <CardShell className="h-[440px] sm:h-[460px]">
+    <CardShell className="h-auto sm:h-[460px] pb-7 sm:pb-0">
       {/* Text — top-left, capped so it doesn't overlap pie chart */}
-      <div className="absolute top-0 left-0 z-10 pt-7 px-7 max-w-[48%]">
+      <div className="pt-7 px-7 sm:absolute sm:top-0 sm:left-0 sm:z-10 sm:max-w-[48%]">
         <h3 className="font-[family-name:var(--font-urbanist-import)] font-bold text-[#1c1917] text-[15px] sm:text-[17px] leading-snug tracking-[-0.02em] mb-2">
           Every payment, invoice, and Naira in one place
         </h3>
@@ -76,21 +76,21 @@ function Card1() {
       </div>
 
       {/* Payments summary widget — lower-left */}
-      <div className="absolute overflow-hidden rounded-xl"
-        style={{ left: '5%', top: '37%', width: '37%', bottom: '17%' }}>
+      <div
+        className="relative h-[200px] mx-7 mt-5 overflow-hidden rounded-xl sm:absolute sm:h-auto sm:mx-0 sm:mt-0 sm:left-[5%] sm:top-[37%] sm:w-[37%] sm:bottom-[17%]"
+      >
         <Image
           src="/landing/admin-features/payments-summary.png"
           alt="Payments summary"
           fill
           className="object-cover object-top"
-          sizes="(max-width: 1024px) 37vw, 18vw"
+          sizes="(max-width: 640px) 85vw, (max-width: 1024px) 37vw, 18vw"
         />
       </div>
 
       {/* Pie chart white card — right side */}
       <div
-        className="absolute bg-white rounded-xl overflow-hidden p-3 flex flex-col gap-2"
-        style={{ left: '51%', top: '22%', width: '43%', bottom: '16%' }}
+        className="relative bg-white rounded-xl overflow-hidden p-3 flex flex-col gap-2 h-[260px] mx-7 mt-4 sm:absolute sm:h-auto sm:mx-0 sm:mt-0 sm:left-[51%] sm:top-[22%] sm:w-[43%] sm:bottom-[16%]"
       >
         <p className="font-[family-name:var(--font-merriweather-import)] text-black text-[11px] font-semibold shrink-0">
           Payment Status Breakdown
@@ -101,7 +101,7 @@ function Card1() {
             alt="Payment status breakdown pie chart"
             fill
             className="object-contain"
-            sizes="(max-width: 1024px) 43vw, 21vw"
+            sizes="(max-width: 640px) 85vw, (max-width: 1024px) 43vw, 21vw"
           />
         </div>
       </div>
