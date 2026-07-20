@@ -37,12 +37,12 @@ export function FamiliesPartnersSection() {
               </h2>
 
               {/* Bold intro */}
-              <p className="font-[family-name:var(--font-plus-jakarta-sans)] font-bold text-[#60657e] text-[15px] sm:text-[16px] leading-[24px] mb-5">
+              <p className="font-[family-name:var(--font-urbanist-import)] font-bold text-[#60657e] text-[15px] sm:text-[16px] leading-[24px] mb-5">
                 A child does better when the adults around them — parent and caregiver — are working off the same picture, not reconstructing it after the fact.
               </p>
 
               {/* Regular body */}
-              <p className="font-[family-name:var(--font-plus-jakarta-sans)] text-[#60657e] text-[15px] sm:text-[16px] leading-[24px] mb-5">
+              <p className="font-[family-name:var(--font-urbanist-import)] text-[#60657e] text-[15px] sm:text-[16px] leading-[24px] mb-5">
                 All the information parents need to know about children&apos;s progress is safely stored and only one click away:
               </p>
 
@@ -55,7 +55,7 @@ export function FamiliesPartnersSection() {
                         <path d="M4 10L8 15L17 4" stroke="#C17C45" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </div>
-                    <span className="font-[family-name:var(--font-plus-jakarta-sans)] text-[#60657e] text-[15px] sm:text-[16px] leading-[24px]">
+                    <span className="font-[family-name:var(--font-urbanist-import)] text-[#60657e] text-[15px] sm:text-[16px] leading-[24px]">
                       {item}
                     </span>
                   </li>
@@ -65,7 +65,7 @@ export function FamiliesPartnersSection() {
               {/* CTA */}
               <a
                 href="#demo"
-                className="inline-flex items-center h-12 px-6 rounded-xl font-[family-name:var(--font-plus-jakarta-sans)] font-medium text-[16px] text-[#faf2e1] bg-[#3b2513] hover:bg-[#2d1e0f] transition-colors shadow-[inset_0px_4px_12px_0px_rgba(255,255,255,0.12)]"
+                className="inline-flex items-center h-12 px-6 rounded-xl font-[family-name:var(--font-urbanist-import)] font-medium text-[16px] text-[#faf2e1] bg-[#3b2513] hover:bg-[#2d1e0f] transition-colors shadow-[inset_0px_4px_12px_0px_rgba(255,255,255,0.12)]"
               >
                 Get a Free Demo
               </a>

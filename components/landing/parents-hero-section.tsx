@@ -26,7 +26,7 @@ export function ParentsHeroSection() {
         </Stagger>
 
         <FadeUp delay={0.1}>
-          <h1 className="font-[family-name:var(--font-fraunces)] text-[#1A1208] text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-[1.1] font-semibold mb-5 sm:mb-6" style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}>
+          <h1 className="font-[family-name:var(--font-merriweather-import)] text-[#1A1208] text-3xl sm:text-4xl lg:text-5xl xl:text-6xl leading-[1.1] font-bold mb-5 sm:mb-6">
             Let&apos;s make parenting<br />
             easier for you.
           </h1>

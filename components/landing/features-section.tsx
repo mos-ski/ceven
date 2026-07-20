@@ -56,7 +56,7 @@ export function FeaturesSection() {
             you&apos;re never in the dark, and you can still reach in when you need to
           </h2>
           <p
-            className="font-[family-name:var(--font-plus-jakarta-sans)] font-medium text-[#6b7280]"
+            className="font-[family-name:var(--font-urbanist-import)] font-medium text-[#6b7280]"
             style={{ fontSize: "clamp(16px, 1.8vw, 24px)" }}
           >
             You&apos;re not checking in on your child. You&apos;re checking in on the day.
@@ -70,10 +70,10 @@ export function FeaturesSection() {
             {/* Card 1 — See what your child is doing */}
             <div className="lg:col-span-2 bg-[#fbfaf9] rounded-[12px] overflow-hidden relative min-h-[460px]">
               <div className="p-7 pb-3 max-w-[52%]">
-                <h3 className="font-['Inter'] font-bold text-[#1c1917] text-[17px] leading-[1.2] tracking-[-0.02em] mb-2">
+                <h3 className="font-[family-name:var(--font-urbanist-import)] font-bold text-[#1c1917] text-[17px] leading-[1.2] tracking-[-0.02em] mb-2">
                   See what your child is doing, right now
                 </h3>
-                <p className="font-['Inter'] font-medium text-[#6a7074] text-[14px] leading-[1.47] tracking-[-0.02em]">
+                <p className="font-[family-name:var(--font-urbanist-import)] font-medium text-[#6a7074] text-[14px] leading-[1.47] tracking-[-0.02em]">
                   From wherever you are — mood, activity, hygiene, everything, logged as it happens. Not a summary later. The actual day, live.
                 </p>
               </div>
@@ -139,10 +139,10 @@ export function FeaturesSection() {
 
             {/* Card 2 — You get notified */}
             <div className="bg-[#fbfaf9] rounded-[12px] overflow-hidden p-7">
-              <h3 className="font-['Inter'] font-bold text-[#1c1917] text-[17px] leading-[1.2] tracking-[-0.02em] mb-2">
+              <h3 className="font-[family-name:var(--font-urbanist-import)] font-bold text-[#1c1917] text-[17px] leading-[1.2] tracking-[-0.02em] mb-2">
                 You get notified
               </h3>
-              <p className="font-['Inter'] font-medium text-[#6a7074] text-[14px] leading-[1.47] tracking-[-0.02em] mb-8">
+              <p className="font-[family-name:var(--font-urbanist-import)] font-medium text-[#6a7074] text-[14px] leading-[1.47] tracking-[-0.02em] mb-8">
                 The moment something&apos;s worth knowing, it reaches you. No calling to check. No waiting for pickup.
               </p>
               <div className="flex flex-col gap-3">
@@ -156,14 +156,14 @@ export function FeaturesSection() {
                       <Image src={n.avatar} fill alt={n.name} className="object-cover" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="font-['Inter'] font-medium text-[#344054] text-[10.5px] leading-[15px]">
+                      <p className="font-[family-name:var(--font-urbanist-import)] font-medium text-[#344054] text-[10.5px] leading-[15px]">
                         <span className="text-[#c17c45]">{n.name}</span>
                         {" "}{n.rest}
                         {"highlight" in n && <span className="text-[#c17c45]">{n.highlight}</span>}
                         {"rest2" in n && n.rest2}
                       </p>
                       {n.sub && (
-                        <p className="font-['Inter'] font-normal text-[#475467] text-[10.5px] leading-[15px]">{n.sub}</p>
+                        <p className="font-[family-name:var(--font-urbanist-import)] font-normal text-[#475467] text-[10.5px] leading-[15px]">{n.sub}</p>
                       )}
                     </div>
                   </div>
@@ -176,10 +176,10 @@ export function FeaturesSection() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-4">
             {/* Card 3 — One conversation */}
             <div className="bg-[#fbfaf9] rounded-[12px] overflow-hidden p-7 min-h-[460px]">
-              <h3 className="font-['Inter'] font-bold text-[#1c1917] text-[17px] leading-[1.2] tracking-[-0.02em] mb-2">
+              <h3 className="font-[family-name:var(--font-urbanist-import)] font-bold text-[#1c1917] text-[17px] leading-[1.2] tracking-[-0.02em] mb-2">
                 One conversation, everyone who needs to be in it
               </h3>
-              <p className="font-['Inter'] font-medium text-[#6a7074] text-[14px] leading-[1.47] tracking-[-0.02em] mb-6">
+              <p className="font-[family-name:var(--font-urbanist-import)] font-medium text-[#6a7074] text-[14px] leading-[1.47] tracking-[-0.02em] mb-6">
                 You, the other parent, the admin, and the caregiver — one thread, not four separate conversations to keep track of.
               </p>
               <div className="flex flex-col gap-3 max-w-[245px] mx-auto">
@@ -212,10 +212,10 @@ export function FeaturesSection() {
 
             {/* Card 4 — AI summary */}
             <div className="bg-[#fbfaf9] rounded-[12px] overflow-hidden p-7 min-h-[460px]">
-              <h3 className="font-['Inter'] font-bold text-[#1c1917] text-[17px] leading-[1.2] tracking-[-0.02em] mb-2">
+              <h3 className="font-[family-name:var(--font-urbanist-import)] font-bold text-[#1c1917] text-[17px] leading-[1.2] tracking-[-0.02em] mb-2">
                 AI summary of your child&apos;s day
               </h3>
-              <p className="font-['Inter'] font-medium text-[#6a7074] text-[14px] leading-[1.47] tracking-[-0.02em] mb-6">
+              <p className="font-[family-name:var(--font-urbanist-import)] font-medium text-[#6a7074] text-[14px] leading-[1.47] tracking-[-0.02em] mb-6">
                 Ask for a read on mood, meals, or the whole day, and get a real answer back — not a scroll through old messages trying to piece it together.
               </p>
               {/* St. Greg card */}
@@ -247,10 +247,10 @@ export function FeaturesSection() {
             {/* Card 5 — Send a special request */}
             <div className="bg-[#fbfaf9] rounded-[12px] overflow-hidden min-h-[460px] relative">
               <div className="p-7">
-                <h3 className="font-['Inter'] font-bold text-[#1c1917] text-[17px] leading-[1.2] tracking-[-0.02em] mb-2">
+                <h3 className="font-[family-name:var(--font-urbanist-import)] font-bold text-[#1c1917] text-[17px] leading-[1.2] tracking-[-0.02em] mb-2">
                   Send a special request
                 </h3>
-                <p className="font-['Inter'] font-medium text-[#6a7074] text-[14px] leading-[1.47] tracking-[-0.02em]">
+                <p className="font-[family-name:var(--font-urbanist-import)] font-medium text-[#6a7074] text-[14px] leading-[1.47] tracking-[-0.02em]">
                   Forgot to mention something at drop-off? Send it straight to the caregiver — medication, an errand, anything — no waiting till pickup to remember.
                 </p>
               </div>

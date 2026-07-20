@@ -19,7 +19,7 @@ export function CaregiverFeaturesSection() {
                 the work you&apos;re already doing becomes visible, and easier to do
               </span>
             </h2>
-            <p className="font-[family-name:var(--font-plus-jakarta-sans)] text-[#5a6170] text-[16px] sm:text-[17px] leading-[1.6] max-w-2xl mx-auto">
+            <p className="font-[family-name:var(--font-urbanist-import)] text-[#5a6170] text-[16px] sm:text-[17px] leading-[1.6] max-w-2xl mx-auto">
               This isn&apos;t more paperwork. It&apos;s proof of the work you&apos;re already doing.
             </p>
           </div>
@@ -97,10 +97,10 @@ function CaregiverFeatureCard({
   return (
     <div className="bg-[#fbfaf9] rounded-2xl overflow-hidden flex flex-col h-full border border-[#E8DFD0]">
       <div className="p-5 sm:p-6">
-        <h3 className="font-[family-name:var(--font-plus-jakarta-sans)] font-bold text-[#1c1917] text-[15px] sm:text-[16px] leading-snug mb-2">
+        <h3 className="font-[family-name:var(--font-urbanist-import)] font-bold text-[#1c1917] text-[15px] sm:text-[16px] leading-snug mb-2">
           {title}
         </h3>
-        <p className="font-[family-name:var(--font-plus-jakarta-sans)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55]">
+        <p className="font-[family-name:var(--font-urbanist-import)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55]">
           {description}
         </p>
       </div>

@@ -19,7 +19,7 @@ export function AdminFeaturesSection() {
                 full oversight without having to dig for it yourself.
               </span>
             </h2>
-            <p className="font-[family-name:var(--font-plus-jakarta-sans)] text-[#5a6170] text-[16px] sm:text-[17px] leading-[1.6] max-w-2xl mx-auto">
+            <p className="font-[family-name:var(--font-urbanist-import)] text-[#5a6170] text-[16px] sm:text-[17px] leading-[1.6] max-w-2xl mx-auto">
               Every room, every child, every naira — one place, not four notebooks and a group chat.
             </p>
           </div>
@@ -27,49 +27,24 @@ export function AdminFeaturesSection() {
 
         {/* Row 1: large payments card + pipeline card */}
         <Stagger className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-5 mb-5">
-          <StaggerItem>
-            <AdminFeatureCard
-              title="Every payment, invoice, and Naira in one place"
-              description="Collections, outstanding fees, invoices — the whole financial picture, not scattered across a notebook and a bank app."
-            >
-              <PaymentsMockup />
-            </AdminFeatureCard>
+          <StaggerItem className="h-full">
+            <Card1 />
           </StaggerItem>
-          <StaggerItem>
-            <AdminFeatureCard
-              title="Manage every application, in one pipeline"
-              description="Every family trying to enroll, tracked from first enquiry to decision — not lost in a WhatsApp chat."
-            >
-              <PipelineMockup />
-            </AdminFeatureCard>
+          <StaggerItem className="h-full">
+            <Card2 />
           </StaggerItem>
         </Stagger>
 
         {/* Row 2: three equal cards */}
-        <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          <StaggerItem>
-            <AdminFeatureCard
-              title="See everything happening, live"
-              description="Every parent, every caregiver, every room — one view of the whole crèche, so you can step in the moment you're needed."
-            >
-              <LiveActivitiesMockup />
-            </AdminFeatureCard>
+        <Stagger className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          <StaggerItem className="h-full">
+            <Card3 />
           </StaggerItem>
-          <StaggerItem>
-            <AdminFeatureCard
-              title="AI that flags what needs you"
-              description="Unpaid fees, a caregiver falling behind, something that slipped through — surfaced before it becomes a bigger problem."
-            >
-              <AiAdaMockup />
-            </AdminFeatureCard>
+          <StaggerItem className="h-full">
+            <Card4 />
           </StaggerItem>
-          <StaggerItem>
-            <AdminFeatureCard
-              title="Reporting that thinks with you"
-              description="Reports that build themselves from the day's activity — real intelligence on your crèche, not just numbers in a spreadsheet."
-            >
-              <ReportingMockup />
-            </AdminFeatureCard>
+          <StaggerItem className="h-full">
+            <Card5 />
           </StaggerItem>
         </Stagger>
       </div>
@@ -77,65 +52,81 @@ export function AdminFeaturesSection() {
   );
 }
 
-function AdminFeatureCard({
-  title,
-  description,
-  children,
-}: {
-  title: string;
-  description: string;
-  children: React.ReactNode;
-}) {
+function CardShell({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className="bg-[#fbfaf9] rounded-2xl overflow-hidden flex flex-col h-full border border-[#E8DFD0]">
-      <div className="p-5 sm:p-6">
-        <h3 className="font-[family-name:var(--font-plus-jakarta-sans)] font-bold text-[#1c1917] text-[15px] sm:text-[16px] leading-snug mb-2">
-          {title}
+    <div className={`relative bg-[#fbfaf9] rounded-2xl border border-[#E8DFD0] overflow-hidden w-full ${className}`}>
+      {children}
+    </div>
+  );
+}
+
+/* ─── Card 1: Payments + Pie chart (2fr wide) ───
+   Figma: text top-left (max ~48%), payments list left-center (~5% left, ~37% top),
+   pie chart white card right-center (~51% left, ~22% top) */
+function Card1() {
+  return (
+    <CardShell className="h-[440px] sm:h-[460px]">
+      {/* Text — top-left, capped so it doesn't overlap pie chart */}
+      <div className="absolute top-0 left-0 z-10 pt-7 px-7 max-w-[48%]">
+        <h3 className="font-[family-name:var(--font-urbanist-import)] font-bold text-[#1c1917] text-[15px] sm:text-[17px] leading-snug tracking-[-0.02em] mb-2">
+          Every payment, invoice, and Naira in one place
         </h3>
-        <p className="font-[family-name:var(--font-plus-jakarta-sans)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55]">
-          {description}
+        <p className="font-[family-name:var(--font-urbanist-import)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55] tracking-[-0.02em]">
+          Collections, outstanding fees, invoices — the whole financial picture, not scattered across a notebook and a bank app.
         </p>
       </div>
-      <div className="relative flex-1 min-h-[240px] overflow-hidden">
-        {children}
-      </div>
-    </div>
-  );
-}
 
-/* ─── Payments summary (left) + pie chart (right) ─── */
-function PaymentsMockup() {
-  return (
-    <div className="absolute inset-0 flex items-end justify-center gap-4 px-5 pb-0">
-      {/* Payments list */}
-      <div className="relative w-[44%] h-[88%] rounded-t-xl overflow-hidden shadow-lg flex-shrink-0">
+      {/* Payments summary widget — lower-left */}
+      <div className="absolute overflow-hidden rounded-xl"
+        style={{ left: '5%', top: '37%', width: '37%', bottom: '17%' }}>
         <Image
           src="/landing/admin-features/payments-summary.png"
-          alt="Payments summary list"
+          alt="Payments summary"
           fill
           className="object-cover object-top"
-          sizes="(max-width: 1024px) 40vw, 20vw"
+          sizes="(max-width: 1024px) 37vw, 18vw"
         />
       </div>
-      {/* Pie chart card */}
-      <div className="relative w-[46%] h-[82%] rounded-t-xl overflow-hidden shadow-lg flex-shrink-0 bg-white">
-        <Image
-          src="/landing/admin-features/payments-pie-chart.png"
-          alt="Payment status breakdown pie chart"
-          fill
-          className="object-contain object-center"
-          sizes="(max-width: 1024px) 40vw, 20vw"
-        />
+
+      {/* Pie chart white card — right side */}
+      <div
+        className="absolute bg-white rounded-xl overflow-hidden p-3 flex flex-col gap-2"
+        style={{ left: '51%', top: '22%', width: '43%', bottom: '16%' }}
+      >
+        <p className="font-[family-name:var(--font-merriweather-import)] text-black text-[11px] font-semibold shrink-0">
+          Payment Status Breakdown
+        </p>
+        <div className="relative flex-1 min-h-0">
+          <Image
+            src="/landing/admin-features/payments-pie-chart.png"
+            alt="Payment status breakdown pie chart"
+            fill
+            className="object-contain"
+            sizes="(max-width: 1024px) 43vw, 21vw"
+          />
+        </div>
       </div>
-    </div>
+    </CardShell>
   );
 }
 
-/* ─── Enquiry / Kanban pipeline ─── */
-function PipelineMockup() {
+/* ─── Card 2: Enquiry pipeline (narrow 1fr) ───
+   Figma: text top, pipeline image below (8% left, 39% top, 84% wide) */
+function Card2() {
   return (
-    <div className="absolute inset-0 flex items-end justify-center pb-0">
-      <div className="relative w-[88%] h-[88%] rounded-t-xl overflow-hidden shadow-lg">
+    <CardShell className="h-[440px] sm:h-[460px]">
+      <div className="pt-7 px-7">
+        <h3 className="font-[family-name:var(--font-urbanist-import)] font-bold text-[#1c1917] text-[15px] sm:text-[17px] leading-snug tracking-[-0.02em] mb-2">
+          Manage every application, in one pipeline
+        </h3>
+        <p className="font-[family-name:var(--font-urbanist-import)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55] tracking-[-0.02em]">
+          Every family trying to enroll, tracked from first enquiry to decision — not lost in a WhatsApp chat.
+        </p>
+      </div>
+
+      {/* Pipeline kanban — below text, left-padded */}
+      <div className="absolute overflow-hidden rounded-xl"
+        style={{ left: '8%', top: '39%', right: '8%', bottom: '0' }}>
         <Image
           src="/landing/admin-features/enquiry-pipeline.png"
           alt="Enquiry pipeline Kanban view"
@@ -144,57 +135,93 @@ function PipelineMockup() {
           sizes="(max-width: 1024px) 80vw, 22vw"
         />
       </div>
-    </div>
+    </CardShell>
   );
 }
 
-/* ─── Live activities feed ─── */
-function LiveActivitiesMockup() {
+/* ─── Card 3: Reporting (1 of 3 equal) ───
+   Figma: text top, reports image (13% left, 36% top, 79% wide) */
+function Card3() {
   return (
-    <div className="absolute inset-0 flex items-end justify-center pb-0">
-      <div className="relative w-[82%] h-[88%] rounded-t-xl overflow-hidden shadow-lg">
-        <Image
-          src="/landing/admin-features/live-activities.png"
-          alt="Live activities feed"
-          fill
-          className="object-cover object-top"
-          sizes="(max-width: 1024px) 80vw, 20vw"
-        />
+    <CardShell className="h-[440px] sm:h-[460px]">
+      <div className="pt-7 px-7">
+        <h3 className="font-[family-name:var(--font-urbanist-import)] font-bold text-[#1c1917] text-[15px] sm:text-[17px] leading-snug tracking-[-0.02em] mb-2">
+          Reporting that thinks with you
+        </h3>
+        <p className="font-[family-name:var(--font-urbanist-import)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55] tracking-[-0.02em]">
+          Reports that build themselves from the day&apos;s activity — real intelligence on your creche, not just numbers in a spreadsheet.
+        </p>
       </div>
-    </div>
-  );
-}
 
-/* ─── AI Ada chat interface ─── */
-function AiAdaMockup() {
-  return (
-    <div className="absolute inset-0 flex items-end justify-center pb-0">
-      <div className="relative w-[82%] h-[88%] rounded-t-xl overflow-hidden shadow-lg">
-        <Image
-          src="/landing/admin-features/ai-ada-app.png"
-          alt="Ada AI assistant flagging issues"
-          fill
-          className="object-cover object-top"
-          sizes="(max-width: 1024px) 80vw, 20vw"
-        />
-      </div>
-    </div>
-  );
-}
-
-/* ─── Intelligent reporting view ─── */
-function ReportingMockup() {
-  return (
-    <div className="absolute inset-0 flex items-end justify-center pb-0">
-      <div className="relative w-[82%] h-[88%] rounded-t-xl overflow-hidden shadow-lg">
+      {/* Reports list image */}
+      <div className="absolute overflow-hidden rounded-xl"
+        style={{ left: '13%', top: '36%', width: '79%', bottom: '0' }}>
         <Image
           src="/landing/admin-features/reporting-app.png"
           alt="Intelligent daily reports"
           fill
           className="object-cover object-top"
-          sizes="(max-width: 1024px) 80vw, 20vw"
+          sizes="(max-width: 768px) 79vw, 20vw"
         />
       </div>
-    </div>
+    </CardShell>
+  );
+}
+
+/* ─── Card 4: AI flags what needs you (1 of 3 equal) ───
+   Figma: text top, AI chat image bottom-right (72% wide, 69% tall, right 14%) */
+function Card4() {
+  return (
+    <CardShell className="h-[440px] sm:h-[460px]">
+      <div className="pt-7 px-7">
+        <h3 className="font-[family-name:var(--font-urbanist-import)] font-bold text-[#1c1917] text-[15px] sm:text-[17px] leading-snug tracking-[-0.02em] mb-2">
+          AI that flags what needs you
+        </h3>
+        <p className="font-[family-name:var(--font-urbanist-import)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55] tracking-[-0.02em]">
+          Unpaid fees, a caregiver falling behind, something that slipped through — surfaced before it becomes a bigger problem.
+        </p>
+      </div>
+
+      {/* Ada AI chat — bottom-right aligned */}
+      <div className="absolute overflow-hidden rounded-xl"
+        style={{ right: '14%', bottom: 0, width: '72%', height: '69%' }}>
+        <Image
+          src="/landing/admin-features/ai-ada-app.png"
+          alt="Ada AI assistant flagging issues"
+          fill
+          className="object-cover object-top"
+          sizes="(max-width: 768px) 72vw, 20vw"
+        />
+      </div>
+    </CardShell>
+  );
+}
+
+/* ─── Card 5: Live activities (1 of 3 equal) ───
+   Figma: text top, live feed image (10% left, 44% top, 80% wide) */
+function Card5() {
+  return (
+    <CardShell className="h-[440px] sm:h-[460px]">
+      <div className="pt-7 px-7">
+        <h3 className="font-[family-name:var(--font-urbanist-import)] font-bold text-[#1c1917] text-[15px] sm:text-[17px] leading-snug tracking-[-0.02em] mb-2">
+          See everything happening, live
+        </h3>
+        <p className="font-[family-name:var(--font-urbanist-import)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55] tracking-[-0.02em]">
+          Every parent, every caregiver, every room — one view of the whole creche, so you can step in the moment you&apos;re needed.
+        </p>
+      </div>
+
+      {/* Live activities feed */}
+      <div className="absolute overflow-hidden rounded-xl"
+        style={{ left: '10%', top: '44%', width: '80%', bottom: '0' }}>
+        <Image
+          src="/landing/admin-features/live-activities.png"
+          alt="Live activities feed"
+          fill
+          className="object-cover object-top"
+          sizes="(max-width: 768px) 80vw, 20vw"
+        />
+      </div>
+    </CardShell>
   );
 }

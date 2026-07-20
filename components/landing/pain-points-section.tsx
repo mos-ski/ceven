@@ -61,7 +61,7 @@ export function PainPointsSection() {
                   You weren&apos;t there. Now you don&apos;t have to guess what happened.
                 </h2>
                 <p
-                  className="font-[family-name:var(--font-plus-jakarta-sans)] font-medium text-[#6b7280]"
+                  className="font-[family-name:var(--font-urbanist-import)] font-medium text-[#6b7280]"
                   style={{ fontSize: "clamp(15px, 1.8vw, 24px)" }}
                 >
                   No more piecing the day together from a tired handoff at pickup.
@@ -79,7 +79,7 @@ export function PainPointsSection() {
                       className="object-contain"
                     />
                   </div>
-                  <span className="font-[family-name:var(--font-plus-jakarta-sans)] font-medium text-[#faf2e1] text-[16px] leading-[20px] whitespace-nowrap">
+                  <span className="font-[family-name:var(--font-urbanist-import)] font-medium text-[#faf2e1] text-[16px] leading-[20px] whitespace-nowrap">
                     Google Play
                   </span>
                 </div>
@@ -90,7 +90,7 @@ export function PainPointsSection() {
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98l-.09.06c-.22.14-2.18 1.27-2.16 3.8.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.84M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
                   </svg>
-                  <span className="font-[family-name:var(--font-plus-jakarta-sans)] font-semibold text-[16px] leading-[20px] whitespace-nowrap">
+                  <span className="font-[family-name:var(--font-urbanist-import)] font-semibold text-[16px] leading-[20px] whitespace-nowrap">
                     App Store
                   </span>
                 </a>
@@ -106,7 +106,7 @@ export function PainPointsSection() {
                         <path d="M7 12.5L10 15.5L17 8.5" stroke="#3b2513" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </div>
-                    <span className="font-[family-name:var(--font-plus-jakarta-sans)] font-light text-black text-[15px] sm:text-[16px] leading-[24px] text-left">
+                    <span className="font-[family-name:var(--font-urbanist-import)] font-light text-black text-[15px] sm:text-[16px] leading-[24px] text-left">
                       {item}
                     </span>
                   </li>
@@ -132,16 +132,16 @@ export function PainPointsSection() {
                   ))}
                 </div>
                 <p
-                  className="font-['Inter'] font-medium text-white tracking-[-0.02em]"
+                  className="font-[family-name:var(--font-urbanist-import)] font-medium text-white tracking-[-0.02em]"
                   style={{ fontSize: "clamp(20px, 2.6vw, 36px)", lineHeight: "1.22" }}
                 >
                   I used to call the creche just to check my son had eaten lunch. Now I just&hellip; know. That&apos;s the whole thing.
                 </p>
                 <div className="flex flex-col gap-1">
-                  <p className="font-['Inter'] font-semibold text-white text-[18px] leading-[28px]">
+                  <p className="font-[family-name:var(--font-urbanist-import)] font-semibold text-white text-[18px] leading-[28px]">
                     — Renee Wells
                   </p>
-                  <p className="font-['Inter'] font-normal text-[#e4e7ec] text-[16px] leading-[24px]">
+                  <p className="font-[family-name:var(--font-urbanist-import)] font-normal text-[#e4e7ec] text-[16px] leading-[24px]">
                     Product Designer, Quotient
                   </p>
                 </div>

@@ -14,20 +14,18 @@ export function AboutHeroSection() {
         <div className="mx-auto flex max-w-[1184px] flex-col items-center justify-between gap-10 lg:flex-row lg:items-start">
           <div className="w-full max-w-[618px] text-center lg:text-left">
             <FadeUp delay={0}>
-              <div className="mb-5 inline-flex items-center rounded-[6px] border border-[rgba(255,195,68,0.5)] bg-[rgba(59,37,19,0.12)] px-2 py-2 font-[family-name:var(--font-plus-jakarta-sans)] text-sm font-medium leading-5 text-black sm:mb-6">
+              <div className="mb-5 inline-flex items-center rounded-[6px] border border-[rgba(255,195,68,0.5)] bg-[rgba(59,37,19,0.12)] px-2 py-2 font-[family-name:var(--font-urbanist-import)] text-sm font-medium leading-5 text-black sm:mb-6">
                 Our Story
               </div>
             </FadeUp>
 
             <FadeUp delay={0.1}>
               <h1
-                className="mb-5 font-[family-name:var(--font-fraunces)] text-[44px] font-semibold leading-[1.08] text-[#3B2513] sm:text-[58px] lg:text-[72px] lg:leading-[88px]"
-                style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}
+                className="mb-5 font-[family-name:var(--font-merriweather-import)] text-[44px] font-bold leading-[1.08] text-[#3B2513] sm:text-[58px] lg:text-[72px] lg:leading-[88px]"
               >
                 Built from a quiet,<br />
                 <em
-                  className="font-[family-name:var(--font-fraunces)] font-bold italic text-[#C78C5F]"
-                  style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}
+                  className="font-[family-name:var(--font-merriweather-import)] font-bold italic text-[#C78C5F]"
                 >
                   very familiar guilt.
                 </em>
@@ -35,7 +33,7 @@ export function AboutHeroSection() {
             </FadeUp>
 
             <FadeUp delay={0.2}>
-              <p className="mx-auto mb-8 max-w-[618px] font-[family-name:var(--font-plus-jakarta-sans)] text-base leading-7 text-[#3D444F] lg:mx-0 lg:mb-10">
+              <p className="mx-auto mb-8 max-w-[618px] font-[family-name:var(--font-urbanist-import)] text-base leading-7 text-[#3D444F] lg:mx-0 lg:mb-10">
                 CEven didn&apos;t start in a boardroom, it started with a new mother, a new job, and a question she couldn&apos;t stop asking herself.
               </p>
             </FadeUp>
@@ -44,14 +42,14 @@ export function AboutHeroSection() {
               <div className="flex flex-col items-center justify-center gap-4 sm:flex-row lg:justify-start">
                 <Link
                   href="#"
-                  className="relative flex h-[50px] items-center gap-1 rounded-[12px] bg-[#3B2513] pl-1.5 pr-4 font-[family-name:var(--font-plus-jakarta-sans)] text-base font-medium leading-5 text-[#FAF2E1] shadow-[inset_0px_4px_12px_0px_rgba(255,255,255,0.12)] transition-all duration-150 hover:scale-[1.03] hover:bg-[#5B391E]"
+                  className="relative flex h-[50px] items-center gap-1 rounded-[12px] bg-[#3B2513] pl-1.5 pr-4 font-[family-name:var(--font-urbanist-import)] text-base font-medium leading-5 text-[#FAF2E1] shadow-[inset_0px_4px_12px_0px_rgba(255,255,255,0.12)] transition-all duration-150 hover:scale-[1.03] hover:bg-[#5B391E]"
                 >
                   <Image src="/google_play_icon.png.png" alt="" width={46} height={46} className="size-[46px]" />
                   Download on Google Play
                 </Link>
                 <Link
                   href="/for-parents"
-                  className="flex h-[50px] w-[162px] items-center justify-center gap-2 rounded-[12px] border border-[#3B2513] px-4 font-[family-name:var(--font-plus-jakarta-sans)] text-base font-semibold leading-5 text-[#3B2513] transition-all duration-150 hover:scale-[1.03] hover:bg-[#3B2513]/5"
+                  className="flex h-[50px] w-[162px] items-center justify-center gap-2 rounded-[12px] border border-[#3B2513] px-4 font-[family-name:var(--font-urbanist-import)] text-base font-semibold leading-5 text-[#3B2513] transition-all duration-150 hover:scale-[1.03] hover:bg-[#3B2513]/5"
                 >
                   For Parents <span>→</span>
                 </Link>

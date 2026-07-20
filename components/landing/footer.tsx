@@ -53,10 +53,10 @@ export function LandingFooter() {
                 />
               </div>
               <div className="flex flex-col gap-1">
-                <p className="font-[family-name:var(--font-plus-jakarta-sans)] text-white text-[20px] sm:text-[24px] leading-[28px]">
+                <p className="font-[family-name:var(--font-urbanist-import)] text-white text-[20px] sm:text-[24px] leading-[28px]">
                   Life made easier for families
                 </p>
-                <p className="font-[family-name:var(--font-plus-jakarta-sans)] text-[#faf2e1] text-[14px] sm:text-[16px] leading-[28px]">
+                <p className="font-[family-name:var(--font-urbanist-import)] text-[#faf2e1] text-[14px] sm:text-[16px] leading-[28px]">
                   A product by{" "}
                   <span className="font-semibold text-[#c78c5f]">Swayosoo™</span>
                 </p>
@@ -67,7 +67,7 @@ export function LandingFooter() {
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 lg:gap-[72px]">
               {Object.entries(FOOTER_LINKS).map(([category, links]) => (
                 <div key={category} className="flex flex-col gap-3">
-                  <p className="font-[family-name:var(--font-plus-jakarta-sans)] font-semibold text-[#c78c5f] text-[14px] sm:text-[16px] leading-[28px]">
+                  <p className="font-[family-name:var(--font-urbanist-import)] font-semibold text-[#c78c5f] text-[14px] sm:text-[16px] leading-[28px]">
                     {category}
                   </p>
                   <ul className="flex flex-col gap-2">
@@ -75,7 +75,7 @@ export function LandingFooter() {
                       <li key={link.label}>
                         <Link
                           href={link.href}
-                          className="font-[family-name:var(--font-plus-jakarta-sans)] font-semibold text-[#faf2e1] text-[14px] sm:text-[16px] leading-[28px] hover:text-white hover:translate-x-0.5 transition-all duration-150 inline-block"
+                          className="font-[family-name:var(--font-urbanist-import)] font-semibold text-[#faf2e1] text-[14px] sm:text-[16px] leading-[28px] hover:text-white hover:translate-x-0.5 transition-all duration-150 inline-block"
                         >
                           {link.label}
                         </Link>
@@ -93,10 +93,10 @@ export function LandingFooter() {
 
           {/* Copyright bar */}
           <div className="flex flex-col sm:flex-row justify-between items-center gap-2">
-            <p className="font-[family-name:var(--font-plus-jakarta-sans)] text-[#979797] text-[13px] sm:text-[16px] leading-[28px]">
+            <p className="font-[family-name:var(--font-urbanist-import)] text-[#979797] text-[13px] sm:text-[16px] leading-[28px]">
               © 2025 CEven by Swayosoo™. All rights reserved.
             </p>
-            <p className="font-[family-name:var(--font-plus-jakarta-sans)] font-semibold text-[#faf2e1] text-[13px] sm:text-[16px] leading-[28px]">
+            <p className="font-[family-name:var(--font-urbanist-import)] font-semibold text-[#faf2e1] text-[13px] sm:text-[16px] leading-[28px]">
               Lagos, Nigeria
             </p>
           </div>

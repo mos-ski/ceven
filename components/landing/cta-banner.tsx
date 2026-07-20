@@ -4,7 +4,7 @@ import { Stagger, StaggerItem } from "@/components/animations/stagger";
 
 const ROLES = [
   {
-    label: "I'm an admin or director",
+    label: "I'm a crèche/daycare owner",
     href: "/contact",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -18,7 +18,7 @@ const ROLES = [
     ),
   },
   {
-    label: "I'm a staff member",
+    label: "I'm an independent caregiver",
     href: "/contact",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -28,7 +28,7 @@ const ROLES = [
     ),
   },
   {
-    label: "I'm a parent or guardian",
+    label: "I'm a parent/guardian",
     href: "/contact",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -45,7 +45,7 @@ export function CtaBanner() {
 
         <FadeUp className="flex flex-col items-center gap-6 w-full">
           {/* Overline */}
-          <p className="font-[family-name:var(--font-plus-jakarta-sans)] font-semibold text-[#f7f9ff]/80 text-[14px] sm:text-[16px] leading-[24px] uppercase tracking-widest">
+          <p className="font-[family-name:var(--font-urbanist-import)] font-semibold text-[#f7f9ff]/80 text-[14px] sm:text-[16px] leading-[24px] uppercase tracking-widest">
             #1 childcare management software
           </p>
 
@@ -58,14 +58,14 @@ export function CtaBanner() {
           </h2>
 
           {/* Subtext */}
-          <p className="font-[family-name:var(--font-plus-jakarta-sans)] font-semibold text-[#faf2e1] text-[16px] sm:text-[18px] lg:text-[20px] leading-[24px]">
+          <p className="font-[family-name:var(--font-urbanist-import)] font-semibold text-[#faf2e1] text-[16px] sm:text-[18px] lg:text-[20px] leading-[24px]">
             Download CEven. Built for Nigerian crèches. Set up in 15 minutes.
           </p>
         </FadeUp>
 
         {/* Role selector */}
         <FadeUp className="w-full max-w-[390px] flex flex-col gap-4 mt-2" delay={0.1}>
-          <p className="font-[family-name:var(--font-plus-jakarta-sans)] font-semibold text-white text-[18px] sm:text-[20px] leading-[1.4]">
+          <p className="font-[family-name:var(--font-urbanist-import)] font-semibold text-white text-[18px] sm:text-[20px] leading-[1.4]">
             First, tell us about yourself.
           </p>
           <Stagger className="flex flex-col gap-3">
@@ -78,7 +78,7 @@ export function CtaBanner() {
                   <div className="w-11 h-11 rounded-xl bg-[#eef1ff] flex items-center justify-center shrink-0">
                     {role.icon}
                   </div>
-                  <span className="font-[family-name:var(--font-plus-jakarta-sans)] font-semibold text-[#233243] text-[15px] sm:text-[18px] leading-[24px] flex-1 text-left">
+                  <span className="font-[family-name:var(--font-urbanist-import)] font-semibold text-[#233243] text-[15px] sm:text-[18px] leading-[24px] flex-1 text-left">
                     {role.label}
                   </span>
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 text-[#c78c5f] group-hover:translate-x-0.5 transition-transform">
@@ -92,7 +92,7 @@ export function CtaBanner() {
 
         {/* Login note */}
         <FadeUp delay={0.2}>
-          <p className="font-[family-name:var(--font-plus-jakarta-sans)] text-white text-[14px] sm:text-[16px] leading-[24px]">
+          <p className="font-[family-name:var(--font-urbanist-import)] text-white text-[14px] sm:text-[16px] leading-[24px]">
             Already Joined CEven?{" "}
             <Link href="/login" className="underline underline-offset-2 hover:opacity-80 transition-opacity font-semibold">
               Login Now

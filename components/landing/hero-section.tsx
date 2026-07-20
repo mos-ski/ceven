@@ -15,28 +15,11 @@ export function HeroSection() {
   return (
     <section className="bg-[#FAF2E1] overflow-hidden">
 
-      {/* Badge */}
-      <div className="flex justify-center pt-3">
-        <div className="flex items-center overflow-hidden" style={{ borderRadius: "4.5px" }}>
-          <div className="bg-white px-[8.7px] py-[4.3px]">
-            <span className="font-[family-name:var(--font-plus-jakarta-sans)] font-medium text-[15px] text-black leading-[21.7px] whitespace-nowrap">
-              For you:
-            </span>
-          </div>
-          <div className="bg-[rgba(12,12,12,0.05)] px-[9px] py-[4.3px]">
-            <span className="font-[family-name:var(--font-plus-jakarta-sans)] font-medium text-[15px] text-black leading-[21.7px] whitespace-nowrap">
-              Childcare, Connected
-            </span>
-          </div>
-        </div>
-      </div>
-
       {/* Headline + body + CTA */}
       <div className="text-center px-4 mt-[14px]">
         <h1
-          className="font-[family-name:var(--font-fraunces)] font-semibold text-[#3b2513] mx-auto"
+          className="font-[family-name:var(--font-merriweather-import)] font-bold text-[#3b2513] mx-auto"
           style={{
-            fontVariationSettings: '"SOFT" 0, "WONK" 1',
             fontSize: "clamp(38px, 5vw, 72px)",
             letterSpacing: "-0.06em",
             lineHeight: "1.208",
@@ -58,7 +41,7 @@ export function HeroSection() {
         <div className="mt-[24px] flex flex-col items-center gap-[15px]">
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center bg-[#3b2513] text-[#faf2e1] font-[family-name:var(--font-plus-jakarta-sans)] font-medium text-[16px] leading-[20px] h-[48px] px-6 rounded-[12px] shadow-[inset_0px_4px_12px_0px_rgba(255,255,255,0.12)] hover:opacity-90 transition-opacity"
+            className="inline-flex items-center justify-center bg-[#3b2513] text-[#faf2e1] font-[family-name:var(--font-urbanist-import)] font-medium text-[16px] leading-[20px] h-[48px] px-6 rounded-[12px] shadow-[inset_0px_4px_12px_0px_rgba(255,255,255,0.12)] hover:opacity-90 transition-opacity"
           >
             Get a Free Demo
           </Link>
@@ -89,7 +72,7 @@ export function HeroSection() {
                 className="flex-1 flex items-center justify-center px-1 py-3 relative"
               >
                 <span
-                  className="font-['Inter'] font-semibold text-[14px] leading-[20px] whitespace-nowrap"
+                  className="font-[family-name:var(--font-urbanist-import)] font-semibold text-[14px] leading-[20px] whitespace-nowrap"
                   style={{ color: i === 0 ? "#233243" : "#667085" }}
                 >
                   {tab}
@@ -119,8 +102,8 @@ export function HeroSection() {
 
       {/* Logo marquee */}
       <div className="py-10">
-        <p className="font-['Inter'] font-medium text-[15px] leading-[21.9px] text-[#6a7074] text-center tracking-[-0.024em] mb-5 px-4">
-          Join 500,000+ owners, directors, teachers, and families already on Playground
+        <p className="font-[family-name:var(--font-urbanist-import)] font-medium text-[15px] leading-[21.9px] text-[#6a7074] text-center tracking-[-0.024em] mb-5 px-4">
+          Trusted by owners, directors, teachers, and families across Nigeria
         </p>
 
         <div className="relative overflow-hidden">

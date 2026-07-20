@@ -19,57 +19,32 @@ export function ParentFeaturesSection() {
                 you&apos;re never in the dark, and you can still reach in when you need to
               </span>
             </h2>
-            <p className="font-[family-name:var(--font-plus-jakarta-sans)] text-[#5a6170] text-[16px] sm:text-[17px] leading-[1.6] max-w-2xl mx-auto">
+            <p className="font-[family-name:var(--font-urbanist-import)] text-[#5a6170] text-[16px] sm:text-[17px] leading-[1.6] max-w-2xl mx-auto">
               You&apos;re not checking in on your child. You&apos;re checking in on the day.
             </p>
           </div>
         </FadeUp>
 
-        {/* Row 1: large daily-log card + notifications card */}
+        {/* Row 1: large "see what your child is doing" + "you get notified" */}
         <Stagger className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-5 mb-5">
-          <StaggerItem>
-            <ParentFeatureCard
-              title="See what your child is doing, right now"
-              description="From wherever you are — mood, activity, hygiene, everything, logged as it happens. Not a summary later. The actual day, live."
-            >
-              <MomentAndLogMockup />
-            </ParentFeatureCard>
+          <StaggerItem className="h-full">
+            <Card1 />
           </StaggerItem>
-          <StaggerItem>
-            <ParentFeatureCard
-              title="You get notified"
-              description="The moment something's worth knowing, it reaches you. No calling to check. No waiting for pickup."
-            >
-              <NotificationsMockup />
-            </ParentFeatureCard>
+          <StaggerItem className="h-full">
+            <Card2 />
           </StaggerItem>
         </Stagger>
 
         {/* Row 2: three equal cards */}
-        <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          <StaggerItem>
-            <ParentFeatureCard
-              title="One conversation, everyone who needs to be in it"
-              description="You, the other parent, the admin, and the caregiver — one thread, not four separate conversations to keep track of."
-            >
-              <SharedThreadMockup />
-            </ParentFeatureCard>
+        <Stagger className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          <StaggerItem className="h-full">
+            <Card3 />
           </StaggerItem>
-          <StaggerItem>
-            <ParentFeatureCard
-              title="AI summary of your child's day"
-              description="Ask for a read on mood, meals, or the whole day, and get a real answer back — not a scroll through old messages trying to piece it together."
-            >
-              <AiSummaryMockup />
-            </ParentFeatureCard>
+          <StaggerItem className="h-full">
+            <Card4 />
           </StaggerItem>
-          <StaggerItem>
-            <ParentFeatureCard
-              title="Send a special request"
-              description="Forgot to mention something at drop-off? Send it straight to the caregiver — medication, an errand, anything — no waiting till pickup to remember."
-            >
-              <SpecialRequestMockup />
-            </ParentFeatureCard>
+          <StaggerItem className="h-full">
+            <Card5 />
           </StaggerItem>
         </Stagger>
       </div>
@@ -77,132 +52,165 @@ export function ParentFeaturesSection() {
   );
 }
 
-function ParentFeatureCard({
-  title,
-  description,
-  children,
-}: {
-  title: string;
-  description: string;
-  children: React.ReactNode;
-}) {
+/* ─── Shared card shell ─── */
+function CardShell({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className="bg-[#fbfaf9] rounded-2xl overflow-hidden flex flex-col h-full border border-[#E8DFD0]">
-      <div className="p-5 sm:p-6">
-        <h3 className="font-[family-name:var(--font-plus-jakarta-sans)] font-bold text-[#1c1917] text-[15px] sm:text-[16px] leading-snug mb-2">
-          {title}
+    <div className={`relative bg-[#fbfaf9] rounded-2xl border border-[#E8DFD0] overflow-hidden w-full ${className}`}>
+      {children}
+    </div>
+  );
+}
+
+/* ─── Card 1: "See what your child is doing, right now" (2fr large) ───
+   Figma: text top-left (max-w ~48%), moment photo lower-left, daily log right column */
+function Card1() {
+  return (
+    <CardShell className="h-[440px] sm:h-[460px]">
+      {/* Text — top-left, z above images */}
+      <div className="absolute top-0 left-0 z-10 pt-7 px-7 max-w-[52%]">
+        <h3 className="font-[family-name:var(--font-urbanist-import)] font-bold text-[#1c1917] text-[15px] sm:text-[17px] leading-snug tracking-[-0.02em] mb-2">
+          See what your child is doing, right now
         </h3>
-        <p className="font-[family-name:var(--font-plus-jakarta-sans)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55]">
-          {description}
+        <p className="font-[family-name:var(--font-urbanist-import)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55] tracking-[-0.02em]">
+          From wherever you are — mood, activity, hygiene, everything, logged as it happens. Not a summary later. The actual day, live.
         </p>
       </div>
-      <div className="relative flex-1 min-h-[240px] overflow-hidden">
-        {children}
-      </div>
-    </div>
-  );
-}
 
-/* ─── Moment photo (left) + daily log screenshot (right) ─── */
-function MomentAndLogMockup() {
-  return (
-    <div className="absolute inset-0 flex items-end justify-center gap-3 px-5 pb-0">
-      <div className="relative w-[46%] h-[90%] rounded-t-xl overflow-hidden shadow-lg flex-shrink-0">
+      {/* Moment post photo — lower left */}
+      <div className="absolute rounded-xl overflow-hidden"
+        style={{ left: '4%', top: '37%', width: '36%', bottom: '2%' }}>
         <Image
-          src="/landing/parent-features/moment-photo.jpg"
-          alt="Child playing at crèche"
+          src="/landing/parent-features/moment-photo.png"
+          alt="Child playtime moment post"
           fill
-          className="object-cover"
-          sizes="(max-width: 1024px) 40vw, 20vw"
+          className="object-cover object-top"
+          sizes="(max-width: 1024px) 36vw, 18vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
-        <span className="absolute top-2.5 left-2.5 rounded-full bg-[#3b2513] text-white text-[8px] font-semibold px-2 py-0.5">
-          Playtime
-        </span>
-        <div className="absolute bottom-0 left-0 right-0 p-3">
-          <p className="text-white text-[9px] font-semibold leading-snug">
-            Esther had a wonderful time playing with her friends today!
-          </p>
-          <p className="text-white/60 text-[8px] mt-0.5">2 hours ago · Posted by Sarah Johnson</p>
-        </div>
       </div>
-      <div className="relative w-[44%] h-[96%] rounded-t-xl overflow-hidden shadow-lg flex-shrink-0">
+
+      {/* Daily log app — right column, starts from near top */}
+      <div className="absolute rounded-xl overflow-hidden"
+        style={{ left: '57%', top: '7%', width: '36%', bottom: 0 }}>
         <Image
           src="/landing/parent-features/daily-log-app.png"
-          alt="Structured daily activity log"
+          alt="Daily activity log app"
           fill
           className="object-cover object-top"
-          sizes="(max-width: 1024px) 40vw, 20vw"
+          sizes="(max-width: 1024px) 36vw, 18vw"
         />
       </div>
-    </div>
+    </CardShell>
   );
 }
 
-/* ─── Notification feed screenshot ─── */
-function NotificationsMockup() {
+/* ─── Card 2: "You get notified" (1fr small) ─── */
+function Card2() {
   return (
-    <div className="absolute inset-0 flex items-end justify-center pb-0">
-      <div className="relative w-[82%] h-[88%] rounded-t-xl overflow-hidden shadow-lg">
+    <CardShell className="h-[440px] sm:h-[460px]">
+      <div className="pt-7 px-7">
+        <h3 className="font-[family-name:var(--font-urbanist-import)] font-bold text-[#1c1917] text-[15px] sm:text-[17px] leading-snug tracking-[-0.02em] mb-2">
+          You get notified
+        </h3>
+        <p className="font-[family-name:var(--font-urbanist-import)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55] tracking-[-0.02em]">
+          The moment something&apos;s worth knowing, it reaches you. No calling to check. No waiting for pickup.
+        </p>
+      </div>
+
+      {/* Notifications feed — centered, lower */}
+      <div className="absolute rounded-xl overflow-hidden"
+        style={{ left: '14%', top: '38%', right: '14%', bottom: '2%' }}>
         <Image
           src="/landing/parent-features/notifications-app.png"
-          alt="Real-time push notifications"
+          alt="Real-time notifications feed"
           fill
           className="object-cover object-top"
-          sizes="(max-width: 1024px) 80vw, 22vw"
+          sizes="(max-width: 1024px) 70vw, 18vw"
         />
       </div>
-    </div>
+    </CardShell>
   );
 }
 
-/* ─── Shared conversation thread screenshot ─── */
-function SharedThreadMockup() {
+/* ─── Card 3: "One conversation, everyone who needs to be in it" ─── */
+function Card3() {
   return (
-    <div className="absolute inset-0 flex items-end justify-center pb-0">
-      <div className="relative w-[82%] h-[88%] rounded-t-xl overflow-hidden shadow-lg">
+    <CardShell className="h-[440px] sm:h-[460px]">
+      <div className="pt-7 px-7">
+        <h3 className="font-[family-name:var(--font-urbanist-import)] font-bold text-[#1c1917] text-[15px] sm:text-[17px] leading-snug tracking-[-0.02em] mb-2">
+          One conversation, everyone who needs to be in it
+        </h3>
+        <p className="font-[family-name:var(--font-urbanist-import)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55] tracking-[-0.02em]">
+          You, the other parent, the admin, and the caregiver — one thread, not four separate conversations to keep track of.
+        </p>
+      </div>
+
+      {/* Chat thread — centered horizontally */}
+      <div className="absolute rounded-xl overflow-hidden"
+        style={{ left: '50%', transform: 'translateX(-50%)', top: '40%', width: '68%', bottom: '2%' }}>
         <Image
           src="/landing/parent-features/shared-thread-app.png"
           alt="Shared family conversation thread"
           fill
           className="object-cover object-top"
-          sizes="(max-width: 1024px) 80vw, 20vw"
+          sizes="(max-width: 768px) 68vw, 22vw"
         />
       </div>
-    </div>
+    </CardShell>
   );
 }
 
-/* ─── AI summary screenshot ─── */
-function AiSummaryMockup() {
+/* ─── Card 4: "AI summary of your child's day" ─── */
+function Card4() {
   return (
-    <div className="absolute inset-0 flex items-end justify-center pb-0">
-      <div className="relative w-[82%] h-[88%] rounded-t-xl overflow-hidden shadow-lg">
+    <CardShell className="h-[440px] sm:h-[460px]">
+      <div className="pt-7 px-7">
+        <h3 className="font-[family-name:var(--font-urbanist-import)] font-bold text-[#1c1917] text-[15px] sm:text-[17px] leading-snug tracking-[-0.02em] mb-2">
+          AI summary of your child&apos;s day
+        </h3>
+        <p className="font-[family-name:var(--font-urbanist-import)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55] tracking-[-0.02em]">
+          Ask for a read on mood, meals, or the whole day, and get a real answer back — not a scroll through old messages trying to piece it together.
+        </p>
+      </div>
+
+      {/* AI prompts list — lower left, matching Figma (left-aligned) */}
+      <div className="absolute rounded-xl overflow-hidden"
+        style={{ left: '8%', top: '58%', width: '52%', bottom: '4%' }}>
         <Image
           src="/landing/parent-features/ai-summary-app.png"
-          alt="AI-powered day summary"
+          alt="AI day summary quick prompts"
           fill
-          className="object-cover object-top"
-          sizes="(max-width: 1024px) 80vw, 20vw"
+          className="object-contain object-top"
+          sizes="(max-width: 768px) 52vw, 18vw"
         />
       </div>
-    </div>
+    </CardShell>
   );
 }
 
-/* ─── Special request screenshot ─── */
-function SpecialRequestMockup() {
+/* ─── Card 5: "Send a special request" ─── */
+function Card5() {
   return (
-    <div className="absolute inset-0 flex items-end justify-center pb-0">
-      <div className="relative w-[82%] h-[88%] rounded-t-xl overflow-hidden shadow-lg">
+    <CardShell className="h-[440px] sm:h-[460px]">
+      <div className="pt-7 px-7">
+        <h3 className="font-[family-name:var(--font-urbanist-import)] font-bold text-[#1c1917] text-[15px] sm:text-[17px] leading-snug tracking-[-0.02em] mb-2">
+          Send a special request
+        </h3>
+        <p className="font-[family-name:var(--font-urbanist-import)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55] tracking-[-0.02em]">
+          Forgot to mention something at drop-off? Send it straight to the caregiver — medication, an errand, anything — no waiting till pickup to remember.
+        </p>
+      </div>
+
+      {/* Special requests screen — centered */}
+      <div className="absolute rounded-xl overflow-hidden"
+        style={{ left: '50%', transform: 'translateX(-50%)', top: '38%', width: '64%', bottom: '2%' }}>
         <Image
           src="/landing/parent-features/special-request-app.png"
-          alt="Send a special request to caregiver"
+          alt="Special requests screen"
           fill
           className="object-cover object-top"
-          sizes="(max-width: 1024px) 80vw, 20vw"
+          sizes="(max-width: 768px) 64vw, 22vw"
         />
       </div>
-    </div>
+    </CardShell>
   );
 }

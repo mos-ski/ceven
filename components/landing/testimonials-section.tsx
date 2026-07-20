@@ -21,7 +21,7 @@ export function TestimonialsSection() {
 
             {/* Quote */}
             <p
-              className="font-['Inter'] font-medium text-white tracking-[-0.02em]"
+              className="font-[family-name:var(--font-urbanist-import)] font-medium text-white tracking-[-0.02em]"
               style={{ fontSize: "clamp(20px, 2.6vw, 36px)", lineHeight: "1.22" }}
             >
               I used to call the creche just to check my son had eaten lunch. Now I just&hellip; know. That&apos;s the whole thing.
@@ -29,10 +29,10 @@ export function TestimonialsSection() {
 
             {/* Attribution */}
             <div className="flex flex-col gap-1">
-              <p className="font-['Inter'] font-semibold text-white text-[18px] leading-[28px]">
+              <p className="font-[family-name:var(--font-urbanist-import)] font-semibold text-white text-[18px] leading-[28px]">
                 — Renee Wells
               </p>
-              <p className="font-['Inter'] font-normal text-[#e4e7ec] text-[16px] leading-[24px]">
+              <p className="font-[family-name:var(--font-urbanist-import)] font-normal text-[#e4e7ec] text-[16px] leading-[24px]">
                 Product Designer, Quotient
               </p>
             </div>
