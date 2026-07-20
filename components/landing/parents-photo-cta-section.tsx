@@ -14,7 +14,7 @@ export function ParentsPhotoCTASection() {
       />
       <div className="absolute inset-0 bg-gradient-to-r from-[#1A1208]/85 via-[#1A1208]/60 to-transparent" />
       <FadeUp className="relative z-10 px-4 sm:px-8 lg:px-16 py-16 sm:py-20 max-w-2xl">
-        <h2 className="font-[family-name:var(--font-fraunces)] text-[#FAF2E1] text-2xl sm:text-3xl lg:text-4xl font-semibold leading-[1.2] mb-4" style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}>
+        <h2 className="font-[family-name:var(--font-merriweather-import)] font-bold text-[#FAF2E1] text-2xl sm:text-3xl lg:text-4xl leading-[1.2] mb-4">
           Let&apos;s help you be part of every<br />
           moment of your child&apos;s life
         </h2>

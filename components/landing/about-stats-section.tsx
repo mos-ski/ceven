@@ -32,7 +32,7 @@ export function AboutStatsSection() {
     <section className="bg-[#F5EFE4] px-4 sm:px-8 lg:px-16 pt-10 sm:pt-12 pb-16 sm:pb-20">
       <div className="max-w-6xl mx-auto">
         <FadeUp>
-          <h2 className="font-[family-name:var(--font-fraunces)] text-[#3B2513] text-4xl font-semibold mb-8" style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}>
+          <h2 className="font-[family-name:var(--font-merriweather-import)] font-bold text-[#3B2513] text-4xl mb-8">
             We&apos;ve achieved
           </h2>
         </FadeUp>
@@ -45,7 +45,7 @@ export function AboutStatsSection() {
                   <CountUp
                     to={stat.to}
                     suffix={stat.suffix}
-                    className="font-[family-name:var(--font-mogra-import)] text-[#3B2513] text-[64px] sm:text-[80px] lg:text-[100px] leading-none"
+                    className="font-[family-name:var(--font-merriweather-import)] font-bold text-[#3B2513] text-[64px] sm:text-[80px] lg:text-[100px] leading-none"
                   />
                   <div className="flex flex-col gap-2 items-center">
                     <p className="text-[#3B2513] font-semibold text-2xl">{stat.label}</p>

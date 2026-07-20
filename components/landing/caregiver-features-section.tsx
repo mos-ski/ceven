@@ -11,15 +11,14 @@ export function CaregiverFeaturesSection() {
         <FadeUp>
           <div className="text-center mb-10 sm:mb-14">
             <h2
-              className="font-[family-name:var(--font-fraunces)] font-semibold text-[30px] sm:text-[38px] lg:text-[46px] leading-[1.15] mb-4"
-              style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}
+              className="font-[family-name:var(--font-merriweather-import)] font-bold text-[30px] sm:text-[38px] lg:text-[46px] leading-[1.15] mb-4"
             >
               <span className="text-[#c17c45]">For Caregivers,</span>{" "}
               <span className="text-[#1a1209]">
                 the work you&apos;re already doing becomes visible, and easier to do
               </span>
             </h2>
-            <p className="font-[family-name:var(--font-plus-jakarta-sans)] text-[#5a6170] text-[16px] sm:text-[17px] leading-[1.6] max-w-2xl mx-auto">
+            <p className="font-[family-name:var(--font-urbanist-import)] text-[#5a6170] text-[16px] sm:text-[17px] leading-[1.6] max-w-2xl mx-auto">
               This isn&apos;t more paperwork. It&apos;s proof of the work you&apos;re already doing.
             </p>
           </div>
@@ -70,10 +69,10 @@ function Card1() {
   return (
     <CardShell className="h-[440px] sm:h-[460px]">
       <div className="pt-7 px-7">
-        <h3 className="font-[family-name:var(--font-plus-jakarta-sans)] font-bold text-[#1c1917] text-[15px] sm:text-[17px] leading-snug tracking-[-0.02em] mb-2">
+        <h3 className="font-[family-name:var(--font-urbanist-import)] font-bold text-[#1c1917] text-[15px] sm:text-[17px] leading-snug tracking-[-0.02em] mb-2">
           Log everything, in seconds
         </h3>
-        <p className="font-[family-name:var(--font-plus-jakarta-sans)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55] tracking-[-0.02em]">
+        <p className="font-[family-name:var(--font-urbanist-import)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55] tracking-[-0.02em]">
           Every activity, logged as it happens — so the work you do all day is visible, not invisible.
         </p>
       </div>
@@ -100,10 +99,10 @@ function Card2() {
   return (
     <CardShell className="h-[440px] sm:h-[460px]">
       <div className="pt-7 px-7">
-        <h3 className="font-[family-name:var(--font-plus-jakarta-sans)] font-bold text-[#1c1917] text-[15px] sm:text-[17px] leading-snug tracking-[-0.02em] mb-2">
+        <h3 className="font-[family-name:var(--font-urbanist-import)] font-bold text-[#1c1917] text-[15px] sm:text-[17px] leading-snug tracking-[-0.02em] mb-2">
           See every alert and need, the moment it comes in
         </h3>
-        <p className="font-[family-name:var(--font-plus-jakarta-sans)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55] tracking-[-0.02em]">
+        <p className="font-[family-name:var(--font-urbanist-import)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55] tracking-[-0.02em]">
           Medication reminders, nap alerts, parent messages — nothing gets buried. It surfaces when it matters.
         </p>
       </div>
@@ -130,10 +129,10 @@ function Card3() {
   return (
     <CardShell className="h-[440px] sm:h-[460px]">
       <div className="pt-7 px-7">
-        <h3 className="font-[family-name:var(--font-plus-jakarta-sans)] font-bold text-[#1c1917] text-[15px] sm:text-[17px] leading-snug tracking-[-0.02em] mb-2">
+        <h3 className="font-[family-name:var(--font-urbanist-import)] font-bold text-[#1c1917] text-[15px] sm:text-[17px] leading-snug tracking-[-0.02em] mb-2">
           Manage every child and every classroom, in one app
         </h3>
-        <p className="font-[family-name:var(--font-plus-jakarta-sans)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55] tracking-[-0.02em]">
+        <p className="font-[family-name:var(--font-urbanist-import)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55] tracking-[-0.02em]">
           Multiple kids, multiple rooms — one place to track it all, not six different notebooks.
         </p>
       </div>
@@ -160,10 +159,10 @@ function Card4() {
   return (
     <CardShell className="h-[440px] sm:h-[460px]">
       <div className="pt-7 px-7">
-        <h3 className="font-[family-name:var(--font-plus-jakarta-sans)] font-bold text-[#1c1917] text-[15px] sm:text-[17px] leading-snug tracking-[-0.02em] mb-2">
+        <h3 className="font-[family-name:var(--font-urbanist-import)] font-bold text-[#1c1917] text-[15px] sm:text-[17px] leading-snug tracking-[-0.02em] mb-2">
           Tasks that don&apos;t let you forget
         </h3>
-        <p className="font-[family-name:var(--font-plus-jakarta-sans)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55] tracking-[-0.02em]">
+        <p className="font-[family-name:var(--font-urbanist-import)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55] tracking-[-0.02em]">
           Medication, reminders, requests from parents — they land here and stay until done. Nothing depends on memory.
         </p>
       </div>
@@ -190,10 +189,10 @@ function Card5() {
   return (
     <CardShell className="h-[440px] sm:h-[460px]">
       <div className="pt-7 px-7">
-        <h3 className="font-[family-name:var(--font-plus-jakarta-sans)] font-bold text-[#1c1917] text-[15px] sm:text-[17px] leading-snug tracking-[-0.02em] mb-2">
+        <h3 className="font-[family-name:var(--font-urbanist-import)] font-bold text-[#1c1917] text-[15px] sm:text-[17px] leading-snug tracking-[-0.02em] mb-2">
           Know who&apos;s picking up, before they arrive
         </h3>
-        <p className="font-[family-name:var(--font-plus-jakarta-sans)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55] tracking-[-0.02em]">
+        <p className="font-[family-name:var(--font-urbanist-import)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55] tracking-[-0.02em]">
           When a parent arranges pickup, you&apos;re told ahead of time — never caught off guard at the door.
         </p>
       </div>
@@ -219,10 +218,10 @@ function Card6() {
   return (
     <CardShell className="h-[440px] sm:h-[460px]">
       <div className="pt-7 px-7">
-        <h3 className="font-[family-name:var(--font-plus-jakarta-sans)] font-bold text-[#1c1917] text-[15px] sm:text-[17px] leading-snug tracking-[-0.02em] mb-2">
+        <h3 className="font-[family-name:var(--font-urbanist-import)] font-bold text-[#1c1917] text-[15px] sm:text-[17px] leading-snug tracking-[-0.02em] mb-2">
           Talk to parents directly
         </h3>
-        <p className="font-[family-name:var(--font-plus-jakarta-sans)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55] tracking-[-0.02em]">
+        <p className="font-[family-name:var(--font-urbanist-import)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55] tracking-[-0.02em]">
           Message, send photos, or hop on a video call — without leaving the app for WhatsApp.
         </p>
       </div>

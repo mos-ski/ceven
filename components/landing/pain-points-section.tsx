@@ -15,43 +15,43 @@ export function PainPointsSection() {
     <section className="bg-[#faf2e1] py-10 sm:py-12 min-h-screen px-4 sm:px-8 lg:px-[74px] overflow-hidden">
       <div className="max-w-[1549px] mx-auto flex flex-col gap-4 sm:gap-6">
 
-        {/* ── Phone mockups (overflow above white card) ── */}
-        <FadeUp>
-          <div className="flex justify-center items-end px-6 h-[320px] sm:h-[400px] lg:h-[480px] -mb-8 sm:-mb-12 lg:-mb-16 relative z-10">
-            {/* Left phone: upright */}
-            <div className="relative w-[140px] sm:w-[190px] lg:w-[240px] h-[300px] sm:h-[380px] lg:h-[460px] shrink-0 z-10 -mr-4 sm:-mr-6">
-              <Image
-                src="/landing/parents-app/phone-daily-report.png"
-                alt="CEven daily report screen"
-                fill
-                className="object-contain object-bottom drop-shadow-2xl"
-                sizes="(max-width: 640px) 140px, (max-width: 1024px) 190px, 240px"
-                priority
-              />
+        {/* ── Single frame: phones + white card ── */}
+        <div className="relative">
+          {/* Phone mockups — positioned to overflow above the white card */}
+          <FadeUp>
+            <div className="flex justify-center items-end px-6 h-[340px] sm:h-[420px] lg:h-[500px] relative z-10">
+              {/* Left phone: upright */}
+              <div className="relative w-[140px] sm:w-[190px] lg:w-[240px] h-[320px] sm:h-[400px] lg:h-[480px] shrink-0 z-10 -mr-4 sm:-mr-6">
+                <Image
+                  src="/landing/parents-app/phone-daily-report.png"
+                  alt="CEven daily report screen"
+                  fill
+                  className="object-contain object-bottom drop-shadow-2xl"
+                  sizes="(max-width: 640px) 140px, (max-width: 1024px) 190px, 240px"
+                  priority
+                />
+              </div>
+              {/* Right phone: rotated 7° */}
+              <div
+                className="relative w-[140px] sm:w-[190px] lg:w-[240px] h-[320px] sm:h-[400px] lg:h-[480px] shrink-0"
+                style={{ transform: "rotate(7deg)" }}
+              >
+                <Image
+                  src="/landing/parents-app/phone-arrivals-pickups.png"
+                  alt="CEven arrivals and pickups screen"
+                  fill
+                  className="object-contain object-bottom drop-shadow-2xl"
+                  sizes="(max-width: 640px) 140px, (max-width: 1024px) 190px, 240px"
+                  priority
+                />
+              </div>
             </div>
-            {/* Right phone: rotated 7° */}
-            <div
-              className="relative w-[140px] sm:w-[190px] lg:w-[240px] h-[300px] sm:h-[380px] lg:h-[460px] shrink-0"
-              style={{ transform: "rotate(7deg)" }}
-            >
-              <Image
-                src="/landing/parents-app/phone-arrivals-pickups.png"
-                alt="CEven arrivals and pickups screen"
-                fill
-                className="object-contain object-bottom drop-shadow-2xl"
-                sizes="(max-width: 640px) 140px, (max-width: 1024px) 190px, 240px"
-                priority
-              />
-            </div>
-          </div>
-        </FadeUp>
+          </FadeUp>
 
-        {/* ── White pill card: text + CTA ── */}
-        <div className="bg-white rounded-[56px] sm:rounded-[80px] lg:rounded-[113px] overflow-hidden">
-
-          {/* Text + CTA */}
-          <FadeUp delay={0.1}>
-            <div className="flex flex-col items-center gap-6 sm:gap-8 px-6 sm:px-12 lg:px-16 pt-24 sm:pt-32 lg:pt-40 pb-10 sm:pb-12 lg:pb-14 text-center">
+          {/* White pill card — overlaps bottom half of phones */}
+          <div className="bg-white rounded-[56px] sm:rounded-[80px] lg:rounded-[113px] overflow-hidden -mt-24 sm:-mt-32 lg:-mt-40 relative z-0">
+            <FadeUp delay={0.1}>
+              <div className="flex flex-col items-center gap-6 sm:gap-8 px-6 sm:px-12 lg:px-16 pt-28 sm:pt-36 lg:pt-44 pb-10 sm:pb-12 lg:pb-14 text-center">
 
               <div className="flex flex-col gap-4 max-w-[740px]">
                 <h2
@@ -115,11 +115,12 @@ export function PainPointsSection() {
 
             </div>
           </FadeUp>
+          </div>
         </div>
 
         {/* ── Testimonial ── */}
         <FadeUp delay={0.15}>
-          <div className="pb-4 sm:pb-6 lg:pb-10 px-4 sm:px-8 lg:px-[12%]">
+          <div className="pb-4 sm:pb-6 lg:pb-10 px-4 sm:px-8 lg:px-[12%] mt-6 sm:mt-10 lg:mt-14">
             <div className="bg-[#233243] rounded-[24px] overflow-hidden flex flex-col md:flex-row">
 
               {/* Left: quote */}

@@ -33,7 +33,7 @@ export function CrechesTestimonialsSection() {
           <div className="inline-flex items-center border border-[#3B2513]/20 text-[#3B2513] text-xs font-semibold tracking-widest uppercase px-4 py-1.5 rounded-full mb-6">
             What Your Parents Need
           </div>
-          <h2 className="font-[family-name:var(--font-fraunces)] text-[#1A1208] text-4xl font-semibold leading-[1.2]" style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}>
+          <h2 className="font-[family-name:var(--font-merriweather-import)] font-bold text-[#1A1208] text-4xl leading-[1.2]">
             Before they even walk through<br />
             your door, this is{" "}
             <em className="text-[#C8823A] italic">what parents say.</em>

@@ -28,7 +28,7 @@ export function ParentsComparisonSection() {
           <div className="inline-flex items-center border border-[#3B2513]/20 text-[#3B2513] text-xs font-semibold tracking-widest uppercase px-4 py-1.5 rounded-full mb-6">
             The Difference
           </div>
-          <h2 className="font-[family-name:var(--font-fraunces)] text-[#1A1208] text-4xl font-semibold leading-[1.2] mb-3" style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}>
+          <h2 className="font-[family-name:var(--font-merriweather-import)] font-bold text-[#1A1208] text-4xl leading-[1.2] mb-3">
             A day without CEven.<br />
             <em className="text-[#C8823A] italic">A day with</em> CEven.
           </h2>

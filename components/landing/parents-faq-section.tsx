@@ -41,7 +41,7 @@ export function ParentsFAQSection() {
           <div className="inline-flex items-center bg-[#EDE8E0] text-[#3B2513] text-xs font-semibold tracking-widest uppercase px-4 py-1.5 rounded-full border border-[#D4C4B0] mb-6">
             Questions?
           </div>
-          <h2 className="font-[family-name:var(--font-fraunces)] text-[#1A1208] text-4xl font-semibold leading-[1.2]" style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}>
+          <h2 className="font-[family-name:var(--font-merriweather-import)] font-bold text-[#1A1208] text-4xl leading-[1.2]">
             Things parents<br />ask us first.
           </h2>
         </FadeUp>

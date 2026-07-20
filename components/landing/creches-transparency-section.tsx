@@ -18,7 +18,7 @@ export function CrechesTransparencySection() {
         </FadeUp>
 
         <FadeUp delay={0.15}>
-          <h2 className="font-[family-name:var(--font-fraunces)] text-[#1A1208] text-4xl font-semibold leading-[1.2] mb-6" style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}>
+          <h2 className="font-[family-name:var(--font-merriweather-import)] font-bold text-[#1A1208] text-4xl leading-[1.2] mb-6">
             Transparency is your{" "}
             <em className="text-[#C8823A] italic">competitive advantage.</em>
           </h2>

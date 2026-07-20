@@ -13,7 +13,7 @@ export function AboutSwayosooSection() {
         </FadeUp>
 
         <FadeUp delay={0.1}>
-          <h2 className="font-[family-name:var(--font-fraunces)] text-[#FAF2E1] text-4xl sm:text-5xl lg:text-6xl font-semibold mb-6 sm:mb-8" style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}>
+          <h2 className="font-[family-name:var(--font-merriweather-import)] font-bold text-[#FAF2E1] text-4xl sm:text-5xl lg:text-6xl mb-6 sm:mb-8">
             Swayosoo™
           </h2>
         </FadeUp>

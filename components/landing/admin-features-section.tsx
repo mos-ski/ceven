@@ -11,8 +11,7 @@ export function AdminFeaturesSection() {
         <FadeUp>
           <div className="text-center mb-10 sm:mb-14">
             <h2
-              className="font-[family-name:var(--font-fraunces)] font-semibold text-[30px] sm:text-[38px] lg:text-[46px] leading-[1.15] mb-4"
-              style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}
+              className="font-[family-name:var(--font-merriweather-import)] font-bold text-[30px] sm:text-[38px] lg:text-[46px] leading-[1.15] mb-4"
             >
               <span className="text-[#c17c45]">For Admins,</span>{" "}
               <span className="text-[#1a1209]">

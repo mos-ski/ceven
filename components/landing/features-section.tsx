@@ -88,7 +88,7 @@ export function FeaturesSection() {
                       alt="Playtime"
                       className="object-cover object-center"
                     />
-                    <div className="absolute top-2 left-2 bg-[#3b2513] text-white text-[8px] font-['Nunito'] px-2 py-0.5 rounded-[2px]">
+                    <div className="absolute top-2 left-2 bg-[#3b2513] text-white text-[8px] font-[family-name:var(--font-urbanist-import)] px-2 py-0.5 rounded-[2px]">
                       Playtime
                     </div>
                     <div className="absolute bottom-2 left-2 flex gap-1">
@@ -98,16 +98,16 @@ export function FeaturesSection() {
                     </div>
                   </div>
                   <div className="bg-white px-2.5 py-2">
-                    <p className="font-['Nunito'] font-normal text-[#1f2937] text-[11px] leading-[1.4] mb-1">
+                    <p className="font-[family-name:var(--font-urbanist-import)] font-normal text-[#1f2937] text-[11px] leading-[1.4] mb-1">
                       Esther had a wonderful time playing with her friends today!
                     </p>
-                    <div className="flex justify-between text-[8px] text-[#6b7280] font-['Nunito'] mb-2">
+                    <div className="flex justify-between text-[8px] text-[#6b7280] font-[family-name:var(--font-urbanist-import)] mb-2">
                       <span>2 hours ago</span>
                       <span>Posted by Sarah Johnson</span>
                     </div>
                     <div className="flex justify-between border-t border-gray-100 pt-1.5">
-                      <span className="text-[9px] text-[#6b7280] font-['Nunito']">💬 Comment</span>
-                      <span className="text-[9px] text-[#6b7280] font-['Nunito']">🔖 Save</span>
+                      <span className="text-[9px] text-[#6b7280] font-[family-name:var(--font-urbanist-import)]">💬 Comment</span>
+                      <span className="text-[9px] text-[#6b7280] font-[family-name:var(--font-urbanist-import)]">🔖 Save</span>
                     </div>
                   </div>
                 </div>
@@ -118,7 +118,7 @@ export function FeaturesSection() {
                 <div className="rounded-[6px] overflow-hidden shadow-[3px_6px_7.5px_rgba(29,58,88,0.05)]">
                   <div className="bg-[#3b2513] px-3 py-2 flex items-center gap-2">
                     <span className="text-white text-[9px]">📅</span>
-                    <span className="font-['Urbanist'] font-normal text-white text-[9px]">Friday, 9 January, 2026</span>
+                    <span className="font-[family-name:var(--font-urbanist-import)] font-normal text-white text-[9px]">Friday, 9 January, 2026</span>
                   </div>
                   <div className="bg-[#f4f5f6] p-2 space-y-2">
                     <DailyCard bg="bg-[#fff2f8]" iconBg="bg-[#ffe6f4]" emoji="❤️" label="Mood" value="🤭 Playful  😂 Happy" />
@@ -130,7 +130,7 @@ export function FeaturesSection() {
                       <SmallCard emoji="💊" label="Medications" value="Nil" />
                     </div>
                     <div className="bg-white border border-[#ccd2dc] rounded-[9px] p-2 h-[40px]">
-                      <p className="font-['Urbanist'] text-[7px] text-[#858c98]">Any additional comments ...</p>
+                      <p className="font-[family-name:var(--font-urbanist-import)] text-[7px] text-[#858c98]">Any additional comments ...</p>
                     </div>
                   </div>
                 </div>
@@ -184,22 +184,22 @@ export function FeaturesSection() {
               </p>
               <div className="flex flex-col gap-3 max-w-[245px] mx-auto">
                 <div className="flex justify-end">
-                  <div className="bg-[#3b2513] text-white font-['Urbanist'] font-normal text-[10.5px] px-2.5 py-2 rounded-tl-[9px] rounded-bl-[9px] rounded-tr-[9px]">
+                  <div className="bg-[#3b2513] text-white font-[family-name:var(--font-urbanist-import)] font-normal text-[10.5px] px-2.5 py-2 rounded-tl-[9px] rounded-bl-[9px] rounded-tr-[9px]">
                     Hello there
                   </div>
                 </div>
                 <div>
-                  <div className="bg-[#f5f5f5] text-[#212121] font-['Urbanist'] font-normal text-[10.5px] px-4 py-3 rounded-br-[15px] rounded-bl-[15px] rounded-tl-[3px] rounded-tr-[15px] max-w-[214px]">
+                  <div className="bg-[#f5f5f5] text-[#212121] font-[family-name:var(--font-urbanist-import)] font-normal text-[10.5px] px-4 py-3 rounded-br-[15px] rounded-bl-[15px] rounded-tl-[3px] rounded-tr-[15px] max-w-[214px]">
                     Hello! How may I assist you today?
                   </div>
                 </div>
                 <div className="flex justify-end">
-                  <div className="bg-[#3b2513] text-white font-['Urbanist'] font-normal text-[10.5px] px-2.5 py-2 rounded-tl-[9px] rounded-bl-[9px] rounded-tr-[9px]">
+                  <div className="bg-[#3b2513] text-white font-[family-name:var(--font-urbanist-import)] font-normal text-[10.5px] px-2.5 py-2 rounded-tl-[9px] rounded-bl-[9px] rounded-tr-[9px]">
                     Summarize today&apos;s report
                   </div>
                 </div>
                 <div>
-                  <div className="bg-[#f5f5f5] text-[#212121] font-['Urbanist'] font-normal text-[10.5px] px-4 py-3 rounded-br-[15px] rounded-bl-[15px] rounded-tl-[3px] rounded-tr-[15px] max-w-[214px] leading-[1.4]">
+                  <div className="bg-[#f5f5f5] text-[#212121] font-[family-name:var(--font-urbanist-import)] font-normal text-[10.5px] px-4 py-3 rounded-br-[15px] rounded-bl-[15px] rounded-tl-[3px] rounded-tr-[15px] max-w-[214px] leading-[1.4]">
                     Of course! As an AI language model, I am designed to assist with a variety of tasks. Here are some examples of what I can do:
                     <ul className="list-disc pl-4 mt-1">
                       <li>Answer questions: Just ask me anything!</li>
@@ -224,9 +224,9 @@ export function FeaturesSection() {
                   <Image src="/features/child-photo.png" fill alt="Child at creche" className="object-cover object-center" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="font-['Merriweather'] font-semibold text-[#1f2937] text-[13px] leading-[1.3] mb-0.5">St. Greg Creche</p>
-                  <p className="font-['Urbanist'] font-normal text-[#6b7280] text-[12px] mb-2">Victoria Island, Lagos</p>
-                  <div className="flex items-center gap-3 text-[11px] text-[#6b7280] font-['Poppins']">
+                  <p className="font-[family-name:var(--font-merriweather-import)] font-semibold text-[#1f2937] text-[13px] leading-[1.3] mb-0.5">St. Greg Creche</p>
+                  <p className="font-[family-name:var(--font-urbanist-import)] font-normal text-[#6b7280] text-[12px] mb-2">Victoria Island, Lagos</p>
+                  <div className="flex items-center gap-3 text-[11px] text-[#6b7280] font-[family-name:var(--font-urbanist-import)]">
                     <span>📍 0.7 km</span>
                     <span>⭐ 4.0</span>
                     <span>👥 5 spots</span>
@@ -238,7 +238,7 @@ export function FeaturesSection() {
                 {AI_QUERIES.map((q) => (
                   <div key={q} className="bg-[#ecfff8] flex items-center gap-1.5 px-2 py-1.5 rounded-[6px]">
                     <span className="text-[10px]">📄</span>
-                    <span className="font-['Urbanist'] font-normal text-[#006745] text-[10.5px] whitespace-nowrap">{q}</span>
+                    <span className="font-[family-name:var(--font-urbanist-import)] font-normal text-[#006745] text-[10.5px] whitespace-nowrap">{q}</span>
                   </div>
                 ))}
               </div>
@@ -288,8 +288,8 @@ function DailyCard({
     <div className={`${bg} rounded-[6px] p-1.5 flex gap-1.5 items-start`}>
       <div className={`${iconBg} rounded-[2px] p-1 shrink-0 text-[10px]`}>{emoji}</div>
       <div className="min-w-0">
-        <p className="font-['Urbanist'] font-normal text-[#343a40] text-[8px]">{label}</p>
-        <p className="font-['Urbanist'] font-medium text-[#1f2937] text-[9px] leading-[1.3]">{value}</p>
+        <p className="font-[family-name:var(--font-urbanist-import)] font-normal text-[#343a40] text-[8px]">{label}</p>
+        <p className="font-[family-name:var(--font-urbanist-import)] font-medium text-[#1f2937] text-[9px] leading-[1.3]">{value}</p>
       </div>
     </div>
   );
@@ -300,8 +300,8 @@ function SmallCard({ emoji, label, value }: { emoji: string; label: string; valu
     <div className="flex gap-1.5 items-start">
       <div className="bg-orange-50 rounded-[2px] p-1 shrink-0 text-[10px]">{emoji}</div>
       <div>
-        <p className="font-['Urbanist'] font-normal text-[#343a40] text-[8px]">{label}</p>
-        <p className="font-['Urbanist'] font-medium text-[#080730] text-[9px]">{value}</p>
+        <p className="font-[family-name:var(--font-urbanist-import)] font-normal text-[#343a40] text-[8px]">{label}</p>
+        <p className="font-[family-name:var(--font-urbanist-import)] font-medium text-[#080730] text-[9px]">{value}</p>
       </div>
     </div>
   );

@@ -61,13 +61,13 @@ const TIMELINE = [
 
 export function CrechesTimelineSection() {
   return (
-    <section className="bg-white px-16 py-20">
+    <section className="bg-white px-4 sm:px-8 lg:px-16 py-16 sm:py-20">
       <div className="max-w-4xl mx-auto">
         <FadeUp className="mb-14">
           <div className="inline-flex items-center border border-[#3B2513]/20 text-[#3B2513] text-xs font-medium px-4 py-1.5 rounded-full mb-6">
             A full day with CEven
           </div>
-          <h2 className="font-[family-name:var(--font-fraunces)] text-[#1A1208] text-4xl font-semibold leading-[1.2]" style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}>
+          <h2 className="font-[family-name:var(--font-merriweather-import)] font-bold text-[#1A1208] text-4xl leading-[1.2]">
             Sunrise to sunset.<br />
             Every moment is accounted for.
           </h2>

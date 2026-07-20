@@ -27,7 +27,7 @@ export function ContactFormSection() {
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-20 items-start">
           <FadeUp delay={0}>
             <div>
-              <p className="font-[family-name:var(--font-mogra-import)] text-[#1A1208] text-4xl mb-5">
+              <p className="font-[family-name:var(--font-merriweather-import)] font-bold text-[#1A1208] text-4xl mb-5">
                 CEven
               </p>
               <p className="text-[#6B5744] text-base leading-relaxed mb-10">

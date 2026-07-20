@@ -51,8 +51,7 @@ export function CtaBanner() {
 
           {/* Heading */}
           <h2
-            className="font-[family-name:var(--font-fraunces)] font-bold text-white text-[32px] sm:text-[44px] lg:text-[48px] leading-[1.18] tracking-[-0.02em]"
-            style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}
+            className="font-[family-name:var(--font-merriweather-import)] font-bold text-white text-[32px] sm:text-[44px] lg:text-[48px] leading-[1.18] tracking-[-0.02em]"
           >
             Ready to be the crèche<br className="hidden sm:block" /> that stands out?
           </h2>

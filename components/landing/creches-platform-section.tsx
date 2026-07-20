@@ -33,7 +33,7 @@ export function CrechesPlatformSection() {
     <section className="bg-[#F5EFE4] px-4 sm:px-8 lg:px-16 py-16 sm:py-20">
       <div className="max-w-6xl mx-auto">
         <FadeUp className="text-center mb-12">
-          <h2 className="font-[family-name:var(--font-fraunces)] text-[#1A1208] text-4xl font-semibold leading-[1.2] mb-3" style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}>
+          <h2 className="font-[family-name:var(--font-merriweather-import)] font-bold text-[#1A1208] text-4xl leading-[1.2] mb-3">
             One platform. Every role.<br />
             Nobody left behind.
           </h2>

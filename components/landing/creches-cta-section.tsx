@@ -7,7 +7,7 @@ export function CrechesCTASection() {
   return (
     <section className="bg-[#C8823A] px-4 sm:px-8 lg:px-16 py-16 sm:py-24 text-center">
       <FadeUp className="max-w-2xl mx-auto">
-        <h2 className="font-[family-name:var(--font-fraunces)] text-[#FAF2E1] text-4xl font-semibold leading-[1.2] mb-4" style={{ fontVariationSettings: '"SOFT" 0, "WONK" 1' }}>
+        <h2 className="font-[family-name:var(--font-merriweather-import)] font-bold text-[#FAF2E1] text-4xl leading-[1.2] mb-4">
           Ready to be the crèche<br />
           that stands out?
         </h2>

@@ -92,7 +92,7 @@ export function HeroSection() {
                 className="flex-1 flex items-center justify-center px-1 py-3 relative cursor-pointer"
               >
                 <span
-                  className="font-[family-name:var(--font-urbanist-import)] font-semibold text-[14px] leading-[20px] whitespace-nowrap transition-colors"
+                  className="font-[family-name:var(--font-urbanist-import)] font-semibold text-[11px] sm:text-[14px] leading-[20px] whitespace-nowrap transition-colors"
                   style={{ color: i === activeTab ? "#233243" : "#667085" }}
                 >
                   {tab.label}
