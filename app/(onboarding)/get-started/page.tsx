@@ -10,6 +10,9 @@ import { QuestionShell } from "@/components/onboarding/question-shell";
 import { OptionList, type OnboardingOption } from "@/components/onboarding/option-list";
 import { SliderQuestion } from "@/components/onboarding/slider-question";
 import { TextQuestion } from "@/components/onboarding/text-question";
+import { CrecheSearchQuestion } from "@/components/onboarding/creche-search-question";
+import { ChildrenQuestion } from "@/components/onboarding/children-question";
+import { FinalContactStep } from "@/components/onboarding/final-contact-step";
 
 const PERSONA_OPTIONS: OnboardingOption[] = [
   {
@@ -60,10 +63,28 @@ const STAFF_COUNT_OPTIONS: OnboardingOption[] = [
   { value: "30+", label: "30+ staff" },
 ];
 
+const PARENT_INTENT_OPTIONS: OnboardingOption[] = [
+  { value: "creche", label: "My child's creche uses CEven" },
+  { value: "caregiver", label: "I want to find/manage an independent caregiver" },
+  { value: "both", label: "Both" },
+];
+
+const HAS_CAREGIVER_OPTIONS: OnboardingOption[] = [
+  { value: "yes", label: "Yes, I already have someone in mind" },
+  { value: "no", label: "No, I'm still looking" },
+];
+
+const CARE_TYPE_OPTIONS: OnboardingOption[] = [
+  { value: "full-time", label: "Full-time" },
+  { value: "part-time", label: "Part-time" },
+  { value: "occasional", label: "Occasional" },
+];
+
 export default function GetStartedPage() {
   const router = useRouter();
   const [answers, setAnswers] = useState<OnboardingAnswers>(INITIAL_ANSWERS);
   const [index, setIndex] = useState(0);
+  const [submitted, setSubmitted] = useState(false);
 
   const path = resolveFullPath(answers);
   const stepId = path[index];
@@ -191,6 +212,139 @@ export default function GetStartedPage() {
           onContinue={() => router.push(`/signup?email=${encodeURIComponent(answers.email)}`)}
         />
       </QuestionShell>
+    );
+  }
+
+  if (stepId === "parent-intent") {
+    return (
+      <QuestionShell heading="What brings you to CEven?" current={index + 1} total={total} onBack={back}>
+        <OptionList
+          options={PARENT_INTENT_OPTIONS}
+          selected={answers.parentIntent}
+          onSelect={(v) => {
+            update("parentIntent", v as OnboardingAnswers["parentIntent"]);
+            next();
+          }}
+        />
+      </QuestionShell>
+    );
+  }
+
+  if (stepId === "parent-creche-search") {
+    return (
+      <QuestionShell heading="Find your child's creche" current={index + 1} total={total} onBack={back}>
+        <CrecheSearchQuestion
+          value={answers.crecheQuery}
+          onChange={(v) => update("crecheQuery", v)}
+          onContinue={(found) => {
+            update("crecheFound", found);
+            next();
+          }}
+        />
+      </QuestionShell>
+    );
+  }
+
+  if (stepId === "parent-creche-children" || stepId === "parent-caregiver-children") {
+    return (
+      <QuestionShell
+        heading="How many children, and how old are they?"
+        current={index + 1}
+        total={total}
+        onBack={back}
+      >
+        <ChildrenQuestion
+          count={answers.parentChildrenCount}
+          onCountChange={(v) => update("parentChildrenCount", v)}
+          ages={answers.parentChildrenAges}
+          onAgesChange={(v) => update("parentChildrenAges", v)}
+          onContinue={next}
+        />
+      </QuestionShell>
+    );
+  }
+
+  if (stepId === "parent-caregiver-has-one") {
+    return (
+      <QuestionShell
+        heading="Do you already have a caregiver in mind?"
+        current={index + 1}
+        total={total}
+        onBack={back}
+      >
+        <OptionList
+          options={HAS_CAREGIVER_OPTIONS}
+          selected={answers.hasCaregiverInMind}
+          onSelect={(v) => {
+            update("hasCaregiverInMind", v as OnboardingAnswers["hasCaregiverInMind"]);
+            next();
+          }}
+        />
+      </QuestionShell>
+    );
+  }
+
+  if (stepId === "parent-caregiver-care-type") {
+    return (
+      <QuestionShell
+        heading="What kind of care are you looking for?"
+        current={index + 1}
+        total={total}
+        onBack={back}
+      >
+        <OptionList
+          options={CARE_TYPE_OPTIONS}
+          selected={answers.careType}
+          onSelect={(v) => {
+            update("careType", v as OnboardingAnswers["careType"]);
+            next();
+          }}
+        />
+      </QuestionShell>
+    );
+  }
+
+  if (stepId === "parent-caregiver-location") {
+    return (
+      <QuestionShell heading="Where are you located?" current={index + 1} total={total} onBack={back}>
+        <TextQuestion
+          value={answers.parentLocation}
+          onChange={(v) => update("parentLocation", v)}
+          placeholder="e.g. Lekki, Lagos"
+          onContinue={next}
+        />
+      </QuestionShell>
+    );
+  }
+
+  if (stepId === "parent-final" && !submitted) {
+    return (
+      <QuestionShell
+        heading="What's your name and email?"
+        current={index + 1}
+        total={total}
+        onBack={back}
+      >
+        <FinalContactStep
+          name={answers.name}
+          onNameChange={(v) => update("name", v)}
+          email={answers.email}
+          onEmailChange={(v) => update("email", v)}
+          phone={answers.phone}
+          onPhoneChange={(v) => update("phone", v)}
+          sendToWhatsApp={answers.sendToWhatsApp}
+          onSendToWhatsAppChange={(v) => update("sendToWhatsApp", v)}
+          onSubmit={() => setSubmitted(true)}
+        />
+      </QuestionShell>
+    );
+  }
+
+  if (submitted) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-[#faf2e1] px-6 text-center font-[family-name:var(--font-urbanist)] text-heading">
+        Submitted — app download handoff screen arrives in Task 6.
+      </div>
     );
   }
 
