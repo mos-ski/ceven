@@ -1,7 +1,15 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const TABS = ["Attendance", "Billing", "Communication", "Registration", "Paperwork", "Payroll", "AI"];
+const TABS = [
+  { label: "Overview", src: "/hero/tab-overview.jpg", alt: "Child profile overview in the CEven admin dashboard" },
+  { label: "Billing", src: "/hero/tab-billing.jpg", alt: "Billing and payments dashboard in CEven" },
+  { label: "Payroll", src: "/hero/tab-payroll.jpg", alt: "Staff payroll log in the CEven admin dashboard" },
+  { label: "Behaviour", src: "/hero/tab-behaviour.jpg", alt: "Child development and behaviour tracking in CEven" },
+];
 
 const LOGOS = [
   { src: "/hero/logo-gan-sinai.png",  alt: "Gan Sinai Early Learning Center",          w: 103, h: 36 },
@@ -12,8 +20,10 @@ const LOGOS = [
 ];
 
 export function HeroSection() {
+  const [activeTab, setActiveTab] = useState(0);
+
   return (
-    <section className="bg-[#FAF2E1] overflow-hidden">
+    <section className="bg-[#FAF2E1] overflow-hidden min-h-screen py-16">
 
       {/* Headline + body + CTA */}
       <div className="text-center px-4 mt-[14px]">
@@ -67,20 +77,21 @@ export function HeroSection() {
           {/* Tabs row */}
           <div className="bg-white border-b border-[rgba(68,25,6,0.08)] flex">
             {TABS.map((tab, i) => (
-              <div
-                key={tab}
-                className="flex-1 flex items-center justify-center px-1 py-3 relative"
+              <button
+                key={tab.label}
+                onClick={() => setActiveTab(i)}
+                className="flex-1 flex items-center justify-center px-1 py-3 relative cursor-pointer"
               >
                 <span
-                  className="font-[family-name:var(--font-urbanist-import)] font-semibold text-[14px] leading-[20px] whitespace-nowrap"
-                  style={{ color: i === 0 ? "#233243" : "#667085" }}
+                  className="font-[family-name:var(--font-urbanist-import)] font-semibold text-[14px] leading-[20px] whitespace-nowrap transition-colors"
+                  style={{ color: i === activeTab ? "#233243" : "#667085" }}
                 >
-                  {tab}
+                  {tab.label}
                 </span>
-                {i === 0 && (
+                {i === activeTab && (
                   <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-[#3b2513] rounded-full" />
                 )}
-              </div>
+              </button>
             ))}
           </div>
 
@@ -88,11 +99,12 @@ export function HeroSection() {
           <div className="bg-[rgba(68,25,6,0.04)] p-[8px]">
             <div className="overflow-hidden rounded-sm shadow-[0px_1px_1px_0.5px_rgba(68,25,6,0.04),0px_3px_3px_1.5px_rgba(68,25,6,0.04),0px_6px_6px_-3px_rgba(68,25,6,0.04),0px_12px_12px_-6px_rgba(68,25,6,0.04),0px_24px_24px_-12px_rgba(68,25,6,0.04)]">
               <Image
-                src="/hero/dashboard.png"
-                alt="CEven admin dashboard"
-                width={964}
-                height={557}
-                className="w-full h-auto block"
+                key={TABS[activeTab].src}
+                src={TABS[activeTab].src}
+                alt={TABS[activeTab].alt}
+                width={1440}
+                height={1024}
+                className="w-full h-auto block animate-fade-in"
                 priority
               />
             </div>

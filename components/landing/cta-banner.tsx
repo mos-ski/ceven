@@ -40,7 +40,7 @@ const ROLES = [
 
 export function CtaBanner() {
   return (
-    <section className="bg-[#c78c5f] py-16 sm:py-20 lg:py-24 px-4 sm:px-8">
+    <section className="bg-[#c78c5f] py-16 min-h-screen px-4 sm:px-8 flex flex-col justify-center">
       <div className="max-w-[702px] mx-auto flex flex-col items-center gap-6 text-center">
 
         <FadeUp className="flex flex-col items-center gap-6 w-full">

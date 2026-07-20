@@ -12,7 +12,7 @@ const STARS = [0, 1, 2, 3, 4];
 
 export function PainPointsSection() {
   return (
-    <section className="bg-[#faf2e1] px-4 sm:px-8 lg:px-[74px] overflow-hidden">
+    <section className="bg-[#faf2e1] py-16 min-h-screen px-4 sm:px-8 lg:px-[74px] overflow-hidden">
       <div className="max-w-[1549px] mx-auto flex flex-col gap-6 sm:gap-8">
 
         {/* ── White pill card: phones + text ── */}

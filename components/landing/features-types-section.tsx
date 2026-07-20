@@ -139,7 +139,7 @@ export function FeaturesTypesSection() {
 
       {/* ── Desktop: sticky scroll-driven layout ── */}
       <div className="hidden lg:flex lg:sticky lg:top-0 lg:h-screen items-center px-[74px]">
-        <div className="max-w-[1549px] mx-auto w-full py-8">
+        <div className="max-w-[1549px] mx-auto w-full py-16">
           {card}
         </div>
       </div>
@@ -152,7 +152,7 @@ export function FeaturesTypesSection() {
       />
 
       {/* ── Mobile: normal flow, click to switch ── */}
-      <div className="lg:hidden px-4 sm:px-8 py-8 sm:py-12">
+      <div className="lg:hidden px-4 sm:px-8 py-16 min-h-screen">
         <div className="max-w-[1549px] mx-auto">
           {card}
         </div>

@@ -12,7 +12,7 @@ const LIST_ITEMS = [
 
 export function FamiliesPartnersSection() {
   return (
-    <section className="bg-[#FAF2E1] py-16 sm:py-[70px] px-4 sm:px-10 lg:px-10">
+    <section className="bg-[#FAF2E1] py-16 min-h-screen px-4 sm:px-10 lg:px-10">
       <div className="max-w-[1280px] mx-auto">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-0">
 
