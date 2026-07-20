@@ -208,7 +208,7 @@ export function CtaBanner() {
   // ── FLOW PHASE ──────────────────────────────────────────────
   if (submitted) {
     return (
-      <section className="bg-[#faf2e1] min-h-screen flex flex-col items-center justify-center">
+      <section className="bg-[#c78c5f] min-h-screen flex flex-col items-center justify-center">
         <AppDownloadHandoff
           email={answers.email}
           phone={answers.phone}
@@ -501,7 +501,7 @@ export function CtaBanner() {
   };
 
   return (
-    <section className="bg-[#faf2e1] min-h-screen flex flex-col items-center justify-center">
+    <section className="bg-[#c78c5f] min-h-screen flex flex-col items-center justify-center">
       {renderStep()}
     </section>
   );
