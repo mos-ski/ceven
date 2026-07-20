@@ -150,22 +150,24 @@ export function PainPointsSection() {
 
               {/* Right: photo + play button */}
               <div className="relative w-full md:w-[420px] lg:w-[480px] shrink-0 min-h-[320px] md:min-h-[448px]">
-                <Image
-                  src="/landing/parents-app/testimonial-photo.png"
-                  alt="Parent holding child"
-                  fill
-                  className="object-cover object-center"
-                  sizes="(max-width: 768px) 100vw, 480px"
-                />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <img
-                    src="/landing/parents-app/play-button.svg"
-                    alt="Play video"
-                    width={96}
-                    height={96}
-                    style={{ backdropFilter: "blur(9.6px)" }}
-                    className="w-24 h-24"
+                <div className="absolute inset-3 md:inset-4 rounded-2xl overflow-hidden">
+                  <Image
+                    src="/landing/parents-app/testimonial-photo.png"
+                    alt="Parent holding child"
+                    fill
+                    className="object-cover object-center"
+                    sizes="(max-width: 768px) 100vw, 480px"
                   />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <img
+                      src="/landing/parents-app/play-button.svg"
+                      alt="Play video"
+                      width={96}
+                      height={96}
+                      style={{ backdropFilter: "blur(9.6px)" }}
+                      className="w-24 h-24"
+                    />
+                  </div>
                 </div>
               </div>
 
