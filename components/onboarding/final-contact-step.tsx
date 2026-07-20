@@ -22,7 +22,7 @@ export function FinalContactStep({
   onSubmit,
 }: FinalContactStepProps) {
   const canSubmit =
-    name.trim().length > 0 && email.trim().length > 0 && (!sendToWhatsApp || phone.trim().length > 0);
+    name.trim().length > 0 && email.trim().length > 0 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()) && (!sendToWhatsApp || phone.trim().length > 0);
 
   return (
     <div className="flex flex-col gap-4">

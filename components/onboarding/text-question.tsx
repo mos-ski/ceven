@@ -6,6 +6,7 @@ interface TextQuestionProps {
   onContinue: () => void;
   continueLabel?: string;
   helperText?: string;
+  validate?: (value: string) => boolean;
 }
 
 export function TextQuestion({
@@ -16,8 +17,9 @@ export function TextQuestion({
   onContinue,
   continueLabel = "Continue",
   helperText,
+  validate,
 }: TextQuestionProps) {
-  const canContinue = value.trim().length > 0;
+  const canContinue = value.trim().length > 0 && (validate ? validate(value) : true);
   return (
     <div className="flex flex-col gap-4">
       <input

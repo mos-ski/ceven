@@ -231,6 +231,7 @@ export default function GetStartedPage() {
           placeholder="you@example.com"
           type="email"
           onContinue={() => router.push(`/signup?email=${encodeURIComponent(answers.email)}`)}
+          validate={(v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)}
         />
       </QuestionShell>
     );
