@@ -14,6 +14,7 @@ import { CrecheSearchQuestion } from "@/components/onboarding/creche-search-ques
 import { ChildrenQuestion } from "@/components/onboarding/children-question";
 import { FinalContactStep } from "@/components/onboarding/final-contact-step";
 import { MultiSelectList } from "@/components/onboarding/multi-select-list";
+import { AppDownloadHandoff } from "@/components/onboarding/app-download-handoff";
 
 const PERSONA_OPTIONS: OnboardingOption[] = [
   {
@@ -479,9 +480,11 @@ export default function GetStartedPage() {
 
   if (submitted) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#faf2e1] px-6 text-center font-[family-name:var(--font-urbanist)] text-heading">
-        Submitted — app download handoff screen arrives in Task 6.
-      </div>
+      <AppDownloadHandoff
+        email={answers.email}
+        phone={answers.phone}
+        sendToWhatsApp={answers.sendToWhatsApp}
+      />
     );
   }
 
