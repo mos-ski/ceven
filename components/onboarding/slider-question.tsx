@@ -31,9 +31,9 @@ export function SliderQuestion({
           min={min}
           value={value}
           onChange={(e) => onChange(Number(e.target.value))}
-          className="h-16 w-32 rounded-xl border-2 border-brand-dark text-center font-[family-name:var(--font-urbanist)] text-2xl font-bold text-heading outline-none"
+          className="h-16 w-32 rounded-xl border-2 border-brand-dark text-center font-[family-name:var(--font-urbanist-import)] text-2xl font-bold text-heading outline-none"
         />
-        <span className="font-[family-name:var(--font-urbanist)] text-lg text-muted-text">
+        <span className="font-[family-name:var(--font-urbanist-import)] text-lg text-muted-text">
           {unit}
         </span>
       </div>
@@ -45,14 +45,14 @@ export function SliderQuestion({
         onChange={(e) => onChange(Number(e.target.value))}
         className="w-full accent-[#3B2513]"
       />
-      <div className="flex w-full justify-between font-[family-name:var(--font-urbanist)] text-xs text-muted-text">
+      <div className="flex w-full justify-between font-[family-name:var(--font-urbanist-import)] text-xs text-muted-text">
         {ticks.map((t, i) => (
           <span key={i}>{t}</span>
         ))}
       </div>
       <button
         onClick={onContinue}
-        className="mt-2 h-12 w-full rounded-xl bg-brand-dark font-[family-name:var(--font-urbanist)] text-sm font-semibold text-white hover:opacity-90"
+        className="mt-2 h-12 w-full rounded-xl bg-brand-dark font-[family-name:var(--font-urbanist-import)] text-sm font-semibold text-white hover:opacity-90"
       >
         Continue
       </button>

@@ -21,14 +21,18 @@ export function QuestionShell({
 }: QuestionShellProps) {
   const inner = (
     <div className="w-full max-w-[560px]">
-      <h1 className="text-center font-[family-name:var(--font-merriweather)] text-[28px] font-bold leading-tight text-heading sm:text-[34px]">
+      <h1
+        className={`text-center font-[family-name:var(--font-merriweather-import)] text-[28px] font-bold leading-tight sm:text-[34px] ${
+          inline ? "text-white" : "text-heading"
+        }`}
+      >
         {heading}
       </h1>
       <div className="mt-6 flex justify-center">
         <ProgressBar current={current} total={total} />
       </div>
       {subtext && (
-        <p className="mt-4 text-center font-[family-name:var(--font-urbanist)] text-base text-muted-text">
+        <p className="mt-4 text-center font-[family-name:var(--font-urbanist-import)] text-base text-muted-text">
           {subtext}
         </p>
       )}
@@ -37,7 +41,7 @@ export function QuestionShell({
         <div className="mt-8 text-center">
           <button
             onClick={onBack}
-            className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-brand-dark"
+            className="font-[family-name:var(--font-urbanist-import)] text-sm font-medium text-brand-dark"
           >
             ‹ Back
           </button>

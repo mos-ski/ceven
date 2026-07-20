@@ -27,17 +27,17 @@ export function TextQuestion({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="h-14 w-full rounded-xl border border-[#E5E1D8] bg-white px-4 font-[family-name:var(--font-urbanist)] text-base text-heading outline-none focus:border-brand-dark"
+        className="h-14 w-full rounded-xl border border-[#E5E1D8] bg-white px-4 font-[family-name:var(--font-urbanist-import)] text-base text-heading outline-none focus:border-brand-dark"
       />
       {helperText && (
-        <p className="font-[family-name:var(--font-urbanist)] text-xs text-muted-text">
+        <p className="font-[family-name:var(--font-urbanist-import)] text-xs text-muted-text">
           {helperText}
         </p>
       )}
       <button
         onClick={onContinue}
         disabled={!canContinue}
-        className={`h-12 w-full rounded-xl font-[family-name:var(--font-urbanist)] text-sm font-semibold text-white transition-opacity ${
+        className={`h-12 w-full rounded-xl font-[family-name:var(--font-urbanist-import)] text-sm font-semibold text-white transition-opacity ${
           canContinue ? "bg-brand-dark hover:opacity-90" : "bg-brand-dark/40"
         }`}
       >

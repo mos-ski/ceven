@@ -32,7 +32,7 @@ export function OptionList({ options, onSelect, selected }: OptionListProps) {
                 {option.icon}
               </div>
             )}
-            <span className="flex-1 font-[family-name:var(--font-urbanist)] text-base text-heading">
+            <span className="flex-1 font-[family-name:var(--font-urbanist-import)] text-base text-heading">
               {option.label}
             </span>
             <div

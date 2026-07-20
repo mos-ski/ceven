@@ -31,14 +31,14 @@ export function FinalContactStep({
         value={name}
         onChange={(e) => onNameChange(e.target.value)}
         placeholder="Your name"
-        className="h-14 w-full rounded-xl border border-[#E5E1D8] bg-white px-4 font-[family-name:var(--font-urbanist)] text-base text-heading outline-none focus:border-brand-dark"
+        className="h-14 w-full rounded-xl border border-[#E5E1D8] bg-white px-4 font-[family-name:var(--font-urbanist-import)] text-base text-heading outline-none focus:border-brand-dark"
       />
       <input
         type="email"
         value={email}
         onChange={(e) => onEmailChange(e.target.value)}
         placeholder="you@example.com"
-        className="h-14 w-full rounded-xl border border-[#E5E1D8] bg-white px-4 font-[family-name:var(--font-urbanist)] text-base text-heading outline-none focus:border-brand-dark"
+        className="h-14 w-full rounded-xl border border-[#E5E1D8] bg-white px-4 font-[family-name:var(--font-urbanist-import)] text-base text-heading outline-none focus:border-brand-dark"
       />
       <label className="flex items-center gap-2">
         <input
@@ -47,7 +47,7 @@ export function FinalContactStep({
           onChange={(e) => onSendToWhatsAppChange(e.target.checked)}
           className="h-4 w-4 accent-[#3B2513]"
         />
-        <span className="font-[family-name:var(--font-urbanist)] text-sm text-muted-text">
+        <span className="font-[family-name:var(--font-urbanist-import)] text-sm text-muted-text">
           Also send this to my WhatsApp
         </span>
       </label>
@@ -57,13 +57,13 @@ export function FinalContactStep({
           value={phone}
           onChange={(e) => onPhoneChange(e.target.value)}
           placeholder="WhatsApp phone number"
-          className="h-14 w-full rounded-xl border border-[#E5E1D8] bg-white px-4 font-[family-name:var(--font-urbanist)] text-base text-heading outline-none focus:border-brand-dark"
+          className="h-14 w-full rounded-xl border border-[#E5E1D8] bg-white px-4 font-[family-name:var(--font-urbanist-import)] text-base text-heading outline-none focus:border-brand-dark"
         />
       )}
       <button
         onClick={onSubmit}
         disabled={!canSubmit}
-        className={`h-12 w-full rounded-xl font-[family-name:var(--font-urbanist)] text-sm font-semibold text-white transition-opacity ${
+        className={`h-12 w-full rounded-xl font-[family-name:var(--font-urbanist-import)] text-sm font-semibold text-white transition-opacity ${
           canSubmit ? "bg-brand-dark hover:opacity-90" : "bg-brand-dark/40"
         }`}
       >

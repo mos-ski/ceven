@@ -30,7 +30,7 @@ export function MultiSelectList({
                 : "border-[#E5E1D8] bg-white hover:border-brand-dark/40"
             }`}
           >
-            <span className="flex-1 font-[family-name:var(--font-urbanist)] text-base text-heading">
+            <span className="flex-1 font-[family-name:var(--font-urbanist-import)] text-base text-heading">
               {option.label}
             </span>
             <div
@@ -48,7 +48,7 @@ export function MultiSelectList({
       <button
         onClick={onContinue}
         disabled={selected.length === 0}
-        className={`mt-2 h-12 w-full rounded-xl font-[family-name:var(--font-urbanist)] text-sm font-semibold text-white transition-opacity ${
+        className={`mt-2 h-12 w-full rounded-xl font-[family-name:var(--font-urbanist-import)] text-sm font-semibold text-white transition-opacity ${
           selected.length === 0 ? "bg-brand-dark/40" : "bg-brand-dark hover:opacity-90"
         }`}
       >

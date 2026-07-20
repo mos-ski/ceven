@@ -16,7 +16,7 @@ export function ProgressBar({ current, total }: ProgressBarProps) {
           />
         ))}
       </div>
-      <p className="font-[family-name:var(--font-urbanist)] text-sm text-muted-text">
+      <p className="font-[family-name:var(--font-urbanist-import)] text-sm text-muted-text">
         {current} of {total}
       </p>
     </div>
