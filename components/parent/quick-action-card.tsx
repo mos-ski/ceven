@@ -7,9 +7,10 @@ type Props = {
   label: string;
   onClick: () => void;
   isNew?: boolean;
+  badge?: number;
 };
 
-export function QuickActionCard({ icon: Icon, label, onClick, isNew }: Props) {
+export function QuickActionCard({ icon: Icon, label, onClick, isNew, badge }: Props) {
   return (
     <button
       onClick={onClick}
@@ -18,6 +19,11 @@ export function QuickActionCard({ icon: Icon, label, onClick, isNew }: Props) {
       {isNew && (
         <span className="absolute right-2 top-2 rounded-full bg-emerald-500 px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wide text-white">
           New
+        </span>
+      )}
+      {typeof badge === "number" && badge > 0 && (
+        <span className="absolute right-2 top-2 flex h-5 min-w-5 items-center justify-center rounded-full bg-red-500 px-1 text-[9px] font-bold text-white">
+          {badge > 99 ? "99+" : badge}
         </span>
       )}
       <Icon size={24} className="text-cg-brand" />

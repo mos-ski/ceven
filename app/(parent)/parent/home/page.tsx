@@ -82,7 +82,7 @@ export default function ParentHomePage() {
         <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-400">My Family</p>
         <div className="mb-4 grid grid-cols-3 gap-3">
           <QuickActionCard icon={Baby} label="Manage Kids" onClick={() => router.push("/parent/children")} />
-          <QuickActionCard icon={LayoutGrid} label="Moments" onClick={() => router.push("/parent/moments")} />
+          <QuickActionCard icon={LayoutGrid} label="Moments" onClick={() => router.push("/parent/moments")} badge={3} />
           <QuickActionCard icon={Images} label="Gallery" onClick={() => router.push("/parent/gallery")} />
         </div>
 
