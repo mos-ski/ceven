@@ -13,7 +13,6 @@ import {
   TrendingUp,
   Pill,
   AlertTriangle,
-  Star,
   CalendarCheck,
   Clock,
   CalendarDays,
@@ -92,7 +91,6 @@ export default function ParentHomePage() {
           <QuickActionCard icon={TrendingUp} label="Growth" onClick={() => router.push("/parent/child/growth")} isNew />
           <QuickActionCard icon={Pill} label="Medication" onClick={() => router.push("/parent/medication")} isNew />
           <QuickActionCard icon={AlertTriangle} label="Incidents" onClick={() => router.push("/parent/incidents")} isNew />
-          <QuickActionCard icon={Star} label="Rate Caregiver" onClick={() => router.push("/parent/rate-caregiver")} isNew />
         </div>
 
         <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-400">Creche Life</p>
