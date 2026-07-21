@@ -109,7 +109,7 @@ export default function ParentHomePage() {
           <QuickActionCard iconNode={<AnimatedRequestIcon />} label="Special Requests" onClick={() => router.push("/parent/special-requests")} />
           <QuickActionCard icon={CalendarDays} label="Events" onClick={() => router.push("/parent/events")} isNew />
           <QuickActionCard icon={Megaphone} label="Announcements" onClick={() => router.push("/parent/announcements")} isNew />
-          <QuickActionCard icon={FileText} label="Application" onClick={() => router.push("/parent/application")} />
+          <QuickActionCard icon={FileText} label="Enrollments" onClick={() => router.push("/parent/enrollments")} isNew />
         </div>
       </div>
 
