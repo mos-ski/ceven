@@ -360,6 +360,14 @@ export const mockGallery: GalleryPhoto[] = [
 
 export const mockChatThreads: ChatThread[] = [
   {
+    id: "family",
+    contactName: "Liam's Family",
+    contactInitials: "LF",
+    lastMessage: "Ms Anu: He's doing so well! Every day brings something new 😊",
+    lastMessageTime: "9:24 AM",
+    dateGroup: "Today",
+  },
+  {
     id: "thread-1",
     contactName: "Ms Anu",
     contactInitials: "MA",

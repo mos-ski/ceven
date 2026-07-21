@@ -50,10 +50,12 @@ export default function ChatPage() {
               {threads.map((thread) => (
                 <button
                   key={thread.id}
-                  onClick={() => router.push(`/parent/chat/${thread.id}`)}
+                  onClick={() => router.push(thread.id === "family" ? "/parent/chat/family" : `/parent/chat/${thread.id}`)}
                   className="flex w-full items-center gap-3 px-4 py-3 text-left"
                 >
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cg-brand text-xs font-bold text-white">
+                  <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white ${
+                    thread.id === "family" ? "bg-gradient-to-br from-[#7A4C29] to-[#D4A67F]" : "bg-cg-brand"
+                  }`}>
                     {thread.contactInitials}
                   </div>
                   <div className="min-w-0 flex-1">
