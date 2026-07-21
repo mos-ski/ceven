@@ -1,6 +1,6 @@
 "use client";
 
-import { ClipboardList } from "lucide-react";
+import { Hand } from "lucide-react";
 
 const pulseKeyframes = `
 @keyframes requestPulse {
@@ -19,7 +19,7 @@ export function AnimatedRequestIcon() {
     <>
       <style>{pulseKeyframes}</style>
       <div className="request-icon">
-        <ClipboardList size={24} className="text-cg-brand" />
+        <Hand size={24} className="text-cg-brand" />
       </div>
     </>
   );
