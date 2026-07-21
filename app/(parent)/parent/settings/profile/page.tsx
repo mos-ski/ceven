@@ -2,167 +2,283 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { ChevronDown, CheckCircle2, X } from "lucide-react";
+import {
+  ArrowLeft, Edit3, Shield, ChevronDown, CheckCircle2, X, Plus, Lock, UserX, ChevronRight,
+} from "lucide-react";
+import { mockParentUser } from "@/lib/parent/mock-data";
+
+type FamilyMember = {
+  id: string;
+  name: string;
+  initials: string;
+  role: string;
+  email: string;
+  phone: string;
+  isOwner: boolean;
+  color: string;
+};
+
+const FAMILY: FamilyMember[] = [
+  { id: "p1", name: "James Miller", initials: "JM", role: "Father", email: "james@email.com", phone: "+234 801 234 5678", isOwner: true, color: "#7A4C29" },
+  { id: "p2", name: "Sarah Miller", initials: "SM", role: "Mother", email: "sarah@email.com", phone: "+234 802 345 6789", isOwner: false, color: "#D4A67F" },
+  { id: "p3", name: "Grace", initials: "GR", role: "Nanny", email: "grace@email.com", phone: "+234 803 456 7890", isOwner: false, color: "#059669" },
+];
 
 const RELATIONSHIP_OPTIONS = ["Father", "Mother", "Guardian", "Grandparent", "Other"];
 const LANGUAGE_OPTIONS = ["English", "Yoruba", "Igbo", "Hausa", "French"];
-const TIMEZONE_OPTIONS = ["GMT + 1 (Lagos)", "GMT + 0 (London)", "GMT - 5 (New York)", "GMT + 3 (Nairobi)"];
 
-function SelectField({
-  label,
-  value,
-  options,
-  onChange,
+function EditProfileSheet({
+  member,
+  onClose,
+  onSave,
 }: {
-  label: string;
-  value: string;
-  options: string[];
-  onChange: (v: string) => void;
+  member: FamilyMember;
+  onClose: () => void;
+  onSave: (data: Partial<FamilyMember>) => void;
 }) {
-  const [open, setOpen] = useState(false);
+  const [name, setName] = useState(member.name);
+  const [email, setEmail] = useState(member.email);
+  const [phone, setPhone] = useState(member.phone);
+  const [relationship, setRelationship] = useState(member.role);
+  const [language, setLanguage] = useState("English");
+  const [emergencyName, setEmergencyName] = useState("Mrs Bakare");
+  const [emergencyPhone, setEmergencyPhone] = useState("+234 804 567 8901");
+  const [showSaved, setShowSaved] = useState(false);
+
+  function handleSave() {
+    onSave({ name, email, phone, role: relationship });
+    setShowSaved(true);
+    setTimeout(() => onClose(), 1200);
+  }
 
   return (
-    <div className="mb-4">
-      <p className="mb-1.5 text-sm font-medium text-gray-800">{label}</p>
-      <div className="relative">
-        <button
-          onClick={() => setOpen(!open)}
-          className="flex w-full items-center justify-between rounded-xl bg-white px-3 py-3 shadow-sm text-sm text-left"
-        >
-          <span className={value ? "text-gray-800" : "text-gray-400"}>{value || "Select"}</span>
-          <ChevronDown size={16} className="shrink-0 text-gray-500" />
-        </button>
-        {open && (
-          <div className="absolute z-10 mt-1 w-full rounded-xl bg-white shadow-lg border border-gray-100">
-            {options.map((opt) => (
-              <button
-                key={opt}
-                onClick={() => { onChange(opt); setOpen(false); }}
-                className="flex w-full items-center justify-between px-4 py-3 text-sm text-gray-700 hover:bg-gray-50"
-              >
-                {opt}
-                {value === opt && <CheckCircle2 size={14} className="text-cg-brand" />}
-              </button>
-            ))}
-          </div>
-        )}
-      </div>
-      <p className="mt-1 text-xs text-gray-400">This is a hint text to help user</p>
-    </div>
-  );
-}
-
-function TextField({
-  label,
-  value,
-  onChange,
-  placeholder,
-}: {
-  label: string;
-  value: string;
-  onChange: (v: string) => void;
-  placeholder: string;
-}) {
-  return (
-    <div className="mb-4">
-      <p className="mb-1.5 text-sm font-medium text-gray-800">{label}</p>
-      <div className="flex items-center rounded-xl bg-white px-3 py-3 shadow-sm">
-        <input
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          placeholder={placeholder}
-          className="flex-1 bg-transparent text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none"
-        />
-      </div>
-      <p className="mt-1 text-xs text-gray-400">This is a hint text to help user</p>
-    </div>
-  );
-}
-
-function SuccessModal({ onClose }: { onClose: () => void }) {
-  return (
-    <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/40 px-6">
-      <div className="w-full max-w-[327px] rounded-2xl bg-[#FAFAFA] px-6 py-6">
-        <div className="mb-2 flex items-center justify-between">
-          <span className="text-sm font-medium text-gray-400">Profile</span>
-          <button onClick={onClose} className="text-gray-400"><X size={20} /></button>
+    <div className="absolute inset-0 z-50 flex items-end justify-center bg-black/40">
+      <div className="w-full rounded-t-3xl bg-white pb-6 pt-4 animate-slide-up max-h-[85%] flex flex-col">
+        <div className="mx-auto mb-2 h-1 w-10 rounded-full bg-gray-200 shrink-0" />
+        <div className="flex items-center justify-between px-5 pb-3 shrink-0">
+          <h2 className="text-base font-bold text-gray-800">Edit Profile</h2>
+          <button onClick={onClose}><X size={20} className="text-gray-400" /></button>
         </div>
-        <div className="flex flex-col items-center py-4">
-          <div className="mb-4 flex h-28 w-28 items-center justify-center rounded-full bg-green-50">
-            <CheckCircle2 size={60} className="text-green-500" />
+
+        <div className="flex-1 overflow-y-auto px-5 space-y-3">
+          {showSaved ? (
+            <div className="flex flex-col items-center py-10">
+              <div className="mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-emerald-50">
+                <CheckCircle2 size={28} className="text-emerald-500" />
+              </div>
+              <p className="text-sm font-bold text-gray-800">Profile Updated!</p>
+            </div>
+          ) : (
+            <>
+              {/* Name */}
+              <div>
+                <label className="mb-1 block text-xs font-semibold text-gray-500">Full Name</label>
+                <input value={name} onChange={e => setName(e.target.value)} className="w-full rounded-xl border border-gray-100 bg-gray-50 px-3 py-2.5 text-sm text-gray-800 focus:border-cg-brand focus:outline-none" />
+              </div>
+
+              {/* Relationship */}
+              <div>
+                <label className="mb-1 block text-xs font-semibold text-gray-500">Relationship</label>
+                <div className="flex flex-wrap gap-2">
+                  {RELATIONSHIP_OPTIONS.map(r => (
+                    <button key={r} onClick={() => setRelationship(r)} className={`rounded-full border px-3 py-1.5 text-xs font-medium transition-colors ${relationship === r ? "border-cg-brand bg-cg-brand/5 text-cg-brand" : "border-gray-200 text-gray-500"}`}>{r}</button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Email */}
+              <div>
+                <label className="mb-1 block text-xs font-semibold text-gray-500">Email</label>
+                <input type="email" value={email} onChange={e => setEmail(e.target.value)} className="w-full rounded-xl border border-gray-100 bg-gray-50 px-3 py-2.5 text-sm text-gray-800 focus:border-cg-brand focus:outline-none" />
+              </div>
+
+              {/* Phone */}
+              <div>
+                <label className="mb-1 block text-xs font-semibold text-gray-500">Phone</label>
+                <input type="tel" value={phone} onChange={e => setPhone(e.target.value)} className="w-full rounded-xl border border-gray-100 bg-gray-50 px-3 py-2.5 text-sm text-gray-800 focus:border-cg-brand focus:outline-none" />
+              </div>
+
+              {/* Language */}
+              <div>
+                <label className="mb-1 block text-xs font-semibold text-gray-500">Language</label>
+                <div className="flex flex-wrap gap-2">
+                  {LANGUAGE_OPTIONS.map(l => (
+                    <button key={l} onClick={() => setLanguage(l)} className={`rounded-full border px-3 py-1.5 text-xs font-medium transition-colors ${language === l ? "border-cg-brand bg-cg-brand/5 text-cg-brand" : "border-gray-200 text-gray-500"}`}>{l}</button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Emergency Contacts */}
+              <div className="rounded-xl border border-gray-100 bg-gray-50 p-3">
+                <p className="mb-2 text-xs font-semibold text-gray-500">Emergency Contact</p>
+                <input value={emergencyName} onChange={e => setEmergencyName(e.target.value)} placeholder="Name" className="mb-2 w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-800 focus:outline-none" />
+                <input value={emergencyPhone} onChange={e => setEmergencyPhone(e.target.value)} placeholder="Phone" className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-800 focus:outline-none" />
+              </div>
+
+              <button onClick={handleSave} className="w-full rounded-xl bg-cg-brand py-3 text-sm font-semibold text-[#FAF2E1]">Save Changes</button>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function MemberDetailSheet({
+  member,
+  onClose,
+  onEdit,
+}: {
+  member: FamilyMember;
+  onClose: () => void;
+  onEdit: () => void;
+}) {
+  return (
+    <div className="absolute inset-0 z-50 flex items-end justify-center bg-black/40">
+      <div className="w-full rounded-t-3xl bg-white pb-6 pt-4 animate-slide-up">
+        <div className="mx-auto mb-2 h-1 w-10 rounded-full bg-gray-200" />
+        <div className="flex items-center justify-between px-5 pb-3">
+          <h2 className="text-base font-bold text-gray-800">Profile Details</h2>
+          <button onClick={onClose}><X size={20} className="text-gray-400" /></button>
+        </div>
+
+        <div className="flex flex-col items-center px-5 pb-4">
+          <div className="mb-3 flex h-20 w-20 items-center justify-center rounded-full text-2xl font-bold text-white" style={{ backgroundColor: member.color }}>
+            {member.initials}
           </div>
-          <h2 className="mb-1 text-xl font-bold text-gray-800">Congratulation</h2>
-          <p className="mb-6 text-sm text-gray-500">Your parent profile is ready.</p>
-          <button
-            onClick={onClose}
-            className="w-full rounded-xl bg-cg-brand py-3 text-sm font-semibold text-[#FAF2E1]"
-          >
-            Add Child
+          <p className="text-base font-bold text-gray-800">{member.name}</p>
+          <span className="mt-1 rounded-full bg-gray-100 px-3 py-0.5 text-[11px] font-medium text-gray-500">{member.role}</span>
+        </div>
+
+        <div className="space-y-2 px-5">
+          <div className="flex items-center gap-3 rounded-xl bg-gray-50 px-4 py-3">
+            <span className="text-[10px] text-gray-400 w-12">Email</span>
+            <span className="text-sm text-gray-700">{member.email}</span>
+          </div>
+          <div className="flex items-center gap-3 rounded-xl bg-gray-50 px-4 py-3">
+            <span className="text-[10px] text-gray-400 w-12">Phone</span>
+            <span className="text-sm text-gray-700">{member.phone}</span>
+          </div>
+        </div>
+
+        <div className="mt-4 space-y-2 px-5">
+          {member.isOwner ? (
+            <button onClick={() => { onClose(); setTimeout(onEdit, 200); }} className="flex w-full items-center gap-3 rounded-xl bg-cg-brand/5 px-4 py-3">
+              <Edit3 size={16} className="text-cg-brand" />
+              <span className="flex-1 text-left text-sm font-medium text-cg-brand">Edit Profile</span>
+              <ChevronRight size={14} className="text-cg-brand/40" />
+            </button>
+          ) : (
+            <>
+              <button className="flex w-full items-center gap-3 rounded-xl bg-gray-50 px-4 py-3">
+                <Lock size={16} className="text-gray-500" />
+                <span className="flex-1 text-left text-sm text-gray-700">Reset Password</span>
+                <ChevronRight size={14} className="text-gray-400" />
+              </button>
+              <button className="flex w-full items-center gap-3 rounded-xl bg-red-50 px-4 py-3">
+                <UserX size={16} className="text-red-500" />
+                <span className="flex-1 text-left text-sm font-medium text-red-500">Remove from Family</span>
+              </button>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function ViewProfilePage() {
+  const router = useRouter();
+  const [members, setMembers] = useState<FamilyMember[]>(FAMILY);
+  const [selectedMember, setSelectedMember] = useState<FamilyMember | null>(null);
+  const [editing, setEditing] = useState(false);
+
+  function handleSave(data: Partial<FamilyMember>) {
+    setMembers(prev => prev.map(m => m.isOwner ? { ...m, ...data } : m));
+  }
+
+  return (
+    <div className="relative flex min-h-0 flex-1 flex-col bg-[#F9F5F0]">
+      <div className="flex items-center gap-3 bg-white px-4 py-3 shadow-sm">
+        <button onClick={() => router.back()}>
+          <ArrowLeft size={20} className="text-gray-600" />
+        </button>
+        <h1 className="text-base font-bold text-gray-800">My Profile</h1>
+      </div>
+
+      <div className="flex-1 overflow-y-auto px-5 py-4">
+        <p className="mb-4 text-xs text-gray-400">Tap a profile to view or edit details.</p>
+
+        {/* Netflix-style grid */}
+        <div className="grid grid-cols-3 gap-4">
+          {members.map(member => (
+            <button
+              key={member.id}
+              onClick={() => setSelectedMember(member)}
+              className="flex flex-col items-center gap-2 active:scale-95 transition-transform"
+            >
+              <div className="relative">
+                <div className="flex h-20 w-20 items-center justify-center rounded-2xl text-xl font-bold text-white shadow-md" style={{ backgroundColor: member.color }}>
+                  {member.initials}
+                </div>
+                {member.isOwner && (
+                  <div className="absolute -bottom-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-cg-brand ring-2 ring-white">
+                    <Shield size={10} className="text-white" />
+                  </div>
+                )}
+              </div>
+              <div className="text-center">
+                <p className="text-xs font-semibold text-gray-800 truncate max-w-[90px]">{member.name.split(" ")[0]}</p>
+                <p className="text-[10px] text-gray-400">{member.role}</p>
+              </div>
+            </button>
+          ))}
+
+          <button onClick={() => router.push("/parent/settings/profile/family")} className="flex flex-col items-center gap-2 active:scale-95 transition-transform">
+            <div className="flex h-20 w-20 items-center justify-center rounded-2xl border-2 border-dashed border-gray-300 bg-gray-50">
+              <Plus size={24} className="text-gray-400" />
+            </div>
+            <div className="text-center">
+              <p className="text-xs font-semibold text-gray-500">Add</p>
+              <p className="text-[10px] text-gray-400">Family</p>
+            </div>
           </button>
         </div>
-      </div>
-    </div>
-  );
-}
 
-export default function ParentProfileSetupPage() {
-  const router = useRouter();
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [relationship, setRelationship] = useState("");
-  const [language, setLanguage] = useState("");
-  const [timezone, setTimezone] = useState("");
-  const [emergencyName, setEmergencyName] = useState("");
-  const [emergencyPhone, setEmergencyPhone] = useState("");
-  const [showSuccess, setShowSuccess] = useState(false);
-
-  const isActive =
-    firstName.trim() && lastName.trim() && relationship && language && timezone &&
-    emergencyName.trim() && emergencyPhone.trim();
-
-  return (
-    <div className="relative flex flex-1 flex-col overflow-hidden">
-      {/* Brown header */}
-      <div className="relative bg-[#5B391E] px-6 pt-14 pb-6">
-        <div className="pointer-events-none absolute top-0 right-0 h-[220px] w-[220px] rounded-full bg-[#D4A67F] opacity-20" />
-        <div className="pointer-events-none absolute -top-10 -right-10 h-[192px] w-[192px] rounded-full bg-[#D4A67F] opacity-15" />
-        <button
-          onClick={() => router.back()}
-          className="mb-5 flex h-9 w-9 items-center justify-center rounded-full bg-[#F4F5F6]/20"
-        >
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M10 12L6 8l4-4" stroke="#FFFFFF" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </button>
-        <div className="flex items-center gap-2">
-          <h1 className="text-xl font-bold text-white">Connect to Your Child&apos;s Day</h1>
-          <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white/20 text-xs">🔔</div>
+        {/* How it works */}
+        <div className="mt-6 rounded-2xl bg-white p-4 shadow-sm">
+          <p className="mb-2 text-sm font-semibold text-gray-800">Profile roles</p>
+          <ul className="space-y-2 text-xs text-gray-500">
+            <li className="flex items-start gap-2">
+              <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-cg-brand" />
+              <span><strong className="text-gray-700">Owner</strong> — full access: edit profile, manage family, emergency contacts, billing</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-cg-brand" />
+              <span><strong className="text-gray-700">Family</strong> — view reports, chat with caregivers, receive notifications</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-cg-brand" />
+              <span><strong className="text-gray-700">Nanny</strong> — log attendance, send updates, manage daily reports</span>
+            </li>
+          </ul>
         </div>
-        <p className="mt-1 text-sm text-white/70">Set up your profile in a few taps.</p>
       </div>
 
-      {/* Form */}
-      <div className="flex-1 overflow-y-auto bg-white px-6 py-5">
-        <TextField label="First Name *" value={firstName} onChange={setFirstName} placeholder="Enter your first name" />
-        <TextField label="Last Name *" value={lastName} onChange={setLastName} placeholder="Enter your last name" />
-        <SelectField label="Relationship *" value={relationship} options={RELATIONSHIP_OPTIONS} onChange={setRelationship} />
-        <SelectField label="Language *" value={language} options={LANGUAGE_OPTIONS} onChange={setLanguage} />
-        <SelectField label="Time Zone *" value={timezone} options={TIMEZONE_OPTIONS} onChange={setTimezone} />
-        <TextField label="Emergency Contact Name *" value={emergencyName} onChange={setEmergencyName} placeholder="Enter full name" />
-        <TextField label="Emergency Contact *" value={emergencyPhone} onChange={setEmergencyPhone} placeholder="Enter phone number" />
+      {selectedMember && (
+        <MemberDetailSheet
+          member={selectedMember}
+          onClose={() => setSelectedMember(null)}
+          onEdit={() => { setSelectedMember(null); setTimeout(() => setEditing(true), 200); }}
+        />
+      )}
 
-        <button
-          onClick={() => isActive && setShowSuccess(true)}
-          className={`mt-2 w-full rounded-xl py-3 text-sm font-semibold transition-colors ${
-            isActive ? "bg-cg-brand text-[#FAF2E1]" : "bg-[#E0BFA0] text-[#FAF2E1] cursor-not-allowed"
-          }`}
-        >
-          Continue
-        </button>
-      </div>
-
-      {showSuccess && (
-        <SuccessModal onClose={() => { setShowSuccess(false); router.push("/parent/home"); }} />
+      {editing && (
+        <EditProfileSheet
+          member={members.find(m => m.isOwner)!}
+          onClose={() => setEditing(false)}
+          onSave={handleSave}
+        />
       )}
     </div>
   );
