@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, Grid3X3, Folder } from "lucide-react";
 import { ParentBottomNav } from "@/components/parent/bottom-nav";
+import { SafeImage } from "@/components/ui/safe-image";
 import { mockGallery } from "@/lib/parent/mock-data";
 import { StoryViewer } from "@/components/gallery/story-viewer";
 
@@ -65,10 +66,10 @@ export default function GalleryPage() {
                 onClick={() => setActiveIndex(photos.findIndex((p) => p.id === photo.id))}
                 className="relative aspect-square overflow-hidden rounded-lg active:scale-[0.97] transition-transform"
               >
-                <img
+                <SafeImage
                   src={photo.image}
                   alt={photo.caption}
-                  className="h-full w-full object-cover"
+                  className="h-full w-full"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity" />
               </button>
@@ -87,10 +88,10 @@ export default function GalleryPage() {
                     className="overflow-hidden rounded-2xl bg-white text-left shadow-sm active:scale-[0.98]"
                   >
                     <div className="relative h-32 overflow-hidden bg-cg-quick-action">
-                      <img
+                      <SafeImage
                         src={photo.image}
                         alt={photo.caption}
-                        className="h-full w-full object-cover"
+                        className="h-full w-full"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
                       <div className="absolute left-2 top-2 rounded-md bg-cg-brand px-2 py-0.5 text-[10px] font-semibold text-white">

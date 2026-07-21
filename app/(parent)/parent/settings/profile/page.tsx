@@ -81,7 +81,7 @@ function TextField({
 
 function SuccessModal({ onClose }: { onClose: () => void }) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-6">
+    <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/40 px-6">
       <div className="w-full max-w-[327px] rounded-2xl bg-[#FAFAFA] px-6 py-6">
         <div className="mb-2 flex items-center justify-between">
           <span className="text-sm font-medium text-gray-400">Profile</span>
@@ -121,7 +121,7 @@ export default function ParentProfileSetupPage() {
     emergencyName.trim() && emergencyPhone.trim();
 
   return (
-    <div className="flex flex-1 flex-col overflow-hidden">
+    <div className="relative flex flex-1 flex-col overflow-hidden">
       {/* Brown header */}
       <div className="relative bg-[#5B391E] px-6 pt-14 pb-6">
         <div className="pointer-events-none absolute top-0 right-0 h-[220px] w-[220px] rounded-full bg-[#D4A67F] opacity-20" />

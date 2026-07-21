@@ -19,7 +19,7 @@ type PricingAge = "Infant" | "Toddler" | "Preschool";
 // ─── Room Detail Modal ─────────────────────────────────────────────────────────
 function RoomModal({ room, onClose }: { room: CrecheRoom; onClose: () => void }) {
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/30 sm:items-center">
+    <div className="absolute inset-0 z-50 flex items-end justify-center bg-black/30 sm:items-center">
       <div className="w-full max-w-[375px] rounded-t-2xl bg-white px-5 pb-8 pt-5 sm:rounded-2xl">
         <div className="mb-4 flex items-center justify-between">
           <h3 className="text-base font-bold text-gray-800">Rooms</h3>
@@ -112,7 +112,7 @@ function EnrollmentWizard({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/40">
+    <div className="absolute inset-0 z-50 flex items-end justify-center bg-black/40">
       <div className="flex max-h-[85vh] w-full max-w-[430px] flex-col rounded-t-3xl bg-white pb-8 pt-5">
         <div className="mb-4 flex items-center justify-between px-5">
           <div className="flex items-center gap-2">
@@ -257,7 +257,7 @@ function EnrollmentWizard({
 // ─── Success Modal ─────────────────────────────────────────────────────────────
 function SuccessModal({ onClose, onViewEnrollments }: { onClose: () => void; onViewEnrollments: () => void }) {
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/40">
+    <div className="absolute inset-0 z-50 flex items-end justify-center bg-black/40">
       <div className="relative w-full max-w-[430px] rounded-t-3xl bg-white px-6 pb-10 pt-6">
         <div className="mb-2 flex justify-end">
           <button onClick={onClose} className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-200">
@@ -333,7 +333,7 @@ export default function CrecheDetailPage({ params }: { params: Promise<{ id: str
         />
       )}
 
-      <div className="flex min-h-0 flex-1 flex-col bg-white">
+      <div className="relative flex min-h-0 flex-1 flex-col bg-white">
         {/* Photo header */}
         <div className="relative shrink-0 h-52 bg-cg-quick-action">
           <button

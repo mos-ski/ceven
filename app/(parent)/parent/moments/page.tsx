@@ -1,16 +1,19 @@
 "use client";
 
-import Link from "next/link";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, MessageSquare, Bookmark, Play, Plus } from "lucide-react";
+import { ArrowLeft, MessageSquare, Bookmark, Play, Camera } from "lucide-react";
 import { ParentBottomNav } from "@/components/parent/bottom-nav";
-import { mockFeedPosts } from "@/lib/parent/mock-data";
+import { MomentCreatorSheet } from "@/components/parent/moment-creator-sheet";
+import { SafeImage } from "@/components/ui/safe-image";
+import { mockFeedPosts, mockParentChildren } from "@/lib/parent/mock-data";
 
 export default function MomentsPage() {
   const router = useRouter();
+  const [showCreator, setShowCreator] = useState(false);
 
   return (
-    <div className="flex min-h-0 flex-1 flex-col bg-[#fffefa]">
+    <div className="relative flex min-h-0 flex-1 flex-col bg-[#fffefa]">
       <div className="flex items-center gap-3 bg-white px-4 py-3 shadow-sm">
         <button onClick={() => router.back()}>
           <ArrowLeft size={20} className="text-gray-600" />
@@ -28,10 +31,10 @@ export default function MomentsPage() {
                 className="overflow-hidden rounded-2xl bg-white shadow-sm cursor-pointer active:scale-[0.98] transition-transform"
               >
                 <div className="relative h-52 overflow-hidden bg-cg-quick-action">
-                  <img
+                  <SafeImage
                     src={post.image}
                     alt={post.caption}
-                    className="h-full w-full object-cover"
+                    className="h-full w-full"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
                   <div className="absolute left-3 top-3 rounded-md bg-cg-brand px-2.5 py-1 text-[11px] font-semibold text-white">
@@ -70,6 +73,21 @@ export default function MomentsPage() {
         )}
       </div>
 
+      {/* Camera FAB */}
+      <button
+        onClick={() => setShowCreator(true)}
+        className="absolute bottom-24 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-cg-brand shadow-lg shadow-cg-brand/30 active:scale-95 transition-transform"
+      >
+        <Camera size={22} className="text-white" />
+      </button>
+
+      {showCreator && (
+        <MomentCreatorSheet
+          children={mockParentChildren}
+          onClose={() => setShowCreator(false)}
+        />
+      )}
+
       <ParentBottomNav />
     </div>
   );
@@ -80,16 +98,9 @@ function EmptyFeed() {
     <div className="flex flex-col items-center justify-center gap-6 py-20">
       <div className="flex flex-col items-center gap-2 text-center">
         <ScrollIcon />
-        <p className="text-base font-semibold text-gray-800">No Feed Available Yet!</p>
-        <p className="text-sm text-gray-400">Feeds will appear here once data is available.</p>
+        <p className="text-base font-semibold text-gray-800">No Moments Yet!</p>
+        <p className="text-sm text-gray-400">Tap the camera button to share a moment.</p>
       </div>
-      <Link
-        href="/parent/child/add"
-        className="flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-cg-brand text-sm font-semibold text-white"
-      >
-        <Plus size={16} />
-        Add a Child
-      </Link>
     </div>
   );
 }
