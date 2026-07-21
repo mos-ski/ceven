@@ -111,11 +111,126 @@ export const mockFees: FeeInvoice[] = [
 ];
 
 export const mockGallery: GalleryPhoto[] = [
-  { id: "photo-1", label: "Playtime", caption: "Liam having fun with blocks", date: "Jan 9, 2026", image: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=900&q=80" },
-  { id: "photo-2", label: "Art & Craft", caption: "Liam's painting session", date: "Jan 9, 2026", image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=900&q=80" },
-  { id: "photo-3", label: "Story Time", caption: "Group story time after lunch", date: "Jan 8, 2026", image: "https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=900&q=80" },
-  { id: "photo-4", label: "Outdoor Play", caption: "Liam on the slide", date: "Jan 8, 2026", image: "https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&w=900&q=80" },
-  { id: "photo-5", label: "Snack Time", caption: "Healthy snacks with friends", date: "Jan 7, 2026", image: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=900&q=80" },
+  // Jan 15, 2026
+  { id: "photo-1", label: "Playtime", caption: "Liam having fun with blocks", date: "Jan 15, 2026", image: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-2", label: "Art & Craft", caption: "Liam's painting session", date: "Jan 15, 2026", image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-3", label: "Story Time", caption: "Group story time after lunch", date: "Jan 15, 2026", image: "https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-4", label: "Outdoor Play", caption: "Liam on the slide", date: "Jan 15, 2026", image: "https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-5", label: "Snack Time", caption: "Healthy snacks with friends", date: "Jan 15, 2026", image: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=400&q=80" },
+  // Jan 14, 2026
+  { id: "photo-6", label: "Music Class", caption: "Singing along with instruments", date: "Jan 14, 2026", image: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-7", label: "Painting", caption: "Finger painting fun", date: "Jan 14, 2026", image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-8", label: "Building Blocks", caption: "Tower construction in progress", date: "Jan 14, 2026", image: "https://images.unsplash.com/photo-1587654780291-39c9404d7dd0?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-9", label: "Garden Play", caption: "Exploring the garden", date: "Jan 14, 2026", image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-10", label: "Nap Time", caption: "Sweet dreams after a busy morning", date: "Jan 14, 2026", image: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=400&q=80" },
+  // Jan 13, 2026
+  { id: "photo-11", label: "Dance Party", caption: "Moving to the beat", date: "Jan 13, 2026", image: "https://images.unsplash.com/photo-1547153760-18fc86c83137?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-12", label: "Science Experiment", caption: "Watching colors mix", date: "Jan 13, 2026", image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-13", label: "Puzzle Time", caption: "Working on a jigsaw puzzle", date: "Jan 13, 2026", image: "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-14", label: "Sand Play", caption: "Building sandcastles", date: "Jan 13, 2026", image: "https://images.unsplash.com/photo-1504813184591-01572f98c85f?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-15", label: "Drawing", caption: "Creative drawing session", date: "Jan 13, 2026", image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=400&q=80" },
+  // Jan 12, 2026
+  { id: "photo-16", label: "Circle Time", caption: "Sitting together for morning circle", date: "Jan 12, 2026", image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-17", label: "Water Play", caption: "Splashing and pouring water", date: "Jan 12, 2026", image: "https://images.unsplash.com/photo-1530053969600-caed2596d242?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-18", label: "Dress Up", caption: "Costume party fun", date: "Jan 12, 2026", image: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-19", label: "Lunch Time", caption: "Eating together at the table", date: "Jan 12, 2026", image: "https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-20", label: "Outdoor Run", caption: "Running around the playground", date: "Jan 12, 2026", image: "https://images.unsplash.com/photo-1472162072942-cd5147eb3902?auto=format&fit=crop&w=400&q=80" },
+  // Jan 11, 2026
+  { id: "photo-21", label: "Yoga", caption: "Stretching and breathing exercises", date: "Jan 11, 2026", image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-22", label: "Baking", caption: "Making cookies together", date: "Jan 11, 2026", image: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-23", label: "Block City", caption: "Building a whole city with blocks", date: "Jan 11, 2026", image: "https://images.unsplash.com/photo-1587654780291-39c9404d7dd0?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-24", label: "Leaf Collecting", caption: "Finding colorful leaves outside", date: "Jan 11, 2026", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-25", label: "Read Aloud", caption: "Listening to a story", date: "Jan 11, 2026", image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=400&q=80" },
+  // Jan 10, 2026
+  { id: "photo-26", label: "Rainy Day", caption: "Watching the rain from inside", date: "Jan 10, 2026", image: "https://images.unsplash.com/photo-1428592953211-077101b2021b?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-27", label: "Craft Time", caption: "Making paper animals", date: "Jan 10, 2026", image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-28", label: "Play Dough", caption: "Squishing and shaping dough", date: "Jan 10, 2026", image: "https://images.unsplash.com/photo-1587654780291-39c9404d7dd0?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-29", label: "Story Corner", caption: "Reading in the cozy corner", date: "Jan 10, 2026", image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-30", label: "Group Hug", caption: "Friends hugging after class", date: "Jan 10, 2026", image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=400&q=80" },
+  // Jan 9, 2026
+  { id: "photo-31", label: "Slide", caption: "Going down the big slide", date: "Jan 9, 2026", image: "https://images.unsplash.com/photo-1472162072942-cd5147eb3902?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-32", label: "Swings", caption: "Swinging high in the sky", date: "Jan 9, 2026", image: "https://images.unsplash.com/photo-1472162072942-cd5147eb3902?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-33", label: "Sandpit", caption: "Digging for treasure", date: "Jan 9, 2026", image: "https://images.unsplash.com/photo-1504813184591-01572f98c85f?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-34", label: "Tricycle", caption: "Riding around the yard", date: "Jan 9, 2026", image: "https://images.unsplash.com/photo-1472162072942-cd5147eb3902?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-35", label: "Ball Pit", caption: "Jumping into the ball pit", date: "Jan 9, 2026", image: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=400&q=80" },
+  // Jan 8, 2026
+  { id: "photo-36", label: "Finger Painting", caption: "Getting messy with paint", date: "Jan 8, 2026", image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-37", label: "Snack Prep", caption: "Helping prepare fruit salad", date: "Jan 8, 2026", image: "https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-38", label: "Bubble Play", caption: "Chasing bubbles outside", date: "Jan 8, 2026", image: "https://images.unsplash.com/photo-1472162072942-cd5147eb3902?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-39", label: "Coloring", caption: "Coloring in coloring books", date: "Jan 8, 2026", image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-40", label: "Circle Dance", caption: "Holding hands in a circle", date: "Jan 8, 2026", image: "https://images.unsplash.com/photo-1547153760-18fc86c83137?auto=format&fit=crop&w=400&q=80" },
+  // Jan 7, 2026
+  { id: "photo-41", label: "Tower Build", caption: "Tallest tower wins", date: "Jan 7, 2026", image: "https://images.unsplash.com/photo-1587654780291-39c9404d7dd0?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-42", label: "Face Painting", caption: "Butterflies and superheroes", date: "Jan 7, 2026", image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-43", label: "Outdoor Art", caption: "Chalk drawings on the pavement", date: "Jan 7, 2026", image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-44", label: "Music Time", caption: "Shaking maracas", date: "Jan 7, 2026", image: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-45", label: "Storytelling", caption: "Acting out a story", date: "Jan 7, 2026", image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=400&q=80" },
+  // Jan 6, 2026
+  { id: "photo-46", label: "Climbing", caption: "Up, up, up!", date: "Jan 6, 2026", image: "https://images.unsplash.com/photo-1472162072942-cd5147eb3902?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-47", label: "Drawing", caption: "Self-portraits today", date: "Jan 6, 2026", image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-48", label: "Counting", caption: "Learning numbers with blocks", date: "Jan 6, 2026", image: "https://images.unsplash.com/photo-1587654780291-39c9404d7dd0?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-49", label: "Dress Up", caption: "Wearing fancy hats", date: "Jan 6, 2026", image: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-50", label: "Trampoline", caption: "Bouncing with joy", date: "Jan 6, 2026", image: "https://images.unsplash.com/photo-1472162072942-cd5147eb3902?auto=format&fit=crop&w=400&q=80" },
+  // Jan 5, 2026
+  { id: "photo-51", label: "Cooking", caption: "Making sandwiches for lunch", date: "Jan 5, 2026", image: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-52", label: "Nature Walk", caption: "Finding bugs and leaves", date: "Jan 5, 2026", image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-53", label: "Puppet Show", caption: "Watching the puppet show", date: "Jan 5, 2026", image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-54", label: "Sorting", caption: "Sorting colors and shapes", date: "Jan 5, 2026", image: "https://images.unsplash.com/photo-1587654780291-39c9404d7dd0?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-55", label: "Music", caption: "Playing the xylophone", date: "Jan 5, 2026", image: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=400&q=80" },
+  // Jan 4, 2026
+  { id: "photo-56", label: "Obstacle Course", caption: "Running through the course", date: "Jan 4, 2026", image: "https://images.unsplash.com/photo-1472162072942-cd5147eb3902?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-57", label: "Collage", caption: "Gluing paper pieces", date: "Jan 4, 2026", image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-58", label: "Sensory Bin", caption: "Exploring textures", date: "Jan 4, 2026", image: "https://images.unsplash.com/photo-1504813184591-01572f98c85f?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-59", label: "Parachute", caption: "Waving the big parachute", date: "Jan 4, 2026", image: "https://images.unsplash.com/photo-1547153760-18fc86c83137?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-60", label: "Goodbye Song", caption: "Singing the goodbye song", date: "Jan 4, 2026", image: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=400&q=80" },
+  // Jan 3, 2026
+  { id: "photo-61", label: "Morning Stretch", caption: "Stretching after arrival", date: "Jan 3, 2026", image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-62", label: "Glitter Art", caption: "Sparkly creations", date: "Jan 3, 2026", image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-63", label: "Train Set", caption: "Choo choo!", date: "Jan 3, 2026", image: "https://images.unsplash.com/photo-1587654780291-39c9404d7dd0?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-64", label: "Outdoor Run", caption: "Racing to the finish line", date: "Jan 3, 2026", image: "https://images.unsplash.com/photo-1472162072942-cd5147eb3902?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-65", label: "Snack", caption: "Apple slices and crackers", date: "Jan 3, 2026", image: "https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&w=400&q=80" },
+  // Jan 2, 2026
+  { id: "photo-66", label: "New Year Craft", caption: "Making resolution cards", date: "Jan 2, 2026", image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-67", label: "Friendship Day", caption: "Making friendship bracelets", date: "Jan 2, 2026", image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-68", label: "Building", caption: "Constructing a castle", date: "Jan 2, 2026", image: "https://images.unsplash.com/photo-1587654780291-39c9404d7dd0?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-69", label: "Garden", caption: "Planting seeds in the garden", date: "Jan 2, 2026", image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-70", label: "Dancing", caption: "Free dance time", date: "Jan 2, 2026", image: "https://images.unsplash.com/photo-1547153760-18fc86c83137?auto=format&fit=crop&w=400&q=80" },
+  // Jan 1, 2026
+  { id: "photo-71", label: "Happy New Year", caption: "Celebrating the first day back", date: "Jan 1, 2026", image: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-72", label: "Party Hats", caption: "Wearing festive hats", date: "Jan 1, 2026", image: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-73", label: "Confetti", caption: "Throwing confetti", date: "Jan 1, 2026", image: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-74", label: "Music", caption: "Playing instruments", date: "Jan 1, 2026", image: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-75", label: "Group Photo", caption: "First day back group photo", date: "Jan 1, 2026", image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=400&q=80" },
+  // Dec 31, 2025
+  { id: "photo-76", label: "Free Play", caption: "Choosing their own activities", date: "Dec 31, 2025", image: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-77", label: "Story", caption: "The Very Hungry Caterpillar", date: "Dec 31, 2025", image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-78", label: "Craft", caption: "Paper plate animals", date: "Dec 31, 2025", image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-79", label: "Outdoor", caption: "Playing on the climbing frame", date: "Dec 31, 2025", image: "https://images.unsplash.com/photo-1472162072942-cd5147eb3902?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-80", label: "Snack", caption: "Popcorn and juice", date: "Dec 31, 2025", image: "https://images.unsplash.com/photo-1498654896293-37aacf113fd9?auto=format&fit=crop&w=400&q=80" },
+  // Dec 30, 2025
+  { id: "photo-81", label: "Masks", caption: "Making animal masks", date: "Dec 30, 2025", image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-82", label: "Dancing", caption: "Musical statues", date: "Dec 30, 2025", image: "https://images.unsplash.com/photo-1547153760-18fc86c83137?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-83", label: "Blocks", caption: "Sorting shapes", date: "Dec 30, 2025", image: "https://images.unsplash.com/photo-1587654780291-39c9404d7dd0?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-84", label: "Painting", caption: "Watercolor session", date: "Dec 30, 2025", image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-85", label: "Playground", caption: "Swinging and sliding", date: "Dec 30, 2025", image: "https://images.unsplash.com/photo-1472162072942-cd5147eb3902?auto=format&fit=crop&w=400&q=80" },
+  // Dec 29, 2025
+  { id: "photo-86", label: "Sensory Play", caption: "Exploring with hands", date: "Dec 29, 2025", image: "https://images.unsplash.com/photo-1504813184591-01572f98c85f?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-87", label: "Story Time", caption: "The Gruffalo", date: "Dec 29, 2025", image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-88", label: "Art", caption: "Finger print art", date: "Dec 29, 2025", image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-89", label: "Music", caption: "Drumming circle", date: "Dec 29, 2025", image: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-90", label: "Outdoor", caption: "Bug hunting", date: "Dec 29, 2025", image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=400&q=80" },
+  // Dec 28, 2025
+  { id: "photo-91", label: "Collage", caption: "Tissue paper collage", date: "Dec 28, 2025", image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-92", label: "Play", caption: "Role play corner", date: "Dec 28, 2025", image: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-93", label: "Movement", caption: "Follow the leader", date: "Dec 28, 2025", image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-94", label: "Construction", caption: "Building with cardboard boxes", date: "Dec 28, 2025", image: "https://images.unsplash.com/photo-1587654780291-39c9404d7dd0?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-95", label: "Dress Up", caption: "Pretending to be grown-ups", date: "Dec 28, 2025", image: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=400&q=80" },
+  // Dec 27, 2025
+  { id: "photo-96", label: "Baking", caption: "Decorating cupcakes", date: "Dec 27, 2025", image: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-97", label: "Science", caption: "Color mixing experiment", date: "Dec 27, 2025", image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-98", label: "Garden", caption: "Watering the plants", date: "Dec 27, 2025", image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-99", label: "Friends", caption: "Playing together nicely", date: "Dec 27, 2025", image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=400&q=80" },
+  { id: "photo-100", label: "Goodbye", caption: "See you next year!", date: "Dec 27, 2025", image: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=400&q=80" },
 ];
 
 export const mockChatThreads: ChatThread[] = [
