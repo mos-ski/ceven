@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Bell, MessageSquare, Bookmark, Play, Clock, LayoutGrid, Plus, X, CheckCircle2, Clock3, AlarmClock, UsersRound, LogIn } from "lucide-react";
+import { Bell, MessageSquare, Bookmark, Play, Clock, LayoutGrid, Plus, X, CheckCircle2, Clock3, AlarmClock, UsersRound, LogIn, ScanLine } from "lucide-react";
 import { ParentBottomNav } from "@/components/parent/bottom-nav";
 import { mockParentUser, mockFeedPosts, mockChild, mockAttendanceHistory } from "@/lib/parent/mock-data";
 import { NewBadge } from "@/components/parent/new-badge";
@@ -295,6 +295,18 @@ export default function ParentHomePage() {
             </Link>
           </div>
         </div>
+
+        {/* Scan attendance code CTA */}
+        <Link
+          href="/parent/scan"
+          className="mt-3 flex items-center justify-center gap-2.5 rounded-xl bg-cg-brand px-4 py-3 text-white active:scale-[0.98] transition-transform"
+        >
+          <ScanLine size={18} />
+          <span className="text-sm font-semibold">Scan attendance code</span>
+          <span className="inline-flex shrink-0 items-center rounded-full bg-white/20 px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wide text-white">
+            New
+          </span>
+        </Link>
 
         {/* Today's check-in status */}
         <Link

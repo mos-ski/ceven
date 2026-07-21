@@ -2,12 +2,13 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, CheckCircle, XCircle, Clock } from "lucide-react";
+import { ArrowLeft, CheckCircle, XCircle, Clock, ScanLine } from "lucide-react";
 import { mockAttendance } from "@/lib/caregiver/mock-data";
 import type { AttendanceRecord } from "@/lib/caregiver/mock-data";
 import { BottomNav } from "@/components/caregiver/bottom-nav";
 import { LogSheet } from "@/components/caregiver/log-sheet";
 import { NewBadge } from "@/components/caregiver/new-badge";
+import { OneTimeCode } from "@/components/attendance/one-time-code";
 
 const STATUS_STYLES: Record<AttendanceRecord["status"], string> = {
   present: "bg-green-100 text-green-700",
@@ -82,6 +83,18 @@ export default function AttendancePage() {
       </div>
 
       <div className="flex-1 overflow-y-auto px-4 py-4">
+        {/* Scan button */}
+        <div className="mb-4 flex items-center gap-2">
+          <button
+            onClick={() => router.push("/caregiver/scan")}
+            className="flex flex-1 items-center justify-center gap-2 rounded-2xl bg-cg-brand py-3.5 text-white active:scale-[0.98] transition-transform"
+          >
+            <ScanLine size={18} />
+            <span className="text-sm font-semibold">Scan attendance code</span>
+          </button>
+          <NewBadge />
+        </div>
+
         {/* Summary */}
         <div className="mb-4 flex gap-3">
           {[
@@ -140,6 +153,33 @@ export default function AttendancePage() {
         <p className="mt-1.5 flex items-center justify-center gap-1.5 text-center text-xs text-gray-400">
           <NewBadge /> &quot;Check out&quot; is new — tap it once a child has been picked up.
         </p>
+
+        {/* Verify pickup code section */}
+        <div className="mt-5 rounded-2xl bg-white p-4 shadow-sm">
+          <div className="mb-2 flex items-center gap-2">
+            <p className="text-sm font-semibold text-cg-brand">Verify a pickup code</p>
+            <NewBadge />
+          </div>
+          <p className="mb-3 text-xs text-gray-400">
+            Enter a parent&apos;s one-time code to verify and log a pickup.
+          </p>
+          <OneTimeCode
+            mode="verify"
+            userName="Ms Anu"
+          />
+        </div>
+
+        {/* Audit trail legend */}
+        <div className="mt-4 flex items-center justify-center gap-4 text-xs text-gray-400">
+          <span className="flex items-center gap-1">
+            <span className="inline-block h-2 w-2 rounded-full bg-blue-400" />
+            QR verified
+          </span>
+          <span className="flex items-center gap-1">
+            <span className="inline-block h-2 w-2 rounded-full bg-gray-300" />
+            Manual
+          </span>
+        </div>
       </div>
 
       <LogSheet />

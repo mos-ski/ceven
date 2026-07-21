@@ -14,6 +14,11 @@ import {
   Images,
   Pill,
   AlertTriangle,
+  ScanLine,
+  TrendingUp,
+  Star,
+  CalendarDays,
+  Megaphone,
 } from "lucide-react";
 import { BottomNav } from "@/components/caregiver/bottom-nav";
 import { StatCard } from "@/components/caregiver/stat-card";
@@ -68,9 +73,9 @@ export default function HomePage() {
         <p className="mb-3 text-sm font-semibold text-gray-600">Quick Actions</p>
         {/* Quick Actions — Row 1 */}
         <div className="mb-3 flex gap-3">
+          <QuickActionCard icon={ScanLine} label="Scan Code" onClick={() => router.push("/caregiver/scan")} isNew />
           <QuickActionCard icon={ClipboardList} label="Log Activity" onClick={openActivity} />
           <QuickActionCard icon={FileText} label="Log Report" onClick={() => router.push("/caregiver/report")} />
-          <QuickActionCard icon={MessageSquare} label="Chat" onClick={() => router.push("/caregiver/chat")} />
         </div>
         {/* Quick Actions — Row 2 */}
         <div className="mb-3 flex gap-3">
@@ -79,9 +84,16 @@ export default function HomePage() {
           <QuickActionCard icon={Images} label="Gallery" onClick={() => router.push("/caregiver/gallery")} />
         </div>
         {/* Quick Actions — Row 3 */}
-        <div className="flex gap-3">
+        <div className="mb-3 flex gap-3">
           <QuickActionCard icon={Pill} label="Medication" onClick={() => router.push("/caregiver/medication")} isNew />
           <QuickActionCard icon={AlertTriangle} label="Incidents" onClick={() => router.push("/caregiver/incidents")} isNew />
+          <QuickActionCard icon={TrendingUp} label="Growth" onClick={() => router.push("/caregiver/children/child-1/growth")} isNew />
+        </div>
+        {/* Quick Actions — Row 4 */}
+        <div className="flex gap-3">
+          <QuickActionCard icon={Star} label="Ratings" onClick={() => router.push("/caregiver/ratings")} isNew />
+          <QuickActionCard icon={CalendarDays} label="Events" onClick={() => router.push("/caregiver/events")} isNew />
+          <QuickActionCard icon={Megaphone} label="Announce" onClick={() => router.push("/caregiver/announcements")} isNew />
         </div>
       </div>
 
