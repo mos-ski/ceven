@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
-  MapPin, ExternalLink, Users, Car, ShieldCheck, Languages, Bell,
+  MapPin, ExternalLink, UserCog, Users, Car, ShieldCheck, Languages, Bell,
   PersonStanding, Headphones, Smartphone, LogOut, ChevronRight,
   GraduationCap, Receipt,
 } from "lucide-react";
@@ -14,7 +14,7 @@ import { cgRemove } from "@/lib/caregiver/storage";
 const SETTINGS_ROWS = [
   { icon: MapPin,         label: "Find Creche",            href: "/parent/creche" },
   { icon: GraduationCap,  label: "Enrollments",            href: "/parent/enrollments" },
-  { icon: ExternalLink,   label: "Manage Account",         href: "/parent/settings/account" },
+  { icon: UserCog,        label: "Manage Account",         href: "/parent/settings/account", external: true },
   { icon: Receipt,        label: "Payment History",        href: "/parent/settings/payments" },
   { icon: Users,          label: "Family Profiles",        href: "/parent/settings/profile/family" },
   { icon: Car,            label: "Authorized Pickups",     href: "/parent/settings/pickups" },
@@ -70,7 +70,7 @@ export default function ParentSettingsPage() {
 
           <p className="mb-3 text-base font-bold text-gray-800">Settings</p>
           <div className="rounded-2xl bg-white border border-gray-100 shadow-sm overflow-hidden">
-            {SETTINGS_ROWS.map(({ icon: Icon, label, href }, i) => (
+            {SETTINGS_ROWS.map(({ icon: Icon, label, href, external }, i) => (
               <Link
                 key={label}
                 href={href}
@@ -82,7 +82,11 @@ export default function ParentSettingsPage() {
                   <Icon size={18} className="text-gray-500" />
                   <span className="text-sm text-gray-500">{label}</span>
                 </div>
-                <ChevronRight size={16} className="text-gray-400" />
+                {external ? (
+                  <ExternalLink size={16} className="text-gray-400" />
+                ) : (
+                  <ChevronRight size={16} className="text-gray-400" />
+                )}
               </Link>
             ))}
           </div>
