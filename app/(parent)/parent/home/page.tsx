@@ -19,7 +19,6 @@ import {
   CalendarDays,
   Megaphone,
   FileText,
-  CreditCard,
 } from "lucide-react";
 import { ParentBottomNav } from "@/components/parent/bottom-nav";
 import { QuickActionCard } from "@/components/parent/quick-action-card";
@@ -102,12 +101,7 @@ export default function ParentHomePage() {
           <QuickActionCard icon={Clock} label="Special Requests" onClick={() => router.push("/parent/special-requests")} />
           <QuickActionCard icon={CalendarDays} label="Events" onClick={() => router.push("/parent/events")} isNew />
           <QuickActionCard icon={Megaphone} label="Announcements" onClick={() => router.push("/parent/announcements")} isNew />
-        </div>
-
-        <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-400">Enrollment & Billing</p>
-        <div className="grid grid-cols-3 gap-3">
-          <QuickActionCard icon={FileText} label="Application/Waitlist" onClick={() => router.push("/parent/application")} />
-          <QuickActionCard icon={CreditCard} label="Fees" onClick={() => router.push("/parent/fees")} />
+          <QuickActionCard icon={FileText} label="Application" onClick={() => router.push("/parent/application")} />
         </div>
       </div>
 
