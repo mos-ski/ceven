@@ -1,21 +1,38 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, Heart, Ruler, Calendar, Shield } from "lucide-react";
 import { ParentBottomNav } from "@/components/parent/bottom-nav";
 import { mockParentChildren, mockChildMoods, type ChildMoodProfile } from "@/lib/parent/mock-data";
 
-function MoodBar({ entry, maxScore = 5 }: { entry: ChildMoodProfile["weeklyMoods"][0]; maxScore?: number }) {
+const barKeyframes = `
+@keyframes barGrow {
+  from { height: 0%; }
+  to { height: var(--bar-height); }
+}
+`;
+
+function MoodBar({ entry, index, maxScore = 5 }: { entry: ChildMoodProfile["weeklyMoods"][0]; index: number; maxScore?: number }) {
+  const [mounted, setMounted] = useState(false);
   const heightPct = (entry.score / maxScore) * 100;
+
+  useEffect(() => {
+    const t = setTimeout(() => setMounted(true), 50 + index * 80);
+    return () => clearTimeout(t);
+  }, [index]);
 
   return (
     <div className="flex flex-col items-center gap-1.5">
       <span className="text-[10px] font-semibold text-gray-500">{entry.mood}</span>
       <div className="relative h-24 w-8 rounded-full bg-gray-100 overflow-hidden">
         <div
-          className="absolute bottom-0 left-0 right-0 rounded-full transition-all duration-500"
-          style={{ height: `${heightPct}%`, backgroundColor: entry.color }}
+          className="absolute bottom-0 left-0 right-0 rounded-full"
+          style={{
+            backgroundColor: entry.color,
+            height: mounted ? `${heightPct}%` : "0%",
+            transition: `height 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) ${index * 0.08}s`,
+          }}
         />
       </div>
       <span className="text-[10px] font-semibold text-gray-400">{entry.date}</span>
@@ -82,8 +99,8 @@ function ChildMoodCard({
           {/* Bar chart */}
           <p className="mb-3 text-xs font-semibold text-gray-500">Weekly Mood</p>
           <div className="flex items-end justify-between gap-2">
-            {profile.weeklyMoods.map(entry => (
-              <MoodBar key={entry.date} entry={entry} />
+            {profile.weeklyMoods.map((entry, i) => (
+              <MoodBar key={entry.date} entry={entry} index={i} />
             ))}
           </div>
         </div>

@@ -18,6 +18,7 @@ import {
   Megaphone,
   FileText,
   Smile,
+  Search,
 } from "lucide-react";
 import { ParentBottomNav } from "@/components/parent/bottom-nav";
 import { QuickActionCard } from "@/components/parent/quick-action-card";
@@ -105,6 +106,7 @@ export default function ParentHomePage() {
 
         <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-400">Creche Life</p>
         <div className="mb-4 grid grid-cols-3 gap-3">
+          <QuickActionCard icon={Search} label="Find Creche" onClick={() => router.push("/parent/creche")} />
           <QuickActionCard icon={CalendarCheck} label="Attendance" onClick={() => router.push("/parent/attendance")} />
           <QuickActionCard iconNode={<AnimatedRequestIcon />} label="Special Requests" onClick={() => router.push("/parent/special-requests")} />
           <QuickActionCard icon={CalendarDays} label="Events" onClick={() => router.push("/parent/events")} isNew />
