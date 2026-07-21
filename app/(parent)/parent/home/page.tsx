@@ -41,12 +41,21 @@ export default function ParentHomePage() {
               <p className="text-xs font-medium text-gray-800">{mockParentUser.name}&apos;s</p>
             </div>
           </div>
-          <Link
-            href="/parent/notifications"
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-[#f4f5f6]"
-          >
-            <Bell size={20} className="text-gray-600" />
-          </Link>
+          <div className="flex items-center gap-2">
+            <Link
+              href="/parent/mood"
+              className="flex items-center gap-1 rounded-full bg-amber-50 px-2.5 py-1.5"
+            >
+              <Smile size={14} className="text-amber-500" />
+              <span className="text-xs font-bold text-amber-700">89</span>
+            </Link>
+            <Link
+              href="/parent/notifications"
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-[#f4f5f6]"
+            >
+              <Bell size={20} className="text-gray-600" />
+            </Link>
+          </div>
         </div>
 
         {/* Scan attendance code CTA */}
@@ -89,7 +98,6 @@ export default function ParentHomePage() {
 
         <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-400">Health & Care</p>
         <div className="mb-4 grid grid-cols-3 gap-3">
-          <QuickActionCard icon={Smile} label="Mood" onClick={() => router.push("/parent/mood")} isNew />
           <QuickActionCard icon={TrendingUp} label="Growth" onClick={() => router.push("/parent/child/growth")} isNew />
           <QuickActionCard icon={Pill} label="Medication" onClick={() => router.push("/parent/medication")} isNew />
           <QuickActionCard icon={AlertTriangle} label="Incidents" onClick={() => router.push("/parent/incidents")} isNew />
