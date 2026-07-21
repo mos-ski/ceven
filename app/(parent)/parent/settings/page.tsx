@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
-  MapPin, UserCog, Users, Car, ShieldCheck, Languages, Bell,
+  MapPin, ExternalLink, Users, Car, ShieldCheck, Languages, Bell,
   PersonStanding, Headphones, Smartphone, LogOut, ChevronRight,
 } from "lucide-react";
 import { ParentBottomNav } from "@/components/parent/bottom-nav";
@@ -12,7 +12,7 @@ import { cgRemove } from "@/lib/caregiver/storage";
 
 const SETTINGS_ROWS = [
   { icon: MapPin,         label: "Find Creche",            href: "/parent/creche" },
-  { icon: UserCog,        label: "Manage Account",         href: "/parent/settings/account" },
+  { icon: ExternalLink,   label: "Manage Account",         href: "/parent/settings/account" },
   { icon: Users,          label: "Family Profiles",        href: "/parent/settings/profile/family" },
   { icon: Car,            label: "Authorized Pickups",     href: "/parent/settings/pickups" },
   { icon: ShieldCheck,    label: "Change Password",         href: "/parent/settings/change-password" },
