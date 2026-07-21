@@ -61,6 +61,71 @@ export type Notification = {
   type: "report" | "fee" | "chat" | "incident";
 };
 
+export type MoodEntry = {
+  date: string;
+  mood: string;
+  score: number; // 1-5
+  color: string;
+};
+
+export type ChildMoodProfile = {
+  childId: string;
+  name: string;
+  age: string;
+  room: string;
+  health: string;
+  height: string;
+  weeklyMoods: MoodEntry[];
+};
+
+export const mockChildMoods: Record<string, ChildMoodProfile> = {
+  "child-1": {
+    childId: "child-1",
+    name: "Liam Smith",
+    age: "3 Years",
+    room: "Toddler Room",
+    health: "Healthy, Nut Allergy",
+    height: "96 cm",
+    weeklyMoods: [
+      { date: "Mon", mood: "Happy", score: 4, color: "#4ADE80" },
+      { date: "Tue", mood: "Playful", score: 5, color: "#22C55E" },
+      { date: "Wed", mood: "Good", score: 4, color: "#4ADE80" },
+      { date: "Thu", mood: "Tired", score: 2, color: "#FBBF24" },
+      { date: "Fri", mood: "Happy", score: 4, color: "#4ADE80" },
+    ],
+  },
+  "child-2": {
+    childId: "child-2",
+    name: "Zoe Smith",
+    age: "5 Years",
+    room: "Prep Class",
+    health: "Healthy",
+    height: "108 cm",
+    weeklyMoods: [
+      { date: "Mon", mood: "Excited", score: 5, color: "#22C55E" },
+      { date: "Tue", mood: "Happy", score: 4, color: "#4ADE80" },
+      { date: "Wed", mood: "Confident", score: 5, color: "#22C55E" },
+      { date: "Thu", mood: "Good", score: 4, color: "#4ADE80" },
+      { date: "Fri", mood: "Playful", score: 5, color: "#22C55E" },
+    ],
+  },
+  "child-3": {
+    childId: "child-3",
+    name: "Noah Smith",
+    age: "18 Months",
+    room: "Nursery",
+    health: "Healthy",
+    height: "82 cm",
+    weeklyMoods: [
+      { date: "Mon", mood: "Sleepy", score: 3, color: "#FB923C" },
+      { date: "Tue", mood: "Happy", score: 4, color: "#4ADE80" },
+      { date: "Wed", mood: "Good", score: 4, color: "#4ADE80" },
+      { date: "Thu", mood: "Fussy", score: 2, color: "#FBBF24" },
+      { date: "Fri", mood: "Happy", score: 4, color: "#4ADE80" },
+    ],
+  },
+};
+
 export const mockParentUser: ParentUser = {
   name: "James Miller",
   role: "parent",

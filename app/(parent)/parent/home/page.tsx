@@ -18,6 +18,7 @@ import {
   CalendarDays,
   Megaphone,
   FileText,
+  Smile,
 } from "lucide-react";
 import { ParentBottomNav } from "@/components/parent/bottom-nav";
 import { QuickActionCard } from "@/components/parent/quick-action-card";
@@ -88,6 +89,7 @@ export default function ParentHomePage() {
 
         <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-400">Health & Care</p>
         <div className="mb-4 grid grid-cols-3 gap-3">
+          <QuickActionCard icon={Smile} label="Mood" onClick={() => router.push("/parent/mood")} isNew />
           <QuickActionCard icon={TrendingUp} label="Growth" onClick={() => router.push("/parent/child/growth")} isNew />
           <QuickActionCard icon={Pill} label="Medication" onClick={() => router.push("/parent/medication")} isNew />
           <QuickActionCard icon={AlertTriangle} label="Incidents" onClick={() => router.push("/parent/incidents")} isNew />

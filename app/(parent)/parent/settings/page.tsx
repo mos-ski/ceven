@@ -61,10 +61,8 @@ export default function ParentSettingsPage() {
       </div>
 
       <div className="flex min-h-0 flex-1 flex-col overflow-y-auto bg-white">
-        {/* Pull wrapper up to overlap header */}
-        <div className="-mt-8 flex flex-1 flex-col rounded-t-3xl bg-white px-6 pt-5">
+        <div className="flex flex-1 flex-col rounded-t-3xl bg-white px-6 pt-6">
 
-          {/* Settings rows */}
           <p className="mb-3 text-base font-bold text-gray-800">Settings</p>
           <div className="rounded-2xl bg-white border border-gray-100 shadow-sm overflow-hidden">
             {SETTINGS_ROWS.map(({ icon: Icon, label, href }, i) => (

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
   Bell, ChevronLeft, ChevronRight, Calendar, Sparkles, Send, X, ChevronDown, Star,
@@ -132,7 +132,7 @@ function MomentPhoto({ tag, src, caption }: { tag: string; src: string; caption:
 
 // ─── Page ─────────────────────────────────────────────────────────────────────
 
-export default function ReportsPage() {
+function ReportsPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const childId = searchParams.get("childId") ?? mockParentChildren[0].id;
@@ -368,5 +368,13 @@ export default function ReportsPage() {
 
       <ParentBottomNav />
     </div>
+  );
+}
+
+export default function ReportsPage() {
+  return (
+    <Suspense>
+      <ReportsPageContent />
+    </Suspense>
   );
 }
