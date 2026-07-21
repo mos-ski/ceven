@@ -12,18 +12,18 @@ import { mockParentUser } from "@/lib/parent/mock-data";
 import { cgRemove } from "@/lib/caregiver/storage";
 
 const SETTINGS_ROWS = [
-  { icon: MapPin,         label: "Find Creche",            href: "/parent/creche" },
-  { icon: GraduationCap,  label: "Enrollments",            href: "/parent/enrollments" },
-  { icon: UserCog,        label: "Manage Account",         href: "/parent/settings/account", external: true },
-  { icon: Receipt,        label: "Payment History",        href: "/parent/settings/payments" },
-  { icon: Users,          label: "Family Profiles",        href: "/parent/settings/profile/family" },
-  { icon: Car,            label: "Authorized Pickups",     href: "/parent/settings/pickups" },
-  { icon: ShieldCheck,    label: "Change Password",         href: "/parent/settings/change-password" },
-  { icon: Languages,      label: "Language Preferences",    href: "/parent/settings/language" },
-  { icon: Bell,           label: "Notification Settings",   href: "/parent/settings/notifications" },
-  { icon: PersonStanding, label: "Accessibility",           href: "/parent/settings/accessibility" },
-  { icon: Headphones,     label: "FAQs & Help",             href: "/parent/settings/help" },
-  { icon: Smartphone,     label: "About App",               href: "/parent/settings/about" },
+  { icon: MapPin,         label: "Find Creche",            href: "/parent/creche",                    external: false },
+  { icon: GraduationCap,  label: "Enrollments",            href: "/parent/enrollments",                external: false },
+  { icon: UserCog,        label: "Manage Account",         href: "/parent/settings/account",           external: true },
+  { icon: Receipt,        label: "Payment History",        href: "/parent/settings/payments",          external: false },
+  { icon: Users,          label: "Family Profiles",        href: "/parent/settings/profile/family",    external: false },
+  { icon: Car,            label: "Authorized Pickups",     href: "/parent/settings/pickups",           external: false },
+  { icon: ShieldCheck,    label: "Change Password",         href: "/parent/settings/change-password",   external: false },
+  { icon: Languages,      label: "Language Preferences",    href: "/parent/settings/language",          external: false },
+  { icon: Bell,           label: "Notification Settings",   href: "/parent/settings/notifications",     external: false },
+  { icon: PersonStanding, label: "Accessibility",           href: "/parent/settings/accessibility",     external: false },
+  { icon: Headphones,     label: "FAQs & Help",             href: "/parent/settings/help",              external: false },
+  { icon: Smartphone,     label: "About App",               href: "/parent/settings/about",             external: false },
 ] as const;
 
 export default function ParentSettingsPage() {
