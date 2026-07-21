@@ -1,7 +1,7 @@
 "use client";
 
 import { Suspense, useState } from "react";
-import { ChevronDown, Download, Printer, Search } from "lucide-react";
+import { ChevronDown, Download, Printer, Search, Zap } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import { Badge } from "@/components/ui/badge";
@@ -21,6 +21,11 @@ import { HealthIncidentsView } from "@/components/admin/daily-operations/health-
 import { InventoryView } from "@/components/admin/daily-operations/inventory-view";
 import { MedicationView } from "@/components/admin/daily-operations/medication-view";
 import { TasksView } from "@/components/admin/daily-operations/tasks-view";
+import { QRDisplay } from "@/components/attendance/qr-display";
+import { LiveFeed } from "@/components/attendance/live-feed";
+import { AttendanceGrid } from "@/components/attendance/attendance-grid";
+import { useAttendance } from "@/lib/attendance/store";
+import { getRandomParent, getRandomStaff, getAuthorizedPickup } from "@/lib/attendance/mock-scan";
 import { CHILDREN } from "@/lib/mock-data/children";
 import { STAFF } from "@/lib/mock-data/staff";
 
@@ -28,46 +33,7 @@ import { STAFF } from "@/lib/mock-data/staff";
 
 type View = "qr" | "logs";
 
-type FeedRow = {
-  initials: string;
-  name: string;
-  role: string;
-  time: string;
-  status: "IN" | "OUT";
-};
-
-type GridCard = {
-  initials: string;
-  name: string;
-  cls: string;
-  time: string;
-  type: "IN" | "Absent" | "Pending";
-};
-
-// ── Static data ───────────────────────────────────────────────────────────────
-
-const feedRows: FeedRow[] = [
-  { initials: "SO", name: "Mrs. Sarah Okonkwo", role: "Caregiver", time: "9:14 AM", status: "IN" },
-  { initials: "JA", name: "Mr. James Adamu", role: "Marketer", time: "9:02 AM", status: "IN" },
-  { initials: "NE", name: "Mrs. Ngozi Eze", role: "Caregiver", time: "8:55 AM", status: "OUT" },
-];
-
-const gridCards: GridCard[] = [
-  { initials: "SO", name: "Mrs. Sarah", cls: "Lion Class", time: "9:14 AM", type: "IN" },
-  { initials: "JA", name: "Mr. James", cls: "Tiger Class", time: "9:02 AM", type: "IN" },
-  { initials: "NE", name: "Mrs. Ngozi", cls: "Bear Class", time: "-", type: "Absent" },
-  { initials: "CB", name: "Mr. Chukwu", cls: "Owl Class", time: "-", type: "Pending" },
-  { initials: "AT", name: "Mrs. Amaka", cls: "Lion Class", time: "8:45 AM", type: "IN" },
-  { initials: "FK", name: "Mr. Femi", cls: "Tiger Class", time: "-", type: "Absent" },
-];
-
 // ── Helpers ───────────────────────────────────────────────────────────────────
-
-function cardStyle(type: GridCard["type"]) {
-  if (type === "IN") return { border: "#85ffd7", bg: "#f0fff9" };
-  if (type === "Absent") return { border: "#fe7171", bg: "#fff5f5" };
-  return { border: "#ffd58f", bg: "#fffbf0" };
-}
 
 function FilterDropdown({ label }: { label: string }) {
   return (
@@ -275,11 +241,55 @@ function LogExceptionModal({ open, onOpenChange }: { open: boolean; onOpenChange
 function QRStationView() {
   const [checkInOpen, setCheckInOpen] = useState(false);
   const [exceptionOpen, setExceptionOpen] = useState(false);
+  const { dispatch } = useAttendance();
+
+  function simulateParentScan() {
+    const parent = getRandomParent();
+    const childId = parent.childIds[Math.floor(Math.random() * parent.childIds.length)];
+    const authorized = getAuthorizedPickup(childId);
+    dispatch({
+      type: "LOG_CHILD_ATTENDANCE",
+      childId,
+      actorId: parent.id,
+      actorName: parent.name,
+      authorizedPickup: authorized,
+    });
+  }
+
+  function simulateStaffScan() {
+    const staff = getRandomStaff();
+    dispatch({
+      type: "LOG_STAFF_ATTENDANCE",
+      staffId: staff.id,
+      staffName: staff.name,
+      staffRole: staff.staffRole,
+    });
+  }
 
   return (
     <div className="flex flex-col gap-4">
       {/* Action buttons */}
       <div className="flex flex-col sm:flex-row sm:justify-end gap-3">
+        <button
+          onClick={simulateParentScan}
+          className="flex-1 sm:flex-initial flex items-center justify-center gap-2 rounded-lg border border-[#009061] bg-[#ecfff8] px-4 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#009061]"
+        >
+          <Zap className="h-4 w-4" />
+          Simulate Parent Scan
+          <span className="inline-flex shrink-0 items-center rounded-full bg-emerald-500 px-1.5 py-0.5 text-[7px] font-bold uppercase tracking-wide text-white">
+            New
+          </span>
+        </button>
+        <button
+          onClick={simulateStaffScan}
+          className="flex-1 sm:flex-initial flex items-center justify-center gap-2 rounded-lg border border-[#c47b2c] bg-[#fffbf0] px-4 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#c47b2c]"
+        >
+          <Zap className="h-4 w-4" />
+          Simulate Staff Scan
+          <span className="inline-flex shrink-0 items-center rounded-full bg-emerald-500 px-1.5 py-0.5 text-[7px] font-bold uppercase tracking-wide text-white">
+            New
+          </span>
+        </button>
         <button
           onClick={() => setExceptionOpen(true)}
           className="flex-1 sm:flex-initial rounded-lg border border-[#3b2513] px-4 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#3b2513]"
@@ -296,149 +306,13 @@ function QRStationView() {
 
       {/* Two-column layout */}
       <div className="flex flex-col lg:flex-row gap-4">
-        {/* Left panel */}
-        <div className="flex flex-1 flex-col gap-6 rounded-2xl bg-[#3b2513] p-6">
-          {/* Creche name row */}
-          <div className="flex items-center justify-between">
-            <span className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#faf2e1]">
-              Udebem Cresh
-            </span>
-            <span className="rounded-full border border-[#009061] bg-[#ecfff8] px-2 py-0.5 text-xs text-[#009061]">
-              Active
-            </span>
-          </div>
+        {/* Left panel — real QR display */}
+        <QRDisplay />
 
-          {/* QR code placeholder */}
-          <div className="mx-auto flex h-40 w-40 items-center justify-center rounded-xl bg-white p-4">
-            <div className="flex h-[120px] w-[120px] items-center justify-center rounded bg-[#e0e0e0]">
-              <span className="text-center text-xs text-[#9ca3af]">QR Code</span>
-            </div>
-          </div>
-
-          {/* Download / Print */}
-          <div className="flex gap-3">
-            <button className="flex flex-1 items-center justify-center gap-2 rounded-lg bg-[#bab68d] px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#3b2513]">
-              <Download className="h-4 w-4" />
-              Download
-            </button>
-            <button className="flex flex-1 items-center justify-center gap-2 rounded-lg border border-[#faf2e1]/40 px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]">
-              <Printer className="h-4 w-4" />
-              Print
-            </button>
-          </div>
-
-          {/* Help text */}
-          <p className="text-center text-sm text-[#faf2e1]/60">
-            Scan QR code with your phone or enter login code
-          </p>
-
-          {/* Activity bar */}
-          <div className="flex justify-around rounded-xl bg-[#5b391e] p-4">
-            {[
-              { label: "CHECK-INs", value: "02" },
-              { label: "CHECK-OUTs", value: "00" },
-              { label: "EXCEPTIONS", value: "00" },
-            ].map((item) => (
-              <div key={item.label} className="flex flex-col items-center gap-1">
-                <span className="font-[family-name:var(--font-merriweather)] text-xl font-bold text-[#faf2e1]">
-                  {item.value}
-                </span>
-                <span className="text-xs text-[#faf2e1]/60">{item.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Right panel */}
+        {/* Right panel — real live feed + grid */}
         <div className="flex w-full lg:w-[400px] flex-col gap-4">
-          {/* Live Feed card */}
-          <div className="rounded-2xl bg-white p-4 shadow-sm">
-            <div className="mb-1 flex items-center justify-between">
-              <span className="font-[family-name:var(--font-merriweather)] text-sm font-bold text-[#2d1810]">
-                Live Scanned Feed
-              </span>
-              <span className="rounded-full border border-red-200 bg-red-50 px-2 py-0.5 text-[10px] text-red-500">
-                ● Live
-              </span>
-            </div>
-
-            <div className="flex flex-col">
-              {feedRows.map((row, i) => (
-                <div
-                  key={i}
-                  className="flex items-center justify-between border-b border-[#f3f4f6] py-2.5 last:border-0"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[#edd9c0] font-[family-name:var(--font-urbanist)] text-xs font-bold text-[#3b2513]">
-                      {row.initials}
-                    </div>
-                    <div>
-                      <p className="font-[family-name:var(--font-nunito)] text-xs font-semibold text-[#2d1810]">
-                        {row.name}
-                      </p>
-                      <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#6b7280]">
-                        {row.role}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">
-                      {row.time}
-                    </span>
-                    <span className="rounded-full bg-[#edd9c0] px-3 py-1 font-[family-name:var(--font-urbanist)] text-xs font-medium text-[#3b2513]">
-                      {row.status}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Attendance Grid card */}
-          <div className="rounded-2xl bg-white p-4 shadow-sm">
-            <span className="font-[family-name:var(--font-merriweather)] text-sm font-bold text-[#2d1810]">
-              Attendance Grid
-            </span>
-
-            {/* Search bar */}
-            <div className="mt-3 flex items-center gap-2 rounded-lg bg-[#f5edd8] px-3 py-1.5">
-              <Search className="h-3.5 w-3.5 text-[#9ca3af]" />
-              <input
-                type="text"
-                placeholder="Search..."
-                className="flex-1 bg-transparent font-[family-name:var(--font-urbanist)] text-xs text-[#2d1810] placeholder:text-[#9ca3af] focus:outline-none"
-              />
-            </div>
-
-            {/* Filter bar */}
-            <div className="mb-4 mt-3 flex gap-2">
-              <FilterDropdown label="All Rooms" />
-              <FilterDropdown label="All Users" />
-            </div>
-
-            {/* Grid */}
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
-              {gridCards.map((card, i) => {
-                const style = cardStyle(card.type);
-                return (
-                  <div
-                    key={i}
-                    className="flex flex-col gap-1.5 rounded-xl border p-3"
-                    style={{ borderColor: style.border, backgroundColor: style.bg }}
-                  >
-                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#edd9c0] font-[family-name:var(--font-urbanist)] text-xs font-bold text-[#3b2513]">
-                      {card.initials}
-                    </div>
-                    <p className="font-[family-name:var(--font-nunito)] text-xs font-bold text-[#2d1810]">
-                      {card.name}
-                    </p>
-                    <p className="text-[10px] text-[#6b7280]">{card.cls}</p>
-                    <p className="text-[10px] text-[#9ca3af]">{card.time}</p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+          <LiveFeed />
+          <AttendanceGrid />
         </div>
       </div>
 

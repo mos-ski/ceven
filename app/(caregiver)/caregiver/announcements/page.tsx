@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, Megaphone, AlertTriangle, Plus, X } from "lucide-react";
 import { BottomNav } from "@/components/caregiver/bottom-nav";
-import { LogSheet } from "@/components/caregiver/log-sheet";
 import { mockUser } from "@/lib/caregiver/mock-data";
 import { getAnnouncements, addAnnouncement, type Announcement } from "@/lib/shared/announcements";
 import { NewBadge } from "@/components/caregiver/new-badge";
@@ -83,7 +82,6 @@ export default function CaregiverAnnouncementsPage() {
         />
       )}
 
-      <LogSheet />
       <BottomNav />
     </div>
   );

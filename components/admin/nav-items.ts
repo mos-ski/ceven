@@ -2,6 +2,7 @@ export type NavSubItem = {
   label: string;
   href: string;
   tab?: string;
+  isNew?: boolean;
 };
 
 export type NavItem = {
@@ -43,7 +44,7 @@ export const NAV_ITEMS: NavItem[] = [
     href: "/admin/v2/daily-operations",
     icon: "daily-ops",
     subItems: [
-      { label: "Reception/QR", href: "/admin/v2/daily-operations" },
+      { label: "Reception/QR", href: "/admin/v2/daily-operations", isNew: true },
       { label: "Daily Logs", href: "/admin/v2/daily-operations", tab: "daily-logs" },
       { label: "Health & Incidents", href: "/admin/v2/daily-operations", tab: "health-incidents" },
       { label: "Medication", href: "/admin/v2/daily-operations", tab: "medication" },

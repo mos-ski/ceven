@@ -149,7 +149,14 @@ export function Sidebar() {
                                   : "text-sidebar-inactive-text"
                               }`}
                             >
-                              {sub.label}
+                              <span className="flex items-center gap-1.5">
+                                {sub.label}
+                                {sub.isNew && (
+                                  <span className="inline-flex shrink-0 items-center rounded-full bg-emerald-500 px-1.5 py-0.5 text-[7px] font-bold uppercase tracking-wide text-white">
+                                    New
+                                  </span>
+                                )}
+                              </span>
                             </button>
                           );
                         }
@@ -165,7 +172,14 @@ export function Sidebar() {
                                 : "text-sidebar-inactive-text"
                             }`}
                           >
-                            {sub.label}
+                            <span className="flex items-center gap-1.5">
+                              {sub.label}
+                              {sub.isNew && (
+                                <span className="inline-flex shrink-0 items-center rounded-full bg-emerald-500 px-1.5 py-0.5 text-[7px] font-bold uppercase tracking-wide text-white">
+                                  New
+                                </span>
+                              )}
+                            </span>
                           </Link>
                         );
                       })}
