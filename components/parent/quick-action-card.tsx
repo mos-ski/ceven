@@ -1,16 +1,18 @@
 "use client";
 
 import type { LucideIcon } from "lucide-react";
+import type { ReactNode } from "react";
 
 type Props = {
-  icon: LucideIcon;
+  icon?: LucideIcon;
   label: string;
   onClick: () => void;
   isNew?: boolean;
   badge?: number;
+  iconNode?: ReactNode;
 };
 
-export function QuickActionCard({ icon: Icon, label, onClick, isNew, badge }: Props) {
+export function QuickActionCard({ icon: Icon, label, onClick, isNew, badge, iconNode }: Props) {
   return (
     <button
       onClick={onClick}
@@ -26,7 +28,7 @@ export function QuickActionCard({ icon: Icon, label, onClick, isNew, badge }: Pr
           {badge > 99 ? "99+" : badge}
         </span>
       )}
-      <Icon size={24} className="text-cg-brand" />
+      {iconNode ?? (Icon && <Icon size={24} className="text-cg-brand" />)}
       <span className="text-xs font-medium text-cg-brand">{label}</span>
     </button>
   );

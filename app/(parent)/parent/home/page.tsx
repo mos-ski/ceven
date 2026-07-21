@@ -14,7 +14,6 @@ import {
   Pill,
   AlertTriangle,
   CalendarCheck,
-  Clock,
   CalendarDays,
   Megaphone,
   FileText,
@@ -22,6 +21,7 @@ import {
 } from "lucide-react";
 import { ParentBottomNav } from "@/components/parent/bottom-nav";
 import { QuickActionCard } from "@/components/parent/quick-action-card";
+import { AnimatedRequestIcon } from "@/components/parent/animated-request-icon";
 import { mockParentUser, mockChild, mockAttendanceHistory } from "@/lib/parent/mock-data";
 
 export default function ParentHomePage() {
@@ -106,7 +106,7 @@ export default function ParentHomePage() {
         <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-400">Creche Life</p>
         <div className="mb-4 grid grid-cols-3 gap-3">
           <QuickActionCard icon={CalendarCheck} label="Attendance" onClick={() => router.push("/parent/attendance")} />
-          <QuickActionCard icon={Clock} label="Special Requests" onClick={() => router.push("/parent/special-requests")} />
+          <QuickActionCard iconNode={<AnimatedRequestIcon />} label="Special Requests" onClick={() => router.push("/parent/special-requests")} />
           <QuickActionCard icon={CalendarDays} label="Events" onClick={() => router.push("/parent/events")} isNew />
           <QuickActionCard icon={Megaphone} label="Announcements" onClick={() => router.push("/parent/announcements")} isNew />
           <QuickActionCard icon={FileText} label="Application" onClick={() => router.push("/parent/application")} />
