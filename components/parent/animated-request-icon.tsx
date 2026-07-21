@@ -1,6 +1,6 @@
 "use client";
 
-import { Hand } from "lucide-react";
+import { Clock } from "lucide-react";
 
 const pulseKeyframes = `
 @keyframes requestPulse {
@@ -19,7 +19,7 @@ export function AnimatedRequestIcon() {
     <>
       <style>{pulseKeyframes}</style>
       <div className="request-icon">
-        <Hand size={24} className="text-cg-brand" />
+        <Clock size={24} className="text-cg-brand" />
       </div>
     </>
   );
