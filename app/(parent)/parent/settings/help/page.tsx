@@ -31,11 +31,7 @@ const FAQS = [
   },
   {
     q: "How is my billing handled?",
-    a: "Billing is processed securely via Paystack. You can view your invoice history under Settings → Billing History.",
-  },
-  {
-    q: "How do I cancel my Premium subscription?",
-    a: "Tap the 'Upgrade' button at the top of CEvenAI, then manage your subscription. You can cancel at any time and retain access until the end of your billing period.",
+    a: "Payments are handled outside the app — contact your creche administrator to arrange payment. Once received, your invoice status and receipts update automatically under Settings → Billing History.",
   },
 ];
 

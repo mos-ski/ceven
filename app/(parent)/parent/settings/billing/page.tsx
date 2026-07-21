@@ -58,11 +58,6 @@ export default function BillingPage() {
                     Download Receipt
                   </button>
                 )}
-                {fee.status === "pending" && (
-                  <button className="mt-3 w-full rounded-xl bg-cg-brand py-2.5 text-xs font-semibold text-[#FAF2E1]">
-                    Pay Now
-                  </button>
-                )}
               </div>
             );
           })}

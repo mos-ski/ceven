@@ -58,11 +58,6 @@ export default function FeesPage() {
                 <p className="text-[10px] text-gray-400">Due Date</p>
                 <p className="text-xs font-semibold text-gray-600">{fee.dueDate}</p>
               </div>
-              {fee.status !== "paid" && (
-                <button className="rounded-xl bg-cg-accent-muted px-4 py-2 text-xs font-semibold text-cg-brand">
-                  Pay Now
-                </button>
-              )}
             </div>
           </div>
         ))}

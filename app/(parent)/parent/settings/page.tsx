@@ -64,29 +64,6 @@ export default function ParentSettingsPage() {
         {/* Pull wrapper up to overlap header */}
         <div className="-mt-8 flex flex-1 flex-col rounded-t-3xl bg-white px-6 pt-5">
 
-          {/* Premium subscription card */}
-          <div className="mb-5 rounded-2xl bg-[#52330A] p-4">
-            <div className="mb-2 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <div className="flex h-4 w-4 items-center justify-center">
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                    <path d="M6 1L7.5 4.5H11L8.5 6.5L9.5 10L6 8L2.5 10L3.5 6.5L1 4.5H4.5L6 1Z" fill="#FFFFFF"/>
-                  </svg>
-                </div>
-                <span className="text-sm font-semibold text-white">Premium Monthly</span>
-              </div>
-              <span className="rounded-full bg-amber-500 px-2.5 py-0.5 text-xs font-bold text-[#52330A]">Upgrade</span>
-            </div>
-            <p className="mb-2 text-xs text-white">🎉 Free Trial: 7 days remaining</p>
-            <div className="flex items-center gap-2 text-xs text-white/80">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <rect x="1" y="3" width="12" height="9" rx="1.5" stroke="white" strokeWidth="1.2"/>
-                <path d="M1 6h12" stroke="white" strokeWidth="1.2"/>
-              </svg>
-              Next billing: February 11, 2026
-            </div>
-          </div>
-
           {/* Settings rows */}
           <p className="mb-3 text-base font-bold text-gray-800">Settings</p>
           <div className="rounded-2xl bg-white border border-gray-100 shadow-sm overflow-hidden">
