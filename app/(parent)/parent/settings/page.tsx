@@ -16,7 +16,7 @@ const SETTINGS_ROWS = [
   { icon: GraduationCap,  label: "Enrollments",            href: "/parent/enrollments",                external: false },
   { icon: UserCog,        label: "Manage Account",         href: "/parent/settings/account",           external: true },
   { icon: Receipt,        label: "Payment History",        href: "/parent/settings/payments",          external: false },
-  { icon: Users,          label: "Family Profiles",        href: "/parent/settings/profile/family",    external: false },
+  { icon: Users,          label: "Family Profiles",        href: "/parent/settings/profile",           external: false },
   { icon: Car,            label: "Authorized Pickups",     href: "/parent/settings/pickups",           external: false },
   { icon: ShieldCheck,    label: "Change Password",         href: "/parent/settings/change-password",   external: false },
   { icon: Languages,      label: "Language Preferences",    href: "/parent/settings/language",          external: false },
