@@ -563,9 +563,24 @@ export default function ParentHomePage() {
 
   return (
     <div className="relative flex min-h-0 flex-1 flex-col bg-[#fffefa]">
-      {/* Fixed Header */}
-      <div className="shrink-0 bg-[#fffefa] px-6 pt-4 pb-3 border-b border-gray-100">
-        <div className="flex items-center justify-between">
+      {/* Sticky Tabs (only thing that stays pinned) */}
+      <div className="sticky top-0 z-30 bg-[#fffefa] px-6 pt-3 pb-2 border-b border-gray-100">
+        <div className="flex gap-2">
+          <Link href="/parent/moments" className="flex-1 flex items-center justify-center gap-1.5 rounded-xl bg-cg-brand/10 py-2 text-cg-brand text-xs font-semibold active:bg-cg-brand/20">
+            <LayoutGrid size={14} />
+            <span>Moments</span>
+          </Link>
+          <Link href="/parent/special-requests" className="flex-1 flex items-center justify-center gap-1.5 rounded-xl bg-amber-50 py-2 text-amber-700 text-xs font-semibold active:bg-amber-100">
+            <ClipboardList size={14} />
+            <span>Special Requests</span>
+          </Link>
+        </div>
+      </div>
+
+      {/* Scrollable Content */}
+      <div ref={scrollRef} onScroll={handleScroll} className="flex-1 overflow-y-auto px-6 pb-4">
+        {/* Top bar (scrolls away) */}
+        <div className="flex items-center justify-between pt-3 pb-2">
           <div className="flex items-center gap-2 rounded-full bg-[#f4f5f6] px-3 py-2">
             <div className="flex h-6 w-6 items-center justify-center rounded-full bg-cg-brand text-[10px] font-bold text-white">
               {mockParentUser.avatarInitials}
@@ -585,21 +600,7 @@ export default function ParentHomePage() {
             </Link>
           </div>
         </div>
-        {/* Moments & Special Requests fixed tabs */}
-        <div className="flex gap-2 mt-3">
-          <Link href="/parent/moments" className="flex-1 flex items-center justify-center gap-1.5 rounded-xl bg-cg-brand/10 py-2 text-cg-brand text-xs font-semibold active:bg-cg-brand/20">
-            <LayoutGrid size={14} />
-            <span>Moments</span>
-          </Link>
-          <Link href="/parent/special-requests" className="flex-1 flex items-center justify-center gap-1.5 rounded-xl bg-amber-50 py-2 text-amber-700 text-xs font-semibold active:bg-amber-100">
-            <ClipboardList size={14} />
-            <span>Special Requests</span>
-          </Link>
-        </div>
-      </div>
 
-      {/* Scrollable Content */}
-      <div ref={scrollRef} onScroll={handleScroll} className="flex-1 overflow-y-auto px-6 pb-4">
         {/* Scan CTA */}
         <Link href="/parent/scan" className="mt-3 flex items-center justify-center gap-2.5 rounded-xl bg-cg-brand px-4 py-3 text-white active:scale-[0.98] transition-transform">
           <ScanLine size={18} />
