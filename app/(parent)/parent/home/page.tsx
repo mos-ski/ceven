@@ -603,7 +603,7 @@ export default function ParentHomePage() {
               <LayoutGrid size={14} className="text-gray-700" />
               <span>Moments</span>
             </Link>
-            <Link href="/parent/special-requests" className="flex flex-1 items-center justify-center gap-1.5 rounded-xl py-2.5 text-gray-400 text-xs font-semibold opacity-60 active:opacity-100 transition-opacity">
+            <Link href="/parent/special-requests" className="flex flex-1 items-center justify-center gap-1.5 rounded-xl py-2.5 text-gray-400 text-xs font-semibold opacity-70 active:opacity-100 transition-opacity">
               <Plus size={14} />
               <span>Special Requests</span>
             </Link>

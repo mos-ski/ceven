@@ -1,7 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { ArrowLeft, LogIn, LogOut, AlertTriangle } from "lucide-react";
+import Link from "next/link";
+import { ArrowLeft, LogIn, LogOut, AlertTriangle, QrCode } from "lucide-react";
 import { mockChild, mockAttendanceHistory, type AttendanceStatus } from "@/lib/parent/mock-data";
 import { NewBadge } from "@/components/parent/new-badge";
 
@@ -52,6 +53,15 @@ export default function ParentAttendancePage() {
             </div>
           </div>
         </div>
+
+        {/* Generate Pickup Code — shown when still at creche */}
+        {today.checkInTime && !today.checkOutTime && (
+          <Link href="/parent/scan" className="mb-5 flex items-center justify-center gap-2 rounded-lg border border-dashed border-gray-300 bg-white px-4 py-2.5 active:scale-[0.98] transition-transform">
+            <QrCode size={16} className="text-gray-500" />
+            <span className="text-sm font-semibold text-gray-600">Generate pickup code</span>
+            <span className="text-xs text-gray-400">· Still at creche</span>
+          </Link>
+        )}
 
         {/* History */}
         <p className="mb-2 text-sm font-semibold text-gray-700">Past 7 days</p>
