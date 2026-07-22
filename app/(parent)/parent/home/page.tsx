@@ -530,6 +530,7 @@ export default function ParentHomePage() {
   const [feedItems, setFeedItems] = useState<FeedItem[]>([]);
   const [activeTag, setActiveTag] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
+  const [showStickyTabs, setShowStickyTabs] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   // Full-screen viewer state
@@ -547,7 +548,9 @@ export default function ParentHomePage() {
 
   const handleScroll = useCallback(() => {
     if (scrollRef.current) {
-      setScrolled(scrollRef.current.scrollTop > 200);
+      const y = scrollRef.current.scrollTop;
+      setScrolled(y > 200);
+      setShowStickyTabs(y > 120);
     }
   }, []);
 
@@ -567,6 +570,22 @@ export default function ParentHomePage() {
 
   return (
     <div className="relative flex min-h-0 flex-1 flex-col bg-[#fffefa]">
+      {/* Sticky tabs — only visible after scrolling past avatar row */}
+      {showStickyTabs && (
+        <div className="shrink-0 bg-[#fffefa] px-6 pt-3 pb-2 border-b border-gray-100 z-30">
+          <div className="flex gap-2">
+            <Link href="/parent/moments" className="flex-1 flex items-center justify-center gap-1.5 rounded-xl bg-cg-brand/10 py-2 text-cg-brand text-xs font-semibold active:bg-cg-brand/20">
+              <LayoutGrid size={14} />
+              <span>Moments</span>
+            </Link>
+            <Link href="/parent/special-requests" className="flex-1 flex items-center justify-center gap-1.5 rounded-xl bg-amber-50 py-2 text-amber-700 text-xs font-semibold active:bg-amber-100">
+              <ClipboardList size={14} />
+              <span>Special Requests</span>
+            </Link>
+          </div>
+        </div>
+      )}
+
       {/* Scrollable Content */}
       <div ref={scrollRef} onScroll={handleScroll} className="flex-1 overflow-y-auto px-6 pb-4">
         {/* Top bar — scrolls away */}
@@ -587,20 +606,6 @@ export default function ParentHomePage() {
             </Link>
             <Link href="/parent/notifications" className="flex h-10 w-10 items-center justify-center rounded-full bg-[#f4f5f6]">
               <Bell size={20} className="text-gray-600" />
-            </Link>
-          </div>
-        </div>
-
-        {/* Sticky tabs — stays pinned after avatar scrolls away */}
-        <div className="sticky top-0 z-30 -mx-6 bg-[#fffefa] px-6 pb-2 pt-1">
-          <div className="flex gap-2">
-            <Link href="/parent/moments" className="flex-1 flex items-center justify-center gap-1.5 rounded-xl bg-cg-brand/10 py-2 text-cg-brand text-xs font-semibold active:bg-cg-brand/20">
-              <LayoutGrid size={14} />
-              <span>Moments</span>
-            </Link>
-            <Link href="/parent/special-requests" className="flex-1 flex items-center justify-center gap-1.5 rounded-xl bg-amber-50 py-2 text-amber-700 text-xs font-semibold active:bg-amber-100">
-              <ClipboardList size={14} />
-              <span>Special Requests</span>
             </Link>
           </div>
         </div>
