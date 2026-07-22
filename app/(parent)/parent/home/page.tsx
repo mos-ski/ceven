@@ -338,12 +338,8 @@ function PostCard({
           {user.avatar}
         </div>
         <div>
-          <div className="flex items-center gap-1.5">
-            <span className="text-sm font-bold text-gray-900">{user.name}</span>
-            <span className="text-xs text-gray-400">·</span>
-            <span className="text-xs text-gray-400">{user.role}</span>
-          </div>
-          <p className="text-[11px] text-gray-400">posted {item.timestamp ? formatTimeAgo(item.timestamp) : "now"}</p>
+          <span className="text-sm font-bold text-gray-900">{user.name}</span>
+          <p className="text-[11px] text-gray-400">{user.role} · {item.timestamp ? formatTimeAgo(item.timestamp) : "now"}</p>
         </div>
       </div>
       <p className="text-sm text-gray-800 leading-relaxed mb-0">{item.title}</p>
