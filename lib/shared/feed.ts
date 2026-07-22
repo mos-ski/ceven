@@ -29,17 +29,17 @@ export type FeedItem = {
 // 20 photo moments — mixed portrait/landscape, some with videos
 const FEED_POSTS: (FeedPost & { images?: string[] })[] = [
   {
-    id: "post-1", tag: "Playtime", caption: "Liam had a wonderful time playing with blocks today!", postedBy: "Ms Anu", timeAgo: "2 hours ago", hasVideo: false,
+    id: "post-1", tag: "Playtime", caption: "Liam had a wonderful time playing with blocks today! He built a tall tower all by himself — three whole storeys! We're so proud of how focused he was. The other children gathered round to watch and cheer him on.", postedBy: "Ms Anu", timeAgo: "2 hours ago", hasVideo: false,
     image: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=800&q=80",
     images: ["https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1587654780291-39c9404d7dd0?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&h=900&q=80"],
   },
   {
-    id: "post-2", tag: "Art & Craft", caption: "Liam's painting session — look at those colors!", postedBy: "Ms Anu", timeAgo: "5 hours ago", hasVideo: false,
+    id: "post-2", tag: "Art & Craft", caption: "", postedBy: "Ms Anu", timeAgo: "5 hours ago", hasVideo: false,
     image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&h=900&q=80",
     images: ["https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&h=900&q=80", "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&h=900&q=80"],
   },
   {
-    id: "post-3", tag: "Story Time", caption: "Liam loved today's story about the little elephant!", postedBy: "Ms Anu", timeAgo: "6 hours ago", hasVideo: false,
+    id: "post-3", tag: "Story Time", caption: "Liam loved today's story about the little elephant!\n\nHe kept saying 'again, again' when we finished. Such a lovely moment.", postedBy: "Ms Anu", timeAgo: "6 hours ago", hasVideo: false,
     image: "https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=800&q=80",
     images: ["https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&h=900&q=80", "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&h=900&q=80"],
   },
@@ -49,17 +49,17 @@ const FEED_POSTS: (FeedPost & { images?: string[] })[] = [
     images: ["https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&h=900&q=80", "https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&h=900&q=80"],
   },
   {
-    id: "post-5", tag: "Music Time", caption: "Drumming circle — Liam loves the rhythm!", postedBy: "Ms Anu", timeAgo: "1 day ago", hasVideo: true,
+    id: "post-5", tag: "Music Time", caption: "", postedBy: "Ms Anu", timeAgo: "1 day ago", hasVideo: true,
     image: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=800&q=80",
     images: ["https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1504813184591-01572f98c85f?auto=format&fit=crop&h=900&q=80", "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80"],
   },
   {
-    id: "post-6", tag: "Snack Time", caption: "Healthy snacks with friends after a long morning of play", postedBy: "Sarah Johnson", timeAgo: "1 day ago", hasVideo: false,
+    id: "post-6", tag: "Snack Time", caption: "Healthy snacks with friends after a long morning of play. We had apple slices, carrot sticks, and cheese cubes. Liam tried something new today — he actually ate his carrots without any fuss! All the children sat nicely together at the snack table and chatted about their favourite parts of the morning.", postedBy: "Sarah Johnson", timeAgo: "1 day ago", hasVideo: false,
     image: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&h=900&q=80",
     images: ["https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&h=900&q=80", "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&h=900&q=80", "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80"],
   },
   {
-    id: "post-7", tag: "Science", caption: "Volcano experiment — the kids were amazed!", postedBy: "Ms Anu", timeAgo: "2 days ago", hasVideo: true,
+    id: "post-7", tag: "Science", caption: "Volcano experiment — the kids were amazed! watching the baking soda and vinegar fizz up was pure magic. Liam couldn't stop laughing every time it erupted. We talked about how real volcanoes work and he wants to be a scientist when he grows up now.", postedBy: "Ms Anu", timeAgo: "2 days ago", hasVideo: true,
     image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=800&q=80",
     images: ["https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1504813184591-01572f98c85f?auto=format&fit=crop&h=900&q=80", "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&h=900&q=80"],
   },
@@ -69,12 +69,12 @@ const FEED_POSTS: (FeedPost & { images?: string[] })[] = [
     images: ["https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&h=900&q=80", "https://images.unsplash.com/photo-1504813184591-01572f98c85f?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&h=900&q=80", "https://images.unsplash.com/photo-1472162072942-cd5147eb3902?auto=format&fit=crop&w=800&q=80"],
   },
   {
-    id: "post-9", tag: "Garden", caption: "Watering the plants — Liam is becoming a little gardener!", postedBy: "Ms Anu", timeAgo: "2 days ago", hasVideo: false,
+    id: "post-9", tag: "Garden", caption: "Watering the plants — Liam is becoming a little gardener!\n\nHe remembered which plants needed more water all by himself. Such a big boy!", postedBy: "Ms Anu", timeAgo: "2 days ago", hasVideo: false,
     image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&h=900&q=80",
     images: ["https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&h=900&q=80", "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&h=900&q=80"],
   },
   {
-    id: "post-10", tag: "Baking", caption: "Decorating cupcakes — Liam chose the sprinkles!", postedBy: "Sarah Johnson", timeAgo: "3 days ago", hasVideo: false,
+    id: "post-10", tag: "Baking", caption: "", postedBy: "Sarah Johnson", timeAgo: "3 days ago", hasVideo: false,
     image: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=80",
     images: ["https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1486427944544-d2c246c4df14?auto=format&fit=crop&h=900&q=80", "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&h=900&q=80"],
   },
@@ -84,42 +84,42 @@ const FEED_POSTS: (FeedPost & { images?: string[] })[] = [
     images: ["https://images.unsplash.com/photo-1587654780291-39c9404d7dd0?auto=format&fit=crop&h=900&q=80", "https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&h=900&q=80", "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=800&q=80"],
   },
   {
-    id: "post-12", tag: "Sensory Play", caption: "Exploring with hands — water, sand, and rice!", postedBy: "Ms Anu", timeAgo: "3 days ago", hasVideo: false,
+    id: "post-12", tag: "Sensory Play", caption: "Exploring with hands — water, sand, and rice! Today we set up a sensory station with different textures. Liam spent ages running his hands through the rice, then moved to the water table where he poured and scooped for a good twenty minutes. He was so calm and focused — it was lovely to watch. sensory play is so important for development and he's really thriving.", postedBy: "Ms Anu", timeAgo: "3 days ago", hasVideo: false,
     image: "https://images.unsplash.com/photo-1504813184591-01572f98c85f?auto=format&fit=crop&h=900&q=80",
     images: ["https://images.unsplash.com/photo-1504813184591-01572f98c85f?auto=format&fit=crop&h=900&q=80", "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&h=900&q=80"],
   },
   {
-    id: "post-13", tag: "Friends", caption: "Playing together nicely — making new friends!", postedBy: "Ms Anu", timeAgo: "4 days ago", hasVideo: true,
+    id: "post-13", tag: "Friends", caption: "", postedBy: "Ms Anu", timeAgo: "4 days ago", hasVideo: true,
     image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80",
     images: ["https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&h=900&q=80", "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80"],
   },
   {
-    id: "post-14", tag: "Puzzles", caption: "Puzzle time — Liam finished the 24-piece one!", postedBy: "Ms Anu", timeAgo: "4 days ago", hasVideo: false,
+    id: "post-14", tag: "Puzzles", caption: "Puzzle time — Liam finished the 24-piece one!\n\nHe was so concentrated. Didn't want to stop even for snack time.", postedBy: "Ms Anu", timeAgo: "4 days ago", hasVideo: false,
     image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&h=900&q=80",
     images: ["https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&h=900&q=80", "https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&h=900&q=80"],
   },
   {
-    id: "post-15", tag: "Dress Up", caption: "Pretending to be grown-ups — Liam was the doctor today!", postedBy: "Ms Anu", timeAgo: "4 days ago", hasVideo: false,
+    id: "post-15", tag: "Dress Up", caption: "Pretending to be grown-ups — Liam was the doctor today! He had the stethoscope round his neck and was checking everyone's heartbeat. Even the other children lined up to see 'Dr Liam'. He told Ms Sarah her heartbeat was 'very good' and she almost cried laughing. What a character!", postedBy: "Ms Anu", timeAgo: "4 days ago", hasVideo: false,
     image: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&h=900&q=80",
     images: ["https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&h=900&q=80", "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&h=900&q=80", "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80"],
   },
   {
-    id: "post-16", tag: "Music", caption: "Singing along with instruments — Liam loves the xylophone!", postedBy: "Sarah Johnson", timeAgo: "5 days ago", hasVideo: false,
+    id: "post-16", tag: "Music", caption: "", postedBy: "Sarah Johnson", timeAgo: "5 days ago", hasVideo: false,
     image: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&h=900&q=80",
     images: ["https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&h=900&q=80", "https://images.unsplash.com/photo-1504813184591-01572f98c85f?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&h=900&q=80"],
   },
   {
-    id: "post-17", tag: "Story Time", caption: "The Gruffalo — Liam's face when the Gruffalo appeared!", postedBy: "Ms Anu", timeAgo: "5 days ago", hasVideo: true,
+    id: "post-17", tag: "Story Time", caption: "The Gruffalo — Liam's face when the Gruffalo appeared!\n\nPriceless! He grabbed my arm and whispered 'he's scary' but couldn't stop listening. Then immediately asked to read it again.", postedBy: "Ms Anu", timeAgo: "5 days ago", hasVideo: true,
     image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=800&q=80",
     images: ["https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&h=900&q=80", "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&h=900&q=80"],
   },
   {
-    id: "post-18", tag: "Playground", caption: "Swinging and sliding — pure joy!", postedBy: "Ms Anu", timeAgo: "5 days ago", hasVideo: false,
+    id: "post-18", tag: "Playground", caption: "", postedBy: "Ms Anu", timeAgo: "5 days ago", hasVideo: false,
     image: "https://images.unsplash.com/photo-1472162072942-cd5147eb3902?auto=format&fit=crop&h=900&q=80",
     images: ["https://images.unsplash.com/photo-1472162072942-cd5147eb3902?auto=format&fit=crop&h=900&q=80", "https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&h=900&q=80"],
   },
   {
-    id: "post-19", tag: "Collage", caption: "Tissue paper collage — Liam went all in with the glue!", postedBy: "Ms Anu", timeAgo: "6 days ago", hasVideo: false,
+    id: "post-19", tag: "Collage", caption: "Tissue paper collage — Liam went all in with the glue!\n\nWe had to peel it off his fingers but he was so proud of his masterpiece. It's now displayed on the art wall for everyone to see.", postedBy: "Ms Anu", timeAgo: "6 days ago", hasVideo: false,
     image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&h=900&q=80",
     images: ["https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&h=900&q=80", "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&h=900&q=80", "https://images.unsplash.com/photo-1587654780291-39c9404d7dd0?auto=format&fit=crop&w=800&q=80"],
   },

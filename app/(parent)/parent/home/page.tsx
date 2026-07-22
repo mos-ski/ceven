@@ -310,6 +310,12 @@ function PostCard({
   const [likeEmoji, setLikeEmoji] = useState("👍");
   const [showReactions, setShowReactions] = useState(false);
   const [showHeart, setShowHeart] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+
+  const caption = item.title ?? "";
+  const hasParagraphs = caption.includes("\n\n");
+  const isLong = caption.length > 100;
+  const needsTruncate = (isLong || hasParagraphs) && !expanded;
 
   const handleDoubleTap = useCallback(() => {
     setLiked(true);
@@ -327,6 +333,40 @@ function PostCard({
     onOpenViewer(images, index);
   }, [images, onOpenViewer]);
 
+  const renderCaption = () => {
+    if (!caption) return null;
+
+    if (hasParagraphs) {
+      const parts = caption.split("\n\n");
+      if (expanded) {
+        return parts.map((p, i) => (
+          <p key={i} className="text-sm text-gray-800 leading-relaxed mb-2">{p}</p>
+        ));
+      }
+      return (
+        <>
+          <p className="text-sm text-gray-800 leading-relaxed">{parts[0]}</p>
+          <button onClick={() => setExpanded(true)} className="text-sm text-gray-400 font-medium mt-0.5">...see more</button>
+        </>
+      );
+    }
+
+    if (isLong && !expanded) {
+      return (
+        <>
+          <p className="text-sm text-gray-800 leading-relaxed">{caption}</p>
+          <button onClick={() => setExpanded(true)} className="text-sm text-gray-400 font-medium mt-0.5">...see more</button>
+        </>
+      );
+    }
+
+    if (expanded) {
+      return <p className="text-sm text-gray-800 leading-relaxed whitespace-pre-line">{caption}</p>;
+    }
+
+    return <p className="text-sm text-gray-800 leading-relaxed">{caption}</p>;
+  };
+
   return (
     <div className="py-6 border-b border-gray-100">
       {/* Header */}
@@ -342,7 +382,11 @@ function PostCard({
           <p className="text-[11px] text-gray-400">{user.role} · {item.timestamp ? formatTimeAgo(item.timestamp) : "now"}</p>
         </div>
       </div>
-      <p className="text-sm text-gray-800 leading-relaxed mb-0">{item.title}</p>
+
+      {/* Caption */}
+      <div className="mb-3">
+        {renderCaption()}
+      </div>
 
       {/* Image strip */}
       {images.length > 0 && (
