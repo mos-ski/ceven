@@ -594,14 +594,14 @@ export default function ParentHomePage() {
           </div>
         </div>
 
-        {/* Moments & Special Requests tabs — sticky after scroll */}
-        <div className="sticky top-0 z-30 -mx-6 px-6 pb-2 pt-1 bg-[#fffefa]">
-          <div className="flex gap-2">
-            <Link href="/parent/moments" className="flex-1 flex items-center justify-center gap-1.5 rounded-xl bg-cg-brand/10 py-2 text-cg-brand text-xs font-semibold active:bg-cg-brand/20">
-              <LayoutGrid size={14} />
+        {/* Moments & Special Requests tabs — browser-tab style */}
+        <div className="sticky top-0 z-30 -mx-6 px-6 pt-2 pb-0">
+          <div className="flex gap-1.5 rounded-t-2xl bg-gray-200/70 p-1.5">
+            <Link href="/parent/moments" className="flex flex-1 items-center justify-center gap-1.5 rounded-xl bg-white py-2.5 text-gray-900 text-xs font-semibold shadow-sm">
+              <LayoutGrid size={14} className="text-gray-700" />
               <span>Moments</span>
             </Link>
-            <Link href="/parent/special-requests" className="flex-1 flex items-center justify-center gap-1.5 rounded-xl bg-amber-50 py-2 text-amber-700 text-xs font-semibold active:bg-amber-100">
+            <Link href="/parent/special-requests" className="flex flex-1 items-center justify-center gap-1.5 rounded-xl py-2.5 text-gray-400 text-xs font-semibold opacity-60 active:opacity-100 transition-opacity">
               <ClipboardList size={14} />
               <span>Special Requests</span>
             </Link>
