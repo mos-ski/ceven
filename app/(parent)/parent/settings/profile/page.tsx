@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import {
-  ArrowLeft, Edit3, Shield, X, Plus, Lock, UserX, ChevronRight, Pencil, Mail, Phone, Check,
+  ArrowLeft, Edit3, Shield, X, Plus, Lock, UserX, ChevronRight, Mail, Phone, Check,
 } from "lucide-react";
 
 type FamilyMember = {
@@ -296,9 +296,37 @@ export default function ProfilesPage() {
         <h2 className="mb-1 text-center text-lg font-bold text-gray-800">Choose a Profile</h2>
         <p className="mb-6 text-center text-xs text-gray-400">Tap a profile to view or edit details.</p>
 
-        {/* Netflix-style grid */}
+        {/* Owner profile */}
+        <div className="mb-6">
+          <p className="mb-3 text-xs font-semibold text-gray-400 uppercase tracking-wide">Your Profile</p>
+          {members.filter(m => m.isOwner).map(owner => (
+            <div key={owner.id} className="flex items-center gap-4 rounded-2xl bg-white p-4 shadow-sm">
+              <div className="relative">
+                <div className="flex h-16 w-16 items-center justify-center rounded-2xl text-xl font-bold text-white shadow-md" style={{ backgroundColor: owner.color }}>
+                  {owner.initials}
+                </div>
+                <div className="absolute -bottom-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-cg-brand ring-2 ring-white">
+                  <Shield size={10} className="text-white" />
+                </div>
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-bold text-gray-800">{owner.name}</p>
+                <p className="text-xs text-gray-400">{owner.role}</p>
+              </div>
+              <button
+                onClick={() => setEditing(true)}
+                className="rounded-xl bg-cg-brand px-4 py-2.5 text-xs font-semibold text-white active:bg-cg-brand/90"
+              >
+                Edit
+              </button>
+            </div>
+          ))}
+        </div>
+
+        {/* Other family members */}
+        <p className="mb-3 text-xs font-semibold text-gray-400 uppercase tracking-wide">Family & Caregivers</p>
         <div className="grid grid-cols-3 gap-x-4 gap-y-6">
-          {members.map((member) => (
+          {members.filter(m => !m.isOwner).map((member) => (
             <button
               key={member.id}
               onClick={() => setSelectedMember(member)}
@@ -308,11 +336,6 @@ export default function ProfilesPage() {
                 <div className="flex h-20 w-20 items-center justify-center rounded-2xl text-xl font-bold text-white shadow-md" style={{ backgroundColor: member.color }}>
                   {member.initials}
                 </div>
-                {member.isOwner && (
-                  <div className="absolute -bottom-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-cg-brand ring-2 ring-[#F9F5F0]">
-                    <Shield size={10} className="text-white" />
-                  </div>
-                )}
               </div>
               <div className="text-center">
                 <p className="max-w-[80px] truncate text-xs font-semibold text-gray-800">{member.name.split(" ")[0]}</p>
@@ -330,20 +353,9 @@ export default function ProfilesPage() {
               <Plus size={24} className="text-gray-400" />
             </div>
             <div className="text-center">
-              <p className="text-xs font-semibold text-gray-500">Add</p>
+              <p className="text-xs font-semibold text-gray-500">Invite</p>
               <p className="text-[10px] text-gray-400">Family</p>
             </div>
-          </button>
-
-          {/* Edit — Netflix-style trailing tile */}
-          <button
-            onClick={() => setShowInvite(true)}
-            className="flex flex-col items-center gap-2 active:scale-95 transition-transform"
-          >
-            <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-gray-200">
-              <Pencil size={22} className="text-gray-500" />
-            </div>
-            <p className="text-xs font-semibold text-gray-500">Edit</p>
           </button>
         </div>
 
