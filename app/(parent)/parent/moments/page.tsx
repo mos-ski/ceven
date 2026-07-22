@@ -71,24 +71,26 @@ function PostCard({ item }: { item: FeedItem }) {
         </div>
       )}
 
-      {/* Action bar */}
-      <div className="mt-3 ml-13 flex items-center gap-6">
-        <button className="flex items-center gap-1.5 text-gray-400 active:text-cg-brand">
-          <MessageSquare size={18} />
-        </button>
-        <button className="flex items-center gap-1.5 text-gray-400 active:text-cg-brand">
-          <Bookmark size={18} />
-        </button>
-        <button className="flex items-center gap-1.5 text-gray-400 active:text-cg-brand">
-          <Download size={18} />
-        </button>
-        <div className="flex-1" />
-        {item.badge && (
-          <span className="rounded-full bg-cg-brand/10 px-2.5 py-0.5 text-[10px] font-semibold text-cg-brand">
-            {item.badge}
-          </span>
-        )}
-      </div>
+      {/* Action bar — only on image posts */}
+      {images.length > 0 && (
+        <div className="mt-3 ml-13 flex items-center gap-6">
+          <button className="flex items-center gap-1.5 text-gray-400 active:text-cg-brand">
+            <MessageSquare size={18} />
+          </button>
+          <button className="flex items-center gap-1.5 text-gray-400 active:text-cg-brand">
+            <Bookmark size={18} />
+          </button>
+          <button className="flex items-center gap-1.5 text-gray-400 active:text-cg-brand">
+            <Download size={18} />
+          </button>
+          <div className="flex-1" />
+          {item.badge && (
+            <span className="rounded-full bg-cg-brand/10 px-2.5 py-0.5 text-[10px] font-semibold text-cg-brand">
+              {item.badge}
+            </span>
+          )}
+        </div>
+      )}
     </div>
   );
 }
