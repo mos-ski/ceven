@@ -608,18 +608,18 @@ export default function ParentHomePage() {
           <span className="inline-flex shrink-0 items-center rounded-full bg-white/20 px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wide text-white">New</span>
         </Link>
 
-        {/* Check-in status */}
-        <Link href="/parent/attendance" className="mt-3 flex items-center gap-2.5 rounded-xl bg-emerald-50 px-3.5 py-2.5">
-          <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-white">
-            <LogIn size={13} />
-          </span>
-          <p className="flex-1 text-xs font-semibold text-emerald-800">
-            {mockAttendanceHistory[0].checkInTime
-              ? `${mockChild.name} checked in at ${mockAttendanceHistory[0].checkInTime}`
-              : `${mockChild.name} hasn't checked in yet today`}
-          </p>
-          <span className="text-[10px] font-semibold text-emerald-600">Details</span>
-        </Link>
+        {/* Check-in toast */}
+        {mockAttendanceHistory[0].checkInTime && (
+          <div className="mt-3 flex items-center gap-3 rounded-xl bg-gray-800 px-4 py-3 text-white shadow-lg">
+            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-500">
+              <LogIn size={13} />
+            </span>
+            <p className="flex-1 text-xs font-medium text-gray-200">
+              {mockChild.name} checked in at {mockAttendanceHistory[0].checkInTime}
+            </p>
+            <Link href="/parent/attendance" className="text-xs font-semibold text-emerald-400 hover:text-emerald-300">Details</Link>
+          </div>
+        )}
 
         {/* Moments Feed */}
         <div className="mt-5">
