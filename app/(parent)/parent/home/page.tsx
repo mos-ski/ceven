@@ -563,24 +563,10 @@ export default function ParentHomePage() {
 
   return (
     <div className="relative flex min-h-0 flex-1 flex-col bg-[#fffefa]">
-      {/* Sticky Tabs (only thing that stays pinned) */}
-      <div className="sticky top-0 z-30 bg-[#fffefa] px-6 pt-3 pb-2 border-b border-gray-100">
-        <div className="flex gap-2">
-          <Link href="/parent/moments" className="flex-1 flex items-center justify-center gap-1.5 rounded-xl bg-cg-brand/10 py-2 text-cg-brand text-xs font-semibold active:bg-cg-brand/20">
-            <LayoutGrid size={14} />
-            <span>Moments</span>
-          </Link>
-          <Link href="/parent/special-requests" className="flex-1 flex items-center justify-center gap-1.5 rounded-xl bg-amber-50 py-2 text-amber-700 text-xs font-semibold active:bg-amber-100">
-            <ClipboardList size={14} />
-            <span>Special Requests</span>
-          </Link>
-        </div>
-      </div>
-
       {/* Scrollable Content */}
       <div ref={scrollRef} onScroll={handleScroll} className="flex-1 overflow-y-auto px-6 pb-4">
-        {/* Top bar (scrolls away) */}
-        <div className="flex items-center justify-between pt-3 pb-2">
+        {/* Top bar */}
+        <div className="flex items-center justify-between pt-4 pb-2">
           <div className="flex items-center gap-2 rounded-full bg-[#f4f5f6] px-3 py-2">
             <div className="flex h-6 w-6 items-center justify-center rounded-full bg-cg-brand text-[10px] font-bold text-white">
               {mockParentUser.avatarInitials}
@@ -601,6 +587,18 @@ export default function ParentHomePage() {
           </div>
         </div>
 
+        {/* Moments & Special Requests tabs */}
+        <div className="flex gap-2 mt-1 mb-3">
+          <Link href="/parent/moments" className="flex-1 flex items-center justify-center gap-1.5 rounded-xl bg-cg-brand/10 py-2 text-cg-brand text-xs font-semibold active:bg-cg-brand/20">
+            <LayoutGrid size={14} />
+            <span>Moments</span>
+          </Link>
+          <Link href="/parent/special-requests" className="flex-1 flex items-center justify-center gap-1.5 rounded-xl bg-amber-50 py-2 text-amber-700 text-xs font-semibold active:bg-amber-100">
+            <ClipboardList size={14} />
+            <span>Special Requests</span>
+          </Link>
+        </div>
+
         {/* Scan CTA */}
         <Link href="/parent/scan" className="mt-3 flex items-center justify-center gap-2.5 rounded-xl bg-cg-brand px-4 py-3 text-white active:scale-[0.98] transition-transform">
           <ScanLine size={18} />
@@ -610,14 +608,14 @@ export default function ParentHomePage() {
 
         {/* Check-in toast */}
         {mockAttendanceHistory[0].checkInTime && (
-          <div className="mt-3 flex items-center gap-3 rounded-xl bg-gray-800 px-4 py-3 text-white shadow-lg">
-            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-500">
-              <LogIn size={13} />
+          <div className="mt-2.5 flex items-center gap-2 rounded-lg bg-gray-50 border border-gray-100 px-3 py-2">
+            <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-100">
+              <LogIn size={10} className="text-emerald-600" />
             </span>
-            <p className="flex-1 text-xs font-medium text-gray-200">
+            <p className="flex-1 text-[11px] text-gray-500">
               {mockChild.name} checked in at {mockAttendanceHistory[0].checkInTime}
             </p>
-            <Link href="/parent/attendance" className="text-xs font-semibold text-emerald-400 hover:text-emerald-300">Details</Link>
+            <Link href="/parent/attendance" className="text-[11px] font-medium text-cg-brand">Details</Link>
           </div>
         )}
 
