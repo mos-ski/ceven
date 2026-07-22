@@ -40,7 +40,7 @@ const ALL_ACTIONS = [
   { icon: Pill, label: "Medication", href: "/parent/medication", group: "Health & Care", isNew: true },
   { icon: AlertTriangle, label: "Incidents", href: "/parent/incidents", group: "Health & Care", isNew: true },
   { icon: Search, label: "Find Creche", href: "/parent/creche", group: "Creche Life" },
-  { icon: CalendarCheck, label: "Attendance", href: "/parent/attendance", group: "Creche Life" },
+  { icon: CalendarCheck, label: "Attendance", href: "/parent/attendance", group: "Creche Life", badge: 3 },
   { iconNode: <AnimatedRequestIcon />, label: "Special Requests", href: "/parent/special-requests", group: "Creche Life" },
   { icon: CalendarDays, label: "Events", href: "/parent/events", group: "Creche Life", isNew: true },
   { icon: Megaphone, label: "Announcements", href: "/parent/announcements", group: "Creche Life", isNew: true },
@@ -452,6 +452,11 @@ function MenuOverlay({ open, onClose }: { open: boolean; onClose: () => void }) 
                     <span className="text-[11px] font-medium text-gray-700 leading-tight text-center">{a.label}</span>
                     {a.isNew && (
                       <span className="absolute top-1 right-1 rounded-full bg-cg-brand px-1.5 py-0.5 text-[7px] font-bold text-white">New</span>
+                    )}
+                    {"badge" in a && a.badge && (
+                      <span className="absolute top-1 right-1 flex h-4 min-w-[16px] items-center justify-center rounded-full bg-red-500 px-1 text-[8px] font-bold text-white">
+                        {a.badge}
+                      </span>
                     )}
                   </button>
                 ))}
