@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { Copy, CheckCircle2, Key, X } from "lucide-react";
+import { useState, useMemo } from "react";
+import { Copy, CheckCircle2, Key, X, Search, UserCheck } from "lucide-react";
 import { useAttendance } from "@/lib/attendance/store";
 
 type Props = {
@@ -11,10 +11,17 @@ type Props = {
   userName?: string;
 };
 
+const AUTHORIZED_PICKUPS = [
+  { id: "d1", name: "Mr Chidi", role: "Driver", phone: "+234 805 678 9012" },
+  { id: "n1", name: "Aunty Grace", role: "Nanny", phone: "+234 803 456 7890" },
+  { id: "g1", name: "Grandma Rose", role: "Grandparent", phone: "+234 806 789 0123" },
+];
+
 export function OneTimeCode({ mode, childId, childName, userName }: Props) {
   const { state, dispatch } = useAttendance();
   const [showNameForm, setShowNameForm] = useState(false);
   const [authorizedName, setAuthorizedName] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [verifyCode, setVerifyCode] = useState("");
   const [copied, setCopied] = useState(false);
