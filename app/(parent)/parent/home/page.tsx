@@ -330,19 +330,23 @@ function PostCard({
   return (
     <div className="py-6 border-b border-gray-100">
       {/* Header */}
-      <div className="flex items-center gap-1.5 mb-2">
+      <div className="flex items-center gap-3 mb-3">
         <div
-          className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[8px] font-bold text-white"
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white"
           style={{ backgroundColor: user.color }}
         >
           {user.avatar}
         </div>
-        <span className="text-sm font-bold text-gray-900">{user.name}</span>
-        <span className="text-xs text-gray-400">·</span>
-        <span className="text-xs text-gray-400">{user.role}</span>
+        <div>
+          <div className="flex items-center gap-1.5">
+            <span className="text-sm font-bold text-gray-900">{user.name}</span>
+            <span className="text-xs text-gray-400">·</span>
+            <span className="text-xs text-gray-400">{user.role}</span>
+          </div>
+          <p className="text-[11px] text-gray-400">posted {item.timestamp ? formatTimeAgo(item.timestamp) : "now"}</p>
+        </div>
       </div>
-      <p className="text-sm text-gray-800 leading-relaxed mb-2">{item.title}</p>
-      <p className="text-[11px] text-gray-400 mb-3">posted {item.timestamp ? formatTimeAgo(item.timestamp) : "now"}</p>
+      <p className="text-sm text-gray-800 leading-relaxed mb-0">{item.title}</p>
 
       {/* Image strip */}
       {images.length > 0 && (
