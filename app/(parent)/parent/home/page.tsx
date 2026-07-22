@@ -314,8 +314,7 @@ function PostCard({
 
   const caption = item.title ?? "";
   const hasParagraphs = caption.includes("\n\n");
-  const isLong = caption.length > 100;
-  const needsTruncate = (isLong || hasParagraphs) && !expanded;
+  const isLong = caption.length > 120;
 
   const handleDoubleTap = useCallback(() => {
     setLiked(true);
@@ -339,29 +338,40 @@ function PostCard({
     if (hasParagraphs) {
       const parts = caption.split("\n\n");
       if (expanded) {
-        return parts.map((p, i) => (
-          <p key={i} className="text-sm text-gray-800 leading-relaxed mb-2">{p}</p>
-        ));
+        return (
+          <>
+            {parts.map((p, i) => (
+              <p key={i} className="text-sm text-gray-800 leading-relaxed mb-2">{p}</p>
+            ))}
+            <button onClick={() => setExpanded(false)} className="text-sm text-gray-400 font-medium">show less</button>
+          </>
+        );
       }
       return (
         <>
           <p className="text-sm text-gray-800 leading-relaxed">{parts[0]}</p>
-          <button onClick={() => setExpanded(true)} className="text-sm text-gray-400 font-medium mt-0.5">...see more</button>
+          {parts.length > 1 && (
+            <button onClick={() => setExpanded(true)} className="text-sm text-gray-400 font-medium mt-0.5">...see more</button>
+          )}
         </>
       );
     }
 
-    if (isLong && !expanded) {
+    if (isLong) {
+      if (expanded) {
+        return (
+          <>
+            <p className="text-sm text-gray-800 leading-relaxed whitespace-pre-line">{caption}</p>
+            <button onClick={() => setExpanded(false)} className="text-sm text-gray-400 font-medium mt-0.5">show less</button>
+          </>
+        );
+      }
       return (
         <>
-          <p className="text-sm text-gray-800 leading-relaxed">{caption}</p>
-          <button onClick={() => setExpanded(true)} className="text-sm text-gray-400 font-medium mt-0.5">...see more</button>
+          <p className="text-sm text-gray-800 leading-relaxed">{caption.slice(0, 120)}...</p>
+          <button onClick={() => setExpanded(true)} className="text-sm text-gray-400 font-medium mt-0.5">see more</button>
         </>
       );
-    }
-
-    if (expanded) {
-      return <p className="text-sm text-gray-800 leading-relaxed whitespace-pre-line">{caption}</p>;
     }
 
     return <p className="text-sm text-gray-800 leading-relaxed">{caption}</p>;
