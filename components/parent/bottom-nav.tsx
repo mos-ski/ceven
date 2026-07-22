@@ -2,13 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Home, Sparkles, ScrollText, MessageSquare, Settings, LayoutGrid, ClipboardList } from "lucide-react";
+import { Home, Sparkles, ScrollText, MessageSquare, Settings } from "lucide-react";
 
 const NAV_ITEMS = [
   { label: "Home", icon: Home, href: "/parent/home" },
-  { label: "Moments", icon: LayoutGrid, href: "/parent/moments" },
   { label: "CEvenAI", icon: Sparkles, href: "/parent/cevenai" },
-  { label: "Requests", icon: ClipboardList, href: "/parent/special-requests" },
+  { label: "Report", icon: ScrollText, href: "/parent/reports" },
+  { label: "Chat", icon: MessageSquare, href: "/parent/chat" },
   { label: "Settings", icon: Settings, href: "/parent/settings" },
 ] as const;
 

@@ -24,6 +24,8 @@ import {
   Download,
   ChevronLeft,
   ChevronRight,
+  LayoutGrid,
+  ClipboardList,
 } from "lucide-react";
 import { ParentBottomNav } from "@/components/parent/bottom-nav";
 import { QuickActionCard } from "@/components/parent/quick-action-card";
@@ -583,6 +585,17 @@ export default function ParentHomePage() {
               <Bell size={20} className="text-gray-600" />
             </Link>
           </div>
+        </div>
+        {/* Moments & Special Requests fixed tabs */}
+        <div className="flex gap-2 mt-3">
+          <Link href="/parent/moments" className="flex-1 flex items-center justify-center gap-1.5 rounded-xl bg-cg-brand/10 py-2 text-cg-brand text-xs font-semibold active:bg-cg-brand/20">
+            <LayoutGrid size={14} />
+            <span>Moments</span>
+          </Link>
+          <Link href="/parent/special-requests" className="flex-1 flex items-center justify-center gap-1.5 rounded-xl bg-amber-50 py-2 text-amber-700 text-xs font-semibold active:bg-amber-100">
+            <ClipboardList size={14} />
+            <span>Special Requests</span>
+          </Link>
         </div>
       </div>
 
