@@ -151,9 +151,9 @@ function PostCard({ item }: { item: FeedItem }) {
   }, []);
 
   return (
-    <div className="px-4 py-4">
+    <div className="overflow-hidden">
       {/* Header: avatar + name + role + time */}
-      <div className="flex items-start gap-3">
+      <div className="px-4 pt-4 flex items-start gap-3">
         <div
           className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white"
           style={{ backgroundColor: user.color }}
@@ -189,7 +189,7 @@ function PostCard({ item }: { item: FeedItem }) {
 
       {/* Action bar — only on image posts */}
       {images.length > 0 && (
-        <div className="mt-3 ml-13 flex items-center gap-4">
+        <div className="mt-3 ml-13 flex items-center gap-4 px-0 pb-4">
           {/* Like / Reaction button */}
           <div className="relative">
             <button
@@ -246,7 +246,7 @@ export default function MomentsPage() {
   );
 
   return (
-    <div className="relative flex min-h-0 flex-1 flex-col bg-white">
+    <div className="relative flex min-h-0 flex-1 flex-col bg-white overflow-hidden">
       {/* Header */}
       <div className="flex items-center gap-3 bg-white px-4 py-3 shadow-sm">
         <button onClick={() => router.back()}>
@@ -257,12 +257,12 @@ export default function MomentsPage() {
 
       {/* Line tabs */}
       <div className="border-b border-gray-100 bg-white">
-        <div className="flex overflow-x-auto [&::-webkit-scrollbar]:hidden">
+        <div className="flex overflow-x-auto flex-nowrap [&::-webkit-scrollbar]:hidden">
           {TABS.map((t) => (
             <button
               key={t.key}
               onClick={() => setTab(t.key)}
-              className={`relative shrink-0 px-5 py-3 text-sm font-medium transition-colors ${
+              className={`relative shrink-0 px-4 sm:px-5 py-3 text-sm font-medium transition-colors ${
                 tab === t.key ? "text-cg-brand" : "text-gray-400"
               }`}
             >
@@ -276,9 +276,9 @@ export default function MomentsPage() {
       </div>
 
       {/* Feed */}
-      <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden">
         {filtered.length > 0 ? (
-          <div>
+          <div className="max-w-full">
             {filtered.map((item) => (
               <PostCard key={item.id} item={item} />
             ))}
