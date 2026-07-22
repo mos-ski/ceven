@@ -31,7 +31,7 @@ const FEED_POSTS: (FeedPost & { images?: string[] })[] = [
   {
     id: "post-1", tag: "Playtime", caption: "Liam had a wonderful time playing with blocks today! He built a tall tower all by himself — three whole storeys! We're so proud of how focused he was. The other children gathered round to watch and cheer him on.", postedBy: "Ms Anu", timeAgo: "2 hours ago", hasVideo: false,
     image: "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=800&q=80",
-    images: ["https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1587654780291-39c9404d7dd0?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&h=900&q=80"],
+    images: ["https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1472162072942-cd5147eb3902?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&h=900&q=80"],
   },
   {
     id: "post-2", tag: "Art & Craft", caption: "", postedBy: "Ms Anu", timeAgo: "5 hours ago", hasVideo: false,
@@ -76,12 +76,12 @@ const FEED_POSTS: (FeedPost & { images?: string[] })[] = [
   {
     id: "post-10", tag: "Baking", caption: "", postedBy: "Sarah Johnson", timeAgo: "3 days ago", hasVideo: false,
     image: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=80",
-    images: ["https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1486427944544-d2c246c4df14?auto=format&fit=crop&h=900&q=80", "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&h=900&q=80"],
+    images: ["https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&h=900&q=80", "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&h=900&q=80"],
   },
   {
     id: "post-11", tag: "Construction", caption: "Building with cardboard boxes — Liam made a castle!", postedBy: "Ms Anu", timeAgo: "3 days ago", hasVideo: false,
-    image: "https://images.unsplash.com/photo-1587654780291-39c9404d7dd0?auto=format&fit=crop&h=900&q=80",
-    images: ["https://images.unsplash.com/photo-1587654780291-39c9404d7dd0?auto=format&fit=crop&h=900&q=80", "https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&h=900&q=80", "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=800&q=80"],
+    image: "https://images.unsplash.com/photo-1472162072942-cd5147eb3902?auto=format&fit=crop&h=900&q=80",
+    images: ["https://images.unsplash.com/photo-1472162072942-cd5147eb3902?auto=format&fit=crop&h=900&q=80", "https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&h=900&q=80", "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=800&q=80"],
   },
   {
     id: "post-12", tag: "Sensory Play", caption: "Exploring with hands — water, sand, and rice! Today we set up a sensory station with different textures. Liam spent ages running his hands through the rice, then moved to the water table where he poured and scooped for a good twenty minutes. He was so calm and focused — it was lovely to watch. sensory play is so important for development and he's really thriving.", postedBy: "Ms Anu", timeAgo: "3 days ago", hasVideo: false,
@@ -121,7 +121,7 @@ const FEED_POSTS: (FeedPost & { images?: string[] })[] = [
   {
     id: "post-19", tag: "Collage", caption: "Tissue paper collage — Liam went all in with the glue!\n\nWe had to peel it off his fingers but he was so proud of his masterpiece. It's now displayed on the art wall for everyone to see.", postedBy: "Ms Anu", timeAgo: "6 days ago", hasVideo: false,
     image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&h=900&q=80",
-    images: ["https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&h=900&q=80", "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&h=900&q=80", "https://images.unsplash.com/photo-1587654780291-39c9404d7dd0?auto=format&fit=crop&w=800&q=80"],
+    images: ["https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&h=900&q=80", "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=800&q=80", "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&h=900&q=80", "https://images.unsplash.com/photo-1472162072942-cd5147eb3902?auto=format&fit=crop&w=800&q=80"],
   },
   {
     id: "post-20", tag: "Movement", caption: "Follow the leader — Liam was the leader today!", postedBy: "Ms Anu", timeAgo: "6 days ago", hasVideo: false,

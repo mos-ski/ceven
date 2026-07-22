@@ -8,7 +8,7 @@ import { SafeImage } from "@/components/ui/safe-image";
 import { mockCreches } from "@/lib/parent/mock-data";
 
 const CRECHE_IMAGES: Record<string, string> = {
-  "creche-1": "https://images.unsplash.com/photo-1587654780291-39c9404d7dd0?auto=format&fit=crop&w=400&q=80",
+  "creche-1": "https://images.unsplash.com/photo-1472162072942-cd5147eb3902?auto=format&fit=crop&w=400&q=80",
   "creche-2": "https://images.unsplash.com/photo-1566004100631-35d015d6a491?auto=format&fit=crop&w=400&q=80",
   "creche-3": "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=400&q=80",
   "creche-4": "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=400&q=80",
@@ -65,7 +65,7 @@ export default function CrecheDiscoveryPage() {
         <div className="mb-4 overflow-hidden rounded-2xl">
           <div className="relative h-32">
             <SafeImage
-              src="https://images.unsplash.com/photo-1587654780291-39c9404d7dd0?auto=format&fit=crop&w=800&q=80"
+              src="https://images.unsplash.com/photo-1472162072942-cd5147eb3902?auto=format&fit=crop&w=800&q=80"
               alt="Find a creche"
               className="h-full w-full"
             />
