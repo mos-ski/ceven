@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { ArrowUpRight, Check } from "lucide-react";
+import { useState, useMemo } from "react";
+import { ArrowUpRight, Check, Clock } from "lucide-react";
 
 import {
   Dialog,
@@ -19,6 +19,9 @@ type Props = {
 
 type Step = "amount" | "review" | "success";
 
+const WITHDRAWAL_FEE = 50;
+const MINIMUM_WITHDRAWAL = 100;
+
 export default function WithdrawalRequestModal({ open, onOpenChange }: Props) {
   const [step, setStep] = useState<Step>("amount");
   const [amount, setAmount] = useState("");
@@ -26,11 +29,12 @@ export default function WithdrawalRequestModal({ open, onOpenChange }: Props) {
   const [loading, setLoading] = useState(false);
 
   const amountNum = parseInt(amount.replace(/\D/g, ""), 10) || 0;
-  const minBalance = 1000;
   const availableBalance = WALLET_BALANCE.available;
-  const belowMinimum = amountNum > 0 && availableBalance - amountNum < minBalance;
-  const insufficientFunds = amountNum > availableBalance;
-  const canProceed = amountNum > 0 && !belowMinimum && !insufficientFunds;
+  const fee = amountNum > 0 ? WITHDRAWAL_FEE : 0;
+  const youReceive = Math.max(0, amountNum - fee);
+  const belowMinimum = amountNum > 0 && amountNum < MINIMUM_WITHDRAWAL;
+  const insufficientFunds = amountNum > 0 && amountNum + fee > availableBalance;
+  const canProceed = amountNum >= MINIMUM_WITHDRAWAL && !belowMinimum && !insufficientFunds;
 
   function handleProceed() {
     if (canProceed) {
@@ -85,7 +89,7 @@ export default function WithdrawalRequestModal({ open, onOpenChange }: Props) {
                 />
                 {belowMinimum && (
                   <p className="font-[family-name:var(--font-nunito)] text-xs text-[#cd3030]">
-                    Minimum balance of ₦1,000 must be maintained.
+                    Minimum withdrawal is {formatNaira(MINIMUM_WITHDRAWAL)}.
                   </p>
                 )}
                 {insufficientFunds && (
@@ -93,6 +97,28 @@ export default function WithdrawalRequestModal({ open, onOpenChange }: Props) {
                     Insufficient balance. Available: {formatNaira(availableBalance)}
                   </p>
                 )}
+              </div>
+
+              {/* Live fee calculator */}
+              {amountNum > 0 && (
+                <div className="rounded-xl border border-[#e6ebf3] bg-[#faf9f7] p-4">
+                  <div className="flex justify-between mb-2">
+                    <span className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">Withdrawal fee</span>
+                    <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">{formatNaira(WITHDRAWAL_FEE)}</span>
+                  </div>
+                  <div className="flex justify-between border-t border-[#eaecf0] pt-2">
+                    <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">You will receive</span>
+                    <span className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#009061]">{formatNaira(youReceive)}</span>
+                  </div>
+                </div>
+              )}
+
+              {/* Timing note */}
+              <div className="flex items-start gap-2 rounded-xl bg-[#fff6e6] px-3 py-2">
+                <Clock size={14} className="mt-0.5 shrink-0 text-[#cc8000]" />
+                <p className="font-[family-name:var(--font-nunito)] text-xs text-[#cc8000]">
+                  Withdrawal: T+1 business day. If submitted on Friday, funds arrive Monday.
+                </p>
               </div>
 
               <div className="rounded-xl border border-[#e6ebf3] p-4">
@@ -180,10 +206,22 @@ export default function WithdrawalRequestModal({ open, onOpenChange }: Props) {
                     {MOCK_BANK_ACCOUNT.accountName}
                   </span>
                 </div>
+                <div className="flex justify-between">
+                  <span className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">Withdrawal fee</span>
+                  <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">
+                    {formatNaira(WITHDRAWAL_FEE)}
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">You will receive</span>
+                  <span className="font-[family-name:var(--font-nunito)] text-sm font-bold text-[#009061]">
+                    {formatNaira(youReceive)}
+                  </span>
+                </div>
                 <div className="flex justify-between border-t border-[#eaecf0] pt-2">
                   <span className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">Remaining Balance</span>
                   <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">
-                    {formatNaira(availableBalance - amountNum)}
+                    {formatNaira(availableBalance - amountNum - fee)}
                   </span>
                 </div>
                 {note && (
@@ -192,6 +230,13 @@ export default function WithdrawalRequestModal({ open, onOpenChange }: Props) {
                     <span className="font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{note}</span>
                   </div>
                 )}
+              </div>
+
+              <div className="flex items-start gap-2 rounded-xl bg-[#fff6e6] px-3 py-2">
+                <Clock size={14} className="mt-0.5 shrink-0 text-[#cc8000]" />
+                <p className="font-[family-name:var(--font-nunito)] text-xs text-[#cc8000]">
+                  Funds arrive T+1 business day (Monday if submitted Friday).
+                </p>
               </div>
 
               <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">

@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowDownLeft, Copy, CheckCircle2, ExternalLink } from "lucide-react";
+import { ArrowDownLeft, Copy, CheckCircle2, Clock, Info } from "lucide-react";
 import { useState } from "react";
 
 import {
@@ -21,8 +21,17 @@ const PAYSTACK_ACCOUNT = {
   accountName: "Swayosoo/Sway Creche",
 };
 
+const DEPOSIT_FEE = 50;
+const MINIMUM_DEPOSIT = 100;
+
 export default function DepositInfoModal({ open, onOpenChange }: Props) {
   const [copied, setCopied] = useState(false);
+  const [amount, setAmount] = useState("");
+
+  const amountNum = parseInt(amount.replace(/\D/g, ""), 10) || 0;
+  const fee = amountNum > 0 ? DEPOSIT_FEE : 0;
+  const youReceive = Math.max(0, amountNum - fee);
+  const belowMinimum = amountNum > 0 && amountNum < MINIMUM_DEPOSIT;
 
   function handleCopy() {
     navigator.clipboard.writeText(PAYSTACK_ACCOUNT.accountNumber);
@@ -88,6 +97,38 @@ export default function DepositInfoModal({ open, onOpenChange }: Props) {
             </div>
           </div>
 
+          {/* Live fee calculator */}
+          <div className="flex flex-col gap-1">
+            <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">
+              How much are you depositing? (Optional)
+            </label>
+            <input
+              type="text"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value.replace(/\D/g, ""))}
+              placeholder="Enter amount"
+              className="h-[52px] w-full rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-nunito)] text-lg text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+            />
+            {belowMinimum && (
+              <p className="font-[family-name:var(--font-nunito)] text-xs text-[#cd3030]">
+                Minimum deposit is ₦{MINIMUM_DEPOSIT}.
+              </p>
+            )}
+          </div>
+
+          {amountNum > 0 && (
+            <div className="rounded-xl border border-[#e6ebf3] bg-[#faf9f7] p-4">
+              <div className="flex justify-between mb-2">
+                <span className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">Deposit fee</span>
+                <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">₦{DEPOSIT_FEE}</span>
+              </div>
+              <div className="flex justify-between border-t border-[#eaecf0] pt-2">
+                <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">You will receive</span>
+                <span className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#009061]">₦{youReceive}</span>
+              </div>
+            </div>
+          )}
+
           <div className="flex flex-col gap-2">
             <div className="flex items-start gap-3">
               <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-[#009061]" />
@@ -96,15 +137,15 @@ export default function DepositInfoModal({ open, onOpenChange }: Props) {
               </p>
             </div>
             <div className="flex items-start gap-3">
-              <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-[#009061]" />
+              <Clock className="mt-0.5 size-4 shrink-0 text-[#009061]" />
               <p className="font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">
-                Settlement takes T+1 (typically next business day)
+                Deposits reflect <strong>instantly</strong> in your wallet
               </p>
             </div>
             <div className="flex items-start gap-3">
-              <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-[#009061]" />
+              <Info className="mt-0.5 size-4 shrink-0 text-[#cc8000]" />
               <p className="font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">
-                Transaction fee is auto-deducted per deposit
+                A flat ₦{DEPOSIT_FEE} fee applies per deposit (min ₦{MINIMUM_DEPOSIT})
               </p>
             </div>
           </div>

@@ -278,7 +278,7 @@ export default function WalletOnboardingWizard({ open, onComplete, onClose }: Pr
                     Verify Your Identity
                   </h3>
                   <p className="max-w-xs text-center font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
-                    We&apos;ll send a 6-digit code to your registered phone number to authorise wallet setup.
+                    We&apos;ll send a 6-digit code to your email to authorise wallet setup.
                   </p>
                   <button
                     onClick={handleSendOtp}
@@ -298,7 +298,7 @@ export default function WalletOnboardingWizard({ open, onComplete, onClose }: Pr
                     Enter OTP
                   </h3>
                   <p className="max-w-xs text-center font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
-                    Enter the 6-digit code sent to your phone
+                    Enter the 6-digit code sent to your email
                   </p>
                   <input
                     type="text"
