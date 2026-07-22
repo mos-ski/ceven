@@ -116,7 +116,9 @@ export default function MomentsPage() {
     setItems(getFeedItems());
   }, []);
 
-  const filtered = tab === "all" ? items : items.filter((i) => i.category === tab);
+  const filtered = (tab === "all" ? items : items.filter((i) => i.category === tab)).filter(
+    (i) => i.images && i.images.length > 0
+  );
 
   return (
     <div className="relative flex min-h-0 flex-1 flex-col bg-[#fffefa]">
