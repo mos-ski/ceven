@@ -25,6 +25,7 @@ import {
   ChevronLeft,
   ChevronRight,
   ClipboardList,
+  QrCode,
 } from "lucide-react";
 import { ParentBottomNav } from "@/components/parent/bottom-nav";
 import { QuickActionCard } from "@/components/parent/quick-action-card";
@@ -614,6 +615,16 @@ export default function ParentHomePage() {
           <span className="text-sm font-semibold">Scan attendance code</span>
           <span className="inline-flex shrink-0 items-center rounded-full bg-white/20 px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wide text-white">New</span>
         </Link>
+
+        {/* Generate Pickup Code — shown when child is checked in */}
+        {mockAttendanceHistory[0].checkInTime && (
+          <Link href="/parent/scan" className="mt-2 flex items-center justify-center gap-2 rounded-xl border border-dashed border-gray-300 bg-white px-4 py-2.5 active:scale-[0.98] transition-transform">
+            <QrCode size={16} className="text-gray-500" />
+            <span className="text-xs font-semibold text-gray-600">Generate pickup code</span>
+            <span className="text-[10px] text-gray-400">·</span>
+            <span className="text-[10px] text-gray-400">Still at creche</span>
+          </Link>
+        )}
 
         {/* Check-in toast — swipe left to dismiss */}
         {mockAttendanceHistory[0].checkInTime && !checkInDismissed && (
