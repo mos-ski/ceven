@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { ArrowUpRight, Check, Clock } from "lucide-react";
+import { ArrowUpRight, Check, Clock, ShieldCheck } from "lucide-react";
 
 import {
   Dialog,
@@ -17,7 +17,7 @@ type Props = {
   onOpenChange: (open: boolean) => void;
 };
 
-type Step = "amount" | "review" | "success";
+type Step = "amount" | "review" | "otp" | "success";
 
 const WITHDRAWAL_FEE = 50;
 const MINIMUM_WITHDRAWAL = 100;
@@ -27,6 +27,9 @@ export default function WithdrawalRequestModal({ open, onOpenChange }: Props) {
   const [amount, setAmount] = useState("");
   const [note, setNote] = useState("");
   const [loading, setLoading] = useState(false);
+  const [otp, setOtp] = useState("");
+  const [otpSent, setOtpSent] = useState(false);
+  const [otpLoading, setOtpLoading] = useState(false);
 
   const amountNum = parseInt(amount.replace(/\D/g, ""), 10) || 0;
   const availableBalance = WALLET_BALANCE.available;
@@ -43,11 +46,23 @@ export default function WithdrawalRequestModal({ open, onOpenChange }: Props) {
   }
 
   function handleConfirm() {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setStep("success");
-    }, 2000);
+    setStep("otp");
+    setOtpSent(true);
+  }
+
+  function handleSendOtp() {
+    setOtpSent(true);
+    setOtp("");
+  }
+
+  function handleVerifyOtp() {
+    if (otp === "123456" || otp.length === 6) {
+      setOtpLoading(true);
+      setTimeout(() => {
+        setOtpLoading(false);
+        setStep("success");
+      }, 1500);
+    }
   }
 
   function handleClose() {
@@ -56,6 +71,8 @@ export default function WithdrawalRequestModal({ open, onOpenChange }: Props) {
       setStep("amount");
       setAmount("");
       setNote("");
+      setOtp("");
+      setOtpSent(false);
     }, 300);
   }
 
@@ -253,10 +270,58 @@ export default function WithdrawalRequestModal({ open, onOpenChange }: Props) {
               </button>
               <button
                 onClick={handleConfirm}
-                disabled={loading}
-                className="rounded-lg border border-[#d4a67f] bg-[#3b2513] px-5 py-3 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#faf2e1] hover:bg-[#2d1810] disabled:cursor-not-allowed disabled:bg-[#e0bfa0]"
+                className="rounded-lg border border-[#d4a67f] bg-[#3b2513] px-5 py-3 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#faf2e1] hover:bg-[#2d1810]"
               >
-                {loading ? "Processing..." : "Confirm Withdrawal"}
+                Verify & Withdraw
+              </button>
+            </DialogFooter>
+          </>
+        )}
+
+        {step === "otp" && (
+          <>
+            <DialogHeader>
+              <DialogTitle>Verify Withdrawal</DialogTitle>
+            </DialogHeader>
+
+            <div className="flex flex-col items-center gap-3 px-6 py-6">
+              <div className="flex size-16 items-center justify-center rounded-full bg-[#f5edd8]">
+                <ShieldCheck className="size-8 text-[#3b2513]" />
+              </div>
+              <h3 className="font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">
+                Enter OTP
+              </h3>
+              <p className="max-w-xs text-center font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+                Enter the 6-digit code sent to your email to confirm this withdrawal of {formatNaira(amountNum)}.
+              </p>
+              <input
+                type="text"
+                value={otp}
+                onChange={(e) => setOtp(e.target.value.replace(/\D/g, "").slice(0, 6))}
+                placeholder="000000"
+                className="h-[52px] w-48 rounded-xl border border-[#e6ebf3] bg-white px-4 text-center font-[family-name:var(--font-urbanist)] text-lg tracking-[0.5em] text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+              />
+              <button
+                onClick={handleVerifyOtp}
+                disabled={otp.length < 6 || otpLoading}
+                className="mt-2 rounded-lg bg-[#3b2513] px-6 py-3 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#faf2e1] hover:bg-[#2d1810] disabled:cursor-not-allowed disabled:bg-[#e0bfa0]"
+              >
+                {otpLoading ? "Verifying..." : "Verify & Submit"}
+              </button>
+              <button
+                onClick={handleSendOtp}
+                className="font-[family-name:var(--font-nunito)] text-sm text-[#c47b2c] hover:underline"
+              >
+                Resend OTP
+              </button>
+            </div>
+
+            <DialogFooter>
+              <button
+                onClick={() => setStep("review")}
+                className="rounded-lg border border-[#3b2513] bg-white px-5 py-3 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#3b2513] hover:bg-[#f9fafb]"
+              >
+                Back
               </button>
             </DialogFooter>
           </>
