@@ -24,7 +24,6 @@ import {
   Download,
   ChevronLeft,
   ChevronRight,
-  LayoutGrid,
   ClipboardList,
 } from "lucide-react";
 import { ParentBottomNav } from "@/components/parent/bottom-nav";

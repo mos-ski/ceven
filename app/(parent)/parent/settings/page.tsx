@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import {
   MapPin, ExternalLink, UserCog, Users, Car, ShieldCheck, Languages, Bell,
   PersonStanding, Headphones, Smartphone, LogOut, ChevronRight,
-  GraduationCap, Receipt,
+  GraduationCap,
 } from "lucide-react";
 import { ParentBottomNav } from "@/components/parent/bottom-nav";
 import { mockParentUser } from "@/lib/parent/mock-data";
@@ -15,7 +15,6 @@ const SETTINGS_ROWS = [
   { icon: MapPin,         label: "Find Creche",            href: "/parent/creche",                    external: false },
   { icon: GraduationCap,  label: "Enrollments",            href: "/parent/enrollments",                external: false },
   { icon: UserCog,        label: "Manage Account",         href: "/parent/settings/account",           external: false },
-  { icon: Receipt,        label: "Payment History",        href: "/parent/settings/payments",          external: false },
   { icon: Users,          label: "Family Profiles",        href: "/parent/settings/profile",           external: false },
   { icon: Car,            label: "Authorized Pickups",     href: "/parent/settings/pickups",           external: false },
   { icon: ShieldCheck,    label: "Change Password",         href: "/parent/settings/change-password",   external: false },

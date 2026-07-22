@@ -41,6 +41,7 @@ export type GalleryPhoto = {
   caption: string;
   date: string;
   image: string;
+  aspect?: "square" | "landscape" | "portrait" | "tall";
 };
 
 export type ChatThread = {

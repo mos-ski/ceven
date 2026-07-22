@@ -58,22 +58,30 @@ export default function GalleryPage() {
 
       <div className="flex-1 overflow-y-auto px-4 py-4">
         {tab === "photos" ? (
-          /* All Photos — 3-column grid */
-          <div className="grid grid-cols-3 gap-1.5">
-            {photos.map((photo) => (
-              <button
-                key={photo.id}
-                onClick={() => setActiveIndex(photos.findIndex((p) => p.id === photo.id))}
-                className="relative aspect-square overflow-hidden rounded-lg active:scale-[0.97] transition-transform"
-              >
-                <SafeImage
-                  src={photo.image}
-                  alt={photo.caption}
-                  className="h-full w-full"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity" />
-              </button>
-            ))}
+          /* All Photos — Masonry (Pinterest) */
+          <div className="columns-2 gap-2 space-y-2">
+            {photos.map((photo) => {
+              const aspectClass =
+                photo.aspect === "landscape" ? "aspect-[4/3]"
+                  : photo.aspect === "portrait" ? "aspect-[3/4]"
+                  : photo.aspect === "tall" ? "aspect-[2/3]"
+                  : "aspect-square";
+
+              return (
+                <button
+                  key={photo.id}
+                  onClick={() => setActiveIndex(photos.findIndex((p) => p.id === photo.id))}
+                  className={`relative overflow-hidden rounded-xl break-inside-avoid active:scale-[0.97] transition-transform ${aspectClass}`}
+                >
+                  <SafeImage
+                    src={photo.image}
+                    alt={photo.caption}
+                    className="h-full w-full"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+                </button>
+              );
+            })}
           </div>
         ) : (
           /* Folders — grouped by date */
