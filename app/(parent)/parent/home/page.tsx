@@ -534,6 +534,10 @@ export default function ParentHomePage() {
 
   // Full-screen viewer state
   const [viewerOpen, setViewerOpen] = useState(false);
+  const [checkInDismissed, setCheckInDismissed] = useState(false);
+  const [swipeX, setSwipeX] = useState(0);
+  const swipeXRef = useRef(0);
+  const [swiping, setSwiping] = useState(false);
   const [viewerImages, setViewerImages] = useState<string[]>([]);
   const [viewerIndex, setViewerIndex] = useState(0);
 
@@ -606,16 +610,60 @@ export default function ParentHomePage() {
           <span className="inline-flex shrink-0 items-center rounded-full bg-white/20 px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wide text-white">New</span>
         </Link>
 
-        {/* Check-in toast */}
-        {mockAttendanceHistory[0].checkInTime && (
-          <div className="mt-2.5 flex items-center gap-2 rounded-lg bg-gray-50 border border-gray-100 px-3 py-2">
-            <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-100">
-              <LogIn size={10} className="text-emerald-600" />
-            </span>
-            <p className="flex-1 text-[11px] text-gray-500">
-              {mockChild.name} checked in at {mockAttendanceHistory[0].checkInTime}
-            </p>
-            <Link href="/parent/attendance" className="text-[11px] font-medium text-cg-brand">Details</Link>
+        {/* Check-in toast — swipe left to dismiss */}
+        {mockAttendanceHistory[0].checkInTime && !checkInDismissed && (
+          <div
+            className="mt-2.5 overflow-hidden rounded-lg border border-gray-100 bg-gray-50"
+            style={{ opacity: swiping ? Math.max(0, 1 - Math.abs(swipeX) / 150) : 1 }}
+          >
+            <div
+              className="flex items-center gap-2 px-3 py-2 touch-pan-y"
+              style={{ transform: `translateX(${swipeX}px)`, transition: swiping ? "none" : "transform 0.2s ease, opacity 0.2s ease" }}
+              onTouchStart={(e) => { setSwiping(true); setSwipeX(0); swipeXRef.current = 0; }}
+              onTouchMove={(e) => {
+                const dx = e.touches[0].clientX - (e.target as HTMLElement).getBoundingClientRect().left - 50;
+                const val = Math.min(0, dx);
+                setSwipeX(val);
+                swipeXRef.current = val;
+              }}
+              onTouchEnd={() => {
+                setSwiping(false);
+                if (swipeXRef.current < -80) {
+                  setCheckInDismissed(true);
+                } else {
+                  setSwipeX(0);
+                  swipeXRef.current = 0;
+                }
+              }}
+              onMouseDown={(e) => {
+                setSwiping(true);
+                setSwipeX(0);
+                swipeXRef.current = 0;
+                const startX = e.clientX;
+                const onMove = (ev: MouseEvent) => {
+                  const val = Math.min(0, ev.clientX - startX);
+                  setSwipeX(val);
+                  swipeXRef.current = val;
+                };
+                const onUp = () => {
+                  setSwiping(false);
+                  document.removeEventListener("mousemove", onMove);
+                  document.removeEventListener("mouseup", onUp);
+                  if (swipeXRef.current < -80) setCheckInDismissed(true);
+                  else { setSwipeX(0); swipeXRef.current = 0; }
+                };
+                document.addEventListener("mousemove", onMove);
+                document.addEventListener("mouseup", onUp);
+              }}
+            >
+              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-100">
+                <LogIn size={10} className="text-emerald-600" />
+              </span>
+              <p className="flex-1 text-[11px] text-gray-500">
+                {mockChild.name} checked in at {mockAttendanceHistory[0].checkInTime}
+              </p>
+              <Link href="/parent/attendance" className="text-[11px] font-medium text-cg-brand">Details</Link>
+            </div>
           </div>
         )}
 
