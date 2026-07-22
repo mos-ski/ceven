@@ -469,6 +469,8 @@ export default function ParentHomePage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [feedItems, setFeedItems] = useState<FeedItem[]>([]);
   const [activeTag, setActiveTag] = useState<string | null>(null);
+  const [scrolled, setScrolled] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   // Full-screen viewer state
   const [viewerOpen, setViewerOpen] = useState(false);
@@ -477,6 +479,16 @@ export default function ParentHomePage() {
 
   useEffect(() => {
     setFeedItems(getFeedItems());
+  }, []);
+
+  const handleScroll = useCallback(() => {
+    if (scrollRef.current) {
+      setScrolled(scrollRef.current.scrollTop > 200);
+    }
+  }, []);
+
+  const scrollToTop = useCallback(() => {
+    scrollRef.current?.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   const filteredFeed = feedItems
@@ -516,7 +528,7 @@ export default function ParentHomePage() {
       </div>
 
       {/* Scrollable Content */}
-      <div className="flex-1 overflow-y-auto px-6 pb-4">
+      <div ref={scrollRef} onScroll={handleScroll} className="flex-1 overflow-y-auto px-6 pb-4">
         {/* Scan CTA */}
         <Link href="/parent/scan" className="mt-3 flex items-center justify-center gap-2.5 rounded-xl bg-cg-brand px-4 py-3 text-white active:scale-[0.98] transition-transform">
           <ScanLine size={18} />
@@ -574,18 +586,29 @@ export default function ParentHomePage() {
         </div>
       </div>
 
-      {/* Menu FAB */}
+      {/* FAB — menu or scroll-to-top */}
       <button
-        onClick={() => setMenuOpen(true)}
-        aria-label="Open menu"
-        className="absolute bottom-[86px] right-5 z-30 flex h-14 w-14 items-center justify-center rounded-full bg-cg-brand text-white shadow-[0_12px_30px_rgba(59,37,19,0.28)] active:scale-95 transition-transform"
+        onClick={scrolled ? scrollToTop : () => setMenuOpen(true)}
+        aria-label={scrolled ? "Scroll to top" : "Open menu"}
+        className="absolute bottom-[86px] right-5 z-30 flex h-14 w-14 items-center justify-center rounded-full bg-cg-brand text-white shadow-[0_12px_30px_rgba(59,37,19,0.28)] active:scale-95 transition-all duration-300"
       >
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="3" y="3" width="7" height="7" rx="1.5" />
-          <rect x="14" y="3" width="7" height="7" rx="1.5" />
-          <rect x="3" y="14" width="7" height="7" rx="1.5" />
-          <rect x="14" y="14" width="7" height="7" rx="1.5" />
-        </svg>
+        {scrolled ? (
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="18 15 12 9 6 15" />
+          </svg>
+        ) : (
+          <>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="3" y="3" width="7" height="7" rx="1.5" />
+              <rect x="14" y="3" width="7" height="7" rx="1.5" />
+              <rect x="3" y="14" width="7" height="7" rx="1.5" />
+              <rect x="14" y="14" width="7" height="7" rx="1.5" />
+            </svg>
+            <span className="absolute -top-1 -right-1 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-white">
+              3
+            </span>
+          </>
+        )}
       </button>
 
       <MenuOverlay open={menuOpen} onClose={() => setMenuOpen(false)} />
