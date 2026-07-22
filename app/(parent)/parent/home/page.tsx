@@ -330,26 +330,19 @@ function PostCard({
   return (
     <div className="py-6 border-b border-gray-100">
       {/* Header */}
-      <div className="flex items-center gap-2.5 px-4 mb-3">
+      <div className="flex items-center gap-1.5 mb-2">
         <div
-          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[10px] font-bold text-white"
+          className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[8px] font-bold text-white"
           style={{ backgroundColor: user.color }}
         >
           {user.avatar}
         </div>
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-1.5">
-            <span className="text-sm font-bold text-gray-900">{user.name}</span>
-            <span className="text-xs text-gray-400">·</span>
-            <span className="text-xs text-gray-400">{user.role}</span>
-            <span className="text-xs text-gray-400">·</span>
-            <span className="text-xs text-gray-400">
-              {item.timestamp ? formatTimeAgo(item.timestamp) : "now"}
-            </span>
-          </div>
-          <p className="mt-0.5 text-sm text-gray-800 leading-relaxed">{item.title}</p>
-        </div>
+        <span className="text-sm font-bold text-gray-900">{user.name}</span>
+        <span className="text-xs text-gray-400">·</span>
+        <span className="text-xs text-gray-400">{user.role}</span>
       </div>
+      <p className="text-sm text-gray-800 leading-relaxed mb-2">{item.title}</p>
+      <p className="text-[11px] text-gray-400 mb-3">posted {item.timestamp ? formatTimeAgo(item.timestamp) : "now"}</p>
 
       {/* Image strip */}
       {images.length > 0 && (
@@ -370,7 +363,7 @@ function PostCard({
       )}
 
       {/* Tag + actions */}
-      <div className="mt-3 px-4">
+      <div className="mt-3">
         {item.tag && (
           <button
             onClick={() => onTagClick(item.tag!)}
@@ -431,7 +424,7 @@ function MenuOverlay({ open, onClose }: { open: boolean; onClose: () => void }) 
   return (
     <div className="absolute inset-0 z-50 flex flex-col">
       <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={onClose} />
-      <div className="relative z-10 flex flex-col bg-white shadow-2xl animate-slide-down">
+      <div className="relative z-10 flex flex-col bg-white h-full animate-slide-down origin-top">
         <div className="flex items-center justify-between px-5 pt-5 pb-3">
           <h2 className="text-lg font-bold text-gray-900">Menu</h2>
           <button onClick={onClose} className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-100 active:bg-gray-200">

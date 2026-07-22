@@ -23,6 +23,7 @@ export type FeedItem = {
   postedBy?: string;
   href?: string;
   badge?: string;
+  tag?: string;
 };
 
 // 20 photo moments — mixed portrait/landscape, some with videos
@@ -164,6 +165,7 @@ export function getFeedItems(): FeedItem[] {
       hasVideo: post.hasVideo,
       postedBy: post.postedBy,
       badge: post.tag,
+      tag: post.tag,
     });
   }
 
