@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import {
-  ArrowLeft, MessageSquare, Download, Camera,
+  ArrowLeft, MessageSquare, Download, Camera, ChevronLeft, ChevronRight, X,
 } from "lucide-react";
 import { ParentBottomNav } from "@/components/parent/bottom-nav";
 import { MomentCreatorSheet } from "@/components/parent/moment-creator-sheet";
@@ -54,57 +54,94 @@ function formatTimeAgo(ts: number): string {
   return `${days}d ago`;
 }
 
-function Carousel({ images, title, onDoubleTap }: { images: string[]; title: string; onDoubleTap: () => void }) {
+/* ─── Full-screen image viewer ─── */
+function FullScreenViewer({
+  images, index, onClose, onPrev, onNext,
+}: {
+  images: string[]; index: number; onClose: () => void; onPrev: () => void; onNext: () => void;
+}) {
+  const [touchX, setTouchX] = useState(0);
+
+  return (
+    <div className="absolute inset-0 z-[60] flex items-center justify-center bg-black/95" onClick={onClose}>
+      <button onClick={(e) => { e.stopPropagation(); onClose(); }} className="absolute top-4 right-4 z-50 flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-white">
+        <X size={20} />
+      </button>
+      {images.length > 1 && index > 0 && (
+        <button onClick={(e) => { e.stopPropagation(); onPrev(); }} className="absolute left-2 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-white z-50">
+          <ChevronLeft size={24} />
+        </button>
+      )}
+      {images.length > 1 && index < images.length - 1 && (
+        <button onClick={(e) => { e.stopPropagation(); onNext(); }} className="absolute right-2 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-white z-50">
+          <ChevronRight size={24} />
+        </button>
+      )}
+      <img
+        src={images[index]}
+        alt=""
+        className="max-h-[85vh] max-w-[90vw] object-contain rounded-lg"
+        onClick={(e) => e.stopPropagation()}
+        onTouchStart={(e) => setTouchX(e.touches[0].clientX)}
+        onTouchEnd={(e) => {
+          const dx = e.changedTouches[0].clientX - touchX;
+          if (dx < -50 && index < images.length - 1) onNext();
+          else if (dx > 50 && index > 0) onPrev();
+        }}
+      />
+      {images.length > 1 && (
+        <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-1.5">
+          {images.map((_, i) => (
+            <span key={i} className={`h-1.5 rounded-full transition-all ${i === index ? "w-5 bg-white" : "w-1.5 bg-white/40"}`} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ─── ImageStrip (75% width horizontal scroll, consistent height) ─── */
+function ImageStrip({ images, title, onDoubleTap, onImageClick }: {
+  images: string[]; title: string; onDoubleTap: () => void; onImageClick: (idx: number) => void;
+}) {
   const [idx, setIdx] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
   const lastTap = useRef(0);
 
   const handleTap = useCallback(() => {
     const now = Date.now();
-    if (now - lastTap.current < 300) {
-      onDoubleTap();
-    }
+    if (now - lastTap.current < 300) { onDoubleTap(); }
     lastTap.current = now;
   }, [onDoubleTap]);
 
   const handleScroll = useCallback(() => {
     if (!scrollRef.current) return;
-    const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-    const newIdx = Math.round(scrollLeft / clientWidth);
-    setIdx(newIdx);
+    const { scrollLeft, clientWidth } = scrollRef.current;
+    setIdx(Math.round(scrollLeft / clientWidth));
   }, []);
 
   return (
     <div className="relative">
       <div
         ref={scrollRef}
-        className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide [&::-webkit-scrollbar]:hidden"
+        className="flex overflow-x-auto snap-x snap-mandatory gap-2 [&::-webkit-scrollbar]:hidden py-1"
         style={{ scrollSnapType: "x mandatory" }}
         onScroll={handleScroll}
       >
         {images.map((src, i) => (
           <div
             key={i}
-            className="w-full shrink-0 snap-start"
-            onClick={handleTap}
+            className="w-[75%] shrink-0 snap-start rounded-xl overflow-hidden cursor-pointer"
+            onClick={(e) => { e.stopPropagation(); handleTap(); onImageClick(i); }}
           >
-            <SafeImage
-              src={src}
-              alt={`${title} — photo ${i + 1}`}
-              className="h-72 w-full object-cover"
-            />
+            <SafeImage src={src} alt={`${title} — photo ${i + 1}`} className="h-[38vh] w-full object-cover" />
           </div>
         ))}
       </div>
       {images.length > 1 && (
-        <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5">
+        <div className="flex justify-center gap-1.5 pt-2">
           {images.map((_, i) => (
-            <span
-              key={i}
-              className={`h-1.5 rounded-full transition-all duration-300 ${
-                i === idx ? "w-5 bg-white" : "w-1.5 bg-white/50"
-              }`}
-            />
+            <span key={i} className={`h-1.5 rounded-full transition-all ${i === idx ? "w-5 bg-cg-brand" : "w-1.5 bg-gray-300"}`} />
           ))}
         </div>
       )}
@@ -117,11 +154,8 @@ function ReactionPicker({ onSelect, onClose }: { onSelect: (emoji: string) => vo
     <div className="absolute bottom-full left-0 mb-2 z-50">
       <div className="flex items-center gap-1 rounded-full bg-white px-3 py-2 shadow-xl ring-1 ring-gray-100">
         {REACTIONS.map((r) => (
-          <button
-            key={r.emoji}
-            onClick={() => { onSelect(r.emoji); onClose(); }}
-            className="flex h-9 w-9 items-center justify-center rounded-full text-xl hover:bg-gray-100 active:scale-125 transition-transform"
-          >
+          <button key={r.emoji} onClick={() => { onSelect(r.emoji); onClose(); }}
+            className="flex h-9 w-9 items-center justify-center rounded-full text-xl hover:bg-gray-100 active:scale-125 transition-transform">
             {r.emoji}
           </button>
         ))}
@@ -130,13 +164,18 @@ function ReactionPicker({ onSelect, onClose }: { onSelect: (emoji: string) => vo
   );
 }
 
-function PostCard({ item }: { item: FeedItem }) {
+function PostCard({ item, onImageClick }: { item: FeedItem; onImageClick: (images: string[], idx: number) => void }) {
   const user = getPostUser(item.postedBy);
   const images = item.images?.length ? item.images : [];
+  const caption = item.title ?? "";
   const [liked, setLiked] = useState(false);
   const [likeEmoji, setLikeEmoji] = useState("👍");
   const [showReactions, setShowReactions] = useState(false);
   const [showHeart, setShowHeart] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+
+  const hasParagraphs = caption.includes("\n\n");
+  const isLong = caption.length > 120;
 
   const handleDoubleTap = useCallback(() => {
     setLiked(true);
@@ -150,35 +189,62 @@ function PostCard({ item }: { item: FeedItem }) {
     setShowReactions(false);
   }, []);
 
+  const renderCaption = () => {
+    if (!caption) return null;
+    if (hasParagraphs) {
+      const parts = caption.split("\n\n");
+      if (expanded) {
+        return (
+          <>
+            {parts.map((p, i) => <p key={i} className="text-sm text-gray-800 leading-relaxed mb-2">{p}</p>)}
+            <button onClick={() => setExpanded(false)} className="text-sm text-gray-400 font-medium">show less</button>
+          </>
+        );
+      }
+      return (
+        <>
+          <p className="text-sm text-gray-800 leading-relaxed">{parts[0]}</p>
+          {parts.length > 1 && <button onClick={() => setExpanded(true)} className="text-sm text-gray-400 font-medium mt-0.5">...see more</button>}
+        </>
+      );
+    }
+    if (isLong) {
+      if (expanded) {
+        return (
+          <>
+            <p className="text-sm text-gray-800 leading-relaxed whitespace-pre-line">{caption}</p>
+            <button onClick={() => setExpanded(false)} className="text-sm text-gray-400 font-medium mt-0.5">show less</button>
+          </>
+        );
+      }
+      return (
+        <>
+          <p className="text-sm text-gray-800 leading-relaxed">{caption.slice(0, 120)}...</p>
+          <button onClick={() => setExpanded(true)} className="text-sm text-gray-400 font-medium mt-0.5">see more</button>
+        </>
+      );
+    }
+    return <p className="text-sm text-gray-800 leading-relaxed">{caption}</p>;
+  };
+
   return (
-    <div className="overflow-hidden">
-      {/* Header: avatar + name + role + time */}
-      <div className="px-4 pt-4 flex items-start gap-3">
-        <div
-          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white"
-          style={{ backgroundColor: user.color }}
-        >
+    <div className="border-b border-gray-100 pb-3">
+      {/* Header: avatar + name on line 1, role · time on line 2 */}
+      <div className="flex items-start gap-3 px-4 pt-4">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white" style={{ backgroundColor: user.color }}>
           {user.avatar}
         </div>
         <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-1.5">
-            <span className="text-sm font-bold text-gray-900 truncate">{user.name}</span>
-            <span className="text-[11px] text-gray-400 rounded-full bg-gray-100 px-1.5 py-0.5">{user.role}</span>
-            <span className="text-xs text-gray-400">·</span>
-            <span className="text-xs text-gray-400 shrink-0">
-              {item.timestamp ? formatTimeAgo(item.timestamp) : "now"}
-            </span>
-          </div>
-          {/* Caption */}
-          <p className="mt-1 text-sm text-gray-800 leading-relaxed">{item.title}</p>
+          <span className="text-sm font-bold text-gray-900">{user.name}</span>
+          <p className="text-[11px] text-gray-400">{user.role} · {item.timestamp ? formatTimeAgo(item.timestamp) : "now"}</p>
+          <div className="mt-1">{renderCaption()}</div>
         </div>
       </div>
 
-      {/* Image carousel */}
+      {/* Image strip */}
       {images.length > 0 && (
-        <div className="mt-3 ml-13 overflow-hidden rounded-2xl border border-gray-100 relative">
-          <Carousel images={images} title={item.title ?? ""} onDoubleTap={handleDoubleTap} />
-          {/* Heart animation on double tap */}
+        <div className="mt-3 relative">
+          <ImageStrip images={images} title={item.title ?? ""} onDoubleTap={handleDoubleTap} onImageClick={(idx) => onImageClick(images, idx)} />
           {showHeart && (
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <span className="text-6xl animate-bounce-in drop-shadow-lg">❤️</span>
@@ -187,44 +253,32 @@ function PostCard({ item }: { item: FeedItem }) {
         </div>
       )}
 
-      {/* Action bar — only on image posts */}
+      {/* Tag */}
+      {item.tag && (
+        <div className="px-4 mt-2">
+          <span className="rounded-full bg-amber-50 px-2.5 py-1 text-[11px] font-semibold text-amber-700">{item.tag}</span>
+        </div>
+      )}
+
+      {/* Action bar */}
       {images.length > 0 && (
-        <div className="mt-3 ml-13 flex items-center gap-4 px-0 pb-4">
-          {/* Like / Reaction button */}
+        <div className="mt-3 px-4 flex items-center gap-4">
           <div className="relative">
-            <button
-              onClick={() => setShowReactions(!showReactions)}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
-                liked ? "bg-red-50 text-red-500" : "bg-gray-100 text-gray-500 active:bg-gray-200"
-              }`}
-            >
+            <button onClick={() => setShowReactions(!showReactions)}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${liked ? "bg-red-50 text-red-500" : "bg-gray-100 text-gray-500 active:bg-gray-200"}`}>
               <span className="text-base">{likeEmoji}</span>
               <span>{liked ? "Liked" : "Like"}</span>
             </button>
-            {showReactions && (
-              <ReactionPicker
-                onSelect={handleReaction}
-                onClose={() => setShowReactions(false)}
-              />
-            )}
+            {showReactions && <ReactionPicker onSelect={handleReaction} onClose={() => setShowReactions(false)} />}
           </div>
-
           <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 active:bg-gray-200 text-sm font-medium">
-            <MessageSquare size={16} />
-            <span>Comment</span>
+            <MessageSquare size={16} /><span>Comment</span>
           </button>
-
           <button className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 active:bg-gray-200 text-sm font-medium">
-            <Download size={16} />
-            <span>Save</span>
+            <Download size={16} /><span>Save</span>
           </button>
-
           <div className="flex-1" />
-          {item.badge && (
-            <span className="rounded-full bg-cg-brand/10 px-2.5 py-0.5 text-[10px] font-semibold text-cg-brand">
-              {item.badge}
-            </span>
-          )}
+          {item.badge && <span className="rounded-full bg-cg-brand/10 px-2.5 py-0.5 text-[10px] font-semibold text-cg-brand">{item.badge}</span>}
         </div>
       )}
     </div>
@@ -236,22 +290,27 @@ export default function MomentsPage() {
   const [showCreator, setShowCreator] = useState(false);
   const [tab, setTab] = useState<Tab>("all");
   const [items, setItems] = useState<FeedItem[]>([]);
+  const [viewerImages, setViewerImages] = useState<string[]>([]);
+  const [viewerIndex, setViewerIndex] = useState(0);
+  const [viewerOpen, setViewerOpen] = useState(false);
 
-  useEffect(() => {
-    setItems(getFeedItems());
-  }, []);
+  useEffect(() => { setItems(getFeedItems()); }, []);
 
   const filtered = (tab === "all" ? items : items.filter((i) => i.category === tab)).filter(
     (i) => i.images && i.images.length > 0
   );
 
+  const openViewer = useCallback((images: string[], index: number) => {
+    setViewerImages(images);
+    setViewerIndex(index);
+    setViewerOpen(true);
+  }, []);
+
   return (
-    <div className="relative flex min-h-0 flex-1 flex-col bg-white overflow-hidden">
+    <div className="relative flex min-h-0 flex-1 flex-col bg-[#fffefa] overflow-hidden">
       {/* Header */}
       <div className="flex items-center gap-3 bg-white px-4 py-3 shadow-sm">
-        <button onClick={() => router.back()}>
-          <ArrowLeft size={20} className="text-gray-600" />
-        </button>
+        <button onClick={() => router.back()}><ArrowLeft size={20} className="text-gray-600" /></button>
         <h1 className="text-base font-bold text-gray-800">Moments</h1>
       </div>
 
@@ -259,17 +318,10 @@ export default function MomentsPage() {
       <div className="border-b border-gray-100 bg-white">
         <div className="flex overflow-x-auto flex-nowrap [&::-webkit-scrollbar]:hidden">
           {TABS.map((t) => (
-            <button
-              key={t.key}
-              onClick={() => setTab(t.key)}
-              className={`relative shrink-0 px-4 sm:px-5 py-3 text-sm font-medium transition-colors ${
-                tab === t.key ? "text-cg-brand" : "text-gray-400"
-              }`}
-            >
+            <button key={t.key} onClick={() => setTab(t.key)}
+              className={`relative shrink-0 px-4 sm:px-5 py-3 text-sm font-medium transition-colors ${tab === t.key ? "text-cg-brand" : "text-gray-400"}`}>
               {t.label}
-              {tab === t.key && (
-                <span className="absolute bottom-0 left-2 right-2 h-0.5 rounded-full bg-cg-brand" />
-              )}
+              {tab === t.key && <span className="absolute bottom-0 left-2 right-2 h-0.5 rounded-full bg-cg-brand" />}
             </button>
           ))}
         </div>
@@ -278,9 +330,9 @@ export default function MomentsPage() {
       {/* Feed */}
       <div className="flex-1 overflow-y-auto overflow-x-hidden">
         {filtered.length > 0 ? (
-          <div className="max-w-full">
+          <div>
             {filtered.map((item) => (
-              <PostCard key={item.id} item={item} />
+              <PostCard key={item.id} item={item} onImageClick={openViewer} />
             ))}
           </div>
         ) : (
@@ -292,17 +344,18 @@ export default function MomentsPage() {
       </div>
 
       {/* Camera FAB */}
-      <button
-        onClick={() => setShowCreator(true)}
-        className="absolute bottom-24 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-cg-brand shadow-lg shadow-cg-brand/30 active:scale-95 transition-transform"
-      >
+      <button onClick={() => setShowCreator(true)}
+        className="absolute bottom-24 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-cg-brand shadow-lg shadow-cg-brand/30 active:scale-95 transition-transform">
         <Camera size={22} className="text-white" />
       </button>
 
-      {showCreator && (
-        <MomentCreatorSheet
-          children={mockParentChildren}
-          onClose={() => setShowCreator(false)}
+      {showCreator && <MomentCreatorSheet children={mockParentChildren} onClose={() => setShowCreator(false)} />}
+
+      {viewerOpen && (
+        <FullScreenViewer
+          images={viewerImages} index={viewerIndex} onClose={() => setViewerOpen(false)}
+          onPrev={() => setViewerIndex((i) => Math.max(0, i - 1))}
+          onNext={() => setViewerIndex((i) => Math.min(viewerImages.length - 1, i + 1))}
         />
       )}
 
