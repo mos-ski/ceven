@@ -26,6 +26,7 @@ import {
   ChevronRight,
   ClipboardList,
   QrCode,
+  Plus,
 } from "lucide-react";
 import { ParentBottomNav } from "@/components/parent/bottom-nav";
 import { QuickActionCard } from "@/components/parent/quick-action-card";
@@ -596,14 +597,14 @@ export default function ParentHomePage() {
         </div>
 
         {/* Moments & Special Requests tabs — browser-tab style */}
-        <div className="sticky top-0 z-30 -mx-6 px-6 pt-2 pb-0">
+        <div className="sticky top-0 z-30 -mx-6 px-6 pt-2 pb-0 bg-white">
           <div className="flex gap-1.5 rounded-t-2xl bg-gray-200/70 p-1.5">
             <Link href="/parent/moments" className="flex flex-1 items-center justify-center gap-1.5 rounded-xl bg-white py-2.5 text-gray-900 text-xs font-semibold shadow-sm">
               <LayoutGrid size={14} className="text-gray-700" />
               <span>Moments</span>
             </Link>
             <Link href="/parent/special-requests" className="flex flex-1 items-center justify-center gap-1.5 rounded-xl py-2.5 text-gray-400 text-xs font-semibold opacity-60 active:opacity-100 transition-opacity">
-              <ClipboardList size={14} />
+              <Plus size={14} />
               <span>Special Requests</span>
             </Link>
           </div>
@@ -618,11 +619,10 @@ export default function ParentHomePage() {
 
         {/* Generate Pickup Code — shown when child is checked in */}
         {mockAttendanceHistory[0].checkInTime && (
-          <Link href="/parent/scan" className="mt-2 flex items-center justify-center gap-2 rounded-xl border border-dashed border-gray-300 bg-white px-4 py-2.5 active:scale-[0.98] transition-transform">
+          <Link href="/parent/scan" className="mt-2 flex items-center justify-center gap-2 rounded-lg border border-dashed border-gray-300 bg-white px-4 py-2.5 active:scale-[0.98] transition-transform">
             <QrCode size={16} className="text-gray-500" />
-            <span className="text-xs font-semibold text-gray-600">Generate pickup code</span>
-            <span className="text-[10px] text-gray-400">·</span>
-            <span className="text-[10px] text-gray-400">Still at creche</span>
+            <span className="text-sm font-semibold text-gray-600">Generate pickup code</span>
+            <span className="text-xs text-gray-400">· Still at creche</span>
           </Link>
         )}
 
