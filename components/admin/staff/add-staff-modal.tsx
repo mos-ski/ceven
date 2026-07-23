@@ -110,6 +110,7 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [dateJoined, setDateJoined] = useState("");
   const [role, setRole] = useState("");
   const [staffClass, setStaffClass] = useState("");
   const [employmentType, setEmploymentType] = useState("");
@@ -249,6 +250,10 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
               <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Enter name" className="h-[52px] w-full rounded-xl border border-[#dcdcdc] px-4 font-[family-name:var(--font-urbanist)] text-sm text-black outline-none placeholder:text-[#7e7e7e] focus:ring-2 focus:ring-[#c47b2c]" />
               <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter email address" className="h-[52px] w-full rounded-xl border border-[#dcdcdc] px-4 font-[family-name:var(--font-urbanist)] text-sm text-black outline-none placeholder:text-[#7e7e7e] focus:ring-2 focus:ring-[#c47b2c]" />
               <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Enter phone number" className="h-[52px] w-full rounded-xl border border-[#dcdcdc] px-4 font-[family-name:var(--font-urbanist)] text-sm text-black outline-none placeholder:text-[#7e7e7e] focus:ring-2 focus:ring-[#c47b2c]" />
+              <div className="flex flex-col gap-1">
+                <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">Date Joined</label>
+                <input type="date" value={dateJoined} onChange={(e) => setDateJoined(e.target.value)} className="h-[52px] w-full rounded-xl border border-[#dcdcdc] px-4 font-[family-name:var(--font-urbanist)] text-sm text-black outline-none focus:ring-2 focus:ring-[#c47b2c]" />
+              </div>
               <div className="h-px w-full bg-[#e6ebf3]" />
               <DropdownSelect label="Assign Role" value={role} options={STAFF_ROLE_OPTIONS} onChange={setRole} />
               <DropdownSelect label="Assign Class" value={staffClass} options={STAFF_CLASS_OPTIONS} onChange={setStaffClass} />

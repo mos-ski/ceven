@@ -1,13 +1,15 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { ChevronDown, X, AlertTriangle, Wallet, CheckCircle2 } from "lucide-react";
+import { ChevronDown, X, AlertTriangle, Wallet, CheckCircle2, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 
 import { StatCard } from "@/components/admin/stat-card";
 import {
   PAYROLL,
   PAYROLL_HISTORY,
+  PAYROLL_MONTHS,
+  CURRENT_PAYROLL_MONTH,
   SALARY_SETUPS,
   type PayrollStatus,
   type SalarySetup,
@@ -46,11 +48,22 @@ function RunPayrollModal({
   totalAmount: number;
   onClose: () => void;
 }) {
-  const [paid, setPaid] = useState(false);
+  const [step, setStep] = useState<"confirm" | "otp" | "success">("confirm");
+  const [selectedMonth, setSelectedMonth] = useState<string>(CURRENT_PAYROLL_MONTH);
+  const [otp, setOtp] = useState("");
   const walletBalance = WALLET_BALANCE.available;
   const hasEnough = walletBalance >= totalAmount;
 
-  if (paid) {
+  const selectableMonths = useMemo(() => {
+    const months = new Set<string>([CURRENT_PAYROLL_MONTH]);
+    for (const id of selectedIds) {
+      const record = PAYROLL.find((p) => p.id === id);
+      record?.unpaidMonths.forEach((m) => months.add(m));
+    }
+    return months;
+  }, [selectedIds]);
+
+  if (step === "success") {
     return (
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
         <div className="flex w-full max-w-[480px] flex-col rounded-2xl bg-white shadow-2xl">
@@ -62,7 +75,7 @@ function RunPayrollModal({
               Payroll Processed
             </h2>
             <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
-              {selectedIds.length} staff member{selectedIds.length > 1 ? "s" : ""} paid successfully. Total: {formatCurrency(totalAmount)}
+              {selectedIds.length} staff member{selectedIds.length > 1 ? "s" : ""} paid successfully for {selectedMonth}. Total: {formatCurrency(totalAmount)}
             </p>
           </div>
           <div className="border-t border-[#eaecf0] px-6 py-4 flex justify-center">
@@ -71,6 +84,66 @@ function RunPayrollModal({
               className="rounded-lg bg-[#3b2513] px-6 py-2.5 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]"
             >
               Done
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (step === "otp") {
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
+        <div className="flex w-full max-w-[480px] flex-col rounded-2xl bg-white shadow-2xl">
+          <div className="flex items-start justify-between border-b border-[#eaecf0] px-6 pt-6 pb-4">
+            <div>
+              <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
+                Verify Payment
+              </h2>
+              <p className="mt-0.5 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+                Authorize this payroll run.
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={onClose}
+              aria-label="Close modal"
+              className="rounded p-1 text-[#6b7280] hover:text-[#2d1810]"
+            >
+              <X className="size-5" />
+            </button>
+          </div>
+
+          <div className="flex flex-col items-center gap-3 px-6 py-8">
+            <div className="flex size-16 items-center justify-center rounded-full bg-[#f5edd8]">
+              <ShieldCheck className="size-8 text-[#3b2513]" />
+            </div>
+            <h3 className="font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">
+              Enter OTP
+            </h3>
+            <p className="max-w-xs text-center font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+              Enter the 6-digit code sent to your registered phone number to authorize payment of {formatCurrency(totalAmount)} for {selectedMonth}.
+            </p>
+            <input
+              type="text"
+              value={otp}
+              onChange={(e) => setOtp(e.target.value.replace(/\D/g, "").slice(0, 6))}
+              placeholder="000000"
+              className="h-[52px] w-48 rounded-xl border border-[#e6ebf3] bg-white px-4 text-center font-[family-name:var(--font-urbanist)] text-lg tracking-[0.5em] text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+            />
+            <button
+              type="button"
+              onClick={() => setStep("success")}
+              disabled={otp.length < 6}
+              className="mt-2 rounded-lg bg-[#3b2513] px-6 py-3 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#faf2e1] hover:bg-[#2d1810] disabled:cursor-not-allowed disabled:bg-[#e0bfa0]"
+            >
+              Verify &amp; Pay
+            </button>
+            <button
+              type="button"
+              className="font-[family-name:var(--font-nunito)] text-sm text-[#c47b2c] hover:underline"
+            >
+              Resend OTP
             </button>
           </div>
         </div>
@@ -101,6 +174,25 @@ function RunPayrollModal({
         </div>
 
         <div className="flex flex-col gap-4 px-6 py-5">
+          {/* Pay for month */}
+          <div className="flex flex-col gap-1.5">
+            <label className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
+              Pay for
+            </label>
+            <select
+              value={selectedMonth}
+              onChange={(e) => setSelectedMonth(e.target.value)}
+              className="rounded-lg border border-[#d0d5dd] bg-white px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+            >
+              {PAYROLL_MONTHS.map((month) => (
+                <option key={month} value={month} disabled={!selectableMonths.has(month)}>
+                  {month}
+                  {!selectableMonths.has(month) ? " (already paid)" : ""}
+                </option>
+              ))}
+            </select>
+          </div>
+
           {/* Wallet balance */}
           <div className="flex items-center justify-between rounded-lg bg-[#faf9f7] px-4 py-3">
             <div className="flex items-center gap-2">
@@ -166,7 +258,7 @@ function RunPayrollModal({
           <button
             type="button"
             disabled={!hasEnough}
-            onClick={() => setPaid(true)}
+            onClick={() => setStep("otp")}
             className="rounded-lg px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium disabled:cursor-not-allowed disabled:opacity-50 bg-[#3b2513] text-[#faf2e1]"
           >
             Confirm &amp; Pay
@@ -512,7 +604,7 @@ function ThisMonthPaymentFlow({ onOpenModal }: { onOpenModal: (ids: string[], to
                     className="accent-[#3b2513]"
                   />
                 </th>
-                {["Staff", "Role", "Net Pay", "Status"].map((h) => (
+                {["Staff", "Role", "Date Joined", "Net Pay", "Last Paid", "Status"].map((h) => (
                   <th
                     key={h}
                     className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]"
@@ -548,8 +640,14 @@ function ThisMonthPaymentFlow({ onOpenModal }: { onOpenModal: (ids: string[], to
                   <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">
                     {p.role}
                   </td>
+                  <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">
+                    {p.dateJoined}
+                  </td>
                   <td className="px-4 py-3 text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">
                     {formatCurrency(p.netPay)}
+                  </td>
+                  <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">
+                    {p.lastPaidDate}
                   </td>
                   <td className="px-4 py-3">
                     <StatusBadge status={p.status} />
@@ -592,10 +690,26 @@ function ThisMonthPaymentFlow({ onOpenModal }: { onOpenModal: (ids: string[], to
               </div>
               <div className="mt-2 flex items-center justify-between pl-9">
                 <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+                  Date Joined
+                </span>
+                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#454b54]">
+                  {p.dateJoined}
+                </span>
+              </div>
+              <div className="mt-1 flex items-center justify-between pl-9">
+                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
                   Net Pay
                 </span>
                 <span className="font-[family-name:var(--font-merriweather)] text-sm font-bold text-[#3b2513]">
                   {formatCurrency(p.netPay)}
+                </span>
+              </div>
+              <div className="mt-1 flex items-center justify-between pl-9">
+                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+                  Last Paid
+                </span>
+                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#454b54]">
+                  {p.lastPaidDate}
                 </span>
               </div>
             </div>

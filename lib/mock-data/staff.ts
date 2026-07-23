@@ -157,6 +157,9 @@ export const LEADERBOARD: LeaderboardEntry[] = [
 
 export type PayrollStatus = "Paid" | "Pending" | "Processing";
 
+export const PAYROLL_MONTHS = ["Jun 2025", "Jul 2025", "Aug 2025", "Sep 2025", "Oct 2025"] as const;
+export const CURRENT_PAYROLL_MONTH: (typeof PAYROLL_MONTHS)[number] = "Oct 2025";
+
 export type PayrollRecord = {
   id: string;
   name: string;
@@ -167,6 +170,12 @@ export type PayrollRecord = {
   netPay: number;
   payDate: string;
   status: PayrollStatus;
+  /** Date this staff member last received a payment, before this cycle's run. */
+  lastPaidDate: string;
+  /** Past months (besides the current cycle) this staff member still hasn't been paid for. */
+  unpaidMonths: string[];
+  /** Date this staff member joined (matches STAFF.dateAdded for the same person). */
+  dateJoined: string;
 };
 
 export const PAYROLL: PayrollRecord[] = [
@@ -180,6 +189,9 @@ export const PAYROLL: PayrollRecord[] = [
     netPay: 190000,
     payDate: "30 Oct 2025",
     status: "Paid",
+    lastPaidDate: "30 Oct 2025",
+    unpaidMonths: [],
+    dateJoined: "10 Oct 2025",
   },
   {
     id: "pr-2",
@@ -191,6 +203,9 @@ export const PAYROLL: PayrollRecord[] = [
     netPay: 208000,
     payDate: "30 Oct 2025",
     status: "Pending",
+    lastPaidDate: "31 Aug 2025",
+    unpaidMonths: ["Sep 2025"],
+    dateJoined: "05 Sep 2025",
   },
   {
     id: "pr-3",
@@ -202,6 +217,9 @@ export const PAYROLL: PayrollRecord[] = [
     netPay: 185000,
     payDate: "30 Oct 2025",
     status: "Paid",
+    lastPaidDate: "30 Oct 2025",
+    unpaidMonths: [],
+    dateJoined: "12 Aug 2025",
   },
   {
     id: "pr-4",
@@ -213,6 +231,9 @@ export const PAYROLL: PayrollRecord[] = [
     netPay: 272000,
     payDate: "30 Oct 2025",
     status: "Processing",
+    lastPaidDate: "30 Sep 2025",
+    unpaidMonths: [],
+    dateJoined: "20 Jul 2025",
   },
   {
     id: "pr-5",
@@ -224,6 +245,9 @@ export const PAYROLL: PayrollRecord[] = [
     netPay: 200000,
     payDate: "30 Oct 2025",
     status: "Paid",
+    lastPaidDate: "30 Oct 2025",
+    unpaidMonths: [],
+    dateJoined: "15 Jun 2025",
   },
 ];
 
