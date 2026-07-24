@@ -3,10 +3,11 @@
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import {
-  ArrowLeft, Mic, Send, ThumbsUp, ThumbsDown, Copy, RefreshCw, Lock,
+  ArrowLeft, Mic, Send, ThumbsUp, ThumbsDown, Copy, RefreshCw,
 } from "lucide-react";
 import { PARENT_MEMBERSHIP, TRIAL_MESSAGE_LIMIT } from "@/lib/parent/mock-data";
 import { SparkleIcon } from "@/components/parent/nav-icons";
+import { TrialGateBanner } from "@/components/parent/trial-gate-banner";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -129,15 +130,8 @@ export default function CEvenAIPage() {
               if (msg.role === "system") {
                 return (
                   <div key={msg.id} className="flex justify-center py-1">
-                    <div className="flex max-w-[88%] items-center gap-2 rounded-xl border border-gray-100 bg-white px-3 py-2 shadow-sm">
-                      <Lock size={13} className="shrink-0 text-gray-400" />
-                      <p className="text-xs text-gray-600">{msg.content}</p>
-                      <button
-                        onClick={() => router.push("/parent/settings/account")}
-                        className="shrink-0 text-xs font-semibold text-cg-brand underline underline-offset-2"
-                      >
-                        Manage
-                      </button>
+                    <div className="max-w-[88%]">
+                      <TrialGateBanner message={msg.content} />
                     </div>
                   </div>
                 );

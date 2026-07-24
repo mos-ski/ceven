@@ -3,7 +3,10 @@
 import { useState } from "react";
 import { Plus, X, CheckCircle2, Clock, Clock3, AlarmClock } from "lucide-react";
 import { PARENT_MEMBERSHIP } from "@/lib/parent/mock-data";
-import { MembershipGateSheet } from "@/components/parent/membership-gate-sheet";
+import { TrialGateBanner } from "@/components/parent/trial-gate-banner";
+
+/** Trial users may send one special request before the feature gates — never an upfront block. */
+const TRIAL_REQUEST_LIMIT = 1;
 
 type Task = {
   id: string;
@@ -207,11 +210,14 @@ export function SpecialRequestsPanel() {
   const [tasks, setTasks] = useState<Task[]>(INITIAL_TASKS);
   const [showCreateTask, setShowCreateTask] = useState(false);
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
-  const [gateOpen, setGateOpen] = useState(false);
+  const [sentCount, setSentCount] = useState(0);
+
+  const limitReached = PARENT_MEMBERSHIP.status !== "active" && sentCount >= TRIAL_REQUEST_LIMIT;
 
   function handleCreateTask(data: Omit<Task, "id" | "status">) {
     const newTask: Task = { ...data, id: `task-${Date.now()}`, status: "Pending" };
     setTasks((prev) => [...prev, newTask]);
+    setSentCount((prev) => prev + 1);
   }
 
   return (
@@ -222,19 +228,19 @@ export function SpecialRequestsPanel() {
       {selectedTask && (
         <TaskDetailsModal task={selectedTask} onClose={() => setSelectedTask(null)} />
       )}
-      {gateOpen && <MembershipGateSheet onClose={() => setGateOpen(false)} />}
 
       {/* New Request CTA */}
-      <button
-        onClick={() => {
-          if (PARENT_MEMBERSHIP.status !== "active") setGateOpen(true);
-          else setShowCreateTask(true);
-        }}
-        className="flex items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-cg-accent-muted py-4 text-sm font-semibold text-cg-brand"
-      >
-        <Plus size={16} />
-        New Request
-      </button>
+      {limitReached ? (
+        <TrialGateBanner message="You've reached your special request limit. Some family features are unavailable." />
+      ) : (
+        <button
+          onClick={() => setShowCreateTask(true)}
+          className="flex items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-cg-accent-muted py-4 text-sm font-semibold text-cg-brand"
+        >
+          <Plus size={16} />
+          New Request
+        </button>
+      )}
 
       {/* Task list */}
       {tasks.length > 0 ? (
