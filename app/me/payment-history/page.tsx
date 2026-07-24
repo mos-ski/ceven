@@ -16,7 +16,7 @@ export default function PaymentHistoryPage() {
 
   return (
     <div className="mx-auto max-w-3xl">
-      <h1 className="mb-1 text-2xl font-bold text-gray-800">Payment History</h1>
+      <h1 className="mb-1 font-[family-name:var(--font-merriweather-import)] text-2xl font-bold text-gray-800">Payment History</h1>
       <p className="mb-4 text-sm text-gray-500">({transactions.length}) Transactions</p>
 
       <input

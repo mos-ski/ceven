@@ -6,6 +6,9 @@ import {
   ArrowLeft, ChevronDown, Calendar, Upload, X, CheckCircle2,
   ChevronLeft, ChevronRight,
 } from "lucide-react";
+import { PARENT_MEMBERSHIP, mockParentChildren } from "@/lib/parent/mock-data";
+import { FREE_PLAN_CHILD_LIMIT } from "@/lib/me/mock-data";
+import { TrialGateBanner } from "@/components/parent/trial-gate-banner";
 
 type Form = {
   firstName: string;
@@ -192,6 +195,26 @@ export default function AddChildPage() {
   }
 
   const canContinue = !!form.firstName && !!form.lastName && !!form.dob && !!form.gender;
+  const limitReached = PARENT_MEMBERSHIP.status !== "active" && mockParentChildren.length >= FREE_PLAN_CHILD_LIMIT;
+
+  if (limitReached) {
+    return (
+      <div className="relative flex min-h-0 flex-1 flex-col overflow-hidden">
+        <div className="shrink-0 bg-cg-brand px-6 pb-8 pt-4">
+          <button onClick={() => router.back()} className="mb-4 flex h-8 w-8 items-center justify-center rounded-full bg-white/20">
+            <ArrowLeft size={16} className="text-white" />
+          </button>
+          <h1 className="text-xl font-bold text-white" style={{ fontFamily: "var(--font-merriweather)" }}>
+            Bring Your Child&apos;s Day to Life
+          </h1>
+          <p className="mt-1 text-sm text-white/70">Create their profile now!</p>
+        </div>
+        <div className="flex-1 overflow-y-auto bg-white px-6 py-6">
+          <TrialGateBanner message="You've reached your child profile limit. Some family features are unavailable." />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>

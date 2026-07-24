@@ -3,7 +3,7 @@ import { MeTopbar } from "@/components/me/topbar";
 
 export default function MeLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-[#F9F5F0]">
+    <div className="flex h-screen w-full overflow-hidden bg-[#F9F5F0] font-[family-name:var(--font-urbanist-import)]">
       <MeSidebar />
       <div className="flex min-w-0 flex-1 flex-col">
         <MeTopbar />

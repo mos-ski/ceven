@@ -17,7 +17,7 @@ export default function CrecheFeesPage() {
 
   return (
     <div className="mx-auto max-w-3xl">
-      <h1 className="mb-1 text-2xl font-bold text-gray-800">Creche Fees</h1>
+      <h1 className="mb-1 font-[family-name:var(--font-merriweather-import)] text-2xl font-bold text-gray-800">Creche Fees</h1>
       <p className="mb-6 text-sm text-gray-500">Tuition and term invoices for your children.</p>
 
       <div className="flex flex-col gap-3">

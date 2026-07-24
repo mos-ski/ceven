@@ -8,7 +8,7 @@ export default function ReceiptsPage() {
 
   return (
     <div className="mx-auto max-w-3xl">
-      <h1 className="mb-1 text-2xl font-bold text-gray-800">Receipts</h1>
+      <h1 className="mb-1 font-[family-name:var(--font-merriweather-import)] text-2xl font-bold text-gray-800">Receipts</h1>
       <p className="mb-6 text-sm text-gray-500">Download a receipt for any completed payment.</p>
 
       {receipts.length > 0 ? (

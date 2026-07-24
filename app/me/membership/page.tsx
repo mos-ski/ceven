@@ -1,23 +1,23 @@
 "use client";
 
 import { useState } from "react";
-import { Crown, CheckCircle2, X } from "lucide-react";
+import { Zap, Layers, CheckCircle2, X } from "lucide-react";
 import { PARENT_MEMBERSHIP } from "@/lib/parent/mock-data";
-import { PLANS, type PlanId } from "@/lib/me/mock-data";
-import { PaymentFlowModal } from "@/components/me/payment-flow-modal";
+import { PLANS, BILLING_CYCLES, formatNaira, type BillingCycle } from "@/lib/me/mock-data";
+import { MembershipCheckoutModal } from "@/components/me/membership-checkout-modal";
 
 function CancelConfirmModal({ onClose, onConfirm }: { onClose: () => void; onConfirm: () => void }) {
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 px-4">
       <div className="w-full max-w-[380px] rounded-2xl bg-white p-6 shadow-xl">
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-base font-bold text-gray-800">Cancel Membership</h2>
+          <h2 className="font-[family-name:var(--font-merriweather-import)] text-base font-bold text-gray-800">Cancel Membership</h2>
           <button onClick={onClose} className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-100">
             <X size={16} className="text-gray-600" />
           </button>
         </div>
         <p className="mb-5 text-sm text-gray-600">
-          You&apos;ll lose access to Premium Family features at the end of your current billing period. This can&apos;t be undone.
+          You&apos;ll lose access to Premium features at the end of your current billing period. This can&apos;t be undone.
         </p>
         <div className="flex gap-3">
           <button onClick={onClose} className="flex-1 rounded-xl border border-gray-200 py-3 text-sm font-semibold text-gray-600">
@@ -32,17 +32,21 @@ function CancelConfirmModal({ onClose, onConfirm }: { onClose: () => void; onCon
   );
 }
 
+const freePlan = PLANS.find((p) => p.id === "free")!;
+const premiumPlan = PLANS.find((p) => p.id === "premium_family")!;
+
 export default function MembershipPage() {
   const [, setTick] = useState(0);
-  const [payingPlan, setPayingPlan] = useState<PlanId | null>(null);
+  const [cycle, setCycle] = useState<BillingCycle>("monthly");
+  const [checkingOut, setCheckingOut] = useState(false);
   const [showCancel, setShowCancel] = useState(false);
 
   const isActive = PARENT_MEMBERSHIP.status === "active";
-  const currentPlan = PLANS.find((p) => p.id === (isActive ? "premium_family" : "free"))!;
+  const price = premiumPlan.pricing![cycle];
 
-  function handleUpgrade(planId: PlanId) {
-    if (planId === "free" || isActive) return;
-    setPayingPlan(planId);
+  function handlePurchase() {
+    if (isActive) return;
+    setCheckingOut(true);
   }
 
   function handlePaymentSuccess() {
@@ -56,83 +60,114 @@ export default function MembershipPage() {
     setTick((n) => n + 1);
   }
 
-  const paidPlan = PLANS.find((p) => p.id === payingPlan);
-
   return (
-    <div className="mx-auto max-w-4xl">
-      <h1 className="mb-1 text-2xl font-bold text-gray-800">Membership</h1>
-      <p className="mb-6 text-sm text-gray-500">Manage your CEven plan and billing.</p>
+    <div className="mx-auto max-w-2xl">
+      <div className="mb-6 flex flex-col items-center gap-1 text-center">
+        <h1 className="flex items-center gap-2 font-[family-name:var(--font-merriweather-import)] text-2xl font-bold text-gray-800">
+          <Zap size={20} className="text-cg-brand" />
+          Choose Your Plan
+        </h1>
+        <p className="text-sm text-gray-500">Unlock CEven AI and Special Requests with Premium.</p>
+      </div>
 
-      <div className="mb-8 rounded-2xl bg-gradient-to-br from-cg-brand to-[#8B5E3C] p-5 text-white shadow-md">
-        <p className="text-xs text-white/70">Current Plan</p>
-        <p className="text-lg font-bold">{currentPlan.name}</p>
-        <p className="mt-1 text-xs text-white/70">
-          {isActive ? `${currentPlan.price} ${currentPlan.period}` : "Trial ended — some family features are unavailable"}
-        </p>
-        {isActive && (
+      {isActive && (
+        <div className="mb-6 flex items-center justify-between rounded-2xl bg-gradient-to-br from-cg-brand to-[#8B5E3C] p-5 text-white shadow-md">
+          <div>
+            <p className="text-xs text-white/70">Current Plan</p>
+            <p className="font-[family-name:var(--font-merriweather-import)] text-lg font-bold">Premium — Active</p>
+          </div>
           <button
             onClick={() => setShowCancel(true)}
-            className="mt-3 rounded-lg bg-white/15 px-3 py-1.5 text-xs font-semibold text-white"
+            className="rounded-lg bg-white/15 px-3 py-1.5 text-xs font-semibold text-white"
           >
             Cancel Membership
           </button>
-        )}
-      </div>
+        </div>
+      )}
 
-      <p className="mb-3 text-sm font-semibold text-gray-600">Plans</p>
-      <div className="grid gap-4 sm:grid-cols-2">
-        {PLANS.map((plan) => {
-          const isCurrent = plan.id === currentPlan.id;
-          return (
-            <div
-              key={plan.id}
-              className={`rounded-2xl p-5 ${plan.highlight ? "bg-[#3B2513] text-white shadow-lg" : "border border-gray-100 bg-white"}`}
-            >
-              <div className="mb-2 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  {plan.highlight && <Crown size={16} className="text-amber-400" />}
-                  <span className={`text-base font-bold ${plan.highlight ? "text-white" : "text-gray-800"}`}>{plan.name}</span>
-                </div>
-                {isCurrent && (
-                  <span className={`rounded-full px-2.5 py-0.5 text-[10px] font-bold ${plan.highlight ? "bg-white/20 text-white" : "bg-emerald-100 text-emerald-700"}`}>
-                    Current
-                  </span>
-                )}
-              </div>
-
-              <div className="mb-3 flex items-baseline gap-1">
-                <span className={`text-2xl font-bold ${plan.highlight ? "text-amber-400" : "text-cg-brand"}`}>{plan.price}</span>
-                <span className={`text-xs ${plan.highlight ? "text-white/60" : "text-gray-400"}`}>{plan.period}</span>
-              </div>
-
-              <ul className="mb-4 space-y-1.5">
-                {plan.features.map((feat) => (
-                  <li key={feat} className="flex items-center gap-2">
-                    <CheckCircle2 size={13} className={plan.highlight ? "text-amber-400 shrink-0" : "text-green-500 shrink-0"} />
-                    <span className={`text-xs ${plan.highlight ? "text-white/80" : "text-gray-600"}`}>{feat}</span>
-                  </li>
-                ))}
-              </ul>
-
-              {!isCurrent && plan.id !== "free" && (
-                <button
-                  onClick={() => handleUpgrade(plan.id)}
-                  className="w-full rounded-xl bg-amber-400 py-2.5 text-sm font-semibold text-[#3B2513]"
-                >
-                  Upgrade
-                </button>
-              )}
+      <div className="flex flex-col gap-4">
+        {/* Free plan card */}
+        <div className="overflow-hidden rounded-2xl border border-[#eaecf0] bg-white shadow-[0px_4px_6px_-2px_rgba(16,24,40,0.03),0px_12px_16px_-4px_rgba(16,24,40,0.08)]">
+          <div className="flex items-center gap-2 bg-[#5b391e] px-4 py-3">
+            <div className="flex h-6 w-6 items-center justify-center rounded-full border-[3px] border-[#e0bfa0] bg-[#edd9c0]">
+              <Zap size={12} className="text-cg-brand" />
             </div>
-          );
-        })}
+            <p className="text-sm font-medium text-white">Free Plan</p>
+          </div>
+          <div className="p-4">
+            <ul className="flex flex-col gap-2">
+              {freePlan.features.map((feat) => (
+                <li key={feat} className="flex items-center gap-2 text-sm text-gray-500">
+                  <CheckCircle2 size={16} className="shrink-0 text-green-500" />
+                  {feat}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        {/* Premium plan card */}
+        <div className="overflow-hidden rounded-2xl border border-[#eaecf0] bg-white shadow-[0px_4px_6px_-2px_rgba(16,24,40,0.03),0px_12px_16px_-4px_rgba(16,24,40,0.08)]">
+          <div className="flex items-center gap-2 bg-[#faf2e1] px-4 py-3">
+            <div className="flex h-5 w-5 items-center justify-center rounded-full border-[3px] border-[#e0bfa0] bg-[#edd9c0]">
+              <Layers size={10} className="text-cg-brand" />
+            </div>
+            <p className="text-sm font-medium text-cg-brand">Premium</p>
+          </div>
+
+          <div className="flex flex-col items-center gap-4 px-4 pt-4">
+            <div className="flex w-full max-w-[297px] rounded-lg bg-[#f4f5f6] p-[3px]">
+              {BILLING_CYCLES.map((c) => (
+                <button
+                  key={c.id}
+                  onClick={() => setCycle(c.id)}
+                  className={`flex-1 rounded-lg py-2 text-sm font-semibold transition-colors ${
+                    cycle === c.id ? "bg-[#5b391e] text-white" : "text-gray-800"
+                  }`}
+                >
+                  {c.label}
+                </button>
+              ))}
+            </div>
+
+            <p className="font-[family-name:var(--font-merriweather-import)] text-2xl font-bold text-gray-800">
+              {formatNaira(price).replace(/\.00$/, "")}
+            </p>
+          </div>
+
+          <div className="p-4">
+            <ul className="flex flex-col gap-2">
+              {premiumPlan.features.map((feat) => (
+                <li key={feat} className="flex items-center gap-2 text-sm text-gray-500">
+                  <CheckCircle2 size={16} className="shrink-0 text-green-500" />
+                  {feat}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="px-6 pb-4">
+            {isActive ? (
+              <div className="rounded-lg bg-emerald-50 py-3 text-center text-sm font-semibold text-emerald-700">
+                Current Plan
+              </div>
+            ) : (
+              <button
+                onClick={handlePurchase}
+                className="w-full rounded-lg bg-[#3b2513] py-3 text-base font-medium text-white shadow-sm"
+              >
+                Purchase Plan
+              </button>
+            )}
+          </div>
+        </div>
       </div>
 
-      {paidPlan && (
-        <PaymentFlowModal
-          title="Upgrade Membership"
-          amount={`${paidPlan.price}/mo`}
-          description={`${paidPlan.name} membership`}
-          onClose={() => setPayingPlan(null)}
+      {checkingOut && (
+        <MembershipCheckoutModal
+          plan={premiumPlan}
+          cycle={cycle}
+          onClose={() => setCheckingOut(false)}
           onSuccess={handlePaymentSuccess}
         />
       )}

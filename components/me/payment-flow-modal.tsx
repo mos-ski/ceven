@@ -41,7 +41,7 @@ export function PaymentFlowModal({
         {step === "select" && (
           <>
             <div className="mb-4 flex items-center justify-between">
-              <h2 className="text-base font-bold text-gray-800">{title}</h2>
+              <h2 className="font-[family-name:var(--font-merriweather-import)] text-base font-bold text-gray-800">{title}</h2>
               <button onClick={onClose} className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-100">
                 <X size={16} className="text-gray-600" />
               </button>
@@ -100,7 +100,7 @@ export function PaymentFlowModal({
             <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-50">
               <CheckCircle2 size={36} className="text-green-500" />
             </div>
-            <h2 className="mb-1 text-lg font-bold text-gray-800">Payment Successful</h2>
+            <h2 className="mb-1 font-[family-name:var(--font-merriweather-import)] text-lg font-bold text-gray-800">Payment Successful</h2>
             <p className="mb-6 text-sm text-gray-500">{description} — {amount}</p>
             <button
               onClick={() => { onSuccess(); onClose(); }}

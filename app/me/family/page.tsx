@@ -39,7 +39,7 @@ function InviteModal({ onClose }: { onClose: () => void }) {
         ) : (
           <>
             <div className="mb-4 flex items-center justify-between">
-              <h2 className="text-base font-bold text-gray-800">Invite Family Member</h2>
+              <h2 className="font-[family-name:var(--font-merriweather-import)] text-base font-bold text-gray-800">Invite Family Member</h2>
               <button onClick={onClose} className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-100">
                 <X size={16} className="text-gray-600" />
               </button>
@@ -112,7 +112,7 @@ export default function FamilyPage() {
 
   return (
     <div className="mx-auto max-w-4xl">
-      <h1 className="mb-1 text-2xl font-bold text-gray-800">Family</h1>
+      <h1 className="mb-1 font-[family-name:var(--font-merriweather-import)] text-2xl font-bold text-gray-800">Family</h1>
       <p className="mb-6 text-sm text-gray-500">Manage who has access to your child&apos;s care, and your account security.</p>
 
       <div className="mb-8 grid grid-cols-2 gap-4 sm:grid-cols-4">

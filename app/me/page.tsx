@@ -14,7 +14,7 @@ export default function MeOverviewPage() {
 
   return (
     <div className="mx-auto max-w-4xl">
-      <h1 className="mb-6 text-2xl font-bold text-gray-800">Account Overview</h1>
+      <h1 className="mb-6 font-[family-name:var(--font-merriweather-import)] text-2xl font-bold text-gray-800">Account Overview</h1>
 
       <div className="mb-6 grid gap-4 sm:grid-cols-2">
         <div className="rounded-2xl bg-white p-5 shadow-sm">
@@ -26,7 +26,7 @@ export default function MeOverviewPage() {
             )}
             <p className="text-sm font-semibold text-gray-800">Membership Status</p>
           </div>
-          <p className="text-lg font-bold text-gray-800">{isActive ? "Premium Family — Active" : "Trial ended"}</p>
+          <p className="font-[family-name:var(--font-merriweather-import)] text-lg font-bold text-gray-800">{isActive ? "Premium Family — Active" : "Trial ended"}</p>
           <Link href="/me/membership" className="mt-2 inline-block text-xs font-semibold text-cg-brand underline underline-offset-2">
             Manage membership
           </Link>

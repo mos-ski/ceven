@@ -1,41 +1,54 @@
 import { mockParentChildren } from "@/lib/parent/mock-data";
 
 export type PlanId = "free" | "premium_family";
+export type BillingCycle = "monthly" | "quarterly" | "yearly";
 
 export type Plan = {
   id: PlanId;
   name: string;
-  price: string;
-  period: string;
   features: string[];
   highlight: boolean;
+  /** Only paid plans carry pricing; Free has none. */
+  pricing?: Record<BillingCycle, number>;
 };
+
+export const BILLING_CYCLES: { id: BillingCycle; label: string }[] = [
+  { id: "monthly", label: "Monthly" },
+  { id: "quarterly", label: "Quarterly" },
+  { id: "yearly", label: "Yearly" },
+];
+
+/** Max child profiles a Free-tier account may create (existing profiles are never hidden). */
+export const FREE_PLAN_CHILD_LIMIT = 1;
+
+export const VAT_RATE = 0.075;
 
 export const PLANS: Plan[] = [
   {
     id: "free",
-    name: "Free",
-    price: "₦0",
-    period: "forever",
-    features: ["5 AI queries per day", "Basic daily summaries", "Standard support"],
+    name: "Free Plan",
     highlight: false,
+    features: ["5 messages", "5 CEvenAI chats", "1 special request per child", "1 device", "1 parent profile"],
   },
   {
     id: "premium_family",
-    name: "Premium Family",
-    price: "₦2,500",
-    period: "per month",
-    features: [
-      "Unlimited AI queries",
-      "Advanced health insights",
-      "Weekly trend analysis",
-      "Additional family members",
-      "Priority support",
-      "Early feature access",
-    ],
+    name: "Premium",
     highlight: true,
+    pricing: { monthly: 9950, quarterly: 23880, yearly: 95520 },
+    features: [
+      "CEven AI Assistant",
+      "Special Requests Feature",
+      "Unlimited children profiles",
+      "Up to 2 devices",
+      "Priority support",
+      "7-day free trial",
+    ],
   },
 ];
+
+export function formatNaira(amount: number): string {
+  return `₦${amount.toLocaleString("en-NG", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+}
 
 export type PaymentMethodType = "card" | "bank" | "ussd";
 

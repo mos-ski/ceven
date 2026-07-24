@@ -11,7 +11,7 @@ export default function AcceptanceFeesPage() {
 
   return (
     <div className="mx-auto max-w-3xl">
-      <h1 className="mb-1 text-2xl font-bold text-gray-800">Acceptance Fees</h1>
+      <h1 className="mb-1 font-[family-name:var(--font-merriweather-import)] text-2xl font-bold text-gray-800">Acceptance Fees</h1>
       <p className="mb-6 text-sm text-gray-500">One-time enrollment fees per child.</p>
 
       <div className="flex flex-col gap-3">

@@ -28,7 +28,7 @@ function AddMethodModal({ onClose, onAdd }: { onClose: () => void; onAdd: (m: Pa
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/40 px-4">
       <div className="w-full max-w-[420px] rounded-2xl bg-white p-6 shadow-xl">
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-base font-bold text-gray-800">Add Payment Method</h2>
+          <h2 className="font-[family-name:var(--font-merriweather-import)] text-base font-bold text-gray-800">Add Payment Method</h2>
           <button onClick={onClose} className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-100">
             <X size={16} className="text-gray-600" />
           </button>
@@ -94,7 +94,7 @@ export default function PaymentMethodsPage() {
 
   return (
     <div className="mx-auto max-w-3xl">
-      <h1 className="mb-1 text-2xl font-bold text-gray-800">Payment Methods</h1>
+      <h1 className="mb-1 font-[family-name:var(--font-merriweather-import)] text-2xl font-bold text-gray-800">Payment Methods</h1>
       <p className="mb-6 text-sm text-gray-500">Manage the cards and accounts used for payments.</p>
 
       <div className="mb-4 flex flex-col gap-3">
