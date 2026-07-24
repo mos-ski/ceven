@@ -3,9 +3,10 @@
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import {
-  ArrowLeft, Mic, Send, ThumbsUp, ThumbsDown, Copy, RefreshCw, Sparkles, Lock,
+  ArrowLeft, Mic, Send, ThumbsUp, ThumbsDown, Copy, RefreshCw, Lock,
 } from "lucide-react";
 import { PARENT_MEMBERSHIP, TRIAL_MESSAGE_LIMIT } from "@/lib/parent/mock-data";
+import { SparkleIcon } from "@/components/parent/nav-icons";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -86,7 +87,7 @@ export default function CEvenAIPage() {
         </button>
 
         <div className="flex flex-1 items-center justify-center gap-2">
-          <Sparkles size={22} className="text-cg-brand" />
+          <SparkleIcon size={22} className="text-cg-brand" />
           <h1 className="text-lg font-bold text-gray-800">CEvenAI</h1>
         </div>
 
@@ -100,7 +101,7 @@ export default function CEvenAIPage() {
             {/* Hero */}
             <div className="flex min-h-0 flex-1 flex-col items-center justify-center text-center">
               <div className="mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-[#F3EDE5]">
-                <Sparkles size={30} className="text-cg-brand" />
+                <SparkleIcon size={30} className="text-cg-brand" />
               </div>
               <h2 className="mb-1 text-base font-bold text-gray-800">Hi! I&apos;m CEvenAI</h2>
               <p className="max-w-[220px] text-xs text-gray-500">
@@ -151,7 +152,7 @@ export default function CEvenAIPage() {
                   ) : (
                     <div className="max-w-[88%]">
                       <div className="mb-1 flex items-center gap-1.5">
-                        <Sparkles size={14} className="text-cg-brand" />
+                        <SparkleIcon size={14} className="text-cg-brand" />
                       </div>
                       <div className="rounded-2xl bg-white px-4 py-3 text-sm text-gray-700 shadow-sm">
                         {msg.content.split("\n").map((line, i) => (
@@ -171,7 +172,7 @@ export default function CEvenAIPage() {
 
             {isTyping && (
               <div className="flex items-center gap-2">
-                <Sparkles size={14} className="text-cg-brand" />
+                <SparkleIcon size={14} className="text-cg-brand" />
                 <div className="flex items-center gap-1 rounded-2xl bg-white px-4 py-3 shadow-sm">
                   <span className="h-2 w-2 animate-bounce rounded-full bg-gray-400 [animation-delay:0ms]" />
                   <span className="h-2 w-2 animate-bounce rounded-full bg-gray-400 [animation-delay:150ms]" />
