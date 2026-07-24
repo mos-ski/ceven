@@ -11,7 +11,7 @@ const STATUS_STYLES: Record<FeeInvoice["status"], string> = {
   overdue: "bg-red-100 text-red-700",
 };
 
-export default function CrechFeesPage() {
+export default function CrecheFeesPage() {
   const [payingFee, setPayingFee] = useState<FeeInvoice | null>(null);
   const [paidIds, setPaidIds] = useState<string[]>([]);
 
@@ -55,7 +55,7 @@ export default function CrechFeesPage() {
 
       {payingFee && (
         <PaymentFlowModal
-          title="Pay School Fee"
+          title="Pay Creche Fee"
           amount={payingFee.amount}
           description={payingFee.term}
           onClose={() => setPayingFee(null)}
