@@ -10,7 +10,7 @@ import {
 export const NAV_ITEMS = [
   { label: "Overview", href: "/me", icon: LayoutGrid },
   { label: "Membership", href: "/me/membership", icon: CreditCard },
-  { label: "School Fees", href: "/me/fees", icon: FileText },
+  { label: "Creche Fees", href: "/me/creche-fees", icon: FileText },
   { label: "Acceptance Fees", href: "/me/acceptance-fees", icon: FileText },
   { label: "Payment History", href: "/me/payment-history", icon: Receipt },
   { label: "Receipts", href: "/me/receipts", icon: ScrollText },

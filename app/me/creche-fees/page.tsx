@@ -11,13 +11,13 @@ const STATUS_STYLES: Record<FeeInvoice["status"], string> = {
   overdue: "bg-red-100 text-red-700",
 };
 
-export default function SchoolFeesPage() {
+export default function CrechFeesPage() {
   const [payingFee, setPayingFee] = useState<FeeInvoice | null>(null);
   const [paidIds, setPaidIds] = useState<string[]>([]);
 
   return (
     <div className="mx-auto max-w-3xl">
-      <h1 className="mb-1 text-2xl font-bold text-gray-800">School Fees</h1>
+      <h1 className="mb-1 text-2xl font-bold text-gray-800">Creche Fees</h1>
       <p className="mb-6 text-sm text-gray-500">Tuition and term invoices for your children.</p>
 
       <div className="flex flex-col gap-3">

@@ -35,7 +35,7 @@ export default function MeOverviewPage() {
         <div className="rounded-2xl bg-white p-5 shadow-sm">
           <p className="mb-2 text-sm font-semibold text-gray-800">Outstanding Payments</p>
           <p className="text-lg font-bold text-gray-800">{totalOutstanding} item{totalOutstanding === 1 ? "" : "s"}</p>
-          <Link href="/me/fees" className="mt-2 inline-block text-xs font-semibold text-cg-brand underline underline-offset-2">
+          <Link href="/me/creche-fees" className="mt-2 inline-block text-xs font-semibold text-cg-brand underline underline-offset-2">
             View fees
           </Link>
         </div>
