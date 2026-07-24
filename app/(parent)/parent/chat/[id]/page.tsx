@@ -2,12 +2,12 @@
 
 import { useState, useRef, useEffect, use } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, Video, Send, Plus } from "lucide-react";
-import { mockChatThreads } from "@/lib/parent/mock-data";
+import { ArrowLeft, Video, Send, Plus, Lock } from "lucide-react";
+import { mockChatThreads, PARENT_MEMBERSHIP, TRIAL_MESSAGE_LIMIT } from "@/lib/parent/mock-data";
 
 type Message = {
   id: string;
-  role: "sent" | "received";
+  role: "sent" | "received" | "system";
   text: string;
   time: string;
 };
@@ -33,6 +33,7 @@ export default function ChatConversationPage({ params }: { params: Promise<{ id:
   const thread = mockChatThreads.find((t) => t.id === id) ?? mockChatThreads[0];
   const [messages, setMessages] = useState<Message[]>(INITIAL_MESSAGES[id] ?? []);
   const [input, setInput] = useState("");
+  const [limitReached, setLimitReached] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -40,11 +41,25 @@ export default function ChatConversationPage({ params }: { params: Promise<{ id:
   }, [messages]);
 
   function handleSend() {
+    if (limitReached) return;
     const text = input.trim();
     if (!text) return;
+
+    const sentCount = messages.filter((m) => m.role === "sent").length + 1;
     const sent: Message = { id: Date.now().toString(), role: "sent", text, time: formatNow() };
     setMessages((prev) => [...prev, sent]);
     setInput("");
+
+    if (PARENT_MEMBERSHIP.status !== "active" && sentCount > TRIAL_MESSAGE_LIMIT) {
+      setLimitReached(true);
+      setTimeout(() => {
+        setMessages((prev) => [
+          ...prev,
+          { id: (Date.now() + 1).toString(), role: "system", text: "Your trial has ended. Some family features are unavailable.", time: formatNow() },
+        ]);
+      }, 800);
+      return;
+    }
 
     setTimeout(() => {
       setMessages((prev) => [
@@ -96,7 +111,25 @@ export default function ChatConversationPage({ params }: { params: Promise<{ id:
         </div>
 
         <div className="flex flex-col gap-3">
-          {messages.map((msg) => (
+          {messages.map((msg) => {
+            if (msg.role === "system") {
+              return (
+                <div key={msg.id} className="flex justify-center py-1">
+                  <div className="flex max-w-[88%] items-center gap-2 rounded-xl border border-gray-100 bg-white px-3 py-2 shadow-sm">
+                    <Lock size={13} className="shrink-0 text-gray-400" />
+                    <p className="text-xs text-gray-600">{msg.text}</p>
+                    <button
+                      onClick={() => router.push("/parent/settings/account")}
+                      className="shrink-0 text-xs font-semibold text-cg-brand underline underline-offset-2"
+                    >
+                      Manage
+                    </button>
+                  </div>
+                </div>
+              );
+            }
+
+            return (
             <div key={msg.id} className={`flex ${msg.role === "sent" ? "justify-end" : "justify-start"}`}>
               {msg.role === "received" ? (
                 <div className="max-w-[72%]">
@@ -119,7 +152,8 @@ export default function ChatConversationPage({ params }: { params: Promise<{ id:
                 </div>
               )}
             </div>
-          ))}
+            );
+          })}
           <div ref={bottomRef} />
         </div>
       </div>
@@ -132,13 +166,15 @@ export default function ChatConversationPage({ params }: { params: Promise<{ id:
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSend()}
-              placeholder="Type a message..."
-              className="flex-1 bg-transparent text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none"
+              placeholder={limitReached ? "Manage your account to keep chatting" : "Type a message..."}
+              disabled={limitReached}
+              className="flex-1 bg-transparent text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none disabled:opacity-60"
             />
           </div>
           <button
             onClick={handleSend}
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cg-brand"
+            disabled={limitReached}
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cg-brand disabled:opacity-60"
           >
             <Send size={14} className="text-white" />
           </button>

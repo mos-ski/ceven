@@ -6,7 +6,6 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import {
   Bell,
   ScanLine,
-  LogIn,
   Baby,
   LayoutGrid,
   Images,
@@ -25,13 +24,15 @@ import {
   ChevronLeft,
   ChevronRight,
   ClipboardList,
-  Plus,
+  Timer,
 } from "lucide-react";
 import { ParentBottomNav } from "@/components/parent/bottom-nav";
 import { QuickActionCard } from "@/components/parent/quick-action-card";
 import { AnimatedRequestIcon } from "@/components/parent/animated-request-icon";
 import { SafeImage } from "@/components/ui/safe-image";
-import { mockParentUser, mockChild, mockAttendanceHistory } from "@/lib/parent/mock-data";
+import { MembershipGateSheet } from "@/components/parent/membership-gate-sheet";
+import { SpecialRequestsPanel } from "@/components/parent/special-requests-panel";
+import { mockParentUser, mockChild, mockAttendanceHistory, isFeatureGated } from "@/lib/parent/mock-data";
 import { getFeedItems, type FeedItem } from "@/lib/shared/feed";
 
 const ALL_ACTIONS = [
@@ -462,7 +463,17 @@ function PostCard({
   );
 }
 
-function MenuOverlay({ open, onClose }: { open: boolean; onClose: () => void }) {
+function MenuOverlay({
+  open,
+  onClose,
+  onGated,
+  onSelectSpecialRequests,
+}: {
+  open: boolean;
+  onClose: () => void;
+  onGated: () => void;
+  onSelectSpecialRequests: () => void;
+}) {
   const router = useRouter();
 
   const groups = ALL_ACTIONS.reduce<Record<string, typeof ALL_ACTIONS>>((acc, a) => {
@@ -472,8 +483,16 @@ function MenuOverlay({ open, onClose }: { open: boolean; onClose: () => void }) 
 
   const handleNav = useCallback((href: string) => {
     onClose();
+    if (isFeatureGated(href)) {
+      onGated();
+      return;
+    }
+    if (href === "/parent/special-requests") {
+      onSelectSpecialRequests();
+      return;
+    }
     router.push(href);
-  }, [onClose, router]);
+  }, [onClose, onGated, onSelectSpecialRequests, router]);
 
   if (!open) return null;
 
@@ -528,6 +547,8 @@ function MenuOverlay({ open, onClose }: { open: boolean; onClose: () => void }) 
 export default function ParentHomePage() {
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [gateOpen, setGateOpen] = useState(false);
+  const [homeTab, setHomeTab] = useState<"moments" | "special-requests">("moments");
   const [feedItems, setFeedItems] = useState<FeedItem[]>([]);
   const [activeTag, setActiveTag] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
@@ -592,39 +613,58 @@ export default function ParentHomePage() {
             <Link href="/parent/notifications" className="flex h-10 w-10 items-center justify-center rounded-full bg-[#f4f5f6]">
               <Bell size={20} className="text-gray-600" />
             </Link>
+            <Link href="/parent/scan" className="relative flex h-10 w-10 items-center justify-center rounded-full bg-cg-accent text-white">
+              <span className="absolute inset-0 rounded-full bg-cg-accent animate-pulse opacity-30" />
+              <ScanLine size={18} />
+            </Link>
           </div>
         </div>
 
-        {/* Moments & Special Requests tabs — browser-tab style */}
+        {/* Moments & Special Requests tabs */}
         <div className="sticky top-0 z-30 -mx-6 px-6 pt-2 pb-0 bg-white">
-          <div className="flex gap-1.5 rounded-t-2xl bg-gray-200/70 p-1.5">
-            <Link href="/parent/moments" className="flex flex-1 items-center justify-center gap-1.5 rounded-xl bg-white py-2.5 text-gray-900 text-xs font-semibold shadow-sm">
-              <LayoutGrid size={14} className="text-gray-700" />
+          <div className="flex items-start rounded-[8px] bg-[#f4f5f6] p-[3px]">
+            <button
+              type="button"
+              onClick={() => setHomeTab("moments")}
+              className={`flex flex-1 items-center justify-center gap-1.5 rounded-[8px] py-2.5 text-xs font-semibold transition-colors ${
+                homeTab === "moments" ? "bg-[#5B391E] text-white" : "text-gray-800"
+              }`}
+            >
+              <LayoutGrid size={16} />
               <span>Moments</span>
-            </Link>
-            <Link href="/parent/special-requests" className="flex flex-1 items-center justify-center gap-1.5 rounded-xl py-2.5 text-gray-400 text-xs font-semibold opacity-70 active:opacity-100 transition-opacity">
-              <Plus size={14} />
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                if (isFeatureGated("/parent/special-requests")) setGateOpen(true);
+                else setHomeTab("special-requests");
+              }}
+              className={`flex flex-1 items-center justify-center gap-1.5 rounded-[8px] py-2.5 text-xs font-semibold transition-colors ${
+                homeTab === "special-requests" ? "bg-[#5B391E] text-white" : "text-gray-800"
+              }`}
+            >
               <span>Special Requests</span>
-            </Link>
+              <Timer size={16} />
+            </button>
           </div>
         </div>
 
-        {/* Scan CTA */}
-        <Link href="/parent/scan" className="mt-3 flex items-center justify-center gap-2.5 rounded-xl bg-cg-brand px-4 py-3 text-white active:scale-[0.98] transition-transform">
-          <ScanLine size={18} />
-          <span className="text-sm font-semibold">Scan attendance code</span>
-          <span className="inline-flex shrink-0 items-center rounded-full bg-white/20 px-1.5 py-0.5 text-[8px] font-bold uppercase tracking-wide text-white">New</span>
-        </Link>
-
+        {homeTab === "special-requests" ? (
+          <div className="mt-3">
+            <SpecialRequestsPanel />
+          </div>
+        ) : (
+        <>
         {/* Check-in toast — swipe left to dismiss */}
         {mockAttendanceHistory[0].checkInTime && !checkInDismissed && (
           <div
-            className="mt-2.5 overflow-hidden rounded-lg border border-gray-100 bg-gray-50"
+            className="mt-3 overflow-hidden rounded-lg border border-gray-100 bg-gray-50"
             style={{ opacity: swiping ? Math.max(0, 1 - Math.abs(swipeX) / 150) : 1 }}
           >
             <div
-              className="flex items-center gap-2 px-3 py-2 touch-pan-y"
+              className="flex items-center gap-2 px-3 py-2 touch-pan-y cursor-pointer"
               style={{ transform: `translateX(${swipeX}px)`, transition: swiping ? "none" : "transform 0.2s ease, opacity 0.2s ease" }}
+              onClick={() => router.push("/parent/attendance")}
               onTouchStart={(e) => { setSwiping(true); setSwipeX(0); swipeXRef.current = 0; }}
               onTouchMove={(e) => {
                 const dx = e.touches[0].clientX - (e.target as HTMLElement).getBoundingClientRect().left - 50;
@@ -662,13 +702,20 @@ export default function ParentHomePage() {
                 document.addEventListener("mouseup", onUp);
               }}
             >
-              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-100">
-                <LogIn size={10} className="text-emerald-600" />
-              </span>
               <p className="flex-1 text-[11px] text-gray-500">
                 {mockChild.name} checked in at {mockAttendanceHistory[0].checkInTime}
               </p>
-              <Link href="/parent/attendance" className="text-[11px] font-medium text-cg-brand">Details</Link>
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setCheckInDismissed(true);
+                }}
+                className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-gray-400 active:bg-gray-100"
+                aria-label="Dismiss"
+              >
+                <X size={12} />
+              </button>
             </div>
           </div>
         )}
@@ -708,6 +755,8 @@ export default function ParentHomePage() {
             </div>
           )}
         </div>
+        </>
+        )}
       </div>
 
       {/* FAB — menu or scroll-to-top */}
@@ -735,7 +784,14 @@ export default function ParentHomePage() {
         )}
       </button>
 
-      <MenuOverlay open={menuOpen} onClose={() => setMenuOpen(false)} />
+      <MenuOverlay
+        open={menuOpen}
+        onClose={() => setMenuOpen(false)}
+        onGated={() => setGateOpen(true)}
+        onSelectSpecialRequests={() => setHomeTab("special-requests")}
+      />
+
+      {gateOpen && <MembershipGateSheet onClose={() => setGateOpen(false)} />}
 
       {/* Full-screen image viewer */}
       {viewerOpen && (

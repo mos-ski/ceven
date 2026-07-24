@@ -3,14 +3,15 @@
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import {
-  ArrowLeft, Mic, Send, ThumbsUp, ThumbsDown, Copy, RefreshCw, Sparkles,
+  ArrowLeft, Mic, Send, ThumbsUp, ThumbsDown, Copy, RefreshCw, Sparkles, Lock,
 } from "lucide-react";
+import { PARENT_MEMBERSHIP, TRIAL_MESSAGE_LIMIT } from "@/lib/parent/mock-data";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 type Message = {
   id: string;
-  role: "user" | "ai";
+  role: "user" | "ai" | "system";
   content: string;
 };
 
@@ -33,6 +34,7 @@ export default function CEvenAIPage() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
+  const [limitReached, setLimitReached] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -40,11 +42,25 @@ export default function CEvenAIPage() {
   }, [messages, isTyping]);
 
   function handleSend(text?: string) {
+    if (limitReached) return;
     const content = text ?? input.trim();
     if (!content) return;
+
+    const sentCount = messages.filter((m) => m.role === "user").length + 1;
     const userMsg: Message = { id: Date.now().toString(), role: "user", content };
     setMessages((prev) => [...prev, userMsg]);
     setInput("");
+
+    if (PARENT_MEMBERSHIP.status !== "active" && sentCount > TRIAL_MESSAGE_LIMIT) {
+      setLimitReached(true);
+      setMessages((prev) => [...prev, {
+        id: (Date.now() + 1).toString(),
+        role: "system",
+        content: "Your trial has ended. Some family features are unavailable.",
+      }]);
+      return;
+    }
+
     setIsTyping(true);
     setTimeout(() => {
       setIsTyping(false);
@@ -108,31 +124,50 @@ export default function CEvenAIPage() {
           </div>
         ) : (
           <div className="flex flex-col gap-3 py-2">
-            {messages.map((msg) => (
-              <div key={msg.id} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
-                {msg.role === "user" ? (
-                  <div className="max-w-[78%] rounded-2xl bg-cg-brand px-4 py-3 text-sm text-white">
-                    {msg.content}
-                  </div>
-                ) : (
-                  <div className="max-w-[88%]">
-                    <div className="mb-1 flex items-center gap-1.5">
-                      <Sparkles size={14} className="text-cg-brand" />
-                    </div>
-                    <div className="rounded-2xl bg-white px-4 py-3 text-sm text-gray-700 shadow-sm">
-                      {msg.content.split("\n").map((line, i) => (
-                        <p key={i} className={i > 0 ? "mt-1" : ""}>{line}</p>
-                      ))}
-                    </div>
-                    <div className="mt-1.5 flex items-center gap-3">
-                      <button className="text-gray-300 hover:text-gray-500"><ThumbsUp size={14} /></button>
-                      <button className="text-gray-300 hover:text-gray-500"><ThumbsDown size={14} /></button>
-                      <button className="text-gray-300 hover:text-gray-500"><Copy size={14} /></button>
+            {messages.map((msg) => {
+              if (msg.role === "system") {
+                return (
+                  <div key={msg.id} className="flex justify-center py-1">
+                    <div className="flex max-w-[88%] items-center gap-2 rounded-xl border border-gray-100 bg-white px-3 py-2 shadow-sm">
+                      <Lock size={13} className="shrink-0 text-gray-400" />
+                      <p className="text-xs text-gray-600">{msg.content}</p>
+                      <button
+                        onClick={() => router.push("/parent/settings/account")}
+                        className="shrink-0 text-xs font-semibold text-cg-brand underline underline-offset-2"
+                      >
+                        Manage
+                      </button>
                     </div>
                   </div>
-                )}
-              </div>
-            ))}
+                );
+              }
+
+              return (
+                <div key={msg.id} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
+                  {msg.role === "user" ? (
+                    <div className="max-w-[78%] rounded-2xl bg-cg-brand px-4 py-3 text-sm text-white">
+                      {msg.content}
+                    </div>
+                  ) : (
+                    <div className="max-w-[88%]">
+                      <div className="mb-1 flex items-center gap-1.5">
+                        <Sparkles size={14} className="text-cg-brand" />
+                      </div>
+                      <div className="rounded-2xl bg-white px-4 py-3 text-sm text-gray-700 shadow-sm">
+                        {msg.content.split("\n").map((line, i) => (
+                          <p key={i} className={i > 0 ? "mt-1" : ""}>{line}</p>
+                        ))}
+                      </div>
+                      <div className="mt-1.5 flex items-center gap-3">
+                        <button className="text-gray-300 hover:text-gray-500"><ThumbsUp size={14} /></button>
+                        <button className="text-gray-300 hover:text-gray-500"><ThumbsDown size={14} /></button>
+                        <button className="text-gray-300 hover:text-gray-500"><Copy size={14} /></button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
 
             {isTyping && (
               <div className="flex items-center gap-2">
@@ -164,17 +199,19 @@ export default function CEvenAIPage() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && !e.shiftKey && handleSend()}
-            placeholder="Ask me anything..."
-            className="flex-1 rounded-xl bg-[#f4f5f6] px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none"
+            placeholder={limitReached ? "Manage your account to keep chatting" : "Ask me anything..."}
+            disabled={limitReached}
+            className="flex-1 rounded-xl bg-[#f4f5f6] px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none disabled:opacity-60"
           />
           <button
             onClick={() => handleSend()}
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-cg-accent-muted"
+            disabled={limitReached}
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-cg-accent-muted disabled:opacity-60"
           >
             <Send size={14} className="text-cg-brand" />
           </button>
-          <button className="shrink-0">
-            <Mic size={22} className="text-gray-500" />
+          <button className="shrink-0" disabled={limitReached}>
+            <Mic size={22} className={limitReached ? "text-gray-300" : "text-gray-500"} />
           </button>
         </div>
       </div>

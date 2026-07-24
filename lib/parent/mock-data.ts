@@ -134,6 +134,29 @@ export const mockParentUser: ParentUser = {
   childName: "Liam Smith",
 };
 
+// ─── Membership ──────────────────────────────────────────────────────────────
+
+export type ParentMembershipStatus = "active" | "trial_ended";
+
+/** Toggle to "active" to preview the app with all family features unlocked. */
+export const PARENT_MEMBERSHIP: { status: ParentMembershipStatus } = {
+  status: "trial_ended",
+};
+
+/**
+ * CEvenAI and direct messaging let a trial user actually use the feature for a
+ * few messages before surfacing membership status — never an upfront block.
+ * The limit is enforced inline, as a reply within the conversation itself.
+ */
+export const TRIAL_MESSAGE_LIMIT = 5;
+
+/** Routes that block entry outright once the trial has ended (no trial usage to offer). */
+const GATED_FEATURE_HREFS: string[] = [];
+
+export function isFeatureGated(href: string): boolean {
+  return PARENT_MEMBERSHIP.status !== "active" && GATED_FEATURE_HREFS.some((h) => href.startsWith(h));
+}
+
 export const mockChild: ChildInfo = {
   id: "child-1",
   name: "Liam Smith",
