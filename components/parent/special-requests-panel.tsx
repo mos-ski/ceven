@@ -2,11 +2,8 @@
 
 import { useState } from "react";
 import { Plus, X, CheckCircle2, Clock, Clock3, AlarmClock } from "lucide-react";
-import { PARENT_MEMBERSHIP } from "@/lib/parent/mock-data";
+import { PARENT_MEMBERSHIP, SPECIAL_REQUEST_TRIAL } from "@/lib/parent/mock-data";
 import { TrialGateBanner } from "@/components/parent/trial-gate-banner";
-
-/** Trial users may send one special request before the feature gates — never an upfront block. */
-const TRIAL_REQUEST_LIMIT = 1;
 
 type Task = {
   id: string;
@@ -210,14 +207,13 @@ export function SpecialRequestsPanel() {
   const [tasks, setTasks] = useState<Task[]>(INITIAL_TASKS);
   const [showCreateTask, setShowCreateTask] = useState(false);
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
-  const [sentCount, setSentCount] = useState(0);
 
-  const limitReached = PARENT_MEMBERSHIP.status !== "active" && sentCount >= TRIAL_REQUEST_LIMIT;
+  const limitReached = PARENT_MEMBERSHIP.status !== "active" && SPECIAL_REQUEST_TRIAL.used;
 
   function handleCreateTask(data: Omit<Task, "id" | "status">) {
     const newTask: Task = { ...data, id: `task-${Date.now()}`, status: "Pending" };
     setTasks((prev) => [...prev, newTask]);
-    setSentCount((prev) => prev + 1);
+    SPECIAL_REQUEST_TRIAL.used = true;
   }
 
   return (

@@ -3,6 +3,8 @@
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, Send, AtSign, Users, Info } from "lucide-react";
+import { PARENT_MEMBERSHIP, TRIAL_MESSAGE_LIMIT } from "@/lib/parent/mock-data";
+import { TrialGateBanner } from "@/components/parent/trial-gate-banner";
 
 type Participant = {
   id: string;
@@ -25,6 +27,7 @@ type ChatMessage = {
   text: string;
   time: string;
   isNew?: boolean;
+  isSystem?: boolean;
 };
 
 const CONVERSATION: ChatMessage[] = [
@@ -107,6 +110,7 @@ export default function FamilyChatPage() {
   const [input, setInput] = useState("");
   const [showMentions, setShowMentions] = useState(false);
   const [replyIndex, setReplyIndex] = useState<Record<string, number>>({});
+  const [limitReached, setLimitReached] = useState(false);
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -123,12 +127,14 @@ export default function FamilyChatPage() {
   }
 
   function handleSend() {
+    if (limitReached) return;
     const text = input.trim();
     if (!text) return;
 
     const now = new Date();
     const time = now.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
 
+    const sentCount = messages.filter(m => m.senderId === "james" && !m.isSystem).length + 1;
     const userMsg: ChatMessage = {
       id: Date.now().toString(),
       senderId: "james",
@@ -139,6 +145,23 @@ export default function FamilyChatPage() {
     setMessages(prev => [...prev, userMsg]);
     setInput("");
     setShowMentions(false);
+
+    if (PARENT_MEMBERSHIP.status !== "active" && sentCount > TRIAL_MESSAGE_LIMIT) {
+      setLimitReached(true);
+      setTimeout(() => {
+        setMessages(prev => [
+          ...prev,
+          {
+            id: `system-${Date.now()}`,
+            senderId: "system",
+            text: "Your trial has ended. Some family features are unavailable.",
+            time: new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }),
+            isSystem: true,
+          },
+        ]);
+      }, 800);
+      return;
+    }
 
     // Simulate 2-3 participants replying after delays
     const repliers = ["ms-anu", "sarah"];
@@ -211,6 +234,15 @@ export default function FamilyChatPage() {
       <div className="flex-1 overflow-y-auto px-4 py-4">
         <div className="flex flex-col gap-4">
           {messages.map(msg => {
+            if (msg.isSystem) {
+              return (
+                <div key={msg.id} className="flex justify-center py-1">
+                  <div className="max-w-[88%]">
+                    <TrialGateBanner message={msg.text} />
+                  </div>
+                </div>
+              );
+            }
             const sender = PARTICIPANTS.find(p => p.id === msg.senderId);
             const isOwn = msg.senderId === "james";
             return <MessageBubble key={msg.id} msg={msg} sender={sender} isOwn={isOwn} />;
@@ -249,7 +281,8 @@ export default function FamilyChatPage() {
         <div className="flex items-center gap-2">
           <button
             onClick={() => setShowMentions(!showMentions)}
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gray-100"
+            disabled={limitReached}
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gray-100 disabled:opacity-40"
           >
             <AtSign size={16} className="text-gray-500" />
           </button>
@@ -262,13 +295,14 @@ export default function FamilyChatPage() {
                 if (e.key === "Enter") handleSend();
                 if (e.key === "@") setShowMentions(true);
               }}
-              placeholder="Type a message..."
-              className="flex-1 bg-transparent text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none"
+              placeholder={limitReached ? "Manage your account to keep chatting" : "Type a message..."}
+              disabled={limitReached}
+              className="flex-1 bg-transparent text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none disabled:opacity-60"
             />
           </div>
           <button
             onClick={handleSend}
-            disabled={!input.trim()}
+            disabled={!input.trim() || limitReached}
             className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cg-brand disabled:opacity-40"
           >
             <Send size={14} className="text-white" />

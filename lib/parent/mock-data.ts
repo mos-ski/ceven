@@ -150,6 +150,15 @@ export const PARENT_MEMBERSHIP: { status: ParentMembershipStatus } = {
  */
 export const TRIAL_MESSAGE_LIMIT = 5;
 
+/**
+ * Whether the trial user's one allotted Special Request has been used.
+ * Module-level (not component state) because SpecialRequestsPanel is mounted
+ * in two places — inline on Home's "Special Requests" tab and on its own
+ * /parent/special-requests screen — and progress must survive either one
+ * remounting (e.g. switching tabs and back).
+ */
+export const SPECIAL_REQUEST_TRIAL: { used: boolean } = { used: false };
+
 /** Routes that block entry outright once the trial has ended (no trial usage to offer). */
 const GATED_FEATURE_HREFS: string[] = [];
 
