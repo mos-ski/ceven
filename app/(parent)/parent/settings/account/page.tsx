@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
   ArrowLeft, UserCog, CreditCard, FileText, Receipt, FileStack, Wallet,
@@ -7,12 +8,12 @@ import {
 } from "lucide-react";
 
 const QUICK_LINKS = [
-  { label: "Membership", icon: UserCog, href: "https://ceven.app/me/membership" },
-  { label: "Creche Fees", icon: CreditCard, href: "https://ceven.app/me/creche-fees" },
-  { label: "Acceptance Fee", icon: FileText, href: "https://ceven.app/me/acceptance-fee" },
-  { label: "Payment History", icon: Receipt, href: "https://ceven.app/me/payment-history" },
-  { label: "Receipts", icon: FileStack, href: "https://ceven.app/me/receipts" },
-  { label: "Payment Methods", icon: Wallet, href: "https://ceven.app/me/payment-methods" },
+  { label: "Membership", icon: UserCog, href: "/me/membership" },
+  { label: "Creche Fees", icon: CreditCard, href: "/me/creche-fees" },
+  { label: "Acceptance Fee", icon: FileText, href: "/me/acceptance-fees" },
+  { label: "Payment History", icon: Receipt, href: "/me/payment-history" },
+  { label: "Receipts", icon: FileStack, href: "/me/receipts" },
+  { label: "Payment Methods", icon: Wallet, href: "/me/payment-methods" },
 ] as const;
 
 export default function ManageAccountPage() {
@@ -37,15 +38,13 @@ export default function ManageAccountPage() {
           <p className="mt-1 text-xs text-white/80 leading-relaxed">
             Update payment details, view invoices, and download receipts at ceven.app/me
           </p>
-          <a
-            href="https://ceven.app/me"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/me"
             className="mt-3 inline-flex items-center gap-1.5 rounded-xl bg-white px-4 py-2 text-xs font-bold text-cg-brand shadow-sm active:bg-white/90"
           >
             Go to ceven.app/me
             <ExternalLink size={13} />
-          </a>
+          </Link>
         </div>
 
         {/* Quick links */}
@@ -53,11 +52,9 @@ export default function ManageAccountPage() {
           <p className="mb-2 px-1 text-xs font-semibold uppercase tracking-wide text-gray-400">Billing</p>
           <div className="rounded-2xl bg-white border border-gray-100 shadow-sm overflow-hidden">
             {QUICK_LINKS.map(({ icon: Icon, label, href }, i) => (
-              <a
+              <Link
                 key={label}
                 href={href}
-                target="_blank"
-                rel="noopener noreferrer"
                 className={`flex items-center justify-between px-4 py-3.5 ${
                   i < QUICK_LINKS.length - 1 ? "border-b border-gray-50" : ""
                 }`}
@@ -67,7 +64,7 @@ export default function ManageAccountPage() {
                   <span className="text-sm text-gray-700">{label}</span>
                 </div>
                 <ExternalLink size={16} className="text-gray-400" />
-              </a>
+              </Link>
             ))}
           </div>
         </div>
