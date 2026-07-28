@@ -712,7 +712,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
 
 /* ── MOBILE ≤ 768px ── */
 @media(max-width:768px){
-  /* UNLOCK scroll chain — the whole page scrolls */
+  /* UNLOCK scroll chain */
   html,body{overflow:auto;height:auto}
   .app{height:auto;min-height:100vh;overflow:visible}
   .app-body{overflow:visible}
@@ -731,59 +731,100 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
   .main-with-ai{overflow:visible}
   .main-content{overflow:visible}
 
-  /* TOPBAR */
+  /* TOPBAR — sticky, compact */
   .topbar{padding:0 .75rem;gap:.5rem;height:50px;position:sticky;top:0;z-index:50}
   .tb-hamburger{display:flex}
   .tb-search{display:none}
   .tb-cta{font-size:.7rem;padding:.38rem .8rem}
+  .tb-title{font-size:.82rem;gap:.4rem}
+  .tb-plan-badge{font-size:.5rem;padding:.12rem .45rem}
+  .tb-icon-btn{width:32px;height:32px;font-size:.8rem}
 
-  /* CONTENT — no scroll context, body scrolls */
+  /* CONTENT */
   .content{padding:1rem;padding-bottom:3rem;overflow:visible}
+
+  /* TRIAL BANNER — single line, smaller text */
+  .trial-banner{
+    font-size:.62rem;padding:.35rem .6rem;gap:.4rem;
+    line-height:1.3;text-align:left;flex-wrap:nowrap;
+  }
+  .trial-banner strong{white-space:nowrap}
+  .trial-banner a{white-space:nowrap}
 
   /* PAGE HEADERS — stack */
   .ph{flex-direction:column;align-items:flex-start;gap:.75rem}
-  .ph-left h1{font-size:1.15rem}
+  .ph-left h1{font-size:1.1rem}
+  .ph-left p{font-size:.7rem}
   .ph-actions{width:100%;display:flex;flex-wrap:wrap;gap:.4rem}
-  .ph-actions .btn{font-size:.7rem;padding:.4rem .9rem}
+  .ph-actions .btn{font-size:.68rem;padding:.38rem .8rem}
 
-  /* GREETING BANNER — stack */
-  .greeting-banner{flex-direction:column;text-align:center;align-items:stretch;padding:1.25rem}
-  .greeting-banner > div:last-child{justify-content:center}
+  /* GREETING BANNER — !important overrides inline styles */
+  .greeting-banner{
+    flex-direction:column!important;
+    align-items:stretch!important;
+    justify-content:center!important;
+    text-align:center!important;
+    padding:1.25rem 1rem!important;
+    gap:1rem!important;
+  }
+  .greeting-banner h1{font-size:1.2rem!important;line-height:1.15!important;margin-bottom:.3rem!important}
+  .greeting-banner p{font-size:.72rem!important}
+  .greeting-banner > div:last-child{
+    display:flex!important;justify-content:center!important;gap:.5rem!important;
+    flex-wrap:wrap;
+  }
+  .greeting-banner > div:last-child .btn{
+    font-size:.68rem!important;padding:.38rem .85rem!important;
+  }
 
-  /* PROFILE HERO — stack */
-  .phero{flex-direction:column;text-align:center;padding:1.25rem;gap:1rem}
-  .phero-id{margin-left:0;text-align:center}
-  .phero-badges{justify-content:center}
+  /* AI DAILY BRIEF — stack insights vertically */
+  .ai-card{padding:1rem}
+  .ai-brief-grid{
+    display:flex!important;flex-direction:column!important;gap:.5rem!important;
+  }
+  .ai-card .ai-insight{padding:.7rem}
+  .ai-card .ai-insight-text{font-size:.76rem}
 
-  /* GRIDS — 2 col stat grids, single col layouts */
-  .sg4,.sg5{grid-template-columns:1fr 1fr}
-  .sg3{grid-template-columns:1fr}
-  .sg6{grid-template-columns:1fr 1fr}
-  .g2,.g3,.g13,.g31{grid-template-columns:1fr}
-  .qa-grid{grid-template-columns:repeat(3,1fr)}
+  /* STAT GRIDS — 2 columns */
+  .sg4,.sg5{grid-template-columns:1fr 1fr!important}
+  .sg3{grid-template-columns:1fr!important}
+  .sg6{grid-template-columns:1fr 1fr!important}
+
+  /* LAYOUT GRIDS — single column */
+  .g2,.g3,.g13,.g31{grid-template-columns:1fr!important}
+
+  /* QUICK ACTIONS — 4 columns */
+  .qa-grid{grid-template-columns:repeat(4,1fr)!important}
+  .qa-btn{padding:.65rem .35rem;font-size:.6rem}
+  .qa-icon{font-size:.95rem;margin-bottom:.25rem}
+
+  /* CHECK-IN GRID */
   .ci-grid{grid-template-columns:repeat(3,1fr)}
 
   /* CARDS */
-  .card{padding:1rem}
-  .scard{padding:.85rem 1rem}
-  .sc-val{font-size:1.4rem}
+  .card{padding:.9rem}
+  .card-head{margin-bottom:.8rem}
+
+  /* STAT CARDS */
+  .scard{padding:.75rem .85rem}
+  .sc-val{font-size:1.35rem}
+  .sc-label{font-size:.58rem}
 
   /* TABLES — horizontal scroll */
-  .tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
-  .tw table{min-width:580px}
-  thead th{font-size:.56rem;padding:.5rem .65rem;position:sticky;top:0;background:var(--surface)}
-  td{padding:.5rem .65rem;font-size:.74rem}
+  .tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -.9rem;padding:0 .9rem}
+  .tw table{min-width:560px}
+  .tw::-webkit-scrollbar{height:3px}
+  .tw::-webkit-scrollbar-thumb{background:rgba(45,24,16,.12);border-radius:2px}
+  thead th{font-size:.54rem;padding:.5rem .6rem;position:sticky;top:0;background:var(--surface);z-index:1}
+  td{padding:.5rem .6rem;font-size:.72rem;white-space:nowrap}
 
-  /* STAFF GRID — single column */
-  #stt-dir > div{grid-template-columns:1fr}
+  /* PROFILE HERO — stack */
+  .phero{flex-direction:column!important;text-align:center!important;padding:1.25rem 1rem!important;gap:1rem}
+  .phero-id{margin-left:0!important;text-align:center!important}
+  .phero-badges{justify-content:center!important;flex-wrap:wrap}
+  .phero-name{font-size:1.15rem}
 
-  /* ROOM CARDS — single column */
-  #sc-rooms .g2{grid-template-columns:1fr}
-
-  /* AI BRIEF — single column */
-  .ai-card .sg3{grid-template-columns:1fr}
-
-  /* ALL TWO-COL LAYOUTS — stack */
+  /* ALL TWO-COL LAYOUTS — force stack */
   #sc-comms .g2,
   #sc-announcements .g2,
   #sc-settings .g2,
@@ -794,7 +835,13 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
   #cp-health .g2,
   #cp-billing .g2,
   #cp-ai .sg3,
-  #sc-billing .sg4{grid-template-columns:1fr}
+  #sc-billing .sg4{grid-template-columns:1fr!important}
+
+  /* STAFF GRID — single column */
+  #stt-dir > div{grid-template-columns:1fr!important}
+
+  /* ROOM CARDS — single column */
+  #sc-rooms .g2{grid-template-columns:1fr!important}
 
   /* COLLECTION PROGRESS — stack stats */
   #sc-billing .card > div:last-child{flex-direction:column;gap:.5rem}
@@ -802,7 +849,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
 
   /* MODALS — bottom sheet */
   .mo{align-items:flex-end}
-  .mo-box{width:100%;max-width:100%;max-height:85vh;border-radius:14px 14px 0 0;margin:0}
+  .mo-box{width:100%!important;max-width:100%!important;max-height:85vh;border-radius:14px 14px 0 0;margin:0}
   .mo-body{padding:1rem}
   .mo-head{padding:1rem;border-radius:14px 14px 0 0}
   .mo-foot{padding:.85rem 1rem;flex-wrap:wrap;gap:.5rem}
@@ -811,16 +858,13 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
   /* TABS — scrollable */
   .tabs{overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap;gap:0;margin-bottom:1rem}
   .tabs::-webkit-scrollbar{display:none}
-  .tab{padding:.5rem .8rem;font-size:.72rem}
-
-  /* TRIAL BANNER */
-  .trial-banner{font-size:.65rem;padding:.35rem .75rem;gap:.5rem}
+  .tab{padding:.5rem .75rem;font-size:.7rem}
 
   /* BAR CHART */
-  .bar-chart{height:90px}
+  .bar-chart{height:85px}
 
   /* TOAST */
-  .toast{left:1rem;right:1rem;bottom:1rem;max-width:none;font-size:.74rem}
+  .toast{left:1rem;right:1rem;bottom:1rem;max-width:none;font-size:.72rem;padding:.7rem 1rem}
 
   /* FOCUS ROWS */
   .focus-row{flex-wrap:wrap}
@@ -829,26 +873,34 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
   .plan-gate{padding:1.25rem}
   .plan-gate-sub{max-width:100%}
   .emoji-picker-grid{grid-template-columns:repeat(6,1fr)}
+  .rc-meta{grid-template-columns:1fr 1fr}
+  .af-item{gap:.5rem}
+  .af-text{font-size:.72rem}
+  .af-time{font-size:.5rem}
+  .bsr{flex-wrap:wrap;gap:.25rem}
+  .msg-item{padding:.75rem}
 }
 
 /* ── MOBILE ≤ 480px ── */
 @media(max-width:480px){
-  .sg4,.sg5,.sg6{grid-template-columns:1fr}
-  .sg3{grid-template-columns:1fr}
-  .qa-grid{grid-template-columns:repeat(2,1fr)}
+  .sg4,.sg5,.sg6{grid-template-columns:1fr 1fr!important}
+  .qa-grid{grid-template-columns:repeat(3,1fr)!important}
   .ci-grid{grid-template-columns:repeat(2,1fr)}
 
-  .ph-left h1{font-size:1.05rem}
+  .ph-left h1{font-size:1rem}
   .ph-actions{flex-direction:column}
   .ph-actions .btn{width:100%;justify-content:center}
 
-  .sc-val{font-size:1.25rem}
-  .card{padding:.85rem}
+  .greeting-banner h1{font-size:1.05rem!important}
+
+  .sc-val{font-size:1.2rem}
+  .scard{padding:.65rem .75rem}
+  .card{padding:.8rem}
   .content{padding:.75rem;padding-bottom:2.5rem}
 
-  .topbar{padding:0 .5rem;gap:.4rem}
-  .tb-title{font-size:.78rem}
-  .tb-icon-btn{width:30px;height:30px;font-size:.75rem}
+  .topbar{padding:0 .5rem;gap:.35rem}
+  .tb-title{font-size:.75rem}
+  .tb-icon-btn{width:30px;height:30px;font-size:.72rem}
 
   .rc-meta{grid-template-columns:1fr}
   .meal-grid{grid-template-columns:1fr 1fr}
@@ -856,9 +908,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
   .grad-opts{grid-template-columns:repeat(4,1fr)}
 
   .mo-box{border-radius:12px 12px 0 0}
-  .tab{padding:.45rem .65rem;font-size:.68rem}
-
-  .bsr{flex-wrap:wrap;gap:.25rem}
+  .tab{padding:.42rem .6rem;font-size:.66rem}
 }
 
 /* Component class aliases — backward compat */
@@ -1088,7 +1138,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
   <div class="ai-card" style="margin-bottom:1rem">
     <div class="ai-badge">AI Daily Brief</div>
     <div style="font-size:.85rem;font-weight:700;color:var(--navy);margin-bottom:.5rem;font-family:'Nunito',sans-serif">Today at a glance — generated 7:00am</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.75rem">
+    <div class="ai-brief-grid" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.75rem">
       <div class="ai-insight" style="margin-bottom:0">
         <div class="ai-insight-dot" style="background:var(--red2)"></div>
         <div><div class="ai-insight-text"><strong>Zara Mohammed</strong> <span>has been absent 3× this week. Nut allergy on file — flag for welfare check.</span></div><div class="ai-action" onclick="T('Opening welfare check for Zara…')">Take Action →</div></div>
