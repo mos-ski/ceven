@@ -27,7 +27,6 @@ import { LogActivityModal, type LogActivityMode } from "@/components/admin/child
 import NewInvoiceModal from "@/components/admin/finance/new-invoice-modal";
 import { getAdaReply } from "@/lib/ada-responses";
 import { useDashboardStats, formatLastUpdated } from "@/lib/dashboard-data";
-import { isAllOnboardingComplete } from "@/lib/mock-data/get-started";
 import AiRiskBadge, { calculateRisk } from "@/components/dashboard/ai-risk-badge";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -421,15 +420,6 @@ export default function DashboardPage() {
   const [invoiceOpen, setInvoiceOpen] = useState(false);
   const [quickActionIds, setQuickActionIds] = useState<QuickActionId[]>(["add-child", "qr-station", "new-log", "new-invoice", "view-reports"]);
   const [customizeOpen, setCustomizeOpen] = useState(false);
-  const [onboardingChecked, setOnboardingChecked] = useState(() => isAllOnboardingComplete());
-
-  useEffect(() => {
-    if (!isAllOnboardingComplete()) {
-      router.replace("/admin/v2/get-started");
-    }
-  }, [router]);
-
-  if (!onboardingChecked) return null;
 
   const quickActions = ALL_QUICK_ACTIONS.filter((a) => quickActionIds.includes(a.id));
 
