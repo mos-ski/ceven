@@ -712,22 +712,24 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
 
 /* ── MOBILE ≤ 768px ── */
 @media(max-width:768px){
-  /* UNLOCK scroll chain */
+  /* UNLOCK scroll */
   html,body{overflow:auto;height:auto}
   .app{height:auto;min-height:100vh;overflow:visible}
-  .app-body{overflow:visible}
 
-  /* SIDEBAR — off-canvas drawer */
+  /* SIDEBAR — off-canvas, removed from flow */
   .sb{
-    position:fixed;top:0;left:0;bottom:0;z-index:100;
+    position:fixed;top:0;left:0;bottom:0;z-index:200;
     transform:translateX(-100%);transition:transform .3s cubic-bezier(.4,0,.2,1);
     width:260px;
   }
   .sb.open{transform:translateX(0)}
   .sb-overlay.open{display:block}
 
-  /* MAIN — no longer constraining scroll */
-  .main{overflow:visible}
+  /* APP BODY — block layout, sidebar out of flow */
+  .app-body{display:block;overflow:visible;position:relative}
+
+  /* MAIN */
+  .main{overflow:visible;min-height:100vh}
   .main-with-ai{overflow:visible}
   .main-content{overflow:visible}
 
