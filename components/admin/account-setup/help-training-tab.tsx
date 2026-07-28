@@ -6,8 +6,6 @@ import { useState, useCallback } from "react";
 import {
   ADA_SUGGESTED_PROMPTS,
   ROLE_GUIDES,
-  SETUP_PROGRESS_ITEMS,
-  SETUP_PROGRESS_PERCENT,
   type RoleGuide,
 } from "@/lib/mock-data/account-setup";
 import { getAdaReply } from "@/lib/ada-responses";
@@ -30,38 +28,6 @@ import {
 } from "@/lib/mock-data/faq";
 
 const gradientBg = "linear-gradient(135deg, rgb(30,45,74) 0%, rgb(45,24,16) 100%)";
-
-function SetupProgressCard() {
-  return (
-    <div className="flex flex-col gap-3 rounded-xl bg-white p-4">
-      <p className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
-        Set-up Progress
-      </p>
-      <div className="flex flex-col gap-2">
-        <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
-          Progress {SETUP_PROGRESS_PERCENT}% complete
-        </p>
-        <div className="h-1.5 w-full rounded-full bg-[#f5f5f5]">
-          <div className="h-full rounded-full bg-[#008753]" style={{ width: `${SETUP_PROGRESS_PERCENT}%` }} />
-        </div>
-      </div>
-      <div className="flex flex-col gap-3">
-        {SETUP_PROGRESS_ITEMS.map((item) => (
-          <div key={item.id} className="flex items-center gap-4 rounded-[10px] border border-[#edd9c0] bg-[#faf2e1] p-4">
-            <div className="flex size-8 shrink-0 items-center justify-center rounded-full border border-[#edd9c0] font-[family-name:var(--font-nunito)] text-xs font-medium text-[#1f2937]">
-              {item.step}
-            </div>
-            <div className="flex flex-1 flex-col gap-1">
-              <p className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">{item.title}</p>
-              <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#6b7280]">{item.description}</p>
-            </div>
-            {item.done && <span className="text-xs font-semibold text-[#008753]">✓</span>}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
 
 // ── FAQ Form Dialog ───────────────────────────────────────────────────────────
 
@@ -561,7 +527,6 @@ export function HelpTrainingTab() {
       </h1>
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <div className="flex flex-col gap-4">
-          <SetupProgressCard />
           <FaqManagement />
         </div>
         <div className="flex flex-col gap-4">
