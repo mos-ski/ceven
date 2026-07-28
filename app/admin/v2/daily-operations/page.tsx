@@ -21,6 +21,7 @@ import { HealthIncidentsView } from "@/components/admin/daily-operations/health-
 import { InventoryView } from "@/components/admin/daily-operations/inventory-view";
 import { MedicationView } from "@/components/admin/daily-operations/medication-view";
 import { TasksView } from "@/components/admin/daily-operations/tasks-view";
+import { SpecialRequestsTab } from "@/components/admin/daily-operations/special-requests-tab";
 import { QRDisplay } from "@/components/attendance/qr-display";
 import { LiveFeed } from "@/components/attendance/live-feed";
 import { AttendanceGrid } from "@/components/attendance/attendance-grid";
@@ -625,6 +626,7 @@ const SECTION_TITLES: Record<string, string> = {
   "inventory-supplies": "Inventory & Supplies",
   facilities: "Facilities",
   tasks: "Tasks",
+  "special-requests": "Special Requests",
 };
 
 function DailyOperationsContent() {
@@ -648,6 +650,7 @@ function DailyOperationsContent() {
         {tab === "inventory-supplies" && <InventoryView />}
         {tab === "facilities" && <FacilitiesView />}
         {tab === "tasks" && <TasksView />}
+        {tab === "special-requests" && <SpecialRequestsTab />}
       </div>
     );
   }
