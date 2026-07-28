@@ -681,7 +681,191 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
 .btn.dn{background:var(--red);color:#fff}.btn.dn:hover{background:var(--red2)}
 .btn.su{background:var(--green);color:#fff}.btn.su:hover{background:var(--green2)}
 .btn.ai-btn{background:var(--ai-grad);color:#fff}.btn.ai-btn:hover{opacity:.9;box-shadow:0 4px 14px rgba(30,45,74,.3)}
-@media(max-width:1200px){.ai-panel{display:none}.sg4,.sg5{grid-template-columns:repeat(2,1fr)}.sg6{grid-template-columns:repeat(3,1fr)}}
+/* ── RESPONSIVE — MOBILE FIRST ── */
+
+/* Hamburger button (hidden on desktop) */
+.tb-hamburger{
+  display:none;width:34px;height:34px;border-radius:8px;background:var(--bg);
+  border:1px solid var(--border);align-items:center;justify-content:center;
+  cursor:pointer;font-size:1.1rem;transition:all .2s;flex-shrink:0;
+}
+.tb-hamburger:hover{background:var(--surface);border-color:var(--amber)}
+
+/* Sidebar overlay backdrop (mobile) */
+.sb-overlay{
+  display:none;position:fixed;inset:0;background:rgba(45,24,16,.5);
+  backdrop-filter:blur(4px);z-index:99;
+}
+
+/* ── TABLET: ≤ 1200px ── */
+@media(max-width:1200px){
+  .ai-panel{display:none}
+  .sg4,.sg5{grid-template-columns:repeat(2,1fr)}
+  .sg6{grid-template-columns:repeat(3,1fr)}
+}
+
+/* ── TABLET: ≤ 1024px ── */
+@media(max-width:1024px){
+  .g13,.g31{grid-template-columns:1fr}
+  .g3{grid-template-columns:1fr 1fr}
+  .qa-grid{grid-template-columns:repeat(5,1fr)}
+  .ci-grid{grid-template-columns:repeat(4,1fr)}
+}
+
+/* ── MOBILE: ≤ 768px ── */
+@media(max-width:768px){
+  html,body{overflow:auto}
+  .app{height:auto;min-height:100vh}
+  .app-body{flex-direction:column}
+
+  /* SIDEBAR — off-canvas drawer */
+  .sb{
+    position:fixed;top:0;left:0;bottom:0;z-index:100;
+    transform:translateX(-100%);transition:transform .3s cubic-bezier(.4,0,.2,1);
+    width:260px;
+  }
+  .sb.open{transform:translateX(0)}
+  .sb-overlay.open{display:block}
+
+  /* TOPBAR */
+  .topbar{padding:0 .75rem;gap:.5rem;height:50px}
+  .tb-hamburger{display:flex}
+  .tb-search{display:none}
+  .tb-cta{font-size:.7rem;padding:.38rem .8rem}
+  .tb-cta span{display:none}
+
+  /* CONTENT */
+  .content{padding:1rem;padding-bottom:4rem}
+
+  /* PAGE HEADERS — stack */
+  .ph{flex-direction:column;align-items:flex-start}
+  .ph-left h1{font-size:1.15rem}
+  .ph-actions{width:100%;flex-wrap:wrap}
+  .ph-actions .btn{font-size:.7rem;padding:.4rem .9rem}
+  .phero{flex-direction:column;text-align:center;padding:1.25rem;gap:1rem}
+  .phero-id{margin-left:0;text-align:center}
+  .phero-badges{justify-content:center}
+
+  /* GRIDS — single column */
+  .sg4,.sg3,.sg2,.sg5,.sg6{grid-template-columns:1fr 1fr}
+  .g2,.g3,.g13,.g31{grid-template-columns:1fr}
+  .qa-grid{grid-template-columns:repeat(3,1fr)}
+  .ci-grid{grid-template-columns:repeat(3,1fr)}
+
+  /* STAT CARDS — smaller */
+  .sc-val{font-size:1.4rem}
+  .sc-card{padding:.85rem 1rem}
+
+  /* CARDS */
+  .card{padding:1rem}
+
+  /* TABLES — scrollable */
+  .tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .tw table{min-width:600px}
+  thead th{font-size:.56rem;padding:.5rem .7rem}
+  td{padding:.5rem .7rem}
+
+  /* STAFF CARDS — single column */
+  #stt-dir > div{grid-template-columns:1fr}
+
+  /* ROOM CARDS — single column */
+  #sc-rooms .g2{grid-template-columns:1fr}
+
+  /* MODALS */
+  .mo-box{width:100%;max-width:100%;max-height:100vh;border-radius:0;margin:0}
+  .mo{align-items:flex-end}
+  .mo-body{padding:1rem}
+  .mo-head{padding:1rem}
+  .mo-foot{padding:.85rem 1rem;flex-wrap:wrap}
+
+  /* TABS — scrollable */
+  .tabs{overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap;gap:0}
+  .tab{padding:.5rem .8rem;font-size:.72rem}
+
+  /* AI BRIEF GRID */
+  .ai-card .sg3{grid-template-columns:1fr}
+
+  /* GREETING BANNER */
+  .phero{border-radius:12px}
+
+  /* ROOM META GRID */
+  .rc-meta{grid-template-columns:1fr 1fr}
+
+  /* AI SETTINGS — stacks */
+  #st-ai .g2{grid-template-columns:1fr}
+  #st-ai .g2 .card{margin-bottom:1rem}
+
+  /* SETTINGS GRID */
+  #st-branch .g2{grid-template-columns:1fr}
+
+  /* ANNOUNCEMENTS — stacks */
+  #sc-announcements .g2{grid-template-columns:1fr}
+
+  /* COMMS — stacks */
+  #sc-comms .g2{grid-template-columns:1fr}
+
+  /* CHILD PROFILE — stacks */
+  #cp-overview .sg3{grid-template-columns:1fr 1fr}
+  #cp-overview .g2{grid-template-columns:1fr}
+  #cp-health .g2{grid-template-columns:1fr}
+  #cp-billing .g2{grid-template-columns:1fr}
+  #cp-ai .sg3{grid-template-columns:1fr}
+
+  /* BILLING COLLECTION STATS */
+  #sc-billing .sg4{grid-template-columns:1fr 1fr}
+
+  /* COLLECTION PROGRESS — stack stats */
+  #sc-billing .card > div:last-child{flex-direction:column;gap:.5rem}
+  #sc-billing .card > div:last-child > div{margin-left:0;text-align:left}
+
+  /* TRIAL BANNER */
+  .trial-banner{font-size:.65rem;padding:.35rem .75rem;gap:.5rem}
+
+  /* LOCKED / PLAN GATE */
+  .plan-gate{padding:1.25rem}
+  .plan-gate-sub{max-width:100%}
+
+  /* BAR CHART */
+  .bar-chart{height:80px}
+
+  /* TOAST */
+  .toast{left:1rem;right:1rem;bottom:1rem;max-width:none}
+
+  /* FOCUS ROWS */
+  .focus-row{flex-wrap:wrap}
+}
+
+/* ── MOBILE: ≤ 480px ── */
+@media(max-width:480px){
+  .sg4,.sg3,.sg2,.sg5,.sg6{grid-template-columns:1fr}
+  .qa-grid{grid-template-columns:repeat(2,1fr)}
+  .ci-grid{grid-template-columns:repeat(2,1fr)}
+  .g2,.g3,.g13,.g31{grid-template-columns:1fr}
+
+  .ph-left h1{font-size:1.05rem}
+  .ph-actions{flex-direction:column}
+  .ph-actions .btn{width:100%;justify-content:center}
+
+  .sc-val{font-size:1.25rem}
+  .card{padding:.85rem}
+  .content{padding:.75rem;padding-bottom:3.5rem}
+
+  .topbar{padding:0 .5rem;gap:.4rem}
+  .tb-title{font-size:.8rem}
+  .tb-icon-btn{width:30px;height:30px;font-size:.75rem}
+
+  /* Room cards — 2-col meta */
+  .rc-meta{grid-template-columns:1fr 1fr}
+
+  /* Billing progress labels */
+  #sc-billing .card > div:last-child > div{font-size:.75rem}
+
+  /* Modals — fullscreen */
+  .mo-box{border-radius:0}
+
+  /* Tabs — tighter */
+  .tab{padding:.45rem .65rem;font-size:.68rem}
+}
 
 /* Component class aliases — backward compat */
 .card-title{font-size:.67rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--text)}
@@ -862,10 +1046,12 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
     <div><div class="sb-uname">Amaka Nwachukwu</div><div class="sb-urole">Branch Manager</div></div>
   </div>
 </nav>
+<div class="sb-overlay" id="sb-overlay" onclick="toggleSidebar()"></div>
 
 <!-- ══ MAIN ══ -->
 <div class="main">
   <div class="topbar">
+    <div class="tb-hamburger" id="tb-hamburger" onclick="toggleSidebar()">☰</div>
     <div class="tb-title" id="tb-title">Dashboard <span class="tb-plan-badge" id="tb-plan">Nestling Pro</span></div>
     <div class="tb-search"><span style="font-size:.8rem;color:var(--text)">🔍</span><input placeholder="Search children, parents, staff, invoices…" id="search-input"></div>
     <div class="tb-icon-btn" onclick="T('AI panel')" id="panel-ai-avatar" style="background:linear-gradient(135deg,var(--navy),var(--sidebar));color:#F5EDD8;border-color:var(--navy);font-size:.8rem">🤖<div class="tb-notif-dot"></div></div>
@@ -2901,6 +3087,12 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
 <div class="toast" id="toast"></div>
 
 <script>
+// SIDEBAR TOGGLE (mobile)
+function toggleSidebar(){
+  document.querySelector('.sb').classList.toggle('open');
+  document.getElementById('sb-overlay').classList.toggle('open');
+}
+
 // DATE
 const D=new Date();const days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
@@ -2928,6 +3120,8 @@ function S(id,el){
   document.getElementById('tb-cta').textContent=ctas[id]||'+ Action';
   // Update AI CC name
   const ccn=document.getElementById('ai-cc-name');if(ccn)ccn.textContent=aiState.name;
+  // Close sidebar on mobile
+  if(window.innerWidth<=768){document.querySelector('.sb').classList.remove('open');document.getElementById('sb-overlay').classList.remove('open');}
 }
 
 function primaryAction(){
