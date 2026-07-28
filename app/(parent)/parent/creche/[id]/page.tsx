@@ -4,16 +4,17 @@ import { useState, use } from "react";
 import { useRouter } from "next/navigation";
 import {
   ArrowLeft, MapPin, Star, Users, Phone, Clock, ChevronDown,
-  Shield, Tv, FileText, LayoutGrid, DollarSign, X, CheckCircle2, UserRound,
+  Shield, Tv, FileText, LayoutGrid, DollarSign, X, CheckCircle2, UserRound, CircleHelp,
 } from "lucide-react";
 import { mockCreches, type Creche, type CrecheRoom } from "@/lib/parent/mock-data";
+import { getFaqs, type FaqItem } from "@/lib/mock-data/faq";
 import {
   getEnrollmentChildren, getAgeInMonths, formatAge, parseAgeRange,
   type EnrollmentChild,
 } from "@/lib/shared/enrollment-children";
 import { createEnrollment } from "@/lib/shared/enrollments";
 
-type Tab = "overview" | "rooms" | "pricing" | "policies";
+type Tab = "overview" | "rooms" | "pricing" | "policies" | "faq";
 type PricingAge = "Infant" | "Toddler" | "Preschool";
 
 // ─── Room Detail Modal ─────────────────────────────────────────────────────────
@@ -293,6 +294,76 @@ function FeatureIcon({ label }: { label: string }) {
   return <FileText size={12} />;
 }
 
+// ─── FAQ Section ──────────────────────────────────────────────────────────────
+function FaqAccordionItem({ faq }: { faq: FaqItem }) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div className="rounded-xl border border-gray-100 bg-white">
+      <button
+        onClick={() => setOpen(!open)}
+        className="flex w-full items-center gap-3 px-4 py-3.5 text-left"
+      >
+        <CircleHelp size={16} className="shrink-0 text-cg-accent" />
+        <span className="flex-1 text-sm font-semibold text-gray-800">{faq.question}</span>
+        <ChevronDown
+          size={16}
+          className={`shrink-0 text-gray-400 transition-transform ${open ? "rotate-180" : ""}`}
+        />
+      </button>
+      {open && (
+        <div className="border-t border-gray-100 px-4 py-3.5">
+          <p className="text-sm leading-relaxed text-gray-600">{faq.answer}</p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function FaqSection() {
+  const faqs = getFaqs();
+
+  if (faqs.length === 0) {
+    return (
+      <div className="px-6 pt-4">
+        <h2 className="text-base font-bold text-gray-800">Frequently Asked Questions</h2>
+        <p className="mt-2 text-sm text-gray-400">No FAQs available at this time.</p>
+      </div>
+    );
+  }
+
+  const grouped = faqs.reduce<Record<string, FaqItem[]>>((acc, faq) => {
+    const cat = faq.category.trim();
+    if (!acc[cat]) acc[cat] = [];
+    acc[cat].push(faq);
+    return acc;
+  }, {});
+
+  return (
+    <div className="px-6 pt-4">
+      <h2 className="text-base font-bold text-gray-800">Frequently Asked Questions</h2>
+      <p className="mb-4 mt-0.5 text-xs text-gray-400">
+        Find answers to common questions about this creche
+      </p>
+
+      <div className="flex flex-col gap-5">
+        {Object.entries(grouped).map(([category, items]) => (
+          <div key={category}>
+            <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-400">
+              {category}
+            </p>
+            <div className="flex flex-col gap-2">
+              {items.map((faq) => (
+                <FaqAccordionItem key={faq.id} faq={faq} />
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // ─── Main Page ─────────────────────────────────────────────────────────────────
 export default function CrecheDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
@@ -314,6 +385,7 @@ export default function CrecheDetailPage({ params }: { params: Promise<{ id: str
     { key: "rooms", label: "Rooms" },
     { key: "pricing", label: "Pricing" },
     { key: "policies", label: "Policies" },
+    { key: "faq", label: "FAQ" },
   ];
 
   return (
@@ -529,6 +601,8 @@ export default function CrecheDetailPage({ params }: { params: Promise<{ id: str
               </ol>
             </div>
           )}
+
+          {tab === "faq" && <FaqSection />}
         </div>
 
         {/* Sticky Enrol Now button */}
