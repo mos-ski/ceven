@@ -681,7 +681,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
 .btn.dn{background:var(--red);color:#fff}.btn.dn:hover{background:var(--red2)}
 .btn.su{background:var(--green);color:#fff}.btn.su:hover{background:var(--green2)}
 .btn.ai-btn{background:var(--ai-grad);color:#fff}.btn.ai-btn:hover{opacity:.9;box-shadow:0 4px 14px rgba(30,45,74,.3)}
-/* ── RESPONSIVE — MOBILE FIRST ── */
+/* ── RESPONSIVE ── */
 
 /* Hamburger button (hidden on desktop) */
 .tb-hamburger{
@@ -691,32 +691,31 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
 }
 .tb-hamburger:hover{background:var(--surface);border-color:var(--amber)}
 
-/* Sidebar overlay backdrop (mobile) */
+/* Sidebar overlay backdrop (hidden on desktop) */
 .sb-overlay{
   display:none;position:fixed;inset:0;background:rgba(45,24,16,.5);
   backdrop-filter:blur(4px);z-index:99;
 }
 
-/* ── TABLET: ≤ 1200px ── */
+/* ── TABLET ≤ 1200px ── */
 @media(max-width:1200px){
   .ai-panel{display:none}
   .sg4,.sg5{grid-template-columns:repeat(2,1fr)}
   .sg6{grid-template-columns:repeat(3,1fr)}
 }
 
-/* ── TABLET: ≤ 1024px ── */
+/* ── TABLET ≤ 1024px ── */
 @media(max-width:1024px){
   .g13,.g31{grid-template-columns:1fr}
-  .g3{grid-template-columns:1fr 1fr}
-  .qa-grid{grid-template-columns:repeat(5,1fr)}
-  .ci-grid{grid-template-columns:repeat(4,1fr)}
+  .qa-grid{grid-template-columns:repeat(4,1fr)}
 }
 
-/* ── MOBILE: ≤ 768px ── */
+/* ── MOBILE ≤ 768px ── */
 @media(max-width:768px){
-  html,body{overflow:auto}
-  .app{height:auto;min-height:100vh}
-  .app-body{flex-direction:column}
+  /* UNLOCK scroll chain — the whole page scrolls */
+  html,body{overflow:auto;height:auto}
+  .app{height:auto;min-height:100vh;overflow:visible}
+  .app-body{overflow:visible}
 
   /* SIDEBAR — off-canvas drawer */
   .sb{
@@ -727,120 +726,117 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
   .sb.open{transform:translateX(0)}
   .sb-overlay.open{display:block}
 
+  /* MAIN — no longer constraining scroll */
+  .main{overflow:visible}
+  .main-with-ai{overflow:visible}
+  .main-content{overflow:visible}
+
   /* TOPBAR */
-  .topbar{padding:0 .75rem;gap:.5rem;height:50px}
+  .topbar{padding:0 .75rem;gap:.5rem;height:50px;position:sticky;top:0;z-index:50}
   .tb-hamburger{display:flex}
   .tb-search{display:none}
   .tb-cta{font-size:.7rem;padding:.38rem .8rem}
-  .tb-cta span{display:none}
 
-  /* CONTENT */
-  .content{padding:1rem;padding-bottom:4rem}
+  /* CONTENT — no scroll context, body scrolls */
+  .content{padding:1rem;padding-bottom:3rem;overflow:visible}
 
   /* PAGE HEADERS — stack */
-  .ph{flex-direction:column;align-items:flex-start}
+  .ph{flex-direction:column;align-items:flex-start;gap:.75rem}
   .ph-left h1{font-size:1.15rem}
-  .ph-actions{width:100%;flex-wrap:wrap}
+  .ph-actions{width:100%;display:flex;flex-wrap:wrap;gap:.4rem}
   .ph-actions .btn{font-size:.7rem;padding:.4rem .9rem}
+
+  /* GREETING BANNER — stack */
+  .greeting-banner{flex-direction:column;text-align:center;align-items:stretch;padding:1.25rem}
+  .greeting-banner > div:last-child{justify-content:center}
+
+  /* PROFILE HERO — stack */
   .phero{flex-direction:column;text-align:center;padding:1.25rem;gap:1rem}
   .phero-id{margin-left:0;text-align:center}
   .phero-badges{justify-content:center}
 
-  /* GRIDS — single column */
-  .sg4,.sg3,.sg2,.sg5,.sg6{grid-template-columns:1fr 1fr}
+  /* GRIDS — 2 col stat grids, single col layouts */
+  .sg4,.sg5{grid-template-columns:1fr 1fr}
+  .sg3{grid-template-columns:1fr}
+  .sg6{grid-template-columns:1fr 1fr}
   .g2,.g3,.g13,.g31{grid-template-columns:1fr}
   .qa-grid{grid-template-columns:repeat(3,1fr)}
   .ci-grid{grid-template-columns:repeat(3,1fr)}
 
-  /* STAT CARDS — smaller */
-  .sc-val{font-size:1.4rem}
-  .sc-card{padding:.85rem 1rem}
-
   /* CARDS */
   .card{padding:1rem}
+  .scard{padding:.85rem 1rem}
+  .sc-val{font-size:1.4rem}
 
-  /* TABLES — scrollable */
+  /* TABLES — horizontal scroll */
   .tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
-  .tw table{min-width:600px}
-  thead th{font-size:.56rem;padding:.5rem .7rem}
-  td{padding:.5rem .7rem}
+  .tw table{min-width:580px}
+  thead th{font-size:.56rem;padding:.5rem .65rem;position:sticky;top:0;background:var(--surface)}
+  td{padding:.5rem .65rem;font-size:.74rem}
 
-  /* STAFF CARDS — single column */
+  /* STAFF GRID — single column */
   #stt-dir > div{grid-template-columns:1fr}
 
   /* ROOM CARDS — single column */
   #sc-rooms .g2{grid-template-columns:1fr}
 
-  /* MODALS */
-  .mo-box{width:100%;max-width:100%;max-height:100vh;border-radius:0;margin:0}
-  .mo{align-items:flex-end}
-  .mo-body{padding:1rem}
-  .mo-head{padding:1rem}
-  .mo-foot{padding:.85rem 1rem;flex-wrap:wrap}
-
-  /* TABS — scrollable */
-  .tabs{overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap;gap:0}
-  .tab{padding:.5rem .8rem;font-size:.72rem}
-
-  /* AI BRIEF GRID */
+  /* AI BRIEF — single column */
   .ai-card .sg3{grid-template-columns:1fr}
 
-  /* GREETING BANNER */
-  .phero{border-radius:12px}
-
-  /* ROOM META GRID */
-  .rc-meta{grid-template-columns:1fr 1fr}
-
-  /* AI SETTINGS — stacks */
-  #st-ai .g2{grid-template-columns:1fr}
-  #st-ai .g2 .card{margin-bottom:1rem}
-
-  /* SETTINGS GRID */
-  #st-branch .g2{grid-template-columns:1fr}
-
-  /* ANNOUNCEMENTS — stacks */
-  #sc-announcements .g2{grid-template-columns:1fr}
-
-  /* COMMS — stacks */
-  #sc-comms .g2{grid-template-columns:1fr}
-
-  /* CHILD PROFILE — stacks */
-  #cp-overview .sg3{grid-template-columns:1fr 1fr}
-  #cp-overview .g2{grid-template-columns:1fr}
-  #cp-health .g2{grid-template-columns:1fr}
-  #cp-billing .g2{grid-template-columns:1fr}
-  #cp-ai .sg3{grid-template-columns:1fr}
-
-  /* BILLING COLLECTION STATS */
-  #sc-billing .sg4{grid-template-columns:1fr 1fr}
+  /* ALL TWO-COL LAYOUTS — stack */
+  #sc-comms .g2,
+  #sc-announcements .g2,
+  #sc-settings .g2,
+  #st-ai .g2,
+  #st-branch .g2,
+  #cp-overview .g2,
+  #cp-overview .sg3,
+  #cp-health .g2,
+  #cp-billing .g2,
+  #cp-ai .sg3,
+  #sc-billing .sg4{grid-template-columns:1fr}
 
   /* COLLECTION PROGRESS — stack stats */
   #sc-billing .card > div:last-child{flex-direction:column;gap:.5rem}
   #sc-billing .card > div:last-child > div{margin-left:0;text-align:left}
 
+  /* MODALS — bottom sheet */
+  .mo{align-items:flex-end}
+  .mo-box{width:100%;max-width:100%;max-height:85vh;border-radius:14px 14px 0 0;margin:0}
+  .mo-body{padding:1rem}
+  .mo-head{padding:1rem;border-radius:14px 14px 0 0}
+  .mo-foot{padding:.85rem 1rem;flex-wrap:wrap;gap:.5rem}
+  .mo-foot .btn{flex:1;min-width:0;justify-content:center}
+
+  /* TABS — scrollable */
+  .tabs{overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap;gap:0;margin-bottom:1rem}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{padding:.5rem .8rem;font-size:.72rem}
+
   /* TRIAL BANNER */
   .trial-banner{font-size:.65rem;padding:.35rem .75rem;gap:.5rem}
 
-  /* LOCKED / PLAN GATE */
-  .plan-gate{padding:1.25rem}
-  .plan-gate-sub{max-width:100%}
-
   /* BAR CHART */
-  .bar-chart{height:80px}
+  .bar-chart{height:90px}
 
   /* TOAST */
-  .toast{left:1rem;right:1rem;bottom:1rem;max-width:none}
+  .toast{left:1rem;right:1rem;bottom:1rem;max-width:none;font-size:.74rem}
 
   /* FOCUS ROWS */
   .focus-row{flex-wrap:wrap}
+
+  /* MISC */
+  .plan-gate{padding:1.25rem}
+  .plan-gate-sub{max-width:100%}
+  .emoji-picker-grid{grid-template-columns:repeat(6,1fr)}
 }
 
-/* ── MOBILE: ≤ 480px ── */
+/* ── MOBILE ≤ 480px ── */
 @media(max-width:480px){
-  .sg4,.sg3,.sg2,.sg5,.sg6{grid-template-columns:1fr}
+  .sg4,.sg5,.sg6{grid-template-columns:1fr}
+  .sg3{grid-template-columns:1fr}
   .qa-grid{grid-template-columns:repeat(2,1fr)}
   .ci-grid{grid-template-columns:repeat(2,1fr)}
-  .g2,.g3,.g13,.g31{grid-template-columns:1fr}
 
   .ph-left h1{font-size:1.05rem}
   .ph-actions{flex-direction:column}
@@ -848,23 +844,21 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
 
   .sc-val{font-size:1.25rem}
   .card{padding:.85rem}
-  .content{padding:.75rem;padding-bottom:3.5rem}
+  .content{padding:.75rem;padding-bottom:2.5rem}
 
   .topbar{padding:0 .5rem;gap:.4rem}
-  .tb-title{font-size:.8rem}
+  .tb-title{font-size:.78rem}
   .tb-icon-btn{width:30px;height:30px;font-size:.75rem}
 
-  /* Room cards — 2-col meta */
-  .rc-meta{grid-template-columns:1fr 1fr}
+  .rc-meta{grid-template-columns:1fr}
+  .meal-grid{grid-template-columns:1fr 1fr}
+  .emoji-picker-grid{grid-template-columns:repeat(5,1fr)}
+  .grad-opts{grid-template-columns:repeat(4,1fr)}
 
-  /* Billing progress labels */
-  #sc-billing .card > div:last-child > div{font-size:.75rem}
-
-  /* Modals — fullscreen */
-  .mo-box{border-radius:0}
-
-  /* Tabs — tighter */
+  .mo-box{border-radius:12px 12px 0 0}
   .tab{padding:.45rem .65rem;font-size:.68rem}
+
+  .bsr{flex-wrap:wrap;gap:.25rem}
 }
 
 /* Component class aliases — backward compat */
@@ -1066,7 +1060,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
 <!-- ════════ DASHBOARD ════════ -->
 <div class="screen active" id="sc-dashboard">
   <!-- BRAND GREETING CARD — inspired by CEven billboard "Parenthood comes with enough pressure" -->
-  <div style="
+  <div class="greeting-banner" style="
     background:linear-gradient(135deg,var(--sidebar) 0%,var(--sidebar2) 70%,#3D2418 100%);
     border-radius:16px;padding:1.5rem 1.75rem;margin-bottom:1.25rem;
     display:flex;align-items:center;justify-content:space-between;gap:1.5rem;
