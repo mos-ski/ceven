@@ -51,7 +51,6 @@ export const NAV_ITEMS: NavItem[] = [
       { label: "Special Requests", href: "/admin/v2/daily-operations", tab: "special-requests" },
       { label: "Inventory & Supplies", href: "/admin/v2/daily-operations", tab: "inventory-supplies" },
       { label: "Facilities", href: "/admin/v2/daily-operations", tab: "facilities" },
-      { label: "Tasks", href: "/admin/v2/daily-operations", tab: "tasks" },
     ],
   },
   {

@@ -1,4 +1,6 @@
-export type SpecialRequestStatus = "Pending" | "In Progress" | "Done" | "Undone";
+export type SpecialRequestPriority = "Low" | "Medium" | "High";
+export type SpecialRequestSource = "Parent" | "AI Assigned" | "Admin" | "Routine";
+export type SpecialRequestStatus = "Pending" | "In Progress" | "Done" | "Overdue" | "Cancelled";
 
 export type SpecialRequest = {
   id: string;
@@ -12,8 +14,11 @@ export type SpecialRequest = {
   scheduledTime: string;
   reminderTime: string;
   comment: string;
+  priority: SpecialRequestPriority;
+  source: SpecialRequestSource;
   status: SpecialRequestStatus;
   date: string;
+  dueDate: string;
 };
 
 export const SPECIAL_REQUESTS: SpecialRequest[] = [
@@ -29,8 +34,11 @@ export const SPECIAL_REQUESTS: SpecialRequest[] = [
     scheduledTime: "12:30pm",
     reminderTime: "12:15pm",
     comment: "She is allergic to some brands — use the one in her bag only.",
+    priority: "High",
+    source: "Parent",
     status: "Done",
     date: "Jul 25, 2026",
+    dueDate: "Jul 25, 2026",
   },
   {
     id: "sr-2",
@@ -44,8 +52,11 @@ export const SPECIAL_REQUESTS: SpecialRequest[] = [
     scheduledTime: "12:00pm",
     reminderTime: "11:50am",
     comment: "",
+    priority: "Medium",
+    source: "Parent",
     status: "In Progress",
     date: "Jul 25, 2026",
+    dueDate: "Jul 25, 2026",
   },
   {
     id: "sr-3",
@@ -59,8 +70,11 @@ export const SPECIAL_REQUESTS: SpecialRequest[] = [
     scheduledTime: "12:00pm",
     reminderTime: "11:30am",
     comment: "Kitchen has been informed. Alternative meal is prepared.",
+    priority: "High",
+    source: "Parent",
     status: "Pending",
     date: "Jul 26, 2026",
+    dueDate: "Jul 26, 2026",
   },
   {
     id: "sr-4",
@@ -74,8 +88,11 @@ export const SPECIAL_REQUESTS: SpecialRequest[] = [
     scheduledTime: "3:00pm",
     reminderTime: "2:45pm",
     comment: "I will send my ID photo via chat.",
+    priority: "Medium",
+    source: "Parent",
     status: "Done",
     date: "Jul 24, 2026",
+    dueDate: "Jul 24, 2026",
   },
   {
     id: "sr-5",
@@ -89,8 +106,11 @@ export const SPECIAL_REQUESTS: SpecialRequest[] = [
     scheduledTime: "1:00pm",
     reminderTime: "12:45pm",
     comment: "",
+    priority: "Low",
+    source: "Parent",
     status: "Pending",
     date: "Jul 26, 2026",
+    dueDate: "Jul 26, 2026",
   },
   {
     id: "sr-6",
@@ -104,8 +124,11 @@ export const SPECIAL_REQUESTS: SpecialRequest[] = [
     scheduledTime: "4:00pm",
     reminderTime: "3:45pm",
     comment: "She may ask for cookies — please redirect her to water.",
-    status: "Undone",
+    priority: "Medium",
+    source: "Parent",
+    status: "Overdue",
     date: "Jul 23, 2026",
+    dueDate: "Jul 23, 2026",
   },
   {
     id: "sr-7",
@@ -119,7 +142,100 @@ export const SPECIAL_REQUESTS: SpecialRequest[] = [
     scheduledTime: "All day",
     reminderTime: "Every 1.5hrs",
     comment: "Cream is in her bag. Apply after each change.",
+    priority: "High",
+    source: "Parent",
     status: "In Progress",
     date: "Jul 25, 2026",
+    dueDate: "Jul 25, 2026",
+  },
+  {
+    id: "sr-8",
+    title: "Notify parent of minor fall",
+    description: "King Andrew had a minor fall near the climbing frame. First aid applied. Parent must be notified.",
+    parentName: "Mrs. Johnson",
+    parentAvatar: "MJ",
+    childName: "King Andrew",
+    childRoom: "Lion",
+    caregiverName: "Mr. Ben Ayadi",
+    scheduledTime: "ASAP",
+    reminderTime: "",
+    comment: "Incident report filed.",
+    priority: "High",
+    source: "AI Assigned",
+    status: "In Progress",
+    date: "Jul 26, 2026",
+    dueDate: "Jul 26, 2026",
+  },
+  {
+    id: "sr-9",
+    title: "Submit daily report for Owl room",
+    description: "Daily activity reports for Owl room are overdue. AI has detected missing submissions.",
+    parentName: "—",
+    parentAvatar: "AI",
+    childName: "Owl Room",
+    childRoom: "Owl",
+    caregiverName: "Mr. Ben Ayadi",
+    scheduledTime: "6:00pm",
+    reminderTime: "5:30pm",
+    comment: "",
+    priority: "Medium",
+    source: "AI Assigned",
+    status: "Pending",
+    date: "Jul 26, 2026",
+    dueDate: "Jul 26, 2026",
+  },
+  {
+    id: "sr-10",
+    title: "Weekly inventory check",
+    description: "AI detected that hygiene supplies are running low. Schedule an inventory check this week.",
+    parentName: "—",
+    parentAvatar: "AI",
+    childName: "—",
+    childRoom: "All Rooms",
+    caregiverName: "Mrs. Funke Obi",
+    scheduledTime: "Friday",
+    reminderTime: "Thursday EOD",
+    comment: "Hand sanitizer and wet wipes below reorder level.",
+    priority: "Medium",
+    source: "AI Assigned",
+    status: "Pending",
+    date: "Jul 24, 2026",
+    dueDate: "Jul 31, 2026",
+  },
+  {
+    id: "sr-11",
+    title: "Parent teachers meeting note",
+    description: "Prepare meeting notes for the upcoming parent-teacher conference.",
+    parentName: "—",
+    parentAvatar: "AD",
+    childName: "All Children",
+    childRoom: "All Rooms",
+    caregiverName: "Ms. Grace Nwosu",
+    scheduledTime: "Aug 1",
+    reminderTime: "Jul 30",
+    comment: "",
+    priority: "Low",
+    source: "Admin",
+    status: "Pending",
+    date: "Jul 26, 2026",
+    dueDate: "Aug 1, 2026",
+  },
+  {
+    id: "sr-12",
+    title: "Clean and sanitise play area",
+    description: "Routine weekly cleaning of outdoor play equipment and surfaces.",
+    parentName: "—",
+    parentAvatar: "SY",
+    childName: "—",
+    childRoom: "All Rooms",
+    caregiverName: "Cleaning Staff",
+    scheduledTime: "Saturday 8am",
+    reminderTime: "Friday 5pm",
+    comment: "",
+    priority: "Low",
+    source: "Routine",
+    status: "Done",
+    date: "Jul 20, 2026",
+    dueDate: "Jul 26, 2026",
   },
 ];
