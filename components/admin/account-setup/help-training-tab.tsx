@@ -1,17 +1,33 @@
 "use client";
 
-import { ArrowLeft, ArrowUp, Search } from "lucide-react";
-import { useState } from "react";
+import { ArrowLeft, ArrowUp, Plus, Pencil, Trash2, GripVertical, ChevronDown, ChevronUp, Search } from "lucide-react";
+import { useState, useCallback } from "react";
 
 import {
   ADA_SUGGESTED_PROMPTS,
-  FAQ_ITEMS,
   ROLE_GUIDES,
   SETUP_PROGRESS_ITEMS,
   SETUP_PROGRESS_PERCENT,
   type RoleGuide,
 } from "@/lib/mock-data/account-setup";
 import { getAdaReply } from "@/lib/ada-responses";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+  DialogClose,
+} from "@/components/ui/dialog";
+import {
+  getFaqs,
+  addFaq,
+  updateFaq,
+  deleteFaq,
+  reorderFaqs,
+  FAQ_CATEGORIES,
+  type FaqItem,
+} from "@/lib/mock-data/faq";
 
 const gradientBg = "linear-gradient(135deg, rgb(30,45,74) 0%, rgb(45,24,16) 100%)";
 
@@ -47,31 +63,284 @@ function SetupProgressCard() {
   );
 }
 
-function FaqAccordion() {
-  const [openId, setOpenId] = useState<string | null>(FAQ_ITEMS[0]?.id ?? null);
+// ── FAQ Form Dialog ───────────────────────────────────────────────────────────
+
+function FaqFormDialog({
+  open,
+  onOpenChange,
+  initial,
+  onSave,
+}: {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  initial?: FaqItem;
+  onSave: (data: { question: string; answer: string; category: string }) => void;
+}) {
+  const [question, setQuestion] = useState(initial?.question ?? "");
+  const [answer, setAnswer] = useState(initial?.answer ?? "");
+  const [category, setCategory] = useState(initial?.category ?? FAQ_CATEGORIES[0]);
+
+  const canSave = question.trim().length > 0 && answer.trim().length > 0;
+
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!canSave) return;
+    onSave({ question: question.trim(), answer: answer.trim(), category });
+    setQuestion("");
+    setAnswer("");
+    setCategory(FAQ_CATEGORIES[0]);
+  }
+
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>{initial ? "Edit FAQ" : "Add New FAQ"}</DialogTitle>
+        </DialogHeader>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-5 p-6">
+          <div className="flex flex-col gap-1.5">
+            <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">Category</label>
+            <select
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              className="h-11 rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+            >
+              {FAQ_CATEGORIES.map((cat) => (
+                <option key={cat} value={cat}>{cat.trim()}</option>
+              ))}
+            </select>
+          </div>
+          <div className="flex flex-col gap-1.5">
+            <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">Question</label>
+            <input
+              type="text"
+              value={question}
+              onChange={(e) => setQuestion(e.target.value)}
+              placeholder="e.g. What age groups do you accept?"
+              className="h-11 rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+            />
+          </div>
+          <div className="flex flex-col gap-1.5">
+            <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">Answer</label>
+            <textarea
+              rows={5}
+              value={answer}
+              onChange={(e) => setAnswer(e.target.value)}
+              placeholder="Type the answer here..."
+              className="resize-none rounded-xl border border-[#e6ebf3] bg-white px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+            />
+          </div>
+          <DialogFooter className="border-t border-[#eaecf0] px-0 pt-4">
+            <DialogClose className="rounded-lg border border-[#d0d5dd] px-5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810] hover:bg-[#f9fafb]">
+              Cancel
+            </DialogClose>
+            <button
+              type="submit"
+              disabled={!canSave}
+              className="rounded-lg bg-[#3b2513] px-5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#faf2e1] hover:bg-[#2d1810] disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              {initial ? "Save Changes" : "Add FAQ"}
+            </button>
+          </DialogFooter>
+        </form>
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+// ── FAQ Management ────────────────────────────────────────────────────────────
+
+function FaqManagement() {
+  const [faqs, setFaqs] = useState<FaqItem[]>(() => getFaqs());
+  const [filterCategory, setFilterCategory] = useState<string>("All");
+  const [showAddDialog, setShowAddDialog] = useState(false);
+  const [editItem, setEditItem] = useState<FaqItem | null>(null);
+  const [deleteItem, setDeleteItem] = useState<FaqItem | null>(null);
+
+  const loadFaqs = useCallback(() => setFaqs(getFaqs()), []);
+
+  function handleAdd(data: { question: string; answer: string; category: string }) {
+    addFaq(data);
+    loadFaqs();
+    setShowAddDialog(false);
+  }
+
+  function handleEdit(data: { question: string; answer: string; category: string }) {
+    if (!editItem) return;
+    updateFaq(editItem.id, data);
+    loadFaqs();
+    setEditItem(null);
+  }
+
+  function handleDelete() {
+    if (!deleteItem) return;
+    deleteFaq(deleteItem.id);
+    loadFaqs();
+    setDeleteItem(null);
+  }
+
+  function moveItem(index: number, direction: -1 | 1) {
+    const filtered = filterCategory === "All" ? faqs : faqs.filter((f) => f.category === filterCategory);
+    const targetIdx = index + direction;
+    if (targetIdx < 0 || targetIdx >= filtered.length) return;
+    const ids = filtered.map((f) => f.id);
+    [ids[index], ids[targetIdx]] = [ids[targetIdx], ids[index]];
+    const allIds = faqs.map((f) => f.id);
+    const movedId = ids[index];
+    const movedOrig = allIds.indexOf(movedId);
+    const targetId = ids[targetIdx];
+    const targetOrig = allIds.indexOf(targetId);
+    allIds[movedOrig] = targetId;
+    allIds[targetOrig] = movedId;
+    reorderFaqs(allIds);
+    loadFaqs();
+  }
+
+  const filtered = filterCategory === "All" ? faqs : faqs.filter((f) => f.category === filterCategory);
 
   return (
     <div className="flex flex-col gap-4 rounded-xl bg-white p-5">
-      <p className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-black">
-        Frequently Asked Questions
-      </p>
-      <div className="flex flex-col gap-3">
-        {FAQ_ITEMS.map((item) => {
-          const isOpen = openId === item.id;
-          return (
-            <button
-              key={item.id}
-              onClick={() => setOpenId(isOpen ? null : item.id)}
-              className="flex flex-col gap-2 border-b border-[#e6ebf3] pb-4 text-left last:border-0 last:pb-0"
-            >
-              <p className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">{item.question}</p>
-              {isOpen && item.answer && (
-                <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{item.answer}</p>
-              )}
-            </button>
-          );
-        })}
+      <div className="flex items-center justify-between">
+        <p className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-black">
+          Frequently Asked Questions
+        </p>
+        <button
+          onClick={() => setShowAddDialog(true)}
+          className="flex items-center gap-1.5 rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-[#faf2e1] hover:bg-[#2d1810]"
+        >
+          <Plus size={14} />
+          Add FAQ
+        </button>
       </div>
+
+      {/* Category filter */}
+      <div className="flex flex-wrap gap-1.5">
+        <button
+          onClick={() => setFilterCategory("All")}
+          className={`rounded-full border px-3 py-1 font-[family-name:var(--font-urbanist)] text-[11px] font-medium transition-colors ${
+            filterCategory === "All"
+              ? "border-[#3b2513] bg-[#3b2513] text-[#faf2e1]"
+              : "border-[#d0d5dd] text-[#6b7280] hover:border-[#c47b2c]"
+          }`}
+        >
+          All
+        </button>
+        {FAQ_CATEGORIES.map((cat) => (
+          <button
+            key={cat}
+            onClick={() => setFilterCategory(cat)}
+            className={`rounded-full border px-3 py-1 font-[family-name:var(--font-urbanist)] text-[11px] font-medium transition-colors ${
+              filterCategory === cat
+                ? "border-[#3b2513] bg-[#3b2513] text-[#faf2e1]"
+                : "border-[#d0d5dd] text-[#6b7280] hover:border-[#c47b2c]"
+            }`}
+          >
+            {cat.trim()}
+          </button>
+        ))}
+      </div>
+
+      {/* FAQ list */}
+      {filtered.length === 0 ? (
+        <p className="py-6 text-center font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">
+          No FAQs yet. Click &ldquo;Add FAQ&rdquo; to get started.
+        </p>
+      ) : (
+        <div className="flex flex-col gap-2">
+          {filtered.map((faq, i) => (
+            <FaqRow
+              key={faq.id}
+              faq={faq}
+              onEdit={() => setEditItem(faq)}
+              onDelete={() => setDeleteItem(faq)}
+              onMoveUp={() => moveItem(i, -1)}
+              onMoveDown={() => moveItem(i, 1)}
+              isFirst={i === 0}
+              isLast={i === filtered.length - 1}
+            />
+          ))}
+        </div>
+      )}
+
+      <FaqFormDialog open={showAddDialog} onOpenChange={setShowAddDialog} onSave={handleAdd} />
+      <FaqFormDialog open={!!editItem} onOpenChange={(o) => !o && setEditItem(null)} initial={editItem ?? undefined} onSave={handleEdit} />
+
+      {/* Delete confirm */}
+      <Dialog open={!!deleteItem} onOpenChange={(o) => !o && setDeleteItem(null)}>
+        <DialogContent>
+          {deleteItem && (
+            <div className="flex flex-col items-center p-6 text-center">
+              <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-red-50">
+                <Trash2 size={24} className="text-red-500" />
+              </div>
+              <h3 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">Delete FAQ</h3>
+              <p className="mt-2 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+                Are you sure? This cannot be undone.
+              </p>
+              <p className="mt-3 rounded-lg bg-[#f9f8f6] px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">
+                &ldquo;{deleteItem.question}&rdquo;
+              </p>
+              <div className="mt-6 flex w-full gap-3">
+                <DialogClose className="flex-1 rounded-lg border border-[#d0d5dd] px-5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810] hover:bg-[#f9fafb]">
+                  Cancel
+                </DialogClose>
+                <button
+                  onClick={handleDelete}
+                  className="flex-1 rounded-lg bg-red-500 px-5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-white hover:bg-red-600"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
+    </div>
+  );
+}
+
+function FaqRow({
+  faq,
+  onEdit,
+  onDelete,
+  onMoveUp,
+  onMoveDown,
+  isFirst,
+  isLast,
+}: {
+  faq: FaqItem;
+  onEdit: () => void;
+  onDelete: () => void;
+  onMoveUp: () => void;
+  onMoveDown: () => void;
+  isFirst: boolean;
+  isLast: boolean;
+}) {
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <div className="rounded-xl border border-[#e6ebf3]">
+      <div className="flex items-center gap-2 px-3 py-2.5">
+        <GripVertical size={14} className="shrink-0 text-[#d0d5dd]" />
+        <div className="min-w-0 flex-1">
+          <p className="font-[family-name:var(--font-nunito)] text-xs font-semibold text-[#2d1810] truncate">{faq.question}</p>
+          <span className="font-[family-name:var(--font-urbanist)] text-[9px] text-[#c47b2c]">{faq.category.trim()}</span>
+        </div>
+        <div className="flex shrink-0 items-center gap-0.5">
+          <button onClick={onMoveUp} disabled={isFirst} className="rounded p-0.5 text-[#9ca3af] hover:text-[#2d1810] disabled:opacity-30"><ChevronUp size={12} /></button>
+          <button onClick={onMoveDown} disabled={isLast} className="rounded p-0.5 text-[#9ca3af] hover:text-[#2d1810] disabled:opacity-30"><ChevronDown size={12} /></button>
+          <button onClick={onEdit} className="rounded p-0.5 text-[#9ca3af] hover:text-[#c47b2c]"><Pencil size={12} /></button>
+          <button onClick={onDelete} className="rounded p-0.5 text-[#9ca3af] hover:text-red-500"><Trash2 size={12} /></button>
+          <button onClick={() => setExpanded(!expanded)} className="rounded p-0.5 text-[#9ca3af] hover:text-[#2d1810]">
+            <ChevronDown size={12} className={`transition-transform ${expanded ? "rotate-180" : ""}`} />
+          </button>
+        </div>
+      </div>
+      {expanded && (
+        <div className="border-t border-[#f3f4f6] px-3 py-2.5">
+          <p className="font-[family-name:var(--font-nunito)] text-xs leading-relaxed text-[#6b7280]">{faq.answer}</p>
+        </div>
+      )}
     </div>
   );
 }
@@ -293,7 +562,7 @@ export function HelpTrainingTab() {
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <div className="flex flex-col gap-4">
           <SetupProgressCard />
-          <FaqAccordion />
+          <FaqManagement />
         </div>
         <div className="flex flex-col gap-4">
           <RoleGuidesList search={search} onSearchChange={setSearch} onSelect={setActiveGuide} />

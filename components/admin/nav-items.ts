@@ -92,7 +92,6 @@ export const NAV_ITEMS: NavItem[] = [
     icon: "account",
     subItems: [
       { label: "Plans & Access", href: "/admin/v2/account-setup" },
-      { label: "FAQ Management", href: "/admin/v2/account-setup", tab: "faq" },
       { label: "Help & Training", href: "/admin/v2/account-setup", tab: "help-training" },
       { label: "Settings", href: "/admin/v2/account-setup", tab: "settings" },
     ],
