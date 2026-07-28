@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import {
   ChevronDown,
   Headphones,
   Home,
+  Rocket,
   Users,
   UserCog,
   ClipboardList,
@@ -19,8 +20,10 @@ import {
 } from "lucide-react";
 import { NAV_ITEMS, type NavItem } from "@/components/admin/nav-items";
 import { MOCK_ADMIN_USER } from "@/lib/mock-data/admin-user";
+import { getOnboardingProgress } from "@/lib/mock-data/get-started";
 
 const ICONS: Record<NavItem["icon"], React.ComponentType<{ className?: string }>> = {
+  rocket: Rocket,
   home: Home,
   child: Users,
   staff: UserCog,
@@ -38,9 +41,126 @@ export function Sidebar() {
   const activeTab = searchParams.get("tab");
   const [mobileOpen, setMobileOpen] = useState(false);
   const [showSupport, setShowSupport] = useState(true);
+  const [progress, setProgress] = useState(0);
   const [openGroup, setOpenGroup] = useState<string | null>(
     () => NAV_ITEMS.find((item) => item.subItems && pathname.startsWith(item.href))?.label ?? null
   );
+
+  useEffect(() => {
+    setProgress(getOnboardingProgress());
+  }, []);
+
+  function renderNavItem(item: (typeof NAV_ITEMS)[number]) {
+    const Icon = ICONS[item.icon];
+    const isSectionActive = pathname.startsWith(item.href);
+
+    return (
+      <div key={item.label}>
+        {item.dividerBefore && (
+          <div className="my-2 border-t border-[#e6ebf3]" />
+        )}
+        {!item.subItems ? (
+          <Link
+            href={item.href}
+            onClick={() => setMobileOpen(false)}
+            className={`flex items-center gap-2 rounded-lg px-3 py-2.5 font-[family-name:var(--font-nunito)] text-sm font-semibold ${
+              isSectionActive
+                ? "bg-brand-dark text-sidebar-active-text"
+                : "text-sidebar-inactive-text hover:text-brand-dark"
+            }`}
+          >
+            <Icon className="size-5" />
+            {item.label}
+            {item.badge && progress < 100 && (
+              <span className="ml-auto flex h-5 min-w-5 items-center justify-center rounded-full bg-[#c47b2c] px-1.5 font-[family-name:var(--font-urbanist)] text-[9px] font-bold text-white">
+                {progress}%
+              </span>
+            )}
+            {item.badge && progress >= 100 && (
+              <span className="ml-auto flex h-5 min-w-5 items-center justify-center rounded-full bg-[#009061] px-1.5 font-[family-name:var(--font-urbanist)] text-[9px] font-bold text-white">
+                ✓
+              </span>
+            )}
+          </Link>
+        ) : (
+          <div className="flex flex-col overflow-hidden rounded-lg">
+            <button
+              type="button"
+              onClick={() => setOpenGroup(openGroup === item.label ? null : item.label)}
+              className={`flex h-10 items-center justify-between rounded-lg px-3 py-2.5 font-[family-name:var(--font-nunito)] text-sm font-semibold ${
+                isSectionActive ? "text-brand-dark" : "text-sidebar-inactive-text"
+              }`}
+            >
+              <span className="flex items-center gap-2">
+                <Icon className="size-5" />
+                {item.label}
+              </span>
+              <ChevronDown
+                className={`size-4 transition-transform ${openGroup === item.label ? "rotate-180" : ""}`}
+              />
+            </button>
+            {openGroup === item.label && (
+              <div className="flex flex-col">
+                {item.subItems.map((sub) => {
+                  const isSubActive =
+                    isSectionActive && (sub.tab ?? null) === (activeTab ?? null);
+                  const href = sub.tab ? `${sub.href}?tab=${sub.tab}` : sub.href;
+
+                  if (!sub.tab) {
+                    return (
+                      <button
+                        key={sub.label}
+                        onClick={() => {
+                          router.push(href);
+                          setMobileOpen(false);
+                        }}
+                        className={`h-10 rounded-lg py-2.5 pl-10 pr-2 text-left font-[family-name:var(--font-nunito)] text-sm ${
+                          isSubActive
+                            ? "bg-brand-dark text-sidebar-active-text"
+                            : "text-sidebar-inactive-text"
+                        }`}
+                      >
+                        <span className="flex items-center gap-1.5">
+                          {sub.label}
+                          {sub.isNew && (
+                            <span className="inline-flex shrink-0 items-center rounded-full bg-emerald-500 px-1.5 py-0.5 text-[7px] font-bold uppercase tracking-wide text-white">
+                              New
+                            </span>
+                          )}
+                        </span>
+                      </button>
+                    );
+                  }
+
+                  return (
+                    <Link
+                      key={sub.label}
+                      href={href}
+                      onClick={() => setMobileOpen(false)}
+                      className={`h-10 rounded-lg py-2.5 pl-10 pr-2 font-[family-name:var(--font-nunito)] text-sm ${
+                        isSubActive
+                          ? "bg-brand-dark text-sidebar-active-text"
+                          : "text-sidebar-inactive-text"
+                      }`}
+                    >
+                      <span className="flex items-center gap-1.5">
+                        {sub.label}
+                        {sub.isNew && (
+                          <span className="inline-flex shrink-0 items-center rounded-full bg-emerald-500 px-1.5 py-0.5 text-[7px] font-bold uppercase tracking-wide text-white">
+                            New
+                          </span>
+                        )}
+                      </span>
+                    </Link>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    );
+  }
 
   return (
     <>
@@ -87,107 +207,7 @@ export function Sidebar() {
 
         <div className="flex flex-1 flex-col overflow-y-auto px-3">
           <nav className="flex flex-col gap-2">
-            {NAV_ITEMS.map((item) => {
-              const Icon = ICONS[item.icon];
-              const isSectionActive = pathname.startsWith(item.href);
-
-              if (!item.subItems) {
-                return (
-                  <Link
-                    key={item.label}
-                    href={item.href}
-                    onClick={() => setMobileOpen(false)}
-                    className={`flex items-center gap-2 rounded-lg px-3 py-2.5 font-[family-name:var(--font-nunito)] text-sm font-semibold ${
-                      isSectionActive
-                        ? "bg-brand-dark text-sidebar-active-text"
-                        : "text-sidebar-inactive-text hover:text-brand-dark"
-                    }`}
-                  >
-                    <Icon className="size-5" />
-                    {item.label}
-                  </Link>
-                );
-              }
-
-              const isOpen = openGroup === item.label;
-
-              return (
-                <div key={item.label} className="flex flex-col overflow-hidden rounded-lg">
-                  <button
-                    type="button"
-                    onClick={() => setOpenGroup(isOpen ? null : item.label)}
-                    className={`flex h-10 items-center justify-between rounded-lg px-3 py-2.5 font-[family-name:var(--font-nunito)] text-sm font-semibold ${
-                      isSectionActive ? "text-brand-dark" : "text-sidebar-inactive-text"
-                    }`}
-                  >
-                    <span className="flex items-center gap-2">
-                      <Icon className="size-5" />
-                      {item.label}
-                    </span>
-                    <ChevronDown
-                      className={`size-4 transition-transform ${isOpen ? "rotate-180" : ""}`}
-                    />
-                  </button>
-                  {isOpen && (
-                    <div className="flex flex-col">
-                      {item.subItems.map((sub) => {
-                        const isSubActive =
-                          isSectionActive && (sub.tab ?? null) === (activeTab ?? null);
-                        const href = sub.tab ? `${sub.href}?tab=${sub.tab}` : sub.href;
-
-                        if (!sub.tab) {
-                          return (
-                            <button
-                              key={sub.label}
-                              onClick={() => {
-                                router.push(href);
-                                setMobileOpen(false);
-                              }}
-                              className={`h-10 rounded-lg py-2.5 pl-10 pr-2 text-left font-[family-name:var(--font-nunito)] text-sm ${
-                                isSubActive
-                                  ? "bg-brand-dark text-sidebar-active-text"
-                                  : "text-sidebar-inactive-text"
-                              }`}
-                            >
-                              <span className="flex items-center gap-1.5">
-                                {sub.label}
-                                {sub.isNew && (
-                                  <span className="inline-flex shrink-0 items-center rounded-full bg-emerald-500 px-1.5 py-0.5 text-[7px] font-bold uppercase tracking-wide text-white">
-                                    New
-                                  </span>
-                                )}
-                              </span>
-                            </button>
-                          );
-                        }
-
-                        return (
-                          <Link
-                            key={sub.label}
-                            href={href}
-                            onClick={() => setMobileOpen(false)}
-                            className={`h-10 rounded-lg py-2.5 pl-10 pr-2 font-[family-name:var(--font-nunito)] text-sm ${
-                              isSubActive
-                                ? "bg-brand-dark text-sidebar-active-text"
-                                : "text-sidebar-inactive-text"
-                            }`}
-                          >
-                            <span className="flex items-center gap-1.5">
-                              {sub.label}
-                              {sub.isNew && (
-                                <span className="inline-flex shrink-0 items-center rounded-full bg-emerald-500 px-1.5 py-0.5 text-[7px] font-bold uppercase tracking-wide text-white">
-                                  New
-                                </span>
-                              )}
-                            </span>
-                          </Link>
-                        );
-                      })}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
+            {NAV_ITEMS.map(renderNavItem)}
           </nav>
         </div>
 

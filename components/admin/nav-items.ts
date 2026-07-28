@@ -8,12 +8,15 @@ export type NavSubItem = {
 export type NavItem = {
   label: string;
   href: string;
-  icon: "home" | "child" | "staff" | "daily-ops" | "finance" | "communication" | "intelligence" | "account";
+  icon: "rocket" | "home" | "child" | "staff" | "daily-ops" | "finance" | "communication" | "intelligence" | "account";
   subItems?: NavSubItem[];
+  badge?: boolean;
+  dividerBefore?: boolean;
 };
 
 export const NAV_ITEMS: NavItem[] = [
-  { label: "Dashboard", href: "/admin/v2/dashboard", icon: "home" },
+  { label: "Get Started", href: "/admin/v2/get-started", icon: "rocket", badge: true },
+  { label: "Dashboard", href: "/admin/v2/dashboard", icon: "home", dividerBefore: true },
   {
     label: "Child Management",
     href: "/admin/v2/children",
