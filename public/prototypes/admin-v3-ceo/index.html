@@ -712,11 +712,12 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
 
 /* ── MOBILE ≤ 768px ── */
 @media(max-width:768px){
-  /* UNLOCK scroll */
-  html,body{overflow:auto;height:auto}
+  /* LOCK horizontal scroll, allow vertical */
+  html{overflow-x:hidden;overflow-y:auto}
+  body{overflow-x:hidden;overflow-y:auto;height:auto}
   .app{height:auto;min-height:100vh;overflow:visible}
 
-  /* SIDEBAR — off-canvas, removed from flow */
+  /* SIDEBAR — off-canvas */
   .sb{
     position:fixed;top:0;left:0;bottom:0;z-index:200;
     transform:translateX(-100%);transition:transform .3s cubic-bezier(.4,0,.2,1);
@@ -725,16 +726,16 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
   .sb.open{transform:translateX(0)}
   .sb-overlay.open{display:block}
 
-  /* APP BODY — block layout, sidebar out of flow */
-  .app-body{display:block;overflow:visible;position:relative}
+  /* APP BODY — block, sidebar out of flow */
+  .app-body{display:block;overflow:visible;position:relative;width:100%}
 
-  /* MAIN */
-  .main{overflow:visible;min-height:100vh}
-  .main-with-ai{overflow:visible}
-  .main-content{overflow:visible}
+  /* MAIN — full width, no overflow hidden */
+  .main{overflow:visible;min-height:100vh;width:100%}
+  .main-with-ai{overflow:visible;width:100%}
+  .main-content{overflow:visible;width:100%}
 
   /* TOPBAR — sticky, compact */
-  .topbar{padding:0 .75rem;gap:.5rem;height:50px;position:sticky;top:0;z-index:50}
+  .topbar{padding:0 .75rem;gap:.5rem;height:50px;position:sticky;top:0;z-index:50;width:100%;box-sizing:border-box}
   .tb-hamburger{display:flex}
   .tb-search{display:none}
   .tb-cta{font-size:.7rem;padding:.38rem .8rem}
@@ -742,16 +743,33 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
   .tb-plan-badge{font-size:.5rem;padding:.12rem .45rem}
   .tb-icon-btn{width:32px;height:32px;font-size:.8rem}
 
-  /* CONTENT */
-  .content{padding:1rem;padding-bottom:3rem;overflow:visible}
+  /* CONTENT — proper containment */
+  .content{padding:1rem;padding-bottom:3rem;overflow:visible;width:100%;box-sizing:border-box}
 
-  /* TRIAL BANNER — single line, smaller text */
+  /* TRIAL BANNER — auto-scroll marquee */
   .trial-banner{
-    font-size:.62rem;padding:.35rem .6rem;gap:.4rem;
-    line-height:1.3;text-align:left;flex-wrap:nowrap;
+    font-size:.62rem;padding:.35rem 0;gap:0;
+    line-height:1.3;text-align:left;
+    overflow:hidden;white-space:nowrap;display:flex;
+    position:relative;
   }
+  .trial-banner-inner{
+    display:inline-flex;align-items:center;gap:.6rem;
+    animation:marquee 18s linear infinite;
+    padding-left:100%;
+  }
+  .trial-banner-inner:hover{animation-play-state:paused}
   .trial-banner strong{white-space:nowrap}
-  .trial-banner a{white-space:nowrap}
+  .trial-banner a{white-space:nowrap;cursor:pointer}
+  .trial-banner > span:last-child{
+    position:absolute;right:0;top:0;bottom:0;
+    display:flex;align-items:center;padding:0 .5rem;
+    background:var(--red2);z-index:1;cursor:pointer;
+  }
+  @keyframes marquee{
+    0%{transform:translateX(0)}
+    100%{transform:translateX(-100%)}
+  }
 
   /* PAGE HEADERS — stack */
   .ph{flex-direction:column;align-items:flex-start;gap:.75rem}
@@ -760,7 +778,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
   .ph-actions{width:100%;display:flex;flex-wrap:wrap;gap:.4rem}
   .ph-actions .btn{font-size:.68rem;padding:.38rem .8rem}
 
-  /* GREETING BANNER — !important overrides inline styles */
+  /* GREETING BANNER */
   .greeting-banner{
     flex-direction:column!important;
     align-items:stretch!important;
@@ -779,7 +797,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
     font-size:.68rem!important;padding:.38rem .85rem!important;
   }
 
-  /* AI DAILY BRIEF — stack insights vertically */
+  /* AI DAILY BRIEF — stack insights */
   .ai-card{padding:1rem}
   .ai-brief-grid{
     display:flex!important;flex-direction:column!important;gap:.5rem!important;
@@ -804,16 +822,15 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
   .ci-grid{grid-template-columns:repeat(3,1fr)}
 
   /* CARDS */
-  .card{padding:.9rem}
+  .card{padding:.9rem;overflow:hidden}
   .card-head{margin-bottom:.8rem}
 
   /* STAT CARDS */
   .scard{padding:.75rem .85rem}
   .sc-val{font-size:1.35rem}
-  .sc-label{font-size:.58rem}
 
   /* TABLES — horizontal scroll */
-  .tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -.9rem;padding:0 .9rem}
+  .tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
   .tw table{min-width:560px}
   .tw::-webkit-scrollbar{height:3px}
   .tw::-webkit-scrollbar-thumb{background:rgba(45,24,16,.12);border-radius:2px}
@@ -867,9 +884,6 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
 
   /* TOAST */
   .toast{left:1rem;right:1rem;bottom:1rem;max-width:none;font-size:.72rem;padding:.7rem 1rem}
-
-  /* FOCUS ROWS */
-  .focus-row{flex-wrap:wrap}
 
   /* MISC */
   .plan-gate{padding:1.25rem}
@@ -1002,8 +1016,10 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
 
 <!-- TRIAL BANNER -->
 <div class="trial-banner" id="trial-banner">
-  ⏳ &nbsp;Your 14-day free trial ends in <strong style="color:#FFD580">&nbsp;9 days</strong>.&nbsp; After that, choose a plan to keep your crèche running without interruption. &nbsp;<a onclick="S('subscription',null)">Choose a Plan →</a>
-  <span style="margin-left:.5rem;opacity:.6;cursor:pointer;font-size:.85rem" onclick="document.getElementById('trial-banner').style.display='none'">✕</span>
+  <div class="trial-banner-inner">
+    ⏳ &nbsp;Your 14-day free trial ends in <strong style="color:#FFD580">&nbsp;9 days</strong>.&nbsp; After that, choose a plan to keep your crèche running without interruption. &nbsp;<a onclick="S('subscription',null)">Choose a Plan →</a>
+  </div>
+  <span onclick="document.getElementById('trial-banner').style.display='none'">✕</span>
 </div>
 <div class="app-body">
 
