@@ -2195,7 +2195,7 @@ export default function LibraryPage() {
                     </div>
                     <div className="mt-0.5 flex items-center justify-end gap-1">
                       <span className="text-[10px] text-gray-400">4:30 PM</span>
-                      <span className="text-[10px] text-blue-400">{'\u2713\u2713'}</span>
+                      <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5l3 3 5-7M6 5l3 3 5-7" stroke="#9CA3AF" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                     </div>
                   </div>
                 </div>
