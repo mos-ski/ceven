@@ -1431,7 +1431,7 @@ function SidebarNav() {
             if (entry.isIntersecting) setActive(entry.target.id)
           }
         },
-        { rootMargin: "-80px 0px -70% 0px", threshold: 0 }
+        { rootMargin: "-80px 0px -60% 0px", threshold: 0 }
       )
       obs.observe(el)
       observers.push(obs)
@@ -1440,7 +1440,7 @@ function SidebarNav() {
   }, [])
 
   return (
-    <nav className="sticky top-20 self-start">
+    <nav className="sticky top-20 max-h-[calc(100vh-6rem)] overflow-y-auto self-start scrollbar-thin">
       {NAV_GROUPS.map(({ group, items }) => (
         <div key={group} className="mb-4">
           <p className="mb-1 px-3 text-[10px] font-semibold uppercase tracking-widest text-muted-text/60">
