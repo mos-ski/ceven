@@ -710,9 +710,15 @@ export default function LibraryPage() {
                         <TableCell>{row.age} years</TableCell>
                         <TableCell>{row.guardian}</TableCell>
                         <TableCell className="text-right">
-                          <Badge variant={row.status === "Active" ? "outline" : "secondary"}>
-                            {row.status}
-                          </Badge>
+                          {row.status === "Active" ? (
+                            <span className="inline-flex items-center rounded-full border border-[#009061]/20 bg-[#E1F5EC] px-2 py-0.5 text-xs font-medium text-[#009061]">
+                              {row.status}
+                            </span>
+                          ) : (
+                            <span className="inline-flex items-center rounded-full border border-[#FF9A01]/20 bg-[#F9F1E6] px-2 py-0.5 text-xs font-medium text-[#FF9A01]">
+                              {row.status}
+                            </span>
+                          )}
                         </TableCell>
                       </TableRow>
                     ))}
