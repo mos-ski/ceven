@@ -131,6 +131,10 @@ import {
   ShieldCheck,
   ThumbsUp,
   ThumbsDown,
+  Video,
+  Paperclip,
+  SendHorizontal,
+  AtSign,
 } from "lucide-react"
 
 const NAV_GROUPS = [
@@ -207,6 +211,17 @@ const NAV_GROUPS = [
       { id: "ai-input", label: "AI Input Bar" },
       { id: "ai-typing", label: "AI Typing Indicator" },
       { id: "ai-risk", label: "AI Risk Badge" },
+    ],
+  },
+  {
+    label: "Messaging",
+    items: [
+      { id: "msg-thread-list", label: "Thread List" },
+      { id: "msg-1on1", label: "1-on-1 Chat" },
+      { id: "msg-group", label: "Group Chat" },
+      { id: "msg-bubbles", label: "Message Bubbles" },
+      { id: "msg-input", label: "Chat Input" },
+      { id: "msg-session", label: "Session & Trial" },
     ],
   },
 ]
@@ -1897,6 +1912,407 @@ export default function LibraryPage() {
                       Upgrade to Nurture Pro to unlock AI Risk
                       <div className="absolute left-1/2 top-full -translate-x-1/2 border-4 border-transparent border-t-[#2d1810]" />
                     </div>
+                  </div>
+                </div>
+              </ComponentShowcase>
+            </section>
+
+            {/* ─── Thread List ─────────────────────────────────────────── */}
+            <section id="msg-thread-list" className="mb-16">
+              <SectionTitle>Thread List</SectionTitle>
+              <SectionDescription>Chat thread list with search, avatars, and date grouping.</SectionDescription>
+              <ComponentShowcase title="Parent Chat List">
+                <div className="mx-auto max-w-sm overflow-hidden rounded-2xl border border-border bg-white shadow-sm">
+                  {/* Search */}
+                  <div className="px-4 pt-3 pb-2">
+                    <div className="flex items-center gap-2 rounded-xl bg-gray-50 px-4 py-2.5">
+                      <Search size={16} className="text-gray-400" />
+                      <input placeholder="Search" className="flex-1 bg-transparent text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none" />
+                    </div>
+                  </div>
+                  {/* Today */}
+                  <p className="px-4 py-2 text-xs font-medium text-gray-400">Today</p>
+                  <div className="bg-white">
+                    {[
+                      { initials: "MA", name: "Mrs Anu", last: "Liam had a great day today!", time: "4:30 PM", color: "bg-brand-dark" },
+                      { initials: "SM", name: "Sarah (Mother)", last: "Don't forget the parent meeting", time: "2:15 PM", color: "bg-[#D4A67F]" },
+                    ].map((t) => (
+                      <div key={t.name} className="flex items-center gap-3 px-4 py-3">
+                        <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white ${t.color}`}>
+                          {t.initials}
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <div className="flex items-center justify-between">
+                            <p className="text-sm font-semibold text-gray-800">{t.name}</p>
+                            <p className="text-[10px] text-gray-400">{t.time}</p>
+                          </div>
+                          <p className="truncate text-xs text-gray-400">{t.last}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  {/* Yesterday */}
+                  <p className="px-4 py-2 text-xs font-medium text-gray-400">Yesterday</p>
+                  <div className="bg-white">
+                    {[
+                      { initials: "AD", name: "Creche Admin", last: "Invoice has been sent", time: "Yesterday", color: "bg-indigo-500" },
+                    ].map((t) => (
+                      <div key={t.name} className="flex items-center gap-3 px-4 py-3">
+                        <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white ${t.color}`}>
+                          {t.initials}
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <div className="flex items-center justify-between">
+                            <p className="text-sm font-semibold text-gray-800">{t.name}</p>
+                            <p className="text-[10px] text-gray-400">{t.time}</p>
+                          </div>
+                          <p className="truncate text-xs text-gray-400">{t.last}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </ComponentShowcase>
+              <ComponentShowcase title="Family Group Thread">
+                <div className="mx-auto max-w-sm overflow-hidden rounded-2xl border border-border bg-white shadow-sm">
+                  <div className="flex items-center gap-3 px-4 py-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#7A4C29] to-[#D4A67F] text-xs font-bold text-white">
+                      LF
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center justify-between">
+                        <p className="text-sm font-semibold text-gray-800">Liam&apos;s Family</p>
+                        <p className="text-[10px] text-gray-400">9:24 AM</p>
+                      </div>
+                      <p className="truncate text-xs text-gray-400">James: Perfect, we&apos;ll be there. Thanks everyone!</p>
+                    </div>
+                  </div>
+                </div>
+              </ComponentShowcase>
+            </section>
+
+            {/* ─── 1-on-1 Chat ────────────────────────────────────────── */}
+            <section id="msg-1on1" className="mb-16">
+              <SectionTitle>1-on-1 Chat</SectionTitle>
+              <SectionDescription>Direct message conversation between parent and caregiver.</SectionDescription>
+              <ComponentShowcase title="Chat View">
+                <div className="mx-auto max-w-sm overflow-hidden rounded-2xl border border-border bg-[#FFFEFA] shadow-sm">
+                  {/* Header */}
+                  <div className="flex items-center gap-3 bg-[#FAFAFA] px-4 pt-4 pb-3 shadow-sm">
+                    <button className="flex h-9 w-9 items-center justify-center rounded-full bg-[#F7F7F7]">
+                      <ArrowLeft size={16} className="text-gray-700" />
+                    </button>
+                    <div className="flex flex-1 items-center gap-2.5">
+                      <div className="relative">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#E0BFA0] text-sm font-bold text-white">MA</div>
+                        <span className="absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full bg-green-400 ring-2 ring-white" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-bold text-gray-800">Mrs Anu</p>
+                        <p className="text-[10px] text-green-500">Online</p>
+                      </div>
+                    </div>
+                    <button className="flex h-9 w-9 items-center justify-center rounded-full bg-[#F7F7F7]">
+                      <Video size={16} className="text-gray-700" />
+                    </button>
+                  </div>
+                  {/* Messages */}
+                  <div className="space-y-3 px-4 py-4">
+                    <div className="flex justify-end">
+                      <div className="max-w-[72%]">
+                        <div className="rounded-2xl rounded-tr-sm bg-[#0167FF] px-4 py-3">
+                          <p className="text-sm text-white">Hi, Mrs Anu</p>
+                        </div>
+                        <div className="mt-1 flex items-center justify-end gap-1">
+                          <p className="text-[10px] text-gray-400">16:48</p>
+                          <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5l3 3 5-7M6 5l3 3 5-7" stroke="#9CA3AF" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex justify-start">
+                      <div className="max-w-[72%]">
+                        <div className="rounded-2xl rounded-tl-sm bg-[#DCE0E4] px-4 py-3">
+                          <p className="text-sm text-[#2D2E2E]">Good afternoon Ma, how can I help you?</p>
+                        </div>
+                        <p className="mt-1 text-[10px] text-gray-400">16:50</p>
+                      </div>
+                    </div>
+                    <div className="flex justify-end">
+                      <div className="max-w-[72%]">
+                        <div className="rounded-2xl rounded-tr-sm bg-[#0167FF] px-4 py-3">
+                          <p className="text-sm text-white">Liam had a great day today! He played well with others.</p>
+                        </div>
+                        <div className="mt-1 flex items-center justify-end gap-1">
+                          <p className="text-[10px] text-gray-400">16:50</p>
+                          <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5l3 3 5-7M6 5l3 3 5-7" stroke="#9CA3AF" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {/* Input */}
+                  <div className="bg-[#FAFAFA] px-4 pb-4 pt-3 shadow-[0px_-4px_12px_4px_rgba(46,46,46,0.04)]">
+                    <div className="flex items-center gap-3">
+                      <div className="flex flex-1 items-center rounded-full bg-white px-4 py-2.5 shadow-sm">
+                        <input placeholder="Type a message..." className="flex-1 bg-transparent text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none" />
+                      </div>
+                      <button className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-dark">
+                        <Send size={14} className="text-white" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </ComponentShowcase>
+            </section>
+
+            {/* ─── Group Chat ─────────────────────────────────────────── */}
+            <section id="msg-group" className="mb-16">
+              <SectionTitle>Group Chat</SectionTitle>
+              <SectionDescription>Family group chat with stacked avatars, role labels, topic banner, and @ mentions.</SectionDescription>
+              <ComponentShowcase title="Group Header">
+                <div className="mx-auto max-w-sm overflow-hidden rounded-2xl border border-border bg-white shadow-sm">
+                  <div className="flex items-center gap-3 px-4 pt-4 pb-3 shadow-sm">
+                    <button className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-100">
+                      <ArrowLeft size={16} className="text-gray-700" />
+                    </button>
+                    <div className="flex flex-1 items-center gap-2.5">
+                      <div className="flex -space-x-2">
+                        {[
+                          { initials: "JM", color: "#7A4C29" },
+                          { initials: "SM", color: "#D4A67F" },
+                          { initials: "MA", color: "#059669" },
+                        ].map((a) => (
+                          <div key={a.initials} className="flex h-9 w-9 items-center justify-center rounded-full text-[10px] font-bold text-white ring-2 ring-white" style={{ backgroundColor: a.color }}>
+                            {a.initials}
+                          </div>
+                        ))}
+                        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-200 text-[10px] font-bold text-gray-500 ring-2 ring-white">+1</div>
+                      </div>
+                      <div>
+                        <p className="text-sm font-bold text-gray-800">Liam&apos;s Family</p>
+                        <div className="flex items-center gap-1">
+                          <Users size={10} className="text-gray-400" />
+                          <p className="text-[10px] text-gray-400">4 members</p>
+                        </div>
+                      </div>
+                    </div>
+                    <button className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-100">
+                      <Info size={16} className="text-gray-700" />
+                    </button>
+                  </div>
+                  <div className="bg-amber-50 px-4 py-2">
+                    <p className="text-center text-[11px] font-medium text-amber-700">Liam took his first steps today!</p>
+                  </div>
+                </div>
+              </ComponentShowcase>
+              <ComponentShowcase title="Group Messages">
+                <div className="mx-auto max-w-sm space-y-4">
+                  {[
+                    { sender: "Ms Anu", role: "Caregiver", initials: "MA", color: "#059669", text: "Good morning everyone! I have amazing news about Liam!", time: "9:15 AM", own: false },
+                    { sender: "Sarah", role: "Mother", initials: "SM", color: "#D4A67F", text: "Good morning Ms Anu! What happened?", time: "9:16 AM", own: false },
+                    { sender: "Ms Anu", role: "Caregiver", initials: "MA", color: "#059669", text: "Liam took his first steps today!! He walked from the mat to the toy shelf!", time: "9:16 AM", own: false },
+                    { sender: "James", role: "Father", initials: "JM", color: "#7A4C29", text: "Oh wow!! That's incredible! Our little man is growing up so fast!", time: "9:17 AM", own: true },
+                  ].map((m, i) => (
+                    <div key={i} className={`flex ${m.own ? "justify-end" : "justify-start gap-2"}`}>
+                      {!m.own && (
+                        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[10px] font-bold text-white mt-1" style={{ backgroundColor: m.color }}>
+                          {m.initials}
+                        </div>
+                      )}
+                      <div className={`max-w-[72%] ${m.own ? "" : ""}`}>
+                        {!m.own && (
+                          <div className="mb-0.5 flex items-center gap-1.5">
+                            <span className="text-[11px] font-semibold" style={{ color: m.color }}>{m.sender}</span>
+                            <span className="text-[9px] text-gray-400">{m.role}</span>
+                          </div>
+                        )}
+                        <div className={`rounded-2xl px-4 py-2.5 ${m.own ? "rounded-tr-sm bg-brand-dark text-white" : "rounded-tl-sm bg-gray-100 text-gray-800"}`}>
+                          <p className="text-sm whitespace-pre-line">{m.text}</p>
+                        </div>
+                        <p className={`mt-0.5 text-[10px] text-gray-400 ${m.own ? "text-right" : ""}`}>{m.time}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </ComponentShowcase>
+              <ComponentShowcase title="@ Mention Popup">
+                <div className="mx-auto max-w-sm">
+                  <div className="rounded-2xl bg-white p-2 shadow-lg border border-gray-100">
+                    <p className="px-2 pb-1 text-[10px] font-semibold text-gray-400">Mention someone</p>
+                    {[
+                      { initials: "SM", name: "Sarah", role: "Mother", color: "#D4A67F" },
+                      { initials: "MA", name: "Ms Anu", role: "Caregiver", color: "#059669" },
+                      { initials: "AD", name: "Admin", role: "Creche Admin", color: "#6366F1" },
+                    ].map((p) => (
+                      <div key={p.name} className="flex items-center gap-2.5 rounded-xl px-2 py-2 hover:bg-gray-50">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-full text-[10px] font-bold text-white" style={{ backgroundColor: p.color }}>
+                          {p.initials}
+                        </div>
+                        <div>
+                          <p className="text-sm font-medium text-gray-800">{p.name}</p>
+                          <p className="text-[10px] text-gray-400">{p.role}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </ComponentShowcase>
+            </section>
+
+            {/* ─── Message Bubbles ─────────────────────────────────────── */}
+            <section id="msg-bubbles" className="mb-16">
+              <SectionTitle>Message Bubbles</SectionTitle>
+              <SectionDescription>Sent, received, and group message bubble variants.</SectionDescription>
+              <ComponentShowcase title="Sent (Parent)">
+                <div className="flex justify-end">
+                  <div className="max-w-[72%]">
+                    <div className="rounded-2xl rounded-tr-sm bg-[#0167FF] px-4 py-3">
+                      <p className="text-sm text-white">Hi, Mrs Anu</p>
+                    </div>
+                    <div className="mt-1 flex items-center justify-end gap-1">
+                      <p className="text-[10px] text-gray-400">16:48</p>
+                      <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5l3 3 5-7M6 5l3 3 5-7" stroke="#9CA3AF" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    </div>
+                  </div>
+                </div>
+              </ComponentShowcase>
+              <ComponentShowcase title="Received (Parent)">
+                <div className="flex justify-start">
+                  <div className="max-w-[72%]">
+                    <div className="rounded-2xl rounded-tl-sm bg-[#DCE0E4] px-4 py-3">
+                      <p className="text-sm text-[#2D2E2E]">Good afternoon Ma, how can I help you?</p>
+                    </div>
+                    <p className="mt-1 text-[10px] text-gray-400">16:50</p>
+                  </div>
+                </div>
+              </ComponentShowcase>
+              <ComponentShowcase title="Caregiver Sent">
+                <div className="flex justify-end">
+                  <div className="max-w-[75%]">
+                    <div className="rounded-2xl rounded-tr-sm bg-brand-dark px-4 py-2.5">
+                      <p className="text-sm text-white">Liam had a great day today!</p>
+                    </div>
+                    <div className="mt-0.5 flex items-center justify-end gap-1">
+                      <span className="text-[10px] text-gray-400">4:30 PM</span>
+                      <span className="text-[10px] text-blue-400">{'\u2713\u2713'}</span>
+                    </div>
+                  </div>
+                </div>
+              </ComponentShowcase>
+              <ComponentShowcase title="Caregiver Received">
+                <div className="flex justify-start">
+                  <div className="max-w-[75%]">
+                    <div className="rounded-2xl rounded-tl-sm bg-white px-4 py-2.5 shadow-sm">
+                      <p className="text-sm text-gray-800">Please remember to bring extra clothes tomorrow.</p>
+                    </div>
+                    <p className="mt-0.5 text-[10px] text-gray-400">Yesterday</p>
+                  </div>
+                </div>
+              </ComponentShowcase>
+              <ComponentShowcase title="Group (with avatar + role)">
+                <div className="flex justify-start gap-2">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#059669] text-[10px] font-bold text-white mt-1">MA</div>
+                  <div className="max-w-[72%]">
+                    <div className="mb-0.5 flex items-center gap-1.5">
+                      <span className="text-[11px] font-semibold text-[#059669]">Ms Anu</span>
+                      <span className="text-[9px] text-gray-400">Caregiver</span>
+                    </div>
+                    <div className="rounded-2xl rounded-tl-sm bg-gray-100 px-4 py-2.5">
+                      <p className="text-sm text-gray-800">Liam took his first steps today!!</p>
+                    </div>
+                    <p className="mt-0.5 text-[10px] text-gray-400">9:16 AM</p>
+                  </div>
+                </div>
+              </ComponentShowcase>
+            </section>
+
+            {/* ─── Chat Input ──────────────────────────────────────────── */}
+            <section id="msg-input" className="mb-16">
+              <SectionTitle>Chat Input</SectionTitle>
+              <SectionDescription>Input bar variants for different chat contexts.</SectionDescription>
+              <ComponentShowcase title="Standard (Parent)">
+                <div className="mx-auto max-w-sm rounded-xl bg-[#FAFAFA] px-4 py-4 shadow-[0px_-4px_12px_4px_rgba(46,46,46,0.04)]">
+                  <div className="flex items-center gap-3">
+                    <div className="flex flex-1 items-center rounded-full bg-white px-4 py-2.5 shadow-sm">
+                      <input placeholder="Type a message..." className="flex-1 bg-transparent text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none" />
+                    </div>
+                    <button className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-dark">
+                      <Send size={14} className="text-white" />
+                    </button>
+                  </div>
+                </div>
+              </ComponentShowcase>
+              <ComponentShowcase title="With Attachment (Caregiver)">
+                <div className="mx-auto max-w-sm rounded-xl border-t border-gray-100 bg-white px-3 py-3">
+                  <div className="flex items-center gap-2">
+                    <button className="flex h-9 w-9 items-center justify-center rounded-full text-gray-400">
+                      <Paperclip size={20} />
+                    </button>
+                    <input placeholder="Type a message..." className="flex-1 rounded-full border border-gray-200 bg-gray-50 px-4 py-2 text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none" />
+                    <button className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-dark">
+                      <SendHorizontal size={16} className="text-white" />
+                    </button>
+                  </div>
+                </div>
+              </ComponentShowcase>
+              <ComponentShowcase title="With @ Mention (Group)">
+                <div className="mx-auto max-w-sm rounded-xl bg-white px-4 pb-4 pt-3 border-t border-gray-100">
+                  <div className="flex items-center gap-2">
+                    <button className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gray-100">
+                      <AtSign size={16} className="text-gray-500" />
+                    </button>
+                    <div className="flex flex-1 items-center rounded-full bg-gray-50 px-4 py-2.5">
+                      <input placeholder="Type a message..." className="flex-1 bg-transparent text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none" />
+                    </div>
+                    <button className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-dark">
+                      <Send size={14} className="text-white" />
+                    </button>
+                  </div>
+                </div>
+              </ComponentShowcase>
+              <ComponentShowcase title="Disabled (Trial Ended)">
+                <div className="mx-auto max-w-sm rounded-xl bg-[#FAFAFA] px-4 py-4 shadow-[0px_-4px_12px_4px_rgba(46,46,46,0.04)]">
+                  <div className="flex items-center gap-3">
+                    <div className="flex flex-1 items-center rounded-full bg-white px-4 py-2.5 shadow-sm">
+                      <input placeholder="Manage your account to keep chatting" disabled className="flex-1 bg-transparent text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none disabled:opacity-60" />
+                    </div>
+                    <button disabled className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-dark disabled:opacity-60">
+                      <Send size={14} className="text-white" />
+                    </button>
+                  </div>
+                </div>
+              </ComponentShowcase>
+            </section>
+
+            {/* ─── Session & Trial ─────────────────────────────────────── */}
+            <section id="msg-session" className="mb-16">
+              <SectionTitle>Session & Trial</SectionTitle>
+              <SectionDescription>Session start badges and trial gate banners.</SectionDescription>
+              <ComponentShowcase title="Session Start Badge">
+                <div className="flex items-center justify-center gap-2">
+                  <div className="flex items-center gap-1.5 rounded-full bg-[#EDF1F5] px-3 py-1">
+                    <Plus size={10} className="text-gray-600" />
+                    <span className="text-[10px] font-medium text-gray-600">Session Start</span>
+                  </div>
+                </div>
+              </ComponentShowcase>
+              <ComponentShowcase title="Trial Gate Banner">
+                <div className="mx-auto max-w-sm">
+                  <div className="flex items-center gap-2 rounded-xl border border-gray-100 bg-white px-3 py-2 shadow-sm">
+                    <Lock size={13} className="shrink-0 text-gray-400" />
+                    <p className="flex-1 text-xs text-gray-600">Your trial has ended. Some family features are unavailable.</p>
+                    <button className="shrink-0 text-xs font-semibold text-brand-dark underline underline-offset-2">Manage</button>
+                  </div>
+                </div>
+              </ComponentShowcase>
+              <ComponentShowcase title="Online Indicator">
+                <div className="flex items-center gap-4">
+                  <div className="relative">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#E0BFA0] text-sm font-bold text-white">MA</div>
+                    <span className="absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full bg-green-400 ring-2 ring-white" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-gray-800">Mrs Anu</p>
+                    <p className="text-[10px] text-green-500">Online</p>
                   </div>
                 </div>
               </ComponentShowcase>
