@@ -238,14 +238,18 @@ const NAV_GROUPS = [
   },
 ]
 
-const AGENT_PROMPT = `You are building UI for the CEven design system. Reference the CEven Design System page at /library for all component patterns, typography, colors, and spacing.
+const AGENT_PROMPT = `Reference the CEven Design System at /library for all UI decisions.
 
-Brand palette: #3B2513 (dark), #9A6033 (accent), #E0BFA0 (tan fill), #D4A67F (tan border), #FFF9F0 (content bg), #EDD9C0 (table header), #C47B2C (gold focus).
-Fonts: Mogra (display), Merriweather (headings), Urbanist (UI labels), Nunito (body).
-All components use rounded-[8px] corners. Spacing follows 8px grid (multiples of 8px).
-Message bubbles: rounded-[8px] with rounded-tr-sm (sent) / rounded-tl-sm (received). Sent bubbles use bg-brand-dark (brown).
-Avatars: circular (rounded-full) for users, rounded-[8px] for admin. Use real images, not initials.
-Always check /library page before building new components to reuse existing patterns.`
+Before building any component, visit /library to see existing patterns for:
+- Colors, typography, spacing, and border radius
+- Buttons, badges, inputs, cards, tables, modals, alerts
+- Chat/messaging components (bubbles, inputs, thread lists)
+- AI components (chat interface, typing indicator, risk badge)
+- Marketing sections (feature grid, CTA banner)
+
+Reuse existing components from components/ui/ and components/marketing/.
+Do not create new component variants without checking /library first.
+All styling must follow the 8px grid and rounded-[8px] convention.`
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
