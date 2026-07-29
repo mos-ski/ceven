@@ -1913,19 +1913,19 @@ export default function LibraryPage() {
                 <div className="space-y-3">
                   <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4">
                     <span className="text-caption w-16 shrink-0">display</span>
-                    <p className="font-mogra text-2xl sm:text-3xl text-heading break-words">Mogra — Logo & Display</p>
+                    <p style={{ fontFamily: "var(--font-mogra-import)" }} className="text-2xl sm:text-3xl text-heading break-words">Mogra — Logo & Display</p>
                   </div>
                   <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4">
                     <span className="text-caption w-16 shrink-0">heading</span>
-                    <p className="font-merriweather text-xl sm:text-2xl font-bold text-heading break-words">Merriweather — Headings</p>
+                    <p style={{ fontFamily: "var(--font-merriweather-import)" }} className="text-xl sm:text-2xl font-bold text-heading break-words">Merriweather — Headings</p>
                   </div>
                   <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4">
                     <span className="text-caption w-16 shrink-0">ui</span>
-                    <p className="font-urbanist text-xl sm:text-2xl font-semibold text-heading break-words">Urbanist — UI Labels</p>
+                    <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-xl sm:text-2xl font-semibold text-heading break-words">Urbanist — UI Labels</p>
                   </div>
                   <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-4">
                     <span className="text-caption w-16 shrink-0">body</span>
-                    <p className="font-nunito text-xl sm:text-2xl text-heading break-words">Nunito — Body Text</p>
+                    <p style={{ fontFamily: "var(--font-nunito-import)" }} className="text-xl sm:text-2xl text-heading break-words">Nunito — Body Text</p>
                   </div>
                 </div>
               </Showcase>
