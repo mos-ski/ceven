@@ -91,6 +91,7 @@ import {
   User,
   X,
   Home,
+  Menu,
   FileText,
   BarChart3,
   Settings,
@@ -270,20 +271,34 @@ export default function LibraryPage() {
   const [selectValue, setSelectValue] = React.useState("option2")
   const [multiSelectValues, setMultiSelectValues] = React.useState<string[]>(["option2", "option3"])
 
+  const [sidebarOpen, setSidebarOpen] = React.useState(false)
+
   return (
     <div className="min-h-screen bg-[#F8F6F3]">
       <div className="flex">
-        <aside className="sticky top-0 h-screen w-60 shrink-0 border-r border-border bg-white p-4 overflow-y-auto scrollbar-thin">
-          <Link href="/" className="mb-6 flex items-center gap-2">
-            <div className="flex items-center gap-2">
-              <div className="relative size-8">
-                <img src="/Logo/CEVEN APP 1.svg" alt="CEven" className="h-full w-full object-contain" />
+        {/* Mobile overlay */}
+        {sidebarOpen && (
+          <div
+            className="fixed inset-0 z-40 bg-black/50 lg:hidden"
+            onClick={() => setSidebarOpen(false)}
+          />
+        )}
+
+        {/* Sidebar */}
+        <aside className={cn(
+          "fixed inset-y-0 left-0 z-50 w-60 shrink-0 border-r border-border bg-white p-4 overflow-y-auto scrollbar-thin transition-transform duration-200 lg:sticky lg:translate-x-0",
+          sidebarOpen ? "translate-x-0" : "-translate-x-full"
+        )}>
+          <div className="mb-6 flex items-center justify-between">
+            <Link href="/" className="flex items-center gap-2">
+              <div className="relative h-8 w-auto">
+                <img src="/Logo/CEVEN APP 1.svg" alt="CEven" className="h-8 w-auto object-contain" />
               </div>
-              <span style={{ fontFamily: "var(--font-mogra-import)" }} className="text-lg text-brand-dark">
-                CEven
-              </span>
-            </div>
-          </Link>
+            </Link>
+            <button className="lg:hidden" onClick={() => setSidebarOpen(false)}>
+              <X className="size-5 text-muted-text" />
+            </button>
+          </div>
 
           <div className="mb-4">
             <span className="text-overline text-muted-text">Design System</span>
@@ -323,7 +338,15 @@ export default function LibraryPage() {
         </aside>
 
         <main className="flex-1 overflow-y-auto">
-          <div className="mx-auto max-w-4xl px-8 py-10">
+          {/* Mobile header */}
+          <div className="sticky top-0 z-30 flex items-center gap-3 border-b border-border bg-[#F8F6F3] px-4 py-3 lg:hidden">
+            <button onClick={() => setSidebarOpen(true)}>
+              <Menu className="size-5 text-heading" />
+            </button>
+            <span style={{ fontFamily: "var(--font-mogra-import)" }} className="text-lg text-brand-dark">CEven</span>
+          </div>
+
+          <div className="mx-auto max-w-4xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-10">
             <div className="mb-10">
               <h1 className="text-display text-heading mb-2" style={{ fontFamily: "var(--font-mogra-import)" }}>
                 CEven Design System
@@ -881,14 +904,9 @@ export default function LibraryPage() {
                 <div className="flex flex-wrap gap-2">
                   {[
                     { bg: "bg-white", text: "text-foreground", border: "border-border" },
-                    { bg: "bg-white", text: "text-foreground", border: "border-border" },
-                    { bg: "bg-[#E0BFA0]/30", text: "text-brand-dark", border: "border-[#D4A67F]/40" },
                     { bg: "bg-[#E0BFA0]/30", text: "text-brand-dark", border: "border-[#D4A67F]/40" },
                     { bg: "bg-[#E1F5EC]", text: "text-[#009061]", border: "border-[#009061]/20" },
-                    { bg: "bg-[#E1F5EC]", text: "text-[#009061]", border: "border-[#009061]/20" },
                     { bg: "bg-[#F9F1E6]", text: "text-[#FF9A01]", border: "border-[#FF9A01]/20" },
-                    { bg: "bg-[#F9F1E6]", text: "text-[#FF9A01]", border: "border-[#FF9A01]/20" },
-                    { bg: "bg-[#FDE8E8]", text: "text-[#CD3030]", border: "border-[#CD3030]/20" },
                     { bg: "bg-[#FDE8E8]", text: "text-[#CD3030]", border: "border-[#CD3030]/20" },
                   ].map((item, i) => (
                     <span key={i} className={cn("inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-xs font-medium", item.bg, item.text, item.border)}>
