@@ -229,7 +229,7 @@ const NAV_GROUPS = [
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="text-h2 text-heading mb-2">{children}</h2>
+    <h2 className="text-h2 text-heading mb-4">{children}</h2>
   )
 }
 
@@ -408,11 +408,11 @@ export default function LibraryPage() {
 
           <div className="mx-auto max-w-4xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-10">
             <div className="mb-20">
-              <h1 className="text-display text-heading mb-2" style={{ fontFamily: "var(--font-mogra-import)" }}>
+              <h1 className="text-display text-heading mb-4">
                 CEven Design System
               </h1>
-              <p className="text-body text-muted-text">
-                The style guide provides to change stylistic for your design site.
+              <p className="text-ui-lg text-muted-text">
+                The style guide provides the foundation for all stylistic decisions across the CEven design site.
               </p>
             </div>
 
