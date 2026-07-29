@@ -313,6 +313,7 @@ export default function LibraryPage() {
   const [scrollContainerRef, setScrollContainerRef] = React.useState<HTMLDivElement | null>(null)
   const [sidebarSearch, setSidebarSearch] = React.useState("")
   const [copiedPrompt, setCopiedPrompt] = React.useState(false)
+  const [promptOpen, setPromptOpen] = React.useState(false)
 
   const [checkboxes, setCheckboxes] = React.useState({
     unchecked: false,
@@ -494,26 +495,37 @@ export default function LibraryPage() {
               </p>
             </div>
 
-            <div className="mb-20 rounded-[8px] border border-border bg-white p-6">
-              <div className="flex items-center justify-between mb-3">
+            <div className="mb-20 rounded-[8px] border border-border bg-white">
+              <button
+                onClick={() => setPromptOpen(!promptOpen)}
+                className="flex w-full items-center justify-between px-6 py-4 text-left"
+              >
                 <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-sm font-semibold text-heading">
                   Agent Prompt
                 </p>
-                <button
-                  onClick={() => {
-                    navigator.clipboard.writeText(AGENT_PROMPT)
-                    setCopiedPrompt(true)
-                    setTimeout(() => setCopiedPrompt(false), 2000)
-                  }}
-                  className="flex items-center gap-1.5 rounded-[8px] bg-gray-50 px-3 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-100 transition-colors"
-                >
-                  {copiedPrompt ? <Check size={12} className="text-green-600" /> : <Copy size={12} />}
-                  {copiedPrompt ? "Copied" : "Copy"}
-                </button>
-              </div>
-              <pre style={{ fontFamily: "var(--font-nunito-import)" }} className="text-xs leading-relaxed text-muted-text whitespace-pre-wrap">
-                {AGENT_PROMPT}
-              </pre>
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      navigator.clipboard.writeText(AGENT_PROMPT)
+                      setCopiedPrompt(true)
+                      setTimeout(() => setCopiedPrompt(false), 2000)
+                    }}
+                    className="flex items-center gap-1.5 rounded-[8px] bg-gray-50 px-3 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-100 transition-colors"
+                  >
+                    {copiedPrompt ? <Check size={12} className="text-green-600" /> : <Copy size={12} />}
+                    {copiedPrompt ? "Copied" : "Copy"}
+                  </button>
+                  <ChevronDown size={16} className={cn("text-gray-400 transition-transform", promptOpen && "rotate-180")} />
+                </div>
+              </button>
+              {promptOpen && (
+                <div className="px-6 pb-4">
+                  <pre style={{ fontFamily: "var(--font-nunito-import)" }} className="text-xs leading-relaxed text-muted-text whitespace-pre-wrap">
+                    {AGENT_PROMPT}
+                  </pre>
+                </div>
+              )}
             </div>
 
             <Separator className="mb-20" />
