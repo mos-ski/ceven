@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { cn } from "@/lib/utils"
 import {
   Button,
@@ -228,7 +229,7 @@ const NAV_GROUPS = [
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="text-h2 text-heading mb-1">{children}</h2>
+    <h2 className="text-h2 text-heading mb-2">{children}</h2>
   )
 }
 
@@ -242,11 +243,43 @@ function SectionDescription({ children }: { children: React.ReactNode }) {
 
 function ComponentShowcase({ title, children }: { title?: string; children: React.ReactNode }) {
   return (
-    <div className="mb-10">
+    <div className="mb-20">
       {title && <h3 className="text-h5 text-heading mb-4">{title}</h3>}
       <div className="rounded-[8px] border border-border bg-white p-6">
         {children}
       </div>
+    </div>
+  )
+}
+
+const snackbarColors = ["success", "default", "tan", "light-success", "light-danger"] as const
+const snackbarLabels = ["Success", "Default", "Tan", "Light Success", "Light Danger"] as const
+
+function SnackbarShowcase() {
+  const [visible, setVisible] = React.useState<Record<string, boolean>>(
+    () => Object.fromEntries(snackbarColors.map((c) => [c, true])) as Record<string, boolean>
+  )
+  return (
+    <div className="space-y-4 max-w-sm">
+      {snackbarColors.map((variant, i) => (
+        visible[variant] ? (
+          <Snackbar
+            key={variant}
+            variant={variant}
+            onClose={() => setVisible((v) => ({ ...v, [variant]: false }))}
+          >
+            {snackbarLabels[i]} notification
+          </Snackbar>
+        ) : (
+          <button
+            key={variant}
+            onClick={() => setVisible((v) => ({ ...v, [variant]: true }))}
+            className="text-xs text-muted-text underline underline-offset-2 hover:text-heading"
+          >
+            Show {snackbarLabels[i]} again
+          </button>
+        )
+      ))}
     </div>
   )
 }
@@ -334,7 +367,7 @@ export default function LibraryPage() {
           <nav className="space-y-4">
             {NAV_GROUPS.map((group) => (
               <div key={group.label}>
-                <p className="text-ui-xs text-muted-text mb-1.5 font-semibold uppercase tracking-wider">
+                <p className="text-ui-xs text-muted-text mb-2.5 font-semibold uppercase tracking-wider">
                   {group.label}
                 </p>
                 <ul className="space-y-0.5">
@@ -348,7 +381,7 @@ export default function LibraryPage() {
                           document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth", block: "start" })
                         }}
                         className={cn(
-                          "flex items-center rounded-lg px-3 py-1.5 text-sm transition-colors",
+                          "flex items-center rounded-[8px] px-4 py-2 text-sm transition-colors",
                           activeSection === item.id
                             ? "bg-[#FFF3E6] font-medium text-brand-dark"
                             : "text-muted-text hover:bg-muted hover:text-foreground"
@@ -366,7 +399,7 @@ export default function LibraryPage() {
 
         <main className="flex-1 overflow-y-auto h-screen lg:pl-60">
           {/* Mobile header */}
-          <div className="sticky top-0 z-30 flex items-center gap-3 border-b border-border bg-[#F8F6F3] px-4 py-3 lg:hidden">
+          <div className="sticky top-0 z-30 flex items-center gap-4 border-b border-border bg-[#F8F6F3] px-4 py-4 lg:hidden">
             <button onClick={() => setSidebarOpen(true)}>
               <Menu className="size-5 text-heading" />
             </button>
@@ -374,7 +407,7 @@ export default function LibraryPage() {
           </div>
 
           <div className="mx-auto max-w-4xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-10">
-            <div className="mb-10">
+            <div className="mb-20">
               <h1 className="text-display text-heading mb-2" style={{ fontFamily: "var(--font-mogra-import)" }}>
                 CEven Design System
               </h1>
@@ -383,35 +416,35 @@ export default function LibraryPage() {
               </p>
             </div>
 
-            <Separator className="mb-10" />
+            <Separator className="mb-20" />
 
             {/* ─── 1. Logo ─────────────────────────────────────────────── */}
-            <section id="logos" className="mb-16">
+            <section id="logos" className="mb-26">
               <SectionTitle>Logo</SectionTitle>
               <SectionDescription>
                 The CEven logo in multiple sizes and configurations.
               </SectionDescription>
               <ComponentShowcase>
-                <div className="flex flex-wrap items-end gap-10">
-                  <div className="flex flex-col items-center gap-3">
+                <div className="flex flex-wrap items-end gap-20">
+                  <div className="flex flex-col items-center gap-4">
                     <div className="relative h-32 w-32">
                       <img src="/Logo/CEVEN APP 1.svg" alt="CEven Logo Large" className="h-full w-full object-contain" />
                     </div>
                     <span className="text-caption">Large</span>
                   </div>
-                  <div className="flex flex-col items-center gap-3">
+                  <div className="flex flex-col items-center gap-4">
                     <div className="relative h-20 w-20">
                       <img src="/Logo/CEVEN APP 1.svg" alt="CEven Logo Medium" className="h-full w-full object-contain" />
                     </div>
                     <span className="text-caption">Medium</span>
                   </div>
-                  <div className="flex flex-col items-center gap-3">
+                  <div className="flex flex-col items-center gap-4">
                     <div className="relative h-12 w-12">
                       <img src="/Logo/CEVEN APP 1.svg" alt="CEven Logo Small" className="h-full w-full object-contain" />
                     </div>
                     <span className="text-caption">Small</span>
                   </div>
-                  <div className="flex flex-col items-center gap-3">
+                  <div className="flex flex-col items-center gap-4">
                     <div className="relative h-8 w-8">
                       <img src="/Logo/CEVEN APP 1.svg" alt="CEven Logo Tiny" className="h-full w-full object-contain" />
                     </div>
@@ -423,7 +456,7 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── 2. Progress Bar ─────────────────────────────────────── */}
-            <section id="progress" className="mb-16">
+            <section id="progress" className="mb-26">
               <SectionTitle>Progress Bar</SectionTitle>
               <SectionDescription>
                 Loading indicators in circular and linear forms.
@@ -456,23 +489,23 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── 3. Native ──────────────────────────────────────────── */}
-            <section id="native" className="mb-16">
+            <section id="native" className="mb-26">
               <SectionTitle>Native</SectionTitle>
               <SectionDescription>
                 Native iOS UI elements for reference.
               </SectionDescription>
               <ComponentShowcase>
                 <div className="flex flex-col items-center gap-6">
-                  <div className="w-full max-w-xs rounded-2xl bg-[#F2F2F7] p-4 text-center">
+                  <div className="w-full max-w-xs rounded-[8px] bg-[#F2F2F7] p-4 text-center">
                     <div className="flex items-center justify-between text-xs text-gray-600">
                       <span>9:41</span>
-                      <div className="flex items-center gap-1">
+                      <div className="flex items-center gap-2">
                         <span className="text-[10px]">●●●●</span>
                         <span className="text-[10px]">WiFi</span>
                         <span className="text-[10px]">🔋</span>
                       </div>
                     </div>
-                    <div className="mt-2 mx-auto h-1 w-28 rounded-full bg-black" />
+                    <div className="mt-2 mx-auto h-2 w-28 rounded-[8px] bg-black" />
                   </div>
                   <p className="text-caption">Status Bar — Light & Dark</p>
                 </div>
@@ -480,7 +513,7 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── 4. Navigation ──────────────────────────────────────── */}
-            <section id="navigation" className="mb-16">
+            <section id="navigation" className="mb-26">
               <SectionTitle>Navigation</SectionTitle>
               <SectionDescription>
                 Mobile bottom navigation with pill-shaped active state.
@@ -489,7 +522,7 @@ export default function LibraryPage() {
                 <div className="flex flex-col items-center gap-6">
                   {(["home", "creche", "report", "profile"] as const).map((tab) => (
                     <div key={tab} className="w-full max-w-xs">
-                      <div className="flex items-center justify-around rounded-2xl bg-white px-4 py-3 shadow-sm border border-border">
+                      <div className="flex items-center justify-around rounded-[8px] bg-white px-4 py-4 shadow-sm border border-border">
                         {(["home", "creche", "report", "profile"] as const).map((item) => {
                           const icons = { home: Home, creche: Search, report: FileText, profile: User }
                           const Icon = icons[item]
@@ -498,7 +531,7 @@ export default function LibraryPage() {
                             <button
                               key={item}
                               className={cn(
-                                "flex flex-col items-center gap-1 px-4 py-1.5 rounded-full transition-all",
+                                "flex flex-col items-center gap-2 px-4 py-2 rounded-[8px] transition-all",
                                 isActive && "bg-[#E0BFA0]"
                               )}
                             >
@@ -518,7 +551,7 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── Cards ──────────────────────────────────────────────── */}
-            <section id="cards" className="mb-16">
+            <section id="cards" className="mb-26">
               <SectionTitle>Cards</SectionTitle>
               <SectionDescription>Card components for displaying data and statistics.</SectionDescription>
               <ComponentShowcase title="Stat Cards">
@@ -531,7 +564,7 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── Tables ──────────────────────────────────────────────── */}
-            <section id="tables" className="mb-16">
+            <section id="tables" className="mb-26">
               <SectionTitle>Tables</SectionTitle>
               <SectionDescription>Data tables with sorting indicators.</SectionDescription>
               <ComponentShowcase>
@@ -568,7 +601,7 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── 5. Icons ───────────────────────────────────────────── */}
-            <section id="icons" className="mb-16">
+            <section id="icons" className="mb-26">
               <SectionTitle>Icons</SectionTitle>
               <SectionDescription>
                 Lucide React icons used across the CEven platform.
@@ -662,9 +695,9 @@ export default function LibraryPage() {
                   },
                 ].map((group) => (
                   <ComponentShowcase key={group.label} title={group.label}>
-                    <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-2 sm:gap-3">
+                    <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-2 sm:gap-4">
                       {group.icons.map(({ Icon, name }) => (
-                        <div key={name} className="flex flex-col items-center gap-1.5 p-2">
+                        <div key={name} className="flex flex-col items-center gap-2 p-2">
                           <Icon className="size-5 text-foreground" />
                           <span className="text-[10px] text-muted-text text-center leading-tight">{name}</span>
                         </div>
@@ -676,15 +709,15 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── Colors ─────────────────────────────────────────────── */}
-            <section id="colors" className="mb-16">
+            <section id="colors" className="mb-26">
               <SectionTitle>Colors</SectionTitle>
               <SectionDescription>Brand color palette used throughout the CEven design system.</SectionDescription>
               <ComponentShowcase>
                 <div className="space-y-6">
                   {/* Brand Colors */}
                   <div>
-                    <p className="text-ui-sm text-muted-text mb-3 font-semibold">Brand</p>
-                    <div className="flex flex-wrap gap-3">
+                    <p className="text-ui-sm text-muted-text mb-4 font-semibold">Brand</p>
+                    <div className="flex flex-wrap gap-4">
                       {[
                         { name: "Brand Dark", value: "#3B2513" },
                         { name: "Brand Accent", value: "#9A6033" },
@@ -693,8 +726,8 @@ export default function LibraryPage() {
                         { name: "Content BG", value: "#FFF9F0" },
                         { name: "Table Header", value: "#EDD9C0" },
                       ].map((c) => (
-                        <div key={c.name} className="flex flex-col items-center gap-1.5">
-                          <div className="size-16 rounded-lg border border-border shadow-sm" style={{ backgroundColor: c.value }} />
+                        <div key={c.name} className="flex flex-col items-center gap-2">
+                          <div className="size-16 rounded-[8px] border border-border shadow-sm" style={{ backgroundColor: c.value }} />
                           <span className="text-caption text-center">{c.name}</span>
                           <span className="text-[10px] text-muted-foreground font-mono">{c.value}</span>
                         </div>
@@ -703,8 +736,8 @@ export default function LibraryPage() {
                   </div>
                   {/* Semantic Colors */}
                   <div>
-                    <p className="text-ui-sm text-muted-text mb-3 font-semibold">Semantic</p>
-                    <div className="flex flex-wrap gap-3">
+                    <p className="text-ui-sm text-muted-text mb-4 font-semibold">Semantic</p>
+                    <div className="flex flex-wrap gap-4">
                       {[
                         { name: "Success", value: "#009061" },
                         { name: "Success Light", value: "#E1F5EC" },
@@ -715,8 +748,8 @@ export default function LibraryPage() {
                         { name: "Info", value: "#3B82F6" },
                         { name: "Info Light", value: "#EFF6FF" },
                       ].map((c) => (
-                        <div key={c.name} className="flex flex-col items-center gap-1.5">
-                          <div className="size-16 rounded-lg border border-border shadow-sm" style={{ backgroundColor: c.value }} />
+                        <div key={c.name} className="flex flex-col items-center gap-2">
+                          <div className="size-16 rounded-[8px] border border-border shadow-sm" style={{ backgroundColor: c.value }} />
                           <span className="text-caption text-center">{c.name}</span>
                           <span className="text-[10px] text-muted-foreground font-mono">{c.value}</span>
                         </div>
@@ -725,8 +758,8 @@ export default function LibraryPage() {
                   </div>
                   {/* Neutrals */}
                   <div>
-                    <p className="text-ui-sm text-muted-text mb-3 font-semibold">Neutrals</p>
-                    <div className="flex flex-wrap gap-3">
+                    <p className="text-ui-sm text-muted-text mb-4 font-semibold">Neutrals</p>
+                    <div className="flex flex-wrap gap-4">
                       {[
                         { name: "Heading", value: "#1F2937" },
                         { name: "Muted Text", value: "#6B7280" },
@@ -735,8 +768,8 @@ export default function LibraryPage() {
                         { name: "Card Border", value: "#E6EBF3" },
                         { name: "Table Border", value: "#EAECF0" },
                       ].map((c) => (
-                        <div key={c.name} className="flex flex-col items-center gap-1.5">
-                          <div className="size-16 rounded-lg border border-border shadow-sm" style={{ backgroundColor: c.value }} />
+                        <div key={c.name} className="flex flex-col items-center gap-2">
+                          <div className="size-16 rounded-[8px] border border-border shadow-sm" style={{ backgroundColor: c.value }} />
                           <span className="text-caption text-center">{c.name}</span>
                           <span className="text-[10px] text-muted-foreground font-mono">{c.value}</span>
                         </div>
@@ -748,7 +781,7 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── Typography ──────────────────────────────────────────── */}
-            <section id="typography" className="mb-16">
+            <section id="typography" className="mb-26">
               <SectionTitle>Typography</SectionTitle>
               <SectionDescription>Font families and type scale used in the CEven design system.</SectionDescription>
               <ComponentShowcase title="Font Families">
@@ -782,7 +815,7 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── Text Combos ───────────────────────────────────────── */}
-            <section id="text-combos" className="mb-16">
+            <section id="text-combos" className="mb-26">
               <SectionTitle>Text Combos</SectionTitle>
               <SectionDescription>Real-world typography combinations with proper line heights.</SectionDescription>
               <ComponentShowcase title="Display md + Body lg + Body">
@@ -826,8 +859,88 @@ export default function LibraryPage() {
               </ComponentShowcase>
             </section>
 
+            {/* ─── 5b. Icons & Favicons ──────────────────────────────── */}
+            <section id="icons-favicons" className="mb-26">
+              <SectionTitle>Icons & Favicons</SectionTitle>
+              <SectionDescription>
+                Lucide React icons for UI. Logo SVG used as favicon across all platforms.
+              </SectionDescription>
+              <ComponentShowcase title="Favicon Set">
+                <div className="flex flex-wrap items-end gap-8">
+                  <div className="text-center">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-[8px] bg-white border border-border shadow-sm">
+                      <Image src="/favicon.ico" alt="favicon.ico" width={32} height={32} unoptimized />
+                    </div>
+                    <p className="text-caption text-muted-text mt-2">favicon.ico</p>
+                    <p className="text-[10px] text-muted-text">Browser tab</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-[8px] bg-white border border-border shadow-sm">
+                      <Image src="/apple-touch-icon.png" alt="apple-touch-icon" width={48} height={48} unoptimized />
+                    </div>
+                    <p className="text-caption text-muted-text mt-2">apple-touch-icon.png</p>
+                    <p className="text-[10px] text-muted-text">iOS home screen</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-[8px] bg-white border border-border shadow-sm">
+                      <Image src="/favicon-32x32.png" alt="favicon-32" width={32} height={32} unoptimized />
+                    </div>
+                    <p className="text-caption text-muted-text mt-2">favicon-32x32.png</p>
+                    <p className="text-[10px] text-muted-text">Standard</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-[8px] bg-white border border-border shadow-sm">
+                      <Image src="/favicon-16x16.png" alt="favicon-16" width={16} height={16} unoptimized />
+                    </div>
+                    <p className="text-caption text-muted-text mt-2">favicon-16x16.png</p>
+                    <p className="text-[10px] text-muted-text">Small</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-[8px] bg-brand-dark">
+                      <Image src="/Logo/CEVEN APP 1.svg" alt="Logo" width={40} height={40} unoptimized />
+                    </div>
+                    <p className="text-caption text-muted-text mt-2">CEVEN APP 1.svg</p>
+                    <p className="text-[10px] text-muted-text">Full logo</p>
+                  </div>
+                </div>
+              </ComponentShowcase>
+              <ComponentShowcase title="Common UI Icons">
+                <div className="grid grid-cols-6 gap-4 sm:grid-cols-8 md:grid-cols-10">
+                  {[
+                    { icon: Home, label: "Home" },
+                    { icon: Users, label: "Users" },
+                    { icon: UserCheck, label: "UserCheck" },
+                    { icon: BarChart3, label: "BarChart3" },
+                    { icon: Bell, label: "Bell" },
+                    { icon: FileText, label: "FileText" },
+                    { icon: Settings, label: "Settings" },
+                    { icon: Search, label: "Search" },
+                    { icon: Plus, label: "Plus" },
+                    { icon: X, label: "X" },
+                    { icon: Check, label: "Check" },
+                    { icon: ChevronRight, label: "ChevronRight" },
+                    { icon: ChevronLeft, label: "ChevronLeft" },
+                    { icon: ArrowLeft, label: "ArrowLeft" },
+                    { icon: ArrowRight, label: "ArrowRight" },
+                    { icon: Send, label: "Send" },
+                    { icon: Download, label: "Download" },
+                    { icon: Upload, label: "Upload" },
+                    { icon: Paperclip, label: "Paperclip" },
+                    { icon: Calendar, label: "Calendar" },
+                  ].map(({ icon: Icon, label }) => (
+                    <div key={label} className="flex flex-col items-center gap-2">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-[8px] border border-border bg-white">
+                        <Icon className="size-5 text-foreground" />
+                      </div>
+                      <span className="text-[10px] text-muted-text">{label}</span>
+                    </div>
+                  ))}
+                </div>
+              </ComponentShowcase>
+            </section>
+
             {/* ─── 6. Buttons ─────────────────────────────────────────── */}
-            <section id="buttons" className="mb-16">
+            <section id="buttons" className="mb-26">
               <SectionTitle>Button</SectionTitle>
               <SectionDescription>
                 Buttons with 8px border radius. Four variants: dark brown, outline, tan fill, and text-only.
@@ -841,7 +954,7 @@ export default function LibraryPage() {
                 </div>
               </ComponentShowcase>
               <ComponentShowcase title="Sizes">
-                <div className="flex flex-wrap items-center gap-3">
+                <div className="flex flex-wrap items-center gap-4">
                   <Button variant="brand" size="xs">Extra Small</Button>
                   <Button variant="brand" size="sm">Small</Button>
                   <Button variant="brand" size="default">Default</Button>
@@ -850,7 +963,7 @@ export default function LibraryPage() {
                 </div>
               </ComponentShowcase>
               <ComponentShowcase title="With Icons">
-                <div className="flex flex-wrap items-center gap-3">
+                <div className="flex flex-wrap items-center gap-4">
                   <Button variant="brand"><Plus className="size-4" /> Create</Button>
                   <Button variant="outline" className="border-gray-300"><Download className="size-4" /> Download</Button>
                   <Button variant="tan"><Send className="size-4" /> Send</Button>
@@ -858,19 +971,45 @@ export default function LibraryPage() {
                 </div>
               </ComponentShowcase>
               <ComponentShowcase title="Icon-Only (Back Button)">
-                <div className="flex items-center gap-3">
-                  <Button variant="outline" size="icon" className="rounded-full border-gray-300">
+                <div className="flex items-center gap-4">
+                  <Button variant="outline" size="icon" className="rounded-[8px] border-gray-300">
                     <ArrowLeft className="size-4" />
                   </Button>
-                  <Button variant="brand" size="icon" className="rounded-full">
+                  <Button variant="brand" size="icon" className="rounded-[8px]">
                     <ArrowRight className="size-4" />
                   </Button>
+                </div>
+              </ComponentShowcase>
+              <ComponentShowcase title="Applied Usage">
+                <div className="space-y-8">
+                  <div>
+                    <p className="text-caption text-muted-text mb-2">Form Submit</p>
+                    <div className="rounded-[8px] border border-border bg-white p-4">
+                      <input placeholder="Child name" className="mb-4 w-full rounded-[8px] border border-border px-4 py-2 text-sm" />
+                      <Button variant="brand" className="w-full">Enroll Child</Button>
+                    </div>
+                  </div>
+                  <div>
+                    <p className="text-caption text-muted-text mb-2">Card Action</p>
+                    <div className="rounded-[8px] border border-border bg-white p-4">
+                      <p className="text-body-sm font-medium text-heading mb-2">Daily Report</p>
+                      <p className="text-caption text-muted-text mb-4">View today&apos;s activities and photos.</p>
+                      <Button variant="outline" className="border-gray-300 w-full">View Report</Button>
+                    </div>
+                  </div>
+                  <div>
+                    <p className="text-caption text-muted-text mb-2">Empty State CTA</p>
+                    <div className="rounded-[8px] border border-dashed border-border p-8 text-center">
+                      <p className="text-body-sm text-muted-text mb-4">No messages yet. Start a conversation with your caregiver.</p>
+                      <Button variant="brand"><Plus className="size-4" /> New Message</Button>
+                    </div>
+                  </div>
                 </div>
               </ComponentShowcase>
             </section>
 
             {/* ─── 7. Icon Buttons ────────────────────────────────────── */}
-            <section id="icon-buttons" className="mb-16">
+            <section id="icon-buttons" className="mb-26">
               <SectionTitle>Icon Button</SectionTitle>
               <SectionDescription>
                 Circular icon buttons in multiple colors and sizes.
@@ -880,19 +1019,19 @@ export default function LibraryPage() {
                   {(["sm", "default", "lg"] as const).map((size) => (
                     <div key={size} className="flex items-center gap-4">
                       <span className="w-12 text-caption capitalize">{size}</span>
-                      <Button variant="ghost" size={size === "sm" ? "icon-sm" : size === "lg" ? "icon-lg" : "icon"} className="rounded-full bg-[#009061] text-white hover:bg-[#009061]/90">
+                      <Button variant="ghost" size={size === "sm" ? "icon-sm" : size === "lg" ? "icon-lg" : "icon"} className="rounded-[8px] bg-[#009061] text-white hover:bg-[#009061]/90">
                         <Check className={cn(size === "sm" ? "size-3" : size === "lg" ? "size-5" : "size-4")} />
                       </Button>
-                      <Button variant="ghost" size={size === "sm" ? "icon-sm" : size === "lg" ? "icon-lg" : "icon"} className="rounded-full bg-white border border-border text-foreground hover:bg-muted">
+                      <Button variant="ghost" size={size === "sm" ? "icon-sm" : size === "lg" ? "icon-lg" : "icon"} className="rounded-[8px] bg-white border border-border text-foreground hover:bg-muted">
                         <Check className={cn(size === "sm" ? "size-3" : size === "lg" ? "size-5" : "size-4")} />
                       </Button>
-                      <Button variant="ghost" size={size === "sm" ? "icon-sm" : size === "lg" ? "icon-lg" : "icon"} className="rounded-full bg-[#3B2513] text-white hover:bg-[#3B2513]/90">
+                      <Button variant="ghost" size={size === "sm" ? "icon-sm" : size === "lg" ? "icon-lg" : "icon"} className="rounded-[8px] bg-[#3B2513] text-white hover:bg-[#3B2513]/90">
                         <Check className={cn(size === "sm" ? "size-3" : size === "lg" ? "size-5" : "size-4")} />
                       </Button>
-                      <Button variant="ghost" size={size === "sm" ? "icon-sm" : size === "lg" ? "icon-lg" : "icon"} className="rounded-full bg-[#E84057] text-white hover:bg-[#E84057]/90">
+                      <Button variant="ghost" size={size === "sm" ? "icon-sm" : size === "lg" ? "icon-lg" : "icon"} className="rounded-[8px] bg-[#E84057] text-white hover:bg-[#E84057]/90">
                         <Check className={cn(size === "sm" ? "size-3" : size === "lg" ? "size-5" : "size-4")} />
                       </Button>
-                      <Button variant="ghost" size={size === "sm" ? "icon-sm" : size === "lg" ? "icon-lg" : "icon"} className="rounded-full bg-muted text-muted-foreground opacity-50 cursor-not-allowed" disabled>
+                      <Button variant="ghost" size={size === "sm" ? "icon-sm" : size === "lg" ? "icon-lg" : "icon"} className="rounded-[8px] bg-muted text-muted-foreground opacity-50 cursor-not-allowed" disabled>
                         <Check className={cn(size === "sm" ? "size-3" : size === "lg" ? "size-5" : "size-4")} />
                       </Button>
                     </div>
@@ -902,27 +1041,27 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── 8. Badges ──────────────────────────────────────────── */}
-            <section id="badges" className="mb-16">
+            <section id="badges" className="mb-26">
               <SectionTitle>Badges</SectionTitle>
               <SectionDescription>
                 Status badges with close buttons.
               </SectionDescription>
               <ComponentShowcase>
-                <div className="flex flex-wrap gap-3">
-                  <Badge variant="default">Default <X className="size-3 ml-1 cursor-pointer" /></Badge>
-                  <Badge variant="secondary">Secondary <X className="size-3 ml-1 cursor-pointer" /></Badge>
-                  <Badge variant="outline">Success <X className="size-3 ml-1 cursor-pointer" /></Badge>
-                  <Badge variant="destructive">Error <X className="size-3 ml-1 cursor-pointer" /></Badge>
-                  <Badge className="bg-[#E0BFA0] text-brand-dark border-[#D4A67F]">Brand <X className="size-3 ml-1 cursor-pointer" /></Badge>
-                  <Badge className="bg-[#E1F5EC] text-[#009061] border-[#009061]/20">Active <X className="size-3 ml-1 cursor-pointer" /></Badge>
-                  <Badge className="bg-[#F9F1E6] text-[#FF9A01] border-[#FF9A01]/20">Warning <X className="size-3 ml-1 cursor-pointer" /></Badge>
-                  <Badge className="bg-[#FDE8E8] text-[#CD3030] border-[#CD3030]/20">Danger <X className="size-3 ml-1 cursor-pointer" /></Badge>
+                <div className="flex flex-wrap gap-4">
+                  <Badge variant="default">Default <X className="size-3 ml-2 cursor-pointer" /></Badge>
+                  <Badge variant="secondary">Secondary <X className="size-3 ml-2 cursor-pointer" /></Badge>
+                  <Badge variant="outline">Success <X className="size-3 ml-2 cursor-pointer" /></Badge>
+                  <Badge variant="destructive">Error <X className="size-3 ml-2 cursor-pointer" /></Badge>
+                  <Badge className="bg-[#E0BFA0] text-brand-dark border-[#D4A67F]">Brand <X className="size-3 ml-2 cursor-pointer" /></Badge>
+                  <Badge className="bg-[#E1F5EC] text-[#009061] border-[#009061]/20">Active <X className="size-3 ml-2 cursor-pointer" /></Badge>
+                  <Badge className="bg-[#F9F1E6] text-[#FF9A01] border-[#FF9A01]/20">Warning <X className="size-3 ml-2 cursor-pointer" /></Badge>
+                  <Badge className="bg-[#FDE8E8] text-[#CD3030] border-[#CD3030]/20">Danger <X className="size-3 ml-2 cursor-pointer" /></Badge>
                 </div>
               </ComponentShowcase>
             </section>
 
             {/* ─── 9. Labels ──────────────────────────────────────────── */}
-            <section id="labels" className="mb-16">
+            <section id="labels" className="mb-26">
               <SectionTitle>Label</SectionTitle>
               <SectionDescription>
                 Small colored label pills with close button.
@@ -936,7 +1075,7 @@ export default function LibraryPage() {
                     { bg: "bg-[#F9F1E6]", text: "text-[#FF9A01]", border: "border-[#FF9A01]/20" },
                     { bg: "bg-[#FDE8E8]", text: "text-[#CD3030]", border: "border-[#CD3030]/20" },
                   ].map((item, i) => (
-                    <span key={i} className={cn("inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-xs font-medium", item.bg, item.text, item.border)}>
+                    <span key={i} className={cn("inline-flex items-center gap-2 rounded-[8px] border px-2 py-0.5 text-xs font-medium", item.bg, item.text, item.border)}>
                       <Info className="size-3" />
                       Label
                       <X className="size-3 cursor-pointer opacity-60 hover:opacity-100" />
@@ -947,7 +1086,7 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── 10. Tags ───────────────────────────────────────────── */}
-            <section id="tags" className="mb-16">
+            <section id="tags" className="mb-26">
               <SectionTitle>Tags</SectionTitle>
               <SectionDescription>
                 Removable tag chips with variant colors.
@@ -967,7 +1106,7 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── Avatars ────────────────────────────────────────────── */}
-            <section id="avatars" className="mb-16">
+            <section id="avatars" className="mb-26">
               <SectionTitle>Avatars</SectionTitle>
               <SectionDescription>User avatars with fallback initials, badges, and groups.</SectionDescription>
               <ComponentShowcase title="Sizes">
@@ -996,7 +1135,7 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── Tooltips ───────────────────────────────────────────── */}
-            <section id="tooltips" className="mb-16">
+            <section id="tooltips" className="mb-26">
               <SectionTitle>Tooltips</SectionTitle>
               <SectionDescription>Contextual tooltips on hover.</SectionDescription>
               <ComponentShowcase>
@@ -1014,19 +1153,13 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── 11. Snackbar ───────────────────────────────────────── */}
-            <section id="snackbar" className="mb-16">
+            <section id="snackbar" className="mb-26">
               <SectionTitle>Snackbar</SectionTitle>
               <SectionDescription>
-                Colored toast notifications with close button.
+                Colored toast notifications with close button. Click X to dismiss.
               </SectionDescription>
-              <ComponentShowcase>
-                <div className="space-y-3 max-w-sm">
-                  <Snackbar variant="success">This is snack bar</Snackbar>
-                  <Snackbar variant="default">This is snack bar</Snackbar>
-                  <Snackbar variant="tan">This is snack bar</Snackbar>
-                  <Snackbar variant="light-success">This is snack bar</Snackbar>
-                  <Snackbar variant="light-danger">This is snack bar</Snackbar>
-                </div>
+              <ComponentShowcase title="Variants">
+                <SnackbarShowcase />
               </ComponentShowcase>
               <ComponentShowcase title="Interactive Toast Demo">
                 <div className="flex flex-wrap gap-2">
@@ -1039,7 +1172,7 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── 12. Checkbox ───────────────────────────────────────── */}
-            <section id="checkbox" className="mb-16">
+            <section id="checkbox" className="mb-26">
               <SectionTitle>Checkbox</SectionTitle>
               <SectionDescription>
                 Checkboxes with brand (brown) color variant.
@@ -1047,7 +1180,7 @@ export default function LibraryPage() {
               <ComponentShowcase>
                 <div className="space-y-4">
                   <div>
-                    <p className="text-ui-sm text-muted-text mb-3">Default (Primary)</p>
+                    <p className="text-ui-sm text-muted-text mb-4">Default (Primary)</p>
                     <div className="flex items-center gap-6">
                       <label className="flex items-center gap-2 cursor-pointer">
                         <Checkbox checked={checkboxes.unchecked} onCheckedChange={(v) => setCheckboxes(prev => ({ ...prev, unchecked: v === true }))} />
@@ -1065,7 +1198,7 @@ export default function LibraryPage() {
                   </div>
                   <Separator />
                   <div>
-                    <p className="text-ui-sm text-muted-text mb-3">Brand (Brown)</p>
+                    <p className="text-ui-sm text-muted-text mb-4">Brand (Brown)</p>
                     <div className="flex items-center gap-6">
                       <label className="flex items-center gap-2 cursor-pointer">
                         <Checkbox color="brand" checked={checkboxes.brand} onCheckedChange={(v) => setCheckboxes(prev => ({ ...prev, brand: v === true }))} />
@@ -1082,7 +1215,7 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── 13. Radio Buttons ──────────────────────────────────── */}
-            <section id="radio" className="mb-16">
+            <section id="radio" className="mb-26">
               <SectionTitle>Radio Buttons</SectionTitle>
               <SectionDescription>
                 Radio buttons with brand color variant.
@@ -1090,7 +1223,7 @@ export default function LibraryPage() {
               <ComponentShowcase>
                 <div className="space-y-4">
                   <div>
-                    <p className="text-ui-sm text-muted-text mb-3">Default</p>
+                    <p className="text-ui-sm text-muted-text mb-4">Default</p>
                     <div className="flex flex-col gap-2">
                       {["option1", "option2", "option3"].map((opt) => (
                         <label key={opt} className="flex items-center gap-2 cursor-pointer">
@@ -1109,7 +1242,7 @@ export default function LibraryPage() {
                   </div>
                   <Separator />
                   <div>
-                    <p className="text-ui-sm text-muted-text mb-3">Disabled</p>
+                    <p className="text-ui-sm text-muted-text mb-4">Disabled</p>
                     <div className="flex flex-col gap-2">
                       <label className="flex items-center gap-2 cursor-not-allowed opacity-50">
                         <input type="radio" name="radio-disabled" disabled className="size-4" />
@@ -1122,7 +1255,7 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── 14. Switches ───────────────────────────────────────── */}
-            <section id="switches" className="mb-16">
+            <section id="switches" className="mb-26">
               <SectionTitle>Switch</SectionTitle>
               <SectionDescription>
                 Toggle switches with color variants. Off = gray track, On = colored track with checkmark.
@@ -1162,7 +1295,7 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── Sliders ────────────────────────────────────────────── */}
-            <section id="sliders" className="mb-16">
+            <section id="sliders" className="mb-26">
               <SectionTitle>Sliders</SectionTitle>
               <SectionDescription>Range slider inputs.</SectionDescription>
               <ComponentShowcase>
@@ -1184,7 +1317,7 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── 15. OTP Box ────────────────────────────────────────── */}
-            <section id="otp" className="mb-16">
+            <section id="otp" className="mb-26">
               <SectionTitle>OTP Box</SectionTitle>
               <SectionDescription>
                 One-time password input with individual character fields.
@@ -1202,7 +1335,7 @@ export default function LibraryPage() {
                         value={val}
                         onChange={(e) => handleOtpChange(i, e.target.value)}
                         onKeyDown={(e) => handleOtpKeyDown(i, e)}
-                        className="size-12 rounded-[8px] border border-input bg-transparent text-center text-lg font-semibold text-foreground outline-none focus:border-ring focus:ring-3 focus:ring-ring/50 transition-colors"
+                        className="size-12 rounded-[8px] border border-input bg-transparent text-center text-lg font-semibold text-foreground outline-none focus:border-ring focus:ring-2 focus:ring-ring/50 transition-colors"
                       />
                     ))}
                   </div>
@@ -1212,29 +1345,29 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── 16. Input Fields ───────────────────────────────────── */}
-            <section id="input-fields" className="mb-16">
+            <section id="input-fields" className="mb-26">
               <SectionTitle>Input Fields</SectionTitle>
               <SectionDescription>
                 Input fields with label, hint text, icons, and error states.
               </SectionDescription>
               <ComponentShowcase title="Basic Inputs">
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2 max-w-2xl">
-                  <div className="space-y-1.5">
+                  <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground">Label</label>
                     <InputField placeholder="Placeholder" />
                     <InputHint>This is a hint text to help user</InputHint>
                   </div>
-                  <div className="space-y-1.5">
+                  <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground">Label</label>
                     <InputField placeholder="Placeholder" leftIcon={<Mail className="size-4" />} />
                     <InputHint>This is a hint text to help user</InputHint>
                   </div>
-                  <div className="space-y-1.5">
+                  <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground">Label</label>
                     <InputField placeholder="Placeholder" leftIcon={<Globe className="size-4" />} rightIcon={<Info className="size-4" />} />
                     <InputHint>This is a hint text to help user</InputHint>
                   </div>
-                  <div className="space-y-1.5">
+                  <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground">Label</label>
                     <InputField placeholder="Card number" leftIcon={<CreditCard className="size-4" />} rightIcon={<Info className="size-4" />} />
                     <InputHint>This is a hint text to help user</InputHint>
@@ -1243,12 +1376,12 @@ export default function LibraryPage() {
               </ComponentShowcase>
               <ComponentShowcase title="Error States">
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2 max-w-2xl">
-                  <div className="space-y-1.5">
+                  <div className="space-y-2">
                     <label className="text-sm font-medium text-red-500">Label</label>
                     <InputField placeholder="Placeholder" error leftIcon={<Mail className="size-4" />} rightIcon={<AlertCircle className="size-4" />} />
                     <InputHint error>This is a error message.</InputHint>
                   </div>
-                  <div className="space-y-1.5">
+                  <div className="space-y-2">
                     <label className="text-sm font-medium text-red-500">Label</label>
                     <InputField placeholder="Card number" error leftIcon={<CreditCard className="size-4" />} rightIcon={<AlertCircle className="size-4" />} />
                     <InputHint error>This is a error message.</InputHint>
@@ -1256,7 +1389,7 @@ export default function LibraryPage() {
                 </div>
               </ComponentShowcase>
               <ComponentShowcase title="Disabled">
-                <div className="max-w-xs space-y-1.5">
+                <div className="max-w-xs space-y-2">
                   <label className="text-sm font-medium text-foreground">Label</label>
                   <InputField placeholder="Placeholder" disabled />
                 </div>
@@ -1264,14 +1397,14 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── 17. Text Area ──────────────────────────────────────── */}
-            <section id="text-area" className="mb-16">
+            <section id="text-area" className="mb-26">
               <SectionTitle>Text Area</SectionTitle>
               <SectionDescription>
                 Multi-line text input with character count, hint text, and error states.
               </SectionDescription>
               <ComponentShowcase title="Basic Textarea">
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2 max-w-2xl">
-                  <div className="space-y-1.5">
+                  <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground">Label</label>
                     <Textarea
                       placeholder="Placeholder"
@@ -1281,7 +1414,7 @@ export default function LibraryPage() {
                     />
                     <TextareaHint>This is a hint text to help user</TextareaHint>
                   </div>
-                  <div className="space-y-1.5">
+                  <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground">Label</label>
                     <Textarea
                       placeholder="Enter a description..."
@@ -1292,7 +1425,7 @@ export default function LibraryPage() {
               </ComponentShowcase>
               <ComponentShowcase title="With Content">
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2 max-w-2xl">
-                  <div className="space-y-1.5">
+                  <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground">Label</label>
                     <Textarea
                       value={textareaWithTags}
@@ -1301,10 +1434,10 @@ export default function LibraryPage() {
                     />
                     <TextareaHint>This is a hint text to help user</TextareaHint>
                   </div>
-                  <div className="space-y-1.5">
+                  <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground">Label</label>
                     <div className="rounded-[8px] border border-input p-2">
-                      <div className="flex flex-wrap gap-1 mb-2">
+                      <div className="flex flex-wrap gap-2 mb-2">
                         <Tag variant="default" removable onRemove={() => {}}>Label</Tag>
                         <Tag variant="default" removable onRemove={() => {}}>Label</Tag>
                       </div>
@@ -1315,7 +1448,7 @@ export default function LibraryPage() {
                 </div>
               </ComponentShowcase>
               <ComponentShowcase title="Error State">
-                <div className="max-w-xs space-y-1.5">
+                <div className="max-w-xs space-y-2">
                   <label className="text-sm font-medium text-red-500">Label</label>
                   <Textarea
                     value="Keep up with our newsletters for the latest updates"
@@ -1323,20 +1456,20 @@ export default function LibraryPage() {
                     error
                   />
                   <TextareaHint error>
-                    <span className="flex items-center gap-1"><AlertCircle className="size-3" /> This is a hint text to help user</span>
+                    <span className="flex items-center gap-2"><AlertCircle className="size-3" /> This is a hint text to help user</span>
                   </TextareaHint>
                 </div>
               </ComponentShowcase>
             </section>
 
             {/* ─── 18. Dropdown ───────────────────────────────────────── */}
-            <section id="dropdown" className="mb-16">
+            <section id="dropdown" className="mb-26">
               <SectionTitle>Dropdown</SectionTitle>
               <SectionDescription>
                 Single select and multi-select dropdown menus with checkmarks.
               </SectionDescription>
               <ComponentShowcase title="Single Select">
-                <div className="max-w-xs space-y-1.5">
+                <div className="max-w-xs space-y-2">
                   <label className="text-sm font-medium text-foreground">Label</label>
                   <Select value={selectValue} onValueChange={(v) => v && setSelectValue(v)}>
                     <SelectTrigger className="w-full">
@@ -1353,7 +1486,7 @@ export default function LibraryPage() {
                 </div>
               </ComponentShowcase>
               <ComponentShowcase title="Disabled">
-                <div className="max-w-xs space-y-1.5">
+                <div className="max-w-xs space-y-2">
                   <label className="text-sm font-medium text-foreground">Label</label>
                   <Select disabled>
                     <SelectTrigger className="w-full">
@@ -1369,31 +1502,31 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── 19. Dropdown List Item ──────────────────────────────── */}
-            <section id="dropdown-list" className="mb-16">
+            <section id="dropdown-list" className="mb-26">
               <SectionTitle>Dropdown List Item</SectionTitle>
               <SectionDescription>
                 List items with optional checkmarks and radio indicators.
               </SectionDescription>
               <ComponentShowcase>
                 <div className="grid grid-cols-2 gap-4 max-w-md">
-                  <div className="rounded-lg border border-border bg-white p-1">
+                  <div className="rounded-[8px] border border-border bg-white p-2">
                     {["Option 1", "Option 2", "Option 3", "Option 4"].map((opt) => (
-                      <div key={opt} className="flex items-center justify-between rounded-md px-3 py-2 text-sm hover:bg-muted cursor-pointer">
+                      <div key={opt} className="flex items-center justify-between rounded-[8px] px-4 py-2 text-sm hover:bg-muted cursor-pointer">
                         {opt}
                       </div>
                     ))}
                   </div>
-                  <div className="rounded-lg border border-border bg-white p-1">
+                  <div className="rounded-[8px] border border-border bg-white p-2">
                     {["Option 1", "Option 2", "Option 3", "Option 4"].map((opt, i) => (
-                      <div key={opt} className="flex items-center justify-between rounded-md px-3 py-2 text-sm hover:bg-muted cursor-pointer">
+                      <div key={opt} className="flex items-center justify-between rounded-[8px] px-4 py-2 text-sm hover:bg-muted cursor-pointer">
                         {opt}
                         {i === 1 && <Check className="size-4 text-foreground" />}
                       </div>
                     ))}
                   </div>
-                  <div className="rounded-lg border border-border bg-white p-1">
+                  <div className="rounded-[8px] border border-border bg-white p-2">
                     {["Option 1", "Option 2", "Option 3", "Option 4"].map((opt, i) => (
-                      <div key={opt} className="flex items-center justify-between rounded-md px-3 py-2 text-sm hover:bg-muted cursor-pointer">
+                      <div key={opt} className="flex items-center justify-between rounded-[8px] px-4 py-2 text-sm hover:bg-muted cursor-pointer">
                         {opt}
                         {i === 1 ? (
                           <div className="size-4 rounded-full border-2 border-[#3B2513] flex items-center justify-center">
@@ -1405,9 +1538,9 @@ export default function LibraryPage() {
                       </div>
                     ))}
                   </div>
-                  <div className="rounded-lg border border-border bg-white p-1">
+                  <div className="rounded-[8px] border border-border bg-white p-2">
                     {["Option 1", "Option 2", "Option 3", "Option 4"].map((opt, i) => (
-                      <div key={opt} className="flex items-center justify-between rounded-md px-3 py-2 text-sm hover:bg-muted cursor-pointer">
+                      <div key={opt} className="flex items-center justify-between rounded-[8px] px-4 py-2 text-sm hover:bg-muted cursor-pointer">
                         {opt}
                         <Checkbox checked={i === 1 || i === 2} />
                       </div>
@@ -1418,7 +1551,7 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── 20. Date Picker ────────────────────────────────────── */}
-            <section id="date-picker" className="mb-16">
+            <section id="date-picker" className="mb-26">
               <SectionTitle>Date Picker</SectionTitle>
               <SectionDescription>
                 Calendar date picker with brown circle selected state.
@@ -1440,26 +1573,26 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── 21. Search Bar ─────────────────────────────────────── */}
-            <section id="searchbar" className="mb-16">
+            <section id="searchbar" className="mb-26">
               <SectionTitle>Searchbar</SectionTitle>
               <SectionDescription>
                 Search input with magnifying glass icon and clear button.
               </SectionDescription>
               <ComponentShowcase>
                 <div className="space-y-4 max-w-md">
-                  <div className="space-y-1.5">
+                  <div className="space-y-2">
                     <p className="text-ui-sm text-muted-text">Default</p>
                     <SearchBar placeholder="Placeholder" />
                   </div>
-                  <div className="space-y-1.5">
+                  <div className="space-y-2">
                     <p className="text-ui-sm text-muted-text">With Value</p>
                     <SearchBar placeholder="Placeholder" defaultValue="Search query" />
                   </div>
-                  <div className="space-y-1.5">
+                  <div className="space-y-2">
                     <p className="text-ui-sm text-muted-text">Small</p>
                     <SearchBar placeholder="Placeholder" size="sm" />
                   </div>
-                  <div className="space-y-1.5">
+                  <div className="space-y-2">
                     <p className="text-ui-sm text-muted-text">Disabled</p>
                     <SearchBar placeholder="Placeholder" disabled />
                   </div>
@@ -1468,7 +1601,7 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── 22. Tabs ───────────────────────────────────────────── */}
-            <section id="tabs" className="mb-16">
+            <section id="tabs" className="mb-26">
               <SectionTitle>Tabs</SectionTitle>
               <SectionDescription>
                 Tab components: pill variant for dark backgrounds and segmented control.
@@ -1486,7 +1619,7 @@ export default function LibraryPage() {
                 </Tabs>
               </ComponentShowcase>
               <ComponentShowcase title="Pill Tabs (Dark Background)">
-                <div className="bg-[#3D3D3D] rounded-xl p-6">
+                <div className="bg-[#3D3D3D] rounded-[8px] p-6">
                   <Tabs defaultValue="pill1" className="max-w-sm">
                     <TabsList variant="pill">
                       <TabsTrigger value="pill1">Text</TabsTrigger>
@@ -1516,11 +1649,11 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── Modals & Dialogs ────────────────────────────────────── */}
-            <section id="modals" className="mb-16">
+            <section id="modals" className="mb-26">
               <SectionTitle>Modals & Dialogs</SectionTitle>
               <SectionDescription>Modal dialogs for confirmations and forms.</SectionDescription>
               <ComponentShowcase>
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap gap-4">
                   <Dialog>
                     <DialogTrigger render={<Button variant="brand">Confirm Dialog</Button>} />
                     <DialogContent>
@@ -1542,11 +1675,11 @@ export default function LibraryPage() {
                         <DialogDescription>Fill in the details below.</DialogDescription>
                       </DialogHeader>
                       <div className="space-y-4 py-4">
-                        <div className="space-y-1.5">
+                        <div className="space-y-2">
                           <label className="text-sm font-medium">Name</label>
                           <Input placeholder="Enter child name" />
                         </div>
-                        <div className="space-y-1.5">
+                        <div className="space-y-2">
                           <label className="text-sm font-medium">Age</label>
                           <Input placeholder="Enter age" type="number" />
                         </div>
@@ -1562,29 +1695,33 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── Alerts & Notifications ──────────────────────────────── */}
-            <section id="alerts" className="mb-16">
+            <section id="alerts" className="mb-26">
               <SectionTitle>Alerts & Notifications</SectionTitle>
               <SectionDescription>Alert banners for different message types.</SectionDescription>
               <ComponentShowcase>
                 <div className="space-y-4 max-w-2xl">
-                  <AlertBanner variant="success" title="Success" icon={<CheckCircle2 className="size-4" />}>
+                  <AlertBanner variant="success" title="Enrollment Complete" icon={<CheckCircle2 className="size-4" />} dismissible onDismiss={() => {}}>
                     Child enrollment has been completed successfully.
+                    <button className="ml-2 underline underline-offset-2 font-semibold hover:opacity-80">Close</button>
                   </AlertBanner>
-                  <AlertBanner variant="warning" title="Warning" icon={<AlertTriangle className="size-4" />}>
+                  <AlertBanner variant="warning" title="Reports Pending" icon={<AlertTriangle className="size-4" />}>
                     Some caregivers have not submitted their reports yet.
+                    <button className="ml-2 underline underline-offset-2 font-semibold hover:opacity-80">View Reports</button>
                   </AlertBanner>
-                  <AlertBanner variant="error" title="Error" icon={<XCircle className="size-4" />}>
+                  <AlertBanner variant="error" title="Save Failed" icon={<XCircle className="size-4" />}>
                     Failed to save changes. Please try again.
+                    <button className="ml-2 underline underline-offset-2 font-semibold hover:opacity-80">Try Again</button>
                   </AlertBanner>
-                  <AlertBanner variant="info" title="Info" icon={<Info className="size-4" />}>
+                  <AlertBanner variant="info" title="App Update Available" icon={<Info className="size-4" />}>
                     A new version of the app is available for update.
+                    <button className="ml-2 underline underline-offset-2 font-semibold hover:opacity-80">Update Now</button>
                   </AlertBanner>
                 </div>
               </ComponentShowcase>
             </section>
 
             {/* ─── 23. Empty State ────────────────────────────────────── */}
-            <section id="empty-state" className="mb-16">
+            <section id="empty-state" className="mb-26">
               <SectionTitle>Empty State</SectionTitle>
               <SectionDescription>
                 Empty state with illustration, title, subtitle, and action buttons.
@@ -1611,7 +1748,7 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── Pagination ──────────────────────────────────────────── */}
-            <section id="pagination" className="mb-16">
+            <section id="pagination" className="mb-26">
               <SectionTitle>Pagination</SectionTitle>
               <SectionDescription>Page navigation for lists and tables.</SectionDescription>
               <ComponentShowcase>
@@ -1623,7 +1760,7 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── Progress Steps ──────────────────────────────────────── */}
-            <section id="progress-steps" className="mb-16">
+            <section id="progress-steps" className="mb-26">
               <SectionTitle>Progress Steps</SectionTitle>
               <SectionDescription>Step-by-step progress indicator for onboarding flows.</SectionDescription>
               <ComponentShowcase>
@@ -1637,7 +1774,7 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── File Upload ─────────────────────────────────────────── */}
-            <section id="file-upload" className="mb-16">
+            <section id="file-upload" className="mb-26">
               <SectionTitle>File Upload</SectionTitle>
               <SectionDescription>Drag and drop file upload zone.</SectionDescription>
               <ComponentShowcase>
@@ -1648,7 +1785,7 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── Code Blocks ─────────────────────────────────────────── */}
-            <section id="code-blocks" className="mb-16">
+            <section id="code-blocks" className="mb-26">
               <SectionTitle>Code Blocks</SectionTitle>
               <SectionDescription>Syntax-highlighted code display.</SectionDescription>
               <ComponentShowcase>
@@ -1675,7 +1812,7 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── Activity Feeds ──────────────────────────────────────── */}
-            <section id="activity-feeds" className="mb-16">
+            <section id="activity-feeds" className="mb-26">
               <SectionTitle>Activity Feeds</SectionTitle>
               <SectionDescription>Timeline-style activity feed.</SectionDescription>
               <ComponentShowcase>
@@ -1693,41 +1830,41 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── AI Chat Interface ───────────────────────────────────── */}
-            <section id="ai-chat" className="mb-16">
+            <section id="ai-chat" className="mb-26">
               <SectionTitle>AI Chat Interface</SectionTitle>
               <SectionDescription>The full CEvenAI chat interface with header, messages, and input bar.</SectionDescription>
               <ComponentShowcase>
                 <div className="mx-auto max-w-sm overflow-hidden rounded-[8px] border border-border bg-[#fffefa] shadow-sm">
                   {/* Header */}
                   <div className="flex items-center px-4 pt-4 pb-3">
-                    <button className="flex h-[34px] w-[34px] items-center justify-center rounded-full border border-gray-200 bg-[#f4f5f6]">
+                    <button className="flex h-8 w-8 items-center justify-center rounded-[8px] border border-gray-200 bg-[#f4f5f6]">
                       <ArrowLeft size={16} className="text-gray-700" />
                     </button>
                     <div className="flex flex-1 items-center justify-center gap-2">
                       <AiSparkleIcon size={22} className="text-brand-dark" />
                       <h1 className="text-lg font-bold text-gray-800">CEvenAI</h1>
                     </div>
-                    <div className="h-[34px] w-[34px]" />
+                    <div className="h-8 w-8" />
                   </div>
                   {/* Messages */}
                   <div className="space-y-3 px-4 py-4">
                     <div className="flex justify-end">
-                      <div className="max-w-[78%] rounded-[8px] rounded-tr-sm bg-brand-dark px-4 py-3 text-sm text-white">
+                      <div className="max-w-[78%] rounded-[8px] rounded-tr-sm bg-brand-dark px-4 py-4 text-sm text-white">
                         Summarize today&apos;s report
                       </div>
                     </div>
                     <div className="flex justify-start">
                       <div className="max-w-[88%]">
-                        <div className="mb-1 flex items-center gap-1.5">
+                        <div className="mb-2 flex items-center gap-2">
                           <AiSparkleIcon size={14} className="text-brand-dark" />
                         </div>
-                        <div className="rounded-[8px] bg-white px-4 py-3 text-sm text-gray-700 shadow-sm">
+                        <div className="rounded-[8px] bg-white px-4 py-4 text-sm text-gray-700 shadow-sm">
                           <p>Of course! As an AI language model, I am designed to assist with a variety of tasks.</p>
-                          <p className="mt-1">Here are some examples of what I can do:</p>
-                          <p className="mt-1">{'\u2022'} Answer questions: Just ask me anything you like!</p>
-                          <p className="mt-1">{'\u2022'} Generate text: I can write stories, poems, or summaries for you.</p>
+                          <p className="mt-2">Here are some examples of what I can do:</p>
+                          <p className="mt-2">{'\u2022'} Answer questions: Just ask me anything you like!</p>
+                          <p className="mt-2">{'\u2022'} Generate text: I can write stories, poems, or summaries for you.</p>
                         </div>
-                        <div className="mt-1.5 flex items-center gap-3">
+                        <div className="mt-2.5 flex items-center gap-4">
                           <button className="text-gray-300 hover:text-gray-500"><ThumbsUp size={14} /></button>
                           <button className="text-gray-300 hover:text-gray-500"><ThumbsDown size={14} /></button>
                           <button className="text-gray-300 hover:text-gray-500"><Copy size={14} /></button>
@@ -1737,9 +1874,9 @@ export default function LibraryPage() {
                   </div>
                   {/* Input bar */}
                   <div className="bg-white px-4 pt-4 pb-4 border-t border-gray-100">
-                    <div className="flex items-center gap-3">
-                      <input placeholder="Ask me anything..." className="flex-1 rounded-[8px] bg-[#f4f5f6] px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none" />
-                      <button className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#E0BFA0]">
+                    <div className="flex items-center gap-4">
+                      <input placeholder="Ask me anything..." className="flex-1 rounded-[8px] bg-[#f4f5f6] px-4 py-2 text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none" />
+                      <button className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[8px] bg-[#E0BFA0]">
                         <Send size={14} className="text-brand-dark" />
                       </button>
                       <Mic size={22} className="text-gray-500" />
@@ -1750,28 +1887,28 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── AI Messages ────────────────────────────────────────── */}
-            <section id="ai-messages" className="mb-16">
+            <section id="ai-messages" className="mb-26">
               <SectionTitle>AI Messages</SectionTitle>
               <SectionDescription>User and AI message bubble styles with action buttons.</SectionDescription>
               <ComponentShowcase>
                 <div className="mx-auto max-w-sm space-y-3">
                   <div className="flex justify-end">
-                    <div className="max-w-[78%] rounded-[8px] rounded-tr-sm bg-brand-dark px-4 py-3 text-sm text-white">
+                    <div className="max-w-[78%] rounded-[8px] rounded-tr-sm bg-brand-dark px-4 py-4 text-sm text-white">
                       Summarize today&apos;s report
                     </div>
                   </div>
                   <div className="flex justify-start">
                     <div className="max-w-[88%]">
-                      <div className="mb-1 flex items-center gap-1.5">
+                      <div className="mb-2 flex items-center gap-2">
                         <AiSparkleIcon size={14} className="text-brand-dark" />
                       </div>
-                      <div className="rounded-[8px] bg-white px-4 py-3 text-sm text-gray-700 shadow-sm">
+                      <div className="rounded-[8px] bg-white px-4 py-4 text-sm text-gray-700 shadow-sm">
                         <p>Of course! As an AI language model, I am designed to assist with a variety of tasks.</p>
-                        <p className="mt-1">Here are some examples of what I can do:</p>
-                        <p className="mt-1">{'\u2022'} Answer questions: Just ask me anything you like!</p>
-                        <p className="mt-1">{'\u2022'} Generate text: I can write stories, poems, or summaries for you.</p>
+                        <p className="mt-2">Here are some examples of what I can do:</p>
+                        <p className="mt-2">{'\u2022'} Answer questions: Just ask me anything you like!</p>
+                        <p className="mt-2">{'\u2022'} Generate text: I can write stories, poems, or summaries for you.</p>
                       </div>
-                      <div className="mt-1.5 flex items-center gap-3">
+                      <div className="mt-2.5 flex items-center gap-4">
                         <button className="text-gray-300 hover:text-gray-500"><ThumbsUp size={14} /></button>
                         <button className="text-gray-300 hover:text-gray-500"><ThumbsDown size={14} /></button>
                         <button className="text-gray-300 hover:text-gray-500"><Copy size={14} /></button>
@@ -1779,19 +1916,19 @@ export default function LibraryPage() {
                     </div>
                   </div>
                   <div className="flex justify-end">
-                    <div className="max-w-[78%] rounded-[8px] rounded-tr-sm bg-brand-dark px-4 py-3 text-sm text-white">
+                    <div className="max-w-[78%] rounded-[8px] rounded-tr-sm bg-brand-dark px-4 py-4 text-sm text-white">
                       How was my child&apos;s mood today?
                     </div>
                   </div>
                   <div className="flex justify-start">
                     <div className="max-w-[88%]">
-                      <div className="mb-1 flex items-center gap-1.5">
+                      <div className="mb-2 flex items-center gap-2">
                         <AiSparkleIcon size={14} className="text-brand-dark" />
                       </div>
-                      <div className="rounded-[8px] bg-white px-4 py-3 text-sm text-gray-700 shadow-sm">
+                      <div className="rounded-[8px] bg-white px-4 py-4 text-sm text-gray-700 shadow-sm">
                         <p>Your child was in great spirits today! Very active during playtime and socialized well with other children.</p>
                       </div>
-                      <div className="mt-1.5 flex items-center gap-3">
+                      <div className="mt-2.5 flex items-center gap-4">
                         <button className="text-gray-300 hover:text-gray-500"><ThumbsUp size={14} /></button>
                         <button className="text-gray-300 hover:text-gray-500"><ThumbsDown size={14} /></button>
                         <button className="text-gray-300 hover:text-gray-500"><Copy size={14} /></button>
@@ -1803,16 +1940,16 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── AI Empty State ─────────────────────────────────────── */}
-            <section id="ai-empty" className="mb-16">
+            <section id="ai-empty" className="mb-26">
               <SectionTitle>AI Empty State</SectionTitle>
               <SectionDescription>Greeting screen with suggested prompt buttons.</SectionDescription>
               <ComponentShowcase>
                 <div className="mx-auto max-w-sm">
                   <div className="flex flex-col items-center text-center">
-                    <div className="mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-[#F3EDE5]">
+                    <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-[8px] bg-[#F3EDE5]">
                       <AiSparkleIcon size={30} className="text-brand-dark" />
                     </div>
-                    <h2 className="mb-1 text-base font-bold text-gray-800">Hi! I&apos;m CEvenAI</h2>
+                    <h2 className="mb-2 text-base font-bold text-gray-800">Hi! I&apos;m CEvenAI</h2>
                     <p className="max-w-[220px] text-xs text-gray-500">
                       Ask me about your child&apos;s day, health patterns, or activities.
                     </p>
@@ -1824,7 +1961,7 @@ export default function LibraryPage() {
                       { icon: "😊", text: "How was my child's mood?" },
                       { icon: "📖", text: "What learning activity was done?" },
                     ].map((p) => (
-                      <button key={p.text} className="flex w-full items-center gap-2 rounded-xl bg-[#F3EDE5] px-4 py-3 text-left text-sm text-brand-dark">
+                      <button key={p.text} className="flex w-full items-center gap-2 rounded-[8px] bg-[#F3EDE5] px-4 py-4 text-left text-sm text-brand-dark">
                         <span>{p.icon}</span>
                         <span>{p.text}</span>
                       </button>
@@ -1835,14 +1972,14 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── AI Input Bar ───────────────────────────────────────── */}
-            <section id="ai-input" className="mb-16">
+            <section id="ai-input" className="mb-26">
               <SectionTitle>AI Input Bar</SectionTitle>
               <SectionDescription>Chat input with send, mic, and refresh buttons.</SectionDescription>
               <ComponentShowcase title="Empty State">
-                <div className="mx-auto max-w-sm rounded-xl bg-white px-4 py-4 shadow-[0px_-4px_12px_4px_rgba(46,46,46,0.04)]">
-                  <div className="flex items-center gap-3">
-                    <input placeholder="Ask me anything..." className="flex-1 rounded-xl bg-[#f4f5f6] px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none" />
-                    <button className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#E0BFA0]">
+                <div className="mx-auto max-w-sm rounded-[8px] bg-white px-4 py-4 shadow-[0px_-4px_12px_4px_rgba(46,46,46,0.04)]">
+                  <div className="flex items-center gap-4">
+                    <input placeholder="Ask me anything..." className="flex-1 rounded-[8px] bg-[#f4f5f6] px-4 py-2 text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none" />
+                    <button className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[8px] bg-[#E0BFA0]">
                       <Send size={14} className="text-brand-dark" />
                     </button>
                     <Mic size={22} className="text-gray-500" />
@@ -1850,13 +1987,13 @@ export default function LibraryPage() {
                 </div>
               </ComponentShowcase>
               <ComponentShowcase title="With Refresh Button">
-                <div className="mx-auto max-w-sm rounded-xl bg-white px-4 py-4 shadow-[0px_-4px_12px_4px_rgba(46,46,46,0.04)]">
-                  <div className="flex items-center gap-3">
-                    <button className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gray-100">
+                <div className="mx-auto max-w-sm rounded-[8px] bg-white px-4 py-4 shadow-[0px_-4px_12px_4px_rgba(46,46,46,0.04)]">
+                  <div className="flex items-center gap-4">
+                    <button className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[8px] bg-gray-100">
                       <RefreshCw size={14} className="text-gray-500" />
                     </button>
-                    <input placeholder="Ask me anything..." className="flex-1 rounded-xl bg-[#f4f5f6] px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none" />
-                    <button className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#E0BFA0]">
+                    <input placeholder="Ask me anything..." className="flex-1 rounded-[8px] bg-[#f4f5f6] px-4 py-2 text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none" />
+                    <button className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[8px] bg-[#E0BFA0]">
                       <Send size={14} className="text-brand-dark" />
                     </button>
                     <Mic size={22} className="text-gray-500" />
@@ -1864,10 +2001,10 @@ export default function LibraryPage() {
                 </div>
               </ComponentShowcase>
               <ComponentShowcase title="Disabled (Trial Ended)">
-                <div className="mx-auto max-w-sm rounded-xl bg-white px-4 py-4 shadow-[0px_-4px_12px_4px_rgba(46,46,46,0.04)]">
-                  <div className="flex items-center gap-3">
-                    <input placeholder="Manage your account to keep chatting" disabled className="flex-1 rounded-xl bg-[#f4f5f6] px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none disabled:opacity-60" />
-                    <button disabled className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#E0BFA0] disabled:opacity-60">
+                <div className="mx-auto max-w-sm rounded-[8px] bg-white px-4 py-4 shadow-[0px_-4px_12px_4px_rgba(46,46,46,0.04)]">
+                  <div className="flex items-center gap-4">
+                    <input placeholder="Manage your account to keep chatting" disabled className="flex-1 rounded-[8px] bg-[#f4f5f6] px-4 py-2 text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none disabled:opacity-60" />
+                    <button disabled className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[8px] bg-[#E0BFA0] disabled:opacity-60">
                       <Send size={14} className="text-brand-dark" />
                     </button>
                     <Mic size={22} className="text-gray-300" />
@@ -1877,13 +2014,13 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── AI Typing Indicator ────────────────────────────────── */}
-            <section id="ai-typing" className="mb-16">
+            <section id="ai-typing" className="mb-26">
               <SectionTitle>AI Typing Indicator</SectionTitle>
               <SectionDescription>Bouncing dots animation while AI is generating a response.</SectionDescription>
               <ComponentShowcase>
                 <div className="flex items-center gap-2">
                   <AiSparkleIcon size={14} className="text-brand-dark" />
-                  <div className="flex items-center gap-1 rounded-2xl bg-white px-4 py-3 shadow-sm">
+                  <div className="flex items-center gap-2 rounded-[8px] bg-white px-4 py-4 shadow-sm">
                     <span className="h-2 w-2 animate-bounce rounded-full bg-gray-400 [animation-delay:0ms]" />
                     <span className="h-2 w-2 animate-bounce rounded-full bg-gray-400 [animation-delay:150ms]" />
                     <span className="h-2 w-2 animate-bounce rounded-full bg-gray-400 [animation-delay:300ms]" />
@@ -1893,24 +2030,24 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── AI Risk Badge ──────────────────────────────────────── */}
-            <section id="ai-risk" className="mb-16">
+            <section id="ai-risk" className="mb-26">
               <SectionTitle>AI Risk Badge</SectionTitle>
               <SectionDescription>AI-computed risk level badges for child welfare monitoring.</SectionDescription>
               <ComponentShowcase title="Risk Levels">
                 <div className="flex flex-wrap gap-2">
-                  <span className="inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-semibold" style={{ backgroundColor: "#ecfdf5", color: "#059669", borderColor: "#059669" }}>Low Risk</span>
-                  <span className="inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-semibold" style={{ backgroundColor: "#fffbeb", color: "#d97706", borderColor: "#d97706" }}>Medium Risk</span>
-                  <span className="inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-semibold" style={{ backgroundColor: "#fef2f2", color: "#dc2626", borderColor: "#dc2626" }}>High Risk</span>
+                  <span className="inline-flex items-center rounded-[8px] border px-2 py-0.5 text-[10px] font-semibold" style={{ backgroundColor: "#ecfdf5", color: "#059669", borderColor: "#059669" }}>Low Risk</span>
+                  <span className="inline-flex items-center rounded-[8px] border px-2 py-0.5 text-[10px] font-semibold" style={{ backgroundColor: "#fffbeb", color: "#d97706", borderColor: "#d97706" }}>Medium Risk</span>
+                  <span className="inline-flex items-center rounded-[8px] border px-2 py-0.5 text-[10px] font-semibold" style={{ backgroundColor: "#fef2f2", color: "#dc2626", borderColor: "#dc2626" }}>High Risk</span>
                 </div>
               </ComponentShowcase>
               <ComponentShowcase title="Locked (Seedling Plan)">
-                <div className="group relative inline-flex items-center gap-1">
-                  <span className="inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[10px] font-semibold" style={{ backgroundColor: "#f3f4f6", color: "#9ca3af", borderColor: "#d1d5db" }}>
-                    <Lock className="h-2.5 w-2.5" />
+                <div className="group relative inline-flex items-center gap-2">
+                  <span className="inline-flex items-center gap-2 rounded-[8px] border px-2 py-0.5 text-[10px] font-semibold" style={{ backgroundColor: "#f3f4f6", color: "#9ca3af", borderColor: "#d1d5db" }}>
+                    <Lock className="h-2 w-2" />
                     AI Risk
                   </span>
                   <div className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 -translate-x-1/2 opacity-0 transition-opacity group-hover:opacity-100">
-                    <div className="whitespace-nowrap rounded-lg bg-[#2d1810] px-3 py-1.5 text-[10px] text-white shadow-lg">
+                    <div className="whitespace-nowrap rounded-[8px] bg-[#2d1810] px-4 py-2 text-[10px] text-white shadow-lg">
                       Upgrade to Nurture Pro to unlock AI Risk
                       <div className="absolute left-1/2 top-full -translate-x-1/2 border-4 border-transparent border-t-[#2d1810]" />
                     </div>
@@ -1920,14 +2057,14 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── Thread List ─────────────────────────────────────────── */}
-            <section id="msg-thread-list" className="mb-16">
+            <section id="msg-thread-list" className="mb-26">
               <SectionTitle>Thread List</SectionTitle>
               <SectionDescription>Chat thread list with search, avatars, and date grouping.</SectionDescription>
               <ComponentShowcase title="Parent Chat List">
-                <div className="mx-auto max-w-sm overflow-hidden rounded-2xl border border-border bg-white shadow-sm">
+                <div className="mx-auto max-w-sm overflow-hidden rounded-[8px] border border-border bg-white shadow-sm">
                   {/* Search */}
                   <div className="px-4 pt-3 pb-2">
-                    <div className="flex items-center gap-2 rounded-xl bg-gray-50 px-4 py-2.5">
+                    <div className="flex items-center gap-2 rounded-[8px] bg-gray-50 px-4 py-2">
                       <Search size={16} className="text-gray-400" />
                       <input placeholder="Search" className="flex-1 bg-transparent text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none" />
                     </div>
@@ -1939,7 +2076,7 @@ export default function LibraryPage() {
                       { initials: "MA", name: "Mrs Anu", last: "Liam had a great day today!", time: "4:30 PM", color: "bg-brand-dark" },
                       { initials: "SM", name: "Sarah (Mother)", last: "Don't forget the parent meeting", time: "2:15 PM", color: "bg-[#D4A67F]" },
                     ].map((t) => (
-                      <div key={t.name} className="flex items-center gap-3 px-4 py-3">
+                      <div key={t.name} className="flex items-center gap-4 px-4 py-4">
                         <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white ${t.color}`}>
                           {t.initials}
                         </div>
@@ -1959,7 +2096,7 @@ export default function LibraryPage() {
                     {[
                       { initials: "AD", name: "Creche Admin", last: "Invoice has been sent", time: "Yesterday", color: "bg-indigo-500" },
                     ].map((t) => (
-                      <div key={t.name} className="flex items-center gap-3 px-4 py-3">
+                      <div key={t.name} className="flex items-center gap-4 px-4 py-4">
                         <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white ${t.color}`}>
                           {t.initials}
                         </div>
@@ -1976,8 +2113,8 @@ export default function LibraryPage() {
                 </div>
               </ComponentShowcase>
               <ComponentShowcase title="Family Group Thread">
-                <div className="mx-auto max-w-sm overflow-hidden rounded-2xl border border-border bg-white shadow-sm">
-                  <div className="flex items-center gap-3 px-4 py-3">
+                <div className="mx-auto max-w-sm overflow-hidden rounded-[8px] border border-border bg-white shadow-sm">
+                  <div className="flex items-center gap-4 px-4 py-4">
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#7A4C29] to-[#D4A67F] text-xs font-bold text-white">
                       LF
                     </div>
@@ -1994,33 +2131,33 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── 1-on-1 Chat ────────────────────────────────────────── */}
-            <section id="msg-1on1" className="mb-16">
+            <section id="msg-1on1" className="mb-26">
               <SectionTitle>1-on-1 Chat</SectionTitle>
               <SectionDescription>Direct message conversation between parent and caregiver.</SectionDescription>
               <ComponentShowcase>
                 <div className="mx-auto max-w-sm overflow-hidden rounded-[8px] border border-border bg-[#FFFEFA] shadow-sm">
                   {/* Header */}
-                  <div className="flex items-center gap-3 bg-[#FAFAFA] px-4 pt-4 pb-3 shadow-sm">
-                    <button className="flex h-9 w-9 items-center justify-center rounded-full bg-[#F7F7F7]">
+                  <div className="flex items-center gap-4 bg-[#FAFAFA] px-4 pt-4 pb-3 shadow-sm">
+                    <button className="flex h-8 w-8 items-center justify-center rounded-[8px] bg-[#F7F7F7]">
                       <ArrowLeft size={16} className="text-gray-700" />
                     </button>
-                    <div className="flex flex-1 items-center gap-2.5">
+                    <div className="flex flex-1 items-center gap-2">
                       <div className="relative">
                         <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#E0BFA0] text-sm font-bold text-white">MA</div>
-                        <span className="absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full bg-green-400 ring-2 ring-white" />
+                        <span className="absolute bottom-0 right-0 h-2 w-2 rounded-full bg-green-400 ring-2 ring-white" />
                       </div>
                       <div>
                         <p className="text-sm font-bold text-gray-800">Mrs Anu</p>
                         <p className="text-[10px] text-green-500">Online</p>
                       </div>
                     </div>
-                    <button className="flex h-9 w-9 items-center justify-center rounded-full bg-[#F7F7F7]">
+                    <button className="flex h-8 w-8 items-center justify-center rounded-[8px] bg-[#F7F7F7]">
                       <Video size={16} className="text-gray-700" />
                     </button>
                   </div>
                   {/* Session badge */}
-                  <div className="flex items-center justify-center gap-2 py-3">
-                    <div className="flex items-center gap-1.5 rounded-full bg-[#EDF1F5] px-3 py-1">
+                  <div className="flex items-center justify-center gap-2 py-4">
+                    <div className="flex items-center gap-2 rounded-[8px] bg-[#EDF1F5] px-4 py-2">
                       <Plus size={10} className="text-gray-600" />
                       <span className="text-[10px] font-medium text-gray-600">Session Start</span>
                     </div>
@@ -2029,10 +2166,10 @@ export default function LibraryPage() {
                   <div className="space-y-3 px-4 pb-4">
                     <div className="flex justify-end">
                       <div className="max-w-[72%]">
-                        <div className="rounded-[8px] rounded-tr-sm bg-brand-dark px-4 py-3">
+                        <div className="rounded-[8px] rounded-tr-sm bg-brand-dark px-4 py-4">
                           <p className="text-sm text-white">Hi, Mrs Anu</p>
                         </div>
-                        <div className="mt-1 flex items-center justify-end gap-1">
+                        <div className="mt-2 flex items-center justify-end gap-2">
                           <p className="text-[10px] text-gray-400">16:48</p>
                           <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5l3 3 5-7M6 5l3 3 5-7" stroke="#9CA3AF" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                         </div>
@@ -2040,18 +2177,18 @@ export default function LibraryPage() {
                     </div>
                     <div className="flex justify-start">
                       <div className="max-w-[72%]">
-                        <div className="rounded-[8px] rounded-tl-sm bg-[#DCE0E4] px-4 py-3">
+                        <div className="rounded-[8px] rounded-tl-sm bg-[#DCE0E4] px-4 py-4">
                           <p className="text-sm text-[#2D2E2E]">Good afternoon Ma, how can I help you?</p>
                         </div>
-                        <p className="mt-1 text-[10px] text-gray-400">16:50</p>
+                        <p className="mt-2 text-[10px] text-gray-400">16:50</p>
                       </div>
                     </div>
                     <div className="flex justify-end">
                       <div className="max-w-[72%]">
-                        <div className="rounded-[8px] rounded-tr-sm bg-brand-dark px-4 py-3">
+                        <div className="rounded-[8px] rounded-tr-sm bg-brand-dark px-4 py-4">
                           <p className="text-sm text-white">Liam had a great day today! He played well with others.</p>
                         </div>
-                        <div className="mt-1 flex items-center justify-end gap-1">
+                        <div className="mt-2 flex items-center justify-end gap-2">
                           <p className="text-[10px] text-gray-400">16:50</p>
                           <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5l3 3 5-7M6 5l3 3 5-7" stroke="#9CA3AF" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                         </div>
@@ -2060,11 +2197,11 @@ export default function LibraryPage() {
                   </div>
                   {/* Input */}
                   <div className="bg-[#FAFAFA] px-4 pb-4 pt-3 border-t border-gray-100">
-                    <div className="flex items-center gap-3">
-                      <div className="flex flex-1 items-center rounded-full bg-white px-4 py-2.5 shadow-sm">
+                    <div className="flex items-center gap-4">
+                      <div className="flex flex-1 items-center rounded-[8px] bg-white px-4 py-2 shadow-sm">
                         <input placeholder="Type a message..." className="flex-1 bg-transparent text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none" />
                       </div>
-                      <button className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-dark">
+                      <button className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[8px] bg-brand-dark">
                         <Send size={14} className="text-white" />
                       </button>
                     </div>
@@ -2074,38 +2211,38 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── Group Chat ─────────────────────────────────────────── */}
-            <section id="msg-group" className="mb-16">
+            <section id="msg-group" className="mb-26">
               <SectionTitle>Group Chat</SectionTitle>
               <SectionDescription>Family group chat with stacked avatars, role labels, topic banner, and @ mentions.</SectionDescription>
               <ComponentShowcase>
                 <div className="mx-auto max-w-sm overflow-hidden rounded-[8px] border border-border bg-[#FFFEFA] shadow-sm">
                   {/* Header */}
-                  <div className="flex items-center gap-3 bg-white px-4 pt-4 pb-3 shadow-sm">
-                    <button className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-100">
+                  <div className="flex items-center gap-4 bg-white px-4 pt-4 pb-3 shadow-sm">
+                    <button className="flex h-8 w-8 items-center justify-center rounded-[8px] bg-gray-100">
                       <ArrowLeft size={16} className="text-gray-700" />
                     </button>
-                    <div className="flex flex-1 items-center gap-2.5">
+                    <div className="flex flex-1 items-center gap-2">
                       <div className="flex -space-x-2">
                         {[
                           { initials: "JM", color: "#7A4C29" },
                           { initials: "SM", color: "#D4A67F" },
                           { initials: "MA", color: "#059669" },
                         ].map((a) => (
-                          <div key={a.initials} className="flex h-9 w-9 items-center justify-center rounded-full text-[10px] font-bold text-white ring-2 ring-white" style={{ backgroundColor: a.color }}>
+                          <div key={a.initials} className="flex h-8 w-8 items-center justify-center rounded-full text-[10px] font-bold text-white ring-2 ring-white" style={{ backgroundColor: a.color }}>
                             {a.initials}
                           </div>
                         ))}
-                        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-200 text-[10px] font-bold text-gray-500 ring-2 ring-white">+1</div>
+                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 text-[10px] font-bold text-gray-500 ring-2 ring-white">+1</div>
                       </div>
                       <div>
                         <p className="text-sm font-bold text-gray-800">Liam&apos;s Family</p>
-                        <div className="flex items-center gap-1">
+                        <div className="flex items-center gap-2">
                           <Users size={10} className="text-gray-400" />
                           <p className="text-[10px] text-gray-400">4 members</p>
                         </div>
                       </div>
                     </div>
-                    <button className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-100">
+                    <button className="flex h-8 w-8 items-center justify-center rounded-[8px] bg-gray-100">
                       <Info size={16} className="text-gray-700" />
                     </button>
                   </div>
@@ -2123,21 +2260,21 @@ export default function LibraryPage() {
                     ].map((m, i) => (
                       <div key={i} className={`flex ${m.own ? "justify-end" : "justify-start gap-2"}`}>
                         {!m.own && (
-                          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[10px] font-bold text-white mt-1" style={{ backgroundColor: m.color }}>
+                          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[8px] text-[10px] font-bold text-white mt-2" style={{ backgroundColor: m.color }}>
                             {m.initials}
                           </div>
                         )}
                         <div className="max-w-[72%]">
                           {!m.own && (
-                            <div className="mb-0.5 flex items-center gap-1.5">
+                            <div className="mb-0.5 flex items-center gap-2">
                               <span className="text-[11px] font-semibold" style={{ color: m.color }}>{m.sender}</span>
                               <span className="text-[9px] text-gray-400">{m.role}</span>
                             </div>
                           )}
-                          <div className={`rounded-[8px] px-4 py-2.5 ${m.own ? "rounded-tr-sm bg-brand-dark text-white" : "rounded-tl-sm bg-gray-100 text-gray-800"}`}>
+                          <div className={`rounded-[8px] px-4 py-2 ${m.own ? "rounded-tr-sm bg-brand-dark text-white" : "rounded-tl-sm bg-gray-100 text-gray-800"}`}>
                             <p className="text-sm whitespace-pre-line">{m.text}</p>
                           </div>
-                          <p className={`mt-0.5 text-[10px] text-gray-400 ${m.own ? "text-right" : ""}`}>{m.time}</p>
+                          <p className={`mt-2 text-[10px] text-gray-400 ${m.own ? "text-right" : ""}`}>{m.time}</p>
                         </div>
                       </div>
                     ))}
@@ -2145,13 +2282,13 @@ export default function LibraryPage() {
                   {/* Input with @ mention */}
                   <div className="bg-white px-4 pb-4 pt-3 border-t border-gray-100">
                     <div className="flex items-center gap-2">
-                      <button className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gray-100">
+                      <button className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[8px] bg-gray-100">
                         <AtSign size={16} className="text-gray-500" />
                       </button>
-                      <div className="flex flex-1 items-center rounded-full bg-gray-50 px-4 py-2.5">
+                      <div className="flex flex-1 items-center rounded-[8px] bg-gray-50 px-4 py-2">
                         <input placeholder="Type a message..." className="flex-1 bg-transparent text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none" />
                       </div>
-                      <button className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-dark">
+                      <button className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[8px] bg-brand-dark">
                         <Send size={14} className="text-white" />
                       </button>
                     </div>
@@ -2161,16 +2298,16 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── Message Bubbles ─────────────────────────────────────── */}
-            <section id="msg-bubbles" className="mb-16">
+            <section id="msg-bubbles" className="mb-26">
               <SectionTitle>Message Bubbles</SectionTitle>
               <SectionDescription>Sent, received, and group message bubble variants.</SectionDescription>
               <ComponentShowcase title="Sent (Parent)">
                 <div className="flex justify-end">
                   <div className="max-w-[72%]">
-                    <div className="rounded-[8px] rounded-tr-sm bg-brand-dark px-4 py-3">
+                    <div className="rounded-[8px] rounded-tr-sm bg-brand-dark px-4 py-4">
                       <p className="text-sm text-white">Hi, Mrs Anu</p>
                     </div>
-                    <div className="mt-1 flex items-center justify-end gap-1">
+                    <div className="mt-2 flex items-center justify-end gap-2">
                       <p className="text-[10px] text-gray-400">16:48</p>
                       <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5l3 3 5-7M6 5l3 3 5-7" stroke="#9CA3AF" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                     </div>
@@ -2180,20 +2317,20 @@ export default function LibraryPage() {
               <ComponentShowcase title="Received (Parent)">
                 <div className="flex justify-start">
                   <div className="max-w-[72%]">
-                    <div className="rounded-[8px] rounded-tl-sm bg-[#DCE0E4] px-4 py-3">
+                    <div className="rounded-[8px] rounded-tl-sm bg-[#DCE0E4] px-4 py-4">
                       <p className="text-sm text-[#2D2E2E]">Good afternoon Ma, how can I help you?</p>
                     </div>
-                    <p className="mt-1 text-[10px] text-gray-400">16:50</p>
+                    <p className="mt-2 text-[10px] text-gray-400">16:50</p>
                   </div>
                 </div>
               </ComponentShowcase>
               <ComponentShowcase title="Caregiver Sent">
                 <div className="flex justify-end">
                   <div className="max-w-[75%]">
-                    <div className="rounded-[8px] rounded-tr-sm bg-brand-dark px-4 py-2.5">
+                    <div className="rounded-[8px] rounded-tr-sm bg-brand-dark px-4 py-2">
                       <p className="text-sm text-white">Liam had a great day today!</p>
                     </div>
-                    <div className="mt-0.5 flex items-center justify-end gap-1">
+                    <div className="mt-2 flex items-center justify-end gap-2">
                       <span className="text-[10px] text-gray-400">4:30 PM</span>
                       <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5l3 3 5-7M6 5l3 3 5-7" stroke="#9CA3AF" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                     </div>
@@ -2203,54 +2340,54 @@ export default function LibraryPage() {
               <ComponentShowcase title="Caregiver Received">
                 <div className="flex justify-start">
                   <div className="max-w-[75%]">
-                    <div className="rounded-[8px] rounded-tl-sm bg-white px-4 py-2.5 shadow-sm">
+                    <div className="rounded-[8px] rounded-tl-sm bg-white px-4 py-2 shadow-sm">
                       <p className="text-sm text-gray-800">Please remember to bring extra clothes tomorrow.</p>
                     </div>
-                    <p className="mt-0.5 text-[10px] text-gray-400">Yesterday</p>
+                    <p className="mt-2 text-[10px] text-gray-400">Yesterday</p>
                   </div>
                 </div>
               </ComponentShowcase>
               <ComponentShowcase title="Group (with avatar + role)">
                 <div className="flex justify-start gap-2">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#059669] text-[10px] font-bold text-white mt-1">MA</div>
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[8px] bg-[#059669] text-[10px] font-bold text-white mt-2">MA</div>
                   <div className="max-w-[72%]">
-                    <div className="mb-0.5 flex items-center gap-1.5">
+                    <div className="mb-0.5 flex items-center gap-2">
                       <span className="text-[11px] font-semibold text-[#059669]">Ms Anu</span>
                       <span className="text-[9px] text-gray-400">Caregiver</span>
                     </div>
-                    <div className="rounded-[8px] rounded-tl-sm bg-gray-100 px-4 py-2.5">
+                    <div className="rounded-[8px] rounded-tl-sm bg-gray-100 px-4 py-2">
                       <p className="text-sm text-gray-800">Liam took his first steps today!!</p>
                     </div>
-                    <p className="mt-0.5 text-[10px] text-gray-400">9:16 AM</p>
+                    <p className="mt-2 text-[10px] text-gray-400">9:16 AM</p>
                   </div>
                 </div>
               </ComponentShowcase>
             </section>
 
             {/* ─── Chat Input ──────────────────────────────────────────── */}
-            <section id="msg-input" className="mb-16">
+            <section id="msg-input" className="mb-26">
               <SectionTitle>Chat Input</SectionTitle>
               <SectionDescription>Input bar variants for different chat contexts.</SectionDescription>
               <ComponentShowcase title="Standard (Parent)">
                 <div className="mx-auto max-w-sm rounded-[8px] bg-[#FAFAFA] px-4 py-4 border border-gray-100">
-                  <div className="flex items-center gap-3">
-                    <div className="flex flex-1 items-center rounded-full bg-white px-4 py-2.5 shadow-sm">
+                  <div className="flex items-center gap-4">
+                    <div className="flex flex-1 items-center rounded-[8px] bg-white px-4 py-2 shadow-sm">
                       <input placeholder="Type a message..." className="flex-1 bg-transparent text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none" />
                     </div>
-                    <button className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-dark">
+                    <button className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[8px] bg-brand-dark">
                       <Send size={14} className="text-white" />
                     </button>
                   </div>
                 </div>
               </ComponentShowcase>
               <ComponentShowcase title="With Attachment (Caregiver)">
-                <div className="mx-auto max-w-sm rounded-[8px] border border-gray-100 bg-white px-3 py-3">
+                <div className="mx-auto max-w-sm rounded-[8px] border border-gray-100 bg-white px-4 py-4">
                   <div className="flex items-center gap-2">
-                    <button className="flex h-9 w-9 items-center justify-center rounded-full text-gray-400">
+                    <button className="flex h-8 w-8 items-center justify-center rounded-[8px] text-gray-400">
                       <Paperclip size={20} />
                     </button>
-                    <input placeholder="Type a message..." className="flex-1 rounded-full border border-gray-200 bg-gray-50 px-4 py-2 text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none" />
-                    <button className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-dark">
+                    <input placeholder="Type a message..." className="flex-1 rounded-[8px] border border-gray-200 bg-gray-50 px-4 py-2 text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none" />
+                    <button className="flex h-8 w-8 items-center justify-center rounded-[8px] bg-brand-dark">
                       <SendHorizontal size={16} className="text-white" />
                     </button>
                   </div>
@@ -2259,13 +2396,13 @@ export default function LibraryPage() {
               <ComponentShowcase title="With @ Mention (Group)">
                 <div className="mx-auto max-w-sm rounded-[8px] bg-white px-4 pb-4 pt-3 border border-gray-100">
                   <div className="flex items-center gap-2">
-                    <button className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gray-100">
+                    <button className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[8px] bg-gray-100">
                       <AtSign size={16} className="text-gray-500" />
                     </button>
-                    <div className="flex flex-1 items-center rounded-full bg-gray-50 px-4 py-2.5">
+                    <div className="flex flex-1 items-center rounded-[8px] bg-gray-50 px-4 py-2">
                       <input placeholder="Type a message..." className="flex-1 bg-transparent text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none" />
                     </div>
-                    <button className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-dark">
+                    <button className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[8px] bg-brand-dark">
                       <Send size={14} className="text-white" />
                     </button>
                   </div>
@@ -2273,11 +2410,11 @@ export default function LibraryPage() {
               </ComponentShowcase>
               <ComponentShowcase title="Disabled (Trial Ended)">
                 <div className="mx-auto max-w-sm rounded-[8px] bg-[#FAFAFA] px-4 py-4 border border-gray-100">
-                  <div className="flex items-center gap-3">
-                    <div className="flex flex-1 items-center rounded-full bg-white px-4 py-2.5 shadow-sm">
+                  <div className="flex items-center gap-4">
+                    <div className="flex flex-1 items-center rounded-[8px] bg-white px-4 py-2 shadow-sm">
                       <input placeholder="Manage your account to keep chatting" disabled className="flex-1 bg-transparent text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none disabled:opacity-60" />
                     </div>
-                    <button disabled className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-dark disabled:opacity-60">
+                    <button disabled className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[8px] bg-brand-dark disabled:opacity-60">
                       <Send size={14} className="text-white" />
                     </button>
                   </div>
@@ -2286,21 +2423,21 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── Session & Trial ─────────────────────────────────────── */}
-            <section id="msg-session" className="mb-16">
+            <section id="msg-session" className="mb-26">
               <SectionTitle>Session & Trial</SectionTitle>
               <SectionDescription>Session start badges and trial gate banners.</SectionDescription>
               <ComponentShowcase title="Session Start Badge">
                 <div className="flex items-center justify-center gap-2">
-                  <div className="flex items-center gap-1.5 rounded-full bg-[#EDF1F5] px-3 py-1">
-                    <Plus size={10} className="text-gray-600" />
-                    <span className="text-[10px] font-medium text-gray-600">Session Start</span>
+                    <div className="flex items-center gap-2 rounded-[8px] bg-[#EDF1F5] px-4 py-2">
+                      <Plus size={12} className="text-gray-600" />
+                      <span className="text-[10px] font-medium text-gray-600">Session Start</span>
                   </div>
                 </div>
               </ComponentShowcase>
               <ComponentShowcase title="Trial Gate Banner">
                 <div className="mx-auto max-w-sm">
-                  <div className="flex items-center gap-2 rounded-xl border border-gray-100 bg-white px-3 py-2 shadow-sm">
-                    <Lock size={13} className="shrink-0 text-gray-400" />
+                  <div className="flex items-center gap-2 rounded-[8px] border border-gray-100 bg-white px-4 py-2 shadow-sm">
+                    <Lock size={12} className="shrink-0 text-gray-400" />
                     <p className="flex-1 text-xs text-gray-600">Your trial has ended. Some family features are unavailable.</p>
                     <button className="shrink-0 text-xs font-semibold text-brand-dark underline underline-offset-2">Manage</button>
                   </div>
@@ -2309,8 +2446,8 @@ export default function LibraryPage() {
               <ComponentShowcase title="Online Indicator">
                 <div className="flex items-center gap-4">
                   <div className="relative">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#E0BFA0] text-sm font-bold text-white">MA</div>
-                    <span className="absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full bg-green-400 ring-2 ring-white" />
+                    <div className="flex h-10 w-10 items-center justify-center rounded-[8px] bg-[#E0BFA0] text-sm font-bold text-white">MA</div>
+                    <span className="absolute bottom-0 right-0 h-2 w-2 rounded-full bg-green-400 ring-2 ring-white" />
                   </div>
                   <div>
                     <p className="text-sm font-bold text-gray-800">Mrs Anu</p>
@@ -2321,7 +2458,7 @@ export default function LibraryPage() {
             </section>
 
             {/* ─── Marketing ────────────────────────────────────────────── */}
-            <section id="marketing" className="mb-16">
+            <section id="marketing" className="mb-26">
               <SectionTitle>Marketing Sections</SectionTitle>
               <SectionDescription>Pre-built marketing components for landing pages.</SectionDescription>
               <ComponentShowcase title="Feature Grid">
@@ -2352,7 +2489,7 @@ export default function LibraryPage() {
               </ComponentShowcase>
             </section>
 
-            <Separator className="mb-10" />
+            <Separator className="mb-20" />
 
             <footer className="pb-10 text-center">
               <p className="text-caption">

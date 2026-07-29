@@ -23,7 +23,7 @@ function FeatureGrid({
     >
       {(title || description) && (
         <div className="mx-auto mb-12 max-w-2xl text-center">
-          {title && <h2 className="text-h2 text-heading mb-3">{title}</h2>}
+          {title && <h2 className="text-h2 text-heading mb-4">{title}</h2>}
           {description && (
             <p className="text-body-lg text-muted-text">{description}</p>
           )}
@@ -60,13 +60,13 @@ function FeatureCard({
     <div
       data-slot="feature-card"
       className={cn(
-        "flex flex-col gap-3 border border-card-border bg-card p-6 transition-colors hover:bg-muted/50",
+        "flex flex-col gap-4 rounded-[8px] border border-card-border bg-card p-6 transition-colors hover:bg-muted/50",
         className
       )}
       {...props}
     >
       {icon && (
-        <div className="flex size-10 items-center justify-center bg-button-primary-bg/20 text-brand-dark">
+        <div className="flex size-10 items-center justify-center rounded-[8px] bg-button-primary-bg/20 text-brand-dark">
           {icon}
         </div>
       )}

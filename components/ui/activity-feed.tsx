@@ -26,17 +26,17 @@ function ActivityFeed({ items, className, ...props }: ActivityFeedProps) {
           key={item.id}
           data-slot="activity-item"
           className={cn(
-            "flex gap-3 py-3",
+            "flex gap-4 py-4",
             i < items.length - 1 && "border-b border-card-border"
           )}
         >
           <div className="flex flex-col items-center">
             {item.icon ? (
-              <div className="flex size-8 items-center justify-center bg-muted text-muted-foreground">
+              <div className="flex size-8 items-center justify-center rounded-[8px] bg-muted text-muted-foreground">
                 {item.icon}
               </div>
             ) : (
-              <div className="size-2 rounded-full bg-muted-foreground/30 mt-1.5" />
+              <div className="size-2 rounded-full bg-muted-foreground/30 mt-2" />
             )}
           </div>
           <div className="flex-1 min-w-0">
@@ -47,9 +47,9 @@ function ActivityFeed({ items, className, ...props }: ActivityFeedProps) {
               {item.badge}
             </div>
             {item.description && (
-              <p className="text-caption mt-0.5">{item.description}</p>
+              <p className="text-caption mt-2">{item.description}</p>
             )}
-            <p className="text-body-xs text-muted-text mt-1">
+            <p className="text-body-xs text-muted-text mt-2">
               {item.timestamp}
             </p>
           </div>

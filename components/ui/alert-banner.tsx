@@ -27,7 +27,7 @@ function AlertBanner({
       data-slot="alert-banner"
       data-variant={variant}
       className={cn(
-        "flex items-start gap-3 border px-4 py-3 text-sm",
+        "flex items-start gap-4 border px-4 py-4 text-sm",
         variant === "info" && "border-info/20 bg-info-light text-info",
         variant === "success" &&
           "border-success/20 bg-success-light text-success",
@@ -40,7 +40,7 @@ function AlertBanner({
     >
       {icon && <span className="mt-0.5 shrink-0">{icon}</span>}
       <div className="flex-1 min-w-0">
-        {title && <p className="font-medium mb-0.5">{title}</p>}
+        {title && <p className="font-bold mb-1">{title}</p>}
         {children}
       </div>
       {action && <div className="shrink-0">{action}</div>}

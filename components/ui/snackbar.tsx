@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils"
 import { cva, type VariantProps } from "class-variance-authority"
 
 const snackbarVariants = cva(
-  "inline-flex items-center justify-between gap-3 rounded-full px-4 py-2.5 text-sm font-medium transition-colors",
+  "inline-flex items-center justify-between gap-3 rounded-[8px] px-4 py-2 text-sm font-medium transition-colors",
   {
     variants: {
       variant: {
@@ -53,14 +53,14 @@ function Snackbar({
           type="button"
           onClick={onClose}
           className={cn(
-            "flex size-5 shrink-0 items-center justify-center rounded-full transition-opacity hover:opacity-80",
+            "flex size-6 shrink-0 items-center justify-center rounded-full transition-opacity hover:opacity-80",
             variant === "success" || variant === "default"
               ? "text-white/80 hover:text-white"
               : "text-current/60 hover:text-current"
           )}
           aria-label="Close"
         >
-          <X className="size-3.5" />
+          <X className="size-4" />
         </button>
       )}
     </div>
