@@ -27,7 +27,7 @@ function AlertBanner({
       data-slot="alert-banner"
       data-variant={variant}
       className={cn(
-        "flex items-start gap-4 border px-4 py-4 text-sm",
+        "flex items-start gap-4 rounded-[8px] border px-4 py-4 text-sm",
         variant === "info" && "border-info/20 bg-info-light text-info",
         variant === "success" &&
           "border-success/20 bg-success-light text-success",
