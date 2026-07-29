@@ -57,6 +57,7 @@ import {
   CTABanner,
   MetricRow,
 } from "@/components/marketing"
+import { toast } from "sonner"
 import {
   Plus,
   Search,
@@ -763,16 +764,9 @@ function FormShowcase() {
 
       <div className="space-y-4">
         <div className="grid gap-4 md:grid-cols-2">
-          {/* Search — admin topbar */}
-          <Showcase label="Search — admin topbar (rounded-full)">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Search children, staff..."
-                className="h-10 w-full rounded-full border border-input-border bg-white pl-10 pr-4 text-sm font-urbanist text-heading outline-none focus:ring-2 focus:ring-[#c47b2c]"
-              />
-            </div>
+          {/* Interactive Search */}
+          <Showcase label="Search — interactive filter">
+            <SearchInteractive />
           </Showcase>
 
           {/* Standard input — h-[52px] */}
@@ -1644,56 +1638,105 @@ function CheckboxesInteractive() {
 }
 
 function ModalsInteractive() {
-  const [open, setOpen] = React.useState(false)
+  const [active, setActive] = React.useState<string | null>(null)
   const [result, setResult] = React.useState<string | null>(null)
+
+  function close(r?: string) {
+    setActive(null)
+    if (r) setResult(r)
+  }
 
   return (
     <div className="space-y-4">
-      <Showcase label="Alert dialog — click to open">
-        <button
-          onClick={() => { setOpen(true); setResult(null) }}
-          className="rounded-lg bg-[#3b2513] px-4 py-2.5 font-urbanist text-sm font-semibold text-[#faf2e1] hover:bg-[#2d1810]"
-        >
-          Delete Child Record
-        </button>
-        {result && (
-          <p className="text-caption mt-3 text-[#009061]">Result: {result}</p>
-        )}
+      <Showcase label="Dialog types — click to open each">
+        <div className="flex flex-wrap gap-3">
+          <button onClick={() => { setActive("confirm"); setResult(null) }} className="rounded-lg bg-[#3b2513] px-4 py-2.5 font-urbanist text-sm font-semibold text-[#faf2e1] hover:bg-[#2d1810]">
+            Confirm Delete
+          </button>
+          <button onClick={() => { setActive("form"); setResult(null) }} className="rounded-lg border border-[#d0d5dd] bg-white px-4 py-2.5 font-urbanist text-sm font-medium text-[#2d1810] hover:bg-[#f9fafb]">
+            Form Dialog
+          </button>
+          <button onClick={() => { setActive("info"); setResult(null) }} className="rounded-lg border border-[#d0d5dd] bg-white px-4 py-2.5 font-urbanist text-sm font-medium text-[#2d1810] hover:bg-[#f9fafb]">
+            Info Dialog
+          </button>
+          <button onClick={() => { setActive("success"); setResult(null) }} className="rounded-lg border border-[#009061] bg-[#ecfff8] px-4 py-2.5 font-urbanist text-sm font-medium text-[#009061] hover:bg-[#d4f5e9]">
+            Success Dialog
+          </button>
+        </div>
+        {result && <p className="text-caption mt-3 text-[#009061]">Last result: {result}</p>}
       </Showcase>
 
-      {open && (
+      {active === "confirm" && (
         <div className="fixed inset-0 z-[70] flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-black/40" onClick={() => setOpen(false)} />
+          <div className="absolute inset-0 bg-black/40" onClick={() => close("Cancelled")} />
           <div className="relative mx-auto w-full max-w-sm rounded-2xl border border-[#e6ebf3] bg-white p-6 shadow-xl">
-            <button
-              onClick={() => setOpen(false)}
-              className="absolute right-3 top-3 flex size-7 items-center justify-center rounded-md text-[#6b7280] hover:bg-[#f3f4f6]"
-            >
-              <X className="size-4" />
-            </button>
-            <div className="flex size-10 items-center justify-center rounded-full bg-[#fff5f5] mx-auto mb-4">
-              <AlertTriangle className="size-5 text-[#ef4444]" />
-            </div>
-            <h3 className="font-merriweather text-lg font-bold text-[#2d1810] text-center">
-              Delete Child Record?
-            </h3>
-            <p className="font-nunito text-sm text-[#6b7280] text-center mt-2">
-              This action cannot be undone. All data will be permanently removed.
-            </p>
+            <button onClick={() => close("Cancelled")} className="absolute right-3 top-3 flex size-7 items-center justify-center rounded-md text-[#6b7280] hover:bg-[#f3f4f6]"><X className="size-4" /></button>
+            <div className="flex size-10 items-center justify-center rounded-full bg-[#fff5f5] mx-auto mb-4"><AlertTriangle className="size-5 text-[#ef4444]" /></div>
+            <h3 className="font-merriweather text-lg font-bold text-[#2d1810] text-center">Delete Child Record?</h3>
+            <p className="font-nunito text-sm text-[#6b7280] text-center mt-2">This action cannot be undone. All data will be permanently removed.</p>
             <div className="flex gap-3 mt-6">
-              <button
-                onClick={() => { setOpen(false); setResult("Cancelled") }}
-                className="flex-1 rounded-lg border border-[#d0d5dd] px-4 py-2.5 font-urbanist text-sm font-medium text-[#2d1810] hover:bg-[#f9fafb]"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={() => { setOpen(false); setResult("Deleted!") }}
-                className="flex-1 rounded-lg bg-[#ef4444] px-4 py-2.5 font-urbanist text-sm font-semibold text-white hover:bg-[#dc2626]"
-              >
-                Delete
-              </button>
+              <button onClick={() => close("Cancelled")} className="flex-1 rounded-lg border border-[#d0d5dd] px-4 py-2.5 font-urbanist text-sm font-medium text-[#2d1810] hover:bg-[#f9fafb]">Cancel</button>
+              <button onClick={() => close("Record deleted")} className="flex-1 rounded-lg bg-[#ef4444] px-4 py-2.5 font-urbanist text-sm font-semibold text-white hover:bg-[#dc2626]">Delete</button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {active === "form" && (
+        <div className="fixed inset-0 z-[70] flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/40" onClick={() => close()} />
+          <div className="relative mx-auto w-full max-w-md rounded-2xl border border-[#e6ebf3] bg-white p-6 shadow-xl">
+            <button onClick={() => close()} className="absolute right-3 top-3 flex size-7 items-center justify-center rounded-md text-[#6b7280] hover:bg-[#f3f4f6]"><X className="size-4" /></button>
+            <h3 className="font-merriweather text-lg font-bold text-[#2d1810]">Add New Child</h3>
+            <p className="font-nunito text-sm text-[#6b7280] mt-1">Fill in the details below to enroll a new child.</p>
+            <div className="mt-5 space-y-4">
+              <div>
+                <label className="font-urbanist text-xs font-semibold text-[#454B54] mb-1 block">Full Name</label>
+                <input type="text" placeholder="e.g. Emma Thompson" className="h-11 w-full rounded-lg border border-[#d0d5dd] bg-white px-4 font-nunito text-sm text-[#2d1810] placeholder:text-[#9ca3af] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]" />
+              </div>
+              <div>
+                <label className="font-urbanist text-xs font-semibold text-[#454B54] mb-1 block">Date of Birth</label>
+                <input type="date" className="h-11 w-full rounded-lg border border-[#d0d5dd] bg-white px-4 font-nunito text-sm text-[#2d1810] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]" />
+              </div>
+              <div>
+                <label className="font-urbanist text-xs font-semibold text-[#454B54] mb-1 block">Class</label>
+                <select className="h-11 w-full appearance-none rounded-lg border border-[#d0d5dd] bg-white px-4 font-nunito text-sm text-[#2d1810] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]">
+                  <option>Sunshine</option>
+                  <option>Rainbow</option>
+                  <option>Butterfly</option>
+                </select>
+              </div>
+            </div>
+            <div className="flex gap-3 mt-6">
+              <button onClick={() => close("Cancelled")} className="flex-1 rounded-lg border border-[#d0d5dd] px-4 py-2.5 font-urbanist text-sm font-medium text-[#2d1810] hover:bg-[#f9fafb]">Cancel</button>
+              <button onClick={() => close("Child enrolled!")} className="flex-1 rounded-lg bg-[#3b2513] px-4 py-2.5 font-urbanist text-sm font-semibold text-[#faf2e1] hover:bg-[#2d1810]">Enroll Child</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {active === "info" && (
+        <div className="fixed inset-0 z-[70] flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/40" onClick={() => close("Dismissed")} />
+          <div className="relative mx-auto w-full max-w-sm rounded-2xl border border-[#e6ebf3] bg-white p-6 shadow-xl">
+            <button onClick={() => close("Dismissed")} className="absolute right-3 top-3 flex size-7 items-center justify-center rounded-md text-[#6b7280] hover:bg-[#f3f4f6]"><X className="size-4" /></button>
+            <div className="flex size-10 items-center justify-center rounded-full bg-[#e6ebf3] mx-auto mb-4"><Info className="size-5 text-[#6b7280]" /></div>
+            <h3 className="font-merriweather text-lg font-bold text-[#2d1810] text-center">Scheduled Maintenance</h3>
+            <p className="font-nunito text-sm text-[#6b7280] text-center mt-2">The system will be undergoing maintenance on Saturday from 2:00 AM to 4:00 AM GMT. Some features may be temporarily unavailable.</p>
+            <button onClick={() => close("Acknowledged")} className="w-full mt-6 rounded-lg bg-[#3b2513] px-4 py-2.5 font-urbanist text-sm font-semibold text-[#faf2e1] hover:bg-[#2d1810]">Got it</button>
+          </div>
+        </div>
+      )}
+
+      {active === "success" && (
+        <div className="fixed inset-0 z-[70] flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/40" onClick={() => close("Dismissed")} />
+          <div className="relative mx-auto w-full max-w-sm rounded-2xl border border-[#e6ebf3] bg-white p-6 shadow-xl">
+            <button onClick={() => close("Dismissed")} className="absolute right-3 top-3 flex size-7 items-center justify-center rounded-md text-[#6b7280] hover:bg-[#f3f4f6]"><X className="size-4" /></button>
+            <div className="flex size-10 items-center justify-center rounded-full bg-[#ecfff8] mx-auto mb-4"><CheckCircle2 className="size-5 text-[#009061]" /></div>
+            <h3 className="font-merriweather text-lg font-bold text-[#2d1810] text-center">Enrollment Complete!</h3>
+            <p className="font-nunito text-sm text-[#6b7280] text-center mt-2">Emma Thompson has been successfully enrolled in Sunshine class. A confirmation email has been sent to the parents.</p>
+            <button onClick={() => close("Done")} className="w-full mt-6 rounded-lg bg-[#009061] px-4 py-2.5 font-urbanist text-sm font-semibold text-white hover:bg-[#007a53]">Done</button>
           </div>
         </div>
       )}
@@ -1761,6 +1804,109 @@ function PaginationInteractive() {
         </div>
       </Showcase>
       <p className="text-caption">Current page: {page} of 10</p>
+    </div>
+  )
+}
+
+function ToastDemo() {
+  return (
+    <div className="flex flex-wrap gap-3">
+      <button
+        onClick={() => toast("Record saved", { description: "Child profile has been updated." })}
+        className="rounded-lg bg-[#3b2513] px-4 py-2.5 font-urbanist text-sm font-semibold text-[#faf2e1] hover:bg-[#2d1810]"
+      >
+        Default Toast
+      </button>
+      <button
+        onClick={() => toast.success("Enrollment complete", { description: "Emma has been added to Sunshine class." })}
+        className="rounded-lg border border-[#009061] bg-[#ecfff8] px-4 py-2.5 font-urbanist text-sm font-medium text-[#009061] hover:bg-[#d4f5e9]"
+      >
+        Success Toast
+      </button>
+      <button
+        onClick={() => toast.warning("Low attendance", { description: "Only 3 children checked in today." })}
+        className="rounded-lg border border-[#FF9A01] bg-[#fff8e6] px-4 py-2.5 font-urbanist text-sm font-medium text-[#b36b00] hover:bg-[#fff0cc]"
+      >
+        Warning Toast
+      </button>
+      <button
+        onClick={() => toast.error("Upload failed", { description: "File exceeds the 10 MB limit." })}
+        className="rounded-lg border border-[#CD3030] bg-[#fff5f5] px-4 py-2.5 font-urbanist text-sm font-medium text-[#CD3030] hover:bg-[#ffe8e8]"
+      >
+        Error Toast
+      </button>
+      <button
+        onClick={() => toast.info("Tip", { description: "Use Ctrl+K for quick search." })}
+        className="rounded-lg border border-[#6b7280] bg-[#f3f4f6] px-4 py-2.5 font-urbanist text-sm font-medium text-[#6b7280] hover:bg-[#e5e7eb]"
+      >
+        Info Toast
+      </button>
+      <button
+        onClick={() => toast("Action needed", {
+          description: "Approve pending attendance?",
+          action: { label: "Approve", onClick: () => toast.success("Approved!") },
+        })}
+        className="rounded-lg border border-[#9A6033] bg-[#fdf8f0] px-4 py-2.5 font-urbanist text-sm font-medium text-[#9A6033] hover:bg-[#f5ebd8]"
+      >
+        Toast with Action
+      </button>
+    </div>
+  )
+}
+
+function SearchInteractive() {
+  const [query, setQuery] = React.useState("")
+
+  const children = [
+    { name: "Emma Thompson", age: "4", room: "Sunshine" },
+    { name: "Ethan Morales", age: "3", room: "Rainbow" },
+    { name: "Lily Chen", age: "5", room: "Butterfly" },
+    { name: "Aiden Okafor", age: "4", room: "Sunshine" },
+    { name: "Sophia Kim", age: "3", room: "Rainbow" },
+    { name: "Lucas Fernandez", age: "5", room: "Butterfly" },
+  ]
+
+  const filtered = query
+    ? children.filter((c) => c.name.toLowerCase().includes(query.toLowerCase()))
+    : children
+
+  return (
+    <div className="space-y-2">
+      <div className="relative">
+        <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-[#9ca3af]" />
+        <input
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search children by name..."
+          className="h-10 w-full rounded-full border border-[#d0d5dd] bg-white pl-10 pr-4 font-nunito text-sm text-[#2d1810] placeholder:text-[#9ca3af] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+        />
+        {query && (
+          <button onClick={() => setQuery("")} className="absolute right-3 top-1/2 -translate-y-1/2 text-[#9ca3af] hover:text-[#6b7280]">
+            <X className="size-4" />
+          </button>
+        )}
+      </div>
+      <div className="rounded-lg border border-[#e6ebf3] bg-white max-h-48 overflow-y-auto">
+        {filtered.length === 0 ? (
+          <div className="px-4 py-6 text-center">
+            <p className="text-sm font-nunito text-[#9ca3af]">No results for &ldquo;{query}&rdquo;</p>
+          </div>
+        ) : (
+          filtered.map((child) => (
+            <div key={child.name} className="flex items-center justify-between border-b border-[#eaecf0] last:border-b-0 px-4 py-2.5 hover:bg-[#faf2e1]">
+              <div className="flex items-center gap-3">
+                <Avatar className="size-7">
+                  <AvatarFallback className="text-xs">{child.name.slice(0, 2)}</AvatarFallback>
+                </Avatar>
+                <span className="font-nunito text-sm font-medium text-[#2d1810]">{child.name}</span>
+              </div>
+              <span className="text-xs font-urbanist text-[#6b7280]">{child.room} · {child.age}y</span>
+            </div>
+          ))
+        )}
+      </div>
+      <p className="text-caption">{filtered.length} of {children.length} children shown</p>
     </div>
   )
 }
@@ -2080,6 +2226,9 @@ export default function LibraryPage() {
             {/* Alerts */}
             <Section id="alerts" title="Alerts & Notifications" description="Alert banners and toast notifications.">
               <AlertsInteractive />
+              <Showcase label="Toast notifications — click to trigger">
+                <ToastDemo />
+              </Showcase>
             </Section>
             <Separator />
 
@@ -2135,10 +2284,63 @@ export default function LibraryPage() {
 
             {/* Code Blocks */}
             <Section id="code-blocks" title="Code Blocks" description="Syntax-highlighted code snippets.">
-              <Showcase label="Code block">
-                <CodeBlock language="bash" code={`npm install @ceven/ui
-# or
-yarn add @ceven/ui`} />
+              <Showcase label="TypeScript — component usage">
+                <CodeBlock language="typescript" filename="components/child-card.tsx" showLineNumbers code={`import { Card, CardHeader, CardTitle } from "@ceven/ui"
+import { Badge } from "@ceven/ui/badge"
+import { Avatar, AvatarFallback } from "@ceven/ui/avatar"
+
+interface ChildCardProps {
+  name: string
+  room: string
+  age: string
+  status: "active" | "inactive"
+}
+
+export function ChildCard({ name, room, age, status }: ChildCardProps) {
+  return (
+    <Card className="rounded-xl border-[#e6ebf3]">
+      <CardHeader>
+        <div className="flex items-center gap-3">
+          <Avatar>
+            <AvatarFallback>{name.slice(0, 2)}</AvatarFallback>
+          </Avatar>
+          <div>
+            <CardTitle>{name}</CardTitle>
+            <p className="text-sm text-muted">{room} · {age}</p>
+          </div>
+          <Badge variant={status === "active" ? "success" : "warning"}>
+            {status}
+          </Badge>
+        </div>
+      </CardHeader>
+    </Card>
+  )
+}`} />
+              </Showcase>
+              <Showcase label="Bash — CLI commands">
+                <CodeBlock language="bash" filename="terminal" showLineNumbers code={`# Install the CEven design system
+npx shadcn@latest add https://ceven-ui.com/r/card.json
+npx shadcn@latest add https://ceven-ui.com/r/badge.json
+
+# Run the dev server
+npm run dev
+
+# Build for production
+npm run build`} />
+              </Showcase>
+              <Showcase label="CSS — design tokens">
+                <CodeBlock language="css" filename="globals.css" showLineNumbers code={`/* CEven Design System Tokens */
+:root {
+  --brand-dark: #3B2513;
+  --brand-accent: #9A6033;
+  --button-primary-bg: #E0BFA0;
+  --button-primary-border: #D4A67F;
+  --content-bg: #FFF9F0;
+  --success: #009061;
+  --warning: #FF9A01;
+  --error: #CD3030;
+  --gold-focus: #C47B2C;
+}`} />
               </Showcase>
             </Section>
             <Separator />
