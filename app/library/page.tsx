@@ -544,9 +544,76 @@ export default function LibraryPage() {
             <section id="navigation" className="mb-26">
               <SectionTitle>Navigation</SectionTitle>
               <SectionDescription>
-                Mobile bottom navigation with pill-shaped active state.
+                Device status bars and mobile bottom navigation.
               </SectionDescription>
-              <ComponentShowcase>
+              <ComponentShowcase title="iOS Status Bar">
+                <div className="space-y-4">
+                  <div className="rounded-[8px] bg-[#E5E5EA] px-6 py-3 flex items-center justify-between">
+                    <span className="text-[14px] font-semibold text-black">9:41</span>
+                    <div className="flex items-center gap-2">
+                      <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><path d="M8 3.5C9.8 3.5 11.4 4.2 12.6 5.3L14.1 3.8C12.5 2.3 10.4 1.5 8 1.5C5.6 1.5 3.5 2.3 1.9 3.8L3.4 5.3C4.6 4.2 6.2 3.5 8 3.5Z" fill="black"/><path d="M8 6.5C9.1 6.5 10.1 6.9 10.8 7.6L12.3 6.1C11.2 5.1 9.7 4.5 8 4.5C6.3 4.5 4.8 5.1 3.7 6.1L5.2 7.6C5.9 6.9 6.9 6.5 8 6.5Z" fill="black"/><path d="M8 9.5C8.6 9.5 9.1 9.7 9.5 10.1L8 11.5L6.5 10.1C6.9 9.7 7.4 9.5 8 9.5Z" fill="black"/></svg>
+                      <svg width="24" height="12" viewBox="0 0 24 12" fill="none"><rect x="0.5" y="0.5" width="20" height="11" rx="2" stroke="black" strokeOpacity="0.35"/><rect x="2" y="2" width="16" height="8" rx="1" fill="black"/><path d="M22 4V8C22.8 8 23.5 7.1 23.5 6C23.5 4.9 22.8 4 22 4Z" fill="black" fillOpacity="0.4"/></svg>
+                    </div>
+                  </div>
+                  <div className="rounded-[8px] bg-white px-6 py-3 flex items-center justify-between border border-border">
+                    <span className="text-[14px] font-semibold text-black">9:41</span>
+                    <div className="flex items-center gap-2">
+                      <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><path d="M8 3.5C9.8 3.5 11.4 4.2 12.6 5.3L14.1 3.8C12.5 2.3 10.4 1.5 8 1.5C5.6 1.5 3.5 2.3 1.9 3.8L3.4 5.3C4.6 4.2 6.2 3.5 8 3.5Z" fill="black"/><path d="M8 6.5C9.1 6.5 10.1 6.9 10.8 7.6L12.3 6.1C11.2 5.1 9.7 4.5 8 4.5C6.3 4.5 4.8 5.1 3.7 6.1L5.2 7.6C5.9 6.9 6.9 6.5 8 6.5Z" fill="black"/><path d="M8 9.5C8.6 9.5 9.1 9.7 9.5 10.1L8 11.5L6.5 10.1C6.9 9.7 7.4 9.5 8 9.5Z" fill="black"/></svg>
+                      <svg width="24" height="12" viewBox="0 0 24 12" fill="none"><rect x="0.5" y="0.5" width="20" height="11" rx="2" stroke="black" strokeOpacity="0.35"/><rect x="2" y="2" width="16" height="8" rx="1" fill="black"/><path d="M22 4V8C22.8 8 23.5 7.1 23.5 6C23.5 4.9 22.8 4 22 4Z" fill="black" fillOpacity="0.4"/></svg>
+                    </div>
+                  </div>
+                </div>
+              </ComponentShowcase>
+              <ComponentShowcase title="Android Status Bar">
+                <div className="space-y-4">
+                  <div className="rounded-[8px] bg-[#F5F5F5] px-4 py-2 flex items-center justify-between">
+                    <span className="text-[12px] text-black">9:41</span>
+                    <div className="flex items-center gap-3">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1"/></svg>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2"><rect x="1" y="6" width="18" height="12" rx="2"/><line x1="23" y1="13" x2="23" y2="11"/></svg>
+                    </div>
+                  </div>
+                  <div className="rounded-[8px] bg-black px-4 py-2 flex items-center justify-between">
+                    <span className="text-[12px] text-white">9:41</span>
+                    <div className="flex items-center gap-3">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><circle cx="12" cy="20" r="1"/></svg>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2"><rect x="1" y="6" width="18" height="12" rx="2"/><line x1="23" y1="13" x2="23" y2="11"/></svg>
+                    </div>
+                  </div>
+                </div>
+              </ComponentShowcase>
+              <ComponentShowcase title="Browser Chrome">
+                <div className="space-y-4">
+                  <div className="rounded-[8px] border border-border bg-[#F1F3F4] px-4 py-2">
+                    <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-1">
+                        <div className="size-3 rounded-full bg-[#FF5F57]" />
+                        <div className="size-3 rounded-full bg-[#FFBD2E]" />
+                        <div className="size-3 rounded-full bg-[#28CA41]" />
+                      </div>
+                      <div className="flex-1 flex items-center gap-2">
+                        <div className="flex items-center gap-1 rounded-[8px] bg-white px-3 py-1 text-[12px] text-gray-600 border border-border flex-1">
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                          ceven.app/dashboard
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="rounded-[8px] border border-border bg-white px-4 py-2">
+                    <div className="flex items-center gap-2">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="2"><path d="M15 18l-6-6 6-6"/></svg>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="2"><path d="M9 18l6-6-6-6"/></svg>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="2"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                      <div className="flex-1 flex items-center gap-1 rounded-[8px] bg-[#F1F3F4] px-3 py-1 text-[12px] text-gray-600">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                        ceven.app/dashboard
+                      </div>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+                    </div>
+                  </div>
+                </div>
+              </ComponentShowcase>
+              <ComponentShowcase title="Bottom Navigation">
                 <div className="flex flex-col items-center gap-6">
                   {(["home", "creche", "report", "profile"] as const).map((tab) => (
                     <div key={tab} className="w-full max-w-xs">
