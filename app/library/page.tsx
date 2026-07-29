@@ -144,9 +144,9 @@ const NAV_GROUPS = [
     group: "Foundations",
     items: [
       { id: "logos", label: "Logos & Wordmark" },
+      { id: "icons", label: "Icons" },
       { id: "colors", label: "Colors" },
       { id: "typography", label: "Typography" },
-      { id: "icons", label: "Icons" },
     ],
   },
   {
@@ -165,6 +165,7 @@ const NAV_GROUPS = [
       { id: "forms", label: "Inputs & Selects" },
       { id: "toggles", label: "Toggles & Switches" },
       { id: "checkboxes", label: "Checkboxes" },
+      { id: "sliders", label: "Sliders" },
     ],
   },
   {
@@ -174,7 +175,6 @@ const NAV_GROUPS = [
       { id: "tables", label: "Tables" },
       { id: "navigation", label: "Navigation" },
       { id: "tabs", label: "Tabs" },
-      { id: "sliders", label: "Sliders" },
       { id: "progress", label: "Progress" },
       { id: "modals", label: "Modals & Dialogs" },
       { id: "alerts", label: "Alerts & Notifications" },
@@ -642,86 +642,22 @@ function BadgeShowcase() {
       </div>
 
       <div className="space-y-4">
-        {/* Fee status — real pattern from children table */}
-        <Showcase label="Fee Status — children table">
+        <Showcase label="Status variants — use per context">
           <div className="flex flex-wrap items-center gap-2">
             <span className="inline-flex items-center rounded-full border border-[#009061] bg-[#ecfff8] px-2.5 py-0.5 font-urbanist text-xs text-[#009061]">
-              Paid
+              Success
             </span>
             <span className="inline-flex items-center rounded-full border border-[#cc8000] bg-[#fff6e6] px-2.5 py-0.5 font-urbanist text-xs text-[#cc8000]">
-              Overdue
-            </span>
-            <span className="inline-flex items-center rounded-full border border-[#9ca3af] bg-[#f3f4f6] px-2.5 py-0.5 font-urbanist text-xs text-[#6b7280]">
-              Pending
-            </span>
-          </div>
-        </Showcase>
-
-        {/* Task status — daily operations */}
-        <Showcase label="Task Status — daily operations">
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="inline-flex items-center rounded-full border border-[#9ca3af] bg-[#f3f4f6] px-2.5 py-0.5 font-urbanist text-xs text-[#6b7280]">
-              To Do
-            </span>
-            <span className="inline-flex items-center rounded-full border border-[#cc8000] bg-[#fff6e6] px-2.5 py-0.5 font-urbanist text-xs text-[#cc8000]">
-              In Progress
-            </span>
-            <span className="inline-flex items-center rounded-full border border-[#009061] bg-[#ecfff8] px-2.5 py-0.5 font-urbanist text-xs text-[#009061]">
-              Done
+              Warning
             </span>
             <span className="inline-flex items-center rounded-full border border-[#ef4444] bg-[#fff5f5] px-2.5 py-0.5 font-urbanist text-xs text-[#ef4444]">
-              Overdue
+              Danger
+            </span>
+            <span className="inline-flex items-center rounded-full border border-[#9ca3af] bg-[#f3f4f6] px-2.5 py-0.5 font-urbanist text-xs text-[#6b7280]">
+              Neutral
             </span>
             <span className="inline-flex items-center rounded-full border border-[#9ca3af] bg-[#f3f4f6] px-2.5 py-0.5 font-urbanist text-xs text-[#2d1810]">
-              Not Started
-            </span>
-          </div>
-        </Showcase>
-
-        {/* Staff status — staff page */}
-        <Showcase label="Staff Status — staff page">
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="inline-flex items-center rounded-full border border-[#009061] bg-[#ecfff8] px-2.5 py-0.5 font-urbanist text-xs text-[#009061]">
-              Active
-            </span>
-            <span className="inline-flex items-center rounded-full border border-[#cc8000] bg-[#fff6e6] px-2.5 py-0.5 font-urbanist text-xs text-[#cc8000]">
-              Absent
-            </span>
-            <span className="inline-flex items-center rounded-full border border-[#9ca3af] bg-[#f3f4f6] px-2.5 py-0.5 font-urbanist text-xs text-[#6b7280]">
-              Pending
-            </span>
-            <span className="inline-flex items-center rounded-full border border-[#ef4444] bg-[#fff5f5] px-2.5 py-0.5 font-urbanist text-xs text-[#ef4444]">
-              Suspended
-            </span>
-          </div>
-        </Showcase>
-
-        {/* Compliance / DBS */}
-        <Showcase label="Compliance & DBS">
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="inline-flex items-center rounded-full border border-[#9ca3af] bg-[#f3f4f6] px-2.5 py-0.5 font-urbanist text-xs text-[#6b7280]">
-              Valid
-            </span>
-            <span className="inline-flex items-center rounded-full border border-[#cc8000] bg-[#fff6e6] px-2.5 py-0.5 font-urbanist text-xs text-[#cc8000]">
-              Renew Soon
-            </span>
-            <span className="inline-flex items-center rounded-full border border-[#ef4444] bg-[#fff5f5] px-2.5 py-0.5 font-urbanist text-xs text-[#ef4444]">
-              Expired
-            </span>
-          </div>
-        </Showcase>
-
-        {/* Facility issues */}
-        <Showcase label="Facility Issues">
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="inline-flex items-center rounded-full border border-[#ef4444] bg-[#fff5f5] px-2.5 py-0.5 font-urbanist text-xs text-[#ef4444]">
-              Open
-            </span>
-            <span className="inline-flex items-center rounded-full border border-[#cc8000] bg-[#fff6e6] px-2.5 py-0.5 font-urbanist text-xs text-[#cc8000]">
-              In Progress
-            </span>
-            <span className="inline-flex items-center rounded-full border border-[#009061] bg-[#ecfff8] px-2.5 py-0.5 font-urbanist text-xs text-[#009061]">
-              Resolved
+              Dark
             </span>
           </div>
         </Showcase>
@@ -2027,9 +1963,11 @@ export default function LibraryPage() {
           </aside>
 
           <main className="min-w-0 space-y-14">
+            {/* ── Foundations ──────────────────────────────────────────────── */}
             <LogoShowcase />
             <Separator />
-            {/* Colors, Typography, Avatars, Tooltips, Effects, Marketing — use existing Section wrapper */}
+            <IconShowcase />
+            <Separator />
             <Section id="colors" title="Colors" description="Brand palette and semantic tokens.">
               <Showcase label="Brand">
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
@@ -2077,13 +2015,15 @@ export default function LibraryPage() {
               </Showcase>
             </Section>
             <Separator />
+
+            {/* ── Shared Components ────────────────────────────────────────── */}
             <ButtonShowcase />
-            <Separator />
-            <IconShowcase />
             <Separator />
             <BadgeShowcase />
             <Separator />
-            <FormShowcase />
+            <Section id="tags" title="Tags" description="Removable and interactive tags.">
+              <TagsInteractive />
+            </Section>
             <Separator />
             <Section id="avatars" title="Avatars" description="User identity indicators.">
               <Showcase label="Sizes & Group">
@@ -2104,20 +2044,6 @@ export default function LibraryPage() {
               </Showcase>
             </Section>
             <Separator />
-            <CardShowcase />
-            <Separator />
-            <TableShowcase />
-            <Separator />
-            <NavigationShowcase />
-            <Separator />
-
-            {/* Tags */}
-            <Section id="tags" title="Tags" description="Removable and interactive tags.">
-              <TagsInteractive />
-            </Section>
-            <Separator />
-
-            {/* Tooltips */}
             <Section id="tooltips" title="Tooltips" description="Hover tooltips for additional context.">
               <Showcase label="Positions">
                 <div className="flex flex-wrap gap-4">
@@ -2150,7 +2076,9 @@ export default function LibraryPage() {
             </Section>
             <Separator />
 
-            {/* Toggles */}
+            {/* ── Form Controls ───────────────────────────────────────────── */}
+            <FormShowcase />
+            <Separator />
             <Section id="toggles" title="Toggles & Switches" description="Boolean toggle controls.">
               <TogglesInteractive />
             </Section>
@@ -2173,7 +2101,15 @@ export default function LibraryPage() {
             </Section>
             <Separator />
 
-            {/* Progress */}
+            {/* ── Application Components ─────────────────────────────────── */}
+            <CardShowcase />
+            <Separator />
+            <TableShowcase />
+            <Separator />
+            <NavigationShowcase />
+            <Separator />
+
+            {/* Tabs */}
             <Section id="progress" title="Progress" description="Progress bars and indicators.">
               <Showcase label="Progress bars">
                 <div className="space-y-4 max-w-md">
