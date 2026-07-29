@@ -2029,7 +2029,7 @@ export default function LibraryPage() {
                   <div className="space-y-3 px-4 pb-4">
                     <div className="flex justify-end">
                       <div className="max-w-[72%]">
-                        <div className="rounded-[8px] rounded-tr-sm bg-[#0167FF] px-4 py-3">
+                        <div className="rounded-[8px] rounded-tr-sm bg-brand-dark px-4 py-3">
                           <p className="text-sm text-white">Hi, Mrs Anu</p>
                         </div>
                         <div className="mt-1 flex items-center justify-end gap-1">
@@ -2048,7 +2048,7 @@ export default function LibraryPage() {
                     </div>
                     <div className="flex justify-end">
                       <div className="max-w-[72%]">
-                        <div className="rounded-[8px] rounded-tr-sm bg-[#0167FF] px-4 py-3">
+                        <div className="rounded-[8px] rounded-tr-sm bg-brand-dark px-4 py-3">
                           <p className="text-sm text-white">Liam had a great day today! He played well with others.</p>
                         </div>
                         <div className="mt-1 flex items-center justify-end gap-1">
@@ -2167,7 +2167,7 @@ export default function LibraryPage() {
               <ComponentShowcase title="Sent (Parent)">
                 <div className="flex justify-end">
                   <div className="max-w-[72%]">
-                    <div className="rounded-[8px] rounded-tr-sm bg-[#0167FF] px-4 py-3">
+                    <div className="rounded-[8px] rounded-tr-sm bg-brand-dark px-4 py-3">
                       <p className="text-sm text-white">Hi, Mrs Anu</p>
                     </div>
                     <div className="mt-1 flex items-center justify-end gap-1">
