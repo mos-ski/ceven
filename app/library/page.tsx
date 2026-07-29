@@ -509,6 +509,45 @@ export default function LibraryPage() {
                   </div>
                 </div>
               </ComponentShowcase>
+              <ComponentShowcase title="Favicons">
+                <div className="flex flex-wrap items-end gap-8">
+                  <div className="text-center">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-[8px] bg-white border border-border shadow-sm">
+                      <Image src="/favicon.ico" alt="favicon.ico" width={32} height={32} unoptimized />
+                    </div>
+                    <p className="text-caption text-muted-text mt-2">favicon.ico</p>
+                    <p className="text-[10px] text-muted-text">Browser tab</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-[8px] bg-white border border-border shadow-sm">
+                      <Image src="/apple-touch-icon.png" alt="apple-touch-icon" width={48} height={48} unoptimized />
+                    </div>
+                    <p className="text-caption text-muted-text mt-2">apple-touch-icon.png</p>
+                    <p className="text-[10px] text-muted-text">iOS home screen</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-[8px] bg-white border border-border shadow-sm">
+                      <Image src="/favicon-32x32.png" alt="favicon-32" width={32} height={32} unoptimized />
+                    </div>
+                    <p className="text-caption text-muted-text mt-2">favicon-32x32.png</p>
+                    <p className="text-[10px] text-muted-text">Standard</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-[8px] bg-white border border-border shadow-sm">
+                      <Image src="/favicon-16x16.png" alt="favicon-16" width={16} height={16} unoptimized />
+                    </div>
+                    <p className="text-caption text-muted-text mt-2">favicon-16x16.png</p>
+                    <p className="text-[10px] text-muted-text">Small</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-[8px] bg-brand-dark">
+                      <Image src="/Logo/CEVEN APP 1-white.svg" alt="Logo White" width={40} height={40} unoptimized />
+                    </div>
+                    <p className="text-caption text-muted-text mt-2">CEVEN APP 1-white.svg</p>
+                    <p className="text-[10px] text-muted-text">Full logo (white)</p>
+                  </div>
+                </div>
+              </ComponentShowcase>
             </section>
 
             {/* ─── 2. Progress Bar ─────────────────────────────────────── */}
@@ -1026,85 +1065,6 @@ export default function LibraryPage() {
               </ComponentShowcase>
             </section>
 
-            {/* ─── 5b. Icons & Favicons ──────────────────────────────── */}
-            <section id="icons-favicons" className="mb-26">
-              <SectionTitle>Icons & Favicons</SectionTitle>
-              <SectionDescription>
-                Lucide React icons for UI. Logo SVG used as favicon across all platforms.
-              </SectionDescription>
-              <ComponentShowcase title="Favicon Set">
-                <div className="flex flex-wrap items-end gap-8">
-                  <div className="text-center">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-[8px] bg-white border border-border shadow-sm">
-                      <Image src="/favicon.ico" alt="favicon.ico" width={32} height={32} unoptimized />
-                    </div>
-                    <p className="text-caption text-muted-text mt-2">favicon.ico</p>
-                    <p className="text-[10px] text-muted-text">Browser tab</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-[8px] bg-white border border-border shadow-sm">
-                      <Image src="/apple-touch-icon.png" alt="apple-touch-icon" width={48} height={48} unoptimized />
-                    </div>
-                    <p className="text-caption text-muted-text mt-2">apple-touch-icon.png</p>
-                    <p className="text-[10px] text-muted-text">iOS home screen</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-[8px] bg-white border border-border shadow-sm">
-                      <Image src="/favicon-32x32.png" alt="favicon-32" width={32} height={32} unoptimized />
-                    </div>
-                    <p className="text-caption text-muted-text mt-2">favicon-32x32.png</p>
-                    <p className="text-[10px] text-muted-text">Standard</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-[8px] bg-white border border-border shadow-sm">
-                      <Image src="/favicon-16x16.png" alt="favicon-16" width={16} height={16} unoptimized />
-                    </div>
-                    <p className="text-caption text-muted-text mt-2">favicon-16x16.png</p>
-                    <p className="text-[10px] text-muted-text">Small</p>
-                  </div>
-                  <div className="text-center">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-[8px] bg-brand-dark">
-                      <Image src="/Logo/CEVEN APP 1.svg" alt="Logo" width={40} height={40} unoptimized />
-                    </div>
-                    <p className="text-caption text-muted-text mt-2">CEVEN APP 1.svg</p>
-                    <p className="text-[10px] text-muted-text">Full logo</p>
-                  </div>
-                </div>
-              </ComponentShowcase>
-              <ComponentShowcase title="Common UI Icons">
-                <div className="grid grid-cols-6 gap-4 sm:grid-cols-8 md:grid-cols-10">
-                  {[
-                    { icon: Home, label: "Home" },
-                    { icon: Users, label: "Users" },
-                    { icon: UserCheck, label: "UserCheck" },
-                    { icon: BarChart3, label: "BarChart3" },
-                    { icon: Bell, label: "Bell" },
-                    { icon: FileText, label: "FileText" },
-                    { icon: Settings, label: "Settings" },
-                    { icon: Search, label: "Search" },
-                    { icon: Plus, label: "Plus" },
-                    { icon: X, label: "X" },
-                    { icon: Check, label: "Check" },
-                    { icon: ChevronRight, label: "ChevronRight" },
-                    { icon: ChevronLeft, label: "ChevronLeft" },
-                    { icon: ArrowLeft, label: "ArrowLeft" },
-                    { icon: ArrowRight, label: "ArrowRight" },
-                    { icon: Send, label: "Send" },
-                    { icon: Download, label: "Download" },
-                    { icon: Upload, label: "Upload" },
-                    { icon: Paperclip, label: "Paperclip" },
-                    { icon: Calendar, label: "Calendar" },
-                  ].map(({ icon: Icon, label }) => (
-                    <div key={label} className="flex flex-col items-center gap-2">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-[8px] border border-border bg-white">
-                        <Icon className="size-5 text-foreground" />
-                      </div>
-                      <span className="text-[10px] text-muted-text">{label}</span>
-                    </div>
-                  ))}
-                </div>
-              </ComponentShowcase>
-            </section>
 
             {/* ─── 6. Buttons ─────────────────────────────────────────── */}
             <section id="buttons" className="mb-26">
