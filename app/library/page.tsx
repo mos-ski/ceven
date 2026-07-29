@@ -244,7 +244,7 @@ function ComponentShowcase({ title, children }: { title?: string; children: Reac
   return (
     <div className="mb-10">
       {title && <h3 className="text-h5 text-heading mb-4">{title}</h3>}
-      <div className="rounded-xl border border-border bg-white p-6">
+      <div className="rounded-[8px] border border-border bg-white p-6">
         {children}
       </div>
     </div>
@@ -302,21 +302,20 @@ export default function LibraryPage() {
   const [sidebarOpen, setSidebarOpen] = React.useState(false)
 
   return (
-    <div className="min-h-screen bg-[#F8F6F3]">
-      <div className="flex">
-        {/* Mobile overlay */}
-        {sidebarOpen && (
-          <div
-            className="fixed inset-0 z-40 bg-black/50 lg:hidden"
-            onClick={() => setSidebarOpen(false)}
-          />
-        )}
+    <div className="h-screen bg-[#F8F6F3]">
+      {/* Mobile overlay */}
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 z-40 bg-black/50 lg:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
 
-        {/* Sidebar */}
-        <aside className={cn(
-          "fixed inset-y-0 left-0 z-50 w-60 shrink-0 border-r border-border bg-white p-4 overflow-y-auto scrollbar-thin transition-transform duration-200 lg:sticky lg:translate-x-0",
-          sidebarOpen ? "translate-x-0" : "-translate-x-full"
-        )}>
+      {/* Sidebar — fixed, internal scroll */}
+      <aside className={cn(
+        "fixed inset-y-0 left-0 z-50 w-60 shrink-0 border-r border-border bg-white p-4 overflow-y-auto scrollbar-thin transition-transform duration-200 lg:translate-x-0",
+        sidebarOpen ? "translate-x-0" : "-translate-x-full"
+      )}>
           <div className="mb-6 flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2">
               <div className="relative h-8 w-auto">
@@ -365,7 +364,7 @@ export default function LibraryPage() {
           </nav>
         </aside>
 
-        <main className="flex-1 overflow-y-auto">
+        <main className="flex-1 overflow-y-auto h-screen lg:pl-60">
           {/* Mobile header */}
           <div className="sticky top-0 z-30 flex items-center gap-3 border-b border-border bg-[#F8F6F3] px-4 py-3 lg:hidden">
             <button onClick={() => setSidebarOpen(true)}>
@@ -2359,7 +2358,6 @@ export default function LibraryPage() {
             </footer>
           </div>
         </main>
-      </div>
     </div>
   )
 }
