@@ -333,6 +333,33 @@ export default function LibraryPage() {
 
   const [sidebarOpen, setSidebarOpen] = React.useState(false)
 
+  React.useEffect(() => {
+    const mainEl = document.querySelector("main")
+    if (!mainEl) return
+
+    const sectionIds = NAV_GROUPS.flatMap((g) => g.items.map((i) => i.id))
+    const observers: IntersectionObserver[] = []
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id)
+      if (!el) return
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActiveSection(id)
+            }
+          })
+        },
+        { root: mainEl, rootMargin: "-20% 0px -60% 0px", threshold: 0 }
+      )
+      observer.observe(el)
+      observers.push(observer)
+    })
+
+    return () => observers.forEach((o) => o.disconnect())
+  }, [])
+
   return (
     <div className="h-screen bg-[#F8F6F3]">
       {/* Mobile overlay */}
