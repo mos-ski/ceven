@@ -238,6 +238,15 @@ const NAV_GROUPS = [
   },
 ]
 
+const AGENT_PROMPT = `You are building UI for the CEven design system. Reference the CEven Design System page at /library for all component patterns, typography, colors, and spacing.
+
+Brand palette: #3B2513 (dark), #9A6033 (accent), #E0BFA0 (tan fill), #D4A67F (tan border), #FFF9F0 (content bg), #EDD9C0 (table header), #C47B2C (gold focus).
+Fonts: Mogra (display), Merriweather (headings), Urbanist (UI labels), Nunito (body).
+All components use rounded-[8px] corners. Spacing follows 8px grid (multiples of 8px).
+Message bubbles: rounded-[8px] with rounded-tr-sm (sent) / rounded-tl-sm (received). Sent bubbles use bg-brand-dark (brown).
+Avatars: circular (rounded-full) for users, rounded-[8px] for admin. Use real images, not initials.
+Always check /library page before building new components to reuse existing patterns.`
+
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
     <h2 className="text-h2 text-heading mb-4">{children}</h2>
@@ -298,6 +307,8 @@ function SnackbarShowcase() {
 export default function LibraryPage() {
   const [activeSection, setActiveSection] = React.useState("logos")
   const [scrollContainerRef, setScrollContainerRef] = React.useState<HTMLDivElement | null>(null)
+  const [sidebarSearch, setSidebarSearch] = React.useState("")
+  const [copiedPrompt, setCopiedPrompt] = React.useState(false)
 
   const [checkboxes, setCheckboxes] = React.useState({
     unchecked: false,
@@ -401,36 +412,59 @@ export default function LibraryPage() {
             <span className="text-overline text-muted-text">Design System</span>
           </div>
 
+          <div className="mb-4">
+            <div className="flex items-center gap-2 rounded-[8px] bg-gray-50 px-3 py-2">
+              <Search size={14} className="text-gray-400 shrink-0" />
+              <input
+                placeholder="Search components..."
+                value={sidebarSearch}
+                onChange={(e) => setSidebarSearch(e.target.value)}
+                className="flex-1 bg-transparent text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none"
+              />
+              {sidebarSearch && (
+                <button onClick={() => setSidebarSearch("")} className="shrink-0">
+                  <X size={14} className="text-gray-400 hover:text-gray-600" />
+                </button>
+              )}
+            </div>
+          </div>
+
           <nav className="space-y-4">
-            {NAV_GROUPS.map((group) => (
-              <div key={group.label}>
-                <p className="text-ui-xs text-muted-text mb-2.5 font-semibold uppercase tracking-wider">
-                  {group.label}
-                </p>
-                <ul className="space-y-0.5">
-                  {group.items.map((item) => (
-                    <li key={item.id}>
-                      <a
-                        href={`#${item.id}`}
-                        onClick={(e) => {
-                          e.preventDefault()
-                          setActiveSection(item.id)
-                          document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth", block: "start" })
-                        }}
-                        className={cn(
-                          "flex items-center rounded-[8px] px-4 py-2 text-sm transition-colors",
-                          activeSection === item.id
-                            ? "bg-[#FFF3E6] font-medium text-brand-dark"
-                            : "text-muted-text hover:bg-muted hover:text-foreground"
-                        )}
-                      >
-                        {item.label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+            {NAV_GROUPS.map((group) => {
+              const filteredItems = group.items.filter((item) =>
+                item.label.toLowerCase().includes(sidebarSearch.toLowerCase())
+              )
+              if (filteredItems.length === 0) return null
+              return (
+                <div key={group.label}>
+                  <p className="text-ui-xs text-muted-text mb-2.5 font-semibold uppercase tracking-wider">
+                    {group.label}
+                  </p>
+                  <ul className="space-y-0.5">
+                    {filteredItems.map((item) => (
+                      <li key={item.id}>
+                        <a
+                          href={`#${item.id}`}
+                          onClick={(e) => {
+                            e.preventDefault()
+                            setActiveSection(item.id)
+                            document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth", block: "start" })
+                          }}
+                          className={cn(
+                            "flex items-center rounded-[8px] px-4 py-2 text-sm transition-colors",
+                            activeSection === item.id
+                              ? "bg-[#FFF3E6] font-medium text-brand-dark"
+                              : "text-muted-text hover:bg-muted hover:text-foreground"
+                          )}
+                        >
+                          {item.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )
+            })}
           </nav>
         </aside>
 
@@ -454,6 +488,28 @@ export default function LibraryPage() {
               <p style={{ fontFamily: "var(--font-nunito-import)" }} className="text-base leading-[1.5] text-muted-text">
                 Built with Next.js, Tailwind CSS, and Base UI. Every component follows the 8px grid system with 8px border radius.
               </p>
+            </div>
+
+            <div className="mb-20 rounded-[8px] border border-border bg-white p-6">
+              <div className="flex items-center justify-between mb-3">
+                <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-sm font-semibold text-heading">
+                  Agent Prompt
+                </p>
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText(AGENT_PROMPT)
+                    setCopiedPrompt(true)
+                    setTimeout(() => setCopiedPrompt(false), 2000)
+                  }}
+                  className="flex items-center gap-1.5 rounded-[8px] bg-gray-50 px-3 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-100 transition-colors"
+                >
+                  {copiedPrompt ? <Check size={12} className="text-green-600" /> : <Copy size={12} />}
+                  {copiedPrompt ? "Copied" : "Copy"}
+                </button>
+              </div>
+              <pre style={{ fontFamily: "var(--font-nunito-import)" }} className="text-xs leading-relaxed text-muted-text whitespace-pre-wrap">
+                {AGENT_PROMPT}
+              </pre>
             </div>
 
             <Separator className="mb-20" />
