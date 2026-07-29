@@ -425,7 +425,7 @@ export default function LibraryPage() {
               <SectionDescription>
                 The CEven logo in multiple sizes and configurations.
               </SectionDescription>
-              <ComponentShowcase>
+              <ComponentShowcase title="Full Logo">
                 <div className="flex flex-wrap items-end gap-20">
                   <div className="flex flex-col items-center gap-4">
                     <div className="relative h-32 w-32">
@@ -452,7 +452,34 @@ export default function LibraryPage() {
                     <span className="text-caption">Tiny</span>
                   </div>
                 </div>
-
+              </ComponentShowcase>
+              <ComponentShowcase title="Icon Only">
+                <div className="flex flex-wrap items-end gap-16">
+                  <div className="flex flex-col items-center gap-4">
+                    <div className="relative h-16 w-16">
+                      <img src="/Logo/icon.svg" alt="CEven Icon Large" className="h-full w-full object-contain" />
+                    </div>
+                    <span className="text-caption">Large</span>
+                  </div>
+                  <div className="flex flex-col items-center gap-4">
+                    <div className="relative h-12 w-12">
+                      <img src="/Logo/icon.svg" alt="CEven Icon Medium" className="h-full w-full object-contain" />
+                    </div>
+                    <span className="text-caption">Medium</span>
+                  </div>
+                  <div className="flex flex-col items-center gap-4">
+                    <div className="relative h-8 w-8">
+                      <img src="/Logo/icon.svg" alt="CEven Icon Small" className="h-full w-full object-contain" />
+                    </div>
+                    <span className="text-caption">Small</span>
+                  </div>
+                  <div className="flex flex-col items-center gap-4">
+                    <div className="relative h-6 w-6">
+                      <img src="/Logo/icon.svg" alt="CEven Icon Tiny" className="h-full w-full object-contain" />
+                    </div>
+                    <span className="text-caption">Tiny</span>
+                  </div>
+                </div>
               </ComponentShowcase>
             </section>
 
