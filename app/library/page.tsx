@@ -1696,8 +1696,8 @@ export default function LibraryPage() {
             <section id="ai-chat" className="mb-16">
               <SectionTitle>AI Chat Interface</SectionTitle>
               <SectionDescription>The full CEvenAI chat interface with header, messages, and input bar.</SectionDescription>
-              <ComponentShowcase title="Full Chat (Empty State)">
-                <div className="mx-auto max-w-sm overflow-hidden rounded-2xl border border-border bg-[#fffefa] shadow-sm">
+              <ComponentShowcase>
+                <div className="mx-auto max-w-sm overflow-hidden rounded-[8px] border border-border bg-[#fffefa] shadow-sm">
                   {/* Header */}
                   <div className="flex items-center px-4 pt-4 pb-3">
                     <button className="flex h-[34px] w-[34px] items-center justify-center rounded-full border border-gray-200 bg-[#f4f5f6]">
@@ -1709,27 +1709,36 @@ export default function LibraryPage() {
                     </div>
                     <div className="h-[34px] w-[34px]" />
                   </div>
-                  {/* Empty chat area */}
-                  <div className="flex h-[300px] flex-col items-center justify-center px-6 text-center">
-                    <div className="mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-[#F3EDE5]">
-                      <AiSparkleIcon size={30} className="text-brand-dark" />
+                  {/* Messages */}
+                  <div className="space-y-3 px-4 py-4">
+                    <div className="flex justify-end">
+                      <div className="max-w-[78%] rounded-[8px] rounded-tr-sm bg-brand-dark px-4 py-3 text-sm text-white">
+                        Summarize today&apos;s report
+                      </div>
                     </div>
-                    <h2 className="mb-1 text-base font-bold text-gray-800">Hi! I&apos;m CEvenAI</h2>
-                    <p className="max-w-[220px] text-xs text-gray-500">
-                      Ask me about your child&apos;s day, health patterns, or activities.
-                    </p>
-                    <div className="mt-4 space-y-2">
-                      {["Summarize today's report", "Any health patterns this week?", "How was my child's mood?", "What learning activity was done?"].map((p) => (
-                        <button key={p} className="flex w-full items-center gap-2 rounded-xl bg-[#F3EDE5] px-4 py-3 text-left text-sm text-brand-dark">
-                          <span>{p}</span>
-                        </button>
-                      ))}
+                    <div className="flex justify-start">
+                      <div className="max-w-[88%]">
+                        <div className="mb-1 flex items-center gap-1.5">
+                          <AiSparkleIcon size={14} className="text-brand-dark" />
+                        </div>
+                        <div className="rounded-[8px] bg-white px-4 py-3 text-sm text-gray-700 shadow-sm">
+                          <p>Of course! As an AI language model, I am designed to assist with a variety of tasks.</p>
+                          <p className="mt-1">Here are some examples of what I can do:</p>
+                          <p className="mt-1">{'\u2022'} Answer questions: Just ask me anything you like!</p>
+                          <p className="mt-1">{'\u2022'} Generate text: I can write stories, poems, or summaries for you.</p>
+                        </div>
+                        <div className="mt-1.5 flex items-center gap-3">
+                          <button className="text-gray-300 hover:text-gray-500"><ThumbsUp size={14} /></button>
+                          <button className="text-gray-300 hover:text-gray-500"><ThumbsDown size={14} /></button>
+                          <button className="text-gray-300 hover:text-gray-500"><Copy size={14} /></button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   {/* Input bar */}
-                  <div className="shrink-0 bg-white px-4 pt-4 pb-4 shadow-[0px_-4px_12px_4px_rgba(46,46,46,0.04)]">
+                  <div className="bg-white px-4 pt-4 pb-4 border-t border-gray-100">
                     <div className="flex items-center gap-3">
-                      <input placeholder="Ask me anything..." className="flex-1 rounded-xl bg-[#f4f5f6] px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none" />
+                      <input placeholder="Ask me anything..." className="flex-1 rounded-[8px] bg-[#f4f5f6] px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none" />
                       <button className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#E0BFA0]">
                         <Send size={14} className="text-brand-dark" />
                       </button>
@@ -1744,37 +1753,10 @@ export default function LibraryPage() {
             <section id="ai-messages" className="mb-16">
               <SectionTitle>AI Messages</SectionTitle>
               <SectionDescription>User and AI message bubble styles with action buttons.</SectionDescription>
-              <ComponentShowcase title="User Message">
-                <div className="flex justify-end">
-                  <div className="max-w-[78%] rounded-2xl bg-brand-dark px-4 py-3 text-sm text-white">
-                    Summarize today&apos;s report
-                  </div>
-                </div>
-              </ComponentShowcase>
-              <ComponentShowcase title="AI Message">
-                <div className="flex justify-start">
-                  <div className="max-w-[88%]">
-                    <div className="mb-1 flex items-center gap-1.5">
-                      <AiSparkleIcon size={14} className="text-brand-dark" />
-                    </div>
-                    <div className="rounded-2xl bg-white px-4 py-3 text-sm text-gray-700 shadow-sm">
-                      <p>Of course! As an AI language model, I am designed to assist with a variety of tasks.</p>
-                      <p className="mt-1">Here are some examples of what I can do:</p>
-                      <p className="mt-1">• Answer questions: Just ask me anything you like!</p>
-                      <p className="mt-1">• Generate text: I can write stories, poems, or summaries for you.</p>
-                    </div>
-                    <div className="mt-1.5 flex items-center gap-3">
-                      <button className="text-gray-300 hover:text-gray-500"><ThumbsUp size={14} /></button>
-                      <button className="text-gray-300 hover:text-gray-500"><ThumbsDown size={14} /></button>
-                      <button className="text-gray-300 hover:text-gray-500"><Copy size={14} /></button>
-                    </div>
-                  </div>
-                </div>
-              </ComponentShowcase>
-              <ComponentShowcase title="Conversation Flow">
+              <ComponentShowcase>
                 <div className="mx-auto max-w-sm space-y-3">
                   <div className="flex justify-end">
-                    <div className="max-w-[78%] rounded-2xl bg-brand-dark px-4 py-3 text-sm text-white">
+                    <div className="max-w-[78%] rounded-[8px] rounded-tr-sm bg-brand-dark px-4 py-3 text-sm text-white">
                       Summarize today&apos;s report
                     </div>
                   </div>
@@ -1783,10 +1765,31 @@ export default function LibraryPage() {
                       <div className="mb-1 flex items-center gap-1.5">
                         <AiSparkleIcon size={14} className="text-brand-dark" />
                       </div>
-                      <div className="rounded-2xl bg-white px-4 py-3 text-sm text-gray-700 shadow-sm">
-                        <p>Of course! As an AI language model, I am designed to assist with a variety of tasks. Here are some examples of what I can do:</p>
-                        <p className="mt-1">• Answer questions: Just ask me anything you like!</p>
-                        <p className="mt-1">• Generate text: I can write stories, poems, or summaries for you.</p>
+                      <div className="rounded-[8px] bg-white px-4 py-3 text-sm text-gray-700 shadow-sm">
+                        <p>Of course! As an AI language model, I am designed to assist with a variety of tasks.</p>
+                        <p className="mt-1">Here are some examples of what I can do:</p>
+                        <p className="mt-1">{'\u2022'} Answer questions: Just ask me anything you like!</p>
+                        <p className="mt-1">{'\u2022'} Generate text: I can write stories, poems, or summaries for you.</p>
+                      </div>
+                      <div className="mt-1.5 flex items-center gap-3">
+                        <button className="text-gray-300 hover:text-gray-500"><ThumbsUp size={14} /></button>
+                        <button className="text-gray-300 hover:text-gray-500"><ThumbsDown size={14} /></button>
+                        <button className="text-gray-300 hover:text-gray-500"><Copy size={14} /></button>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex justify-end">
+                    <div className="max-w-[78%] rounded-[8px] rounded-tr-sm bg-brand-dark px-4 py-3 text-sm text-white">
+                      How was my child&apos;s mood today?
+                    </div>
+                  </div>
+                  <div className="flex justify-start">
+                    <div className="max-w-[88%]">
+                      <div className="mb-1 flex items-center gap-1.5">
+                        <AiSparkleIcon size={14} className="text-brand-dark" />
+                      </div>
+                      <div className="rounded-[8px] bg-white px-4 py-3 text-sm text-gray-700 shadow-sm">
+                        <p>Your child was in great spirits today! Very active during playtime and socialized well with other children.</p>
                       </div>
                       <div className="mt-1.5 flex items-center gap-3">
                         <button className="text-gray-300 hover:text-gray-500"><ThumbsUp size={14} /></button>
@@ -1994,8 +1997,8 @@ export default function LibraryPage() {
             <section id="msg-1on1" className="mb-16">
               <SectionTitle>1-on-1 Chat</SectionTitle>
               <SectionDescription>Direct message conversation between parent and caregiver.</SectionDescription>
-              <ComponentShowcase title="Chat View">
-                <div className="mx-auto max-w-sm overflow-hidden rounded-2xl border border-border bg-[#FFFEFA] shadow-sm">
+              <ComponentShowcase>
+                <div className="mx-auto max-w-sm overflow-hidden rounded-[8px] border border-border bg-[#FFFEFA] shadow-sm">
                   {/* Header */}
                   <div className="flex items-center gap-3 bg-[#FAFAFA] px-4 pt-4 pb-3 shadow-sm">
                     <button className="flex h-9 w-9 items-center justify-center rounded-full bg-[#F7F7F7]">
@@ -2015,11 +2018,18 @@ export default function LibraryPage() {
                       <Video size={16} className="text-gray-700" />
                     </button>
                   </div>
+                  {/* Session badge */}
+                  <div className="flex items-center justify-center gap-2 py-3">
+                    <div className="flex items-center gap-1.5 rounded-full bg-[#EDF1F5] px-3 py-1">
+                      <Plus size={10} className="text-gray-600" />
+                      <span className="text-[10px] font-medium text-gray-600">Session Start</span>
+                    </div>
+                  </div>
                   {/* Messages */}
-                  <div className="space-y-3 px-4 py-4">
+                  <div className="space-y-3 px-4 pb-4">
                     <div className="flex justify-end">
                       <div className="max-w-[72%]">
-                        <div className="rounded-2xl rounded-tr-sm bg-[#0167FF] px-4 py-3">
+                        <div className="rounded-[8px] rounded-tr-sm bg-[#0167FF] px-4 py-3">
                           <p className="text-sm text-white">Hi, Mrs Anu</p>
                         </div>
                         <div className="mt-1 flex items-center justify-end gap-1">
@@ -2030,7 +2040,7 @@ export default function LibraryPage() {
                     </div>
                     <div className="flex justify-start">
                       <div className="max-w-[72%]">
-                        <div className="rounded-2xl rounded-tl-sm bg-[#DCE0E4] px-4 py-3">
+                        <div className="rounded-[8px] rounded-tl-sm bg-[#DCE0E4] px-4 py-3">
                           <p className="text-sm text-[#2D2E2E]">Good afternoon Ma, how can I help you?</p>
                         </div>
                         <p className="mt-1 text-[10px] text-gray-400">16:50</p>
@@ -2038,7 +2048,7 @@ export default function LibraryPage() {
                     </div>
                     <div className="flex justify-end">
                       <div className="max-w-[72%]">
-                        <div className="rounded-2xl rounded-tr-sm bg-[#0167FF] px-4 py-3">
+                        <div className="rounded-[8px] rounded-tr-sm bg-[#0167FF] px-4 py-3">
                           <p className="text-sm text-white">Liam had a great day today! He played well with others.</p>
                         </div>
                         <div className="mt-1 flex items-center justify-end gap-1">
@@ -2049,7 +2059,7 @@ export default function LibraryPage() {
                     </div>
                   </div>
                   {/* Input */}
-                  <div className="bg-[#FAFAFA] px-4 pb-4 pt-3 shadow-[0px_-4px_12px_4px_rgba(46,46,46,0.04)]">
+                  <div className="bg-[#FAFAFA] px-4 pb-4 pt-3 border-t border-gray-100">
                     <div className="flex items-center gap-3">
                       <div className="flex flex-1 items-center rounded-full bg-white px-4 py-2.5 shadow-sm">
                         <input placeholder="Type a message..." className="flex-1 bg-transparent text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none" />
@@ -2067,9 +2077,10 @@ export default function LibraryPage() {
             <section id="msg-group" className="mb-16">
               <SectionTitle>Group Chat</SectionTitle>
               <SectionDescription>Family group chat with stacked avatars, role labels, topic banner, and @ mentions.</SectionDescription>
-              <ComponentShowcase title="Group Header">
-                <div className="mx-auto max-w-sm overflow-hidden rounded-2xl border border-border bg-white shadow-sm">
-                  <div className="flex items-center gap-3 px-4 pt-4 pb-3 shadow-sm">
+              <ComponentShowcase>
+                <div className="mx-auto max-w-sm overflow-hidden rounded-[8px] border border-border bg-[#FFFEFA] shadow-sm">
+                  {/* Header */}
+                  <div className="flex items-center gap-3 bg-white px-4 pt-4 pb-3 shadow-sm">
                     <button className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-100">
                       <ArrowLeft size={16} className="text-gray-700" />
                     </button>
@@ -2098,60 +2109,52 @@ export default function LibraryPage() {
                       <Info size={16} className="text-gray-700" />
                     </button>
                   </div>
+                  {/* Topic banner */}
                   <div className="bg-amber-50 px-4 py-2">
                     <p className="text-center text-[11px] font-medium text-amber-700">Liam took his first steps today!</p>
                   </div>
-                </div>
-              </ComponentShowcase>
-              <ComponentShowcase title="Group Messages">
-                <div className="mx-auto max-w-sm space-y-4">
-                  {[
-                    { sender: "Ms Anu", role: "Caregiver", initials: "MA", color: "#059669", text: "Good morning everyone! I have amazing news about Liam!", time: "9:15 AM", own: false },
-                    { sender: "Sarah", role: "Mother", initials: "SM", color: "#D4A67F", text: "Good morning Ms Anu! What happened?", time: "9:16 AM", own: false },
-                    { sender: "Ms Anu", role: "Caregiver", initials: "MA", color: "#059669", text: "Liam took his first steps today!! He walked from the mat to the toy shelf!", time: "9:16 AM", own: false },
-                    { sender: "James", role: "Father", initials: "JM", color: "#7A4C29", text: "Oh wow!! That's incredible! Our little man is growing up so fast!", time: "9:17 AM", own: true },
-                  ].map((m, i) => (
-                    <div key={i} className={`flex ${m.own ? "justify-end" : "justify-start gap-2"}`}>
-                      {!m.own && (
-                        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[10px] font-bold text-white mt-1" style={{ backgroundColor: m.color }}>
-                          {m.initials}
-                        </div>
-                      )}
-                      <div className={`max-w-[72%] ${m.own ? "" : ""}`}>
+                  {/* Messages */}
+                  <div className="space-y-4 px-4 py-4">
+                    {[
+                      { sender: "Ms Anu", role: "Caregiver", initials: "MA", color: "#059669", text: "Good morning everyone! I have amazing news about Liam!", time: "9:15 AM", own: false },
+                      { sender: "Sarah", role: "Mother", initials: "SM", color: "#D4A67F", text: "Good morning Ms Anu! What happened?", time: "9:16 AM", own: false },
+                      { sender: "Ms Anu", role: "Caregiver", initials: "MA", color: "#059669", text: "Liam took his first steps today!! He walked from the mat to the toy shelf!", time: "9:16 AM", own: false },
+                      { sender: "James", role: "Father", initials: "JM", color: "#7A4C29", text: "Oh wow!! That's incredible! Our little man is growing up so fast!", time: "9:17 AM", own: true },
+                    ].map((m, i) => (
+                      <div key={i} className={`flex ${m.own ? "justify-end" : "justify-start gap-2"}`}>
                         {!m.own && (
-                          <div className="mb-0.5 flex items-center gap-1.5">
-                            <span className="text-[11px] font-semibold" style={{ color: m.color }}>{m.sender}</span>
-                            <span className="text-[9px] text-gray-400">{m.role}</span>
+                          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[10px] font-bold text-white mt-1" style={{ backgroundColor: m.color }}>
+                            {m.initials}
                           </div>
                         )}
-                        <div className={`rounded-2xl px-4 py-2.5 ${m.own ? "rounded-tr-sm bg-brand-dark text-white" : "rounded-tl-sm bg-gray-100 text-gray-800"}`}>
-                          <p className="text-sm whitespace-pre-line">{m.text}</p>
-                        </div>
-                        <p className={`mt-0.5 text-[10px] text-gray-400 ${m.own ? "text-right" : ""}`}>{m.time}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </ComponentShowcase>
-              <ComponentShowcase title="@ Mention Popup">
-                <div className="mx-auto max-w-sm">
-                  <div className="rounded-2xl bg-white p-2 shadow-lg border border-gray-100">
-                    <p className="px-2 pb-1 text-[10px] font-semibold text-gray-400">Mention someone</p>
-                    {[
-                      { initials: "SM", name: "Sarah", role: "Mother", color: "#D4A67F" },
-                      { initials: "MA", name: "Ms Anu", role: "Caregiver", color: "#059669" },
-                      { initials: "AD", name: "Admin", role: "Creche Admin", color: "#6366F1" },
-                    ].map((p) => (
-                      <div key={p.name} className="flex items-center gap-2.5 rounded-xl px-2 py-2 hover:bg-gray-50">
-                        <div className="flex h-8 w-8 items-center justify-center rounded-full text-[10px] font-bold text-white" style={{ backgroundColor: p.color }}>
-                          {p.initials}
-                        </div>
-                        <div>
-                          <p className="text-sm font-medium text-gray-800">{p.name}</p>
-                          <p className="text-[10px] text-gray-400">{p.role}</p>
+                        <div className="max-w-[72%]">
+                          {!m.own && (
+                            <div className="mb-0.5 flex items-center gap-1.5">
+                              <span className="text-[11px] font-semibold" style={{ color: m.color }}>{m.sender}</span>
+                              <span className="text-[9px] text-gray-400">{m.role}</span>
+                            </div>
+                          )}
+                          <div className={`rounded-[8px] px-4 py-2.5 ${m.own ? "rounded-tr-sm bg-brand-dark text-white" : "rounded-tl-sm bg-gray-100 text-gray-800"}`}>
+                            <p className="text-sm whitespace-pre-line">{m.text}</p>
+                          </div>
+                          <p className={`mt-0.5 text-[10px] text-gray-400 ${m.own ? "text-right" : ""}`}>{m.time}</p>
                         </div>
                       </div>
                     ))}
+                  </div>
+                  {/* Input with @ mention */}
+                  <div className="bg-white px-4 pb-4 pt-3 border-t border-gray-100">
+                    <div className="flex items-center gap-2">
+                      <button className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gray-100">
+                        <AtSign size={16} className="text-gray-500" />
+                      </button>
+                      <div className="flex flex-1 items-center rounded-full bg-gray-50 px-4 py-2.5">
+                        <input placeholder="Type a message..." className="flex-1 bg-transparent text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none" />
+                      </div>
+                      <button className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-dark">
+                        <Send size={14} className="text-white" />
+                      </button>
+                    </div>
                   </div>
                 </div>
               </ComponentShowcase>
@@ -2164,7 +2167,7 @@ export default function LibraryPage() {
               <ComponentShowcase title="Sent (Parent)">
                 <div className="flex justify-end">
                   <div className="max-w-[72%]">
-                    <div className="rounded-2xl rounded-tr-sm bg-[#0167FF] px-4 py-3">
+                    <div className="rounded-[8px] rounded-tr-sm bg-[#0167FF] px-4 py-3">
                       <p className="text-sm text-white">Hi, Mrs Anu</p>
                     </div>
                     <div className="mt-1 flex items-center justify-end gap-1">
@@ -2177,7 +2180,7 @@ export default function LibraryPage() {
               <ComponentShowcase title="Received (Parent)">
                 <div className="flex justify-start">
                   <div className="max-w-[72%]">
-                    <div className="rounded-2xl rounded-tl-sm bg-[#DCE0E4] px-4 py-3">
+                    <div className="rounded-[8px] rounded-tl-sm bg-[#DCE0E4] px-4 py-3">
                       <p className="text-sm text-[#2D2E2E]">Good afternoon Ma, how can I help you?</p>
                     </div>
                     <p className="mt-1 text-[10px] text-gray-400">16:50</p>
@@ -2187,7 +2190,7 @@ export default function LibraryPage() {
               <ComponentShowcase title="Caregiver Sent">
                 <div className="flex justify-end">
                   <div className="max-w-[75%]">
-                    <div className="rounded-2xl rounded-tr-sm bg-brand-dark px-4 py-2.5">
+                    <div className="rounded-[8px] rounded-tr-sm bg-brand-dark px-4 py-2.5">
                       <p className="text-sm text-white">Liam had a great day today!</p>
                     </div>
                     <div className="mt-0.5 flex items-center justify-end gap-1">
@@ -2200,7 +2203,7 @@ export default function LibraryPage() {
               <ComponentShowcase title="Caregiver Received">
                 <div className="flex justify-start">
                   <div className="max-w-[75%]">
-                    <div className="rounded-2xl rounded-tl-sm bg-white px-4 py-2.5 shadow-sm">
+                    <div className="rounded-[8px] rounded-tl-sm bg-white px-4 py-2.5 shadow-sm">
                       <p className="text-sm text-gray-800">Please remember to bring extra clothes tomorrow.</p>
                     </div>
                     <p className="mt-0.5 text-[10px] text-gray-400">Yesterday</p>
@@ -2215,7 +2218,7 @@ export default function LibraryPage() {
                       <span className="text-[11px] font-semibold text-[#059669]">Ms Anu</span>
                       <span className="text-[9px] text-gray-400">Caregiver</span>
                     </div>
-                    <div className="rounded-2xl rounded-tl-sm bg-gray-100 px-4 py-2.5">
+                    <div className="rounded-[8px] rounded-tl-sm bg-gray-100 px-4 py-2.5">
                       <p className="text-sm text-gray-800">Liam took his first steps today!!</p>
                     </div>
                     <p className="mt-0.5 text-[10px] text-gray-400">9:16 AM</p>
@@ -2229,7 +2232,7 @@ export default function LibraryPage() {
               <SectionTitle>Chat Input</SectionTitle>
               <SectionDescription>Input bar variants for different chat contexts.</SectionDescription>
               <ComponentShowcase title="Standard (Parent)">
-                <div className="mx-auto max-w-sm rounded-xl bg-[#FAFAFA] px-4 py-4 shadow-[0px_-4px_12px_4px_rgba(46,46,46,0.04)]">
+                <div className="mx-auto max-w-sm rounded-[8px] bg-[#FAFAFA] px-4 py-4 border border-gray-100">
                   <div className="flex items-center gap-3">
                     <div className="flex flex-1 items-center rounded-full bg-white px-4 py-2.5 shadow-sm">
                       <input placeholder="Type a message..." className="flex-1 bg-transparent text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none" />
@@ -2241,7 +2244,7 @@ export default function LibraryPage() {
                 </div>
               </ComponentShowcase>
               <ComponentShowcase title="With Attachment (Caregiver)">
-                <div className="mx-auto max-w-sm rounded-xl border-t border-gray-100 bg-white px-3 py-3">
+                <div className="mx-auto max-w-sm rounded-[8px] border border-gray-100 bg-white px-3 py-3">
                   <div className="flex items-center gap-2">
                     <button className="flex h-9 w-9 items-center justify-center rounded-full text-gray-400">
                       <Paperclip size={20} />
@@ -2254,7 +2257,7 @@ export default function LibraryPage() {
                 </div>
               </ComponentShowcase>
               <ComponentShowcase title="With @ Mention (Group)">
-                <div className="mx-auto max-w-sm rounded-xl bg-white px-4 pb-4 pt-3 border-t border-gray-100">
+                <div className="mx-auto max-w-sm rounded-[8px] bg-white px-4 pb-4 pt-3 border border-gray-100">
                   <div className="flex items-center gap-2">
                     <button className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gray-100">
                       <AtSign size={16} className="text-gray-500" />
@@ -2269,7 +2272,7 @@ export default function LibraryPage() {
                 </div>
               </ComponentShowcase>
               <ComponentShowcase title="Disabled (Trial Ended)">
-                <div className="mx-auto max-w-sm rounded-xl bg-[#FAFAFA] px-4 py-4 shadow-[0px_-4px_12px_4px_rgba(46,46,46,0.04)]">
+                <div className="mx-auto max-w-sm rounded-[8px] bg-[#FAFAFA] px-4 py-4 border border-gray-100">
                   <div className="flex items-center gap-3">
                     <div className="flex flex-1 items-center rounded-full bg-white px-4 py-2.5 shadow-sm">
                       <input placeholder="Manage your account to keep chatting" disabled className="flex-1 bg-transparent text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none disabled:opacity-60" />
