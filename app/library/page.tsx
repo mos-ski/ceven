@@ -483,7 +483,7 @@ export default function LibraryPage() {
           </div>
 
           <div className="mx-auto max-w-4xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-10">
-            <div className="mb-20">
+            <div className="mb-8">
               <h1 style={{ fontFamily: "var(--font-merriweather-import)" }} className="text-[2.5rem] leading-[1.2] text-heading font-bold mb-4">
                 CEven Design System
               </h1>
