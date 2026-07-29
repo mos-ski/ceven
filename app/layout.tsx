@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Mogra, Merriweather, Urbanist, Nunito, Fraunces } from "next/font/google";
 import { Providers } from "@/components/providers";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
 const mogra = Mogra({
@@ -49,7 +51,12 @@ export default function RootLayout({
         suppressHydrationWarning
         className={`${mogra.variable} ${merriweather.variable} ${urbanist.variable} ${nunito.variable} ${fraunces.variable} font-sans antialiased`}
       >
-        <Providers>{children}</Providers>
+        <Providers>
+          <TooltipProvider>
+            {children}
+          </TooltipProvider>
+          <Toaster />
+        </Providers>
       </body>
     </html>
   );
