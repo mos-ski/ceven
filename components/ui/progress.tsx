@@ -74,10 +74,72 @@ function ProgressValue({ className, ...props }: ProgressPrimitive.Value.Props) {
   )
 }
 
+function CircularProgress({
+  className,
+  size = 40,
+  strokeWidth = 4,
+  value = 0,
+  indeterminate = false,
+  ...props
+}: React.ComponentProps<"div"> & {
+  size?: number
+  strokeWidth?: number
+  value?: number
+  indeterminate?: boolean
+}) {
+  const radius = (size - strokeWidth) / 2
+  const circumference = radius * 2 * Math.PI
+  const offset = circumference - (value / 100) * circumference
+
+  return (
+    <div
+      data-slot="circular-progress"
+      className={cn("relative inline-flex items-center justify-center", className)}
+      {...props}
+    >
+      <svg
+        width={size}
+        height={size}
+        viewBox={`0 0 ${size} ${size}`}
+        className={cn(
+          "-rotate-90",
+          indeterminate && "animate-spin"
+        )}
+      >
+        <circle
+          cx={size / 2}
+          cy={size / 2}
+          r={radius}
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={strokeWidth}
+          className="text-muted"
+        />
+        <circle
+          cx={size / 2}
+          cy={size / 2}
+          r={radius}
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={strokeWidth}
+          strokeDasharray={circumference}
+          strokeDashoffset={indeterminate ? circumference * 0.75 : offset}
+          strokeLinecap="round"
+          className={cn(
+            "transition-all duration-300",
+            indeterminate ? "origin-center animate-[circular-spin_1.4s_linear_infinite]" : ""
+          )}
+        />
+      </svg>
+    </div>
+  )
+}
+
 export {
   Progress,
   ProgressTrack,
   ProgressIndicator,
   ProgressLabel,
   ProgressValue,
+  CircularProgress,
 }

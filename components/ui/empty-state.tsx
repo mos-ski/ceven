@@ -5,6 +5,8 @@ interface EmptyStateProps extends React.ComponentProps<"div"> {
   title: string
   description?: string
   action?: React.ReactNode
+  secondaryAction?: React.ReactNode
+  layout?: "inline" | "stacked"
 }
 
 function EmptyState({
@@ -12,12 +14,15 @@ function EmptyState({
   title,
   description,
   action,
+  secondaryAction,
+  layout = "inline",
   className,
   ...props
 }: EmptyStateProps) {
   return (
     <div
       data-slot="empty-state"
+      data-layout={layout}
       className={cn(
         "flex flex-col items-center justify-center py-12 text-center",
         className
@@ -25,7 +30,7 @@ function EmptyState({
       {...props}
     >
       {icon && (
-        <div className="mb-4 flex size-12 items-center justify-center rounded-full bg-muted text-muted-foreground">
+        <div className="mb-4 flex size-16 items-center justify-center rounded-full bg-muted text-muted-foreground">
           {icon}
         </div>
       )}
@@ -35,7 +40,17 @@ function EmptyState({
           {description}
         </p>
       )}
-      {action}
+      {(action || secondaryAction) && (
+        <div
+          className={cn(
+            "flex items-center gap-3",
+            layout === "stacked" && "flex-col w-full max-w-[240px]"
+          )}
+        >
+          {action}
+          {secondaryAction}
+        </div>
+      )}
     </div>
   )
 }
