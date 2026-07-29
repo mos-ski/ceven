@@ -129,6 +129,8 @@ import {
   AlertTriangle,
   TrendingUp,
   ShieldCheck,
+  ThumbsUp,
+  ThumbsDown,
 } from "lucide-react"
 
 const NAV_GROUPS = [
@@ -194,6 +196,17 @@ const NAV_GROUPS = [
     label: "Marketing",
     items: [
       { id: "marketing", label: "Marketing Sections" },
+    ],
+  },
+  {
+    label: "AI",
+    items: [
+      { id: "ai-chat", label: "AI Chat Interface" },
+      { id: "ai-messages", label: "AI Messages" },
+      { id: "ai-empty", label: "AI Empty State" },
+      { id: "ai-input", label: "AI Input Bar" },
+      { id: "ai-typing", label: "AI Typing Indicator" },
+      { id: "ai-risk", label: "AI Risk Badge" },
     ],
   },
 ]
@@ -1665,6 +1678,230 @@ export default function LibraryPage() {
               </ComponentShowcase>
             </section>
 
+            {/* ─── AI Chat Interface ───────────────────────────────────── */}
+            <section id="ai-chat" className="mb-16">
+              <SectionTitle>AI Chat Interface</SectionTitle>
+              <SectionDescription>The full CEvenAI chat interface with header, messages, and input bar.</SectionDescription>
+              <ComponentShowcase title="Full Chat (Empty State)">
+                <div className="mx-auto max-w-sm overflow-hidden rounded-2xl border border-border bg-[#fffefa] shadow-sm">
+                  {/* Header */}
+                  <div className="flex items-center px-4 pt-4 pb-3">
+                    <button className="flex h-[34px] w-[34px] items-center justify-center rounded-full border border-gray-200 bg-[#f4f5f6]">
+                      <ArrowLeft size={16} className="text-gray-700" />
+                    </button>
+                    <div className="flex flex-1 items-center justify-center gap-2">
+                      <AiSparkleIcon size={22} className="text-brand-dark" />
+                      <h1 className="text-lg font-bold text-gray-800">CEvenAI</h1>
+                    </div>
+                    <div className="h-[34px] w-[34px]" />
+                  </div>
+                  {/* Empty chat area */}
+                  <div className="flex h-[300px] flex-col items-center justify-center px-6 text-center">
+                    <div className="mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-[#F3EDE5]">
+                      <AiSparkleIcon size={30} className="text-brand-dark" />
+                    </div>
+                    <h2 className="mb-1 text-base font-bold text-gray-800">Hi! I&apos;m CEvenAI</h2>
+                    <p className="max-w-[220px] text-xs text-gray-500">
+                      Ask me about your child&apos;s day, health patterns, or activities.
+                    </p>
+                    <div className="mt-4 space-y-2">
+                      {["Summarize today's report", "Any health patterns this week?", "How was my child's mood?", "What learning activity was done?"].map((p) => (
+                        <button key={p} className="flex w-full items-center gap-2 rounded-xl bg-[#F3EDE5] px-4 py-3 text-left text-sm text-brand-dark">
+                          <span>{p}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  {/* Input bar */}
+                  <div className="shrink-0 bg-white px-4 pt-4 pb-4 shadow-[0px_-4px_12px_4px_rgba(46,46,46,0.04)]">
+                    <div className="flex items-center gap-3">
+                      <input placeholder="Ask me anything..." className="flex-1 rounded-xl bg-[#f4f5f6] px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none" />
+                      <button className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#E0BFA0]">
+                        <Send size={14} className="text-brand-dark" />
+                      </button>
+                      <Mic size={22} className="text-gray-500" />
+                    </div>
+                  </div>
+                </div>
+              </ComponentShowcase>
+            </section>
+
+            {/* ─── AI Messages ────────────────────────────────────────── */}
+            <section id="ai-messages" className="mb-16">
+              <SectionTitle>AI Messages</SectionTitle>
+              <SectionDescription>User and AI message bubble styles with action buttons.</SectionDescription>
+              <ComponentShowcase title="User Message">
+                <div className="flex justify-end">
+                  <div className="max-w-[78%] rounded-2xl bg-brand-dark px-4 py-3 text-sm text-white">
+                    Summarize today&apos;s report
+                  </div>
+                </div>
+              </ComponentShowcase>
+              <ComponentShowcase title="AI Message">
+                <div className="flex justify-start">
+                  <div className="max-w-[88%]">
+                    <div className="mb-1 flex items-center gap-1.5">
+                      <AiSparkleIcon size={14} className="text-brand-dark" />
+                    </div>
+                    <div className="rounded-2xl bg-white px-4 py-3 text-sm text-gray-700 shadow-sm">
+                      <p>Of course! As an AI language model, I am designed to assist with a variety of tasks.</p>
+                      <p className="mt-1">Here are some examples of what I can do:</p>
+                      <p className="mt-1">• Answer questions: Just ask me anything you like!</p>
+                      <p className="mt-1">• Generate text: I can write stories, poems, or summaries for you.</p>
+                    </div>
+                    <div className="mt-1.5 flex items-center gap-3">
+                      <button className="text-gray-300 hover:text-gray-500"><ThumbsUp size={14} /></button>
+                      <button className="text-gray-300 hover:text-gray-500"><ThumbsDown size={14} /></button>
+                      <button className="text-gray-300 hover:text-gray-500"><Copy size={14} /></button>
+                    </div>
+                  </div>
+                </div>
+              </ComponentShowcase>
+              <ComponentShowcase title="Conversation Flow">
+                <div className="mx-auto max-w-sm space-y-3">
+                  <div className="flex justify-end">
+                    <div className="max-w-[78%] rounded-2xl bg-brand-dark px-4 py-3 text-sm text-white">
+                      Summarize today&apos;s report
+                    </div>
+                  </div>
+                  <div className="flex justify-start">
+                    <div className="max-w-[88%]">
+                      <div className="mb-1 flex items-center gap-1.5">
+                        <AiSparkleIcon size={14} className="text-brand-dark" />
+                      </div>
+                      <div className="rounded-2xl bg-white px-4 py-3 text-sm text-gray-700 shadow-sm">
+                        <p>Of course! As an AI language model, I am designed to assist with a variety of tasks. Here are some examples of what I can do:</p>
+                        <p className="mt-1">• Answer questions: Just ask me anything you like!</p>
+                        <p className="mt-1">• Generate text: I can write stories, poems, or summaries for you.</p>
+                      </div>
+                      <div className="mt-1.5 flex items-center gap-3">
+                        <button className="text-gray-300 hover:text-gray-500"><ThumbsUp size={14} /></button>
+                        <button className="text-gray-300 hover:text-gray-500"><ThumbsDown size={14} /></button>
+                        <button className="text-gray-300 hover:text-gray-500"><Copy size={14} /></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ComponentShowcase>
+            </section>
+
+            {/* ─── AI Empty State ─────────────────────────────────────── */}
+            <section id="ai-empty" className="mb-16">
+              <SectionTitle>AI Empty State</SectionTitle>
+              <SectionDescription>Greeting screen with suggested prompt buttons.</SectionDescription>
+              <ComponentShowcase>
+                <div className="mx-auto max-w-sm">
+                  <div className="flex flex-col items-center text-center">
+                    <div className="mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-[#F3EDE5]">
+                      <AiSparkleIcon size={30} className="text-brand-dark" />
+                    </div>
+                    <h2 className="mb-1 text-base font-bold text-gray-800">Hi! I&apos;m CEvenAI</h2>
+                    <p className="max-w-[220px] text-xs text-gray-500">
+                      Ask me about your child&apos;s day, health patterns, or activities.
+                    </p>
+                  </div>
+                  <div className="mt-4 space-y-2">
+                    {[
+                      { icon: "📄", text: "Summarize today's report" },
+                      { icon: "↗", text: "Any health patterns this week?" },
+                      { icon: "😊", text: "How was my child's mood?" },
+                      { icon: "📖", text: "What learning activity was done?" },
+                    ].map((p) => (
+                      <button key={p.text} className="flex w-full items-center gap-2 rounded-xl bg-[#F3EDE5] px-4 py-3 text-left text-sm text-brand-dark">
+                        <span>{p.icon}</span>
+                        <span>{p.text}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </ComponentShowcase>
+            </section>
+
+            {/* ─── AI Input Bar ───────────────────────────────────────── */}
+            <section id="ai-input" className="mb-16">
+              <SectionTitle>AI Input Bar</SectionTitle>
+              <SectionDescription>Chat input with send, mic, and refresh buttons.</SectionDescription>
+              <ComponentShowcase title="Empty State">
+                <div className="mx-auto max-w-sm rounded-xl bg-white px-4 py-4 shadow-[0px_-4px_12px_4px_rgba(46,46,46,0.04)]">
+                  <div className="flex items-center gap-3">
+                    <input placeholder="Ask me anything..." className="flex-1 rounded-xl bg-[#f4f5f6] px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none" />
+                    <button className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#E0BFA0]">
+                      <Send size={14} className="text-brand-dark" />
+                    </button>
+                    <Mic size={22} className="text-gray-500" />
+                  </div>
+                </div>
+              </ComponentShowcase>
+              <ComponentShowcase title="With Refresh Button">
+                <div className="mx-auto max-w-sm rounded-xl bg-white px-4 py-4 shadow-[0px_-4px_12px_4px_rgba(46,46,46,0.04)]">
+                  <div className="flex items-center gap-3">
+                    <button className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gray-100">
+                      <RefreshCw size={14} className="text-gray-500" />
+                    </button>
+                    <input placeholder="Ask me anything..." className="flex-1 rounded-xl bg-[#f4f5f6] px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none" />
+                    <button className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#E0BFA0]">
+                      <Send size={14} className="text-brand-dark" />
+                    </button>
+                    <Mic size={22} className="text-gray-500" />
+                  </div>
+                </div>
+              </ComponentShowcase>
+              <ComponentShowcase title="Disabled (Trial Ended)">
+                <div className="mx-auto max-w-sm rounded-xl bg-white px-4 py-4 shadow-[0px_-4px_12px_4px_rgba(46,46,46,0.04)]">
+                  <div className="flex items-center gap-3">
+                    <input placeholder="Manage your account to keep chatting" disabled className="flex-1 rounded-xl bg-[#f4f5f6] px-4 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none disabled:opacity-60" />
+                    <button disabled className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#E0BFA0] disabled:opacity-60">
+                      <Send size={14} className="text-brand-dark" />
+                    </button>
+                    <Mic size={22} className="text-gray-300" />
+                  </div>
+                </div>
+              </ComponentShowcase>
+            </section>
+
+            {/* ─── AI Typing Indicator ────────────────────────────────── */}
+            <section id="ai-typing" className="mb-16">
+              <SectionTitle>AI Typing Indicator</SectionTitle>
+              <SectionDescription>Bouncing dots animation while AI is generating a response.</SectionDescription>
+              <ComponentShowcase>
+                <div className="flex items-center gap-2">
+                  <AiSparkleIcon size={14} className="text-brand-dark" />
+                  <div className="flex items-center gap-1 rounded-2xl bg-white px-4 py-3 shadow-sm">
+                    <span className="h-2 w-2 animate-bounce rounded-full bg-gray-400 [animation-delay:0ms]" />
+                    <span className="h-2 w-2 animate-bounce rounded-full bg-gray-400 [animation-delay:150ms]" />
+                    <span className="h-2 w-2 animate-bounce rounded-full bg-gray-400 [animation-delay:300ms]" />
+                  </div>
+                </div>
+              </ComponentShowcase>
+            </section>
+
+            {/* ─── AI Risk Badge ──────────────────────────────────────── */}
+            <section id="ai-risk" className="mb-16">
+              <SectionTitle>AI Risk Badge</SectionTitle>
+              <SectionDescription>AI-computed risk level badges for child welfare monitoring.</SectionDescription>
+              <ComponentShowcase title="Risk Levels">
+                <div className="flex flex-wrap gap-2">
+                  <span className="inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-semibold" style={{ backgroundColor: "#ecfdf5", color: "#059669", borderColor: "#059669" }}>Low Risk</span>
+                  <span className="inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-semibold" style={{ backgroundColor: "#fffbeb", color: "#d97706", borderColor: "#d97706" }}>Medium Risk</span>
+                  <span className="inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-semibold" style={{ backgroundColor: "#fef2f2", color: "#dc2626", borderColor: "#dc2626" }}>High Risk</span>
+                </div>
+              </ComponentShowcase>
+              <ComponentShowcase title="Locked (Seedling Plan)">
+                <div className="group relative inline-flex items-center gap-1">
+                  <span className="inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[10px] font-semibold" style={{ backgroundColor: "#f3f4f6", color: "#9ca3af", borderColor: "#d1d5db" }}>
+                    <Lock className="h-2.5 w-2.5" />
+                    AI Risk
+                  </span>
+                  <div className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 -translate-x-1/2 opacity-0 transition-opacity group-hover:opacity-100">
+                    <div className="whitespace-nowrap rounded-lg bg-[#2d1810] px-3 py-1.5 text-[10px] text-white shadow-lg">
+                      Upgrade to Nurture Pro to unlock AI Risk
+                      <div className="absolute left-1/2 top-full -translate-x-1/2 border-4 border-transparent border-t-[#2d1810]" />
+                    </div>
+                  </div>
+                </div>
+              </ComponentShowcase>
+            </section>
+
             {/* ─── Marketing ────────────────────────────────────────────── */}
             <section id="marketing" className="mb-16">
               <SectionTitle>Marketing Sections</SectionTitle>
@@ -1708,6 +1945,17 @@ export default function LibraryPage() {
         </main>
       </div>
     </div>
+  )
+}
+
+function AiSparkleIcon({ size = 24, className }: { size?: number; className?: string }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 21.7538 21.7538" fill="none" className={className}>
+      <path
+        d="M18.0038 12.75C18.0057 13.0558 17.9128 13.3547 17.7379 13.6055C17.5629 13.8563 17.3146 14.0468 17.0269 14.1506L12.1913 15.9375L10.4101 20.7769C10.3046 21.0634 10.1137 21.3108 9.86327 21.4855C9.61282 21.6601 9.3148 21.7538 9.00944 21.7538C8.70407 21.7538 8.40606 21.6601 8.1556 21.4855C7.90514 21.3108 7.7143 21.0634 7.60881 20.7769L5.81631 15.9375L0.976936 14.1562C0.69037 14.0508 0.443055 13.8599 0.26836 13.6095C0.0936661 13.359 0 13.061 0 12.7556C0 12.4503 0.0936661 12.1522 0.26836 11.9018C0.443055 11.6513 0.69037 11.4605 0.976936 11.355L5.81631 9.5625L7.59756 4.72313C7.70305 4.43656 7.89389 4.18924 8.14435 4.01455C8.39481 3.83985 8.69282 3.74619 8.99819 3.74619C9.30355 3.74619 9.60157 3.83985 9.85202 4.01455C10.1025 4.18924 10.2933 4.43656 10.3988 4.72313L12.1913 9.5625L17.0307 11.3438C17.3185 11.4486 17.5667 11.6401 17.741 11.892C17.9153 12.1439 18.0072 12.4437 18.0038 12.75ZM12.7538 3.75H14.2538V5.25C14.2538 5.44891 14.3328 5.63968 14.4735 5.78033C14.6141 5.92098 14.8049 6 15.0038 6C15.2027 6 15.3935 5.92098 15.5341 5.78033C15.6748 5.63968 15.7538 5.44891 15.7538 5.25V3.75H17.2538C17.4527 3.75 17.6435 3.67098 17.7841 3.53033C17.9248 3.38968 18.0038 3.19891 18.0038 3C18.0038 2.80109 17.9248 2.61032 17.7841 2.46967C17.6435 2.32902 17.4527 2.25 17.2538 2.25H15.7538V0.75C15.7538 0.551088 15.6748 0.360322 15.5341 0.21967C15.3935 0.0790176 15.2027 0 15.0038 0C14.8049 0 14.6141 0.0790176 14.4735 0.21967C14.3328 0.360322 14.2538 0.551088 14.2538 0.75V2.25H12.7538C12.5549 2.25 12.3641 2.32902 12.2235 2.46967C12.0828 2.61032 12.0038 2.80109 12.0038 3C12.0038 3.19891 12.0828 3.38968 12.2235 3.53033C12.3641 3.67098 12.5549 3.75 12.7538 3.75ZM21.0038 6.75H20.2538V6C20.2538 5.80109 20.1748 5.61032 20.0341 5.46967C19.8935 5.32902 19.7027 5.25 19.5038 5.25C19.3049 5.25 19.1141 5.32902 18.9735 5.46967C18.8328 5.61032 18.7538 5.80109 18.7538 6V6.75H18.0038C17.8049 6.75 17.6141 6.82902 17.4735 6.96967C17.3328 7.11032 17.2538 7.30109 17.2538 7.5C17.2538 7.69891 17.3328 7.88968 17.4735 8.03033C17.6141 8.17098 17.8049 8.25 18.0038 8.25H18.7538V9C18.7538 9.19891 18.8328 9.38968 18.9735 9.53033C19.1141 9.67098 19.3049 9.75 19.5038 9.75C19.7027 9.75 19.8935 9.67098 20.0341 9.53033C20.1748 9.38968 20.2538 9.19891 20.2538 9V8.25H21.0038C21.2027 8.25 21.3935 8.17098 21.5341 8.03033C21.6748 7.88968 21.7538 7.69891 21.7538 7.5C21.7538 7.30109 21.6748 7.11032 21.5341 6.96967C21.3935 6.82902 21.2027 6.75 21.0038 6.75Z"
+        fill="currentColor"
+      />
+    </svg>
   )
 }
 
