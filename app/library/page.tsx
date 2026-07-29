@@ -144,9 +144,25 @@ const NAV_GROUPS = [
     label: "Brand",
     items: [
       { id: "logos", label: "Logo" },
+    ],
+  },
+  {
+    label: "Application",
+    items: [
+      { id: "progress", label: "Progress" },
+      { id: "native", label: "Native" },
+      { id: "navigation", label: "Navigation" },
+      { id: "cards", label: "Cards" },
+      { id: "tables", label: "Tables" },
+    ],
+  },
+  {
+    label: "Brand",
+    items: [
       { id: "icons", label: "Icons" },
       { id: "colors", label: "Colors" },
       { id: "typography", label: "Typography" },
+      { id: "text-combos", label: "Text Combos" },
     ],
   },
   {
@@ -154,7 +170,7 @@ const NAV_GROUPS = [
     items: [
       { id: "buttons", label: "Buttons" },
       { id: "icon-buttons", label: "Icon Buttons" },
-      { id: "badges", label: "Badges & Status" },
+      { id: "badges", label: "Badges" },
       { id: "labels", label: "Labels" },
       { id: "tags", label: "Tags" },
       { id: "avatars", label: "Avatars" },
@@ -165,42 +181,31 @@ const NAV_GROUPS = [
   {
     label: "Form Controls",
     items: [
-      { id: "input-fields", label: "Input Fields" },
-      { id: "text-area", label: "Text Area" },
-      { id: "dropdown", label: "Dropdown" },
-      { id: "dropdown-list", label: "Dropdown List Item" },
       { id: "checkbox", label: "Checkbox" },
       { id: "radio", label: "Radio Buttons" },
       { id: "switches", label: "Toggles & Switches" },
       { id: "sliders", label: "Sliders" },
       { id: "otp", label: "OTP Box" },
+      { id: "input-fields", label: "Input Fields" },
+      { id: "text-area", label: "Text Area" },
+      { id: "dropdown", label: "Dropdown" },
+      { id: "dropdown-list", label: "Dropdown List Item" },
       { id: "date-picker", label: "Date Picker" },
       { id: "searchbar", label: "Search Bar" },
     ],
   },
   {
-    label: "Application Components",
+    label: "Application",
     items: [
-      { id: "cards", label: "Cards" },
-      { id: "tables", label: "Tables" },
-      { id: "navigation", label: "Navigation" },
       { id: "tabs", label: "Tabs" },
-      { id: "progress", label: "Progress" },
       { id: "modals", label: "Modals & Dialogs" },
       { id: "alerts", label: "Alerts & Notifications" },
-      { id: "pagination", label: "Pagination" },
       { id: "empty-state", label: "Empty States" },
+      { id: "pagination", label: "Pagination" },
       { id: "progress-steps", label: "Progress Steps" },
       { id: "file-upload", label: "File Upload" },
       { id: "code-blocks", label: "Code Blocks" },
       { id: "activity-feeds", label: "Activity Feeds" },
-      { id: "native", label: "Native" },
-    ],
-  },
-  {
-    label: "Marketing",
-    items: [
-      { id: "marketing", label: "Marketing Sections" },
     ],
   },
   {
@@ -223,6 +228,12 @@ const NAV_GROUPS = [
       { id: "msg-bubbles", label: "Message Bubbles" },
       { id: "msg-input", label: "Chat Input" },
       { id: "msg-session", label: "Session & Trial" },
+    ],
+  },
+  {
+    label: "Marketing",
+    items: [
+      { id: "marketing", label: "Marketing Sections" },
     ],
   },
 ]
@@ -541,10 +552,10 @@ export default function LibraryPage() {
                   </div>
                   <div className="text-center">
                     <div className="flex h-16 w-16 items-center justify-center rounded-[8px] bg-brand-dark">
-                      <Image src="/Logo/CEVEN APP 1-white.svg" alt="Logo White" width={40} height={40} unoptimized />
+                      <Image src="/Logo/icon.svg" alt="Icon" width={40} height={40} unoptimized className="brightness-0 invert" />
                     </div>
-                    <p className="text-caption text-muted-text mt-2">CEVEN APP 1-white.svg</p>
-                    <p className="text-[10px] text-muted-text">Full logo (white)</p>
+                    <p className="text-caption text-muted-text mt-2">icon.svg</p>
+                    <p className="text-[10px] text-muted-text">Icon only</p>
                   </div>
                 </div>
               </ComponentShowcase>
@@ -587,9 +598,9 @@ export default function LibraryPage() {
             <section id="native" className="mb-26">
               <SectionTitle>Native</SectionTitle>
               <SectionDescription>
-                Native iOS UI elements for reference.
+                Native iOS and Android UI elements for reference.
               </SectionDescription>
-              <ComponentShowcase>
+              <ComponentShowcase title="iOS Status Bar">
                 <div className="flex flex-col items-center gap-6">
                   <div className="w-full max-w-xs rounded-[8px] bg-[#F2F2F7] p-4 text-center">
                     <div className="flex items-center justify-between text-xs text-gray-600">
@@ -600,9 +611,21 @@ export default function LibraryPage() {
                         <span className="text-[10px]">🔋</span>
                       </div>
                     </div>
-                    <div className="mt-2 mx-auto h-2 w-28 rounded-[8px] bg-black" />
+                    <div className="mt-2 mx-auto h-[28px] w-[120px] rounded-full bg-black" />
                   </div>
-                  <p className="text-caption">Status Bar — Light & Dark</p>
+                </div>
+              </ComponentShowcase>
+              <ComponentShowcase title="Android Status Bar">
+                <div className="flex flex-col items-center gap-6">
+                  <div className="w-full max-w-xs rounded-[8px] bg-white p-4 text-center border border-gray-200">
+                    <div className="flex items-center justify-between text-xs text-gray-800">
+                      <span className="text-[10px] font-medium">9:41</span>
+                      <div className="flex items-center gap-2">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M1 1l22 22M16.72 11.06A10.94 10.94 0 0 1 19 12.55M5 12.55a10.94 10.94 0 0 1 5.17-2.39M10.71 5.05A16 16 0 0 1 22.56 9M1.42 9a15.91 15.91 0 0 1 4.7-2.88M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01" /></svg>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="1" y="6" width="18" height="12" rx="2" /><line x1="23" y1="13" x2="23" y2="11" /></svg>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </ComponentShowcase>
             </section>
@@ -1175,14 +1198,14 @@ export default function LibraryPage() {
               </SectionDescription>
               <ComponentShowcase>
                 <div className="flex flex-wrap gap-4">
-                  <Badge variant="default">Default <X className="size-3 ml-2 cursor-pointer" /></Badge>
-                  <Badge variant="secondary">Secondary <X className="size-3 ml-2 cursor-pointer" /></Badge>
-                  <Badge variant="outline">Success <X className="size-3 ml-2 cursor-pointer" /></Badge>
-                  <Badge variant="destructive">Error <X className="size-3 ml-2 cursor-pointer" /></Badge>
-                  <Badge className="bg-[#E0BFA0] text-brand-dark border-[#D4A67F]">Brand <X className="size-3 ml-2 cursor-pointer" /></Badge>
-                  <Badge className="bg-[#E1F5EC] text-[#009061] border-[#009061]/20">Active <X className="size-3 ml-2 cursor-pointer" /></Badge>
-                  <Badge className="bg-[#F9F1E6] text-[#FF9A01] border-[#FF9A01]/20">Warning <X className="size-3 ml-2 cursor-pointer" /></Badge>
-                  <Badge className="bg-[#FDE8E8] text-[#CD3030] border-[#CD3030]/20">Danger <X className="size-3 ml-2 cursor-pointer" /></Badge>
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[#3B2513] px-3 py-1 text-xs font-medium text-white">Default <X className="size-3 cursor-pointer opacity-70 hover:opacity-100" /></span>
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[#6B7280] px-3 py-1 text-xs font-medium text-white">Secondary <X className="size-3 cursor-pointer opacity-70 hover:opacity-100" /></span>
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[#009061] px-3 py-1 text-xs font-medium text-white">Success <X className="size-3 cursor-pointer opacity-70 hover:opacity-100" /></span>
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[#CD3030] px-3 py-1 text-xs font-medium text-white">Error <X className="size-3 cursor-pointer opacity-70 hover:opacity-100" /></span>
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[#9A6033] px-3 py-1 text-xs font-medium text-white">Brand <X className="size-3 cursor-pointer opacity-70 hover:opacity-100" /></span>
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[#059669] px-3 py-1 text-xs font-medium text-white">Active <X className="size-3 cursor-pointer opacity-70 hover:opacity-100" /></span>
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[#D97706] px-3 py-1 text-xs font-medium text-white">Warning <X className="size-3 cursor-pointer opacity-70 hover:opacity-100" /></span>
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-[#DC2626] px-3 py-1 text-xs font-medium text-white">Danger <X className="size-3 cursor-pointer opacity-70 hover:opacity-100" /></span>
                 </div>
               </ComponentShowcase>
             </section>
@@ -2199,58 +2222,41 @@ export default function LibraryPage() {
                   {/* Today */}
                   <p className="px-4 py-2 text-xs font-medium text-gray-400">Today</p>
                   <div className="bg-white">
-                    {[
-                      { initials: "MA", name: "Mrs Anu", last: "Liam had a great day today!", time: "4:30 PM", color: "bg-brand-dark" },
-                      { initials: "SM", name: "Sarah (Mother)", last: "Don't forget the parent meeting", time: "2:15 PM", color: "bg-[#D4A67F]" },
-                    ].map((t) => (
-                      <div key={t.name} className="flex items-center gap-4 px-4 py-4">
-                        <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white ${t.color}`}>
-                          {t.initials}
+                    <div className="flex items-center gap-4 px-4 py-4">
+                      <img src="/caregiver-avatar.png" alt="Mrs Anu" className="h-10 w-10 shrink-0 rounded-full object-cover" />
+                      <div className="min-w-0 flex-1">
+                        <div className="flex items-center justify-between">
+                          <p className="text-sm font-semibold text-gray-800">Mrs Anu</p>
+                          <p className="text-[10px] text-gray-400">4:30 PM</p>
                         </div>
-                        <div className="min-w-0 flex-1">
-                          <div className="flex items-center justify-between">
-                            <p className="text-sm font-semibold text-gray-800">{t.name}</p>
-                            <p className="text-[10px] text-gray-400">{t.time}</p>
-                          </div>
-                          <p className="truncate text-xs text-gray-400">{t.last}</p>
-                        </div>
+                        <p className="truncate text-xs text-gray-400">Liam had a great day today!</p>
                       </div>
-                    ))}
+                    </div>
+                    <div className="flex items-center gap-4 px-4 py-4">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gray-200">
+                        <Users size={18} className="text-gray-600" />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <div className="flex items-center justify-between">
+                          <p className="text-sm font-semibold text-gray-800">Liam&apos;s Family</p>
+                          <p className="text-[10px] text-gray-400">2:15 PM</p>
+                        </div>
+                        <p className="truncate text-xs text-gray-400">Ms Anu: Liam took his first steps!</p>
+                      </div>
+                    </div>
                   </div>
                   {/* Yesterday */}
                   <p className="px-4 py-2 text-xs font-medium text-gray-400">Yesterday</p>
                   <div className="bg-white">
-                    {[
-                      { initials: "AD", name: "Creche Admin", last: "Invoice has been sent", time: "Yesterday", color: "bg-indigo-500" },
-                    ].map((t) => (
-                      <div key={t.name} className="flex items-center gap-4 px-4 py-4">
-                        <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white ${t.color}`}>
-                          {t.initials}
+                    <div className="flex items-center gap-4 px-4 py-4">
+                      <img src="/features/avatar-3.png" alt="Creche Admin" className="h-10 w-10 shrink-0 rounded-[8px] object-cover" />
+                      <div className="min-w-0 flex-1">
+                        <div className="flex items-center justify-between">
+                          <p className="text-sm font-semibold text-gray-800">Creche Admin</p>
+                          <p className="text-[10px] text-gray-400">Yesterday</p>
                         </div>
-                        <div className="min-w-0 flex-1">
-                          <div className="flex items-center justify-between">
-                            <p className="text-sm font-semibold text-gray-800">{t.name}</p>
-                            <p className="text-[10px] text-gray-400">{t.time}</p>
-                          </div>
-                          <p className="truncate text-xs text-gray-400">{t.last}</p>
-                        </div>
+                        <p className="truncate text-xs text-gray-400">Invoice has been sent</p>
                       </div>
-                    ))}
-                  </div>
-                </div>
-              </ComponentShowcase>
-              <ComponentShowcase title="Family Group Thread">
-                <div className="mx-auto max-w-sm overflow-hidden rounded-[8px] border border-border bg-white shadow-sm">
-                  <div className="flex items-center gap-4 px-4 py-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#7A4C29] to-[#D4A67F] text-xs font-bold text-white">
-                      LF
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <div className="flex items-center justify-between">
-                        <p className="text-sm font-semibold text-gray-800">Liam&apos;s Family</p>
-                        <p className="text-[10px] text-gray-400">9:24 AM</p>
-                      </div>
-                      <p className="truncate text-xs text-gray-400">James: Perfect, we&apos;ll be there. Thanks everyone!</p>
                     </div>
                   </div>
                 </div>
@@ -2270,7 +2276,7 @@ export default function LibraryPage() {
                     </button>
                     <div className="flex flex-1 items-center gap-2">
                       <div className="relative">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#E0BFA0] text-sm font-bold text-white">MA</div>
+                        <img src="/caregiver-avatar.png" alt="Mrs Anu" className="h-10 w-10 rounded-full object-cover" />
                         <span className="absolute bottom-0 right-0 h-2 w-2 rounded-full bg-green-400 ring-2 ring-white" />
                       </div>
                       <div>
@@ -2350,15 +2356,9 @@ export default function LibraryPage() {
                     </button>
                     <div className="flex flex-1 items-center gap-2">
                       <div className="flex -space-x-2">
-                        {[
-                          { initials: "JM", color: "#7A4C29" },
-                          { initials: "SM", color: "#D4A67F" },
-                          { initials: "MA", color: "#059669" },
-                        ].map((a) => (
-                          <div key={a.initials} className="flex h-8 w-8 items-center justify-center rounded-full text-[10px] font-bold text-white ring-2 ring-white" style={{ backgroundColor: a.color }}>
-                            {a.initials}
-                          </div>
-                        ))}
+                        <img src="/features/avatar-1.png" alt="James" className="h-8 w-8 rounded-full object-cover ring-2 ring-white" />
+                        <img src="/features/avatar-4.png" alt="Sarah" className="h-8 w-8 rounded-full object-cover ring-2 ring-white" />
+                        <img src="/caregiver-avatar.png" alt="Mrs Anu" className="h-8 w-8 rounded-full object-cover ring-2 ring-white" />
                         <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 text-[10px] font-bold text-gray-500 ring-2 ring-white">+1</div>
                       </div>
                       <div>
@@ -2379,32 +2379,66 @@ export default function LibraryPage() {
                   </div>
                   {/* Messages */}
                   <div className="space-y-4 px-4 py-4">
-                    {[
-                      { sender: "Ms Anu", role: "Caregiver", initials: "MA", color: "#059669", text: "Good morning everyone! I have amazing news about Liam!", time: "9:15 AM", own: false },
-                      { sender: "Sarah", role: "Mother", initials: "SM", color: "#D4A67F", text: "Good morning Ms Anu! What happened?", time: "9:16 AM", own: false },
-                      { sender: "Ms Anu", role: "Caregiver", initials: "MA", color: "#059669", text: "Liam took his first steps today!! He walked from the mat to the toy shelf!", time: "9:16 AM", own: false },
-                      { sender: "James", role: "Father", initials: "JM", color: "#7A4C29", text: "Oh wow!! That's incredible! Our little man is growing up so fast!", time: "9:17 AM", own: true },
-                    ].map((m, i) => (
-                      <div key={i} className={`flex ${m.own ? "justify-end" : "justify-start gap-2"}`}>
-                        {!m.own && (
-                          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[8px] text-[10px] font-bold text-white mt-2" style={{ backgroundColor: m.color }}>
-                            {m.initials}
-                          </div>
-                        )}
-                        <div className="max-w-[72%]">
-                          {!m.own && (
-                            <div className="mb-0.5 flex items-center gap-2">
-                              <span className="text-[11px] font-semibold" style={{ color: m.color }}>{m.sender}</span>
-                              <span className="text-[9px] text-gray-400">{m.role}</span>
-                            </div>
-                          )}
-                          <div className={`rounded-[8px] px-4 py-2 ${m.own ? "rounded-tr-sm bg-brand-dark text-white" : "rounded-tl-sm bg-gray-100 text-gray-800"}`}>
-                            <p className="text-sm whitespace-pre-line">{m.text}</p>
-                          </div>
-                          <p className={`mt-2 text-[10px] text-gray-400 ${m.own ? "text-right" : ""}`}>{m.time}</p>
+                    <div className="flex justify-start gap-2">
+                      <img src="/caregiver-avatar.png" alt="Ms Anu" className="h-8 w-8 shrink-0 rounded-full object-cover mt-2" />
+                      <div className="max-w-[72%]">
+                        <div className="mb-0.5 flex items-center gap-2">
+                          <span className="text-[11px] font-semibold text-[#059669]">Ms Anu</span>
+                          <span className="text-[9px] text-gray-400">Caregiver</span>
                         </div>
+                        <div className="rounded-[8px] rounded-tl-sm bg-gray-100 px-4 py-2">
+                          <p className="text-sm text-gray-800">Good morning everyone! I have amazing news about Liam!</p>
+                        </div>
+                        <p className="mt-2 text-[10px] text-gray-400">9:15 AM</p>
                       </div>
-                    ))}
+                    </div>
+                    <div className="flex justify-start gap-2">
+                      <img src="/features/avatar-4.png" alt="Sarah" className="h-8 w-8 shrink-0 rounded-full object-cover mt-2" />
+                      <div className="max-w-[72%]">
+                        <div className="mb-0.5 flex items-center gap-2">
+                          <span className="text-[11px] font-semibold text-[#D4A67F]">Sarah</span>
+                          <span className="text-[9px] text-gray-400">Mother</span>
+                        </div>
+                        <div className="rounded-[8px] rounded-tl-sm bg-gray-100 px-4 py-2">
+                          <p className="text-sm text-gray-800">Good morning Ms Anu! What happened?</p>
+                        </div>
+                        <p className="mt-2 text-[10px] text-gray-400">9:16 AM</p>
+                      </div>
+                    </div>
+                    <div className="flex justify-start gap-2">
+                      <img src="/caregiver-avatar.png" alt="Ms Anu" className="h-8 w-8 shrink-0 rounded-full object-cover mt-2" />
+                      <div className="max-w-[72%]">
+                        <div className="mb-0.5 flex items-center gap-2">
+                          <span className="text-[11px] font-semibold text-[#059669]">Ms Anu</span>
+                          <span className="text-[9px] text-gray-400">Caregiver</span>
+                        </div>
+                        <div className="rounded-[8px] rounded-tl-sm bg-gray-100 px-4 py-2">
+                          <p className="text-sm text-gray-800">Liam took his first steps today!! He walked from the mat to the toy shelf!</p>
+                        </div>
+                        <p className="mt-2 text-[10px] text-gray-400">9:16 AM</p>
+                      </div>
+                    </div>
+                    <div className="flex justify-end">
+                      <div className="max-w-[72%]">
+                        <div className="rounded-[8px] rounded-tr-sm bg-brand-dark px-4 py-2">
+                          <p className="text-sm text-white">Oh wow!! That&apos;s incredible! Our little man is growing up so fast!</p>
+                        </div>
+                        <p className="mt-2 text-[10px] text-gray-400 text-right">9:17 AM</p>
+                      </div>
+                    </div>
+                    <div className="flex justify-start gap-2">
+                      <img src="/features/avatar-3.png" alt="Creche Admin" className="h-8 w-8 shrink-0 rounded-[8px] object-cover mt-2" />
+                      <div className="max-w-[72%]">
+                        <div className="mb-0.5 flex items-center gap-2">
+                          <span className="text-[11px] font-semibold text-indigo-500">Creche Admin</span>
+                          <span className="text-[9px] text-gray-400">Admin</span>
+                        </div>
+                        <div className="rounded-[8px] rounded-tl-sm bg-gray-100 px-4 py-2">
+                          <p className="text-sm text-gray-800">That&apos;s wonderful news! We&apos;ll update Liam&apos;s milestone record. Congrats to the family!</p>
+                        </div>
+                        <p className="mt-2 text-[10px] text-gray-400">9:20 AM</p>
+                      </div>
+                    </div>
                   </div>
                   {/* Input with @ mention */}
                   <div className="bg-white px-4 pb-4 pt-3 border-t border-gray-100">
@@ -2451,32 +2485,9 @@ export default function LibraryPage() {
                   </div>
                 </div>
               </ComponentShowcase>
-              <ComponentShowcase title="Caregiver Sent">
-                <div className="flex justify-end">
-                  <div className="max-w-[75%]">
-                    <div className="rounded-[8px] rounded-tr-sm bg-brand-dark px-4 py-2">
-                      <p className="text-sm text-white">Liam had a great day today!</p>
-                    </div>
-                    <div className="mt-2 flex items-center justify-end gap-2">
-                      <span className="text-[10px] text-gray-400">4:30 PM</span>
-                      <svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M1 5l3 3 5-7M6 5l3 3 5-7" stroke="#9CA3AF" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                    </div>
-                  </div>
-                </div>
-              </ComponentShowcase>
-              <ComponentShowcase title="Caregiver Received">
-                <div className="flex justify-start">
-                  <div className="max-w-[75%]">
-                    <div className="rounded-[8px] rounded-tl-sm bg-white px-4 py-2 shadow-sm">
-                      <p className="text-sm text-gray-800">Please remember to bring extra clothes tomorrow.</p>
-                    </div>
-                    <p className="mt-2 text-[10px] text-gray-400">Yesterday</p>
-                  </div>
-                </div>
-              </ComponentShowcase>
               <ComponentShowcase title="Group (with avatar + role)">
                 <div className="flex justify-start gap-2">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[8px] bg-[#059669] text-[10px] font-bold text-white mt-2">MA</div>
+                  <img src="/caregiver-avatar.png" alt="Ms Anu" className="h-8 w-8 shrink-0 rounded-full object-cover mt-2" />
                   <div className="max-w-[72%]">
                     <div className="mb-0.5 flex items-center gap-2">
                       <span className="text-[11px] font-semibold text-[#059669]">Ms Anu</span>
@@ -2495,19 +2506,7 @@ export default function LibraryPage() {
             <section id="msg-input" className="mb-26">
               <SectionTitle>Chat Input</SectionTitle>
               <SectionDescription>Input bar variants for different chat contexts.</SectionDescription>
-              <ComponentShowcase title="Standard (Parent)">
-                <div className="mx-auto max-w-sm rounded-[8px] bg-[#FAFAFA] px-4 py-4 border border-gray-100">
-                  <div className="flex items-center gap-4">
-                    <div className="flex flex-1 items-center rounded-[8px] bg-white px-4 py-2 shadow-sm">
-                      <input placeholder="Type a message..." className="flex-1 bg-transparent text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none" />
-                    </div>
-                    <button className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[8px] bg-brand-dark">
-                      <Send size={14} className="text-white" />
-                    </button>
-                  </div>
-                </div>
-              </ComponentShowcase>
-              <ComponentShowcase title="With Attachment (Caregiver)">
+              <ComponentShowcase title="Default">
                 <div className="mx-auto max-w-sm rounded-[8px] border border-gray-100 bg-white px-4 py-4">
                   <div className="flex items-center gap-2">
                     <button className="flex h-8 w-8 items-center justify-center rounded-[8px] text-gray-400">
@@ -2517,6 +2516,19 @@ export default function LibraryPage() {
                     <button className="flex h-8 w-8 items-center justify-center rounded-[8px] bg-brand-dark">
                       <SendHorizontal size={16} className="text-white" />
                     </button>
+                  </div>
+                </div>
+              </ComponentShowcase>
+              <ComponentShowcase title="Disabled">
+                <div className="mx-auto max-w-sm rounded-[8px] border border-gray-100 bg-white px-4 py-4 opacity-50">
+                  <div className="flex items-center gap-2">
+                    <div className="flex h-8 w-8 items-center justify-center rounded-[8px] text-gray-300">
+                      <Paperclip size={20} />
+                    </div>
+                    <input disabled placeholder="Type a message..." className="flex-1 rounded-[8px] border border-gray-200 bg-gray-50 px-4 py-2 text-sm text-gray-400 placeholder:text-gray-300 cursor-not-allowed" />
+                    <div className="flex h-8 w-8 items-center justify-center rounded-[8px] bg-gray-300">
+                      <SendHorizontal size={16} className="text-white" />
+                    </div>
                   </div>
                 </div>
               </ComponentShowcase>
@@ -2573,7 +2585,7 @@ export default function LibraryPage() {
               <ComponentShowcase title="Online Indicator">
                 <div className="flex items-center gap-4">
                   <div className="relative">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-[8px] bg-[#E0BFA0] text-sm font-bold text-white">MA</div>
+                    <img src="/caregiver-avatar.png" alt="Mrs Anu" className="h-10 w-10 rounded-full object-cover" />
                     <span className="absolute bottom-0 right-0 h-2 w-2 rounded-full bg-green-400 ring-2 ring-white" />
                   </div>
                   <div>
@@ -2611,7 +2623,12 @@ export default function LibraryPage() {
                 <CTABanner
                   title="Ready to get started?"
                   description="Join thousands of parents who trust CEven for their child's care."
-                  actions={<Button variant="brand">Get Started</Button>}
+                  actions={
+                    <>
+                      <Button variant="brand">Get Started</Button>
+                      <Button variant="outline">Learn More</Button>
+                    </>
+                  }
                 />
               </ComponentShowcase>
             </section>

@@ -29,18 +29,20 @@ function CTABanner({
     >
       <div className="mx-auto flex max-w-4xl flex-col items-center gap-8 text-center">
         <h2
+          style={{ fontFamily: "var(--font-merriweather-import)" }}
           className={cn(
-            "text-display",
-            variant === "dark" ? "text-white" : "text-heading"
+            "text-2xl font-bold text-heading line-clamp-2",
+            variant === "dark" && "text-white"
           )}
         >
           {title}
         </h2>
         {description && (
           <p
+            style={{ fontFamily: "var(--font-nunito-import)" }}
             className={cn(
-              "text-body-lg max-w-2xl",
-              variant === "dark" ? "text-white/80" : "text-muted-text"
+              "text-lg leading-[1.5] text-muted-text line-clamp-3 max-w-2xl",
+              variant === "dark" && "text-white/80"
             )}
           >
             {description}
