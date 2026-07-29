@@ -614,31 +614,57 @@ export default function LibraryPage() {
                 </div>
               </ComponentShowcase>
               <ComponentShowcase title="Bottom Navigation">
-                <div className="flex flex-col items-center gap-6">
+                <div className="flex flex-col items-center gap-8">
                   {(["home", "creche", "report", "profile"] as const).map((tab) => (
-                    <div key={tab} className="w-full max-w-xs">
-                      <div className="flex items-center justify-around rounded-[8px] bg-white px-4 py-4 shadow-sm border border-border">
+                    <div key={tab} className="w-full max-w-sm">
+                      <div className="flex items-center justify-around rounded-[16px] bg-white px-4 py-3 shadow-[0_-2px_12px_rgba(0,0,0,0.06)] border border-gray-100">
                         {(["home", "creche", "report", "profile"] as const).map((item) => {
-                          const icons = { home: Home, creche: Search, report: FileText, profile: User }
-                          const Icon = icons[item]
                           const isActive = tab === item
+                          const labels = { home: "Home", creche: "Creche", report: "Report", profile: "Profile" }
                           return (
-                            <button
-                              key={item}
-                              className={cn(
-                                "flex flex-col items-center gap-2 px-4 py-2 rounded-[8px] transition-all",
-                                isActive && "bg-[#E0BFA0]"
-                              )}
-                            >
-                              <Icon className={cn("size-5", isActive ? "text-brand-dark" : "text-gray-400")} />
-                              <span className={cn("text-[10px] font-medium", isActive ? "text-brand-dark" : "text-gray-400")}>
-                                {item.charAt(0).toUpperCase() + item.slice(1)}
+                            <div key={item} className="flex flex-col items-center gap-1">
+                              <div className={cn(
+                                "flex items-center justify-center rounded-full transition-all",
+                                isActive ? "bg-[#E0BFA0] px-5 py-2" : "px-5 py-2"
+                              )}>
+                                {item === "home" && (
+                                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={isActive ? "#3B2513" : "#9CA3AF"} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                                    <polyline points="9 22 9 12 15 12 15 22"/>
+                                  </svg>
+                                )}
+                                {item === "creche" && (
+                                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={isActive ? "#3B2513" : "#9CA3AF"} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                                    <circle cx="11" cy="11" r="8"/>
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                                  </svg>
+                                )}
+                                {item === "report" && (
+                                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={isActive ? "#3B2513" : "#9CA3AF"} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                    <polyline points="14 2 14 8 20 8"/>
+                                    <line x1="8" y1="13" x2="16" y2="13"/>
+                                    <line x1="8" y1="17" x2="12" y2="17"/>
+                                  </svg>
+                                )}
+                                {item === "profile" && (
+                                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={isActive ? "#3B2513" : "#9CA3AF"} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="12" cy="7" r="4"/>
+                                  </svg>
+                                )}
+                              </div>
+                              <span className={cn(
+                                "text-xs transition-colors",
+                                isActive ? "font-bold text-brand-dark" : "text-gray-400"
+                              )}>
+                                {labels[item]}
                               </span>
-                            </button>
+                            </div>
                           )
                         })}
                       </div>
-                      <p className="text-caption text-center mt-2">Active: {tab.charAt(0).toUpperCase() + tab.slice(1)}</p>
+                      <div className="mx-auto mt-3 h-1.5 w-32 rounded-full bg-gray-400" />
                     </div>
                   ))}
                 </div>
