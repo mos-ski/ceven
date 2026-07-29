@@ -165,7 +165,6 @@ const NAV_GROUPS = [
       { id: "forms", label: "Inputs & Selects" },
       { id: "toggles", label: "Toggles & Switches" },
       { id: "checkboxes", label: "Checkboxes" },
-      { id: "sliders", label: "Sliders" },
     ],
   },
   {
@@ -175,6 +174,7 @@ const NAV_GROUPS = [
       { id: "tables", label: "Tables" },
       { id: "navigation", label: "Navigation" },
       { id: "tabs", label: "Tabs" },
+      { id: "sliders", label: "Sliders" },
       { id: "progress", label: "Progress" },
       { id: "modals", label: "Modals & Dialogs" },
       { id: "alerts", label: "Alerts & Notifications" },
