@@ -76,7 +76,7 @@ function FileUpload({
         data-slot="file-upload-zone"
         data-drag-over={isDragOver || undefined}
         className={cn(
-          "flex flex-col items-center justify-center gap-2 border-2 border-dashed border-border p-8 text-center transition-colors cursor-pointer hover:border-muted-foreground/50",
+          "flex flex-col items-center justify-center gap-2 rounded-[8px] border-2 border-dashed border-border p-8 text-center transition-colors cursor-pointer hover:border-muted-foreground/50",
           isDragOver && "border-primary bg-primary/5"
         )}
       >
@@ -102,11 +102,11 @@ function FileUpload({
       />
 
       {files.length > 0 && (
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-2">
           {files.map((file, i) => (
             <div
               key={`${file.name}-${i}`}
-              className="flex items-center justify-between gap-2 border border-border px-3 py-2 text-sm"
+              className="flex items-center justify-between gap-2 rounded-[8px] border border-border px-3 py-2 text-sm"
             >
               <span className="truncate">{file.name}</span>
               <Button

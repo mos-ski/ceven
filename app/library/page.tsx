@@ -146,7 +146,6 @@ const NAV_GROUPS = [
       { id: "icons", label: "Icons" },
       { id: "colors", label: "Colors" },
       { id: "typography", label: "Typography" },
-      { id: "text-combos", label: "Text Combos" },
     ],
   },
   {
@@ -351,9 +350,8 @@ export default function LibraryPage() {
       )}>
           <div className="mb-6 flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2">
-              <div className="relative h-8 w-auto">
-                <img src="/Logo/CEVEN APP 1.svg" alt="CEven" className="h-8 w-auto object-contain" />
-              </div>
+              <img src="/Logo/icon.svg" alt="CEven" className="h-8 w-8 object-contain" />
+              <span style={{ fontFamily: "var(--font-mogra-import)" }} className="text-lg text-brand-dark">CEven</span>
             </Link>
             <button className="lg:hidden" onClick={() => setSidebarOpen(false)}>
               <X className="size-5 text-muted-text" />
@@ -408,11 +406,14 @@ export default function LibraryPage() {
 
           <div className="mx-auto max-w-4xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-10">
             <div className="mb-20">
-              <h1 className="text-display text-heading mb-4">
+              <h1 style={{ fontFamily: "var(--font-merriweather-import)" }} className="text-[2.5rem] leading-[1.2] text-heading font-bold mb-4">
                 CEven Design System
               </h1>
-              <p className="text-ui-lg text-muted-text">
+              <p style={{ fontFamily: "var(--font-nunito-import)" }} className="text-lg leading-[1.5] text-foreground mb-4">
                 The style guide provides the foundation for all stylistic decisions across the CEven design site.
+              </p>
+              <p style={{ fontFamily: "var(--font-nunito-import)" }} className="text-base leading-[1.5] text-muted-text">
+                Built with Next.js, Tailwind CSS, and Base UI. Every component follows the 8px grid system with 8px border radius.
               </p>
             </div>
 

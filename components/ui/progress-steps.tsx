@@ -35,7 +35,7 @@ function ProgressSteps({
                   isCompleted ? "completed" : isActive ? "active" : "upcoming"
                 }
                 className={cn(
-                  "flex size-7 items-center justify-center text-xs font-semibold border transition-colors",
+                  "flex size-7 items-center justify-center text-xs font-semibold border rounded-[8px] transition-colors",
                   isCompleted &&
                     "border-success bg-success text-white",
                   isActive &&
