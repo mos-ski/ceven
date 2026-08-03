@@ -373,7 +373,7 @@
 </style>
 <style>body{margin:0;background:#EFE6D8;font-family:'Nunito',sans-serif}a{color:#9A6033;text-decoration:none}a:hover{color:#3B2513}*{box-sizing:border-box}::-webkit-scrollbar{width:0;height:0}@keyframes toastin{from{opacity:0;transform:translate(-50%,10px)}to{opacity:1;transform:translate(-50%,0)}}@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}</style>
 </helmet>
-<div style="flex:1;display:flex;flex-direction:column;background:#FFF9F0;position:relative">
+<div style="flex:1;overflow:hidden;display:flex;flex-direction:column;background:#FFF9F0">
 
     <!-- ============ PARENT HOME ============ -->
     <sc-if value="{{showPHome}}" hint-placeholder-val="{{true}}">
@@ -852,7 +852,7 @@
     </sc-if>
 
     <sc-if value="{{showAsk}}" hint-placeholder-val="{{false}}">
-      <div style="flex:1;display:flex;flex-direction:column;overflow:hidden;padding-bottom:76px" data-screen-label="Caregiver · Ask CEvenAI">
+      <div style="flex:1;display:flex;flex-direction:column;overflow:hidden" data-screen-label="Caregiver · Ask CEvenAI">
         <div style="flex:none;padding:8px 20px 12px;border-bottom:1px solid #EDD9C0;display:flex;align-items:center;gap:10px">
           <span style="color:#9A6033;font-size:17px">✦</span>
           <div style="font-family:'Merriweather';font-weight:700;font-size:19px;color:#1F2937">Ask &amp; Learn</div>
