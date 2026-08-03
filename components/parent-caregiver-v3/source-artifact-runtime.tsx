@@ -291,7 +291,7 @@ export function SourceArtifactRuntime({ markup, logic, styles, initialState }: R
   }, [Runtime, artifactState, markup, revision]);
 
   return (
-    <main className="flex flex-col flex-1 min-h-0 bg-[#EFE6D8] overflow-hidden" style={{ lineHeight: "normal" }}>
+    <main className="flex flex-col flex-1 min-h-0 bg-[#EFE6D8]" style={{ lineHeight: "normal" }}>
       <style dangerouslySetInnerHTML={{ __html: styles }} />
       <div ref={containerRef} className="flex flex-col flex-1 min-h-0" />
     </main>
