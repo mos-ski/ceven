@@ -373,25 +373,7 @@
 </style>
 <style>body{margin:0;background:#EFE6D8;font-family:'Nunito',sans-serif}a{color:#9A6033;text-decoration:none}a:hover{color:#3B2513}*{box-sizing:border-box}::-webkit-scrollbar{width:0;height:0}@keyframes toastin{from{opacity:0;transform:translate(-50%,10px)}to{opacity:1;transform:translate(-50%,0)}}@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}</style>
 </helmet>
-<div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;gap:20px;padding:36px 16px 48px">
-  <div style="display:flex;flex-direction:column;align-items:center;gap:14px">
-    <div style="display:flex;align-items:center;gap:10px">
-      <img src="a182399f-8816-4aac-9075-7eb3e3be480a" alt="CEven" style="width:34px;height:34px">
-      <div style="font-family:'Mogra';font-size:26px;color:#3B2513">CEven Home</div>
-    </div>
-    <div style="font-family:'Urbanist';font-size:12.5px;color:#6B7280">Lean daily-use version · food timetable + shared calendar at the core</div>
-    <div style="display:flex;gap:4px;background:#fff;border:1px solid #E6EBF3;border-radius:10px;padding:4px">
-      <button sc-camel-on-click="{{setParent}}" style="{{roleParentStyle}}">Parent — Funke</button>
-      <button sc-camel-on-click="{{setCaregiver}}" style="{{roleCareStyle}}">Caregiver — Blessing</button>
-      <button sc-camel-on-click="{{setTutor}}" style="{{roleTutorStyle}}">Tutor — Daniel</button>
-    </div>
-  </div>
-
-  <div style="width:390px;height:844px;background:#FFF9F0;border-radius:44px;border:1px solid #D4A67F;box-shadow:0 24px 60px rgba(59,37,19,.22),0 2px 8px rgba(59,37,19,.12);overflow:hidden;display:flex;flex-direction:column;position:relative">
-    <div style="height:44px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 24px;font-family:'Urbanist';font-weight:600;font-size:14px;color:#3B2513">
-      <span>9:41</span>
-      <span style="display:flex;gap:5px;align-items:center"><span style="width:16px;height:10px;border:1.5px solid #3B2513;border-radius:2px;display:inline-block"></span><span style="font-size:11px">▲</span></span>
-    </div>
+<div style="flex:1;overflow:hidden;display:flex;flex-direction:column;background:#FFF9F0">
 
     <!-- ============ PARENT HOME ============ -->
     <sc-if value="{{showPHome}}" hint-placeholder-val="{{true}}">
@@ -1304,7 +1286,5 @@
       <div style="position:absolute;bottom:104px;left:50%;transform:translateX(-50%);background:#3B2513;color:#FFF9F0;border-radius:8px;padding:11px 20px;font-family:'Urbanist';font-weight:600;font-size:13px;box-shadow:0 8px 24px rgba(59,37,19,.3);animation:toastin .25s ease;white-space:nowrap">{{toastMsg}}</div>
     </sc-if>
   </div>
-  <div style="font-family:'Urbanist';font-size:12px;color:#6B7280;max-width:390px;text-align:center;line-height:1.6">Lean build: food timetable, shared calendar with event prep checklists, daily report, chat. Tick the swim-bag list as Blessing, then switch to Parent — the count updates live. Try the tutor: check in as Daniel, tick objectives, log the quiz, end the session — then watch Funke's Learning tab and home feed update.</div>
-</div>
 </x-dc>
 </body></html>
