@@ -1,12 +1,15 @@
-"use client";
+import { SourceArtifactRuntime } from "@/components/parent-caregiver-v3/source-artifact-runtime";
+import { loadParentCaregiverV3Source } from "@/lib/parent-caregiver-v3/source-loader";
 
-import { MobileShell } from "@/components/caregivev3/mobile-shell";
-import CaregiverV3TodayPage from "@/app/(caregiverv3)/caregiverv3/today/page";
+export default async function CaregiverV3Page() {
+  const source = await loadParentCaregiverV3Source();
 
-export default function CaregiverV3Page() {
   return (
-    <MobileShell>
-      <CaregiverV3TodayPage />
-    </MobileShell>
+    <SourceArtifactRuntime
+      markup={source.markup}
+      logic={source.logic}
+      styles={source.styles}
+      initialState={{ role: "caregiver", cScreen: "today" }}
+    />
   );
 }
