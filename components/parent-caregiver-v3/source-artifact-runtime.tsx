@@ -291,7 +291,7 @@ export function SourceArtifactRuntime({ markup, logic, styles, initialState }: R
   }, [Runtime, artifactState, markup, revision]);
 
   return (
-    <main className="min-h-dvh bg-[#EFE6D8]" style={{ lineHeight: "normal" }}>
+    <main className="h-full bg-[#EFE6D8]" style={{ lineHeight: "normal" }}>
       <style dangerouslySetInnerHTML={{ __html: styles }} />
       <div ref={containerRef} />
     </main>
