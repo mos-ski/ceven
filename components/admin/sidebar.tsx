@@ -63,7 +63,7 @@ export function Sidebar() {
           <Link
             href={item.href}
             onClick={() => setMobileOpen(false)}
-            className={`flex items-center gap-2 rounded-lg px-3 py-2.5 font-[family-name:var(--font-nunito)] text-sm font-semibold ${
+            className={`flex items-center gap-2 rounded-lg px-3 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-semibold ${
               isSectionActive
                 ? "bg-brand-dark text-sidebar-active-text"
                 : "text-sidebar-inactive-text hover:text-brand-dark"
@@ -87,7 +87,7 @@ export function Sidebar() {
             <button
               type="button"
               onClick={() => setOpenGroup(openGroup === item.label ? null : item.label)}
-              className={`flex h-10 items-center justify-between rounded-lg px-3 py-2.5 font-[family-name:var(--font-nunito)] text-sm font-semibold ${
+              className={`flex h-10 items-center justify-between rounded-lg px-3 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-semibold ${
                 isSectionActive ? "text-brand-dark" : "text-sidebar-inactive-text"
               }`}
             >
@@ -114,7 +114,7 @@ export function Sidebar() {
                           router.push(href);
                           setMobileOpen(false);
                         }}
-                        className={`h-10 rounded-lg py-2.5 pl-10 pr-2 text-left font-[family-name:var(--font-nunito)] text-sm ${
+                        className={`h-10 rounded-lg py-2.5 pl-10 pr-2 text-left font-[family-name:var(--font-urbanist)] text-sm ${
                           isSubActive
                             ? "bg-brand-dark text-sidebar-active-text"
                             : "text-sidebar-inactive-text"
@@ -137,7 +137,7 @@ export function Sidebar() {
                       key={sub.label}
                       href={href}
                       onClick={() => setMobileOpen(false)}
-                      className={`h-10 rounded-lg py-2.5 pl-10 pr-2 font-[family-name:var(--font-nunito)] text-sm ${
+                      className={`h-10 rounded-lg py-2.5 pl-10 pr-2 font-[family-name:var(--font-urbanist)] text-sm ${
                         isSubActive
                           ? "bg-brand-dark text-sidebar-active-text"
                           : "text-sidebar-inactive-text"
@@ -218,7 +218,7 @@ export function Sidebar() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <Headphones className="size-5 text-[#262626]" />
-                    <p className="font-[family-name:var(--font-nunito)] text-sm text-[#262626]">
+                    <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#262626]">
                       Need Support?
                     </p>
                   </div>
@@ -231,7 +231,7 @@ export function Sidebar() {
                     <X className="size-5" />
                   </button>
                 </div>
-                <p className="font-[family-name:var(--font-nunito)] text-xs text-[#525252]">
+                <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#525252]">
                   Get help from one of our experts
                 </p>
               </div>
@@ -245,7 +245,7 @@ export function Sidebar() {
           )}
           <div className="flex items-center gap-3 rounded-lg bg-[#faf2e1] px-3 py-2">
             <div className="flex size-8 items-center justify-center overflow-hidden rounded-full bg-[#edd9c0]">
-              <span className="font-[family-name:var(--font-nunito)] text-xs font-bold text-brand-dark">
+              <span className="font-[family-name:var(--font-urbanist)] text-xs font-bold text-brand-dark">
                 {MOCK_ADMIN_USER.name
                   .split(" ")
                   .map((p) => p[0])
@@ -253,10 +253,10 @@ export function Sidebar() {
               </span>
             </div>
             <div className="flex flex-col">
-              <p className="font-[family-name:var(--font-nunito)] text-xs font-semibold text-[#0a0a0a]">
+              <p className="font-[family-name:var(--font-urbanist)] text-xs font-semibold text-[#0a0a0a]">
                 {MOCK_ADMIN_USER.name}
               </p>
-              <p className="font-[family-name:var(--font-nunito)] text-[10px] text-[#525252]">
+              <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#525252]">
                 {MOCK_ADMIN_USER.email}
               </p>
             </div>

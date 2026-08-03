@@ -132,7 +132,7 @@ function ComparisonCell({ value }: { value: string }) {
   if (value === "✗") {
     return <span className="font-bold text-[#ef4444]">✗</span>;
   }
-  return <span className="font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{value}</span>;
+  return <span className="font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{value}</span>;
 }
 
 function StepIndicator({ currentStep, hasAddOns }: { currentStep: 2 | 3 | 4; hasAddOns: boolean }) {
@@ -152,7 +152,7 @@ function StepIndicator({ currentStep, hasAddOns }: { currentStep: 2 | 3 | 4; has
   const localStep = hasAddOns ? currentStep - 1 : currentStep;
 
   return (
-    <div className="mb-6 flex items-center gap-2 overflow-x-auto font-[family-name:var(--font-nunito)] text-sm">
+    <div className="mb-6 flex items-center gap-2 overflow-x-auto font-[family-name:var(--font-urbanist)] text-sm">
       {steps.map((step, i) => {
         const isComplete = step.number < localStep;
         const isActive = step.number === localStep;
@@ -204,7 +204,7 @@ function Step1({ onNext }: { onNext: (plan: Plan) => void }) {
       <h1 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
         Plans & Access
       </h1>
-      <p className="mt-1 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+      <p className="mt-1 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
         Manage your creche subscription and access settings.
       </p>
 
@@ -247,21 +247,21 @@ function Step1({ onNext }: { onNext: (plan: Plan) => void }) {
                   <span className="font-[family-name:var(--font-merriweather)] text-3xl font-bold text-[#2d1810]">
                     {formatNaira(total)}
                   </span>
-                  <span className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+                  <span className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
                     {getBillingLabel(billingCycle)}
                   </span>
                 </div>
-                <p className="font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">
+                <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#9ca3af]">
                   {billingCycle !== "monthly" && `${formatNaira(perMonth)}/month (billed ${billingCycle})`}
                 </p>
                 {plan.desc && (
-                <p className="mt-1 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">{plan.desc}</p>
+                <p className="mt-1 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">{plan.desc}</p>
               )}
               </div>
 
               <ul className="flex flex-col gap-2">
                 {plan.features.map((feature) => (
-                  <li key={feature} className="font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">
+                  <li key={feature} className="font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">
                     <span className="mr-2 text-[#009061]">✓</span>
                     {feature}
                   </li>
@@ -293,16 +293,16 @@ function Step1({ onNext }: { onNext: (plan: Plan) => void }) {
           <table className="w-full border-collapse">
             <thead>
               <tr className="bg-[#edd9c0]">
-                <th className="px-5 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
+                <th className="px-5 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
                   Feature
                 </th>
-                <th className="px-5 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
+                <th className="px-5 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
                   Nuture
                 </th>
-                <th className="px-5 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
+                <th className="px-5 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
                   Nuture Pro
                 </th>
-                <th className="px-5 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
+                <th className="px-5 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
                   Nuture Max
                 </th>
               </tr>
@@ -310,7 +310,7 @@ function Step1({ onNext }: { onNext: (plan: Plan) => void }) {
             <tbody>
               {comparisonRows.map((row, i) => (
                 <tr key={row.feature} className={`border-b border-[#eaecf0] ${i % 2 === 0 ? "bg-white" : "bg-[#f9f8f6]"}`}>
-                  <td className="px-5 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">
+                  <td className="px-5 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">
                     {row.feature}
                   </td>
                   <td className="px-5 py-3">
@@ -371,7 +371,7 @@ function PlanPeriodAndBilling({
           <div className="rounded-2xl border border-[#edd9c0] p-5" style={{ background: "rgba(241,155,2,0.08)" }}>
             <div className="flex items-center justify-between">
               <div>
-                <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Subscribe for</p>
+                <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Subscribe for</p>
                 <p className="font-[family-name:var(--font-merriweather)] text-xl font-bold text-[#2d1810]">
                   {plan.name}
                 </p>
@@ -386,7 +386,7 @@ function PlanPeriodAndBilling({
                       onChange={() => setBillingCycle(cycle)}
                       className="accent-[#3b2513]"
                     />
-                    <span className="font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">
+                    <span className="font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">
                       {cycle.charAt(0).toUpperCase() + cycle.slice(1)}
                     </span>
                     {cycle === "quarterly" && (
@@ -401,10 +401,10 @@ function PlanPeriodAndBilling({
             </div>
 
             <p className="mt-1 font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
-              {formatNaira(total)} <span className="font-[family-name:var(--font-nunito)] text-xs font-normal text-[#6b7280]">{getBillingLabel(billingCycle)}</span>
+              {formatNaira(total)} <span className="font-[family-name:var(--font-urbanist)] text-xs font-normal text-[#6b7280]">{getBillingLabel(billingCycle)}</span>
             </p>
             {billingCycle !== "monthly" && (
-              <p className="font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">
+              <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#9ca3af]">
                 {formatNaira(perMonth)}/month equivalent
               </p>
             )}
@@ -413,12 +413,12 @@ function PlanPeriodAndBilling({
 
             <div className="flex flex-col gap-1">
               <div className="flex items-center justify-between">
-                <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">First Payment:</p>
-                <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">Due Now</p>
+                <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">First Payment:</p>
+                <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">Due Now</p>
               </div>
               <div className="flex items-center justify-between">
-                <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">Next Payment Due:</p>
-                <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
+                <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">Next Payment Due:</p>
+                <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
                   {billingCycle === "monthly" && "July 28, 2026"}
                   {billingCycle === "quarterly" && "September 28, 2026"}
                   {billingCycle === "yearly" && "June 28, 2027"}
@@ -428,53 +428,53 @@ function PlanPeriodAndBilling({
           </div>
 
           <div className="mt-5">
-            <p className="mb-3 font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
+            <p className="mb-3 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
               Billing Information
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <input
                 type="text"
                 placeholder="Creche Name"
-                className="w-full rounded-lg border border-[#d0d5dd] bg-white px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+                className="w-full rounded-lg border border-[#d0d5dd] bg-white px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
               />
               <input
                 type="email"
                 placeholder="Email Address"
-                className="w-full rounded-lg border border-[#d0d5dd] bg-white px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+                className="w-full rounded-lg border border-[#d0d5dd] bg-white px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
               />
             </div>
           </div>
 
           <div className="mt-4">
-            <p className="mb-3 font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
+            <p className="mb-3 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
               Card Information
             </p>
             <div className="flex flex-col gap-3">
               <input
                 type="text"
                 placeholder="Cardholder Name"
-                className="w-full rounded-lg border border-[#d0d5dd] bg-white px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+                className="w-full rounded-lg border border-[#d0d5dd] bg-white px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
               />
               <input
                 type="text"
                 placeholder="0000 0000 0000 0000"
-                className="w-full rounded-lg border border-[#d0d5dd] bg-white px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+                className="w-full rounded-lg border border-[#d0d5dd] bg-white px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
               />
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <input
                   type="text"
                   placeholder="MM/YY"
-                  className="w-full rounded-lg border border-[#d0d5dd] bg-white px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+                  className="w-full rounded-lg border border-[#d0d5dd] bg-white px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
                 />
                 <input
                   type="text"
                   placeholder="•••"
-                  className="w-full rounded-lg border border-[#d0d5dd] bg-white px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+                  className="w-full rounded-lg border border-[#d0d5dd] bg-white px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
                 />
               </div>
               <label className="flex cursor-pointer items-center gap-2">
                 <input type="checkbox" className="accent-[#3b2513]" />
-                <span className="font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">
+                <span className="font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">
                   Save card for future payments
                 </span>
               </label>
@@ -484,10 +484,10 @@ function PlanPeriodAndBilling({
 
         <div className="w-full lg:w-[360px] shrink-0">
           <div className="rounded-2xl border border-[#e6ebf3] bg-white p-5">
-            <p className="mb-4 font-[family-name:var(--font-nunito)] font-semibold text-[#2d1810]">Summary</p>
+            <p className="mb-4 font-[family-name:var(--font-urbanist)] font-semibold text-[#2d1810]">Summary</p>
 
             {baseCharges.map((charge) => (
-              <div key={charge.label} className="mb-3 flex justify-between font-[family-name:var(--font-nunito)] text-sm">
+              <div key={charge.label} className="mb-3 flex justify-between font-[family-name:var(--font-urbanist)] text-sm">
                 <span className="text-[#6b7280]">{charge.label}</span>
                 <span className="text-[#2d1810]">{charge.value}</span>
               </div>
@@ -495,7 +495,7 @@ function PlanPeriodAndBilling({
 
             <div className="my-3 border-t border-[#e6ebf3]" />
 
-            <div className="flex justify-between font-[family-name:var(--font-nunito)] text-sm">
+            <div className="flex justify-between font-[family-name:var(--font-urbanist)] text-sm">
               <span className="font-bold text-[#2d1810]">Total Amount</span>
               <span className="font-bold text-[#2d1810]">{formatNaira(total)}</span>
             </div>
@@ -547,15 +547,15 @@ function ConfigureAddOns({
       <div className="flex flex-col lg:flex-row gap-6">
         <div className="flex-1">
           <div className="rounded-2xl border border-[#edd9c0] p-5" style={{ background: "rgba(241,155,2,0.08)" }}>
-            <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Subscribe for</p>
+            <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Subscribe for</p>
             <p className="font-[family-name:var(--font-merriweather)] text-xl font-bold text-[#2d1810]">{plan.name}</p>
-            <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+            <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
               {formatNaira(plan.monthlyPrice)} <span className="text-xs">/ Per Month</span>
             </p>
           </div>
 
           <div className="mt-5 rounded-2xl border border-[#e6ebf3] bg-white p-5">
-            <p className="mb-4 font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">Add-ons</p>
+            <p className="mb-4 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">Add-ons</p>
 
             <div className="flex flex-col gap-3">
               {addOns.map((addon, i) => (
@@ -564,7 +564,7 @@ function ConfigureAddOns({
                   className="flex items-center justify-between gap-10 rounded-xl border border-[#ccd2dc] bg-white px-4 py-3"
                 >
                   <div>
-                    <p className="font-[family-name:var(--font-nunito)] text-sm text-[#1f2937]">{addon.name}</p>
+                    <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#1f2937]">{addon.name}</p>
                     <p className="font-[family-name:var(--font-merriweather)] text-sm font-semibold text-black">
                       {addon.price}
                     </p>
@@ -592,24 +592,24 @@ function ConfigureAddOns({
 
         <div className="w-full lg:w-[360px] shrink-0">
           <div className="rounded-2xl border border-[#e6ebf3] bg-white p-5">
-            <p className="mb-4 font-[family-name:var(--font-nunito)] font-semibold text-[#2d1810]">Summary</p>
+            <p className="mb-4 font-[family-name:var(--font-urbanist)] font-semibold text-[#2d1810]">Summary</p>
 
             {addOns
               .filter((a) => a.added)
               .map((addon) => (
-                <div key={addon.name} className="mb-3 flex justify-between font-[family-name:var(--font-nunito)] text-sm">
+                <div key={addon.name} className="mb-3 flex justify-between font-[family-name:var(--font-urbanist)] text-sm">
                   <span className="text-[#6b7280]">{addon.name}</span>
                   <span className="text-[#2d1810]">{addon.price.replace("/month", "")}</span>
                 </div>
               ))}
-            <div className="mb-3 flex justify-between font-[family-name:var(--font-nunito)] text-sm">
+            <div className="mb-3 flex justify-between font-[family-name:var(--font-urbanist)] text-sm">
               <span className="text-[#6b7280]">VAT (7.5%)</span>
               <span className="text-[#2d1810]">₦3,000.00</span>
             </div>
 
             <div className="my-3 border-t border-[#e6ebf3]" />
 
-            <div className="flex justify-between font-[family-name:var(--font-nunito)] text-sm">
+            <div className="flex justify-between font-[family-name:var(--font-urbanist)] text-sm">
               <span className="font-bold text-[#2d1810]">Total Amount</span>
               <span className="font-bold text-[#2d1810]">₦43,000</span>
             </div>
@@ -621,7 +621,7 @@ function ConfigureAddOns({
               Continue
             </button>
             {addedCount === 0 && (
-              <p className="mt-2 text-center font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">
+              <p className="mt-2 text-center font-[family-name:var(--font-urbanist)] text-xs text-[#9ca3af]">
                 No add-ons selected yet
               </p>
             )}

@@ -53,7 +53,7 @@ function Donut({ segments, centerLabel }: { segments: DonutSegment[]; centerLabe
         {segments.map((s) => (
           <div key={s.label} className="flex items-center gap-1.5">
             <span className="size-2 rounded-full" style={{ backgroundColor: s.color }} />
-            <span className="font-[family-name:var(--font-nunito)] text-[11px] text-[#6b7280]">{s.label}</span>
+            <span className="font-[family-name:var(--font-urbanist)] text-[11px] text-[#6b7280]">{s.label}</span>
           </div>
         ))}
       </div>
@@ -67,7 +67,7 @@ function BudgetVsActualChart() {
     <div className="flex flex-col gap-3">
       {BUDGET_VS_ACTUAL.map((row) => (
         <div key={row.category} className="flex items-center gap-3">
-          <span className="w-20 shrink-0 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+          <span className="w-20 shrink-0 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
             {row.category}
           </span>
           <div className="flex flex-1 flex-col gap-1">
@@ -78,7 +78,7 @@ function BudgetVsActualChart() {
                   style={{ width: `${(row.budget / max) * 100}%` }}
                 />
               </div>
-              <span className="w-12 text-right font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">
+              <span className="w-12 text-right font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">
                 {row.budget.toFixed(2)}
               </span>
             </div>
@@ -89,7 +89,7 @@ function BudgetVsActualChart() {
                   style={{ width: `${(row.actual / max) * 100}%` }}
                 />
               </div>
-              <span className="w-12 text-right font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">
+              <span className="w-12 text-right font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">
                 {row.actual.toFixed(2)}
               </span>
             </div>
@@ -99,11 +99,11 @@ function BudgetVsActualChart() {
       <div className="mt-1 flex items-center gap-4">
         <div className="flex items-center gap-1.5">
           <span className="size-2 rounded-full bg-[#bab68d]" />
-          <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Budget</span>
+          <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Budget</span>
         </div>
         <div className="flex items-center gap-1.5">
           <span className="size-2 rounded-full bg-[#e2622a]" />
-          <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Actual Expenses</span>
+          <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Actual Expenses</span>
         </div>
       </div>
     </div>
@@ -119,7 +119,7 @@ export function ExpensesTab() {
       <div className="flex justify-end">
         <button
           onClick={() => setExpenseOpen(true)}
-          className="rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]"
+          className="rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]"
         >
           New Expense
         </button>
@@ -129,7 +129,7 @@ export function ExpensesTab() {
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4">
         {EXPENSE_OVERVIEW.map((s) => (
           <div key={s.label} className="rounded-xl border border-[#e6ebf3] bg-white p-4">
-            <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{s.label}</p>
+            <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{s.label}</p>
             <p className="mt-2 font-[family-name:var(--font-merriweather)] text-xl font-bold text-[#2d1810]">{s.value}</p>
             <p
               className={`mt-1 flex items-center gap-1 font-[family-name:var(--font-urbanist)] text-xs ${
@@ -153,7 +153,7 @@ export function ExpensesTab() {
             {REOCCURRING_BILLS.map((bill) => (
               <div key={bill.id} className="flex items-center justify-between">
                 <div>
-                  <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{bill.name}</p>
+                  <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">{bill.name}</p>
                   <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#9ca3af]">{bill.dueNote}</p>
                 </div>
                 <span className="font-[family-name:var(--font-merriweather)] text-sm font-bold text-[#2d1810]">{bill.amount}</span>
@@ -199,7 +199,7 @@ export function ExpensesTab() {
             <thead>
               <tr className="bg-[#edd9c0]">
                 {["Date", "Vendor", "Category", "Description", "Amount", "Receipt", "Status", "Action"].map((h) => (
-                  <th key={h} className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black">
+                  <th key={h} className="px-4 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-normal text-black">
                     {h}
                   </th>
                 ))}
@@ -208,12 +208,12 @@ export function ExpensesTab() {
             <tbody className="bg-white">
               {EXPENSES.map((row) => (
                 <tr key={row.id} className="border-t border-[#eaecf0]">
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{row.date}</td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{row.vendor}</td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{row.category}</td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{row.description}</td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">{row.amount}</td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{row.date}</td>
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{row.vendor}</td>
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{row.category}</td>
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{row.description}</td>
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">{row.amount}</td>
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
                     {row.receipt ? "● Attached" : "--"}
                   </td>
                   <td className="px-4 py-3">
@@ -237,14 +237,14 @@ export function ExpensesTab() {
           {EXPENSES.map((row) => (
             <div key={row.id} className="rounded-xl border border-[#eaecf0] p-3">
               <div className="flex items-center justify-between">
-                <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">{row.vendor}</span>
+                <span className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">{row.vendor}</span>
                 <span className={`inline-flex items-center rounded-full border px-2.5 py-0.5 font-[family-name:var(--font-urbanist)] text-xs ${STATUS_BADGE_CLASS[row.status]}`}>
                   {row.status === "Paid" ? "Approved" : row.status}
                 </span>
               </div>
               <div className="mt-2 flex items-center justify-between">
-                <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">{row.amount}</span>
-                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{row.date}</span>
+                <span className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">{row.amount}</span>
+                <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{row.date}</span>
               </div>
             </div>
           ))}

@@ -1,4 +1,5 @@
 import * as React from "react"
+import { X } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 interface AlertBannerProps extends React.ComponentProps<"div"> {
@@ -51,19 +52,7 @@ function AlertBanner({
           className="shrink-0 p-0.5 hover:opacity-70 transition-opacity"
           aria-label="Dismiss"
         >
-          <svg
-            className="size-4"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={2}
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
+          <X className="size-4" />
         </button>
       )}
     </div>

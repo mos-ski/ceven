@@ -168,7 +168,7 @@ function ComplianceText({ value }: { value: string }) {
         ? "text-[#f59e0b]"
         : "text-[#ef4444]";
   return (
-    <span className={`font-bold font-[family-name:var(--font-nunito)] ${color}`}>
+    <span className={`font-bold font-[family-name:var(--font-urbanist)] ${color}`}>
       {value}
     </span>
   );
@@ -202,7 +202,7 @@ function RoleFormModal({
             <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
               {isEdit ? "Edit Role" : "Create New Role"}
             </h2>
-            <p className="text-sm text-[#6b7280] font-[family-name:var(--font-nunito)] mt-0.5">
+            <p className="text-sm text-[#6b7280] font-[family-name:var(--font-urbanist)] mt-0.5">
               {isEdit
                 ? `Editing permissions for the "${roleName}" role.`
                 : "Define a new role and assign permissions."}
@@ -221,37 +221,37 @@ function RoleFormModal({
         <div className="overflow-y-auto px-6 py-5 flex flex-col gap-5">
           {/* Role Name */}
           <div className="flex flex-col gap-1.5">
-            <label className="text-sm font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]">
+            <label className="text-sm font-semibold font-[family-name:var(--font-urbanist)] text-[#2d1810]">
               Role Name
             </label>
             <input
               type="text"
               defaultValue={isEdit && roleName ? roleName : ""}
               placeholder="e.g. Caregiver"
-              className="border border-[#d0d5dd] rounded-lg px-3.5 py-2.5 text-sm font-[family-name:var(--font-nunito)] text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+              className="border border-[#d0d5dd] rounded-lg px-3.5 py-2.5 text-sm font-[family-name:var(--font-urbanist)] text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
             />
           </div>
 
           {/* Description */}
           <div className="flex flex-col gap-1.5">
-            <label className="text-sm font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]">
+            <label className="text-sm font-semibold font-[family-name:var(--font-urbanist)] text-[#2d1810]">
               Description
             </label>
             <textarea
               rows={3}
               placeholder="Describe the responsibilities of this role..."
-              className="border border-[#d0d5dd] rounded-lg px-3.5 py-2.5 text-sm font-[family-name:var(--font-nunito)] text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c] resize-none"
+              className="border border-[#d0d5dd] rounded-lg px-3.5 py-2.5 text-sm font-[family-name:var(--font-urbanist)] text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c] resize-none"
             />
           </div>
 
           {/* Invite Staff */}
           <div className="flex flex-col gap-1.5">
-            <label className="text-sm font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]">
+            <label className="text-sm font-semibold font-[family-name:var(--font-urbanist)] text-[#2d1810]">
               Invite Staff
             </label>
             <select
               defaultValue=""
-              className="border border-[#d0d5dd] rounded-lg px-3.5 py-2.5 text-sm font-[family-name:var(--font-nunito)] text-[#6b7280] outline-none focus:ring-2 focus:ring-[#c47b2c] bg-white"
+              className="border border-[#d0d5dd] rounded-lg px-3.5 py-2.5 text-sm font-[family-name:var(--font-urbanist)] text-[#6b7280] outline-none focus:ring-2 focus:ring-[#c47b2c] bg-white"
             >
               <option value="" disabled>
                 Select staff members
@@ -281,7 +281,7 @@ function RoleFormModal({
                         type="checkbox"
                         className="accent-[#3b2513] h-4 w-4"
                       />
-                      <span className="text-sm font-[family-name:var(--font-nunito)] text-[#2d1810]">
+                      <span className="text-sm font-[family-name:var(--font-urbanist)] text-[#2d1810]">
                         {perm}
                       </span>
                     </label>
@@ -296,11 +296,11 @@ function RoleFormModal({
         <div className="border-t border-[#eaecf0] px-6 py-4 flex items-center justify-end gap-3">
           <button
             onClick={onClose}
-            className="border border-[#d0d5dd] rounded-lg px-4 py-2 text-sm font-medium font-[family-name:var(--font-nunito)] text-[#2d1810] hover:bg-[#f9fafb]"
+            className="border border-[#d0d5dd] rounded-lg px-4 py-2 text-sm font-medium font-[family-name:var(--font-urbanist)] text-[#2d1810] hover:bg-[#f9fafb]"
           >
             Cancel
           </button>
-          <button className="bg-[#3b2513] text-[#faf2e1] rounded-lg px-4 py-2 text-sm font-medium font-[family-name:var(--font-nunito)]">
+          <button className="bg-[#3b2513] text-[#faf2e1] rounded-lg px-4 py-2 text-sm font-medium font-[family-name:var(--font-urbanist)]">
             {isEdit ? "Save Changes" : "Confirm and Save"}
           </button>
         </div>
@@ -325,7 +325,7 @@ function DeleteRoleModal({
           <h2 className="font-[family-name:var(--font-merriweather)] text-xl font-bold text-[#2d1810]">
             Remove Role
           </h2>
-          <p className="text-sm font-[family-name:var(--font-nunito)] text-[#6b7280]">
+          <p className="text-sm font-[family-name:var(--font-urbanist)] text-[#6b7280]">
             {roleName
               ? `This will permanently remove the "${roleName}" role and affect all staff assigned to it.`
               : "This will permanently remove the role and affect all staff assigned to it."}{" "}
@@ -337,11 +337,11 @@ function DeleteRoleModal({
         <div className="border-t border-[#eaecf0] px-6 py-4 flex items-center justify-end gap-3">
           <button
             onClick={onClose}
-            className="border border-[#d0d5dd] rounded-lg px-4 py-2 text-sm font-medium font-[family-name:var(--font-nunito)] text-[#2d1810] hover:bg-[#f9fafb]"
+            className="border border-[#d0d5dd] rounded-lg px-4 py-2 text-sm font-medium font-[family-name:var(--font-urbanist)] text-[#2d1810] hover:bg-[#f9fafb]"
           >
             No, Cancel
           </button>
-          <button className="bg-[#ef4444] text-white rounded-lg px-4 py-2 text-sm font-medium font-[family-name:var(--font-nunito)]">
+          <button className="bg-[#ef4444] text-white rounded-lg px-4 py-2 text-sm font-medium font-[family-name:var(--font-urbanist)]">
             Yes, Remove
           </button>
         </div>
@@ -471,10 +471,10 @@ function StaffPageInner() {
                 <span className="inline-block rounded-full bg-[#1e2d4a] px-2 py-0.5 text-xs text-white">
                   ✦ Ada AI Flags
                 </span>
-                <p className="font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">
+                <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">
                   Mrs Anita — compliance at 52% (below 72% threshold)
                 </p>
-                <p className="font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">
+                <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">
                   Mr Adamu — absent 3 of last 5 days
                 </p>
               </div>
@@ -512,13 +512,13 @@ function StaffPageInner() {
             {/* Toolbar */}
             <div className="flex flex-wrap items-center justify-between gap-2 p-4">
               <div className="flex items-center gap-2">
-                <span className="text-xs font-[family-name:var(--font-nunito)] text-[#6b7280]">
+                <span className="text-xs font-[family-name:var(--font-urbanist)] text-[#6b7280]">
                   Filter by:
                 </span>
                 <DropdownMenu>
                   <DropdownMenuTrigger
                     render={
-                      <button className="border border-[#d0d5dd] rounded-lg px-3 py-1.5 text-xs font-[family-name:var(--font-nunito)] flex items-center gap-1.5 bg-white cursor-pointer" />
+                      <button className="border border-[#d0d5dd] rounded-lg px-3 py-1.5 text-xs font-[family-name:var(--font-urbanist)] flex items-center gap-1.5 bg-white cursor-pointer" />
                     }
                   >
                     {staffSort}
@@ -535,7 +535,7 @@ function StaffPageInner() {
                 <DropdownMenu>
                   <DropdownMenuTrigger
                     render={
-                      <button className="border border-[#d0d5dd] rounded-lg px-3 py-1.5 text-xs font-[family-name:var(--font-nunito)] flex items-center gap-1.5 bg-white cursor-pointer" />
+                      <button className="border border-[#d0d5dd] rounded-lg px-3 py-1.5 text-xs font-[family-name:var(--font-urbanist)] flex items-center gap-1.5 bg-white cursor-pointer" />
                     }
                   >
                     {staffStatusFilter}
@@ -557,7 +557,7 @@ function StaffPageInner() {
                   value={staffSearch}
                   onChange={(e) => setStaffSearch(e.target.value)}
                   placeholder="Search staff..."
-                  className="bg-[#f5edd8] border border-[#d0d5dd] rounded-lg text-xs px-3 py-1.5 pl-8 outline-none focus:ring-1 focus:ring-[#3b2513] font-[family-name:var(--font-nunito)]"
+                  className="bg-[#f5edd8] border border-[#d0d5dd] rounded-lg text-xs px-3 py-1.5 pl-8 outline-none focus:ring-1 focus:ring-[#3b2513] font-[family-name:var(--font-urbanist)]"
                 />
               </div>
             </div>
@@ -577,7 +577,7 @@ function StaffPageInner() {
                   ].map((h) => (
                     <th
                       key={h}
-                      className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]"
+                      className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-urbanist)] text-[#2d1810]"
                     >
                       {h}
                     </th>
@@ -587,7 +587,7 @@ function StaffPageInner() {
               <tbody className="divide-y divide-[#eaecf0]">
                 {filteredStaff.length === 0 ? (
                   <tr>
-                    <td colSpan={6} className="py-10 text-center font-[family-name:var(--font-nunito)] text-sm text-[#9ca3af]">
+                    <td colSpan={6} className="py-10 text-center font-[family-name:var(--font-urbanist)] text-sm text-[#9ca3af]">
                       No staff match your search or filters.
                     </td>
                   </tr>
@@ -599,20 +599,20 @@ function StaffPageInner() {
                       className="cursor-pointer hover:bg-[#faf9f7]"
                     >
                       <td className="px-4 py-3">
-                        <p className="text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">
+                        <p className="text-sm font-bold font-[family-name:var(--font-urbanist)] text-[#2d1810]">
                           {staff.name}
                         </p>
                         <p className="text-[10px] text-[#858c98]">
                           {staff.email}
                         </p>
                       </td>
-                      <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">
+                      <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">
                         {staff.phone}
                       </td>
-                      <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">
+                      <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">
                         {staff.dateAdded}
                       </td>
-                      <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">
+                      <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">
                         {staff.role}
                       </td>
                       <td className="px-4 py-3">
@@ -649,7 +649,7 @@ function StaffPageInner() {
             {/* Mobile card list */}
             <div className="flex flex-col gap-2 px-4 pb-4 lg:hidden">
               {filteredStaff.length === 0 && (
-                <p className="py-6 text-center font-[family-name:var(--font-nunito)] text-sm text-[#9ca3af]">
+                <p className="py-6 text-center font-[family-name:var(--font-urbanist)] text-sm text-[#9ca3af]">
                   No staff match your search or filters.
                 </p>
               )}
@@ -665,12 +665,12 @@ function StaffPageInner() {
                     </div>
                     <div className="flex flex-col gap-0.5">
                       <div className="flex items-center gap-2">
-                        <span className="text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">
+                        <span className="text-sm font-bold font-[family-name:var(--font-urbanist)] text-[#2d1810]">
                           {staff.name}
                         </span>
                         <StatusBadge status={staff.status} />
                       </div>
-                      <span className="font-[family-name:var(--font-nunito)] text-xs text-[#858c98]">
+                      <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#858c98]">
                         {staff.role} • {staff.phone}
                       </span>
                     </div>
@@ -687,14 +687,14 @@ function StaffPageInner() {
           <div className="space-y-4">
             {/* Toolbar */}
             <div className="flex flex-wrap items-center gap-2">
-              <span className="text-xs font-[family-name:var(--font-nunito)] text-[#6b7280]">
+              <span className="text-xs font-[family-name:var(--font-urbanist)] text-[#6b7280]">
                 Filter by:
               </span>
-              <button className="border border-[#d0d5dd] rounded-lg px-3 py-1.5 text-xs font-[family-name:var(--font-nunito)] flex items-center gap-1.5 bg-white cursor-pointer">
+              <button className="border border-[#d0d5dd] rounded-lg px-3 py-1.5 text-xs font-[family-name:var(--font-urbanist)] flex items-center gap-1.5 bg-white cursor-pointer">
                 Week
                 <ChevronDown className="size-3" />
               </button>
-              <button className="border border-[#d0d5dd] rounded-lg px-3 py-1.5 text-xs font-[family-name:var(--font-nunito)] flex items-center gap-1.5 bg-white cursor-pointer">
+              <button className="border border-[#d0d5dd] rounded-lg px-3 py-1.5 text-xs font-[family-name:var(--font-urbanist)] flex items-center gap-1.5 bg-white cursor-pointer">
                 All Status
                 <ChevronDown className="size-3" />
               </button>
@@ -706,7 +706,7 @@ function StaffPageInner() {
                   value={attendanceSearch}
                   onChange={(e) => setAttendanceSearch(e.target.value)}
                   placeholder="Search staff..."
-                  className="bg-[#f5edd8] border border-[#d0d5dd] rounded-lg text-xs px-3 py-1.5 pl-8 outline-none focus:ring-1 focus:ring-[#3b2513] font-[family-name:var(--font-nunito)]"
+                  className="bg-[#f5edd8] border border-[#d0d5dd] rounded-lg text-xs px-3 py-1.5 pl-8 outline-none focus:ring-1 focus:ring-[#3b2513] font-[family-name:var(--font-urbanist)]"
                 />
               </div>
             </div>
@@ -717,14 +717,14 @@ function StaffPageInner() {
               <table className="w-full text-left">
                 <thead>
                   <tr className="bg-[#edd9c0]">
-                    <th className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810] w-8">
+                    <th className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-urbanist)] text-[#2d1810] w-8">
                       <input type="checkbox" className="accent-[#3b2513]" />
                     </th>
                     {["Staff", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Compliance Score"].map(
                       (h) => (
                         <th
                           key={h}
-                          className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]"
+                          className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-urbanist)] text-[#2d1810]"
                         >
                           {h}
                         </th>
@@ -735,7 +735,7 @@ function StaffPageInner() {
                 <tbody className="divide-y divide-[#eaecf0]">
                   {filteredAttendance.length === 0 ? (
                     <tr>
-                      <td colSpan={9} className="py-10 text-center font-[family-name:var(--font-nunito)] text-sm text-[#9ca3af]">
+                      <td colSpan={9} className="py-10 text-center font-[family-name:var(--font-urbanist)] text-sm text-[#9ca3af]">
                         No staff match your search.
                       </td>
                     </tr>
@@ -746,7 +746,7 @@ function StaffPageInner() {
                         <input type="checkbox" className="accent-[#3b2513]" />
                       </td>
                       <td className="px-4 py-3">
-                        <p className="text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">
+                        <p className="text-sm font-bold font-[family-name:var(--font-urbanist)] text-[#2d1810]">
                           {row.name}
                         </p>
                         <p className="text-[10px] text-[#858c98]">
@@ -778,7 +778,7 @@ function StaffPageInner() {
               {/* Mobile card list */}
               <div className="flex flex-col gap-2 p-4 lg:hidden">
                 {filteredAttendance.length === 0 && (
-                  <p className="py-6 text-center font-[family-name:var(--font-nunito)] text-sm text-[#9ca3af]">
+                  <p className="py-6 text-center font-[family-name:var(--font-urbanist)] text-sm text-[#9ca3af]">
                     No staff match your search.
                   </p>
                 )}
@@ -786,7 +786,7 @@ function StaffPageInner() {
                   <div key={row.name} className="rounded-xl border border-[#eaecf0] p-3">
                     <div className="flex items-center justify-between">
                       <div className="flex flex-col gap-0.5">
-                        <span className="text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">
+                        <span className="text-sm font-bold font-[family-name:var(--font-urbanist)] text-[#2d1810]">
                           {row.name}
                         </span>
                         <span className="text-[10px] text-[#858c98]">{row.email}</span>
@@ -823,17 +823,17 @@ function StaffPageInner() {
                 Role Log
               </h2>
               <div className="flex flex-wrap items-center gap-2">
-                <span className="text-xs font-[family-name:var(--font-nunito)] text-[#6b7280]">
+                <span className="text-xs font-[family-name:var(--font-urbanist)] text-[#6b7280]">
                   Filter by:
                 </span>
-                <button className="border border-[#d0d5dd] rounded-lg px-3 py-1.5 text-xs font-[family-name:var(--font-nunito)] flex items-center gap-1.5 bg-white cursor-pointer">
+                <button className="border border-[#d0d5dd] rounded-lg px-3 py-1.5 text-xs font-[family-name:var(--font-urbanist)] flex items-center gap-1.5 bg-white cursor-pointer">
                   Date Created
                   <ChevronDown className="size-3" />
                 </button>
                 <DropdownMenu>
                   <DropdownMenuTrigger
                     render={
-                      <button className="border border-[#d0d5dd] rounded-lg px-3 py-1.5 text-xs font-[family-name:var(--font-nunito)] flex items-center gap-1.5 bg-white cursor-pointer" />
+                      <button className="border border-[#d0d5dd] rounded-lg px-3 py-1.5 text-xs font-[family-name:var(--font-urbanist)] flex items-center gap-1.5 bg-white cursor-pointer" />
                     }
                   >
                     {roleAccessFilter}
@@ -849,7 +849,7 @@ function StaffPageInner() {
                 </DropdownMenu>
                 <button
                   onClick={() => setRoleModal("create")}
-                  className="bg-[#3b2513] text-[#faf2e1] rounded-lg px-4 py-2 text-sm font-medium font-[family-name:var(--font-nunito)]"
+                  className="bg-[#3b2513] text-[#faf2e1] rounded-lg px-4 py-2 text-sm font-medium font-[family-name:var(--font-urbanist)]"
                 >
                   Add New Role
                 </button>
@@ -872,7 +872,7 @@ function StaffPageInner() {
                     ].map((h) => (
                       <th
                         key={h}
-                        className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]"
+                        className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-urbanist)] text-[#2d1810]"
                       >
                         {h}
                       </th>
@@ -882,26 +882,26 @@ function StaffPageInner() {
                 <tbody className="divide-y divide-[#eaecf0]">
                   {filteredRoles.length === 0 ? (
                     <tr>
-                      <td colSpan={6} className="py-10 text-center font-[family-name:var(--font-nunito)] text-sm text-[#9ca3af]">
+                      <td colSpan={6} className="py-10 text-center font-[family-name:var(--font-urbanist)] text-sm text-[#9ca3af]">
                         No roles match this filter.
                       </td>
                     </tr>
                   ) : (
                   filteredRoles.map((r) => (
                     <tr key={r.role} className="hover:bg-[#faf9f7]">
-                      <td className="px-4 py-3 text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">
+                      <td className="px-4 py-3 text-sm font-bold font-[family-name:var(--font-urbanist)] text-[#2d1810]">
                         {r.role}
                       </td>
-                      <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">
+                      <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">
                         {r.created}
                       </td>
-                      <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">
+                      <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">
                         {r.team}
                       </td>
                       <td className="px-4 py-3">
                         <AccessBadge access={r.access} />
                       </td>
-                      <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">
+                      <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">
                         {r.updated}
                       </td>
                       <td className="px-4 py-3">
@@ -931,7 +931,7 @@ function StaffPageInner() {
               {/* Mobile card list */}
               <div className="flex flex-col gap-2 p-4 lg:hidden">
                 {filteredRoles.length === 0 && (
-                  <p className="py-6 text-center font-[family-name:var(--font-nunito)] text-sm text-[#9ca3af]">
+                  <p className="py-6 text-center font-[family-name:var(--font-urbanist)] text-sm text-[#9ca3af]">
                     No roles match this filter.
                   </p>
                 )}
@@ -939,10 +939,10 @@ function StaffPageInner() {
                   <div key={r.role} className="flex items-center justify-between rounded-xl border border-[#eaecf0] p-3">
                     <div className="flex flex-col gap-0.5">
                       <div className="flex items-center gap-2">
-                        <span className="text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">{r.role}</span>
+                        <span className="text-sm font-bold font-[family-name:var(--font-urbanist)] text-[#2d1810]">{r.role}</span>
                         <AccessBadge access={r.access} />
                       </div>
-                      <span className="font-[family-name:var(--font-nunito)] text-xs text-[#858c98]">
+                      <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#858c98]">
                         {r.team} • Updated {r.updated}
                       </span>
                     </div>

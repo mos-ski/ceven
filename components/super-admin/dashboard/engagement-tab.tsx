@@ -37,19 +37,19 @@ export default function EngagementTab() {
                 <div className={`flex size-10 items-center justify-center rounded-full ${stat.bg}`}>
                   <Activity className={`size-5 ${stat.color}`} />
                 </div>
-                <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-heading">
+                <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-heading">
                   {stat.label}
                 </p>
               </div>
               <div className="mt-4 flex gap-4">
                 <div>
-                  <p className="font-[family-name:var(--font-nunito)] text-[10px] text-muted-text">Parents %</p>
+                  <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-muted-text">Parents %</p>
                   <p className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-stat-heading">
                     {stat.parents}%
                   </p>
                 </div>
                 <div className="border-l border-card-border pl-4">
-                  <p className="font-[family-name:var(--font-nunito)] text-[10px] text-muted-text">Caregivers %</p>
+                  <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-muted-text">Caregivers %</p>
                   <p className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-stat-heading">
                     {stat.caregivers}%
                   </p>
@@ -65,7 +65,7 @@ export default function EngagementTab() {
           <p className="font-[family-name:var(--font-urbanist)] text-sm font-bold text-heading">
             User Login Frequency
           </p>
-          <p className="font-[family-name:var(--font-nunito)] text-xs text-muted-text">
+          <p className="font-[family-name:var(--font-urbanist)] text-xs text-muted-text">
             Comparison of login patterns between caregivers and parents
           </p>
         </div>

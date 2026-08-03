@@ -88,7 +88,7 @@ export default function WalletTab() {
         <h2 className="mt-4 font-[family-name:var(--font-merriweather)] text-xl font-bold text-[#2d1810]">
           Set Up Your Wallet
         </h2>
-        <p className="mt-2 max-w-sm text-center font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+        <p className="mt-2 max-w-sm text-center font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
           Your wallet lets you track all money flowing in and out of your crèche. Deposits are automatic when parents pay invoices via Paystack.
         </p>
         <button
@@ -98,7 +98,7 @@ export default function WalletTab() {
           <Plus className="size-4" />
           Get Started
         </button>
-        <p className="mt-3 font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">
+        <p className="mt-3 font-[family-name:var(--font-urbanist)] text-xs text-[#9ca3af]">
           Takes about 2 minutes to complete
         </p>
       </div>
@@ -116,20 +116,20 @@ export default function WalletTab() {
       <div className="rounded-2xl bg-gradient-to-br from-[#3b2513] to-[#5b391e] p-6 text-white">
         <div className="flex items-center gap-2">
           <Wallet className="size-5 text-[#e0bfa0]" />
-          <span className="font-[family-name:var(--font-nunito)] text-sm text-[#e0bfa0]">Wallet Balance</span>
+          <span className="font-[family-name:var(--font-urbanist)] text-sm text-[#e0bfa0]">Wallet Balance</span>
         </div>
         <p className="mt-2 font-[family-name:var(--font-merriweather)] text-3xl font-bold sm:text-4xl">
           {formatNaira(WALLET_BALANCE.available)}
         </p>
         <div className="mt-4 flex flex-wrap gap-4">
           <div>
-            <span className="font-[family-name:var(--font-nunito)] text-xs text-[#e0bfa0]">Pending In</span>
+            <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#e0bfa0]">Pending In</span>
             <p className="font-[family-name:var(--font-urbanist)] text-sm font-medium">
               {formatNaira(WALLET_BALANCE.pendingIn)}
             </p>
           </div>
           <div>
-            <span className="font-[family-name:var(--font-nunito)] text-xs text-[#e0bfa0]">Pending Out</span>
+            <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#e0bfa0]">Pending Out</span>
             <p className="font-[family-name:var(--font-urbanist)] text-sm font-medium">
               {formatNaira(WALLET_BALANCE.pendingOut)}
             </p>
@@ -157,7 +157,7 @@ export default function WalletTab() {
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
         {WALLET_STATS.map((s) => (
           <div key={s.label} className="rounded-xl border border-[#e6ebf3] bg-white p-4">
-            <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{s.label}</p>
+            <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{s.label}</p>
             <p className="mt-2 font-[family-name:var(--font-merriweather)] text-xl font-bold text-[#2d1810]">
               {s.value}
             </p>
@@ -182,10 +182,10 @@ export default function WalletTab() {
             {PENDING_WITHDRAWALS.filter((w) => w.status === "Pending Approval").map((w) => (
               <div key={w.id} className="flex items-center justify-between rounded-lg bg-white p-3">
                 <div>
-                  <p className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">
+                  <p className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">
                     {formatNaira(w.amount)} → {w.destinationBank} {w.destinationAccount}
                   </p>
-                  <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+                  <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
                     Requested by {w.requestedBy} • {w.requestedAt}
                   </p>
                 </div>
@@ -252,7 +252,7 @@ export default function WalletTab() {
                 {["Date & Time", "Type", "Category", "Description", "Amount", "Status", "Actions"].map((h) => (
                   <th
                     key={h}
-                    className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black"
+                    className="px-4 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-normal text-black"
                   >
                     {h}
                   </th>
@@ -263,8 +263,8 @@ export default function WalletTab() {
               {filteredTransactions.map((txn) => (
                 <tr key={txn.id} className="border-t border-[#eaecf0]">
                   <td className="px-4 py-3">
-                    <p className="font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{txn.date}</p>
-                    <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{txn.time}</p>
+                    <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{txn.date}</p>
+                    <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{txn.time}</p>
                   </td>
                   <td className="px-4 py-3">
                     <span
@@ -283,10 +283,10 @@ export default function WalletTab() {
                       {txn.type}
                     </span>
                   </td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">
                     {txn.category}
                   </td>
-                  <td className="max-w-[240px] truncate px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">
+                  <td className="max-w-[240px] truncate px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">
                     {txn.description}
                   </td>
                   <td
@@ -309,7 +309,7 @@ export default function WalletTab() {
                     </span>
                   </td>
                   <td className="px-4 py-3">
-                    <button className="font-[family-name:var(--font-nunito)] text-sm text-[#c47b2c] hover:underline">
+                    <button className="font-[family-name:var(--font-urbanist)] text-sm text-[#c47b2c] hover:underline">
                       Details
                     </button>
                   </td>
@@ -347,10 +347,10 @@ export default function WalletTab() {
                   {formatNaira(txn.amount)}
                 </span>
               </div>
-              <p className="mt-1.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">
+              <p className="mt-1.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">
                 {txn.description}
               </p>
-              <p className="mt-1 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+              <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
                 {txn.date} • {txn.time} • {txn.category}
               </p>
             </div>
@@ -359,7 +359,7 @@ export default function WalletTab() {
 
         {filteredTransactions.length === 0 && (
           <div className="px-4 py-8 text-center">
-            <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+            <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
               No transactions match your filters.
             </p>
           </div>
@@ -372,7 +372,7 @@ export default function WalletTab() {
           <h3 className="font-[family-name:var(--font-merriweather)] font-bold text-[#2d1810]">Bank Account</h3>
           <button
             onClick={() => setBankUpdateOpen(true)}
-            className="font-[family-name:var(--font-nunito)] text-sm text-[#c47b2c] hover:underline"
+            className="font-[family-name:var(--font-urbanist)] text-sm text-[#c47b2c] hover:underline"
           >
             Update
           </button>
@@ -396,7 +396,7 @@ export default function WalletTab() {
                 {MOCK_BANK_ACCOUNT.accountType}
               </span>
             </div>
-            <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+            <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
               {MOCK_BANK_ACCOUNT.accountName} • ••••{MOCK_BANK_ACCOUNT.accountNumber.slice(-4)}
             </p>
           </div>

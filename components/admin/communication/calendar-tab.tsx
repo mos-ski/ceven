@@ -42,7 +42,7 @@ function MonthGrid() {
       </div>
       <div className="grid grid-cols-7 gap-1 text-center">
         {WEEKDAYS.map((d) => (
-          <div key={d} className="py-1 font-[family-name:var(--font-nunito)] text-sm text-[#2b3641]">
+          <div key={d} className="py-1 font-[family-name:var(--font-urbanist)] text-sm text-[#2b3641]">
             {d}
           </div>
         ))}
@@ -54,10 +54,10 @@ function MonthGrid() {
               <span className="font-[family-name:var(--font-merriweather)] text-sm font-bold text-[#2b3641]">{day}</span>
               {event && (
                 <div className="flex flex-col gap-1 rounded bg-[#f5edd8] p-1">
-                  <p className="font-[family-name:var(--font-nunito)] text-[10px] font-semibold text-[#2d1810]">
+                  <p className="font-[family-name:var(--font-urbanist)] text-[10px] font-semibold text-[#2d1810]">
                     {event.title}
                   </p>
-                  <p className="font-[family-name:var(--font-nunito)] text-[9px] text-[#6b7280]">{event.time}</p>
+                  <p className="font-[family-name:var(--font-urbanist)] text-[9px] text-[#6b7280]">{event.time}</p>
                   <span className={`w-fit rounded-full px-1.5 py-0.5 font-[family-name:var(--font-urbanist)] text-[8px] font-bold ${STATUS_BADGE_CLASS[event.status]}`}>
                     {event.status}
                   </span>
@@ -85,10 +85,10 @@ function UpcomingEventsPanel() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search children, parents…"
-            className="h-8 w-full rounded-lg border border-[rgba(45,24,16,0.12)] bg-[#f5edd8] pl-8 font-[family-name:var(--font-nunito)] text-xs text-[#2d1810] placeholder:text-[rgba(45,24,16,0.5)] outline-none"
+            className="h-8 w-full rounded-lg border border-[rgba(45,24,16,0.12)] bg-[#f5edd8] pl-8 font-[family-name:var(--font-urbanist)] text-xs text-[#2d1810] placeholder:text-[rgba(45,24,16,0.5)] outline-none"
           />
         </div>
-        <button className="flex items-center gap-1.5 rounded-lg border border-[#ccd2dc] px-3 py-2 font-[family-name:var(--font-nunito)] text-xs font-semibold text-[#454b54]">
+        <button className="flex items-center gap-1.5 rounded-lg border border-[#ccd2dc] px-3 py-2 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-[#454b54]">
           Date Filter
           <Calendar className="size-3" />
         </button>
@@ -96,10 +96,10 @@ function UpcomingEventsPanel() {
 
       {filtered.length === 0 ? (
         <div className="flex flex-1 flex-col items-center justify-center gap-1 py-12 text-center">
-          <p className="font-[family-name:var(--font-nunito)] text-base font-semibold text-[#2d2e2e]">
+          <p className="font-[family-name:var(--font-urbanist)] text-base font-semibold text-[#2d2e2e]">
             No Upcoming Events
           </p>
-          <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6f7682]">
+          <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#6f7682]">
             No events coming up, you can start by scheduling one
           </p>
         </div>
@@ -108,12 +108,12 @@ function UpcomingEventsPanel() {
           {filtered.map((event) => (
             <div key={event.id} className="flex items-center gap-3">
               <div className="flex flex-col items-center rounded-lg bg-[#f5edd8] px-2 py-1">
-                <span className="font-[family-name:var(--font-nunito)] text-xs font-bold text-[#3b2513]">{event.day}</span>
-                <span className="font-[family-name:var(--font-nunito)] text-[9px] text-[#6b7280]">JUN</span>
+                <span className="font-[family-name:var(--font-urbanist)] text-xs font-bold text-[#3b2513]">{event.day}</span>
+                <span className="font-[family-name:var(--font-urbanist)] text-[9px] text-[#6b7280]">JUN</span>
               </div>
               <div>
-                <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{event.title}</p>
-                <p className="font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">{event.time}</p>
+                <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">{event.title}</p>
+                <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#9ca3af]">{event.time}</p>
               </div>
               <span className={`ml-auto rounded-full px-2 py-0.5 font-[family-name:var(--font-urbanist)] text-[10px] font-bold ${STATUS_BADGE_CLASS[event.status]}`}>
                 {event.status}

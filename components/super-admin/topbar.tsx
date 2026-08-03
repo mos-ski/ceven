@@ -29,7 +29,7 @@ export function TopbarSA() {
         </button>
         <div className="flex items-center gap-2">
           <div className="flex size-9 items-center justify-center rounded-full bg-[#edd9c0]">
-            <span className="font-[family-name:var(--font-nunito)] text-xs font-bold text-brand-dark">CN</span>
+            <span className="font-[family-name:var(--font-urbanist)] text-xs font-bold text-brand-dark">CN</span>
           </div>
           <span className="hidden font-[family-name:var(--font-urbanist)] text-sm font-semibold text-heading lg:block">
             CEven Platform

@@ -21,8 +21,8 @@ export default function EnrollmentDetailPage() {
   if (!enrollment) {
     return (
       <div className="flex flex-col items-center gap-4 py-20">
-        <p className="font-[family-name:var(--font-nunito)] text-lg text-muted-text">Enrollment request not found.</p>
-        <Link href="/super-admin/enrollment" className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-brand-accent hover:underline">
+        <p className="font-[family-name:var(--font-urbanist)] text-lg text-muted-text">Enrollment request not found.</p>
+        <Link href="/super-admin/enrollment" className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-brand-accent hover:underline">
           ← Back to Enrollment
         </Link>
       </div>
@@ -32,7 +32,7 @@ export default function EnrollmentDetailPage() {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
-        <Link href="/super-admin/enrollment" className="flex items-center gap-1 font-[family-name:var(--font-nunito)] text-sm font-semibold text-brand-accent hover:underline">
+        <Link href="/super-admin/enrollment" className="flex items-center gap-1 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-brand-accent hover:underline">
           <ArrowLeft className="size-4" /> Back to Enrollment
         </Link>
         <div className="flex gap-2">
@@ -53,7 +53,7 @@ export default function EnrollmentDetailPage() {
           <div className="rounded-xl border border-card-border bg-white p-4">
             <div className="mb-3 flex items-center justify-center">
               <div className="flex h-40 w-full items-center justify-center rounded-lg bg-gradient-to-br from-brand-accent/10 to-brand-dark/10">
-                <span className="font-[family-name:var(--font-nunito)] text-sm text-muted-text">Slide 1 of 1</span>
+                <span className="font-[family-name:var(--font-urbanist)] text-sm text-muted-text">Slide 1 of 1</span>
               </div>
             </div>
           </div>
@@ -64,7 +64,7 @@ export default function EnrollmentDetailPage() {
                 key={tab}
                 type="button"
                 onClick={() => setActiveTab(tab)}
-                className={`rounded-lg px-4 py-2.5 text-left font-[family-name:var(--font-nunito)] text-sm font-semibold transition-colors ${
+                className={`rounded-lg px-4 py-2.5 text-left font-[family-name:var(--font-urbanist)] text-sm font-semibold transition-colors ${
                   activeTab === tab
                     ? "border-l-4 border-brand-dark bg-[#faf2e1] text-brand-dark"
                     : "text-muted-text hover:bg-slate-50"
@@ -99,14 +99,14 @@ export default function EnrollmentDetailPage() {
                 <InfoRow label="Bio" value={enrollment.bio} />
               </div>
               <div className="md:col-span-2">
-                <p className="font-[family-name:var(--font-nunito)] text-xs text-muted-text">Profile Pictures</p>
-                <button type="button" className="mt-1 font-[family-name:var(--font-nunito)] text-sm font-semibold text-brand-accent hover:underline">
+                <p className="font-[family-name:var(--font-urbanist)] text-xs text-muted-text">Profile Pictures</p>
+                <button type="button" className="mt-1 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-brand-accent hover:underline">
                   View Images
                 </button>
               </div>
               <div className="md:col-span-2">
-                <p className="font-[family-name:var(--font-nunito)] text-xs text-muted-text">Policy Document</p>
-                <button type="button" className="mt-1 font-[family-name:var(--font-nunito)] text-sm font-semibold text-brand-accent hover:underline">
+                <p className="font-[family-name:var(--font-urbanist)] text-xs text-muted-text">Policy Document</p>
+                <button type="button" className="mt-1 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-brand-accent hover:underline">
                   View Document
                 </button>
               </div>
@@ -117,11 +117,11 @@ export default function EnrollmentDetailPage() {
             <div className="flex flex-col gap-3">
               {enrollment.rooms.map((room) => (
                 <div key={room.name} className="flex items-center justify-between rounded-lg border border-card-border p-4">
-                  <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-heading">{room.name}</p>
+                  <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-heading">{room.name}</p>
                   <button
                     type="button"
                     onClick={() => setPricingModal({ roomName: room.name, pricing: room.pricing })}
-                    className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-brand-accent hover:underline"
+                    className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-brand-accent hover:underline"
                   >
                     View Pricing
                   </button>
@@ -137,11 +137,11 @@ export default function EnrollmentDetailPage() {
                 const isClosed = schedule && "closed" in schedule && schedule.closed;
                 return (
                   <div key={day} className="flex items-center justify-between rounded-lg border border-card-border p-3">
-                    <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-heading">{day}</p>
+                    <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-heading">{day}</p>
                     {isClosed ? (
-                      <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-error">Closed</span>
+                      <span className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-error">Closed</span>
                     ) : schedule && "open" in schedule ? (
-                      <p className="font-[family-name:var(--font-nunito)] text-sm text-heading">
+                      <p className="font-[family-name:var(--font-urbanist)] text-sm text-heading">
                         Opening Time: {schedule.open} | Closing Time: {schedule.close}
                       </p>
                     ) : null}
@@ -155,15 +155,15 @@ export default function EnrollmentDetailPage() {
             <div className="flex flex-col gap-4">
               {enrollment.documents.map((doc) => (
                 <div key={doc.label} className="flex items-center justify-between rounded-lg border border-card-border p-3">
-                  <p className="font-[family-name:var(--font-nunito)] text-sm text-heading">{doc.label}</p>
-                  <button type="button" className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-brand-accent hover:underline">
+                  <p className="font-[family-name:var(--font-urbanist)] text-sm text-heading">{doc.label}</p>
+                  <button type="button" className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-brand-accent hover:underline">
                     {doc.uploaded ? "View Document" : "Not Uploaded"}
                   </button>
                 </div>
               ))}
               <div className="flex items-center justify-between rounded-lg border border-card-border p-3">
-                <p className="font-[family-name:var(--font-nunito)] text-sm text-heading">Staff screening confirmation</p>
-                <span className={`font-[family-name:var(--font-nunito)] text-sm font-semibold ${enrollment.staffScreening ? "text-success-text" : "text-error"}`}>
+                <p className="font-[family-name:var(--font-urbanist)] text-sm text-heading">Staff screening confirmation</p>
+                <span className={`font-[family-name:var(--font-urbanist)] text-sm font-semibold ${enrollment.staffScreening ? "text-success-text" : "text-error"}`}>
                   {enrollment.staffScreening ? "Yes" : "No"}
                 </span>
               </div>
@@ -188,7 +188,7 @@ export default function EnrollmentDetailPage() {
             <div className="flex flex-col gap-2">
               {Object.entries(pricingModal.pricing).map(([key, value]) => (
                 <div key={key} className="flex items-center justify-between rounded-lg border border-card-border p-3">
-                  <p className="font-[family-name:var(--font-nunito)] text-sm text-heading">{key}</p>
+                  <p className="font-[family-name:var(--font-urbanist)] text-sm text-heading">{key}</p>
                   <p className="font-[family-name:var(--font-merriweather)] text-sm font-bold text-stat-heading">
                     ₦{value.toLocaleString()}
                   </p>
@@ -217,17 +217,17 @@ export default function EnrollmentDetailPage() {
             <h3 className="mb-1 text-center font-[family-name:var(--font-merriweather)] text-lg font-bold text-heading">
               Request Additional Information
             </h3>
-            <p className="mb-4 text-center font-[family-name:var(--font-nunito)] text-sm text-muted-text">
+            <p className="mb-4 text-center font-[family-name:var(--font-urbanist)] text-sm text-muted-text">
               Please indicate the exact details you&apos;d like the parent to provide.
             </p>
             <div className="mb-4">
-              <label className="mb-1 block font-[family-name:var(--font-nunito)] text-sm font-semibold text-heading">
+              <label className="mb-1 block font-[family-name:var(--font-urbanist)] text-sm font-semibold text-heading">
                 Additional Information
               </label>
               <textarea
                 placeholder="Describe the information you need"
                 rows={4}
-                className="w-full rounded-lg border border-input-border p-3 font-[family-name:var(--font-nunito)] text-sm text-heading placeholder:text-muted-text focus:outline-none focus:ring-2 focus:ring-brand-accent"
+                className="w-full rounded-lg border border-input-border p-3 font-[family-name:var(--font-urbanist)] text-sm text-heading placeholder:text-muted-text focus:outline-none focus:ring-2 focus:ring-brand-accent"
               />
             </div>
             <div className="flex justify-end gap-2">
@@ -256,8 +256,8 @@ export default function EnrollmentDetailPage() {
 function InfoRow({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <p className="font-[family-name:var(--font-nunito)] text-xs text-muted-text">{label}</p>
-      <p className="mt-0.5 font-[family-name:var(--font-nunito)] text-sm font-medium text-heading">{value}</p>
+      <p className="font-[family-name:var(--font-urbanist)] text-xs text-muted-text">{label}</p>
+      <p className="mt-0.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-heading">{value}</p>
     </div>
   );
 }

@@ -31,7 +31,7 @@ export default function FinancialsTab() {
                   <stat.icon className={`size-5 ${stat.color}`} />
                 </div>
                 <div>
-                  <p className="font-[family-name:var(--font-nunito)] text-xs text-muted-text">{stat.label}</p>
+                  <p className="font-[family-name:var(--font-urbanist)] text-xs text-muted-text">{stat.label}</p>
                   <p className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-stat-heading">
                     {stat.value}
                   </p>
@@ -44,7 +44,7 @@ export default function FinancialsTab() {
                   ) : (
                     <TrendingDown className="size-3 text-error" />
                   )}
-                  <p className={`font-[family-name:var(--font-nunito)] text-[10px] ${stat.trendUp ? "text-success-text" : "text-error"}`}>
+                  <p className={`font-[family-name:var(--font-urbanist)] text-[10px] ${stat.trendUp ? "text-success-text" : "text-error"}`}>
                     {stat.trend}
                   </p>
                 </div>

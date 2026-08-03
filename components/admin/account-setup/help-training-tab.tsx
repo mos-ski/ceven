@@ -65,11 +65,11 @@ function FaqFormDialog({
         </DialogHeader>
         <form onSubmit={handleSubmit} className="flex flex-col gap-5 p-6">
           <div className="flex flex-col gap-1.5">
-            <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">Category</label>
+            <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">Category</label>
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              className="h-11 rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+              className="h-11 rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
             >
               {FAQ_CATEGORIES.map((cat) => (
                 <option key={cat} value={cat}>{cat.trim()}</option>
@@ -77,23 +77,23 @@ function FaqFormDialog({
             </select>
           </div>
           <div className="flex flex-col gap-1.5">
-            <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">Question</label>
+            <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">Question</label>
             <input
               type="text"
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
               placeholder="e.g. What age groups do you accept?"
-              className="h-11 rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+              className="h-11 rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] outline-none focus:ring-2 focus:ring-[#c47b2c]"
             />
           </div>
           <div className="flex flex-col gap-1.5">
-            <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">Answer</label>
+            <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">Answer</label>
             <textarea
               rows={5}
               value={answer}
               onChange={(e) => setAnswer(e.target.value)}
               placeholder="Type the answer here..."
-              className="resize-none rounded-xl border border-[#e6ebf3] bg-white px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+              className="resize-none rounded-xl border border-[#e6ebf3] bg-white px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] outline-none focus:ring-2 focus:ring-[#c47b2c]"
             />
           </div>
           <DialogFooter className="border-t border-[#eaecf0] px-0 pt-4">
@@ -208,7 +208,7 @@ function FaqManagement() {
 
       {/* FAQ list */}
       {filtered.length === 0 ? (
-        <p className="py-6 text-center font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">
+        <p className="py-6 text-center font-[family-name:var(--font-urbanist)] text-xs text-[#9ca3af]">
           No FAQs yet. Click &ldquo;Add FAQ&rdquo; to get started.
         </p>
       ) : (
@@ -240,10 +240,10 @@ function FaqManagement() {
                 <Trash2 size={24} className="text-red-500" />
               </div>
               <h3 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">Delete FAQ</h3>
-              <p className="mt-2 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+              <p className="mt-2 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
                 Are you sure? This cannot be undone.
               </p>
-              <p className="mt-3 rounded-lg bg-[#f9f8f6] px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">
+              <p className="mt-3 rounded-lg bg-[#f9f8f6] px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">
                 &ldquo;{deleteItem.question}&rdquo;
               </p>
               <div className="mt-6 flex w-full gap-3">
@@ -289,7 +289,7 @@ function FaqRow({
       <div className="flex items-center gap-2 px-3 py-2.5">
         <GripVertical size={14} className="shrink-0 text-[#d0d5dd]" />
         <div className="min-w-0 flex-1">
-          <p className="font-[family-name:var(--font-nunito)] text-xs font-semibold text-[#2d1810] truncate">{faq.question}</p>
+          <p className="font-[family-name:var(--font-urbanist)] text-xs font-semibold text-[#2d1810] truncate">{faq.question}</p>
           <span className="font-[family-name:var(--font-urbanist)] text-[9px] text-[#c47b2c]">{faq.category.trim()}</span>
         </div>
         <div className="flex shrink-0 items-center gap-0.5">
@@ -304,7 +304,7 @@ function FaqRow({
       </div>
       {expanded && (
         <div className="border-t border-[#f3f4f6] px-3 py-2.5">
-          <p className="font-[family-name:var(--font-nunito)] text-xs leading-relaxed text-[#6b7280]">{faq.answer}</p>
+          <p className="font-[family-name:var(--font-urbanist)] text-xs leading-relaxed text-[#6b7280]">{faq.answer}</p>
         </div>
       )}
     </div>
@@ -341,11 +341,11 @@ function AskAdaPanel() {
       <div className="flex shrink-0 flex-col gap-1.5 border-b border-[rgba(45,24,16,0.07)] px-5 py-3.5">
         <div className="flex items-center gap-1">
           <span className="size-1.5 rounded-full bg-[#c47b2c]" />
-          <span className="font-[family-name:var(--font-nunito)] text-xs font-bold tracking-[0.84px] text-[#2d1810] uppercase">
+          <span className="font-[family-name:var(--font-urbanist)] text-xs font-bold tracking-[0.84px] text-[#2d1810] uppercase">
             Ask ADA
           </span>
         </div>
-        <div className="flex items-center gap-1 font-[family-name:var(--font-nunito)] text-[10px]">
+        <div className="flex items-center gap-1 font-[family-name:var(--font-urbanist)] text-[10px]">
           <span className="text-[rgba(45,24,16,0.5)]">Professional &amp; Warm</span>
           <button className="text-[#1f3345] underline">Personalize</button>
         </div>
@@ -357,7 +357,7 @@ function AskAdaPanel() {
             msg.role === "user" ? (
               <div key={i} className="flex items-start justify-end gap-2">
                 <div className="max-w-[268px] rounded-tl-[10px] rounded-tr-[10px] rounded-br-[10px] rounded-bl-[2px] border border-[rgba(45,24,16,0.12)] bg-[#fdf6e8] p-3">
-                  <p className="font-[family-name:var(--font-nunito)] text-xs font-medium text-[#2d1810]">{msg.text}</p>
+                  <p className="font-[family-name:var(--font-urbanist)] text-xs font-medium text-[#2d1810]">{msg.text}</p>
                 </div>
                 <div
                   className="flex size-6 shrink-0 items-center justify-center rounded-xl text-xs font-bold text-white"
@@ -375,7 +375,7 @@ function AskAdaPanel() {
                   ✦
                 </div>
                 <div className="max-w-[268px] rounded-tl-[2px] rounded-tr-[10px] rounded-br-[10px] rounded-bl-[10px] border border-[rgba(45,24,16,0.12)] bg-white p-3">
-                  <p className="font-[family-name:var(--font-nunito)] text-xs font-medium text-[#2d1810]">{msg.text}</p>
+                  <p className="font-[family-name:var(--font-urbanist)] text-xs font-medium text-[#2d1810]">{msg.text}</p>
                 </div>
               </div>
             )
@@ -389,7 +389,7 @@ function AskAdaPanel() {
             <button
               key={prompt}
               onClick={() => send(prompt)}
-              className="rounded-full border border-[rgba(45,24,16,0.12)] bg-[#f5edd8] px-3 py-1.5 font-[family-name:var(--font-nunito)] text-[10px] text-[rgba(45,24,16,0.5)]"
+              className="rounded-full border border-[rgba(45,24,16,0.12)] bg-[#f5edd8] px-3 py-1.5 font-[family-name:var(--font-urbanist)] text-[10px] text-[rgba(45,24,16,0.5)]"
             >
               {prompt}
             </button>
@@ -401,7 +401,7 @@ function AskAdaPanel() {
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && send(input)}
             placeholder="Ask Ada anything…"
-            className="h-10 w-full rounded-[10px] border border-[rgba(45,24,16,0.12)] bg-[#f5edd8] px-3 pr-12 font-[family-name:var(--font-nunito)] text-xs font-medium text-[#2d1810] placeholder:text-[rgba(45,24,16,0.5)] outline-none"
+            className="h-10 w-full rounded-[10px] border border-[rgba(45,24,16,0.12)] bg-[#f5edd8] px-3 pr-12 font-[family-name:var(--font-urbanist)] text-xs font-medium text-[#2d1810] placeholder:text-[rgba(45,24,16,0.5)] outline-none"
           />
           <button
             onClick={() => send(input)}
@@ -437,7 +437,7 @@ function RoleGuidesList({
             value={search}
             onChange={(e) => onSearchChange(e.target.value)}
             placeholder="Search children, parents…"
-            className="h-8 w-full rounded-lg border border-[rgba(45,24,16,0.12)] bg-[#f5edd8] pl-8 font-[family-name:var(--font-nunito)] text-[10px] text-[#2d1810] placeholder:text-[rgba(45,24,16,0.5)] outline-none"
+            className="h-8 w-full rounded-lg border border-[rgba(45,24,16,0.12)] bg-[#f5edd8] pl-8 font-[family-name:var(--font-urbanist)] text-[10px] text-[#2d1810] placeholder:text-[rgba(45,24,16,0.5)] outline-none"
           />
         </div>
       </div>
@@ -448,8 +448,8 @@ function RoleGuidesList({
             onClick={() => onSelect(guide)}
             className="flex flex-col gap-2 rounded-[10px] bg-[#fcfcfc] p-3 text-left hover:bg-[#f5edd8]"
           >
-            <p className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">{guide.title}</p>
-            <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{guide.excerpt}</p>
+            <p className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-black">{guide.title}</p>
+            <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{guide.excerpt}</p>
           </button>
         ))}
       </div>

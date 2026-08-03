@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Mogra, Merriweather, Urbanist, Nunito, Fraunces } from "next/font/google";
+import { Mogra, Merriweather, Urbanist } from "next/font/google";
 import { Providers } from "@/components/providers";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/sonner";
@@ -19,22 +19,9 @@ const merriweather = Merriweather({
 });
 
 const urbanist = Urbanist({
-  weight: ["400", "500", "600"],
-  subsets: ["latin"],
-  variable: "--font-urbanist-import",
-});
-
-const nunito = Nunito({
   weight: ["400", "500", "600", "700", "800"],
   subsets: ["latin"],
-  variable: "--font-nunito-import",
-});
-
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  axes: ["SOFT", "WONK", "opsz"],
-  style: ["normal", "italic"],
-  variable: "--font-fraunces",
+  variable: "--font-urbanist-import",
 });
 
 export const metadata: Metadata = {
@@ -57,7 +44,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         suppressHydrationWarning
-        className={`${mogra.variable} ${merriweather.variable} ${urbanist.variable} ${nunito.variable} ${fraunces.variable} font-sans antialiased`}
+        className={`${mogra.variable} ${merriweather.variable} ${urbanist.variable} font-sans antialiased`}
       >
         <Providers>
           <TooltipProvider>

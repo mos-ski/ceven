@@ -19,7 +19,7 @@ export default function ChildProfilePage() {
 
   return (
     <div className="flex flex-col gap-4">
-      <Link href="/super-admin/creches" className="flex items-center gap-1 font-[family-name:var(--font-nunito)] text-sm font-semibold text-brand-accent hover:underline">
+      <Link href="/super-admin/creches" className="flex items-center gap-1 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-brand-accent hover:underline">
         <ArrowLeft className="size-4" /> Back to Creches
       </Link>
 
@@ -41,7 +41,7 @@ export default function ChildProfilePage() {
                 key={tab}
                 type="button"
                 onClick={() => setActiveTab(tab)}
-                className={`rounded-lg px-4 py-2.5 text-left font-[family-name:var(--font-nunito)] text-sm font-semibold transition-colors ${
+                className={`rounded-lg px-4 py-2.5 text-left font-[family-name:var(--font-urbanist)] text-sm font-semibold transition-colors ${
                   activeTab === tab
                     ? "border-l-4 border-brand-dark bg-[#faf2e1] text-brand-dark"
                     : "text-muted-text hover:bg-slate-50"
@@ -69,8 +69,8 @@ export default function ChildProfilePage() {
               <InfoRow label="Emergency Contact" value={profile.emergencyContact} />
               <InfoRow label="Date of Birth" value={profile.dateOfBirth} />
               <div className="md:col-span-2">
-                <p className="font-[family-name:var(--font-nunito)] text-xs text-muted-text">Photo</p>
-                <button type="button" className="mt-1 font-[family-name:var(--font-nunito)] text-sm font-semibold text-brand-accent hover:underline">
+                <p className="font-[family-name:var(--font-urbanist)] text-xs text-muted-text">Photo</p>
+                <button type="button" className="mt-1 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-brand-accent hover:underline">
                   View Image
                 </button>
               </div>
@@ -119,7 +119,7 @@ export default function ChildProfilePage() {
                       {profile.activityLog.length}
                     </span>
                   </div>
-                  <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-heading">Activity Logs</p>
+                  <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-heading">Activity Logs</p>
                 </div>
               </div>
 
@@ -127,18 +127,18 @@ export default function ChildProfilePage() {
                 <table className="w-full text-left">
                   <thead>
                     <tr className="bg-table-header-bg">
-                      <th className="px-4 py-3 font-[family-name:var(--font-nunito)] text-xs font-semibold text-white">Date</th>
-                      <th className="px-4 py-3 font-[family-name:var(--font-nunito)] text-xs font-semibold text-white">Total Logs</th>
-                      <th className="px-4 py-3 font-[family-name:var(--font-nunito)] text-xs font-semibold text-white">Action</th>
+                      <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">Date</th>
+                      <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">Total Logs</th>
+                      <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     {profile.activityLog.map((log, i) => (
                       <tr key={i} className="border-b border-table-border last:border-0 hover:bg-slate-50">
-                        <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-heading">{log.date}</td>
-                        <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-heading">{log.totalLogs}</td>
+                        <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">{log.date}</td>
+                        <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">{log.totalLogs}</td>
                         <td className="px-4 py-3">
-                          <button type="button" className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-brand-accent hover:underline">
+                          <button type="button" className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-brand-accent hover:underline">
                             View Details
                           </button>
                         </td>
@@ -146,7 +146,7 @@ export default function ChildProfilePage() {
                     ))}
                     {profile.activityLog.length === 0 && (
                       <tr>
-                        <td colSpan={3} className="px-4 py-8 text-center font-[family-name:var(--font-nunito)] text-sm text-muted-text">
+                        <td colSpan={3} className="px-4 py-8 text-center font-[family-name:var(--font-urbanist)] text-sm text-muted-text">
                           No activity logs yet.
                         </td>
                       </tr>
@@ -165,8 +165,8 @@ export default function ChildProfilePage() {
 function InfoRow({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <p className="font-[family-name:var(--font-nunito)] text-xs text-muted-text">{label}</p>
-      <p className="mt-0.5 font-[family-name:var(--font-nunito)] text-sm font-medium text-heading">{value}</p>
+      <p className="font-[family-name:var(--font-urbanist)] text-xs text-muted-text">{label}</p>
+      <p className="mt-0.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-heading">{value}</p>
     </div>
   );
 }

@@ -55,7 +55,7 @@ function ManualCheckInModal({ open, onOpenChange }: { open: boolean; onOpenChang
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Manual Check-In</DialogTitle>
-          <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+          <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
             Check in manually for one or 2 reasons
           </p>
         </DialogHeader>
@@ -66,7 +66,7 @@ function ManualCheckInModal({ open, onOpenChange }: { open: boolean; onOpenChang
             <select
               id="checkin-action"
               defaultValue=""
-              className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+              className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
             >
               <option value="" disabled>
                 Select
@@ -84,7 +84,7 @@ function ManualCheckInModal({ open, onOpenChange }: { open: boolean; onOpenChang
             <select
               id="checkin-name"
               defaultValue=""
-              className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+              className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
             >
               <option value="" disabled>
                 Child Name
@@ -108,7 +108,7 @@ function ManualCheckInModal({ open, onOpenChange }: { open: boolean; onOpenChang
               id="checkin-reason"
               rows={3}
               placeholder="Why this check-in is being recorded manually..."
-              className="resize-none rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+              className="resize-none rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
             />
           </div>
         </div>
@@ -118,7 +118,7 @@ function ManualCheckInModal({ open, onOpenChange }: { open: boolean; onOpenChang
             render={
               <Button
                 variant="outline"
-                className="h-9 rounded-lg border-[#d0d5dd] px-4 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]"
+                className="h-9 rounded-lg border-[#d0d5dd] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]"
               />
             }
           >
@@ -126,7 +126,7 @@ function ManualCheckInModal({ open, onOpenChange }: { open: boolean; onOpenChang
           </DialogClose>
           <Button
             onClick={() => onOpenChange(false)}
-            className="h-9 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]"
+            className="h-9 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]"
           >
             Confirm and Record
           </Button>
@@ -144,7 +144,7 @@ function LogExceptionModal({ open, onOpenChange }: { open: boolean; onOpenChange
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Log Exception</DialogTitle>
-          <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+          <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
             Check in manually for one or 2 reasons
           </p>
         </DialogHeader>
@@ -156,7 +156,7 @@ function LogExceptionModal({ open, onOpenChange }: { open: boolean; onOpenChange
               id="exception-person"
               value={personType}
               onChange={(e) => setPersonType(e.target.value as "Staff" | "Child")}
-              className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+              className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
             >
               <option value="Staff">Staff</option>
               <option value="Child">Child</option>
@@ -168,7 +168,7 @@ function LogExceptionModal({ open, onOpenChange }: { open: boolean; onOpenChange
             <select
               id="exception-name"
               defaultValue=""
-              className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+              className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
             >
               <option value="" disabled>
                 Person&apos;s name
@@ -186,7 +186,7 @@ function LogExceptionModal({ open, onOpenChange }: { open: boolean; onOpenChange
             <select
               id="exception-type"
               defaultValue=""
-              className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+              className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
             >
               <option value="" disabled>
                 Select
@@ -210,7 +210,7 @@ function LogExceptionModal({ open, onOpenChange }: { open: boolean; onOpenChange
               id="exception-note"
               rows={3}
               placeholder="Describe the exception..."
-              className="resize-none rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+              className="resize-none rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
             />
           </div>
         </div>
@@ -220,7 +220,7 @@ function LogExceptionModal({ open, onOpenChange }: { open: boolean; onOpenChange
             render={
               <Button
                 variant="outline"
-                className="h-9 rounded-lg border-[#d0d5dd] px-4 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]"
+                className="h-9 rounded-lg border-[#d0d5dd] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]"
               />
             }
           >
@@ -228,7 +228,7 @@ function LogExceptionModal({ open, onOpenChange }: { open: boolean; onOpenChange
           </DialogClose>
           <Button
             onClick={() => onOpenChange(false)}
-            className="h-9 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]"
+            className="h-9 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]"
           >
             Log Exception
           </Button>
@@ -390,8 +390,8 @@ function DailyReportDetailsModal({
               <div className="flex items-center gap-2">
                 <div className="size-9 rounded-full bg-[#edd9c0]" />
                 <div>
-                  <p className="font-[family-name:var(--font-nunito)] text-sm font-bold text-black">{row.child}</p>
-                  <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{row.childInfo}</p>
+                  <p className="font-[family-name:var(--font-urbanist)] text-sm font-bold text-black">{row.child}</p>
+                  <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{row.childInfo}</p>
                 </div>
               </div>
               <div className="flex items-center gap-2">
@@ -414,10 +414,10 @@ function DailyReportDetailsModal({
                 ["Report Time", row.reportTime],
               ].map(([label, value]) => (
                 <div key={label} className="flex gap-[52px]">
-                  <p className="w-[156px] shrink-0 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#6b7280]">
+                  <p className="w-[156px] shrink-0 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#6b7280]">
                     {label}
                   </p>
-                  <p className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#1f2937]">{value}</p>
+                  <p className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#1f2937]">{value}</p>
                 </div>
               ))}
             </div>
@@ -447,12 +447,12 @@ function DailyLogsView() {
             key={card.title}
             className="flex flex-col gap-1 rounded-xl border border-[#e6ebf3] bg-white p-4"
           >
-            <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">{card.title}</p>
+            <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">{card.title}</p>
             <p className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
               {card.value}
             </p>
             {card.subtitle && (
-              <p className="font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">{card.subtitle}</p>
+              <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#9ca3af]">{card.subtitle}</p>
             )}
           </div>
         ))}
@@ -463,7 +463,7 @@ function DailyLogsView() {
         <span className="inline-flex items-center gap-1 rounded-full bg-[#e0bfa0] px-2 py-0.5 font-[family-name:var(--font-urbanist)] text-[10px] font-medium text-[#3b2513]">
           ✦ AI Insights
         </span>
-        <p className="font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">
+        <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">
           ⚠ Lion and Dolphin rooms have not submitted today. AI has notified caregivers.
         </p>
         <button className="ml-auto text-[#9ca3af] hover:text-[#6b7280]">✕</button>
@@ -477,7 +477,7 @@ function DailyLogsView() {
             Today&apos;s Report Status
           </span>
           <div className="flex flex-wrap items-center gap-2">
-            <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Filter by:</span>
+            <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Filter by:</span>
             <FilterDropdown label="All Status" />
             <FilterDropdown label="All Room" />
             <FilterDropdown label="Date" />
@@ -502,7 +502,7 @@ function DailyLogsView() {
                 {["Child", "Room", "Caregiver", "Report Time", "Mood", "Meal", "Status", "Action"].map((h) => (
                   <th
                     key={h}
-                    className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black"
+                    className="px-4 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-normal text-black"
                   >
                     {h}
                   </th>
@@ -516,22 +516,22 @@ function DailyLogsView() {
                     <input type="checkbox" className="h-4 w-4 accent-[#3b2513]" />
                   </td>
                   <td className="px-4 py-3">
-                    <p className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">{row.child}</p>
-                    <p className="font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">{row.childInfo}</p>
+                    <p className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">{row.child}</p>
+                    <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">{row.childInfo}</p>
                   </td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
                     {row.room}
                   </td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
                     {row.caregiver}
                   </td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
                     {row.reportTime}
                   </td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
                     {row.mood}
                   </td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
                     {row.meal}
                   </td>
                   <td className="px-4 py-3">
@@ -541,16 +541,16 @@ function DailyLogsView() {
                     {row.status === "Done" || row.status === "AI Flag" ? (
                       <button
                         onClick={() => setViewingRow(row)}
-                        className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#3b2513] underline"
+                        className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#3b2513] underline"
                       >
                         View
                       </button>
                     ) : row.status === "Pending" ? (
-                      <button className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#3b2513] underline">
+                      <button className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#3b2513] underline">
                         Log Now
                       </button>
                     ) : (
-                      <button className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#3b2513] underline">
+                      <button className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#3b2513] underline">
                         Log Now
                       </button>
                     )}
@@ -571,17 +571,17 @@ function DailyLogsView() {
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">{row.child}</span>
-                  <p className="font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">{row.childInfo}</p>
+                  <span className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">{row.child}</span>
+                  <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">{row.childInfo}</p>
                 </div>
                 <DailyLogStatusBadge status={row.status} />
               </div>
               <div className="mt-1.5 flex items-center gap-2">
-                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{row.room}</span>
+                <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{row.room}</span>
                 <span className="text-[#d0d5dd]">•</span>
-                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{row.caregiver}</span>
+                <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{row.caregiver}</span>
                 <span className="text-[#d0d5dd]">•</span>
-                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{row.reportTime}</span>
+                <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{row.reportTime}</span>
               </div>
             </div>
           ))}

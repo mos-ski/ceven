@@ -109,7 +109,7 @@ export default function NotificationPanel({ onClose }: Props) {
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`rounded-lg px-3 py-2 font-[family-name:var(--font-nunito)] text-xs font-semibold transition-colors ${
+                className={`rounded-lg px-3 py-2 font-[family-name:var(--font-urbanist)] text-xs font-semibold transition-colors ${
                   activeTab === tab
                     ? "bg-[#3b2513] text-[#faf2e1]"
                     : "text-[#3b2513] hover:bg-[#f9fafb]"
@@ -119,7 +119,7 @@ export default function NotificationPanel({ onClose }: Props) {
               </button>
             ))}
           </div>
-          <span className="shrink-0 font-[family-name:var(--font-nunito)] text-xs text-[#333]">
+          <span className="shrink-0 font-[family-name:var(--font-urbanist)] text-xs text-[#333]">
             New Inbox ({notifications.length})
           </span>
         </div>
@@ -136,12 +136,12 @@ export default function NotificationPanel({ onClose }: Props) {
             <span className="shrink-0 text-base">{n.emoji}</span>
             <div className="ml-3 flex min-w-0 flex-1 flex-col gap-1">
               <p
-                className="truncate font-[family-name:var(--font-nunito)] text-xs font-semibold"
+                className="truncate font-[family-name:var(--font-urbanist)] text-xs font-semibold"
                 style={{ color: n.titleColor }}
               >
                 {n.title}
               </p>
-              <p className="truncate font-[family-name:var(--font-nunito)] text-[10px] text-[#2d1810]/50">
+              <p className="truncate font-[family-name:var(--font-urbanist)] text-[10px] text-[#2d1810]/50">
                 {n.desc}
               </p>
             </div>
@@ -151,7 +151,7 @@ export default function NotificationPanel({ onClose }: Props) {
           </div>
         ))}
         {filtered.length === 0 && (
-          <p className="py-6 text-center font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+          <p className="py-6 text-center font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
             No notifications in this category.
           </p>
         )}
@@ -160,7 +160,7 @@ export default function NotificationPanel({ onClose }: Props) {
       {/* Footer */}
       <div className="flex flex-col gap-4">
         <div className="h-px w-full bg-[#e6ebf3]" />
-        <button className="self-end rounded-lg border border-[#3b2513] bg-[#edd9c0] px-3 py-2 font-[family-name:var(--font-nunito)] text-xs font-semibold text-[#3b2513] hover:bg-[#e0bfa0]">
+        <button className="self-end rounded-lg border border-[#3b2513] bg-[#edd9c0] px-3 py-2 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-[#3b2513] hover:bg-[#e0bfa0]">
           Mark All as Read
         </button>
       </div>

@@ -13,7 +13,7 @@ const typeOptions = ["Discount", "Changes in price", "Parent meeting", "Email Ne
 
 function FieldLabel({ children }: { children: React.ReactNode }) {
   return (
-    <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">{children}</label>
+    <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-black">{children}</label>
   );
 }
 
@@ -23,7 +23,7 @@ function TextField({ placeholder, rows }: { placeholder?: string; rows?: number 
       <textarea
         placeholder={placeholder}
         rows={rows}
-        className="w-full resize-none rounded-xl border border-[#dcdcdc] bg-white px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+        className="w-full resize-none rounded-xl border border-[#dcdcdc] bg-white px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
       />
     );
   }
@@ -31,14 +31,14 @@ function TextField({ placeholder, rows }: { placeholder?: string; rows?: number 
     <input
       type="text"
       placeholder={placeholder}
-      className="h-[52px] w-full rounded-xl border border-[#dcdcdc] bg-white px-4 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+      className="h-[52px] w-full rounded-xl border border-[#dcdcdc] bg-white px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
     />
   );
 }
 
 function SelectField({ options, placeholder }: { options: string[]; placeholder?: string }) {
   return (
-    <select className="h-[52px] w-full appearance-none rounded-xl border border-[#dcdcdc] bg-white px-4 font-[family-name:var(--font-nunito)] text-sm text-[#111] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]">
+    <select className="h-[52px] w-full appearance-none rounded-xl border border-[#dcdcdc] bg-white px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#111] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]">
       {placeholder && (
         <option value="" disabled selected>
           {placeholder}
@@ -92,7 +92,7 @@ export default function AnnouncementModal({ onClose }: Props) {
             <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#171f26]">
               Send Announcement
             </h2>
-            <p className="mt-0.5 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+            <p className="mt-0.5 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
               Broadcast to parents/guardian via app and sms
             </p>
           </div>
@@ -108,7 +108,7 @@ export default function AnnouncementModal({ onClose }: Props) {
         <div className="flex flex-1 flex-col gap-4 overflow-y-auto px-6 py-5">
           <div className="flex items-start gap-2 rounded-xl bg-[#faf2e1] px-4 py-3">
             <Info className="mt-0.5 h-4 w-4 shrink-0 text-[#3b2513]" />
-            <p className="font-[family-name:var(--font-nunito)] text-xs text-black">
+            <p className="font-[family-name:var(--font-urbanist)] text-xs text-black">
               Let AI generate announcement for you
             </p>
           </div>
@@ -135,12 +135,12 @@ export default function AnnouncementModal({ onClose }: Props) {
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Additional note..."
               rows={5}
-              className="w-full resize-none rounded-xl border border-[#dcdcdc] bg-white px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+              className="w-full resize-none rounded-xl border border-[#dcdcdc] bg-white px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
             />
             <button
               onClick={handleGenerateWithAi}
               disabled={generating}
-              className="flex w-fit items-center gap-1 font-[family-name:var(--font-nunito)] text-xs font-semibold text-[#3b2513] underline hover:opacity-70 disabled:opacity-50"
+              className="flex w-fit items-center gap-1 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-[#3b2513] underline hover:opacity-70 disabled:opacity-50"
             >
               <Sparkles className="h-3 w-3" />
               {generating ? "Generating…" : "Generate With AI"}

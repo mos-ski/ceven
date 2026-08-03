@@ -33,7 +33,7 @@ export function SuccessModal({
           <h2 className="font-[family-name:var(--font-merriweather)] text-xl font-bold text-[#2d1810]">
             {heading}
           </h2>
-          <p className="mt-2 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+          <p className="mt-2 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
             {description}
           </p>
           <button

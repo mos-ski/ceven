@@ -39,7 +39,7 @@ function CTABanner({
         </h2>
         {description && (
           <p
-            style={{ fontFamily: "var(--font-nunito-import)" }}
+            style={{ fontFamily: "var(--font-urbanist-import)" }}
             className={cn(
               "text-lg leading-[1.5] text-muted-text line-clamp-3 max-w-2xl",
               variant === "dark" && "text-white/80"

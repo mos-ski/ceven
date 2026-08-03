@@ -162,7 +162,7 @@ export default function OnboardingChecklist() {
           <h3 className="font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">
             Complete Your Setup
           </h3>
-          <p className="mt-1 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+          <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
             {completedCount} of {totalSteps} steps completed
           </p>
         </div>
@@ -221,13 +221,13 @@ export default function OnboardingChecklist() {
                 </div>
                 <div>
                   <p
-                    className={`font-[family-name:var(--font-nunito)] text-sm font-medium ${
+                    className={`font-[family-name:var(--font-urbanist)] text-sm font-medium ${
                       isComplete ? "text-[#009061] line-through opacity-70" : "text-[#2d1810]"
                     }`}
                   >
                     {step.title}
                   </p>
-                  <p className="font-[family-name:var(--font-nunito)] text-[10px] text-[#6b7280]">
+                  <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#6b7280]">
                     {step.description}
                   </p>
                 </div>

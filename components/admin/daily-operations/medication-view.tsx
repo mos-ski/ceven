@@ -50,7 +50,7 @@ function FilterDropdown({
         render={
           <Button
             variant="outline"
-            className="h-8 gap-2 rounded-lg border-input-border bg-white px-3 font-[family-name:var(--font-nunito)] text-xs font-semibold text-[#454B54]"
+            className="h-8 gap-2 rounded-lg border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-[#454B54]"
           />
         }
       >
@@ -80,7 +80,7 @@ function LogMedicationModal({
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Log Medication</DialogTitle>
-          <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+          <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
             Record a medication administered to a child.
           </p>
         </DialogHeader>
@@ -91,7 +91,7 @@ function LogMedicationModal({
             <select
               id="med-child"
               defaultValue=""
-              className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+              className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
             >
               <option value="" disabled>
                 Select a child
@@ -110,7 +110,7 @@ function LogMedicationModal({
               <select
                 id="med-name"
                 defaultValue=""
-                className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+                className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
               >
                 <option value="" disabled>
                   Select medication
@@ -138,7 +138,7 @@ function LogMedicationModal({
               <select
                 id="med-status"
                 defaultValue="Administered"
-                className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+                className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
               >
                 <option value="Administered">Administered</option>
                 <option value="Scheduled">Scheduled</option>
@@ -153,7 +153,7 @@ function LogMedicationModal({
               id="med-notes"
               rows={3}
               placeholder="Any observations or reactions..."
-              className="resize-none rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+              className="resize-none rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
             />
           </div>
         </div>
@@ -163,7 +163,7 @@ function LogMedicationModal({
             render={
               <Button
                 variant="outline"
-                className="h-9 rounded-lg border-[#d0d5dd] px-4 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]"
+                className="h-9 rounded-lg border-[#d0d5dd] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]"
               />
             }
           >
@@ -171,7 +171,7 @@ function LogMedicationModal({
           </DialogClose>
           <Button
             onClick={() => onOpenChange(false)}
-            className="h-9 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]"
+            className="h-9 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]"
           >
             Save Log
           </Button>
@@ -207,8 +207,8 @@ function ViewMedicationModal({
           <>
             <div className="flex items-center justify-between gap-4 bg-[#faf2e1] px-6 py-4">
               <div>
-                <p className="font-[family-name:var(--font-nunito)] text-sm font-bold text-black">{entry.child}</p>
-                <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{entry.room}</p>
+                <p className="font-[family-name:var(--font-urbanist)] text-sm font-bold text-black">{entry.child}</p>
+                <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{entry.room}</p>
               </div>
               <div className="flex items-center gap-2">
                 <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Status</span>
@@ -228,10 +228,10 @@ function ViewMedicationModal({
                 ["Additional Note", entry.note || "—"],
               ].map(([label, value]) => (
                 <div key={label} className="flex gap-[52px]">
-                  <p className="w-[156px] shrink-0 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#6b7280]">
+                  <p className="w-[156px] shrink-0 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#6b7280]">
                     {label}
                   </p>
-                  <p className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#1f2937]">{value}</p>
+                  <p className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#1f2937]">{value}</p>
                 </div>
               ))}
 
@@ -283,26 +283,26 @@ function MedicationRow({ entry, onView }: { entry: MedicationEntry; onView: (ent
   return (
     <TableRow onClick={() => onView(entry)} className="cursor-pointer border-table-border">
       <TableCell>
-        <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-black">
+        <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-black">
           {entry.child}
         </p>
-        <p className="font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">
+        <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">
           {entry.room}
         </p>
       </TableCell>
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+      <TableCell className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
         {entry.medication}
       </TableCell>
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+      <TableCell className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
         {entry.dosage}
       </TableCell>
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+      <TableCell className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
         {entry.frequency}
       </TableCell>
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+      <TableCell className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
         {entry.administeredBy ?? "—"}
       </TableCell>
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+      <TableCell className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
         {entry.scheduledTime}
       </TableCell>
       <TableCell>
@@ -349,7 +349,7 @@ export function MedicationView() {
             Medication Log
           </h2>
           <div className="flex items-center gap-2">
-            <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Filter by:</span>
+            <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Filter by:</span>
             <FilterDropdown label="Date" options={["All Dates", "Today", "This Week", "This Month"]} />
             <FilterDropdown label={statusFilter} options={["All Status", "Administered", "Scheduled", "Missed"]} onSelect={setStatusFilter} />
             <div className="relative">
@@ -371,7 +371,7 @@ export function MedicationView() {
                 {["Child", "Medication", "Dose", "Frequency", "Attended by", "Time", "Status", "Action"].map((h) => (
                   <th
                     key={h}
-                    className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black"
+                    className="px-4 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-normal text-black"
                   >
                     {h}
                   </th>
@@ -381,7 +381,7 @@ export function MedicationView() {
             <tbody className="bg-white">
               {filteredMedications.length === 0 ? (
                 <tr>
-                  <td colSpan={8} className="py-10 text-center font-[family-name:var(--font-nunito)] text-sm text-[#9ca3af]">
+                  <td colSpan={8} className="py-10 text-center font-[family-name:var(--font-urbanist)] text-sm text-[#9ca3af]">
                     No medications match your search or filters.
                   </td>
                 </tr>
@@ -397,7 +397,7 @@ export function MedicationView() {
         {/* Mobile card list */}
         <div className="flex flex-col gap-2 px-4 pb-4 lg:hidden">
           {filteredMedications.length === 0 && (
-            <p className="py-6 text-center font-[family-name:var(--font-nunito)] text-sm text-[#9ca3af]">
+            <p className="py-6 text-center font-[family-name:var(--font-urbanist)] text-sm text-[#9ca3af]">
               No medications match your search or filters.
             </p>
           )}
@@ -409,21 +409,21 @@ export function MedicationView() {
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
+                  <span className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
                     {entry.child}
                   </span>
-                  <p className="font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">{entry.room}</p>
+                  <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">{entry.room}</p>
                 </div>
                 <Badge variant="outline" className={STATUS_BADGE_CLASS[entry.status]}>
                   ● {entry.status === "Scheduled" ? "Due Soon" : entry.status}
                 </Badge>
               </div>
               <div className="mt-1.5 flex items-center gap-2">
-                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{entry.medication}</span>
+                <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{entry.medication}</span>
                 <span className="text-[#d0d5dd]">•</span>
-                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{entry.dosage}</span>
+                <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{entry.dosage}</span>
                 <span className="text-[#d0d5dd]">•</span>
-                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{entry.scheduledTime}</span>
+                <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{entry.scheduledTime}</span>
               </div>
             </div>
           ))}

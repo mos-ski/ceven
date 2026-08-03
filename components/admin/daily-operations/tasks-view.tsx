@@ -51,7 +51,7 @@ function FilterDropdown({ label, options }: { label: string; options: string[] }
         render={
           <Button
             variant="outline"
-            className="h-8 gap-2 rounded-lg border-input-border bg-white px-3 font-[family-name:var(--font-nunito)] text-xs font-semibold text-[#454B54]"
+            className="h-8 gap-2 rounded-lg border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-[#454B54]"
           />
         }
       >
@@ -79,7 +79,7 @@ function AddTaskModal({
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Add Task</DialogTitle>
-          <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+          <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
             Assign a new task to a staff member.
           </p>
         </DialogHeader>
@@ -96,7 +96,7 @@ function AddTaskModal({
               <select
                 id="task-assignee"
                 defaultValue=""
-                className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+                className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
               >
                 <option value="" disabled>
                   Select staff
@@ -119,7 +119,7 @@ function AddTaskModal({
             <select
               id="task-priority"
               defaultValue="Medium"
-              className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+              className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
             >
               <option value="Low">Low</option>
               <option value="Medium">Medium</option>
@@ -133,7 +133,7 @@ function AddTaskModal({
             render={
               <Button
                 variant="outline"
-                className="h-9 rounded-lg border-[#d0d5dd] px-4 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]"
+                className="h-9 rounded-lg border-[#d0d5dd] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]"
               />
             }
           >
@@ -141,7 +141,7 @@ function AddTaskModal({
           </DialogClose>
           <Button
             onClick={() => onOpenChange(false)}
-            className="h-9 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]"
+            className="h-9 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]"
           >
             Save Task
           </Button>
@@ -158,22 +158,22 @@ function TaskRow({ task }: { task: StaffTask }) {
         <input type="checkbox" className="h-4 w-4 accent-[#3b2513]" />
       </TableCell>
       <TableCell>
-        <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-black">{task.title}</p>
+        <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-black">{task.title}</p>
         {task.subtitle && (
-          <p className="font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">{task.subtitle}</p>
+          <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#9ca3af]">{task.subtitle}</p>
         )}
       </TableCell>
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+      <TableCell className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
         {task.assignedTo}
       </TableCell>
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">{task.dueDate}</TableCell>
+      <TableCell className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">{task.dueDate}</TableCell>
       <TableCell>
-        <span className="inline-flex items-center gap-1.5 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">
+        <span className="inline-flex items-center gap-1.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">
           <span className={`h-2 w-2 rounded-full ${PRIORITY_DOT_CLASS[task.priority]}`} />
           {task.priority}
         </span>
       </TableCell>
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">{task.source}</TableCell>
+      <TableCell className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">{task.source}</TableCell>
       <TableCell>
         <Badge variant="outline" className={STATUS_BADGE_CLASS[task.status]}>
           ● {task.status}
@@ -219,12 +219,12 @@ export function TasksView() {
             key={card.title}
             className="flex flex-col gap-1 rounded-xl border border-[#e6ebf3] bg-white p-4"
           >
-            <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">{card.title}</p>
+            <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">{card.title}</p>
             <p className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
               {card.value}
             </p>
             {card.subtitle && (
-              <p className="font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">{card.subtitle}</p>
+              <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#9ca3af]">{card.subtitle}</p>
             )}
           </div>
         ))}
@@ -253,7 +253,7 @@ export function TasksView() {
             All Tasks
           </h2>
           <div className="flex items-center gap-2">
-            <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Filter by:</span>
+            <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Filter by:</span>
             <FilterDropdown label="All Priority" options={["All Priority", "Low", "Medium", "High"]} />
             <FilterDropdown label="All Status" options={["All Status", "To Do", "In Progress", "Done", "Overdue", "Not Started"]} />
             <div className="relative">
@@ -276,7 +276,7 @@ export function TasksView() {
                 {["Task", "Assigned To", "Due", "Priority", "Source", "Status", "Action"].map((h) => (
                   <th
                     key={h}
-                    className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black"
+                    className="px-4 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-normal text-black"
                   >
                     {h}
                   </th>
@@ -296,7 +296,7 @@ export function TasksView() {
           {STAFF_TASKS.map((task) => (
             <div key={task.id} className="rounded-xl border border-[#eaecf0] p-3">
               <div className="flex items-center justify-between">
-                <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
+                <span className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
                   {task.title}
                 </span>
                 <Badge variant="outline" className={STATUS_BADGE_CLASS[task.status]}>
@@ -304,19 +304,19 @@ export function TasksView() {
                 </Badge>
               </div>
               <div className="mt-1.5 flex items-center gap-2">
-                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+                <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
                   {task.assignedTo}
                 </span>
                 <span className="text-[#d0d5dd]">•</span>
-                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{task.dueDate}</span>
+                <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{task.dueDate}</span>
               </div>
               <div className="mt-1.5 flex items-center gap-2">
-                <span className="inline-flex items-center gap-1 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+                <span className="inline-flex items-center gap-1 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
                   <span className={`h-1.5 w-1.5 rounded-full ${PRIORITY_DOT_CLASS[task.priority]}`} />
                   {task.priority}
                 </span>
                 <span className="text-[#d0d5dd]">•</span>
-                <p className="font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">{task.source}</p>
+                <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">{task.source}</p>
               </div>
             </div>
           ))}

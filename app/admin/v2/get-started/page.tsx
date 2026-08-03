@@ -87,7 +87,7 @@ function ProgressBadge({ percent }: { percent: number }) {
         <span className="font-[family-name:var(--font-merriweather)] text-3xl font-bold text-[#2d1810]">
           {percent}%
         </span>
-        <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Complete</span>
+        <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Complete</span>
       </div>
     </div>
   );
@@ -103,13 +103,13 @@ function CrecheProfileModal({ onComplete }: { onComplete: () => void }) {
 
   return (
     <form onSubmit={(e) => { e.preventDefault(); onComplete(); }} className="flex flex-col gap-4 px-6 py-5">
-      <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Pre-filled for you — edit if needed</p>
+      <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Pre-filled for you — edit if needed</p>
       <Field label="Crèche Name" value={name} onChange={setName} />
       <Field label="Phone" value={phone} onChange={setPhone} />
       <Field label="Address" value={address} onChange={setAddress} />
       <div className="flex flex-col gap-1.5">
-        <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">Bio</label>
-        <textarea rows={3} value={bio} onChange={(e) => setBio(e.target.value)} className="resize-none rounded-xl border border-[#e6ebf3] px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]" />
+        <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">Bio</label>
+        <textarea rows={3} value={bio} onChange={(e) => setBio(e.target.value)} className="resize-none rounded-xl border border-[#e6ebf3] px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]" />
       </div>
       <ModalFooter onSave="Save Profile" />
     </form>
@@ -125,12 +125,12 @@ function RoomsModal({ onComplete }: { onComplete: () => void }) {
 
   return (
     <form onSubmit={(e) => { e.preventDefault(); onComplete(); }} className="flex flex-col gap-4 px-6 py-5">
-      <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">3 rooms pre-configured — edit as needed</p>
+      <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">3 rooms pre-configured — edit as needed</p>
       {rooms.map((room, i) => (
         <div key={i} className="flex gap-2">
-          <input value={room.name} onChange={(e) => { const r = [...rooms]; r[i] = { ...r[i], name: e.target.value }; setRooms(r); }} className="h-10 flex-1 rounded-xl border border-[#e6ebf3] px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]" />
-          <input value={room.ageRange} onChange={(e) => { const r = [...rooms]; r[i] = { ...r[i], ageRange: e.target.value }; setRooms(r); }} className="h-10 flex-1 rounded-xl border border-[#e6ebf3] px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]" />
-          <input value={room.spots} onChange={(e) => { const r = [...rooms]; r[i] = { ...r[i], spots: e.target.value }; setRooms(r); }} className="h-10 w-20 rounded-xl border border-[#e6ebf3] px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]" />
+          <input value={room.name} onChange={(e) => { const r = [...rooms]; r[i] = { ...r[i], name: e.target.value }; setRooms(r); }} className="h-10 flex-1 rounded-xl border border-[#e6ebf3] px-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]" />
+          <input value={room.ageRange} onChange={(e) => { const r = [...rooms]; r[i] = { ...r[i], ageRange: e.target.value }; setRooms(r); }} className="h-10 flex-1 rounded-xl border border-[#e6ebf3] px-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]" />
+          <input value={room.spots} onChange={(e) => { const r = [...rooms]; r[i] = { ...r[i], spots: e.target.value }; setRooms(r); }} className="h-10 w-20 rounded-xl border border-[#e6ebf3] px-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]" />
         </div>
       ))}
       <ModalFooter onSave="Save Rooms" />
@@ -146,17 +146,17 @@ function StaffModal({ onComplete }: { onComplete: () => void }) {
 
   return (
     <form onSubmit={(e) => { e.preventDefault(); onComplete(); }} className="flex flex-col gap-4 px-6 py-5">
-      <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Example staff member pre-filled</p>
+      <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Example staff member pre-filled</p>
       <Field label="Full Name" value={name} onChange={setName} />
       <div className="flex flex-col gap-1.5">
-        <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">Role</label>
-        <select value={role} onChange={(e) => setRole(e.target.value)} className="h-11 rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]">
+        <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">Role</label>
+        <select value={role} onChange={(e) => setRole(e.target.value)} className="h-11 rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]">
           <option>Caregiver</option><option>Receptionist</option><option>Admin</option>
         </select>
       </div>
       <div className="flex flex-col gap-1.5">
-        <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">Assigned Room</label>
-        <select value={room} onChange={(e) => setRoom(e.target.value)} className="h-11 rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]">
+        <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">Assigned Room</label>
+        <select value={room} onChange={(e) => setRoom(e.target.value)} className="h-11 rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]">
           <option>Lion</option><option>Panda</option><option>Owl</option>
         </select>
       </div>
@@ -175,12 +175,12 @@ function ChildModal({ onComplete }: { onComplete: () => void }) {
 
   return (
     <form onSubmit={(e) => { e.preventDefault(); onComplete(); }} className="flex flex-col gap-4 px-6 py-5">
-      <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Example child enrolment pre-filled</p>
+      <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Example child enrolment pre-filled</p>
       <Field label="Child Name" value={name} onChange={setName} />
       <Field label="Age" value={age} onChange={setAge} />
       <div className="flex flex-col gap-1.5">
-        <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">Room</label>
-        <select value={room} onChange={(e) => setRoom(e.target.value)} className="h-11 rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]">
+        <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">Room</label>
+        <select value={room} onChange={(e) => setRoom(e.target.value)} className="h-11 rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]">
           <option>Lion</option><option>Panda</option><option>Owl</option>
         </select>
       </div>
@@ -199,7 +199,7 @@ function FeesModal({ onComplete }: { onComplete: () => void }) {
 
   return (
     <form onSubmit={(e) => { e.preventDefault(); onComplete(); }} className="flex flex-col gap-4 px-6 py-5">
-      <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Default pricing pre-filled</p>
+      <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Default pricing pre-filled</p>
       <Field label="Full Day" value={fullDay} onChange={setFullDay} />
       <Field label="Half Day" value={halfDay} onChange={setHalfDay} />
       <Field label="Hourly Rate" value={hourly} onChange={setHourly} />
@@ -217,7 +217,7 @@ function ParentsModal({ onComplete }: { onComplete: () => void }) {
 
   return (
     <form onSubmit={(e) => { e.preventDefault(); onComplete(); }} className="flex flex-col gap-4 px-6 py-5">
-      <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Example parent contact pre-filled</p>
+      <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Example parent contact pre-filled</p>
       <Field label="Parent Name" value={name} onChange={setName} />
       <Field label="Email" value={email} onChange={setEmail} />
       <Field label="Phone" value={phone} onChange={setPhone} />
@@ -236,22 +236,22 @@ function DailyReportModal({ onComplete }: { onComplete: () => void }) {
 
   return (
     <form onSubmit={(e) => { e.preventDefault(); onComplete(); }} className="flex flex-col gap-4 px-6 py-5">
-      <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Simulated report — all fields pre-filled</p>
+      <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Simulated report — all fields pre-filled</p>
       <div className="rounded-xl bg-[#faf2e1] px-4 py-3">
-        <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{child}</p>
-        <p className="font-[family-name:var(--font-nunito)] text-[10px] text-[#6b7280]">Lion Room • Today</p>
+        <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">{child}</p>
+        <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#6b7280]">Lion Room • Today</p>
       </div>
       <div className="flex flex-col gap-1.5">
-        <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">Mood</label>
-        <select value={mood} onChange={(e) => setMood(e.target.value)} className="h-11 rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]">
+        <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">Mood</label>
+        <select value={mood} onChange={(e) => setMood(e.target.value)} className="h-11 rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]">
           <option>Happy</option><option>Neutral</option><option>Fussy</option><option>Sad</option>
         </select>
       </div>
       <Field label="Meal" value={meal} onChange={setMeal} />
       <Field label="Nap Time" value={nap} onChange={setNap} />
       <div className="flex flex-col gap-1.5">
-        <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">Note</label>
-        <textarea rows={3} value={note} onChange={(e) => setNote(e.target.value)} className="resize-none rounded-xl border border-[#e6ebf3] px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]" />
+        <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">Note</label>
+        <textarea rows={3} value={note} onChange={(e) => setNote(e.target.value)} className="resize-none rounded-xl border border-[#e6ebf3] px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]" />
       </div>
       <ModalFooter onSave="Submit Report" />
     </form>
@@ -265,17 +265,17 @@ function AnnouncementModal({ onComplete }: { onComplete: () => void }) {
 
   return (
     <form onSubmit={(e) => { e.preventDefault(); onComplete(); }} className="flex flex-col gap-4 px-6 py-5">
-      <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Example announcement pre-filled</p>
+      <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Example announcement pre-filled</p>
       <div className="flex flex-col gap-1.5">
-        <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">Audience</label>
-        <select value={audience} onChange={(e) => setAudience(e.target.value)} className="h-11 rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]">
+        <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">Audience</label>
+        <select value={audience} onChange={(e) => setAudience(e.target.value)} className="h-11 rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]">
           <option>All Parents</option><option>Lion Room Parents</option><option>Panda Room Parents</option>
         </select>
       </div>
       <Field label="Subject" value={subject} onChange={setSubject} />
       <div className="flex flex-col gap-1.5">
-        <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">Message</label>
-        <textarea rows={4} value={message} onChange={(e) => setMessage(e.target.value)} className="resize-none rounded-xl border border-[#e6ebf3] px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]" />
+        <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">Message</label>
+        <textarea rows={4} value={message} onChange={(e) => setMessage(e.target.value)} className="resize-none rounded-xl border border-[#e6ebf3] px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]" />
       </div>
       <ModalFooter onSave="Send Announcement" />
     </form>
@@ -287,8 +287,8 @@ function AnnouncementModal({ onComplete }: { onComplete: () => void }) {
 function Field({ label, value, onChange }: { label: string; value: string; onChange: (v: string) => void }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">{label}</label>
-      <input type="text" value={value} onChange={(e) => onChange(e.target.value)} className="h-11 rounded-xl border border-[#e6ebf3] px-4 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]" />
+      <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">{label}</label>
+      <input type="text" value={value} onChange={(e) => onChange(e.target.value)} className="h-11 rounded-xl border border-[#e6ebf3] px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]" />
     </div>
   );
 }
@@ -352,12 +352,12 @@ function TaskCard({
         )}
       </div>
       <div className="min-w-0 flex-1">
-        <p className={`font-[family-name:var(--font-nunito)] text-sm font-semibold ${
+        <p className={`font-[family-name:var(--font-urbanist)] text-sm font-semibold ${
           isComplete ? "text-[#009061] line-through opacity-70" : "text-[#2d1810]"
         }`}>
           {task.title}
         </p>
-        <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+        <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
           {task.description}
         </p>
       </div>
@@ -409,7 +409,7 @@ export default function GetStartedPage() {
         <h1 className="mt-5 font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
           Welcome to CEven
         </h1>
-        <p className="mt-1 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+        <p className="mt-1 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
           Complete these {totalCount} tasks to get your crèche up and running.
         </p>
         <p className="mt-0.5 font-[family-name:var(--font-urbanist)] text-xs text-[#c47b2c]">
@@ -422,7 +422,7 @@ export default function GetStartedPage() {
         <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-[#e0bfa0] px-2.5 py-1 font-[family-name:var(--font-urbanist)] text-[10px] font-medium text-[#3b2513]">
           <Sparkles size={10} /> Tip
         </span>
-        <p className="font-[family-name:var(--font-nunito)] text-xs text-[#2d1810]">
+        <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#2d1810]">
           Each task opens a quick form with pre-filled examples. Edit if needed, or just save to proceed.
         </p>
       </div>
@@ -444,7 +444,7 @@ export default function GetStartedPage() {
         <div className="mt-8 text-center">
           <button
             onClick={() => router.push("/admin/v2/dashboard")}
-            className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280] underline hover:text-[#2d1810]"
+            className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280] underline hover:text-[#2d1810]"
           >
             Skip to dashboard for now
           </button>
@@ -460,7 +460,7 @@ export default function GetStartedPage() {
           <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
             All done!
           </h2>
-          <p className="mt-1 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+          <p className="mt-1 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
             Your crèche is fully set up. Redirecting to your dashboard...
           </p>
         </div>

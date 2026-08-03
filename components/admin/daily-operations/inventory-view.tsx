@@ -77,7 +77,7 @@ function FilterDropdown({
         render={
           <Button
             variant="outline"
-            className="h-8 gap-2 rounded-lg border-input-border bg-white px-3 font-[family-name:var(--font-nunito)] text-xs font-semibold text-[#454B54]"
+            className="h-8 gap-2 rounded-lg border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-[#454B54]"
           />
         }
       >
@@ -107,7 +107,7 @@ function AddRestockModal({
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Add / Restock Item</DialogTitle>
-          <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+          <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
             Add a new supply item or update stock for an existing one.
           </p>
         </DialogHeader>
@@ -124,7 +124,7 @@ function AddRestockModal({
               <select
                 id="inv-category"
                 defaultValue=""
-                className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+                className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
               >
                 <option value="" disabled>
                   Select category
@@ -159,7 +159,7 @@ function AddRestockModal({
               id="inv-notes"
               rows={3}
               placeholder="Supplier, batch number, or other notes..."
-              className="resize-none rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+              className="resize-none rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
             />
           </div>
         </div>
@@ -169,7 +169,7 @@ function AddRestockModal({
             render={
               <Button
                 variant="outline"
-                className="h-9 rounded-lg border-[#d0d5dd] px-4 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]"
+                className="h-9 rounded-lg border-[#d0d5dd] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]"
               />
             }
           >
@@ -177,7 +177,7 @@ function AddRestockModal({
           </DialogClose>
           <Button
             onClick={() => onOpenChange(false)}
-            className="h-9 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]"
+            className="h-9 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]"
           >
             Save Item
           </Button>
@@ -199,7 +199,7 @@ function RegisterEquipmentModal({
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Register New Equipment</DialogTitle>
-          <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+          <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
             Add a piece of equipment to the register.
           </p>
         </DialogHeader>
@@ -243,7 +243,7 @@ function RegisterEquipmentModal({
             render={
               <Button
                 variant="outline"
-                className="h-9 rounded-lg border-[#d0d5dd] px-4 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]"
+                className="h-9 rounded-lg border-[#d0d5dd] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]"
               />
             }
           >
@@ -251,7 +251,7 @@ function RegisterEquipmentModal({
           </DialogClose>
           <Button
             onClick={() => onOpenChange(false)}
-            className="h-9 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]"
+            className="h-9 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]"
           >
             Save Equipment
           </Button>
@@ -273,7 +273,7 @@ function NewOrderModal({
       <DialogContent>
         <DialogHeader>
           <DialogTitle>New Order</DialogTitle>
-          <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+          <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
             Place a new supply order with a vendor.
           </p>
         </DialogHeader>
@@ -306,7 +306,7 @@ function NewOrderModal({
             render={
               <Button
                 variant="outline"
-                className="h-9 rounded-lg border-[#d0d5dd] px-4 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]"
+                className="h-9 rounded-lg border-[#d0d5dd] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]"
               />
             }
           >
@@ -314,7 +314,7 @@ function NewOrderModal({
           </DialogClose>
           <Button
             onClick={() => onOpenChange(false)}
-            className="h-9 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]"
+            className="h-9 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]"
           >
             Place Order
           </Button>
@@ -336,7 +336,7 @@ function UpdateItemModal({
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Update Item</DialogTitle>
-          <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+          <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
             Add new stock items to inventory
           </p>
         </DialogHeader>
@@ -353,7 +353,7 @@ function UpdateItemModal({
               <select
                 id="update-category"
                 defaultValue={item.category}
-                className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+                className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
               >
                 {INVENTORY_CATEGORIES.map((cat) => (
                   <option key={cat} value={cat}>
@@ -367,7 +367,7 @@ function UpdateItemModal({
               <Label htmlFor="update-unit">Item Unit</Label>
               <div className="flex items-center gap-2">
                 <Input id="update-unit" type="number" min={0} defaultValue={item.quantity} className="h-9 flex-1" />
-                <span className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">{item.unit}</span>
+                <span className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">{item.unit}</span>
               </div>
             </div>
 
@@ -387,7 +387,7 @@ function UpdateItemModal({
               <select
                 id="update-status"
                 defaultValue={item.status}
-                className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+                className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
               >
                 <option value="In Stock">In Stock</option>
                 <option value="Low Stock">Low Stock</option>
@@ -402,7 +402,7 @@ function UpdateItemModal({
             render={
               <Button
                 variant="outline"
-                className="h-9 rounded-lg border-[#d0d5dd] px-4 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]"
+                className="h-9 rounded-lg border-[#d0d5dd] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]"
               />
             }
           >
@@ -410,7 +410,7 @@ function UpdateItemModal({
           </DialogClose>
           <Button
             onClick={() => onOpenChange(false)}
-            className="h-9 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]"
+            className="h-9 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]"
           >
             Save & Update
           </Button>
@@ -423,19 +423,19 @@ function UpdateItemModal({
 function InventoryRow({ item, onUpdate }: { item: InventoryItem; onUpdate: (item: InventoryItem) => void }) {
   return (
     <TableRow className="border-table-border">
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-black">
+      <TableCell className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-black">
         {item.name}
       </TableCell>
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+      <TableCell className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
         {item.category}
       </TableCell>
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+      <TableCell className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
         {item.quantity} {item.unit}
       </TableCell>
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+      <TableCell className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
         {item.reorderLevel} {item.unit}
       </TableCell>
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+      <TableCell className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
         {item.lastRestocked}
       </TableCell>
       <TableCell>
@@ -455,23 +455,23 @@ function InventoryRow({ item, onUpdate }: { item: InventoryItem; onUpdate: (item
 function EquipmentRow({ item }: { item: EquipmentItem }) {
   return (
     <TableRow className="border-table-border">
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-black">
+      <TableCell className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-black">
         {item.name}
       </TableCell>
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">{item.room}</TableCell>
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+      <TableCell className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">{item.room}</TableCell>
+      <TableCell className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
         {String(item.quantity).padStart(2, "0")}
       </TableCell>
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+      <TableCell className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
         {item.purchasedDate}
       </TableCell>
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+      <TableCell className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
         {item.condition}
       </TableCell>
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+      <TableCell className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
         {item.lastServiced}
       </TableCell>
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+      <TableCell className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
         {item.nextService}
       </TableCell>
       <TableCell>
@@ -480,7 +480,7 @@ function EquipmentRow({ item }: { item: EquipmentItem }) {
         </Badge>
       </TableCell>
       <TableCell>
-        <button className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#3b2513] underline">
+        <button className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#3b2513] underline">
           {item.status === "Serviceable" ? "Update" : "View"}
         </button>
       </TableCell>
@@ -491,20 +491,20 @@ function EquipmentRow({ item }: { item: EquipmentItem }) {
 function OrderRow({ order }: { order: SupplyOrder }) {
   return (
     <TableRow className="border-table-border">
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-black">
+      <TableCell className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-black">
         {order.orderDate}
       </TableCell>
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+      <TableCell className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
         {order.supplier}
       </TableCell>
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">{order.items}</TableCell>
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+      <TableCell className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">{order.items}</TableCell>
+      <TableCell className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
         {order.quantity}
       </TableCell>
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+      <TableCell className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
         {order.totalCost}
       </TableCell>
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+      <TableCell className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
         {order.dateDelivered ?? "—"}
       </TableCell>
       <TableCell>
@@ -514,7 +514,7 @@ function OrderRow({ order }: { order: SupplyOrder }) {
       </TableCell>
       <TableCell>
         {order.status === "Pending" ? (
-          <button className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#3b2513] underline">
+          <button className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#3b2513] underline">
             Update
           </button>
         ) : null}
@@ -580,7 +580,7 @@ function StockLevelsTable({ onUpdate }: { onUpdate: (item: InventoryItem) => voi
             className="cursor-pointer rounded-xl border border-[#eaecf0] p-3"
           >
             <div className="flex items-center justify-between">
-              <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
+              <span className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
                 {item.name}
               </span>
               <Badge variant="outline" className={STATUS_BADGE_CLASS[item.status]}>
@@ -588,13 +588,13 @@ function StockLevelsTable({ onUpdate }: { onUpdate: (item: InventoryItem) => voi
               </Badge>
             </div>
             <div className="mt-1.5 flex items-center gap-2">
-              <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{item.category}</span>
+              <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{item.category}</span>
               <span className="text-[#d0d5dd]">•</span>
-              <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+              <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
                 {item.quantity} {item.unit}
               </span>
             </div>
-            <p className="mt-1 font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">
+            <p className="mt-1 font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">
               Restocked {item.lastRestocked}
             </p>
           </div>
@@ -652,7 +652,7 @@ function EquipmentRegisterTable() {
         {EQUIPMENT_ITEMS.map((item) => (
           <div key={item.id} className="rounded-xl border border-[#eaecf0] p-3">
             <div className="flex items-center justify-between">
-              <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
+              <span className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
                 {item.name}
               </span>
               <Badge variant="outline" className={EQUIPMENT_STATUS_BADGE_CLASS[item.status]}>
@@ -660,11 +660,11 @@ function EquipmentRegisterTable() {
               </Badge>
             </div>
             <div className="mt-1.5 flex items-center gap-2">
-              <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{item.room}</span>
+              <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{item.room}</span>
               <span className="text-[#d0d5dd]">•</span>
-              <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{item.condition}</span>
+              <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{item.condition}</span>
             </div>
-            <p className="mt-1 font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">
+            <p className="mt-1 font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">
               Next service {item.nextService}
             </p>
           </div>
@@ -720,7 +720,7 @@ function OrdersTable() {
         {SUPPLY_ORDERS.map((order) => (
           <div key={order.id} className="rounded-xl border border-[#eaecf0] p-3">
             <div className="flex items-center justify-between">
-              <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
+              <span className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
                 {order.supplier}
               </span>
               <Badge variant="outline" className={ORDER_STATUS_BADGE_CLASS[order.status]}>
@@ -728,11 +728,11 @@ function OrdersTable() {
               </Badge>
             </div>
             <div className="mt-1.5 flex items-center gap-2">
-              <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{order.items}</span>
+              <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{order.items}</span>
               <span className="text-[#d0d5dd]">•</span>
-              <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{order.quantity}</span>
+              <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{order.quantity}</span>
             </div>
-            <p className="mt-1 font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">
+            <p className="mt-1 font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">
               {order.orderDate} • {order.totalCost}
             </p>
           </div>
@@ -788,11 +788,11 @@ export function InventoryView() {
             key={card.title}
             className="min-w-[160px] snap-start flex-1 flex-col gap-1 rounded-xl border border-[#e6ebf3] bg-white p-4"
           >
-            <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{card.title}</p>
+            <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{card.title}</p>
             <p className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
               {card.value}
             </p>
-            <p className="font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">{card.label}</p>
+            <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#9ca3af]">{card.label}</p>
           </div>
         ))}
       </div>

@@ -19,7 +19,7 @@ const STEPS = [
 
 function FieldLabel({ children }: { children: React.ReactNode }) {
   return (
-    <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">
+    <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">
       {children}
     </label>
   );
@@ -80,7 +80,7 @@ export default function WalletOnboardingWizard({ open, onComplete, onClose }: Pr
             <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
               Set Up Your Wallet
             </h2>
-            <p className="mt-1 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+            <p className="mt-1 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
               Complete these steps to activate your crèche wallet
             </p>
           </div>
@@ -109,7 +109,7 @@ export default function WalletOnboardingWizard({ open, onComplete, onClose }: Pr
                   {step > s.num ? <Check className="size-4" /> : s.num}
                 </div>
                 <span
-                  className={`hidden font-[family-name:var(--font-nunito)] text-xs sm:block ${
+                  className={`hidden font-[family-name:var(--font-urbanist)] text-xs sm:block ${
                     step === s.num ? "text-[#2d1810]" : "text-[#6b7280]"
                   }`}
                 >
@@ -131,7 +131,7 @@ export default function WalletOnboardingWizard({ open, onComplete, onClose }: Pr
                   type="text"
                   value={businessName}
                   onChange={(e) => setBusinessName(e.target.value)}
-                  className="h-[52px] w-full rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+                  className="h-[52px] w-full rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
                 />
               </div>
 
@@ -142,7 +142,7 @@ export default function WalletOnboardingWizard({ open, onComplete, onClose }: Pr
                   value={rcNumber}
                   onChange={(e) => setRcNumber(e.target.value)}
                   placeholder="Enter RC number if available"
-                  className="h-[52px] w-full rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+                  className="h-[52px] w-full rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
                 />
               </div>
 
@@ -151,7 +151,7 @@ export default function WalletOnboardingWizard({ open, onComplete, onClose }: Pr
                 <div className="flex gap-3">
                   <button
                     onClick={() => setAccountType("business")}
-                    className={`flex-1 rounded-xl border px-4 py-3 font-[family-name:var(--font-nunito)] text-sm transition-colors ${
+                    className={`flex-1 rounded-xl border px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm transition-colors ${
                       accountType === "business"
                         ? "border-[#3b2513] bg-[#3b2513] text-[#faf2e1]"
                         : "border-[#e6ebf3] bg-white text-[#6b7280] hover:border-[#3b2513]"
@@ -161,7 +161,7 @@ export default function WalletOnboardingWizard({ open, onComplete, onClose }: Pr
                   </button>
                   <button
                     onClick={() => setAccountType("personal")}
-                    className={`flex-1 rounded-xl border px-4 py-3 font-[family-name:var(--font-nunito)] text-sm transition-colors ${
+                    className={`flex-1 rounded-xl border px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm transition-colors ${
                       accountType === "personal"
                         ? "border-[#3b2513] bg-[#3b2513] text-[#faf2e1]"
                         : "border-[#e6ebf3] bg-white text-[#6b7280] hover:border-[#3b2513]"
@@ -171,7 +171,7 @@ export default function WalletOnboardingWizard({ open, onComplete, onClose }: Pr
                   </button>
                 </div>
                 {accountType === "personal" && (
-                  <p className="mt-1 font-[family-name:var(--font-nunito)] text-xs text-[#cc8000]">
+                  <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#cc8000]">
                     Withdrawals to personal accounts require CEven support approval.
                   </p>
                 )}
@@ -184,7 +184,7 @@ export default function WalletOnboardingWizard({ open, onComplete, onClose }: Pr
                   value={bvn}
                   onChange={(e) => setBvn(e.target.value.replace(/\D/g, "").slice(0, 11))}
                   placeholder="11-digit BVN"
-                  className="h-[52px] w-full rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+                  className="h-[52px] w-full rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
                 />
               </div>
             </div>
@@ -202,7 +202,7 @@ export default function WalletOnboardingWizard({ open, onComplete, onClose }: Pr
                     setFetchedName("");
                     setNameMatch(null);
                   }}
-                  className="h-[52px] w-full rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+                  className="h-[52px] w-full rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
                 >
                   <option value="" disabled>
                     Select bank
@@ -227,14 +227,14 @@ export default function WalletOnboardingWizard({ open, onComplete, onClose }: Pr
                   }}
                   onBlur={handleFetchAccount}
                   placeholder="10-digit account number"
-                  className="h-[52px] w-full rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+                  className="h-[52px] w-full rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
                 />
               </div>
 
               {loading && (
                 <div className="flex items-center gap-2 rounded-xl bg-[#f9fafb] px-4 py-3">
                   <div className="size-4 animate-spin rounded-full border-2 border-[#3b2513] border-t-transparent" />
-                  <span className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+                  <span className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
                     Fetching account details...
                   </span>
                 </div>
@@ -242,13 +242,13 @@ export default function WalletOnboardingWizard({ open, onComplete, onClose }: Pr
 
               {fetchedName && !loading && (
                 <div className="rounded-xl border border-[#e6ebf3] bg-[#f9fafb] px-4 py-3">
-                  <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Account Name</p>
-                  <p className="mt-1 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">
+                  <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Account Name</p>
+                  <p className="mt-1 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">
                     {fetchedName}
                   </p>
                   {nameMatch === false && (
                     <div className="mt-2 rounded-lg bg-[#fff6e6] px-3 py-2">
-                      <p className="font-[family-name:var(--font-nunito)] text-xs text-[#cc8000]">
+                      <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#cc8000]">
                         Account name does not match your crèche name. Withdrawals to personal accounts require
                         CEven support approval.
                       </p>
@@ -256,7 +256,7 @@ export default function WalletOnboardingWizard({ open, onComplete, onClose }: Pr
                   )}
                   {nameMatch === true && (
                     <div className="mt-2 rounded-lg bg-[#ecfff8] px-3 py-2">
-                      <p className="font-[family-name:var(--font-nunito)] text-xs text-[#009061]">
+                      <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#009061]">
                         Account name matches your crèche profile.
                       </p>
                     </div>
@@ -277,7 +277,7 @@ export default function WalletOnboardingWizard({ open, onComplete, onClose }: Pr
                   <h3 className="font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">
                     Verify Your Identity
                   </h3>
-                  <p className="max-w-xs text-center font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+                  <p className="max-w-xs text-center font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
                     We&apos;ll send a 6-digit code to your email to authorise wallet setup.
                   </p>
                   <button
@@ -297,7 +297,7 @@ export default function WalletOnboardingWizard({ open, onComplete, onClose }: Pr
                   <h3 className="font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">
                     Enter OTP
                   </h3>
-                  <p className="max-w-xs text-center font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+                  <p className="max-w-xs text-center font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
                     Enter the 6-digit code sent to your email
                   </p>
                   <input
@@ -316,7 +316,7 @@ export default function WalletOnboardingWizard({ open, onComplete, onClose }: Pr
                   </button>
                   <button
                     onClick={handleSendOtp}
-                    className="font-[family-name:var(--font-nunito)] text-sm text-[#c47b2c] hover:underline"
+                    className="font-[family-name:var(--font-urbanist)] text-sm text-[#c47b2c] hover:underline"
                   >
                     Resend OTP
                   </button>
@@ -331,7 +331,7 @@ export default function WalletOnboardingWizard({ open, onComplete, onClose }: Pr
                   <h3 className="font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">
                     Wallet Activated!
                   </h3>
-                  <p className="max-w-xs text-center font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+                  <p className="max-w-xs text-center font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
                     Your wallet is ready. You can now receive payments and make withdrawals.
                   </p>
                 </div>

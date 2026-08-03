@@ -124,14 +124,14 @@ function RecordNewModal({ subTab, onClose }: { subTab: ComplianceSubTab; onClose
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg border border-[#d0d5dd] px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810] hover:bg-[#f9fafb]"
+            className="rounded-lg border border-[#d0d5dd] px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810] hover:bg-[#f9fafb]"
           >
             Cancel
           </button>
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]"
+            className="rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]"
           >
             Save Record
           </button>
@@ -144,11 +144,11 @@ function RecordNewModal({ subTab, onClose }: { subTab: ComplianceSubTab; onClose
 function Field({ label, placeholder, type = "text" }: { label: string; placeholder?: string; type?: string }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{label}</label>
+      <label className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">{label}</label>
       <input
         type={type}
         placeholder={placeholder}
-        className="rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none placeholder:text-[#9ca3af] focus:ring-2 focus:ring-[#c47b2c]"
+        className="rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none placeholder:text-[#9ca3af] focus:ring-2 focus:ring-[#c47b2c]"
       />
     </div>
   );
@@ -156,7 +156,7 @@ function Field({ label, placeholder, type = "text" }: { label: string; placehold
 
 function FilterDropdown({ label }: { label: string }) {
   return (
-    <button className="flex items-center gap-1.5 rounded-lg border border-[#d0d5dd] bg-white px-3 py-1.5 font-[family-name:var(--font-nunito)] text-xs">
+    <button className="flex items-center gap-1.5 rounded-lg border border-[#d0d5dd] bg-white px-3 py-1.5 font-[family-name:var(--font-urbanist)] text-xs">
       {label}
       <ChevronDown className="size-3" />
     </button>
@@ -177,7 +177,7 @@ function DbsPoliceChecksTable() {
           <thead>
             <tr className="bg-[#edd9c0]">
               {["Staff", "Role", "Check Type", "Issue Date", "Expiry Date", "Cert Number", "Status", "Action"].map((h) => (
-                <th key={h} className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]">
+                <th key={h} className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-urbanist)] text-[#2d1810]">
                   {h}
                 </th>
               ))}
@@ -186,12 +186,12 @@ function DbsPoliceChecksTable() {
           <tbody className="divide-y divide-[#eaecf0]">
             {DBS_POLICE_CHECKS.map((c) => (
               <tr key={c.id} className="hover:bg-[#faf9f7]">
-                <td className="px-4 py-3 text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">{c.name}</td>
-                <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{c.role}</td>
-                <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{c.checkType}</td>
-                <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{c.issueDate}</td>
-                <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{c.expiryDate}</td>
-                <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{c.certNumber}</td>
+                <td className="px-4 py-3 text-sm font-bold font-[family-name:var(--font-urbanist)] text-[#2d1810]">{c.name}</td>
+                <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{c.role}</td>
+                <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{c.checkType}</td>
+                <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{c.issueDate}</td>
+                <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{c.expiryDate}</td>
+                <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{c.certNumber}</td>
                 <td className="px-4 py-3">
                   <Badge className={DBS_STATUS_STYLES[c.status]}>{c.status}</Badge>
                 </td>
@@ -210,10 +210,10 @@ function DbsPoliceChecksTable() {
         {DBS_POLICE_CHECKS.map((c) => (
           <div key={c.id} className="rounded-xl border border-[#eaecf0] p-3">
             <div className="flex items-center justify-between">
-              <p className="text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">{c.name}</p>
+              <p className="text-sm font-bold font-[family-name:var(--font-urbanist)] text-[#2d1810]">{c.name}</p>
               <Badge className={DBS_STATUS_STYLES[c.status]}>{c.status}</Badge>
             </div>
-            <p className="mt-1 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+            <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
               {c.checkType} • Expires {c.expiryDate}
             </p>
           </div>
@@ -232,11 +232,11 @@ function FireSafetyDrillTable() {
           <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
             Fire & Safety Drill Log
           </h2>
-          <p className="mt-0.5 flex items-center gap-1.5 font-[family-name:var(--font-nunito)] text-xs text-[#cc8000]">
+          <p className="mt-0.5 flex items-center gap-1.5 font-[family-name:var(--font-urbanist)] text-xs text-[#cc8000]">
             ⚠ {nextDrillNote}
           </p>
         </div>
-        <button className="rounded-lg border border-[#d0d5dd] bg-white px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">
+        <button className="rounded-lg border border-[#d0d5dd] bg-white px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">
           Schedule New Drill
         </button>
       </div>
@@ -245,7 +245,7 @@ function FireSafetyDrillTable() {
           <thead>
             <tr className="bg-[#edd9c0]">
               {["Date", "Time", "Duration", "All Evacuated", "Issues Found", "Action Taken", "Logged by"].map((h) => (
-                <th key={h} className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]">
+                <th key={h} className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-urbanist)] text-[#2d1810]">
                   {h}
                 </th>
               ))}
@@ -254,13 +254,13 @@ function FireSafetyDrillTable() {
           <tbody className="divide-y divide-[#eaecf0]">
             {FIRE_SAFETY_DRILLS.map((d) => (
               <tr key={d.id} className="hover:bg-[#faf9f7]">
-                <td className="px-4 py-3 text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">{d.date}</td>
-                <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{d.time}</td>
-                <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{d.duration}</td>
-                <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{d.allEvacuated}</td>
-                <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{d.issuesFound}</td>
-                <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{d.actionTaken}</td>
-                <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{d.loggedBy}</td>
+                <td className="px-4 py-3 text-sm font-bold font-[family-name:var(--font-urbanist)] text-[#2d1810]">{d.date}</td>
+                <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{d.time}</td>
+                <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{d.duration}</td>
+                <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{d.allEvacuated}</td>
+                <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{d.issuesFound}</td>
+                <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{d.actionTaken}</td>
+                <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{d.loggedBy}</td>
               </tr>
             ))}
           </tbody>
@@ -270,11 +270,11 @@ function FireSafetyDrillTable() {
       <div className="flex flex-col gap-2 p-4 lg:hidden">
         {FIRE_SAFETY_DRILLS.map((d) => (
           <div key={d.id} className="rounded-xl border border-[#eaecf0] p-3">
-            <p className="text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">{d.date} • {d.time}</p>
-            <p className="mt-1 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+            <p className="text-sm font-bold font-[family-name:var(--font-urbanist)] text-[#2d1810]">{d.date} • {d.time}</p>
+            <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
               {d.duration} • Evacuated: {d.allEvacuated}
             </p>
-            <p className="mt-1 font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">by {d.loggedBy}</p>
+            <p className="mt-1 font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">by {d.loggedBy}</p>
           </div>
         ))}
       </div>
@@ -293,7 +293,7 @@ function FoodHygieneTable() {
           <thead>
             <tr className="bg-[#edd9c0]">
               {["Date", "Meal", "Fridge Temp (°C)", "Freezer Temp (°C)", "Food Temp (°C)", "Supply Batch", "Status", "Checked by"].map((h) => (
-                <th key={h} className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]">
+                <th key={h} className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-urbanist)] text-[#2d1810]">
                   {h}
                 </th>
               ))}
@@ -302,14 +302,14 @@ function FoodHygieneTable() {
           <tbody className="divide-y divide-[#eaecf0]">
             {FOOD_HYGIENE_LOGS.map((f) => (
               <tr key={f.id} className="hover:bg-[#faf9f7]">
-                <td className="px-4 py-3 text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">{f.date}</td>
-                <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{f.meal}</td>
-                <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{f.fridgeTemp}</td>
-                <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{f.freezerTemp}</td>
-                <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{f.foodTemp}</td>
-                <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{f.supplyBatch}</td>
-                <td className={`px-4 py-3 text-sm font-[family-name:var(--font-nunito)] ${FOOD_STATUS_STYLES[f.status]}`}>{f.status}</td>
-                <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{f.checkedBy}</td>
+                <td className="px-4 py-3 text-sm font-bold font-[family-name:var(--font-urbanist)] text-[#2d1810]">{f.date}</td>
+                <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{f.meal}</td>
+                <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{f.fridgeTemp}</td>
+                <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{f.freezerTemp}</td>
+                <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{f.foodTemp}</td>
+                <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{f.supplyBatch}</td>
+                <td className={`px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] ${FOOD_STATUS_STYLES[f.status]}`}>{f.status}</td>
+                <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{f.checkedBy}</td>
               </tr>
             ))}
           </tbody>
@@ -320,10 +320,10 @@ function FoodHygieneTable() {
         {FOOD_HYGIENE_LOGS.map((f) => (
           <div key={f.id} className="rounded-xl border border-[#eaecf0] p-3">
             <div className="flex items-center justify-between">
-              <p className="text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">{f.meal}</p>
-              <span className={`font-[family-name:var(--font-nunito)] text-xs ${FOOD_STATUS_STYLES[f.status]}`}>{f.status}</span>
+              <p className="text-sm font-bold font-[family-name:var(--font-urbanist)] text-[#2d1810]">{f.meal}</p>
+              <span className={`font-[family-name:var(--font-urbanist)] text-xs ${FOOD_STATUS_STYLES[f.status]}`}>{f.status}</span>
             </div>
-            <p className="mt-1 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+            <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
               {f.date} • Fridge {f.fridgeTemp} • Food {f.foodTemp}
             </p>
           </div>
@@ -344,7 +344,7 @@ function RiskAssessmentTable() {
           <thead>
             <tr className="bg-[#edd9c0]">
               {["Area/Activity", "Risk Level", "Controls in Place", "Date Reviewed", "Reviewed by", "Action Taken"].map((h) => (
-                <th key={h} className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]">
+                <th key={h} className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-urbanist)] text-[#2d1810]">
                   {h}
                 </th>
               ))}
@@ -353,11 +353,11 @@ function RiskAssessmentTable() {
           <tbody className="divide-y divide-[#eaecf0]">
             {RISK_ASSESSMENTS.map((r) => (
               <tr key={r.id} className="hover:bg-[#faf9f7]">
-                <td className="px-4 py-3 text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">{r.area}</td>
-                <td className={`px-4 py-3 text-sm font-[family-name:var(--font-nunito)] ${RISK_LEVEL_STYLES[r.riskLevel]}`}>● {r.riskLevel}</td>
-                <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{r.controlsInPlace}</td>
-                <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{r.dateReviewed}</td>
-                <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{r.reviewedBy}</td>
+                <td className="px-4 py-3 text-sm font-bold font-[family-name:var(--font-urbanist)] text-[#2d1810]">{r.area}</td>
+                <td className={`px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] ${RISK_LEVEL_STYLES[r.riskLevel]}`}>● {r.riskLevel}</td>
+                <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{r.controlsInPlace}</td>
+                <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{r.dateReviewed}</td>
+                <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{r.reviewedBy}</td>
                 <td className="px-4 py-3">
                   <Badge className={RISK_ACTION_STYLES[r.actionTaken]}>{r.actionTaken}</Badge>
                 </td>
@@ -371,11 +371,11 @@ function RiskAssessmentTable() {
         {RISK_ASSESSMENTS.map((r) => (
           <div key={r.id} className="rounded-xl border border-[#eaecf0] p-3">
             <div className="flex items-center justify-between">
-              <p className="text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">{r.area}</p>
+              <p className="text-sm font-bold font-[family-name:var(--font-urbanist)] text-[#2d1810]">{r.area}</p>
               <Badge className={RISK_ACTION_STYLES[r.actionTaken]}>{r.actionTaken}</Badge>
             </div>
-            <p className="mt-1 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{r.controlsInPlace}</p>
-            <p className={`mt-1 font-[family-name:var(--font-nunito)] text-xs ${RISK_LEVEL_STYLES[r.riskLevel]}`}>● {r.riskLevel} risk</p>
+            <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{r.controlsInPlace}</p>
+            <p className={`mt-1 font-[family-name:var(--font-urbanist)] text-xs ${RISK_LEVEL_STYLES[r.riskLevel]}`}>● {r.riskLevel} risk</p>
           </div>
         ))}
       </div>
@@ -396,7 +396,7 @@ export function ComplianceSafetyTab() {
         <div className="flex justify-end">
           <button
             onClick={() => setRecordOpen(true)}
-            className="flex items-center gap-1.5 rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]"
+            className="flex items-center gap-1.5 rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]"
           >
             Record New
             <ChevronDown className="size-3.5" />
@@ -406,32 +406,32 @@ export function ComplianceSafetyTab() {
         {/* Stats row */}
         <div className="flex gap-3 overflow-x-auto pb-1 lg:grid lg:grid-cols-4 lg:overflow-visible lg:pb-0">
           <div className="min-w-[160px] flex-1 rounded-xl border border-[#e6ebf3] bg-white p-4">
-            <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Compliant Materials</p>
+            <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Compliant Materials</p>
             <p className="mt-2 font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
               {String(overview.compliantMaterials).padStart(2, "0")}
             </p>
-            <p className="mt-1 font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">Up to date</p>
+            <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#9ca3af]">Up to date</p>
           </div>
           <div className="min-w-[160px] flex-1 rounded-xl border border-[#e6ebf3] bg-white p-4">
-            <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Due This Month</p>
+            <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Due This Month</p>
             <p className="mt-2 font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
               {String(overview.dueThisMonth).padStart(2, "0")}
             </p>
-            <p className="mt-1 font-[family-name:var(--font-nunito)] text-xs text-[#cc8000]">⚠ {overview.dueThisMonthNote}</p>
+            <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#cc8000]">⚠ {overview.dueThisMonthNote}</p>
           </div>
           <div className="min-w-[160px] flex-1 rounded-xl border border-[#e6ebf3] bg-white p-4">
-            <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Overdue</p>
+            <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Overdue</p>
             <p className="mt-2 font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
               {String(overview.overdue).padStart(2, "0")}
             </p>
-            <p className="mt-1 font-[family-name:var(--font-nunito)] text-xs text-[#ef4444]">⚠ {overview.overdueNote}</p>
+            <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#ef4444]">⚠ {overview.overdueNote}</p>
           </div>
           <div className="min-w-[160px] flex-1 rounded-xl border border-[#e6ebf3] bg-white p-4">
-            <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Next Inspection</p>
+            <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Next Inspection</p>
             <p className="mt-2 font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
               {overview.nextInspection}
             </p>
-            <p className="mt-1 font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">{overview.nextInspectionNote}</p>
+            <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#9ca3af]">{overview.nextInspectionNote}</p>
           </div>
         </div>
 

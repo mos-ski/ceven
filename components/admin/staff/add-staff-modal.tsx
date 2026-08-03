@@ -67,7 +67,7 @@ function DropdownSelect({
   const [open, setOpen] = useState(false);
   return (
     <div className="relative flex flex-col gap-1">
-      <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">
+      <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-black">
         {label}
       </label>
       <button
@@ -182,7 +182,7 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
               {view === "bulk-preview" && "Review Imported Staff"}
               {view === "bulk-done" && "Staff Added"}
             </h2>
-            <p className="mt-1 font-[family-name:var(--font-nunito)] text-xs text-[#666]">
+            <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#666]">
               {view === "choice" && "Choose how you'd like to add staff members"}
               {view === "manual-step1" && "1/3 — Basic information"}
               {view === "manual-step2" && "2/3 — Compensation & banking"}
@@ -219,7 +219,7 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
                   <p className="font-[family-name:var(--font-merriweather)] text-sm font-bold text-[#2d1810]">
                     Manual Entry
                   </p>
-                  <p className="mt-0.5 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+                  <p className="mt-0.5 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
                     Add one staff member at a time with their full details including salary & bank info
                   </p>
                 </div>
@@ -236,7 +236,7 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
                   <p className="font-[family-name:var(--font-merriweather)] text-sm font-bold text-[#2d1810]">
                     Bulk Upload
                   </p>
-                  <p className="mt-0.5 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+                  <p className="mt-0.5 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
                     Import multiple staff from an Excel spreadsheet — names, salaries, bank details & more
                   </p>
                 </div>
@@ -251,7 +251,7 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
               <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter email address" className="h-[52px] w-full rounded-xl border border-[#dcdcdc] px-4 font-[family-name:var(--font-urbanist)] text-sm text-black outline-none placeholder:text-[#7e7e7e] focus:ring-2 focus:ring-[#c47b2c]" />
               <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Enter phone number" className="h-[52px] w-full rounded-xl border border-[#dcdcdc] px-4 font-[family-name:var(--font-urbanist)] text-sm text-black outline-none placeholder:text-[#7e7e7e] focus:ring-2 focus:ring-[#c47b2c]" />
               <div className="flex flex-col gap-1">
-                <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">Date Joined</label>
+                <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-black">Date Joined</label>
                 <input type="date" value={dateJoined} onChange={(e) => setDateJoined(e.target.value)} className="h-[52px] w-full rounded-xl border border-[#dcdcdc] px-4 font-[family-name:var(--font-urbanist)] text-sm text-black outline-none focus:ring-2 focus:ring-[#c47b2c]" />
               </div>
               <div className="h-px w-full bg-[#e6ebf3]" />
@@ -270,7 +270,7 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
                 onChange={setEmploymentType}
               />
               <div className="flex flex-col gap-1">
-                <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">
+                <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-black">
                   Basic Salary
                 </label>
                 <input
@@ -291,7 +291,7 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
               {/* Tax */}
               <div className="flex flex-col gap-2 rounded-xl border border-[#e6ebf3] p-4">
                 <div className="flex items-center justify-between">
-                  <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">Tax</span>
+                  <span className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-black">Tax</span>
                   <button type="button" onClick={() => setTaxEnabled((v) => !v)} className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full transition-colors ${taxEnabled ? "bg-[#3b2513]" : "bg-[#d0d5dd]"}`}>
                     <span className={`inline-block size-5 rounded-full bg-white shadow transition-transform mt-0.5 ${taxEnabled ? "translate-x-5" : "translate-x-0.5"}`} />
                   </button>
@@ -310,7 +310,7 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
               {/* Pension */}
               <div className="flex flex-col gap-2 rounded-xl border border-[#e6ebf3] p-4">
                 <div className="flex items-center justify-between">
-                  <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">Pension</span>
+                  <span className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-black">Pension</span>
                   <button type="button" onClick={() => setPensionEnabled((v) => !v)} className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full transition-colors ${pensionEnabled ? "bg-[#3b2513]" : "bg-[#d0d5dd]"}`}>
                     <span className={`inline-block size-5 rounded-full bg-white shadow transition-transform mt-0.5 ${pensionEnabled ? "translate-x-5" : "translate-x-0.5"}`} />
                   </button>
@@ -329,7 +329,7 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
               {/* Other */}
               <div className="flex flex-col gap-2 rounded-xl border border-[#e6ebf3] p-4">
                 <div className="flex items-center justify-between">
-                  <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">Other</span>
+                  <span className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-black">Other</span>
                   <button type="button" onClick={() => setOtherEnabled((v) => !v)} className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full transition-colors ${otherEnabled ? "bg-[#3b2513]" : "bg-[#d0d5dd]"}`}>
                     <span className={`inline-block size-5 rounded-full bg-white shadow transition-transform mt-0.5 ${otherEnabled ? "translate-x-5" : "translate-x-0.5"}`} />
                   </button>
@@ -352,11 +352,11 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
               {salaryNum > 0 && (
                 <div className="rounded-xl bg-[#faf5ee] border border-[#e6ebf3] p-4">
                   <div className="flex items-center justify-between">
-                    <span className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">Total Deductions</span>
-                    <span className="font-[family-name:var(--font-nunito)] text-sm font-bold text-[#ef4444]">-{formatCurrency(totalDeductions)}</span>
+                    <span className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">Total Deductions</span>
+                    <span className="font-[family-name:var(--font-urbanist)] text-sm font-bold text-[#ef4444]">-{formatCurrency(totalDeductions)}</span>
                   </div>
                   <div className="mt-2 flex items-center justify-between border-t border-[#e6ebf3] pt-2">
-                    <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">Net Pay</span>
+                    <span className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">Net Pay</span>
                     <span className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#3b2513]">{formatCurrency(netPay)}</span>
                   </div>
                 </div>
@@ -368,20 +368,20 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
                 Bank Details
               </p>
               <div className="flex flex-col gap-1">
-                <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">Bank Name</label>
+                <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-black">Bank Name</label>
                 <input type="text" value={bankName} onChange={(e) => setBankName(e.target.value)} placeholder="e.g. GT Bank" className="h-[52px] w-full rounded-xl border border-[#dcdcdc] px-4 font-[family-name:var(--font-urbanist)] text-sm text-black outline-none placeholder:text-[#7e7e7e] focus:ring-2 focus:ring-[#c47b2c]" />
               </div>
               <div className="flex flex-col gap-1">
-                <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">Account Number</label>
+                <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-black">Account Number</label>
                 <input type="text" value={accountNumber} onChange={(e) => setAccountNumber(e.target.value)} placeholder="e.g. 0123456789" className="h-[52px] w-full rounded-xl border border-[#dcdcdc] px-4 font-[family-name:var(--font-urbanist)] text-sm text-black outline-none placeholder:text-[#7e7e7e] focus:ring-2 focus:ring-[#c47b2c]" />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1">
-                  <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">Pension PIN</label>
+                  <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-black">Pension PIN</label>
                   <input type="text" value={pensionPin} onChange={(e) => setPensionPin(e.target.value)} placeholder="PEN..." className="h-[52px] w-full rounded-xl border border-[#dcdcdc] px-4 font-[family-name:var(--font-urbanist)] text-sm text-black outline-none placeholder:text-[#7e7e7e] focus:ring-2 focus:ring-[#c47b2c]" />
                 </div>
                 <div className="flex flex-col gap-1">
-                  <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">Tax ID</label>
+                  <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-black">Tax ID</label>
                   <input type="text" value={taxId} onChange={(e) => setTaxId(e.target.value)} placeholder="TIN..." className="h-[52px] w-full rounded-xl border border-[#dcdcdc] px-4 font-[family-name:var(--font-urbanist)] text-sm text-black outline-none placeholder:text-[#7e7e7e] focus:ring-2 focus:ring-[#c47b2c]" />
                 </div>
               </div>
@@ -391,11 +391,11 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
           {/* ── Manual Step 3: Documents ──────────────────────────── */}
           {view === "manual-step3" && (
             <div className="flex flex-col gap-4">
-              <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+              <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
                 You can skip this step and add documents later.
               </p>
               <div className="flex flex-col gap-2">
-                <p className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">
+                <p className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-black">
                   ID Verification <span className="text-[#6b7280] text-xs">(NIN, National ID, Driver&apos;s License or Passport)</span>
                 </p>
                 {idDoc ? (
@@ -405,7 +405,7 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
                     </div>
                     <div className="flex-1">
                       <p className="font-[family-name:var(--font-merriweather)] text-xs font-semibold text-[#6b7280]">{idDoc.name}</p>
-                      <p className="font-[family-name:var(--font-nunito)] text-[10px] text-[#6b7280]">{idDoc.size}</p>
+                      <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#6b7280]">{idDoc.size}</p>
                     </div>
                     <button type="button" onClick={() => setIdDoc(null)} className="rounded-lg p-1.5 text-[#cd3030] hover:bg-[#fff5f5]">
                       <Trash2 className="size-4" />
@@ -424,14 +424,14 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
                       <p className="font-[family-name:var(--font-merriweather)] text-xs font-semibold text-[#6b7280]">
                         Drag file here or <span className="text-[#3b2513] underline">Tap to Upload</span>
                       </p>
-                      <p className="font-[family-name:var(--font-nunito)] text-[10px] text-[#6b7280]">PDF, JPEG. Max 650 KB</p>
+                      <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#6b7280]">PDF, JPEG. Max 650 KB</p>
                     </div>
                   </button>
                 )}
               </div>
               <div className="h-px w-full bg-[#e6ebf3]" />
               <div className="flex flex-col gap-2">
-                <p className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">Work Experience</p>
+                <p className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-black">Work Experience</p>
                 {workDoc ? (
                   <div className="flex items-center gap-3 rounded-xl border border-[#3b2513] bg-white p-4">
                     <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-[#edd9c0]">
@@ -439,7 +439,7 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
                     </div>
                     <div className="flex-1">
                       <p className="font-[family-name:var(--font-merriweather)] text-xs font-semibold text-[#6b7280]">{workDoc.name}</p>
-                      <p className="font-[family-name:var(--font-nunito)] text-[10px] text-[#6b7280]">{workDoc.size}</p>
+                      <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#6b7280]">{workDoc.size}</p>
                     </div>
                     <button type="button" onClick={() => setWorkDoc(null)} className="rounded-lg p-1.5 text-[#cd3030] hover:bg-[#fff5f5]">
                       <Trash2 className="size-4" />
@@ -458,7 +458,7 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
                       <p className="font-[family-name:var(--font-merriweather)] text-xs font-semibold text-[#6b7280]">
                         Drag file here or <span className="text-[#3b2513] underline">Tap to Upload</span>
                       </p>
-                      <p className="font-[family-name:var(--font-nunito)] text-[10px] text-[#6b7280]">PDF, JPEG. Max 650 KB</p>
+                      <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#6b7280]">PDF, JPEG. Max 650 KB</p>
                     </div>
                   </button>
                 )}
@@ -476,7 +476,7 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
                   </div>
                   <div className="flex-1">
                     <p className="font-[family-name:var(--font-merriweather)] text-xs font-semibold text-[#6b7280]">{bulkFile.name}</p>
-                    <p className="font-[family-name:var(--font-nunito)] text-[10px] text-[#6b7280]">{bulkFile.size}</p>
+                    <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#6b7280]">{bulkFile.size}</p>
                     <div className="mt-2 flex items-center gap-3">
                       <div className="relative h-2 flex-1 rounded-full bg-[#f4f5f6]">
                         <div className="absolute inset-y-0 left-0 w-full rounded-full bg-[#3b2513]" />
@@ -501,10 +501,10 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
                     <p className="font-[family-name:var(--font-merriweather)] text-sm font-semibold text-[#6b7280]">
                       Drag &amp; drop your Excel file here
                     </p>
-                    <p className="mt-1 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+                    <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
                       or <span className="text-[#3b2513] underline">browse files</span>
                     </p>
-                    <p className="mt-2 font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">
+                    <p className="mt-2 font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">
                       Supports .xlsx, .xls, .csv — Max 5 MB
                     </p>
                   </div>
@@ -517,13 +517,13 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
           {view === "bulk-preview" && (
             <div className="flex flex-col gap-3">
               <div className="flex items-center justify-between">
-                <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+                <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
                   The system extracted {bulkRows.length} staff from your file. Review and confirm.
                 </p>
                 <button
                   type="button"
                   onClick={toggleAllBulk}
-                  className="font-[family-name:var(--font-nunito)] text-xs font-medium text-[#3b2513] underline"
+                  className="font-[family-name:var(--font-urbanist)] text-xs font-medium text-[#3b2513] underline"
                 >
                   {bulkRows.every((r) => r.selected) ? "Deselect All" : "Select All"}
                 </button>
@@ -538,7 +538,7 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
                         <input type="checkbox" checked={bulkRows.length > 0 && bulkRows.every((r) => r.selected)} onChange={toggleAllBulk} className="accent-[#3b2513]" />
                       </th>
                       {["Staff", "Role", "Salary", "Deductions", "Net Pay", "Bank", "Account"].map((h) => (
-                        <th key={h} className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]">{h}</th>
+                        <th key={h} className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-urbanist)] text-[#2d1810]">{h}</th>
                       ))}
                     </tr>
                   </thead>
@@ -549,15 +549,15 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
                           <input type="checkbox" checked={row.selected} onChange={() => toggleBulkRow(row.id)} onClick={(e) => e.stopPropagation()} className="accent-[#3b2513]" />
                         </td>
                         <td className="px-4 py-3">
-                          <p className="text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">{row.name}</p>
+                          <p className="text-sm font-bold font-[family-name:var(--font-urbanist)] text-[#2d1810]">{row.name}</p>
                           <p className="text-[10px] text-[#858c98]">{row.email}</p>
                         </td>
-                        <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{row.role}</td>
-                        <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{formatCurrency(row.salary)}</td>
-                        <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#ef4444]">-{formatCurrency(row.deductions)}</td>
-                        <td className="px-4 py-3 text-sm font-bold font-[family-name:var(--font-nunito)] text-[#3b2513]">{formatCurrency(row.netPay)}</td>
-                        <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{row.bankName}</td>
-                        <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{row.accountNumber}</td>
+                        <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{row.role}</td>
+                        <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{formatCurrency(row.salary)}</td>
+                        <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#ef4444]">-{formatCurrency(row.deductions)}</td>
+                        <td className="px-4 py-3 text-sm font-bold font-[family-name:var(--font-urbanist)] text-[#3b2513]">{formatCurrency(row.netPay)}</td>
+                        <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{row.bankName}</td>
+                        <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{row.accountNumber}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -571,7 +571,7 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
                     <div className="flex items-center gap-3">
                       <input type="checkbox" checked={row.selected} onChange={() => toggleBulkRow(row.id)} onClick={(e) => e.stopPropagation()} className="accent-[#3b2513]" />
                       <div className="flex-1">
-                        <p className="text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">{row.name}</p>
+                        <p className="text-sm font-bold font-[family-name:var(--font-urbanist)] text-[#2d1810]">{row.name}</p>
                         <p className="text-[10px] text-[#858c98]">{row.role}</p>
                         <p className="text-[10px] text-[#858c98]">{formatCurrency(row.salary)} salary • -{formatCurrency(row.deductions)} deductions</p>
                         <p className="text-xs font-bold text-[#3b2513]">Net: {formatCurrency(row.netPay)}</p>
@@ -594,7 +594,7 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
                 <p className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
                   {selectedBulkCount} Staff Added
                 </p>
-                <p className="mt-1 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+                <p className="mt-1 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
                   All selected staff have been imported and are ready for payroll.
                 </p>
               </div>

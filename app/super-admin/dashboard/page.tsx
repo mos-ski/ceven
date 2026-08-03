@@ -22,7 +22,7 @@ export default function SuperAdminDashboardPage() {
               key={tab}
               type="button"
               onClick={() => setActiveTab(tab)}
-              className={`rounded-md px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-semibold transition-colors ${
+              className={`rounded-md px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-semibold transition-colors ${
                 activeTab === tab
                   ? "bg-brand-dark text-white"
                   : "text-muted-text hover:text-heading"
@@ -36,7 +36,7 @@ export default function SuperAdminDashboardPage() {
         <select
           value={month}
           onChange={(e) => setMonth(e.target.value)}
-          className="h-9 rounded-lg border border-card-border bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-heading focus:outline-none focus:ring-2 focus:ring-brand-accent"
+          className="h-9 rounded-lg border border-card-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading focus:outline-none focus:ring-2 focus:ring-brand-accent"
         >
           {MONTHS.map((m) => (
             <option key={m} value={m}>{m}</option>

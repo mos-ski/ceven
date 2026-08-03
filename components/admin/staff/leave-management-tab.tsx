@@ -72,7 +72,7 @@ function LeaveDecisionModal({
         <h2 className="font-[family-name:var(--font-merriweather)] text-xl font-bold text-[#2d1810]">
           {isApprove ? "Approve Leave Request" : "Reject Leave Request"}
         </h2>
-        <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+        <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
           {isApprove
             ? `Approve ${request.name}'s ${request.leaveType.toLowerCase()} request from ${request.startDate} to ${request.endDate} (${request.days} day${request.days > 1 ? "s" : ""}).`
             : `Reject ${request.name}'s ${request.leaveType.toLowerCase()} request from ${request.startDate} to ${request.endDate}?`}
@@ -81,14 +81,14 @@ function LeaveDecisionModal({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg border border-[#d0d5dd] px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810] hover:bg-[#f9fafb]"
+            className="rounded-lg border border-[#d0d5dd] px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810] hover:bg-[#f9fafb]"
           >
             Cancel
           </button>
           <button
             type="button"
             onClick={onClose}
-            className={`rounded-lg px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium text-white ${
+            className={`rounded-lg px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium text-white ${
               isApprove ? "bg-[#009061]" : "bg-[#ef4444]"
             }`}
           >
@@ -109,7 +109,7 @@ function CreateLeavePreferenceModal({ onClose }: { onClose: () => void }) {
             <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
               Create Leave Preference
             </h2>
-            <p className="mt-0.5 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+            <p className="mt-0.5 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
               Define a leave type and its default entitlement.
             </p>
           </div>
@@ -124,31 +124,31 @@ function CreateLeavePreferenceModal({ onClose }: { onClose: () => void }) {
         </div>
         <div className="flex flex-col gap-4 px-6 py-5">
           <div className="flex flex-col gap-1.5">
-            <label className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
+            <label className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
               Leave Type
             </label>
             <input
               type="text"
               placeholder="e.g. Annual Leave"
-              className="rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+              className="rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
             />
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div className="flex flex-col gap-1.5">
-              <label className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
+              <label className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
                 Days Per Year
               </label>
               <input
                 type="number"
                 placeholder="21"
-                className="rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+                className="rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
               />
             </div>
             <div className="flex flex-col gap-1.5">
-              <label className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
+              <label className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
                 Applies To
               </label>
-              <select className="rounded-lg border border-[#d0d5dd] bg-white px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]">
+              <select className="rounded-lg border border-[#d0d5dd] bg-white px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]">
                 <option>All Staff</option>
                 <option>Full time</option>
                 <option>Contract</option>
@@ -160,14 +160,14 @@ function CreateLeavePreferenceModal({ onClose }: { onClose: () => void }) {
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg border border-[#d0d5dd] px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810] hover:bg-[#f9fafb]"
+            className="rounded-lg border border-[#d0d5dd] px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810] hover:bg-[#f9fafb]"
           >
             Cancel
           </button>
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]"
+            className="rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]"
           >
             Save Preference
           </button>
@@ -196,7 +196,7 @@ function LeaveBalancesTable() {
         <DropdownMenu>
           <DropdownMenuTrigger
             render={
-              <button className="flex items-center gap-1.5 rounded-lg border border-[#d0d5dd] bg-white px-3 py-1.5 font-[family-name:var(--font-nunito)] text-xs" />
+              <button className="flex items-center gap-1.5 rounded-lg border border-[#d0d5dd] bg-white px-3 py-1.5 font-[family-name:var(--font-urbanist)] text-xs" />
             }
           >
             {typeFilter}
@@ -215,44 +215,44 @@ function LeaveBalancesTable() {
         <table className="w-full text-left">
           <thead>
             <tr className="bg-[#edd9c0]">
-              <th className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]">Staff</th>
+              <th className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-urbanist)] text-[#2d1810]">Staff</th>
               {showAnnual && (
                 <>
-                  <th className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]">Annual Entitled</th>
-                  <th className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]">Annual Taken</th>
-                  <th className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]">Annual Left</th>
+                  <th className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-urbanist)] text-[#2d1810]">Annual Entitled</th>
+                  <th className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-urbanist)] text-[#2d1810]">Annual Taken</th>
+                  <th className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-urbanist)] text-[#2d1810]">Annual Left</th>
                 </>
               )}
               {showSick && (
                 <>
-                  <th className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]">Sick Taken</th>
-                  <th className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]">Sick Remaining</th>
+                  <th className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-urbanist)] text-[#2d1810]">Sick Taken</th>
+                  <th className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-urbanist)] text-[#2d1810]">Sick Remaining</th>
                 </>
               )}
               {showOthers && (
-                <th className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]">Others</th>
+                <th className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-urbanist)] text-[#2d1810]">Others</th>
               )}
             </tr>
           </thead>
           <tbody className="divide-y divide-[#eaecf0]">
             {LEAVE_BALANCES.map((b) => (
               <tr key={b.id} className="hover:bg-[#faf9f7]">
-                <td className="px-4 py-3 text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">{b.name}</td>
+                <td className="px-4 py-3 text-sm font-bold font-[family-name:var(--font-urbanist)] text-[#2d1810]">{b.name}</td>
                 {showAnnual && (
                   <>
-                    <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{b.annualEntitled} days</td>
-                    <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{b.annualTaken} days</td>
-                    <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{b.annualEntitled - b.annualTaken} days</td>
+                    <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{b.annualEntitled} days</td>
+                    <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{b.annualTaken} days</td>
+                    <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{b.annualEntitled - b.annualTaken} days</td>
                   </>
                 )}
                 {showSick && (
                   <>
-                    <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{b.sickTaken}</td>
-                    <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{b.sickRemaining}</td>
+                    <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{b.sickTaken}</td>
+                    <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{b.sickRemaining}</td>
                   </>
                 )}
                 {showOthers && (
-                  <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{b.others}</td>
+                  <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{b.others}</td>
                 )}
               </tr>
             ))}
@@ -263,8 +263,8 @@ function LeaveBalancesTable() {
       <div className="flex flex-col gap-2 p-4 lg:hidden">
         {LEAVE_BALANCES.map((b) => (
           <div key={b.id} className="rounded-xl border border-[#eaecf0] p-3">
-            <p className="text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">{b.name}</p>
-            <p className="mt-1 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+            <p className="text-sm font-bold font-[family-name:var(--font-urbanist)] text-[#2d1810]">{b.name}</p>
+            <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
               {b.annualEntitled - b.annualTaken} of {b.annualEntitled} annual days left • {b.sickRemaining} sick days remaining
             </p>
           </div>
@@ -296,14 +296,14 @@ function LeaveCalendarView() {
               <ChevronRight className="size-4" />
             </button>
           </div>
-          <button className="flex items-center gap-1.5 rounded-lg border border-[#d0d5dd] bg-white px-3 py-1.5 font-[family-name:var(--font-nunito)] text-xs">
+          <button className="flex items-center gap-1.5 rounded-lg border border-[#d0d5dd] bg-white px-3 py-1.5 font-[family-name:var(--font-urbanist)] text-xs">
             Upcoming Leave
             <ChevronDown className="size-3" />
           </button>
         </div>
         <div className="grid grid-cols-7 gap-1 text-center">
           {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((d) => (
-            <div key={d} className="py-1 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+            <div key={d} className="py-1 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
               {d}
             </div>
           ))}
@@ -318,14 +318,14 @@ function LeaveCalendarView() {
                   isBlocked ? "border-[#eaecf0] bg-[#f9fafb]" : "border-[#eaecf0] bg-white"
                 }`}
               >
-                <span className={`font-[family-name:var(--font-nunito)] text-xs ${isBlocked ? "text-[#9ca3af]" : "text-[#2d1810]"}`}>
+                <span className={`font-[family-name:var(--font-urbanist)] text-xs ${isBlocked ? "text-[#9ca3af]" : "text-[#2d1810]"}`}>
                   {day}
                 </span>
                 {entry?.name && (
-                  <p className="font-[family-name:var(--font-nunito)] text-[10px] font-semibold text-[#2d1810]">{entry.name}</p>
+                  <p className="font-[family-name:var(--font-urbanist)] text-[10px] font-semibold text-[#2d1810]">{entry.name}</p>
                 )}
                 {entry?.leaveType && (
-                  <p className="font-[family-name:var(--font-nunito)] text-[10px] text-[#6b7280]">{entry.leaveType}</p>
+                  <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#6b7280]">{entry.leaveType}</p>
                 )}
                 {entry && (
                   <span className={`w-fit rounded px-1.5 py-0.5 font-[family-name:var(--font-urbanist)] text-[9px] ${CALENDAR_BADGE_STYLES[entry.status]}`}>
@@ -346,25 +346,25 @@ function LeaveCalendarView() {
       <div className="flex w-full flex-col gap-4 lg:w-[280px]">
         <div className="rounded-xl bg-white p-4 shadow-sm">
           <h3 className="font-[family-name:var(--font-merriweather)] text-sm font-bold text-[#2d1810]">Active Leave</h3>
-          <p className="mt-3 font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{ACTIVE_LEAVE.name}</p>
-          <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{ACTIVE_LEAVE.leaveType}</p>
-          <p className="mt-1 font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">{ACTIVE_LEAVE.dateRange}</p>
+          <p className="mt-3 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">{ACTIVE_LEAVE.name}</p>
+          <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{ACTIVE_LEAVE.leaveType}</p>
+          <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#9ca3af]">{ACTIVE_LEAVE.dateRange}</p>
         </div>
         <div className="rounded-xl bg-white p-4 shadow-sm">
           <div className="flex items-center justify-between">
             <h3 className="font-[family-name:var(--font-merriweather)] text-sm font-bold text-[#2d1810]">Upcoming Leave</h3>
-            <button className="font-[family-name:var(--font-nunito)] text-xs font-semibold text-[#3b2513]">View All</button>
+            <button className="font-[family-name:var(--font-urbanist)] text-xs font-semibold text-[#3b2513]">View All</button>
           </div>
           <div className="mt-3 flex flex-col gap-3">
             {UPCOMING_LEAVE.map((u) => (
               <div key={u.id} className="flex items-center gap-3">
                 <div className="flex flex-col items-center rounded-lg bg-[#f5edd8] px-2 py-1">
-                  <span className="font-[family-name:var(--font-nunito)] text-xs font-bold text-[#3b2513]">{u.day}</span>
-                  <span className="font-[family-name:var(--font-nunito)] text-[9px] text-[#6b7280]">{u.month}</span>
+                  <span className="font-[family-name:var(--font-urbanist)] text-xs font-bold text-[#3b2513]">{u.day}</span>
+                  <span className="font-[family-name:var(--font-urbanist)] text-[9px] text-[#6b7280]">{u.month}</span>
                 </div>
                 <div>
-                  <p className="font-[family-name:var(--font-nunito)] text-xs font-semibold text-[#2d1810]">{u.name}</p>
-                  <p className="font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">{u.detail}</p>
+                  <p className="font-[family-name:var(--font-urbanist)] text-xs font-semibold text-[#2d1810]">{u.name}</p>
+                  <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">{u.detail}</p>
                 </div>
               </div>
             ))}
@@ -388,10 +388,10 @@ function LeaveRequestTable({
           Leave Request
         </h2>
         <div className="flex flex-wrap items-center gap-2">
-          <span className="text-xs font-[family-name:var(--font-nunito)] text-[#6b7280]">
+          <span className="text-xs font-[family-name:var(--font-urbanist)] text-[#6b7280]">
             Filter by:
           </span>
-          <button className="flex items-center gap-1.5 rounded-lg border border-[#d0d5dd] bg-white px-3 py-1.5 font-[family-name:var(--font-nunito)] text-xs">
+          <button className="flex items-center gap-1.5 rounded-lg border border-[#d0d5dd] bg-white px-3 py-1.5 font-[family-name:var(--font-urbanist)] text-xs">
             All Status
             <ChevronDown className="size-3" />
           </button>
@@ -407,7 +407,7 @@ function LeaveRequestTable({
                 {["Staff", "Leave Type", "Dates", "Days", "Reason", "Status", "Action"].map((h) => (
                   <th
                     key={h}
-                    className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]"
+                    className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-urbanist)] text-[#2d1810]"
                   >
                     {h}
                   </th>
@@ -418,21 +418,21 @@ function LeaveRequestTable({
               {LEAVE_REQUESTS.map((r) => (
                 <tr key={r.id} className="hover:bg-[#faf9f7]">
                   <td className="px-4 py-3">
-                    <p className="text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">
+                    <p className="text-sm font-bold font-[family-name:var(--font-urbanist)] text-[#2d1810]">
                       {r.name}
                     </p>
                     <p className="text-[10px] text-[#858c98]">{r.role}</p>
                   </td>
-                  <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">
+                  <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">
                     {r.leaveType}
                   </td>
-                  <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">
+                  <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">
                     {r.startDate} – {r.endDate}
                   </td>
-                  <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">
+                  <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">
                     {r.days}
                   </td>
-                  <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">
+                  <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">
                     {r.reason}
                   </td>
                   <td className="px-4 py-3">
@@ -471,7 +471,7 @@ function LeaveRequestTable({
             <div key={r.id} className="rounded-xl border border-[#eaecf0] p-3">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">
+                  <p className="text-sm font-bold font-[family-name:var(--font-urbanist)] text-[#2d1810]">
                     {r.name}
                   </p>
                   <p className="text-[10px] text-[#858c98]">
@@ -523,7 +523,7 @@ export function LeaveManagementTab() {
         <div className="flex justify-end">
           <button
             onClick={() => setPreferenceOpen(true)}
-            className="rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]"
+            className="rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]"
           >
             Create Leave Preference
           </button>

@@ -100,7 +100,7 @@ export function AttendanceGrid() {
               <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#edd9c0] font-[family-name:var(--font-urbanist)] text-xs font-bold text-[#3b2513]">
                 {card.initials}
               </div>
-              <p className="font-[family-name:var(--font-nunito)] text-xs font-bold text-[#2d1810]">
+              <p className="font-[family-name:var(--font-urbanist)] text-xs font-bold text-[#2d1810]">
                 {card.name}
               </p>
               <p className="text-[10px] text-[#6b7280]">{card.cls}</p>

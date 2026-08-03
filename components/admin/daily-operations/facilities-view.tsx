@@ -55,7 +55,7 @@ function FilterDropdown({ label, options }: { label: string; options: string[] }
         render={
           <Button
             variant="outline"
-            className="h-8 gap-2 rounded-lg border-input-border bg-white px-3 font-[family-name:var(--font-nunito)] text-xs font-semibold text-[#454B54]"
+            className="h-8 gap-2 rounded-lg border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-[#454B54]"
           />
         }
       >
@@ -83,7 +83,7 @@ function NewMaintenanceRequestModal({
       <DialogContent>
         <DialogHeader>
           <DialogTitle>New Maintenance Request</DialogTitle>
-          <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+          <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
             Report a facility issue that needs attention.
           </p>
         </DialogHeader>
@@ -94,7 +94,7 @@ function NewMaintenanceRequestModal({
             <select
               id="fac-area"
               defaultValue=""
-              className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+              className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
             >
               <option value="" disabled>
                 Select area
@@ -113,7 +113,7 @@ function NewMaintenanceRequestModal({
               id="fac-description"
               rows={3}
               placeholder="Describe the issue..."
-              className="resize-none rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+              className="resize-none rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
             />
           </div>
 
@@ -123,7 +123,7 @@ function NewMaintenanceRequestModal({
               <select
                 id="fac-priority"
                 defaultValue="Medium"
-                className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+                className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
               >
                 <option value="Low">Low</option>
                 <option value="Medium">Medium</option>
@@ -143,7 +143,7 @@ function NewMaintenanceRequestModal({
             render={
               <Button
                 variant="outline"
-                className="h-9 rounded-lg border-[#d0d5dd] px-4 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]"
+                className="h-9 rounded-lg border-[#d0d5dd] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]"
               />
             }
           >
@@ -151,7 +151,7 @@ function NewMaintenanceRequestModal({
           </DialogClose>
           <Button
             onClick={() => onOpenChange(false)}
-            className="h-9 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]"
+            className="h-9 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]"
           >
             Submit Request
           </Button>
@@ -173,7 +173,7 @@ function ScheduleCleaningModal({
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Schedule Cleaning</DialogTitle>
-          <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+          <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
             Add a room to the recurring cleaning schedule.
           </p>
         </DialogHeader>
@@ -184,7 +184,7 @@ function ScheduleCleaningModal({
             <select
               id="clean-room"
               defaultValue=""
-              className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+              className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
             >
               <option value="" disabled>
                 Select room
@@ -208,7 +208,7 @@ function ScheduleCleaningModal({
             render={
               <Button
                 variant="outline"
-                className="h-9 rounded-lg border-[#d0d5dd] px-4 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]"
+                className="h-9 rounded-lg border-[#d0d5dd] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]"
               />
             }
           >
@@ -216,7 +216,7 @@ function ScheduleCleaningModal({
           </DialogClose>
           <Button
             onClick={() => onOpenChange(false)}
-            className="h-9 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]"
+            className="h-9 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]"
           >
             Save Schedule
           </Button>
@@ -229,23 +229,23 @@ function ScheduleCleaningModal({
 function MaintenanceRow({ issue }: { issue: FacilityIssue }) {
   return (
     <TableRow className="border-table-border">
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-black">
+      <TableCell className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-black">
         {issue.dateReported}
       </TableCell>
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">{issue.area}</TableCell>
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+      <TableCell className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">{issue.area}</TableCell>
+      <TableCell className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
         {issue.description}
       </TableCell>
       <TableCell>
-        <span className="inline-flex items-center gap-1.5 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">
+        <span className="inline-flex items-center gap-1.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">
           <span className={`h-2 w-2 rounded-full ${PRIORITY_DOT_CLASS[issue.priority]}`} />
           {issue.priority}
         </span>
       </TableCell>
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+      <TableCell className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
         {issue.reportedBy}
       </TableCell>
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+      <TableCell className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
         {issue.assignedTo}
       </TableCell>
       <TableCell>
@@ -253,11 +253,11 @@ function MaintenanceRow({ issue }: { issue: FacilityIssue }) {
           ● {issue.status}
         </Badge>
       </TableCell>
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+      <TableCell className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
         {issue.resolvedDate ?? "—"}
       </TableCell>
       <TableCell>
-        <button className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#3b2513] underline">
+        <button className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#3b2513] underline">
           View
         </button>
       </TableCell>
@@ -273,7 +273,7 @@ function MaintenanceTable() {
           Maintenance
         </h2>
         <div className="flex items-center gap-2">
-          <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Filter by:</span>
+          <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Filter by:</span>
           <FilterDropdown label="All Priority" options={["All Priority", "Low", "Medium", "High", "Urgent"]} />
           <FilterDropdown label="All Status" options={["All Status", "Open", "In Progress", "Resolved"]} />
           <div className="relative">
@@ -292,7 +292,7 @@ function MaintenanceTable() {
               {["Request Date", "Area", "Issue", "Priority", "Reported By", "Assigned To", "Status", "Resolved Date", "Action"].map((h) => (
                 <th
                   key={h}
-                  className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black"
+                  className="px-4 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-normal text-black"
                 >
                   {h}
                 </th>
@@ -312,23 +312,23 @@ function MaintenanceTable() {
         {FACILITY_ISSUES.map((issue) => (
           <div key={issue.id} className="rounded-xl border border-[#eaecf0] p-3">
             <div className="flex items-center justify-between">
-              <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
+              <span className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
                 {issue.area}
               </span>
               <Badge variant="outline" className={STATUS_BADGE_CLASS[issue.status]}>
                 ● {issue.status}
               </Badge>
             </div>
-            <p className="mt-1.5 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+            <p className="mt-1.5 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
               {issue.description}
             </p>
             <div className="mt-1.5 flex items-center gap-2">
-              <span className="inline-flex items-center gap-1 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+              <span className="inline-flex items-center gap-1 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
                 <span className={`h-1.5 w-1.5 rounded-full ${PRIORITY_DOT_CLASS[issue.priority]}`} />
                 {issue.priority}
               </span>
               <span className="text-[#d0d5dd]">•</span>
-              <p className="font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">
+              <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">
                 {issue.dateReported}
               </p>
             </div>
@@ -350,8 +350,8 @@ function CleaningCard({ task }: { task: CleaningTask }) {
       <div className="flex items-start gap-3">
         <input type="checkbox" defaultChecked={isDone} className="mt-0.5 h-4 w-4 accent-[#3b2513]" />
         <div>
-          <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{task.room}</p>
-          <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{task.frequency}</p>
+          <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">{task.room}</p>
+          <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{task.frequency}</p>
         </div>
       </div>
       <div className="flex flex-col items-end gap-1">
@@ -365,7 +365,7 @@ function CleaningCard({ task }: { task: CleaningTask }) {
         >
           ● {task.status}
         </Badge>
-        {isDone && <span className="font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">{task.time}</span>}
+        {isDone && <span className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">{task.time}</span>}
       </div>
     </label>
   );
@@ -429,7 +429,7 @@ export function FacilitiesView() {
             key={card.title}
             className="flex flex-col gap-1 rounded-xl border border-[#e6ebf3] bg-white p-4"
           >
-            <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">{card.title}</p>
+            <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">{card.title}</p>
             <p className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
               {card.value}
             </p>
@@ -442,7 +442,7 @@ export function FacilitiesView() {
         <span className="inline-flex items-center gap-1 rounded-full bg-[#e0bfa0] px-2 py-0.5 font-[family-name:var(--font-urbanist)] text-[10px] font-medium text-[#3b2513]">
           ✦ AI Insights
         </span>
-        <p className="font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">
+        <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">
           ⚠ Sunflower room changing table broken strap, reported Apr 9. Not yet repaired. Needs to be repaired before next LASG inspection
         </p>
         <button className="ml-auto text-[#9ca3af] hover:text-[#6b7280]">✕</button>

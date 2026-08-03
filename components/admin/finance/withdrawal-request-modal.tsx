@@ -87,14 +87,14 @@ export default function WithdrawalRequestModal({ open, onOpenChange }: Props) {
 
             <div className="flex flex-col gap-4 px-6 py-6">
               <div className="rounded-xl bg-[#faf9f7] p-4">
-                <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Available Balance</p>
+                <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Available Balance</p>
                 <p className="mt-1 font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
                   {formatNaira(availableBalance)}
                 </p>
               </div>
 
               <div className="flex flex-col gap-1">
-                <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">
+                <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">
                   Amount (₦)
                 </label>
                 <input
@@ -102,15 +102,15 @@ export default function WithdrawalRequestModal({ open, onOpenChange }: Props) {
                   value={amount}
                   onChange={(e) => setAmount(e.target.value.replace(/\D/g, ""))}
                   placeholder="Enter amount"
-                  className="h-[52px] w-full rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-nunito)] text-lg text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+                  className="h-[52px] w-full rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-urbanist)] text-lg text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
                 />
                 {belowMinimum && (
-                  <p className="font-[family-name:var(--font-nunito)] text-xs text-[#cd3030]">
+                  <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#cd3030]">
                     Minimum withdrawal is {formatNaira(MINIMUM_WITHDRAWAL)}.
                   </p>
                 )}
                 {insufficientFunds && (
-                  <p className="font-[family-name:var(--font-nunito)] text-xs text-[#cd3030]">
+                  <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#cd3030]">
                     Insufficient balance. Available: {formatNaira(availableBalance)}
                   </p>
                 )}
@@ -120,11 +120,11 @@ export default function WithdrawalRequestModal({ open, onOpenChange }: Props) {
               {amountNum > 0 && (
                 <div className="rounded-xl border border-[#e6ebf3] bg-[#faf9f7] p-4">
                   <div className="flex justify-between mb-2">
-                    <span className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">Withdrawal fee</span>
-                    <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">{formatNaira(WITHDRAWAL_FEE)}</span>
+                    <span className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">Withdrawal fee</span>
+                    <span className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">{formatNaira(WITHDRAWAL_FEE)}</span>
                   </div>
                   <div className="flex justify-between border-t border-[#eaecf0] pt-2">
-                    <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">You will receive</span>
+                    <span className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">You will receive</span>
                     <span className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#009061]">{formatNaira(youReceive)}</span>
                   </div>
                 </div>
@@ -133,13 +133,13 @@ export default function WithdrawalRequestModal({ open, onOpenChange }: Props) {
               {/* Timing note */}
               <div className="flex items-start gap-2 rounded-xl bg-[#fff6e6] px-3 py-2">
                 <Clock size={14} className="mt-0.5 shrink-0 text-[#cc8000]" />
-                <p className="font-[family-name:var(--font-nunito)] text-xs text-[#cc8000]">
+                <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#cc8000]">
                   Withdrawal: T+1 business day. If submitted on Friday, funds arrive Monday.
                 </p>
               </div>
 
               <div className="rounded-xl border border-[#e6ebf3] p-4">
-                <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Payout Account</p>
+                <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Payout Account</p>
                 <div className="mt-1 flex items-center gap-2">
                   <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
                     {MOCK_BANK_ACCOUNT.bankName}
@@ -154,18 +154,18 @@ export default function WithdrawalRequestModal({ open, onOpenChange }: Props) {
                     {MOCK_BANK_ACCOUNT.accountType}
                   </span>
                 </div>
-                <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+                <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
                   {MOCK_BANK_ACCOUNT.accountName} • ••••{MOCK_BANK_ACCOUNT.accountNumber.slice(-4)}
                 </p>
                 {MOCK_BANK_ACCOUNT.accountType === "Personal" && (
-                  <p className="mt-2 rounded-lg bg-[#fff6e6] px-3 py-2 font-[family-name:var(--font-nunito)] text-xs text-[#cc8000]">
+                  <p className="mt-2 rounded-lg bg-[#fff6e6] px-3 py-2 font-[family-name:var(--font-urbanist)] text-xs text-[#cc8000]">
                     This is a personal account. Withdrawals to personal accounts require CEven support approval.
                   </p>
                 )}
               </div>
 
               <div className="flex flex-col gap-1">
-                <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">
+                <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">
                   Note (Optional)
                 </label>
                 <input
@@ -173,7 +173,7 @@ export default function WithdrawalRequestModal({ open, onOpenChange }: Props) {
                   value={note}
                   onChange={(e) => setNote(e.target.value)}
                   placeholder="e.g. Staff salary — Mrs. Sarah"
-                  className="h-[52px] w-full rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+                  className="h-[52px] w-full rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
                 />
               </div>
             </div>
@@ -204,7 +204,7 @@ export default function WithdrawalRequestModal({ open, onOpenChange }: Props) {
 
             <div className="flex flex-col gap-4 px-6 py-6">
               <div className="rounded-xl bg-[#faf9f7] p-4 text-center">
-                <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Withdrawal Amount</p>
+                <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Withdrawal Amount</p>
                 <p className="mt-1 font-[family-name:var(--font-merriweather)] text-3xl font-bold text-[#2d1810]">
                   {formatNaira(amountNum)}
                 </p>
@@ -212,51 +212,51 @@ export default function WithdrawalRequestModal({ open, onOpenChange }: Props) {
 
               <div className="flex flex-col gap-2 rounded-xl border border-[#e6ebf3] p-4">
                 <div className="flex justify-between">
-                  <span className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">Destination</span>
-                  <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">
+                  <span className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">Destination</span>
+                  <span className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">
                     {MOCK_BANK_ACCOUNT.bankName} ••••{MOCK_BANK_ACCOUNT.accountNumber.slice(-4)}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">Account Name</span>
-                  <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">
+                  <span className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">Account Name</span>
+                  <span className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">
                     {MOCK_BANK_ACCOUNT.accountName}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">Withdrawal fee</span>
-                  <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">
+                  <span className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">Withdrawal fee</span>
+                  <span className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">
                     {formatNaira(WITHDRAWAL_FEE)}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">You will receive</span>
-                  <span className="font-[family-name:var(--font-nunito)] text-sm font-bold text-[#009061]">
+                  <span className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">You will receive</span>
+                  <span className="font-[family-name:var(--font-urbanist)] text-sm font-bold text-[#009061]">
                     {formatNaira(youReceive)}
                   </span>
                 </div>
                 <div className="flex justify-between border-t border-[#eaecf0] pt-2">
-                  <span className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">Remaining Balance</span>
-                  <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">
+                  <span className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">Remaining Balance</span>
+                  <span className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">
                     {formatNaira(availableBalance - amountNum - fee)}
                   </span>
                 </div>
                 {note && (
                   <div className="flex justify-between border-t border-[#eaecf0] pt-2">
-                    <span className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">Note</span>
-                    <span className="font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{note}</span>
+                    <span className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">Note</span>
+                    <span className="font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{note}</span>
                   </div>
                 )}
               </div>
 
               <div className="flex items-start gap-2 rounded-xl bg-[#fff6e6] px-3 py-2">
                 <Clock size={14} className="mt-0.5 shrink-0 text-[#cc8000]" />
-                <p className="font-[family-name:var(--font-nunito)] text-xs text-[#cc8000]">
+                <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#cc8000]">
                   Funds arrive T+1 business day (Monday if submitted Friday).
                 </p>
               </div>
 
-              <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+              <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
                 This withdrawal will be sent to the owner for approval. You&apos;ll be notified once it&apos;s reviewed.
               </p>
             </div>
@@ -291,7 +291,7 @@ export default function WithdrawalRequestModal({ open, onOpenChange }: Props) {
               <h3 className="font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">
                 Enter OTP
               </h3>
-              <p className="max-w-xs text-center font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+              <p className="max-w-xs text-center font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
                 Enter the 6-digit code sent to your email to confirm this withdrawal of {formatNaira(amountNum)}.
               </p>
               <input
@@ -310,7 +310,7 @@ export default function WithdrawalRequestModal({ open, onOpenChange }: Props) {
               </button>
               <button
                 onClick={handleSendOtp}
-                className="font-[family-name:var(--font-nunito)] text-sm text-[#c47b2c] hover:underline"
+                className="font-[family-name:var(--font-urbanist)] text-sm text-[#c47b2c] hover:underline"
               >
                 Resend OTP
               </button>
@@ -336,7 +336,7 @@ export default function WithdrawalRequestModal({ open, onOpenChange }: Props) {
               <h3 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
                 Withdrawal Request Sent
               </h3>
-              <p className="max-w-xs text-center font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+              <p className="max-w-xs text-center font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
                 Your withdrawal of {formatNaira(amountNum)} has been submitted and is pending owner approval.
               </p>
               <button

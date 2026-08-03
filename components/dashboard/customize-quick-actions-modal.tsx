@@ -68,7 +68,7 @@ export default function CustomizeQuickActionsModal({ selected, onSave, onClose }
             <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#171f26]">
               Customize Quick Actions
             </h2>
-            <p className="mt-0.5 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+            <p className="mt-0.5 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
               Complete all required fields. You can add more details from the childs profile after enrolment
             </p>
           </div>
@@ -84,13 +84,13 @@ export default function CustomizeQuickActionsModal({ selected, onSave, onClose }
         <div className="flex flex-1 flex-col gap-4 overflow-y-auto px-6 py-5">
           <div className="flex items-center gap-2 text-black">
             <GripVertical className="h-4 w-4 text-[#6b7280]" />
-            <p className="font-[family-name:var(--font-nunito)] text-xs">
+            <p className="font-[family-name:var(--font-urbanist)] text-xs">
               Drag and drop to rearrange view order
             </p>
           </div>
 
           <div className="flex flex-col gap-4">
-            <p className="font-[family-name:var(--font-nunito)] text-xs text-black">
+            <p className="font-[family-name:var(--font-urbanist)] text-xs text-black">
               Selected (<span className="font-semibold">Max of {MAX_SELECTED}</span>)
             </p>
             <div className="flex flex-wrap gap-4">
@@ -101,7 +101,7 @@ export default function CustomizeQuickActionsModal({ selected, onSave, onClose }
                 >
                   <Icon className="h-6 w-6 text-[#3b2513]" />
                   <div className="flex items-center gap-1">
-                    <span className="font-[family-name:var(--font-nunito)] text-xs font-bold text-[#3b2513]">
+                    <span className="font-[family-name:var(--font-urbanist)] text-xs font-bold text-[#3b2513]">
                       {label}
                     </span>
                   </div>
@@ -115,7 +115,7 @@ export default function CustomizeQuickActionsModal({ selected, onSave, onClose }
                 </div>
               ))}
               {selectedActions.length === 0 && (
-                <p className="font-[family-name:var(--font-nunito)] text-sm text-[#9ca3af]">
+                <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#9ca3af]">
                   No quick actions selected yet.
                 </p>
               )}
@@ -124,7 +124,7 @@ export default function CustomizeQuickActionsModal({ selected, onSave, onClose }
 
           {availableActions.length > 0 && (
             <div className="flex flex-col gap-4">
-              <p className="font-[family-name:var(--font-nunito)] text-xs text-black">Add actions from below</p>
+              <p className="font-[family-name:var(--font-urbanist)] text-xs text-black">Add actions from below</p>
               <div className="flex flex-wrap gap-4">
                 {availableActions.map(({ key, label, icon: Icon }) => (
                   <div
@@ -133,7 +133,7 @@ export default function CustomizeQuickActionsModal({ selected, onSave, onClose }
                   >
                     <Icon className="h-6 w-6 text-[#3b2513]" />
                     <div className="flex items-center gap-1">
-                      <span className="font-[family-name:var(--font-nunito)] text-xs font-bold text-[#3b2513]">
+                      <span className="font-[family-name:var(--font-urbanist)] text-xs font-bold text-[#3b2513]">
                         {label}
                       </span>
                     </div>

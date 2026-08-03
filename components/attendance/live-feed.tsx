@@ -40,7 +40,7 @@ export function LiveFeed() {
                 {row.initials}
               </div>
               <div>
-                <p className="font-[family-name:var(--font-nunito)] text-xs font-semibold text-[#2d1810]">
+                <p className="font-[family-name:var(--font-urbanist)] text-xs font-semibold text-[#2d1810]">
                   {row.name}
                 </p>
                 <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#6b7280]">

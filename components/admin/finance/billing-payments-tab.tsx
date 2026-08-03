@@ -62,7 +62,7 @@ function Donut({ segments, centerLabel }: { segments: DonutSegment[]; centerLabe
         {segments.map((s) => (
           <div key={s.label} className="flex items-center gap-1.5">
             <span className="size-2 rounded-full" style={{ backgroundColor: s.color }} />
-            <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{s.label}</span>
+            <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{s.label}</span>
           </div>
         ))}
       </div>
@@ -95,17 +95,17 @@ export function BillingPaymentsTab() {
       <div className="flex flex-wrap justify-end gap-3">
         <button
           onClick={() => setInvoiceOpen(true)}
-          className="rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]"
+          className="rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]"
         >
           New Invoice
         </button>
         <button
           onClick={() => setPaymentOpen(true)}
-          className="rounded-lg border border-[#d0d5dd] bg-white px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]"
+          className="rounded-lg border border-[#d0d5dd] bg-white px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]"
         >
           Record Payment
         </button>
-        <button className="flex items-center gap-1.5 rounded-lg border border-[#d0d5dd] bg-white px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">
+        <button className="flex items-center gap-1.5 rounded-lg border border-[#d0d5dd] bg-white px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">
           <Download className="size-4" />
           Export
         </button>
@@ -115,7 +115,7 @@ export function BillingPaymentsTab() {
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4">
         {BILLING_STATS.map((s) => (
           <div key={s.label} className="rounded-xl border border-[#e6ebf3] bg-white p-4">
-            <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{s.label}</p>
+            <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{s.label}</p>
             <p className="mt-2 font-[family-name:var(--font-merriweather)] text-xl font-bold text-[#2d1810]">{s.value}</p>
             <p
               className={`mt-1 font-[family-name:var(--font-urbanist)] text-xs ${
@@ -141,7 +141,7 @@ export function BillingPaymentsTab() {
           <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
             {COLLECTION_PROGRESS_STATS.map((s) => (
               <div key={s.label} className="rounded-lg bg-[#faf9f7] p-3">
-                <p className="font-[family-name:var(--font-nunito)] text-[10px] text-[#6b7280]">{s.label}</p>
+                <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#6b7280]">{s.label}</p>
                 <p className="font-[family-name:var(--font-merriweather)] text-sm font-bold text-[#2d1810]">{s.value}</p>
                 <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">{s.helper}</p>
               </div>
@@ -178,7 +178,7 @@ export function BillingPaymentsTab() {
             <thead>
               <tr className="bg-[#edd9c0]">
                 {["Child", "Parent Name", "Room Plan", "Due Payment", "Due Date", "Status", "Risk", "Action"].map((h) => (
-                  <th key={h} className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black">
+                  <th key={h} className="px-4 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-normal text-black">
                     {h}
                   </th>
                 ))}
@@ -187,16 +187,16 @@ export function BillingPaymentsTab() {
             <tbody className="bg-white">
               {INVOICE_TRACKING.map((row) => (
                 <tr key={row.id} className="border-t border-[#eaecf0]">
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">
                     {row.child}
                     {row.extraChildren > 0 && (
                       <span className="ml-1 rounded bg-[#f3f4f6] px-1.5 py-0.5 text-[10px] text-[#6b7280]">+{row.extraChildren}</span>
                     )}
                   </td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{row.parentName}</td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{row.roomPlan}</td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{row.duePayment}</td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{row.parentName}</td>
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{row.roomPlan}</td>
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{row.duePayment}</td>
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">
                     {row.dueDate}
                     {row.daysOverdue && <span className="ml-1 text-xs text-[#ef4444]">({row.daysOverdue})</span>}
                   </td>
@@ -206,7 +206,7 @@ export function BillingPaymentsTab() {
                     </span>
                   </td>
                   <td className="px-4 py-3">
-                    <span className="inline-flex items-center gap-1.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">
+                    <span className="inline-flex items-center gap-1.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">
                       <span className={`size-2 rounded-full ${RISK_DOT_CLASS[row.risk]}`} />
                       {row.risk}
                     </span>
@@ -227,15 +227,15 @@ export function BillingPaymentsTab() {
           {INVOICE_TRACKING.map((row) => (
             <div key={row.id} className="rounded-xl border border-[#eaecf0] p-3">
               <div className="flex items-center justify-between">
-                <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">{row.child}</span>
+                <span className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">{row.child}</span>
                 <span className={`inline-flex items-center rounded-full border px-2.5 py-0.5 font-[family-name:var(--font-urbanist)] text-xs ${STATUS_BADGE_CLASS[row.status]}`}>
                   {row.status}
                 </span>
               </div>
-              <p className="mt-1.5 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+              <p className="mt-1.5 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
                 {row.parentName} • {row.roomPlan}
               </p>
-              <p className="mt-1 font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">
+              <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#9ca3af]">
                 {row.duePayment} due {row.dueDate}
               </p>
             </div>

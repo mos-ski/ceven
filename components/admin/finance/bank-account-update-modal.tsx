@@ -79,17 +79,17 @@ export default function BankAccountUpdateModal({ open, onOpenChange }: Props) {
 
             <div className="flex flex-col gap-4 px-6 py-6">
               <div className="rounded-xl border border-[#e6ebf3] bg-[#faf9f7] p-4">
-                <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Current Account</p>
+                <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Current Account</p>
                 <p className="mt-1 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
                   {MOCK_BANK_ACCOUNT.bankName} ••••{MOCK_BANK_ACCOUNT.accountNumber.slice(-4)}
                 </p>
-                <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+                <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
                   {MOCK_BANK_ACCOUNT.accountName}
                 </p>
               </div>
 
               <div className="flex flex-col gap-1">
-                <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">
+                <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">
                   New Bank Name
                 </label>
                 <select
@@ -99,7 +99,7 @@ export default function BankAccountUpdateModal({ open, onOpenChange }: Props) {
                     setFetchedName("");
                     setNameMatch(null);
                   }}
-                  className="h-[52px] w-full rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+                  className="h-[52px] w-full rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
                 >
                   <option value="" disabled>
                     Select bank
@@ -113,7 +113,7 @@ export default function BankAccountUpdateModal({ open, onOpenChange }: Props) {
               </div>
 
               <div className="flex flex-col gap-1">
-                <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">
+                <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">
                   New Account Number
                 </label>
                 <input
@@ -126,14 +126,14 @@ export default function BankAccountUpdateModal({ open, onOpenChange }: Props) {
                   }}
                   onBlur={handleFetchAccount}
                   placeholder="10-digit account number"
-                  className="h-[52px] w-full rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+                  className="h-[52px] w-full rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
                 />
               </div>
 
               {loading && (
                 <div className="flex items-center gap-2 rounded-xl bg-[#f9fafb] px-4 py-3">
                   <div className="size-4 animate-spin rounded-full border-2 border-[#3b2513] border-t-transparent" />
-                  <span className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+                  <span className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
                     Fetching account details...
                   </span>
                 </div>
@@ -141,20 +141,20 @@ export default function BankAccountUpdateModal({ open, onOpenChange }: Props) {
 
               {fetchedName && !loading && (
                 <div className="rounded-xl border border-[#e6ebf3] bg-[#f9fafb] px-4 py-3">
-                  <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Account Name</p>
-                  <p className="mt-1 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">
+                  <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Account Name</p>
+                  <p className="mt-1 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">
                     {fetchedName}
                   </p>
                   {nameMatch === false && (
                     <div className="mt-2 rounded-lg bg-[#fff6e6] px-3 py-2">
-                      <p className="font-[family-name:var(--font-nunito)] text-xs text-[#cc8000]">
+                      <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#cc8000]">
                         Account name does not match your crèche name. This account will be flagged as personal.
                       </p>
                     </div>
                   )}
                   {nameMatch === true && (
                     <div className="mt-2 rounded-lg bg-[#ecfff8] px-3 py-2">
-                      <p className="font-[family-name:var(--font-nunito)] text-xs text-[#009061]">
+                      <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#009061]">
                         Account name matches your crèche profile.
                       </p>
                     </div>
@@ -194,7 +194,7 @@ export default function BankAccountUpdateModal({ open, onOpenChange }: Props) {
               <h3 className="font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">
                 Enter OTP
               </h3>
-              <p className="max-w-xs text-center font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+              <p className="max-w-xs text-center font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
                 Enter the 6-digit code sent to your registered phone number
               </p>
               <input
@@ -213,7 +213,7 @@ export default function BankAccountUpdateModal({ open, onOpenChange }: Props) {
               </button>
               <button
                 onClick={handleSendOtp}
-                className="font-[family-name:var(--font-nunito)] text-sm text-[#c47b2c] hover:underline"
+                className="font-[family-name:var(--font-urbanist)] text-sm text-[#c47b2c] hover:underline"
               >
                 Resend OTP
               </button>
@@ -230,7 +230,7 @@ export default function BankAccountUpdateModal({ open, onOpenChange }: Props) {
               <h3 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
                 Bank Account Updated
               </h3>
-              <p className="max-w-xs text-center font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+              <p className="max-w-xs text-center font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
                 Your payout account has been updated to {bankName} ••••{accountNumber.slice(-4)}
               </p>
               <button

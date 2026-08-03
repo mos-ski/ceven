@@ -65,7 +65,7 @@ function Donut({ segments, centerLabel }: { segments: DonutSegment[]; centerLabe
         {segments.map((s) => (
           <div key={s.label} className="flex items-center gap-1.5">
             <span className="size-2 rounded-full" style={{ backgroundColor: s.color }} />
-            <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{s.label}</span>
+            <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{s.label}</span>
           </div>
         ))}
       </div>
@@ -92,22 +92,22 @@ function CashFlowChart() {
                 title={`Cash Out: ${m.cashOut}`}
               />
             </div>
-            <span className="font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">{m.month}</span>
+            <span className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">{m.month}</span>
           </div>
         ))}
       </div>
       <div className="mt-3 flex items-center gap-4">
         <div className="flex items-center gap-1.5">
           <span className="size-2 rounded-full bg-[#bab68d]" />
-          <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Cash In</span>
+          <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Cash In</span>
         </div>
         <div className="flex items-center gap-1.5">
           <span className="size-2 rounded-full bg-[#3b2513]" />
-          <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Cash Out</span>
+          <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Cash Out</span>
         </div>
         <div className="flex items-center gap-1.5">
           <span className="size-2 rounded-full bg-[#e2622a]" />
-          <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Net Cash Flow</span>
+          <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Net Cash Flow</span>
         </div>
       </div>
     </div>
@@ -123,7 +123,7 @@ export function FinancialReportsTab() {
     <div className="flex flex-col gap-4">
       {/* Header action */}
       <div className="flex justify-end">
-        <button className="flex items-center gap-1.5 rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]">
+        <button className="flex items-center gap-1.5 rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]">
           <Download className="size-4" />
           Export Report
         </button>
@@ -133,7 +133,7 @@ export function FinancialReportsTab() {
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4">
         {REPORT_SUMMARY.map((s) => (
           <div key={s.label} className="rounded-xl border border-[#e6ebf3] bg-white p-4">
-            <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{s.label}</p>
+            <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{s.label}</p>
             <p className="mt-2 font-[family-name:var(--font-merriweather)] text-xl font-bold text-[#2d1810]">{s.value}</p>
             <div className={`mt-1 flex items-center gap-1 font-[family-name:var(--font-urbanist)] text-xs ${s.trend === "up" ? "text-[#009061]" : s.trend === "down" ? "text-[#ef4444]" : "text-[#6b7280]"}`}>
               {s.trend === "up" && <TrendingUp className="size-3" />}
@@ -155,17 +155,17 @@ export function FinancialReportsTab() {
           </div>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             <div>
-              <p className="mb-2 font-[family-name:var(--font-nunito)] text-xs font-semibold text-[#6b7280]">Income</p>
+              <p className="mb-2 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-[#6b7280]">Income</p>
               <div className="flex flex-col gap-2">
                 {PL_INCOME.map((line) => (
                   <div key={line.label} className="flex items-center justify-between">
                     <span
-                      className={`font-[family-name:var(--font-nunito)] text-sm ${line.bold ? "font-bold text-[#2d1810]" : "text-[#6b7280]"}`}
+                      className={`font-[family-name:var(--font-urbanist)] text-sm ${line.bold ? "font-bold text-[#2d1810]" : "text-[#6b7280]"}`}
                     >
                       {line.label}
                     </span>
                     <span
-                      className={`font-[family-name:var(--font-nunito)] text-sm ${line.bold ? "font-bold text-[#2d1810]" : "text-[#454b54]"}`}
+                      className={`font-[family-name:var(--font-urbanist)] text-sm ${line.bold ? "font-bold text-[#2d1810]" : "text-[#454b54]"}`}
                     >
                       {line.value}
                     </span>
@@ -174,17 +174,17 @@ export function FinancialReportsTab() {
               </div>
             </div>
             <div>
-              <p className="mb-2 font-[family-name:var(--font-nunito)] text-xs font-semibold text-[#6b7280]">Expenditure</p>
+              <p className="mb-2 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-[#6b7280]">Expenditure</p>
               <div className="flex flex-col gap-2">
                 {PL_EXPENDITURE.map((line) => (
                   <div key={line.label} className="flex items-center justify-between">
                     <span
-                      className={`font-[family-name:var(--font-nunito)] text-sm ${line.bold ? "font-bold text-[#2d1810]" : "text-[#6b7280]"}`}
+                      className={`font-[family-name:var(--font-urbanist)] text-sm ${line.bold ? "font-bold text-[#2d1810]" : "text-[#6b7280]"}`}
                     >
                       {line.label}
                     </span>
                     <span
-                      className={`font-[family-name:var(--font-nunito)] text-sm ${line.bold ? "font-bold text-[#2d1810]" : "text-[#454b54]"}`}
+                      className={`font-[family-name:var(--font-urbanist)] text-sm ${line.bold ? "font-bold text-[#2d1810]" : "text-[#454b54]"}`}
                     >
                       {line.value}
                     </span>
@@ -196,7 +196,7 @@ export function FinancialReportsTab() {
           <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
             {PL_MINI_STATS.map((s) => (
               <div key={s.label} className="rounded-lg bg-[#faf9f7] p-3">
-                <p className="font-[family-name:var(--font-nunito)] text-[10px] text-[#6b7280]">{s.label}</p>
+                <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#6b7280]">{s.label}</p>
                 <div className="flex items-baseline gap-1">
                   <p className="font-[family-name:var(--font-merriweather)] text-sm font-bold text-[#2d1810]">{s.value}</p>
                   <span className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">{s.pct}</span>
@@ -238,7 +238,7 @@ export function FinancialReportsTab() {
               <thead>
                 <tr className="bg-[#edd9c0]">
                   {["Room", "Children", "Plan", "Rev Billed", "Rev Collected", "Outstanding", "Collection %"].map((h) => (
-                    <th key={h} className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black">
+                    <th key={h} className="px-4 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-normal text-black">
                       {h}
                     </th>
                   ))}
@@ -247,14 +247,14 @@ export function FinancialReportsTab() {
               <tbody className="bg-white">
                 {ROOM_PLAN_REVENUE.map((r) => (
                   <tr key={r.id} className="border-t border-[#eaecf0]">
-                    <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">{r.room}</td>
-                    <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{r.children}</td>
-                    <td className="whitespace-pre-line px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{r.plan}</td>
-                    <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{r.revBilled}</td>
-                    <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{r.revCollected}</td>
-                    <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{r.outstanding}</td>
+                    <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">{r.room}</td>
+                    <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{r.children}</td>
+                    <td className="whitespace-pre-line px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{r.plan}</td>
+                    <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{r.revBilled}</td>
+                    <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{r.revCollected}</td>
+                    <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{r.outstanding}</td>
                     <td
-                      className={`px-4 py-3 font-[family-name:var(--font-nunito)] text-sm font-medium ${
+                      className={`px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm font-medium ${
                         r.collectionPct >= 75 ? "text-[#009061]" : r.collectionPct >= 65 ? "text-[#cc8000]" : "text-[#ef4444]"
                       }`}
                     >
@@ -270,22 +270,22 @@ export function FinancialReportsTab() {
             {ROOM_PLAN_REVENUE.map((r) => (
               <div key={r.id} className="rounded-xl border border-[#eaecf0] p-3">
                 <div className="flex items-center justify-between">
-                  <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">{r.room}</span>
-                  <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#009061]">{r.collectionPct}%</span>
+                  <span className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">{r.room}</span>
+                  <span className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#009061]">{r.collectionPct}%</span>
                 </div>
-                <p className="mt-1 whitespace-pre-line font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{r.plan}</p>
+                <p className="mt-1 whitespace-pre-line font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{r.plan}</p>
               </div>
             ))}
           </div>
           <div className="flex items-center justify-between border-t border-[#eaecf0] px-4 py-3">
             <button
               onClick={() => setPage((p) => Math.max(1, p - 1))}
-              className="flex items-center gap-1 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280] hover:text-[#2d1810]"
+              className="flex items-center gap-1 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280] hover:text-[#2d1810]"
             >
               <ChevronLeft className="size-4" />
               Previous
             </button>
-            <div className="flex items-center gap-1 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+            <div className="flex items-center gap-1 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
               {[1, 2, 3].map((p) => (
                 <button
                   key={p}
@@ -308,7 +308,7 @@ export function FinancialReportsTab() {
             </div>
             <button
               onClick={() => setPage((p) => Math.min(TOTAL_PAGES, p + 1))}
-              className="flex items-center gap-1 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280] hover:text-[#2d1810]"
+              className="flex items-center gap-1 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280] hover:text-[#2d1810]"
             >
               Next
               <ChevronRight className="size-4" />
@@ -322,7 +322,7 @@ export function FinancialReportsTab() {
           <div className="flex flex-col gap-3">
             {COLLECTION_EFFICIENCY.map((s) => (
               <div key={s.label} className="rounded-lg bg-[#faf9f7] p-3">
-                <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{s.label}</p>
+                <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{s.label}</p>
                 <p className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">{s.value}</p>
               </div>
             ))}
@@ -347,7 +347,7 @@ export function FinancialReportsTab() {
                   <Icon className="size-4" />
                 </div>
                 <div>
-                  <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{s.label}</p>
+                  <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{s.label}</p>
                   <p className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">{s.value}</p>
                   <p className={`font-[family-name:var(--font-urbanist)] text-xs ${s.trend === "up" ? "text-[#009061]" : "text-[#ef4444]"}`}>
                     {s.helper}

@@ -29,8 +29,8 @@ function AttendanceBarChart() {
               style={{ height: `${(d.checkedIn / max) * 100}%` }}
             />
           </div>
-          <span className="font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">{d.date}</span>
-          <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{d.day}</span>
+          <span className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">{d.date}</span>
+          <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{d.day}</span>
         </div>
       ))}
     </div>
@@ -48,18 +48,18 @@ function RevenueBarChart() {
               <div className="w-1/2 rounded-t bg-[#bab68d]" style={{ height: `${(m.billed / max) * 100}%` }} />
               <div className="w-1/2 rounded-t bg-[#edd9c0]" style={{ height: `${(m.collected / max) * 100}%` }} />
             </div>
-            <span className="font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">{m.month}</span>
+            <span className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">{m.month}</span>
           </div>
         ))}
       </div>
       <div className="mt-2 flex items-center gap-4">
         <div className="flex items-center gap-1.5">
           <span className="size-2 rounded-full bg-[#bab68d]" />
-          <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Billed</span>
+          <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Billed</span>
         </div>
         <div className="flex items-center gap-1.5">
           <span className="size-2 rounded-full bg-[#edd9c0]" />
-          <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Collected</span>
+          <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Collected</span>
         </div>
       </div>
     </div>
@@ -74,10 +74,10 @@ function SendAnnouncementForm() {
       </h2>
       <div className="flex flex-col gap-4">
         <div className="flex flex-col gap-1.5">
-          <label className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">Audience</label>
+          <label className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">Audience</label>
           <select
             defaultValue=""
-            className="rounded-lg border border-[#d0d5dd] bg-white px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+            className="rounded-lg border border-[#d0d5dd] bg-white px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
           >
             <option value="" disabled>
               Select
@@ -90,10 +90,10 @@ function SendAnnouncementForm() {
           </select>
         </div>
         <div className="flex flex-col gap-1.5">
-          <label className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">Type</label>
+          <label className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">Type</label>
           <select
             defaultValue="Incident"
-            className="rounded-lg border border-[#d0d5dd] bg-white px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+            className="rounded-lg border border-[#d0d5dd] bg-white px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
           >
             {ANNOUNCEMENT_TYPES.map((t) => (
               <option key={t} value={t}>
@@ -103,22 +103,22 @@ function SendAnnouncementForm() {
           </select>
         </div>
         <div className="flex flex-col gap-1.5">
-          <label className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">Subject</label>
+          <label className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">Subject</label>
           <input
             type="text"
             placeholder="Select child"
-            className="rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none placeholder:text-[#9ca3af] focus:ring-2 focus:ring-[#c47b2c]"
+            className="rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none placeholder:text-[#9ca3af] focus:ring-2 focus:ring-[#c47b2c]"
           />
         </div>
         <div className="flex flex-col gap-1.5">
-          <label className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">Message</label>
+          <label className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">Message</label>
           <textarea
             rows={5}
             placeholder="Type message here.."
-            className="resize-none rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none placeholder:text-[#9ca3af] focus:ring-2 focus:ring-[#c47b2c]"
+            className="resize-none rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none placeholder:text-[#9ca3af] focus:ring-2 focus:ring-[#c47b2c]"
           />
         </div>
-        <button className="self-end rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]">
+        <button className="self-end rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]">
           Send Announcement
         </button>
       </div>
@@ -136,8 +136,8 @@ function RoomEngagementPanel() {
         {ROOM_ENGAGEMENT.map((r) => (
           <div key={r.room} className="flex flex-col gap-1">
             <div className="flex items-center justify-between">
-              <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">{r.room}</span>
-              <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{r.score}</span>
+              <span className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">{r.room}</span>
+              <span className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">{r.score}</span>
             </div>
             <div className="h-2 w-full overflow-hidden rounded-full bg-[#f3f4f6]">
               <div className="h-full rounded-full bg-[#c47b2c]" style={{ width: `${r.score}%` }} />
@@ -208,13 +208,13 @@ function StaffComplianceView() {
             className={`flex flex-wrap items-center justify-between gap-4 p-4 ${s.highlight ? "bg-[#ecfff8]" : ""}`}
           >
             <div className="flex-1 min-w-[180px]">
-              <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{s.name}</p>
-              <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+              <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">{s.name}</p>
+              <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
                 {s.role} • {s.rooms}
               </p>
             </div>
             <div className="flex items-center gap-1.5">
-              <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{s.rating}</span>
+              <span className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">{s.rating}</span>
               <div className="flex">
                 {Array.from({ length: 5 }, (_, i) => (
                   <Star
@@ -223,7 +223,7 @@ function StaffComplianceView() {
                   />
                 ))}
               </div>
-              <span className="ml-1 font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">{s.note}</span>
+              <span className="ml-1 font-[family-name:var(--font-urbanist)] text-xs text-[#9ca3af]">{s.note}</span>
             </div>
             <div className="flex w-[200px] flex-col gap-1">
               <div className="h-1.5 rounded-full bg-[#e6ebf3]">
@@ -231,7 +231,7 @@ function StaffComplianceView() {
               </div>
             </div>
             <div className="text-right">
-              <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Compliance (%)</p>
+              <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Compliance (%)</p>
               <p className="font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">
                 {s.compliancePct}/100
               </p>
@@ -250,12 +250,12 @@ export function AnalyticsTab() {
     <div className="flex flex-col gap-4">
       <div className="flex justify-end">
         {subTab === "Staff" ? (
-          <button className="flex items-center gap-1.5 rounded-lg bg-[#edd9c0] px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#3b2513]">
+          <button className="flex items-center gap-1.5 rounded-lg bg-[#edd9c0] px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#3b2513]">
             <Sparkles className="size-4" />
             Refresh
           </button>
         ) : (
-          <button className="rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]">
+          <button className="rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]">
             Announcement
           </button>
         )}

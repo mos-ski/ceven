@@ -52,7 +52,7 @@ function ChildSelect({ value, onChange }: { value: string; onChange: (value: str
         id="log-activity-child"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+        className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
       >
         <option value="" disabled>
           Select a child
@@ -91,7 +91,7 @@ export function LogActivityModal({
       <DialogContent>
         <DialogHeader>
           <DialogTitle>{copy.title}</DialogTitle>
-          <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">{copy.description}</p>
+          <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">{copy.description}</p>
         </DialogHeader>
 
         <div className="flex flex-col gap-4 overflow-y-auto px-6 py-5">
@@ -105,7 +105,7 @@ export function LogActivityModal({
                   <select
                     id="dr-mood"
                     defaultValue=""
-                    className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+                    className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
                   >
                     <option value="" disabled>
                       Select mood
@@ -122,7 +122,7 @@ export function LogActivityModal({
                   <select
                     id="dr-breakfast"
                     defaultValue=""
-                    className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+                    className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
                   >
                     <option value="" disabled>
                       Select
@@ -146,7 +146,7 @@ export function LogActivityModal({
                   <select
                     id="dr-lunch"
                     defaultValue=""
-                    className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+                    className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
                   >
                     <option value="" disabled>
                       Select
@@ -177,7 +177,7 @@ export function LogActivityModal({
                   id="dr-note"
                   rows={3}
                   placeholder="Additional note for parents..."
-                  className="resize-none rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+                  className="resize-none rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
                 />
               </div>
             </>
@@ -187,11 +187,11 @@ export function LogActivityModal({
             <>
               <div className="rounded-lg border-2 border-dashed border-[#d0d5dd] p-6 text-center">
                 <Upload className="mx-auto mb-2 size-6 text-[#9ca3af]" />
-                <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+                <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
                   Drop a photo or video here or{" "}
                   <span className="cursor-pointer text-[#3b2513] underline">browse</span>
                 </p>
-                <p className="mt-1 font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">
+                <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#9ca3af]">
                   JPEG, PNG, MP4. Max 25 MB
                 </p>
               </div>
@@ -201,7 +201,7 @@ export function LogActivityModal({
                   id="media-caption"
                   rows={3}
                   placeholder="Describe what's happening in this picture/video..."
-                  className="resize-none rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+                  className="resize-none rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
                 />
               </div>
             </>
@@ -215,7 +215,7 @@ export function LogActivityModal({
                   <select
                     id="inc-type"
                     defaultValue=""
-                    className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+                    className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
                   >
                     <option value="" disabled>
                       Select type
@@ -232,7 +232,7 @@ export function LogActivityModal({
                   <select
                     id="inc-severity"
                     defaultValue="Minor"
-                    className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+                    className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
                   >
                     <option value="Minor">Minor</option>
                     <option value="Moderate">Moderate</option>
@@ -252,13 +252,13 @@ export function LogActivityModal({
                   id="inc-description"
                   rows={4}
                   placeholder="Describe what happened, actions taken, and any follow-up required..."
-                  className="resize-none rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+                  className="resize-none rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
                 />
               </div>
 
               <div className="flex items-center gap-2">
                 <input type="checkbox" id="inc-notify" className="h-4 w-4 accent-[#3b2513]" />
-                <Label htmlFor="inc-notify" className="font-[family-name:var(--font-nunito)] text-sm font-normal text-[#2d1810]">
+                <Label htmlFor="inc-notify" className="font-[family-name:var(--font-urbanist)] text-sm font-normal text-[#2d1810]">
                   Notify parent/guardian immediately
                 </Label>
               </div>
@@ -271,7 +271,7 @@ export function LogActivityModal({
             render={
               <Button
                 variant="outline"
-                className="h-9 rounded-lg border-[#d0d5dd] px-4 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]"
+                className="h-9 rounded-lg border-[#d0d5dd] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]"
               />
             }
           >
@@ -279,7 +279,7 @@ export function LogActivityModal({
           </DialogClose>
           <Button
             onClick={() => setSubmitted(true)}
-            className="h-9 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]"
+            className="h-9 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]"
           >
             {copy.submitLabel}
           </Button>

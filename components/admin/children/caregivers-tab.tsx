@@ -96,7 +96,7 @@ export function CaregiversTab() {
             <thead>
               <tr className="bg-table-header-bg">
                 {["Caregiver", "Room", "Children Assigned", "Status", "Action"].map((col) => (
-                  <th key={col} className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black">
+                  <th key={col} className="px-4 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-normal text-black">
                     {col}
                   </th>
                 ))}
@@ -106,11 +106,11 @@ export function CaregiversTab() {
               {CAREGIVERS.map((cg) => (
                 <tr key={cg.id} className="border-t border-table-border">
                   <td className="px-4 py-3">
-                    <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-black">{cg.name}</p>
-                    <p className="font-[family-name:var(--font-nunito)] text-[10px] text-otp-text">{cg.email}</p>
+                    <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-black">{cg.name}</p>
+                    <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-otp-text">{cg.email}</p>
                   </td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{cg.room}</td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{cg.childrenAssigned}</td>
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{cg.room}</td>
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{cg.childrenAssigned}</td>
                   <td className="px-4 py-3">
                     <Badge
                       variant="outline"
@@ -124,7 +124,7 @@ export function CaregiversTab() {
                     </Badge>
                   </td>
                   <td className="px-4 py-3">
-                    <button className="rounded-lg border border-brand-dark px-3 py-1.5 font-[family-name:var(--font-nunito)] text-xs font-semibold text-brand-dark hover:bg-[#faf6ef]">
+                    <button className="rounded-lg border border-brand-dark px-3 py-1.5 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-brand-dark hover:bg-[#faf6ef]">
                       Reassign
                     </button>
                   </td>
@@ -139,7 +139,7 @@ export function CaregiversTab() {
           {CAREGIVERS.map((cg) => (
             <div key={cg.id} className="rounded-xl border border-[#eaecf0] p-3">
               <div className="flex items-center justify-between">
-                <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-black">{cg.name}</span>
+                <span className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-black">{cg.name}</span>
                 <Badge
                   variant="outline"
                   className={
@@ -151,7 +151,7 @@ export function CaregiversTab() {
                   {cg.status}
                 </Badge>
               </div>
-              <span className="font-[family-name:var(--font-nunito)] text-xs text-[#858c98]">
+              <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#858c98]">
                 {cg.room} • {cg.childrenAssigned} children
               </span>
             </div>

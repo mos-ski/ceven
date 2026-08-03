@@ -487,10 +487,10 @@ export default function LibraryPage() {
               <h1 style={{ fontFamily: "var(--font-merriweather-import)" }} className="text-[2.5rem] leading-[1.2] text-heading font-bold mb-4">
                 CEven Design System
               </h1>
-              <p style={{ fontFamily: "var(--font-nunito-import)" }} className="text-lg leading-[1.5] text-foreground mb-4">
+              <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-lg leading-[1.5] text-foreground mb-4">
                 The style guide provides the foundation for all stylistic decisions across the CEven design site.
               </p>
-              <p style={{ fontFamily: "var(--font-nunito-import)" }} className="text-base leading-[1.5] text-muted-text">
+              <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-base leading-[1.5] text-muted-text">
                 Built with Next.js, Tailwind CSS, and Base UI. Every component follows the 8px grid system with 8px border radius.
               </p>
             </div>
@@ -521,7 +521,7 @@ export default function LibraryPage() {
               </button>
               {promptOpen && (
                 <div className="px-6 pb-4">
-                  <pre style={{ fontFamily: "var(--font-nunito-import)" }} className="text-xs leading-relaxed text-muted-text whitespace-pre-wrap">
+                  <pre style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-xs leading-relaxed text-muted-text whitespace-pre-wrap">
                     {AGENT_PROMPT}
                   </pre>
                 </div>
@@ -1090,7 +1090,7 @@ export default function LibraryPage() {
                   <div><p style={{ fontFamily: "var(--font-mogra-import)" }} className="text-2xl text-heading">Mogra — Display / Logo</p></div>
                   <div><p style={{ fontFamily: "var(--font-merriweather-import)" }} className="text-xl text-heading font-bold">Merriweather — Headings</p></div>
                   <div><p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-lg text-foreground font-medium">Urbanist — UI Labels</p></div>
-                  <div><p style={{ fontFamily: "var(--font-nunito-import)" }} className="text-base text-foreground">Nunito — Body Text</p></div>
+                  <div><p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-base text-foreground">Urbanist — Body Text</p></div>
                 </div>
               </ComponentShowcase>
               <ComponentShowcase title="Type Scale">
@@ -1102,14 +1102,14 @@ export default function LibraryPage() {
                   <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-xl text-heading font-semibold">Heading 4 — Urbanist 600</p>
                   <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-lg text-heading font-semibold">Heading 5 — Urbanist 600</p>
                   <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-base text-heading font-semibold">Heading 6 — Urbanist 600</p>
-                  <p style={{ fontFamily: "var(--font-nunito-import)" }} className="text-lg text-foreground">Body Large — Nunito 400</p>
-                  <p style={{ fontFamily: "var(--font-nunito-import)" }} className="text-base text-foreground">Body — Nunito 400</p>
-                  <p style={{ fontFamily: "var(--font-nunito-import)" }} className="text-sm text-foreground">Body Small — Nunito 400</p>
-                  <p style={{ fontFamily: "var(--font-nunito-import)" }} className="text-xs text-foreground">Body Extra Small — Nunito 400</p>
+                  <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-lg text-foreground">Body Large — Urbanist 400</p>
+                  <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-base text-foreground">Body — Urbanist 400</p>
+                  <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-sm text-foreground">Body Small — Urbanist 400</p>
+                  <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-xs text-foreground">Body Extra Small — Urbanist 400</p>
                   <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-lg text-foreground font-medium">UI Large — Urbanist 500</p>
                   <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-base text-foreground font-medium">UI — Urbanist 500</p>
                   <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-sm text-foreground font-medium">UI Small — Urbanist 500</p>
-                  <p style={{ fontFamily: "var(--font-nunito-import)" }} className="text-xs text-muted-text">Caption — Nunito 400 (muted)</p>
+                  <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-xs text-muted-text">Caption — Urbanist 400 (muted)</p>
                   <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-xs text-foreground font-semibold uppercase tracking-wider">Overline — Urbanist 600 Uppercase</p>
                 </div>
               </ComponentShowcase>
@@ -1124,10 +1124,10 @@ export default function LibraryPage() {
                   <p style={{ fontFamily: "var(--font-merriweather-import)" }} className="text-[2.5rem] leading-[1.2] text-heading font-bold">
                     The Outermost House by Henry Beston
                   </p>
-                  <p style={{ fontFamily: "var(--font-nunito-import)" }} className="text-lg leading-[1.5] text-foreground underline decoration-2 underline-offset-4 decoration-[#9A6033]">
+                  <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-lg leading-[1.5] text-foreground underline decoration-2 underline-offset-4 decoration-[#9A6033]">
                     In a world older and more complete than ours they move finished and complete, gifted with extensions of the senses we have lost or never attained, living by voices we shall never hear.
                   </p>
-                  <p style={{ fontFamily: "var(--font-nunito-import)" }} className="text-base leading-[1.5] text-muted-text">
+                  <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-base leading-[1.5] text-muted-text">
                     They are not brethren; they are not underlings; they are other nations, caught with ourselves in the net of life and time, fellow prisoners of the splendor and travail of the earth.
                   </p>
                 </div>
@@ -1137,10 +1137,10 @@ export default function LibraryPage() {
                   <p style={{ fontFamily: "var(--font-merriweather-import)" }} className="text-[2.5rem] leading-[1.2] text-heading font-bold">
                     The Outermost House by H. Beston
                   </p>
-                  <p style={{ fontFamily: "var(--font-nunito-import)" }} className="text-xl leading-[1.5] text-foreground underline decoration-2 underline-offset-4 decoration-[#9A6033]">
+                  <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-xl leading-[1.5] text-foreground underline decoration-2 underline-offset-4 decoration-[#9A6033]">
                     In a world older and more complete than ours they move finished and complete, gifted with extensions of the senses we have lost or never attained, living by voices we shall never hear.
                   </p>
-                  <p style={{ fontFamily: "var(--font-nunito-import)" }} className="text-lg leading-[1.5] text-muted-text">
+                  <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-lg leading-[1.5] text-muted-text">
                     They are not brethren; they are not underlings; they are other nations, caught with ourselves in the net of life and time, fellow prisoners of the splendor and travail of the earth.
                   </p>
                 </div>
@@ -1153,7 +1153,7 @@ export default function LibraryPage() {
                   <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-sm text-muted-text font-medium uppercase tracking-wider">
                     January 15, 2025 — Sunshine Class
                   </p>
-                  <p style={{ fontFamily: "var(--font-nunito-import)" }} className="text-base leading-relaxed text-foreground">
+                  <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-base leading-relaxed text-foreground">
                     All children participated in outdoor play from 10:00 AM to 11:30 AM. Emma showed great progress in sharing activities. Lunch was served at 12:00 PM — menu included grilled chicken, rice, and steamed vegetables.
                   </p>
                 </div>
@@ -1924,17 +1924,16 @@ export default function LibraryPage() {
                 <div className="space-y-4 max-w-2xl">
                   <AlertBanner variant="success" title="Enrollment Complete" icon={<CheckCircle2 className="size-4" />} dismissible onDismiss={() => {}}>
                     Child enrollment has been completed successfully.
-                    <button className="ml-2 underline underline-offset-2 font-semibold hover:opacity-80">Close</button>
                   </AlertBanner>
-                  <AlertBanner variant="warning" title="Reports Pending" icon={<AlertTriangle className="size-4" />}>
+                  <AlertBanner variant="warning" title="Reports Pending" icon={<AlertTriangle className="size-4" />} dismissible onDismiss={() => {}}>
                     Some caregivers have not submitted their reports yet.
                     <button className="ml-2 underline underline-offset-2 font-semibold hover:opacity-80">View Reports</button>
                   </AlertBanner>
-                  <AlertBanner variant="error" title="Save Failed" icon={<XCircle className="size-4" />}>
+                  <AlertBanner variant="error" title="Save Failed" icon={<XCircle className="size-4" />} dismissible onDismiss={() => {}}>
                     Failed to save changes. Please try again.
                     <button className="ml-2 underline underline-offset-2 font-semibold hover:opacity-80">Try Again</button>
                   </AlertBanner>
-                  <AlertBanner variant="info" title="App Update Available" icon={<Info className="size-4" />}>
+                  <AlertBanner variant="info" title="App Update Available" icon={<Info className="size-4" />} dismissible onDismiss={() => {}}>
                     A new version of the app is available for update.
                     <button className="ml-2 underline underline-offset-2 font-semibold hover:opacity-80">Update Now</button>
                   </AlertBanner>
@@ -2728,4 +2727,3 @@ function AiSparkleIcon({ size = 24, className }: { size?: number; className?: st
     </svg>
   )
 }
-

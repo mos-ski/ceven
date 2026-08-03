@@ -32,7 +32,7 @@ export default function SubscriptionsPage() {
           { label: "Expired/Overdue", value: SUBSCRIPTION_STATS.expiredOverdue, color: "text-red-500", bg: "bg-red-50" },
         ].map((stat) => (
           <div key={stat.label} className="rounded-xl border border-card-border bg-white p-4">
-            <p className="font-[family-name:var(--font-nunito)] text-xs text-muted-text">{stat.label}</p>
+            <p className="font-[family-name:var(--font-urbanist)] text-xs text-muted-text">{stat.label}</p>
             <p className={`mt-1 font-[family-name:var(--font-merriweather)] text-2xl font-bold ${stat.color}`}>
               {stat.value}
             </p>
@@ -49,16 +49,16 @@ export default function SubscriptionsPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search plans..."
-              className="h-9 w-full rounded-lg border border-input-border bg-white pl-9 pr-3 font-[family-name:var(--font-nunito)] text-sm placeholder:text-muted-text focus:outline-none focus:ring-2 focus:ring-brand-accent"
+              className="h-9 w-full rounded-lg border border-input-border bg-white pl-9 pr-3 font-[family-name:var(--font-urbanist)] text-sm placeholder:text-muted-text focus:outline-none focus:ring-2 focus:ring-brand-accent"
             />
           </div>
-          <button type="button" className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-heading">
+          <button type="button" className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">
             <ArrowUpDown className="size-3.5" /> Sort by: Most recent
           </button>
-          <button type="button" className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-heading">
+          <button type="button" className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">
             <Download className="size-3.5" /> Export as
           </button>
-          <button type="button" className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-heading">
+          <button type="button" className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">
             <Printer className="size-3.5" /> Print
           </button>
         </div>
@@ -67,38 +67,38 @@ export default function SubscriptionsPage() {
           <table className="w-full text-left">
             <thead>
               <tr className="bg-table-header-bg">
-                <th className="px-4 py-3 font-[family-name:var(--font-nunito)] text-xs font-semibold text-white">
+                <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">
                   <input type="checkbox" className="rounded" />
                 </th>
-                <th className="px-4 py-3 font-[family-name:var(--font-nunito)] text-xs font-semibold text-white">Date Created</th>
-                <th className="px-4 py-3 font-[family-name:var(--font-nunito)] text-xs font-semibold text-white">Plan Name</th>
-                <th className="px-4 py-3 font-[family-name:var(--font-nunito)] text-xs font-semibold text-white">Duration</th>
-                <th className="px-4 py-3 font-[family-name:var(--font-nunito)] text-xs font-semibold text-white">Subscribers</th>
-                <th className="px-4 py-3 font-[family-name:var(--font-nunito)] text-xs font-semibold text-white">Recipient</th>
-                <th className="px-4 py-3 font-[family-name:var(--font-nunito)] text-xs font-semibold text-white">Revenue</th>
-                <th className="px-4 py-3 font-[family-name:var(--font-nunito)] text-xs font-semibold text-white">Status</th>
-                <th className="px-4 py-3 font-[family-name:var(--font-nunito)] text-xs font-semibold text-white">Action</th>
+                <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">Date Created</th>
+                <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">Plan Name</th>
+                <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">Duration</th>
+                <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">Subscribers</th>
+                <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">Recipient</th>
+                <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">Revenue</th>
+                <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">Status</th>
+                <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">Action</th>
               </tr>
             </thead>
             <tbody>
               {filtered.map((plan) => (
                 <tr key={plan.id} className="border-b border-table-border last:border-0 hover:bg-slate-50">
                   <td className="px-4 py-3"><input type="checkbox" className="rounded" /></td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-heading">{plan.dateCreated}</td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm font-semibold text-heading">{plan.planName}</td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-heading">{plan.duration.join(", ")}</td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-heading">{plan.subscribers}</td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-heading">{plan.recipient}</td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-heading">{plan.revenue}</td>
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">{plan.dateCreated}</td>
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-heading">{plan.planName}</td>
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">{plan.duration.join(", ")}</td>
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">{plan.subscribers}</td>
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">{plan.recipient}</td>
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">{plan.revenue}</td>
                   <td className="px-4 py-3">
-                    <span className={`rounded-full px-2.5 py-0.5 font-[family-name:var(--font-nunito)] text-xs font-semibold ${STATUS_BADGE[plan.status]}`}>
+                    <span className={`rounded-full px-2.5 py-0.5 font-[family-name:var(--font-urbanist)] text-xs font-semibold ${STATUS_BADGE[plan.status]}`}>
                       {plan.status}
                     </span>
                   </td>
                   <td className="px-4 py-3">
                     <Link
                       href={`/super-admin/subscriptions/${plan.id}`}
-                      className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-brand-accent hover:underline"
+                      className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-brand-accent hover:underline"
                     >
                       View
                     </Link>
@@ -107,7 +107,7 @@ export default function SubscriptionsPage() {
               ))}
               {filtered.length === 0 && (
                 <tr>
-                  <td colSpan={9} className="px-4 py-12 text-center font-[family-name:var(--font-nunito)] text-sm text-muted-text">
+                  <td colSpan={9} className="px-4 py-12 text-center font-[family-name:var(--font-urbanist)] text-sm text-muted-text">
                     No subscription plans found.
                   </td>
                 </tr>
@@ -117,12 +117,12 @@ export default function SubscriptionsPage() {
         </div>
 
         <div className="flex items-center justify-between border-t border-card-border px-4 py-3">
-          <span className="font-[family-name:var(--font-nunito)] text-xs text-muted-text">10 per page</span>
+          <span className="font-[family-name:var(--font-urbanist)] text-xs text-muted-text">10 per page</span>
           <div className="flex items-center gap-1">
             <button type="button" className="flex size-8 items-center justify-center rounded-lg border border-card-border text-muted-text">
               <ChevronLeft className="size-4" />
             </button>
-            <button type="button" className="flex size-8 items-center justify-center rounded-lg bg-brand-dark font-[family-name:var(--font-nunito)] text-xs font-semibold text-white">
+            <button type="button" className="flex size-8 items-center justify-center rounded-lg bg-brand-dark font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">
               1
             </button>
             <button type="button" className="flex size-8 items-center justify-center rounded-lg border border-card-border text-muted-text">

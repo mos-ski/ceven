@@ -1,0 +1,48 @@
+<div style="flex:1;overflow-y:auto;padding:8px 20px 100px;display:flex;flex-direction:column;gap:16px" data-screen-label="Parent · Food timetable">
+        
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="font-family:'Merriweather';font-weight:700;font-size:24px;color:#1F2937">Food timetable</div>
+          <sc-if value="{{weekShared}}" hint-placeholder-val="{{false}}"><span style="font-family:'Urbanist';font-size:11px;font-weight:700;background:#E1F5EC;color:#009061;padding:5px 11px;border-radius:99px">WEEK SHARED ✓</span></sc-if>
+        </div>
+        <div style="font-size:13px;color:#6B7280;line-height:1.5;margin-top:-8px">Plan once — Blessing sees exactly what to cook, how, and for whom.</div>
+        <div style="display:flex;gap:6px;justify-content:space-between">
+          <sc-for list="{{week}}" as="d" hint-placeholder-count="7">
+            <div sc-camel-on-click="{{d.pick}}" style="{{d.style}}"><span style="font-family:'Urbanist';font-size:10.5px;font-weight:600">{{d.name}}</span><span style="font-family:'Urbanist';font-weight:700;font-size:15px">{{d.num}}</span></div>
+          </sc-for>
+        </div>
+        <sc-for list="{{meals}}" as="m" hint-placeholder-count="4">
+          <div style="background:#fff;border:1px solid #E6EBF3;border-radius:8px;padding:14px 16px;display:flex;flex-direction:column;gap:6px">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-family:'Urbanist';font-weight:600;font-size:11px;letter-spacing:.08em;color:#9A6033">{{m.slot}} · {{m.time}}</span>
+              <span style="font-family:'Urbanist';font-weight:700;font-size:12px;color:#9A6033;cursor:pointer">Edit</span>
+            </div>
+            <div style="font-family:'Merriweather';font-weight:700;font-size:16px;color:#1F2937">{{m.dish}}</div>
+            <div style="font-size:12.5px;color:#6B7280;line-height:1.5">{{m.note}}</div>
+          </div>
+        </sc-for>
+        <div style="background:#FDE8E8;border:1px solid #CD3030;border-radius:8px;padding:12px 16px;display:flex;gap:10px;align-items:center">
+          <svg width="17" height="17" sc-camel-view-box="0 0 24 24" fill="none" stroke="#CD3030" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><path d="M12 9v4"></path><path d="M12 17h.01"></path></svg>
+          <span style="font-size:13px;color:#CD3030;font-weight:700">Allergy: Zara — peanuts (groundnut oil too). Shown on every shared menu.</span>
+        </div>
+        <div style="font-family:'Urbanist';font-weight:600;font-size:11px;letter-spacing:.08em;color:#9A6033">MARKET LIST — SHARED WITH BLESSING</div>
+        <div style="background:#fff;border:1px solid #E6EBF3;border-radius:8px;padding:6px 16px">
+          <sc-for list="{{shopping}}" as="it" hint-placeholder-count="3">
+            <div sc-camel-on-click="{{it.toggle}}" style="{{it.row}}">
+              <span style="{{it.circle}}">
+                <sc-if value="{{it.got}}" hint-placeholder-val="{{false}}"><svg width="12" height="12" sc-camel-view-box="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></sc-if>
+              </span>
+              <span style="{{it.text}}">{{it.name}}</span>
+              <span style="font-family:'Urbanist';font-size:11px;color:#6B7280;flex:none">{{it.by}}</span>
+            </div>
+          </sc-for>
+          <div style="font-size:12px;color:#6B7280;padding:10px 0">Blessing adds what's running low · approve market money on Home</div>
+        </div>
+        <div style="display:flex;gap:8px">
+          <button sc-camel-on-click="{{shareDay}}" style="flex:1;background:#fff;color:#3B2513;border:1px solid #D4A67F;border-radius:8px;padding:13px;font-family:'Urbanist';font-weight:700;font-size:14px;cursor:pointer">Share {{dayName}} only</button>
+          <button sc-camel-on-click="{{shareWeek}}" style="flex:1;background:#3B2513;color:#FFF9F0;border:none;border-radius:8px;padding:13px;font-family:'Urbanist';font-weight:700;font-size:14px;cursor:pointer">Share whole week</button>
+        </div>
+        <div style="background:linear-gradient(135deg,#FFF4E4,#F7E8D4);border:1px solid #EDD9C0;border-radius:8px;padding:14px 16px;display:flex;gap:8px;align-items:center">
+          <span style="color:#9A6033;font-size:15px">✦</span>
+          <span style="font-size:13px;color:#3B2513;line-height:1.5">Stuck on next week? Ask CEvenAI to draft a timetable from your family's favourites.</span>
+        </div>
+      </div>

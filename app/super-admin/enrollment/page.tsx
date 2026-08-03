@@ -46,7 +46,7 @@ export default function EnrollmentPage() {
           { label: "Declined Enrollment", value: declined, color: "text-red-500", bg: "bg-red-50" },
         ].map((stat) => (
           <div key={stat.label} className="rounded-xl border border-card-border bg-white p-4">
-            <p className="font-[family-name:var(--font-nunito)] text-xs text-muted-text">{stat.label}</p>
+            <p className="font-[family-name:var(--font-urbanist)] text-xs text-muted-text">{stat.label}</p>
             <p className={`mt-1 font-[family-name:var(--font-merriweather)] text-2xl font-bold ${stat.color}`}>
               {stat.value}
             </p>
@@ -63,26 +63,26 @@ export default function EnrollmentPage() {
               value={search}
               onChange={(e) => { setSearch(e.target.value); setPage(1); }}
               placeholder="Search by name or email..."
-              className="h-9 w-full rounded-lg border border-input-border bg-white pl-9 pr-3 font-[family-name:var(--font-nunito)] text-sm placeholder:text-muted-text focus:outline-none focus:ring-2 focus:ring-brand-accent"
+              className="h-9 w-full rounded-lg border border-input-border bg-white pl-9 pr-3 font-[family-name:var(--font-urbanist)] text-sm placeholder:text-muted-text focus:outline-none focus:ring-2 focus:ring-brand-accent"
             />
           </div>
           <select
             value={statusFilter}
             onChange={(e) => { setStatusFilter(e.target.value as typeof statusFilter); setPage(1); }}
-            className="h-9 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-heading focus:outline-none"
+            className="h-9 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading focus:outline-none"
           >
             <option value="all">All Status</option>
             <option value="pending">Pending</option>
             <option value="approved">Approved</option>
             <option value="declined">Declined</option>
           </select>
-          <button type="button" className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-heading">
+          <button type="button" className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">
             <ArrowUpDown className="size-3.5" /> Sort by
           </button>
-          <button type="button" className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-heading">
+          <button type="button" className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">
             <Download className="size-3.5" /> Export as
           </button>
-          <button type="button" className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-heading">
+          <button type="button" className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">
             <Printer className="size-3.5" /> Print
           </button>
         </div>
@@ -91,32 +91,32 @@ export default function EnrollmentPage() {
           <table className="w-full text-left">
             <thead>
               <tr className="bg-table-header-bg">
-                <th className="px-4 py-3 font-[family-name:var(--font-nunito)] text-xs font-semibold text-white">
+                <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">
                   <input type="checkbox" className="rounded" />
                 </th>
-                <th className="px-4 py-3 font-[family-name:var(--font-nunito)] text-xs font-semibold text-white">Request Date</th>
-                <th className="px-4 py-3 font-[family-name:var(--font-nunito)] text-xs font-semibold text-white">Creche Name</th>
-                <th className="px-4 py-3 font-[family-name:var(--font-nunito)] text-xs font-semibold text-white">Email Address</th>
-                <th className="px-4 py-3 font-[family-name:var(--font-nunito)] text-xs font-semibold text-white">Status</th>
-                <th className="px-4 py-3 font-[family-name:var(--font-nunito)] text-xs font-semibold text-white">Action</th>
+                <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">Request Date</th>
+                <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">Creche Name</th>
+                <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">Email Address</th>
+                <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">Status</th>
+                <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">Action</th>
               </tr>
             </thead>
             <tbody>
               {paginated.map((enrollment) => (
                 <tr key={enrollment.id} className="border-b border-table-border last:border-0 hover:bg-slate-50">
                   <td className="px-4 py-3"><input type="checkbox" className="rounded" /></td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-heading">{enrollment.requestDate}</td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm font-semibold text-heading">{enrollment.crecheName}</td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-muted-text">{enrollment.email}</td>
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">{enrollment.requestDate}</td>
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-heading">{enrollment.crecheName}</td>
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-muted-text">{enrollment.email}</td>
                   <td className="px-4 py-3">
-                    <span className={`rounded-full px-2.5 py-0.5 font-[family-name:var(--font-nunito)] text-xs font-semibold ${STATUS_BADGE[enrollment.status]}`}>
+                    <span className={`rounded-full px-2.5 py-0.5 font-[family-name:var(--font-urbanist)] text-xs font-semibold ${STATUS_BADGE[enrollment.status]}`}>
                       {enrollment.status}
                     </span>
                   </td>
                   <td className="px-4 py-3">
                     <Link
                       href={`/super-admin/enrollment/${enrollment.id}`}
-                      className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-brand-accent hover:underline"
+                      className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-brand-accent hover:underline"
                     >
                       View Details
                     </Link>
@@ -125,7 +125,7 @@ export default function EnrollmentPage() {
               ))}
               {paginated.length === 0 && (
                 <tr>
-                  <td colSpan={6} className="px-4 py-12 text-center font-[family-name:var(--font-nunito)] text-sm text-muted-text">
+                  <td colSpan={6} className="px-4 py-12 text-center font-[family-name:var(--font-urbanist)] text-sm text-muted-text">
                     No enrollment requests found.
                   </td>
                 </tr>
@@ -136,7 +136,7 @@ export default function EnrollmentPage() {
 
         <div className="flex items-center justify-between border-t border-card-border px-4 py-3">
           <div className="flex items-center gap-2">
-            <span className="font-[family-name:var(--font-nunito)] text-xs text-muted-text">10 per page</span>
+            <span className="font-[family-name:var(--font-urbanist)] text-xs text-muted-text">10 per page</span>
           </div>
           <div className="flex items-center gap-1">
             <button
@@ -152,7 +152,7 @@ export default function EnrollmentPage() {
                 key={p}
                 type="button"
                 onClick={() => setPage(p)}
-                className={`flex size-8 items-center justify-center rounded-lg font-[family-name:var(--font-nunito)] text-xs font-semibold ${
+                className={`flex size-8 items-center justify-center rounded-lg font-[family-name:var(--font-urbanist)] text-xs font-semibold ${
                   p === page ? "bg-brand-dark text-white" : "border border-card-border text-heading hover:bg-slate-50"
                 }`}
               >

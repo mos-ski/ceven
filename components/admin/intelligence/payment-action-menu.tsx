@@ -36,7 +36,7 @@ export function PaymentActionMenu({ family, onAction }: Props) {
       </DropdownMenuTrigger>
       <DropdownMenuContent
         align="end"
-        className="min-w-[184px] rounded-xl border border-[#e6ebf3] bg-[#fefefe] p-2 font-[family-name:var(--font-nunito)] shadow-[0px_4px_12px_rgba(0,0,0,0.1)]"
+        className="min-w-[184px] rounded-xl border border-[#e6ebf3] bg-[#fefefe] p-2 font-[family-name:var(--font-urbanist)] shadow-[0px_4px_12px_rgba(0,0,0,0.1)]"
       >
         {ACTIONS.map((action) => (
           <DropdownMenuItem

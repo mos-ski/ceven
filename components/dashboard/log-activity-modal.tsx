@@ -13,7 +13,7 @@ const moodOptions = ["😊 Happy", "😐 Neutral / Calm", "😴 Sleeping / Tired
 
 function FieldLabel({ children, required }: { children: React.ReactNode; required?: boolean }) {
   return (
-    <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">
+    <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-black">
       {children}
       {required && <span className="ml-0.5 text-[#cd3030]">*</span>}
     </label>
@@ -32,7 +32,7 @@ function TextField({
       <textarea
         placeholder={placeholder}
         rows={rows}
-        className="w-full resize-none rounded-xl border border-[#dcdcdc] bg-white px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] placeholder:text-[#7e7e7e] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+        className="w-full resize-none rounded-xl border border-[#dcdcdc] bg-white px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#7e7e7e] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
       />
     );
   }
@@ -40,14 +40,14 @@ function TextField({
     <input
       type="text"
       placeholder={placeholder}
-      className="h-[52px] w-full rounded-xl border border-[#dcdcdc] bg-white px-4 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] placeholder:text-[#7e7e7e] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+      className="h-[52px] w-full rounded-xl border border-[#dcdcdc] bg-white px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#7e7e7e] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
     />
   );
 }
 
 function SelectField({ options, placeholder }: { options: string[]; placeholder?: string }) {
   return (
-    <select className="h-[52px] w-full appearance-none rounded-xl border border-[#dcdcdc] bg-white px-4 font-[family-name:var(--font-nunito)] text-sm text-[#111] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]">
+    <select className="h-[52px] w-full appearance-none rounded-xl border border-[#dcdcdc] bg-white px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#111] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]">
       {placeholder && (
         <option value="" disabled selected>
           {placeholder}
@@ -89,7 +89,7 @@ export default function LogActivityModal({ onClose }: Props) {
             <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#171f26]">
               Log Report
             </h2>
-            <p className="mt-0.5 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+            <p className="mt-0.5 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
               Report will be sent to parent as summary notification
             </p>
           </div>

@@ -12,7 +12,7 @@ export default function AssignedChildrenPage() {
 
   return (
     <div className="flex flex-col gap-4">
-      <Link href="/super-admin/creches" className="flex items-center gap-1 font-[family-name:var(--font-nunito)] text-sm font-semibold text-brand-accent hover:underline">
+      <Link href="/super-admin/creches" className="flex items-center gap-1 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-brand-accent hover:underline">
         <ArrowLeft className="size-4" /> Back to Creches
       </Link>
 
@@ -23,10 +23,10 @@ export default function AssignedChildrenPage() {
               {ASSIGNED_CHILDREN.length}
             </span>
           </div>
-          <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-heading">Assigned Children</p>
+          <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-heading">Assigned Children</p>
         </div>
         {caregiver && (
-          <p className="font-[family-name:var(--font-nunito)] text-xs text-muted-text">Caregiver: {caregiver.fullName}</p>
+          <p className="font-[family-name:var(--font-urbanist)] text-xs text-muted-text">Caregiver: {caregiver.fullName}</p>
         )}
       </div>
 
@@ -37,16 +37,16 @@ export default function AssignedChildrenPage() {
             <input
               type="search"
               placeholder="Search children..."
-              className="h-9 w-full rounded-lg border border-input-border bg-white pl-9 pr-3 font-[family-name:var(--font-nunito)] text-sm placeholder:text-muted-text focus:outline-none focus:ring-2 focus:ring-brand-accent"
+              className="h-9 w-full rounded-lg border border-input-border bg-white pl-9 pr-3 font-[family-name:var(--font-urbanist)] text-sm placeholder:text-muted-text focus:outline-none focus:ring-2 focus:ring-brand-accent"
             />
           </div>
-          <button type="button" className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-heading">
+          <button type="button" className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">
             <ArrowUpDown className="size-3.5" /> Sort by
           </button>
-          <button type="button" className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-heading">
+          <button type="button" className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">
             <Download className="size-3.5" /> Export as
           </button>
-          <button type="button" className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-heading">
+          <button type="button" className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">
             <Printer className="size-3.5" /> Print
           </button>
         </div>
@@ -55,30 +55,30 @@ export default function AssignedChildrenPage() {
           <table className="w-full text-left">
             <thead>
               <tr className="bg-table-header-bg">
-                <th className="px-4 py-3 font-[family-name:var(--font-nunito)] text-xs font-semibold text-white">
+                <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">
                   <input type="checkbox" className="rounded" />
                 </th>
-                <th className="px-4 py-3 font-[family-name:var(--font-nunito)] text-xs font-semibold text-white">Assigned Date</th>
-                <th className="px-4 py-3 font-[family-name:var(--font-nunito)] text-xs font-semibold text-white">Parent Name</th>
-                <th className="px-4 py-3 font-[family-name:var(--font-nunito)] text-xs font-semibold text-white">Child Name</th>
-                <th className="px-4 py-3 font-[family-name:var(--font-nunito)] text-xs font-semibold text-white">Child Age</th>
-                <th className="px-4 py-3 font-[family-name:var(--font-nunito)] text-xs font-semibold text-white">Room</th>
-                <th className="px-4 py-3 font-[family-name:var(--font-nunito)] text-xs font-semibold text-white">Action</th>
+                <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">Assigned Date</th>
+                <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">Parent Name</th>
+                <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">Child Name</th>
+                <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">Child Age</th>
+                <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">Room</th>
+                <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">Action</th>
               </tr>
             </thead>
             <tbody>
               {ASSIGNED_CHILDREN.map((child) => (
                 <tr key={child.id} className="border-b border-table-border last:border-0 hover:bg-slate-50">
                   <td className="px-4 py-3"><input type="checkbox" className="rounded" /></td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-heading">{child.assignedDate}</td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-heading">{child.parentName}</td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm font-semibold text-heading">{child.childName}</td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-heading">{child.childAge}</td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-heading">{child.room}</td>
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">{child.assignedDate}</td>
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">{child.parentName}</td>
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-heading">{child.childName}</td>
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">{child.childAge}</td>
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">{child.room}</td>
                   <td className="px-4 py-3">
                     <Link
                       href={`/super-admin/creches/child/${child.id}`}
-                      className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-brand-accent hover:underline"
+                      className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-brand-accent hover:underline"
                     >
                       View Details
                     </Link>
@@ -87,7 +87,7 @@ export default function AssignedChildrenPage() {
               ))}
               {ASSIGNED_CHILDREN.length === 0 && (
                 <tr>
-                  <td colSpan={7} className="px-4 py-12 text-center font-[family-name:var(--font-nunito)] text-sm text-muted-text">
+                  <td colSpan={7} className="px-4 py-12 text-center font-[family-name:var(--font-urbanist)] text-sm text-muted-text">
                     No assigned children found.
                   </td>
                 </tr>
@@ -97,12 +97,12 @@ export default function AssignedChildrenPage() {
         </div>
 
         <div className="flex items-center justify-between border-t border-card-border px-4 py-3">
-          <span className="font-[family-name:var(--font-nunito)] text-xs text-muted-text">10 per page</span>
+          <span className="font-[family-name:var(--font-urbanist)] text-xs text-muted-text">10 per page</span>
           <div className="flex items-center gap-1">
             <button type="button" className="flex size-8 items-center justify-center rounded-lg border border-card-border text-muted-text">
               <ChevronLeft className="size-4" />
             </button>
-            <button type="button" className="flex size-8 items-center justify-center rounded-lg bg-brand-dark font-[family-name:var(--font-nunito)] text-xs font-semibold text-white">
+            <button type="button" className="flex size-8 items-center justify-center rounded-lg bg-brand-dark font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">
               1
             </button>
             <button type="button" className="flex size-8 items-center justify-center rounded-lg border border-card-border text-muted-text">

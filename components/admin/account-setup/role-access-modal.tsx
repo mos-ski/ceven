@@ -101,7 +101,7 @@ export function RoleAccessModal({
         <div className="flex max-h-[60vh] flex-col gap-6 overflow-y-auto px-6 py-5">
           {/* Role name */}
           <div className="flex flex-col gap-1">
-            <label className="font-[family-name:var(--font-nunito)] text-sm text-[#666]">
+            <label className="font-[family-name:var(--font-urbanist)] text-sm text-[#666]">
               Role Name
             </label>
             <input
@@ -115,7 +115,7 @@ export function RoleAccessModal({
 
           {/* Invite staff */}
           <div className="relative flex flex-col gap-1">
-            <label className="font-[family-name:var(--font-nunito)] text-sm text-[#666]">
+            <label className="font-[family-name:var(--font-urbanist)] text-sm text-[#666]">
               Invite Staff
             </label>
             <button
@@ -152,7 +152,7 @@ export function RoleAccessModal({
           {/* Permissions matrix */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center justify-between">
-              <p className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">
+              <p className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-black">
                 Permissions
               </p>
               <button
@@ -176,7 +176,7 @@ export function RoleAccessModal({
                   checked={PERMISSION_GROUPS.every((g) => permissions[g.key])}
                   onCheckedChange={() => {}}
                 />
-                <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#3b2513]">
+                <span className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#3b2513]">
                   Full Access
                 </span>
               </button>
@@ -193,7 +193,7 @@ export function RoleAccessModal({
                             checked={!!permissions[group.key]}
                             onCheckedChange={() => toggleGroup(group.key, group.children)}
                           />
-                          <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-black">
+                          <span className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-black">
                             {group.label}
                           </span>
                         </label>
@@ -206,7 +206,7 @@ export function RoleAccessModal({
                                 checked={!!permissions[`${group.key}:${child}`]}
                                 onCheckedChange={() => toggleChild(group.key, child, group.children)}
                               />
-                              <span className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+                              <span className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
                                 {child}
                               </span>
                             </label>

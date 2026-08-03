@@ -1,0 +1,103 @@
+<div style="flex:1;overflow-y:auto;padding:8px 20px 100px;display:flex;flex-direction:column;gap:16px" data-screen-label="Parent · Learning">
+        <button sc-camel-on-click="{{goHome}}" style="align-self:flex-start;background:none;border:none;padding:0;font-family:'Urbanist';font-weight:700;font-size:13.5px;color:#9A6033;cursor:pointer">← Home</button>
+        <div style="font-family:'Merriweather';font-weight:700;font-size:24px;color:#1F2937">Learning</div>
+        <div style="font-size:13px;color:#6B7280;line-height:1.5;margin-top:-8px">Mr Daniel · Tue &amp; Thu 4:00–5:30 PM. Everything is checked and logged in-app — nothing for you to mark.</div>
+        <sc-if value="{{sessBefore}}" hint-placeholder-val="{{true}}">
+          <div style="background:#fff;border:1px solid #E6EBF3;border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-family:'Urbanist';font-weight:700;font-size:14px;color:#1F2937">Next session · Today 4:00 PM</span>
+              <span style="font-family:'Urbanist';font-size:11px;font-weight:700;background:#EFF6FF;color:#3B82F6;padding:3px 10px;border-radius:99px">CONFIRMED</span>
+            </div>
+            <div style="font-size:12.5px;color:#6B7280;line-height:1.5">Zara — Maths · Tobi — Phonics. Check-in is verified in-app, so you'll know he arrived even from work.</div>
+            <div style="background:#F9F1E6;border-radius:8px;padding:9px 12px;font-size:12px;color:#3B2513;font-weight:600;line-height:1.5">Mr Daniel's plan: number bonds warm-up · fractions p.33 · phonics M, S, T. He rates each topic and attaches photo evidence as he goes.</div>
+          </div>
+        </sc-if>
+        <sc-if value="{{sessLive}}" hint-placeholder-val="{{false}}">
+          <div style="background:#fff;border:1px solid #009061;border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;gap:9px;align-items:center">
+              <span style="width:9px;height:9px;border-radius:50%;background:#009061;animation:pulse 1.6s infinite;flex:none"></span>
+              <span style="font-family:'Urbanist';font-weight:700;font-size:14px;color:#009061;flex:1">In session — Mr Daniel checked in 4:02 PM</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-size:12.5px;color:#6B7280">Lesson plan progress</span>
+              <span style="font-family:'Urbanist';font-size:11px;font-weight:700;color:#1F2937">{{objDone}}/{{objTotal}}</span>
+            </div>
+            <div style="height:6px;background:#F1E6D6;border-radius:99px;overflow:hidden"><div style="{{objBarStyle}}"></div></div>
+            <sc-if value="{{hasReports}}" hint-placeholder-val="{{false}}">
+              <div style="display:flex;flex-direction:column;border-top:1px solid #F1E6D6;margin-top:2px">
+                <span style="font-family:'Urbanist';font-weight:700;font-size:11px;color:#6B7280;margin:8px 0 2px;letter-spacing:.05em">TOPIC REPORTS SO FAR</span>
+                <sc-for list="{{reportTopics}}" as="rt" hint-placeholder-count="2">
+                  <div style="display:flex;align-items:center;gap:8px;padding:6px 0">
+                    <div style="flex:1;min-width:0">
+                      <div style="font-size:12.5px;font-weight:600;color:#1F2937">{{rt.name}}</div>
+                      <sc-if value="{{rt.hasEv}}" hint-placeholder-val="{{false}}"><div style="font-size:11px;color:#3B82F6;font-weight:700;margin-top:1px">📷 {{rt.evNote}} in the vault</div></sc-if>
+                    </div>
+                    <span style="{{rt.rateChip}}">{{rt.rateLabel}}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+            <div style="font-size:12px;color:#6B7280">Ticks appear live as he teaches — no need to call or hover.</div>
+          </div>
+        </sc-if>
+        <sc-if value="{{recapReady}}" hint-placeholder-val="{{false}}">
+          <div style="background:#fff;border:1px solid #009061;border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-family:'Urbanist';font-weight:700;font-size:14px;color:#1F2937">Today's recap</span>
+              <span style="font-family:'Urbanist';font-size:11px;font-weight:700;background:#E1F5EC;color:#009061;padding:3px 10px;border-radius:99px">4:02–5:31 PM ✓ VERIFIED</span>
+            </div>
+            <sc-for list="{{reportTopics}}" as="rt" hint-placeholder-count="3">
+              <div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #F1E6D6">
+                <div style="flex:1;min-width:0">
+                  <div style="font-size:12.5px;font-weight:600;color:#1F2937">{{rt.name}}</div>
+                  <sc-if value="{{rt.hasEv}}" hint-placeholder-val="{{false}}"><div style="font-size:11px;color:#3B82F6;font-weight:700;margin-top:1px">📷 {{rt.evNote}} in the vault · View →</div></sc-if>
+                </div>
+                <span style="{{rt.rateChip}}">{{rt.rateLabel}}</span>
+              </div>
+            </sc-for>
+            <div style="font-size:13px;color:#1F2937;line-height:1.7">• Zara — fractions quiz <strong>8/10</strong> (up from 5/10)<br>• Homework set: workbook p.34, due Thu — Mr Daniel marks it</div>
+            <div style="background:#E1F5EC;border-radius:8px;padding:9px 12px;font-size:12.5px;color:#009061;font-weight:700">✓ All work already checked — nothing for you to review</div>
+          </div>
+        </sc-if>
+        <div style="background:#3B2513;border-radius:8px;padding:18px;color:#FFF9F0;display:flex;flex-direction:column;gap:10px">
+          <span style="font-family:'Urbanist';font-weight:600;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#E0BFA0">Weekly digest · auto-written</span>
+          <div style="font-size:13.5px;line-height:1.6;color:#EDD9C0">Zara mastered halves &amp; quarters and kept her 4-week streak. Tobi went from 9 to 14 letter sounds.</div>
+          <div style="border-top:1px solid rgba(224,191,160,.25);padding-top:10px;display:flex;flex-direction:column;gap:6px">
+            <span style="font-family:'Urbanist';font-weight:700;font-size:12px;color:#E0BFA0">Ask at dinner tonight:</span>
+            <span style="font-size:13px;color:#FFF9F0">“Zara — can you cut your plantain into quarters?”</span>
+            <span style="font-size:13px;color:#FFF9F0">“Tobi — what sound does M make?”</span>
+          </div>
+        </div>
+        <sc-for list="{{kids}}" as="k" hint-placeholder-count="2">
+          <div style="background:#fff;border:1px solid #E6EBF3;border-radius:8px;overflow:hidden">
+            <div sc-camel-on-click="{{k.open}}" style="padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer">
+              <div style="width:40px;height:40px;border-radius:50%;background:#E0BFA0;border:1px solid #D4A67F;display:flex;align-items:center;justify-content:center;font-family:'Urbanist';font-weight:700;font-size:14px;color:#3B2513;flex:none">{{k.init}}</div>
+              <div style="flex:1;min-width:0">
+                <div style="font-family:'Urbanist';font-weight:700;font-size:14.5px;color:#1F2937">{{k.name}}</div>
+                <div style="font-size:12px;color:#6B7280;margin-top:1px">{{k.meta}}</div>
+              </div>
+              <span style="{{k.hwChip}}">{{k.hwChipLabel}}</span>
+            </div>
+            <sc-if value="{{k.isOpen}}" hint-placeholder-val="{{false}}">
+              <div style="padding:2px 16px 16px;display:flex;flex-direction:column;gap:11px">
+                <sc-for list="{{k.topics}}" as="t" hint-placeholder-count="3">
+                  <div style="display:flex;flex-direction:column;gap:5px">
+                    <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+                      <span style="font-size:12.5px;font-weight:600;color:#1F2937">{{t.n}}</span>
+                      <span style="{{t.lvChip}}">{{t.lv}}</span>
+                    </div>
+                    <div style="height:6px;background:#F1E6D6;border-radius:99px;overflow:hidden"><div style="{{t.bar}}"></div></div>
+                  </div>
+                </sc-for>
+                <div style="font-size:12.5px;color:#1F2937;font-weight:600">📊 {{k.quiz}}</div>
+                <div style="font-size:12.5px;color:#6B7280">📚 {{k.hw}}</div>
+              </div>
+            </sc-if>
+          </div>
+        </sc-for>
+        <div style="background:#fff;border:1px solid #E6EBF3;border-radius:8px;padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer">
+          <span style="font-size:17px">📁</span>
+          <span style="flex:1;font-size:13px;font-weight:600;color:#1F2937">12 work samples in the family vault · <strong style="color:#3B82F6">3 new</strong></span>
+          <span style="font-family:'Urbanist';font-weight:700;font-size:13px;color:#9A6033">View →</span>
+        </div>
+      </div>

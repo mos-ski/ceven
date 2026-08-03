@@ -1,0 +1,101 @@
+<div style="flex:1;overflow-y:auto;padding:8px 20px 100px;display:flex;flex-direction:column;gap:16px" data-screen-label="Caregiver · Today">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div>
+            <div style="font-family:'Merriweather';font-weight:700;font-size:24px;color:#1F2937">Good morning, Blessing</div>
+            <div style="font-family:'Urbanist';font-size:13px;color:#6B7280;margin-top:2px">Saturday · Zara &amp; Tobi</div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center">
+            <span style="{{syncChip}}">{{syncLabel}}</span>
+            <button sc-camel-on-click="{{openSos}}" style="width:38px;height:38px;border-radius:50%;background:#CD3030;border:none;color:#fff;font-family:'Urbanist';font-weight:800;font-size:10.5px;cursor:pointer;flex:none">SOS</button>
+          </div>
+        </div>
+
+        <sc-if value="{{notCheckedIn}}" hint-placeholder-val="{{false}}">
+          <div style="background:#3B2513;border-radius:8px;padding:16px 18px;display:flex;align-items:center;gap:14px">
+            <div style="flex:1">
+              <div style="font-family:'Urbanist';font-weight:700;font-size:14.5px;color:#FFF9F0">Starting your day?</div>
+              <div style="font-size:12.5px;color:#EDD9C0;margin-top:2px">Tap when you arrive — Mummy &amp; Daddy get notified</div>
+            </div>
+            <button sc-camel-on-click="{{checkIn}}" style="background:#E0BFA0;border:1px solid #D4A67F;color:#3B2513;font-family:'Urbanist';font-weight:700;font-size:13px;padding:11px 16px;border-radius:8px;cursor:pointer;flex:none">I've arrived ✓</button>
+          </div>
+        </sc-if>
+        <sc-if value="{{onDuty}}" hint-placeholder-val="{{true}}">
+          <div style="background:#fff;border:1px solid #E6EBF3;border-radius:8px;padding:12px 16px;display:flex;align-items:center;gap:10px">
+            <span style="width:9px;height:9px;border-radius:50%;background:#009061;flex:none"></span>
+            <span style="flex:1;font-family:'Urbanist';font-weight:600;font-size:13px;color:#3B2513">On duty since 7:02 AM · {{mummyStatus}}</span>
+            <button sc-camel-on-click="{{closeDay}}" style="background:#fff;border:1px solid #CCD2DC;color:#3B2513;font-family:'Urbanist';font-weight:700;font-size:12px;padding:8px 12px;border-radius:8px;cursor:pointer;flex:none">Close day</button>
+          </div>
+        </sc-if>
+        <sc-if value="{{dayClosed}}" hint-placeholder-val="{{false}}">
+          <div style="background:#E1F5EC;border:1px solid #009061;border-radius:8px;padding:14px 16px;display:flex;gap:10px;align-items:center">
+            <svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="#009061" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+            <span style="font-size:13.5px;color:#009061;font-weight:700">Day closed 6:15 PM — handover sent to Mummy &amp; Daddy</span>
+          </div>
+        </sc-if>
+        <div style="background:#F7E8D4;border:1px solid #EDD9C0;border-radius:8px;padding:9px 14px;display:flex;gap:8px;align-items:center">
+          <span style="font-size:12px">📌</span><span style="font-size:12.5px;color:#3B2513;font-weight:600">From Mummy: No sugar for Zara · warm water for Tobi's bath</span>
+        </div>
+        <div style="display:flex;gap:8px">
+          <button sc-camel-on-click="{{logMeal}}" style="flex:1;background:#fff;border:1px solid #E6EBF3;border-radius:8px;padding:10px 4px;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer"><span style="font-size:17px">🍚</span><span style="font-family:'Urbanist';font-weight:700;font-size:11px;color:#3B2513">Meal eaten</span></button>
+          <button sc-camel-on-click="{{logNap}}" style="flex:1;background:#fff;border:1px solid #E6EBF3;border-radius:8px;padding:10px 4px;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer"><span style="font-size:17px">😴</span><span style="font-family:'Urbanist';font-weight:700;font-size:11px;color:#3B2513">Nap</span></button>
+          <button sc-camel-on-click="{{logDiaper}}" style="flex:1;background:#fff;border:1px solid #E6EBF3;border-radius:8px;padding:10px 4px;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer"><span style="font-size:17px">🧷</span><span style="font-family:'Urbanist';font-weight:700;font-size:11px;color:#3B2513">Diaper</span></button>
+          <button sc-camel-on-click="{{openCam}}" style="flex:1;background:#fff;border:1px solid #E6EBF3;border-radius:8px;padding:10px 4px;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer"><span style="font-size:17px">📷</span><span style="font-family:'Urbanist';font-weight:700;font-size:11px;color:#3B2513">Camera</span></button>
+        </div>
+        <button sc-camel-on-click="{{voiceLog}}" style="{{micStyle}}">
+          <span style="font-size:17px">🎙</span>
+          <span style="font-family:'Urbanist';font-weight:700;font-size:13.5px">{{micLabel}}</span>
+        </button>
+
+        <div style="font-family:'Urbanist';font-weight:600;font-size:11px;letter-spacing:.08em;color:#9A6033">TODAY'S MENU — FROM MUMMY'S TIMETABLE</div>
+        <sc-for list="{{cMeals}}" as="m" hint-placeholder-count="4">
+          <div sc-camel-on-click="{{m.toggle}}" style="{{m.card}}">
+            <span style="{{m.circle}}">
+              <sc-if value="{{m.done}}" hint-placeholder-val="{{false}}"><svg width="13" height="13" sc-camel-view-box="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></sc-if>
+            </span>
+            <div style="flex:1">
+              <div style="{{m.title}}">{{m.dish}}</div>
+              <div style="font-size:12px;color:#6B7280;margin-top:1px">{{m.note}}</div>
+            </div>
+            <span style="font-family:'Urbanist';font-weight:700;font-size:12px;color:#6B7280;flex:none">{{m.time}}</span>
+          </div>
+        </sc-for>
+
+        <div style="background:#fff;border:1px solid #FF9A01;border-radius:8px;padding:14px 16px;display:flex;align-items:center;gap:12px">
+          <span style="font-size:19px">💊</span>
+          <div style="flex:1">
+            <div style="font-family:'Urbanist';font-weight:700;font-size:14px;color:#1F2937">Tobi's vitamin D drops · 2:00 PM</div>
+            <div style="font-size:12px;color:#6B7280;margin-top:2px">1 dropper · mark when given so Mummy sees</div>
+          </div>
+          <button sc-camel-on-click="{{giveMed}}" style="{{medBtn}}">{{medLabel}}</button>
+        </div>
+
+        <div style="font-family:'Urbanist';font-weight:600;font-size:11px;letter-spacing:.08em;color:#9A6033">MARKET LIST — MUMMY SEES THIS</div>
+        <div style="background:#fff;border:1px solid #E6EBF3;border-radius:8px;padding:6px 16px 12px">
+          <sc-for list="{{shopping}}" as="it" hint-placeholder-count="3">
+            <div sc-camel-on-click="{{it.toggle}}" style="{{it.row}}">
+              <span style="{{it.circle}}">
+                <sc-if value="{{it.got}}" hint-placeholder-val="{{false}}"><svg width="12" height="12" sc-camel-view-box="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></sc-if>
+              </span>
+              <span style="{{it.text}}">{{it.name}}</span>
+              <span style="font-family:'Urbanist';font-size:11px;color:#6B7280;flex:none">{{it.by}}</span>
+            </div>
+          </sc-for>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <input value="{{shopInput}}" sc-camel-on-change="{{onShopInput}}" sc-camel-on-key-down="{{onShopKey}}" placeholder="Something running low?" style="flex:1;border:1px solid #CCD2DC;border-radius:8px;padding:10px 13px;font-family:'Nunito';font-size:13px;background:#fff;outline:none;color:#1F2937">
+            <button sc-camel-on-click="{{addShopItem}}" style="background:#3B2513;color:#FFF9F0;border:none;border-radius:8px;padding:0 16px;font-family:'Urbanist';font-weight:700;font-size:13px;cursor:pointer">Add</button>
+          </div>
+        </div>
+
+        <div style="font-family:'Urbanist';font-weight:600;font-size:11px;letter-spacing:.08em;color:#9A6033">GET READY — TUESDAY'S SWIMMING LESSON</div>
+        <div style="background:#fff;border:1px solid #E6EBF3;border-radius:8px;padding:14px 16px;display:flex;flex-direction:column;gap:8px">
+          <div style="font-size:12.5px;color:#6B7280;line-height:1.5">Mummy added a checklist so nothing is forgotten. Tick as you pack — she sees it live.</div>
+          <sc-for list="{{swimPrep}}" as="p" hint-placeholder-count="4">
+            <div sc-camel-on-click="{{p.toggle}}" style="{{p.row}}">
+              <span style="{{p.circle}}">
+                <sc-if value="{{p.done}}" hint-placeholder-val="{{false}}"><svg width="12" height="12" sc-camel-view-box="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></sc-if>
+              </span>
+              <span style="{{p.text}}">{{p.name}}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>

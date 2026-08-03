@@ -67,7 +67,7 @@ function FilterDropdown({
         render={
           <Button
             variant="outline"
-            className="h-8 gap-2 rounded-lg border-input-border bg-white px-3 font-[family-name:var(--font-nunito)] text-xs font-semibold text-[#454B54]"
+            className="h-8 gap-2 rounded-lg border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-[#454B54]"
           />
         }
       >
@@ -109,26 +109,26 @@ function ChildRow({
         <Checkbox />
       </TableCell>
       <TableCell>
-        <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-black">
+        <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-black">
           {child.name}
         </p>
-        <p className="font-[family-name:var(--font-nunito)] text-[10px] text-otp-text">
+        <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-otp-text">
           {child.gender} • Blood: {child.bloodGroup}
         </p>
       </TableCell>
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm">{child.age}</TableCell>
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm">{child.room}</TableCell>
+      <TableCell className="font-[family-name:var(--font-urbanist)] text-sm">{child.age}</TableCell>
+      <TableCell className="font-[family-name:var(--font-urbanist)] text-sm">{child.room}</TableCell>
       <TableCell>
-        <p className="font-[family-name:var(--font-nunito)] text-sm font-bold text-[#454B54]">
+        <p className="font-[family-name:var(--font-urbanist)] text-sm font-bold text-[#454B54]">
           {child.parentName}
         </p>
-        <p className="font-[family-name:var(--font-nunito)] text-[10px] text-otp-text">
+        <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-otp-text">
           {child.parentEmail}
         </p>
       </TableCell>
       <TableCell
         className={cn(
-          "font-[family-name:var(--font-nunito)] text-sm",
+          "font-[family-name:var(--font-urbanist)] text-sm",
           STATUS_TEXT_CLASS[child.status]
         )}
       >
@@ -136,12 +136,12 @@ function ChildRow({
       </TableCell>
       <TableCell>
         {child.healthFlag ? (
-          <span className="flex items-center gap-2 font-[family-name:var(--font-nunito)] text-sm">
+          <span className="flex items-center gap-2 font-[family-name:var(--font-urbanist)] text-sm">
             <Flag className="size-4 text-red-600" />
             {child.healthFlag}
           </span>
         ) : (
-          <span className="font-[family-name:var(--font-nunito)] text-sm text-otp-text">
+          <span className="font-[family-name:var(--font-urbanist)] text-sm text-otp-text">
             No flags
           </span>
         )}
@@ -158,7 +158,7 @@ function ChildRow({
               render={
                 <Button
                   variant="outline"
-                  className="h-9 gap-1 rounded-lg border-brand-dark px-3 font-[family-name:var(--font-nunito)] text-xs font-semibold text-brand-dark"
+                  className="h-9 gap-1 rounded-lg border-brand-dark px-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-brand-dark"
                 />
               }
             >
@@ -235,7 +235,7 @@ export function ChildrenTable() {
           </div>
         </div>
         <div className="flex items-center gap-3">
-          <span className="font-[family-name:var(--font-nunito)] text-xs text-muted-text">
+          <span className="font-[family-name:var(--font-urbanist)] text-xs text-muted-text">
             Filter by:
           </span>
           <FilterDropdown label={roomFilter} options={ROOMS} onSelect={setRoomFilter} />
@@ -267,7 +267,7 @@ export function ChildrenTable() {
           <TableBody>
             {filteredChildren.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={9} className="py-10 text-center font-[family-name:var(--font-nunito)] text-sm text-muted-text">
+                <TableCell colSpan={9} className="py-10 text-center font-[family-name:var(--font-urbanist)] text-sm text-muted-text">
                   No children match your search or filters.
                 </TableCell>
               </TableRow>
@@ -289,7 +289,7 @@ export function ChildrenTable() {
       {/* Mobile card list */}
       <div className="flex flex-col gap-2 px-4 pb-4 lg:hidden">
         {filteredChildren.length === 0 && (
-          <p className="py-6 text-center font-[family-name:var(--font-nunito)] text-sm text-muted-text">
+          <p className="py-6 text-center font-[family-name:var(--font-urbanist)] text-sm text-muted-text">
             No children match your search or filters.
           </p>
         )}
@@ -305,14 +305,14 @@ export function ChildrenTable() {
               </div>
               <div className="flex flex-col gap-0.5">
                 <div className="flex items-center gap-2">
-                  <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-black">
+                  <span className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-black">
                     {child.name}
                   </span>
-                  <span className={cn("font-[family-name:var(--font-nunito)] text-xs", STATUS_TEXT_CLASS[child.status])}>
+                  <span className={cn("font-[family-name:var(--font-urbanist)] text-xs", STATUS_TEXT_CLASS[child.status])}>
                     {child.status}
                   </span>
                 </div>
-                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#858c98]">
+                <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#858c98]">
                   {child.room} • {child.age} • {child.parentName}
                 </span>
               </div>
@@ -322,7 +322,7 @@ export function ChildrenTable() {
                 {child.feeStatus}
               </Badge>
               {child.healthFlag && (
-                <span className="flex items-center gap-1 font-[family-name:var(--font-nunito)] text-[10px] text-red-600">
+                <span className="flex items-center gap-1 font-[family-name:var(--font-urbanist)] text-[10px] text-red-600">
                   <Flag className="size-3" /> {child.healthFlag}
                 </span>
               )}

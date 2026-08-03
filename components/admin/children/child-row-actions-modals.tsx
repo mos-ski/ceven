@@ -34,7 +34,7 @@ export function ReassignCaregiverModal({ child, onClose }: { child: Child; onClo
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Reassign Caregiver</DialogTitle>
-          <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+          <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
             Choose a new caregiver for {child.name}.
           </p>
         </DialogHeader>
@@ -46,7 +46,7 @@ export function ReassignCaregiverModal({ child, onClose }: { child: Child; onClo
               id="reassign-caregiver"
               value={caregiverId}
               onChange={(e) => setCaregiverId(e.target.value)}
-              className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+              className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
             >
               <option value="" disabled>
                 Select a caregiver
@@ -65,7 +65,7 @@ export function ReassignCaregiverModal({ child, onClose }: { child: Child; onClo
             render={
               <Button
                 variant="outline"
-                className="h-9 rounded-lg border-[#d0d5dd] px-4 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]"
+                className="h-9 rounded-lg border-[#d0d5dd] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]"
               />
             }
           >
@@ -74,7 +74,7 @@ export function ReassignCaregiverModal({ child, onClose }: { child: Child; onClo
           <Button
             disabled={!caregiverId}
             onClick={() => setSubmitted(true)}
-            className="h-9 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1] disabled:cursor-not-allowed disabled:opacity-50"
+            className="h-9 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1] disabled:cursor-not-allowed disabled:opacity-50"
           >
             Reassign
           </Button>
@@ -103,7 +103,7 @@ export function ChangeRoomModal({ child, onClose }: { child: Child; onClose: () 
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Change Room</DialogTitle>
-          <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+          <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
             Move {child.name} to a different room. Current room: {child.room}.
           </p>
         </DialogHeader>
@@ -115,7 +115,7 @@ export function ChangeRoomModal({ child, onClose }: { child: Child; onClose: () 
               id="change-room"
               value={roomId}
               onChange={(e) => setRoomId(e.target.value)}
-              className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+              className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
             >
               <option value="" disabled>
                 Select a room
@@ -134,7 +134,7 @@ export function ChangeRoomModal({ child, onClose }: { child: Child; onClose: () 
             render={
               <Button
                 variant="outline"
-                className="h-9 rounded-lg border-[#d0d5dd] px-4 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]"
+                className="h-9 rounded-lg border-[#d0d5dd] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]"
               />
             }
           >
@@ -143,7 +143,7 @@ export function ChangeRoomModal({ child, onClose }: { child: Child; onClose: () 
           <Button
             disabled={!roomId}
             onClick={() => setSubmitted(true)}
-            className="h-9 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1] disabled:cursor-not-allowed disabled:opacity-50"
+            className="h-9 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1] disabled:cursor-not-allowed disabled:opacity-50"
           >
             Move Child
           </Button>
@@ -172,7 +172,7 @@ export function ContactGuardianModal({ child, onClose }: { child: Child; onClose
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Contact Guardian</DialogTitle>
-          <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+          <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
             Send a message to {child.parentName} ({child.parentEmail}).
           </p>
         </DialogHeader>
@@ -186,7 +186,7 @@ export function ContactGuardianModal({ child, onClose }: { child: Child; onClose
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               placeholder={`Type a message about ${child.name}...`}
-              className="resize-none rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+              className="resize-none rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
             />
           </div>
         </div>
@@ -196,7 +196,7 @@ export function ContactGuardianModal({ child, onClose }: { child: Child; onClose
             render={
               <Button
                 variant="outline"
-                className="h-9 rounded-lg border-[#d0d5dd] px-4 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]"
+                className="h-9 rounded-lg border-[#d0d5dd] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]"
               />
             }
           >
@@ -205,7 +205,7 @@ export function ContactGuardianModal({ child, onClose }: { child: Child; onClose
           <Button
             disabled={!message.trim()}
             onClick={() => setSubmitted(true)}
-            className="h-9 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1] disabled:cursor-not-allowed disabled:opacity-50"
+            className="h-9 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1] disabled:cursor-not-allowed disabled:opacity-50"
           >
             Send Message
           </Button>

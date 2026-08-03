@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { Bell, CheckCircle2, Copy, LogIn, AlertTriangle, Send, ShieldCheck, Trash2, UserPlus, X } from "lucide-react";
+import { ArrowRight, Bell, CheckCircle2, Copy, LogIn, AlertTriangle, Send, ShieldCheck, Trash2, UserPlus, X } from "lucide-react";
 import { ParentBottomNav } from "@/components/parent/bottom-nav";
 import { mockChild, mockParentUser, mockAttendanceHistory, mockChildIncidents, mockChildMedication } from "@/lib/parent/mock-data";
 import { NewBadge } from "@/components/parent/new-badge";
@@ -107,6 +107,10 @@ export default function ChildPage() {
               <p className="text-xs leading-relaxed">
                 {acceptedCaregivers[0].caregiverName} accepted the invite and can now send updates for {mockChild.name}.
               </p>
+              <Link href="/parent/v3" className="mt-3 inline-flex items-center gap-1 rounded-[8px] bg-emerald-700 px-3 py-2 text-xs font-black text-white">
+                Open Parent/Caregiver v3
+                <ArrowRight size={13} />
+              </Link>
             </div>
           </div>
         )}

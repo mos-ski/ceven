@@ -37,7 +37,7 @@ function ComplianceBar({ value }: { value: number }) {
           style={{ width: `${value}%`, backgroundColor: color }}
         />
       </div>
-      <span className="font-[family-name:var(--font-nunito)] text-xs font-semibold" style={{ color }}>
+      <span className="font-[family-name:var(--font-urbanist)] text-xs font-semibold" style={{ color }}>
         {value}%
       </span>
     </div>
@@ -63,10 +63,10 @@ export function LeaderboardTab() {
             <p className="mt-3 font-[family-name:var(--font-merriweather)] text-sm font-bold text-[#2d1810]">
               {entry.name}
             </p>
-            <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{entry.role}</p>
+            <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{entry.role}</p>
             <p className="mt-2 font-[family-name:var(--font-merriweather)] text-xl font-bold text-[#3b2513]">
               {entry.points}
-              <span className="ml-1 font-[family-name:var(--font-nunito)] text-xs font-normal text-[#6b7280]">
+              <span className="ml-1 font-[family-name:var(--font-urbanist)] text-xs font-normal text-[#6b7280]">
                 pts
               </span>
             </p>
@@ -80,10 +80,10 @@ export function LeaderboardTab() {
           Full Ranking
         </h2>
         <div className="flex items-center gap-2">
-          <span className="text-xs font-[family-name:var(--font-nunito)] text-[#6b7280]">
+          <span className="text-xs font-[family-name:var(--font-urbanist)] text-[#6b7280]">
             Filter by:
           </span>
-          <button className="flex items-center gap-1.5 rounded-lg border border-[#d0d5dd] bg-white px-3 py-1.5 font-[family-name:var(--font-nunito)] text-xs">
+          <button className="flex items-center gap-1.5 rounded-lg border border-[#d0d5dd] bg-white px-3 py-1.5 font-[family-name:var(--font-urbanist)] text-xs">
             This Month
             <ChevronDown className="size-3" />
           </button>
@@ -107,7 +107,7 @@ export function LeaderboardTab() {
                 ].map((h) => (
                   <th
                     key={h}
-                    className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]"
+                    className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-urbanist)] text-[#2d1810]"
                   >
                     {h}
                   </th>
@@ -121,7 +121,7 @@ export function LeaderboardTab() {
                     <RankBadge rank={entry.rank} />
                   </td>
                   <td className="px-4 py-3">
-                    <p className="text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">
+                    <p className="text-sm font-bold font-[family-name:var(--font-urbanist)] text-[#2d1810]">
                       {entry.name}
                     </p>
                     <p className="text-[10px] text-[#858c98]">{entry.role}</p>
@@ -129,16 +129,16 @@ export function LeaderboardTab() {
                   <td className="px-4 py-3">
                     <ComplianceBar value={entry.logCompliance} />
                   </td>
-                  <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">
+                  <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">
                     {entry.attendanceScore}%
                   </td>
-                  <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">
+                  <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">
                     {entry.incidentsLogged}
                   </td>
-                  <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">
+                  <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">
                     ★ {entry.parentRating}
                   </td>
-                  <td className="px-4 py-3 text-sm font-bold font-[family-name:var(--font-nunito)] text-[#3b2513]">
+                  <td className="px-4 py-3 text-sm font-bold font-[family-name:var(--font-urbanist)] text-[#3b2513]">
                     {entry.points}
                   </td>
                 </tr>
@@ -154,7 +154,7 @@ export function LeaderboardTab() {
                 <div className="flex items-center gap-2">
                   <RankBadge rank={entry.rank} />
                   <div>
-                    <p className="text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">
+                    <p className="text-sm font-bold font-[family-name:var(--font-urbanist)] text-[#2d1810]">
                       {entry.name}
                     </p>
                     <p className="text-[10px] text-[#858c98]">{entry.role}</p>
@@ -166,7 +166,7 @@ export function LeaderboardTab() {
               </div>
               <div className="mt-2 flex items-center justify-between">
                 <ComplianceBar value={entry.logCompliance} />
-                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+                <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
                   ★ {entry.parentRating}
                 </span>
               </div>

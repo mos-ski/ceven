@@ -1,0 +1,12 @@
+{
+  "source": "/Users/theoneglobal/Downloads/CEven Home.html",
+  "output": "prototypes/parent-caregiver-v3-source",
+  "sourceBytes": 945038,
+  "sourceSha256": "30d08315419c61ecb8bd8e9f6b54d00fd99c650a6d4c79ad66d4465816017148",
+  "templateBytes": 143698,
+  "templateSha256": "486edb393564a0fd5902e4e5b393143f547ad0492944521093e30c1bbc8b502b",
+  "screens": 14,
+  "manifestResources": 19,
+  "styles": 2,
+  "hasDcLogic": true
+}

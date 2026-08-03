@@ -178,7 +178,7 @@ function CustomizeQuickActionsModal({
             <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#171f26]">
               Customize Quick Actions
             </h2>
-            <p className="mt-1 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+            <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
               Choose which actions appear on your dashboard quick actions bar
             </p>
           </div>
@@ -188,7 +188,7 @@ function CustomizeQuickActionsModal({
         </div>
 
         <div className="flex flex-col gap-4 px-6 py-5">
-          <p className="font-[family-name:var(--font-nunito)] text-xs text-black">
+          <p className="font-[family-name:var(--font-urbanist)] text-xs text-black">
             Selected (<span className="font-semibold">Max of 5</span>)
           </p>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
@@ -200,7 +200,7 @@ function CustomizeQuickActionsModal({
               >
                 <Minus className="absolute right-2 top-2 size-5 rounded-full border border-[#d4a67f] bg-white p-0.5 text-[#3b2513]" />
                 <Icon className="size-6 text-[#3b2513]" />
-                <span className="flex items-center gap-1 font-[family-name:var(--font-nunito)] text-xs font-bold text-[#3b2513]">
+                <span className="flex items-center gap-1 font-[family-name:var(--font-urbanist)] text-xs font-bold text-[#3b2513]">
                   {label}
                   <Plus className="size-3.5" />
                 </span>
@@ -208,7 +208,7 @@ function CustomizeQuickActionsModal({
             ))}
           </div>
 
-          <p className="mt-2 font-[family-name:var(--font-nunito)] text-xs text-black">Add actions from below</p>
+          <p className="mt-2 font-[family-name:var(--font-urbanist)] text-xs text-black">Add actions from below</p>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
             {ALL_QUICK_ACTIONS.filter((a) => !selected.includes(a.id)).map(({ id, icon: Icon, label }) => (
               <button
@@ -218,7 +218,7 @@ function CustomizeQuickActionsModal({
               >
                 <Plus className="absolute right-2 top-2 size-5 rounded-full border border-[#ccd2dc] p-0.5 text-[#3b2513]" />
                 <Icon className="size-6 text-[#3b2513]" />
-                <span className="flex items-center gap-1 font-[family-name:var(--font-nunito)] text-xs font-bold text-[#3b2513]">
+                <span className="flex items-center gap-1 font-[family-name:var(--font-urbanist)] text-xs font-bold text-[#3b2513]">
                   {label}
                   <Plus className="size-3.5" />
                 </span>
@@ -255,7 +255,7 @@ function LinkArrow({ label, onClick }: { label: string; onClick?: () => void }) 
   return (
     <button
       onClick={onClick}
-      className="flex items-center gap-1 font-[family-name:var(--font-nunito)] text-xs font-bold text-[#3b2513] hover:opacity-70"
+      className="flex items-center gap-1 font-[family-name:var(--font-urbanist)] text-xs font-bold text-[#3b2513] hover:opacity-70"
     >
       {label}
       <ArrowUpRight className="h-4 w-4" />
@@ -289,7 +289,7 @@ function StatCard({ label, value, sub, subColor = "#6b7280", showTrend, showAler
   return (
     <div className={`flex flex-col gap-2 rounded-xl border border-[#e6ebf3] bg-white px-4 py-5 transition-all duration-300 ${isPulsing ? "ring-2 ring-[#c47b2c]/30" : ""}`}>
       <div className="flex flex-col gap-2">
-        <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6f7682]">{label}</p>
+        <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#6f7682]">{label}</p>
         <p className={`font-[family-name:var(--font-merriweather)] text-2xl lg:text-[32px] font-bold leading-none text-[#2d1810] transition-all duration-300 ${isPulsing ? "scale-105" : "scale-100"}`}>
           {value}
         </p>
@@ -297,7 +297,7 @@ function StatCard({ label, value, sub, subColor = "#6b7280", showTrend, showAler
       <div className="flex items-center gap-1" style={{ color: subColor }}>
         {showAlert && <AlertTriangle className="h-4 w-4" />}
         {showTrend && <TrendingUp className="h-4 w-4" />}
-        <span className="font-[family-name:var(--font-nunito)] text-[10px]">{sub}</span>
+        <span className="font-[family-name:var(--font-urbanist)] text-[10px]">{sub}</span>
       </div>
     </div>
   );
@@ -332,7 +332,7 @@ function AIChatPanel({ onClose }: { onClose: () => void }) {
             <Bot className="h-5 w-5 text-[#ffd58f]" />
           </div>
           <div>
-            <p className="font-[family-name:var(--font-nunito)] text-sm font-bold text-[#2d1810]">
+            <p className="font-[family-name:var(--font-urbanist)] text-sm font-bold text-[#2d1810]">
               Ada
             </p>
             <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#27e2a4]">
@@ -361,7 +361,7 @@ function AIChatPanel({ onClose }: { onClose: () => void }) {
               </div>
             )}
             <div
-              className={`max-w-[240px] rounded-2xl px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-xs leading-relaxed ${
+              className={`max-w-[240px] rounded-2xl px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-xs leading-relaxed ${
                 msg.role === "ai"
                   ? "rounded-tl-sm bg-[#fdf6e8] text-[#2d1810]"
                   : "rounded-tr-sm bg-[#c47b2c] text-white"
@@ -395,7 +395,7 @@ function AIChatPanel({ onClose }: { onClose: () => void }) {
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && send(inputValue)}
           placeholder="Ask Ada anything..."
-          className="flex-1 rounded-full border border-[#edd9c0] bg-white px-4 py-2 font-[family-name:var(--font-nunito)] text-xs text-[#2d1810] placeholder:text-[#9ca3af] focus:border-[#c47b2c] focus:outline-none"
+          className="flex-1 rounded-full border border-[#edd9c0] bg-white px-4 py-2 font-[family-name:var(--font-urbanist)] text-xs text-[#2d1810] placeholder:text-[#9ca3af] focus:border-[#c47b2c] focus:outline-none"
         />
         <button
           className="flex h-8 w-8 items-center justify-center rounded-full bg-[#3b2513] text-[#faf2e1] hover:bg-[#2d1810]"
@@ -472,13 +472,13 @@ export default function DashboardPage() {
             {/* Content */}
             <div className="relative flex flex-col gap-4 px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-6 sm:py-7">
               <div className="flex flex-col gap-2">
-                <p className="font-[family-name:var(--font-nunito)] text-xs font-medium text-[#ffd58f]">
+                <p className="font-[family-name:var(--font-urbanist)] text-xs font-medium text-[#ffd58f]">
                   {greetingDate}
                 </p>
                 <h1 className="font-[family-name:var(--font-merriweather)] text-lg sm:text-2xl font-bold text-[#f5edd8]">
                   {getGreeting()}, Amaka 👋
                 </h1>
-                <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#27e2a4] underline decoration-solid">
+                <span className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#27e2a4] underline decoration-solid">
                   • Active
                 </span>
               </div>
@@ -490,7 +490,7 @@ export default function DashboardPage() {
                   className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[#e0bfa0] text-[#faf2e1] hover:bg-white/10"
                 >
                   <Bell className="h-4 w-4" />
-                  <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#ef4444] font-[family-name:var(--font-nunito)] text-[9px] font-bold text-white">
+                  <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#ef4444] font-[family-name:var(--font-urbanist)] text-[9px] font-bold text-white">
                     4
                   </span>
                 </button>
@@ -560,7 +560,7 @@ export default function DashboardPage() {
             </div>
             {/* Last updated timestamp */}
             {lastUpdated && (
-              <p className="font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">
+              <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">
                 Last updated: {formatLastUpdated(lastUpdated)}
                 {isRefreshing && <span className="ml-2 text-[#c47b2c]">Refreshing...</span>}
               </p>
@@ -577,14 +577,14 @@ export default function DashboardPage() {
                     className="rounded-full px-3 py-1.5"
                     style={{ background: "linear-gradient(126.84deg, #1e2d4a 0%, #2d1810 100%)" }}
                   >
-                    <span className="font-[family-name:var(--font-nunito)] text-[10px] font-medium tracking-wide text-[#f5edd8]">
+                    <span className="font-[family-name:var(--font-urbanist)] text-[10px] font-medium tracking-wide text-[#f5edd8]">
                       <span className="text-[#c47b2c]">✦ </span>
                       AI DAILY BRIEF
                     </span>
                   </div>
                   <LinkArrow label="Open AI Center" onClick={() => router.push("/admin/v2/intelligence")} />
                 </div>
-                <p className="font-[family-name:var(--font-nunito)] text-sm">
+                <p className="font-[family-name:var(--font-urbanist)] text-sm">
                   <span className="text-[#6b7280]">Today&apos;s report</span>
                   <span className="text-black"> - generated 7am</span>
                 </p>
@@ -600,7 +600,7 @@ export default function DashboardPage() {
                       className="absolute left-3 top-4 h-2 w-2 rounded-sm"
                       style={{ background: insight.color }}
                     />
-                    <p className="font-[family-name:var(--font-nunito)] text-xs leading-5 text-[#2d1810]">
+                    <p className="font-[family-name:var(--font-urbanist)] text-xs leading-5 text-[#2d1810]">
                       <span className="font-bold">{insight.bold}</span>
                       <span className="text-[rgba(45,24,16,0.5)]">{insight.text}</span>
                     </p>
@@ -610,7 +610,7 @@ export default function DashboardPage() {
                       </span>
                       <button
                         onClick={() => router.push(INSIGHT_TAG_ROUTES[insight.tag] ?? "/admin/v2/intelligence")}
-                        className="font-[family-name:var(--font-nunito)] text-xs font-semibold text-[#ba733e] hover:opacity-70"
+                        className="font-[family-name:var(--font-urbanist)] text-xs font-semibold text-[#ba733e] hover:opacity-70"
                       >
                         Take Action
                       </button>
@@ -624,7 +624,7 @@ export default function DashboardPage() {
             {!aiPanelOpen ? (
               <div className="flex flex-col gap-4 rounded-xl border border-[rgba(45,24,16,0.07)] bg-white p-4">
                 <div className="flex items-center justify-between">
-                  <h3 className="font-[family-name:var(--font-nunito)] text-base font-medium text-black">
+                  <h3 className="font-[family-name:var(--font-urbanist)] text-base font-medium text-black">
                     Upcoming Events
                   </h3>
                   <LinkArrow label="Go to Calendar" onClick={() => router.push("/admin/v2/communication?tab=events-calendar")} />
@@ -642,7 +642,7 @@ export default function DashboardPage() {
                           {event.time}
                         </span>
                       </div>
-                      <p className="font-[family-name:var(--font-nunito)] text-sm text-black">
+                      <p className="font-[family-name:var(--font-urbanist)] text-sm text-black">
                         {event.title}
                       </p>
                     </div>
@@ -652,7 +652,7 @@ export default function DashboardPage() {
             ) : (
               <div className="flex flex-col gap-4 rounded-xl border border-[rgba(45,24,16,0.07)] bg-white p-4">
                 <div className="flex items-center justify-between">
-                  <h3 className="font-[family-name:var(--font-nunito)] text-base font-medium text-black">
+                  <h3 className="font-[family-name:var(--font-urbanist)] text-base font-medium text-black">
                     Room Occupancy
                   </h3>
                   <LinkArrow label="View All" onClick={() => router.push("/admin/v2/children?tab=rooms-classes")} />
@@ -662,7 +662,7 @@ export default function DashboardPage() {
                   {roomOccupancy.map((room, i) => (
                     <div key={i} className="flex flex-col gap-1.5">
                       <div className="flex items-center justify-between">
-                        <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">
+                        <span className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">
                           {room.room}
                         </span>
                         <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
@@ -688,7 +688,7 @@ export default function DashboardPage() {
             {!aiPanelOpen && (
               <div className="flex flex-col gap-4 rounded-xl border border-[#e6ebf3] bg-white p-4">
                 <div className="flex items-center justify-between">
-                  <h3 className="font-[family-name:var(--font-nunito)] text-base font-medium text-black">
+                  <h3 className="font-[family-name:var(--font-urbanist)] text-base font-medium text-black">
                     Activity Feed
                   </h3>
                   <LinkArrow label="Go to Daily Operations" onClick={() => router.push("/admin/v2/daily-operations")} />
@@ -706,7 +706,7 @@ export default function DashboardPage() {
                       />
                       <div className="flex items-start justify-between gap-2">
                         <div>
-                          <p className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">
+                          <p className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-black">
                             {item.title}
                           </p>
                           <span
@@ -723,7 +723,7 @@ export default function DashboardPage() {
                           {item.time}
                         </span>
                       </div>
-                      <p className="mt-0.5 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+                      <p className="mt-0.5 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
                         {item.desc}
                       </p>
                     </div>
@@ -738,7 +738,7 @@ export default function DashboardPage() {
             {/* Outstanding Payments — with AI Risk column */}
             <div className="flex min-w-0 flex-1 flex-col rounded-xl bg-white lg:flex-[8]">
               <div className="flex items-center justify-between px-4 py-4">
-                <h3 className="font-[family-name:var(--font-nunito)] text-base font-medium text-black">
+                <h3 className="font-[family-name:var(--font-urbanist)] text-base font-medium text-black">
                   Outstanding Payments
                 </h3>
                 <LinkArrow label="View All" onClick={() => router.push("/admin/v2/finance")} />
@@ -748,12 +748,12 @@ export default function DashboardPage() {
                 <table className="w-full border-collapse">
                   <thead>
                     <tr className="bg-[#edd9c0]">
-                      <th className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black">Child</th>
-                      <th className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black">Amount</th>
-                      <th className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black">Due Date</th>
-                      <th className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black">Status</th>
-                      <th className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black">AI Risk</th>
-                      <th className="px-4 py-3 text-center font-[family-name:var(--font-nunito)] text-sm font-normal text-black">Action</th>
+                      <th className="px-4 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-normal text-black">Child</th>
+                      <th className="px-4 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-normal text-black">Amount</th>
+                      <th className="px-4 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-normal text-black">Due Date</th>
+                      <th className="px-4 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-normal text-black">Status</th>
+                      <th className="px-4 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-normal text-black">AI Risk</th>
+                      <th className="px-4 py-3 text-center font-[family-name:var(--font-urbanist)] text-sm font-normal text-black">Action</th>
                     </tr>
                   </thead>
                   <tbody className="bg-white">
@@ -761,17 +761,17 @@ export default function DashboardPage() {
                       <tr key={i} className="border-t border-[#eaecf0]">
                         <td className="px-4 py-3">
                           <div className="flex flex-col gap-0.5">
-                            <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">{row.child}</span>
-                            <span className="font-[family-name:var(--font-nunito)] text-xs text-[#858c98]">🦁 {row.cls}</span>
+                            <span className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-black">{row.child}</span>
+                            <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#858c98]">🦁 {row.cls}</span>
                           </div>
                         </td>
-                        <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm font-medium text-black">{row.amount}</td>
-                        <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm font-medium text-black">{row.dueDate}</td>
+                        <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm font-medium text-black">{row.amount}</td>
+                        <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm font-medium text-black">{row.dueDate}</td>
                         <td className="px-4 py-3">
                           <div className="flex items-center gap-2">
                             <StatusBadge label={row.status} />
                             <span
-                              className={`font-[family-name:var(--font-nunito)] text-sm font-medium ${
+                              className={`font-[family-name:var(--font-urbanist)] text-sm font-medium ${
                                 row.overdueDays > 7 ? "text-[#cd3030]" : row.overdueDays > 3 ? "text-[#d97706]" : "text-[#6b7280]"
                               }`}
                             >
@@ -802,8 +802,8 @@ export default function DashboardPage() {
                         {row.child.split(" ").map(n => n[0]).join("")}
                       </div>
                       <div className="flex flex-col gap-0.5">
-                        <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">{row.child}</span>
-                        <span className="font-[family-name:var(--font-nunito)] text-xs text-[#858c98]">{row.amount} • {row.dueDate}</span>
+                        <span className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-black">{row.child}</span>
+                        <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#858c98]">{row.amount} • {row.dueDate}</span>
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
@@ -821,7 +821,7 @@ export default function DashboardPage() {
             {/* Pending Enrollments */}
             <div className="flex min-w-0 flex-1 flex-col rounded-xl bg-white lg:flex-[6]">
               <div className="flex items-center justify-between px-4 py-4">
-                <h3 className="font-[family-name:var(--font-nunito)] text-base font-medium text-black">
+                <h3 className="font-[family-name:var(--font-urbanist)] text-base font-medium text-black">
                   Pending Enrollments
                 </h3>
                 <LinkArrow label="View All" onClick={() => router.push("/admin/v2/children?tab=enrolment-waitlist")} />
@@ -831,10 +831,10 @@ export default function DashboardPage() {
                 <table className="w-full border-collapse">
                   <thead>
                     <tr className="bg-[#edd9c0]">
-                      <th className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black">Submission</th>
-                      <th className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black">Status</th>
-                      <th className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black">Submitted</th>
-                      <th className="px-4 py-3 text-center font-[family-name:var(--font-nunito)] text-sm font-normal text-black">Action</th>
+                      <th className="px-4 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-normal text-black">Submission</th>
+                      <th className="px-4 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-normal text-black">Status</th>
+                      <th className="px-4 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-normal text-black">Submitted</th>
+                      <th className="px-4 py-3 text-center font-[family-name:var(--font-urbanist)] text-sm font-normal text-black">Action</th>
                     </tr>
                   </thead>
                   <tbody className="bg-white">
@@ -844,15 +844,15 @@ export default function DashboardPage() {
                           <div className="flex flex-wrap items-center gap-3">
                             <div className="h-5 w-5 shrink-0 rounded-md border border-[#d0d5dd] bg-white" />
                             <div className="flex flex-col gap-0.5">
-                              <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">{row.child}</span>
-                              <span className="font-[family-name:var(--font-nunito)] text-xs text-[#858c98]">{row.cls}</span>
+                              <span className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-black">{row.child}</span>
+                              <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#858c98]">{row.cls}</span>
                             </div>
                           </div>
                         </td>
                         <td className="px-4 py-3">
                           <StatusBadge label={row.status} />
                         </td>
-                        <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm font-medium text-black">{row.submitted}</td>
+                        <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm font-medium text-black">{row.submitted}</td>
                         <td className="px-4 py-3 text-center">
                           <button className="font-[family-name:var(--font-urbanist)] text-xs font-medium text-[#2d1810] underline hover:opacity-70">View</button>
                         </td>
@@ -870,8 +870,8 @@ export default function DashboardPage() {
                         {row.child.split(" ").map(n => n[0]).join("")}
                       </div>
                       <div className="flex flex-col gap-0.5">
-                        <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">{row.child}</span>
-                        <span className="font-[family-name:var(--font-nunito)] text-xs text-[#858c98]">{row.cls} • {row.submitted}</span>
+                        <span className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-black">{row.child}</span>
+                        <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#858c98]">{row.cls} • {row.submitted}</span>
                       </div>
                     </div>
                     <StatusBadge label={row.status} />

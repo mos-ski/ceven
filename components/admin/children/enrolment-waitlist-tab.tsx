@@ -115,7 +115,7 @@ function FilterDropdown({
         render={
           <Button
             variant="outline"
-            className="h-8 gap-2 rounded-lg border-input-border bg-white px-3 font-[family-name:var(--font-nunito)] text-xs font-semibold text-[#454B54]"
+            className="h-8 gap-2 rounded-lg border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-[#454B54]"
           />
         }
       >
@@ -162,10 +162,10 @@ function EnquiryPreviewModal({
               {enquiry.childName.split(" ").map((n) => n[0]).join("")}
             </div>
             <div>
-              <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
+              <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
                 {enquiry.childName}
               </p>
-              <p className="font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">
+              <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#9ca3af]">
                 {enquiry.gender} • {enquiry.age} • {enquiry.inquiryDate}
               </p>
             </div>
@@ -176,9 +176,9 @@ function EnquiryPreviewModal({
 
           <div className="mt-5 grid grid-cols-2 gap-4">
             <div>
-              <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Contact Person</p>
+              <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Contact Person</p>
               <div className="mt-1 flex items-center gap-2">
-                <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
+                <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
                   {enquiry.parentName}
                 </p>
                 <button className="flex items-center gap-1 text-[#3b2513]">
@@ -188,17 +188,17 @@ function EnquiryPreviewModal({
                   <Mail className="size-3.5" />
                 </button>
               </div>
-              <p className="font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">{enquiry.parentPhone}</p>
-              <p className="font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">{enquiry.parentEmail}</p>
+              <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#9ca3af]">{enquiry.parentPhone}</p>
+              <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#9ca3af]">{enquiry.parentEmail}</p>
             </div>
             <div>
-              <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Inquiry Date</p>
-              <p className="mt-1 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{enquiry.inquiryDate}</p>
+              <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Inquiry Date</p>
+              <p className="mt-1 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{enquiry.inquiryDate}</p>
             </div>
             <div className="col-span-2 space-y-2">
-              <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Pipeline Progress</p>
+              <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Pipeline Progress</p>
               {(["Visit Scheduled", "Trial Booked", "Offer Made"] as EnquiryStage[]).map((step) => (
-                <div key={step} className="flex items-center gap-2 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">
+                <div key={step} className="flex items-center gap-2 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">
                   <span
                     className={cn(
                       "size-2 rounded-full",
@@ -223,8 +223,8 @@ function EnquiryPreviewModal({
             </div>
             {enquiry.notes && (
               <div className="col-span-2">
-                <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Notes</p>
-                <p className="mt-1 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{enquiry.notes}</p>
+                <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Notes</p>
+                <p className="mt-1 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{enquiry.notes}</p>
               </div>
             )}
           </div>
@@ -351,7 +351,7 @@ function DeclineReasonModal({
           </button>
         </div>
         <div className="px-6 pt-4">
-          <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+          <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
             Select a reason for declining this enrolment request. This will be shared with the parent/guardian.
           </p>
         </div>
@@ -361,7 +361,7 @@ function DeclineReasonModal({
           <ModalCheckbox label="Incomplete documentation" />
           <ModalCheckbox label="Other" />
           <div>
-            <p className="mb-2 font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
+            <p className="mb-2 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
               Additional notes
             </p>
             <TextAreaField placeholder="Type here..." rows={4} />
@@ -409,7 +409,7 @@ function RequestInfoModal({
           </button>
         </div>
         <div className="px-6 py-5">
-          <p className="mb-2 font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
+          <p className="mb-2 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
             What information do you need from the parent/guardian?
           </p>
           <TextAreaField placeholder="e.g. Please share the child's immunization records..." rows={6} />
@@ -546,7 +546,7 @@ function OverviewStats() {
   return (
     <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4">
       <div className="rounded-xl border border-card-border bg-white p-4">
-        <p className="font-[family-name:var(--font-nunito)] text-sm text-muted-text">Active Enquiries</p>
+        <p className="font-[family-name:var(--font-urbanist)] text-sm text-muted-text">Active Enquiries</p>
         <p className="mt-2 font-[family-name:var(--font-merriweather)] text-[32px] font-bold text-stat-heading">
           {stats.activeEnquiries}
         </p>
@@ -555,21 +555,21 @@ function OverviewStats() {
         </p>
       </div>
       <div className="rounded-xl border border-card-border bg-white p-4">
-        <p className="font-[family-name:var(--font-nunito)] text-sm text-muted-text">Waitlisted</p>
+        <p className="font-[family-name:var(--font-urbanist)] text-sm text-muted-text">Waitlisted</p>
         <p className="mt-2 font-[family-name:var(--font-merriweather)] text-[32px] font-bold text-stat-heading">
           {String(stats.waitlisted).padStart(2, "0")}
         </p>
         <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{stats.waitlistedByRoom}</p>
       </div>
       <div className="rounded-xl border border-card-border bg-white p-4">
-        <p className="font-[family-name:var(--font-nunito)] text-sm text-muted-text">Total Enrolled</p>
+        <p className="font-[family-name:var(--font-urbanist)] text-sm text-muted-text">Total Enrolled</p>
         <p className="mt-2 font-[family-name:var(--font-merriweather)] text-[32px] font-bold text-stat-heading">
           {stats.totalEnrolled}
         </p>
         <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#009061]">↗ {stats.totalEnrolledTrend}</p>
       </div>
       <div className="rounded-xl border border-card-border bg-white p-4">
-        <p className="font-[family-name:var(--font-nunito)] text-sm text-muted-text">Leavers</p>
+        <p className="font-[family-name:var(--font-urbanist)] text-sm text-muted-text">Leavers</p>
         <p className="mt-2 font-[family-name:var(--font-merriweather)] text-[32px] font-bold text-stat-heading">
           {String(stats.leavers).padStart(2, "0")}
         </p>
@@ -582,11 +582,11 @@ function OverviewStats() {
 function AiPredictsBanner({ onDismiss }: { onDismiss: () => void }) {
   return (
     <div className="flex items-center gap-4 rounded-xl border border-[#1e2d4a] bg-gradient-to-r from-[#faf2e1] to-[rgba(196,123,44,0.5)] px-4 py-3">
-      <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-[#1e2d4a] px-2.5 py-1 font-[family-name:var(--font-nunito)] text-xs text-white">
+      <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-[#1e2d4a] px-2.5 py-1 font-[family-name:var(--font-urbanist)] text-xs text-white">
         <Sparkles className="size-3" />
         AI Predicts
       </span>
-      <div className="flex flex-1 flex-wrap gap-4 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">
+      <div className="flex flex-1 flex-wrap gap-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">
         {AI_PREDICTS_NOTES.map((note) => (
           <span key={note}>{note}</span>
         ))}
@@ -624,9 +624,9 @@ function EnrolmentTab() {
             Enrolment List
           </h2>
           <div className="flex flex-wrap items-center gap-2">
-            <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Sort by:</span>
+            <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Sort by:</span>
             <FilterDropdown label="Most Recent" options={["Most Recent", "Oldest"]} />
-            <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Filter by:</span>
+            <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Filter by:</span>
             <FilterDropdown label="All Status" options={["All Status", "Overdue", "Approved", "Declined", "Pending", "Info Requested"]} />
             <FilterDropdown label="All Rooms" options={["All Rooms", ...ROOMS.map((r) => r.name)]} />
             <div className="relative">
@@ -652,7 +652,7 @@ function EnrolmentTab() {
                   />
                 </th>
                 {["Child", "Parent Name", "Child Name", "Age", "Room", "Status", "Action"].map((h) => (
-                  <th key={h} className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black">
+                  <th key={h} className="px-4 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-normal text-black">
                     {h}
                   </th>
                 ))}
@@ -669,11 +669,11 @@ function EnrolmentTab() {
                       className="size-4 accent-[#3b2513]"
                     />
                   </td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{r.dateTime}</td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{r.parentName}</td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{r.childName}</td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{r.age}</td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{r.room}</td>
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{r.dateTime}</td>
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{r.parentName}</td>
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{r.childName}</td>
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{r.age}</td>
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{r.room}</td>
                   <td className="px-4 py-3">
                     <span className="inline-flex items-center gap-1.5">
                       <Badge variant="outline" className={ENROLMENT_STATUS_CLASS[r.status]}>
@@ -683,7 +683,7 @@ function EnrolmentTab() {
                     </span>
                   </td>
                   <td className="px-4 py-3">
-                    <button className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#3b2513] underline">
+                    <button className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#3b2513] underline">
                       View Details
                     </button>
                   </td>
@@ -698,12 +698,12 @@ function EnrolmentTab() {
           {ENROLMENT_RECORDS.map((r) => (
             <div key={r.id} className="rounded-xl border border-[#eaecf0] p-3">
               <div className="flex items-center justify-between">
-                <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{r.childName}</span>
+                <span className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">{r.childName}</span>
                 <Badge variant="outline" className={ENROLMENT_STATUS_CLASS[r.status]}>
                   {r.status}
                 </Badge>
               </div>
-              <p className="mt-1 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+              <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
                 {r.parentName} • {r.room} • {r.age}
               </p>
             </div>
@@ -711,11 +711,11 @@ function EnrolmentTab() {
         </div>
 
         <div className="flex items-center justify-between border-t border-[#eaecf0] px-4 py-3">
-          <button className="flex items-center gap-1 font-[family-name:var(--font-nunito)] text-sm text-[#9ca3af]" disabled>
+          <button className="flex items-center gap-1 font-[family-name:var(--font-urbanist)] text-sm text-[#9ca3af]" disabled>
             <ChevronLeft className="size-4" />
             Previous
           </button>
-          <button className="flex items-center gap-1 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280] hover:text-[#2d1810]">
+          <button className="flex items-center gap-1 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280] hover:text-[#2d1810]">
             Next
             <ChevronRight className="size-4" />
           </button>
@@ -724,19 +724,19 @@ function EnrolmentTab() {
 
       {selected.size > 0 && (
         <div className="fixed inset-x-4 bottom-4 z-30 flex items-center justify-between gap-3 rounded-xl bg-white p-4 shadow-2xl lg:left-[280px] lg:right-8">
-          <span className="font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">
+          <span className="font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">
             {selected.size} children selected
           </span>
           <div className="flex gap-3">
             <button
               onClick={() => setSelected(new Set())}
-              className="rounded-lg border border-[#d0d5dd] px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810] hover:bg-[#f9fafb]"
+              className="rounded-lg border border-[#d0d5dd] px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810] hover:bg-[#f9fafb]"
             >
               Decline all {selected.size}
             </button>
             <button
               onClick={() => setSelected(new Set())}
-              className="rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]"
+              className="rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]"
             >
               Approve all {selected.size}
             </button>
@@ -774,12 +774,12 @@ function EnquiryCard({
         dragging ? "opacity-40" : ""
       }`}
     >
-      <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{enquiry.childName}</p>
-      <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+      <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">{enquiry.childName}</p>
+      <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
         Age: {enquiry.age} Class: {enquiry.preferredRoom}
       </p>
       <div className="flex items-center justify-between">
-        <span className="font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">Enquired: {enquiry.inquiryDate}</span>
+        <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#9ca3af]">Enquired: {enquiry.inquiryDate}</span>
         {urgency?.level === "overdue" && (
           <span className="flex items-center gap-1 font-[family-name:var(--font-urbanist)] text-xs text-[#cc8000]">
             <AlertTriangle className="size-3" />
@@ -852,12 +852,12 @@ function EnquiryPipelineTab() {
                   <h3 className="font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">
                     {stage}
                   </h3>
-                  <span className="rounded-md bg-[#edd9c0] px-2 py-0.5 font-[family-name:var(--font-nunito)] text-xs font-bold text-[#3b2513]">
+                  <span className="rounded-md bg-[#edd9c0] px-2 py-0.5 font-[family-name:var(--font-urbanist)] text-xs font-bold text-[#3b2513]">
                     {items.length}
                   </span>
                 </div>
                 {items.length === 0 && (
-                  <p className="rounded-lg border border-dashed border-[#e0bfa0] py-4 text-center font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">
+                  <p className="rounded-lg border border-dashed border-[#e0bfa0] py-4 text-center font-[family-name:var(--font-urbanist)] text-xs text-[#9ca3af]">
                     Drop here
                   </p>
                 )}
@@ -1061,10 +1061,10 @@ function RowDetailModal({
         <div className="flex flex-col gap-5 px-6 py-5">
           {fields.map(([label, value]) => (
             <div key={label} className="flex gap-[52px]">
-              <p className="w-[140px] shrink-0 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#6b7280]">
+              <p className="w-[140px] shrink-0 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#6b7280]">
                 {label}
               </p>
-              <div className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#1f2937]">{value}</div>
+              <div className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#1f2937]">{value}</div>
             </div>
           ))}
         </div>
@@ -1088,20 +1088,20 @@ function WaitlistRow({ entry, onView }: { entry: WaitlistEntry; onView: (entry: 
         <input type="checkbox" className="size-4 accent-[#3b2513]" />
       </td>
       <td className="px-4 py-3">
-        <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{entry.childName}</p>
-        <p className="font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">
+        <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">{entry.childName}</p>
+        <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#9ca3af]">
           {entry.gender} • Blood: {entry.bloodGroup}
         </p>
       </td>
-      <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{entry.roomRequested}</td>
-      <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{entry.dateAdded}</td>
+      <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{entry.roomRequested}</td>
+      <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{entry.dateAdded}</td>
       <td className="px-4 py-3">
-        <span className="flex items-center gap-1.5 font-[family-name:var(--font-nunito)] text-sm text-[#ef4444]">
+        <span className="flex items-center gap-1.5 font-[family-name:var(--font-urbanist)] text-sm text-[#ef4444]">
           <span className="size-1.5 rounded-full bg-[#ef4444]" />
           {entry.waitDays} days
         </span>
       </td>
-      <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{entry.enrolledSiblings}</td>
+      <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{entry.enrolledSiblings}</td>
       <td className="px-4 py-3">
         <Badge variant="outline" className={WAITLIST_STATUS_BADGE_CLASS[entry.status]}>
           {entry.status}
@@ -1152,7 +1152,7 @@ function WaitlistTab() {
             <tr className="bg-[#edd9c0]">
               <th className="w-10 px-4 py-3" />
               {["Child", "Room Requested", "Date Added", "Wait Period", "Enrolled Siblings", "Status", "Action"].map((h) => (
-                <th key={h} className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black">
+                <th key={h} className="px-4 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-normal text-black">
                   {h}
                 </th>
               ))}
@@ -1161,7 +1161,7 @@ function WaitlistTab() {
           <tbody className="bg-white">
             {filtered.length === 0 ? (
               <tr>
-                <td colSpan={8} className="py-10 text-center font-[family-name:var(--font-nunito)] text-sm text-[#9ca3af]">
+                <td colSpan={8} className="py-10 text-center font-[family-name:var(--font-urbanist)] text-sm text-[#9ca3af]">
                   No waitlist entries match your search or filters.
                 </td>
               </tr>
@@ -1174,7 +1174,7 @@ function WaitlistTab() {
       {/* Mobile cards */}
       <div className="flex flex-col gap-2 px-4 pb-4 lg:hidden">
         {filtered.length === 0 && (
-          <p className="py-6 text-center font-[family-name:var(--font-nunito)] text-sm text-[#9ca3af]">
+          <p className="py-6 text-center font-[family-name:var(--font-urbanist)] text-sm text-[#9ca3af]">
             No waitlist entries match your search or filters.
           </p>
         )}
@@ -1185,12 +1185,12 @@ function WaitlistTab() {
             className="cursor-pointer rounded-xl border border-[#eaecf0] p-3"
           >
             <div className="flex items-center justify-between">
-              <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{entry.childName}</span>
+              <span className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">{entry.childName}</span>
               <Badge variant="outline" className={WAITLIST_STATUS_BADGE_CLASS[entry.status]}>
                 {entry.status}
               </Badge>
             </div>
-            <p className="mt-1 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+            <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
               {entry.roomRequested} • Waiting {entry.waitDays} days
             </p>
           </div>
@@ -1233,17 +1233,17 @@ function TrialSessionRow({ session, onView }: { session: TrialSession; onView: (
         <input type="checkbox" className="size-4 accent-[#3b2513]" />
       </td>
       <td className="px-4 py-3">
-        <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{session.childName}</p>
-        <p className="font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">
+        <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">{session.childName}</p>
+        <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#9ca3af]">
           {session.gender} • Blood: {session.bloodGroup}
         </p>
       </td>
-      <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{session.room}</td>
-      <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{session.trialDate}</td>
-      <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{session.period}</td>
-      <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{session.assignedTo}</td>
+      <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{session.room}</td>
+      <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{session.trialDate}</td>
+      <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{session.period}</td>
+      <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{session.assignedTo}</td>
       <td className="px-4 py-3">
-        <span className={cn("flex items-center gap-1.5 font-[family-name:var(--font-nunito)] text-sm", TRIAL_STATUS_TEXT_CLASS[session.status])}>
+        <span className={cn("flex items-center gap-1.5 font-[family-name:var(--font-urbanist)] text-sm", TRIAL_STATUS_TEXT_CLASS[session.status])}>
           {session.status === "Not Suitable" ? (
             <AlertTriangle className="size-3.5" />
           ) : (
@@ -1252,7 +1252,7 @@ function TrialSessionRow({ session, onView }: { session: TrialSession; onView: (
           {session.status}
         </span>
       </td>
-      <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{session.notes}</td>
+      <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{session.notes}</td>
       <td className="px-4 py-3" onClick={(e) => e.stopPropagation()}>
         <button onClick={() => onView(session)} className="flex items-center justify-center text-[#6b7280] hover:text-[#2d1810]">
           <MoreVertical className="size-4" />
@@ -1314,7 +1314,7 @@ function TrialSessionsTab() {
               <tr className="bg-[#edd9c0]">
                 <th className="w-10 px-4 py-3" />
                 {["Child", "Room", "Trial Date", "Period", "Assigned To", "Status", "Notes", "Action"].map((h) => (
-                  <th key={h} className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black">
+                  <th key={h} className="px-4 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-normal text-black">
                     {h}
                   </th>
                 ))}
@@ -1323,7 +1323,7 @@ function TrialSessionsTab() {
             <tbody className="bg-white">
               {filtered.length === 0 ? (
                 <tr>
-                  <td colSpan={9} className="py-10 text-center font-[family-name:var(--font-nunito)] text-sm text-[#9ca3af]">
+                  <td colSpan={9} className="py-10 text-center font-[family-name:var(--font-urbanist)] text-sm text-[#9ca3af]">
                     No trial sessions match your search or filters.
                   </td>
                 </tr>
@@ -1338,7 +1338,7 @@ function TrialSessionsTab() {
         {/* Mobile cards */}
         <div className="flex flex-col gap-2 px-4 pb-4 lg:hidden">
           {filtered.length === 0 && (
-            <p className="py-6 text-center font-[family-name:var(--font-nunito)] text-sm text-[#9ca3af]">
+            <p className="py-6 text-center font-[family-name:var(--font-urbanist)] text-sm text-[#9ca3af]">
               No trial sessions match your search or filters.
             </p>
           )}
@@ -1349,13 +1349,13 @@ function TrialSessionsTab() {
               className="cursor-pointer rounded-xl border border-[#eaecf0] p-3"
             >
               <div className="flex items-center justify-between">
-                <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{session.childName}</span>
-                <span className={cn("flex items-center gap-1.5 font-[family-name:var(--font-nunito)] text-xs", TRIAL_STATUS_TEXT_CLASS[session.status])}>
+                <span className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">{session.childName}</span>
+                <span className={cn("flex items-center gap-1.5 font-[family-name:var(--font-urbanist)] text-xs", TRIAL_STATUS_TEXT_CLASS[session.status])}>
                   <span className={cn("size-1.5 rounded-full", TRIAL_STATUS_DOT_CLASS[session.status])} />
                   {session.status}
                 </span>
               </div>
-              <p className="mt-1 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+              <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
                 {session.room} • {session.trialDate} • {session.period}
               </p>
             </div>
@@ -1385,7 +1385,7 @@ function TrialSessionsTab() {
         title="Trial Session"
         badge={
           viewing && (
-            <span className={cn("flex items-center gap-1.5 font-[family-name:var(--font-nunito)] text-sm", TRIAL_STATUS_TEXT_CLASS[viewing.status])}>
+            <span className={cn("flex items-center gap-1.5 font-[family-name:var(--font-urbanist)] text-sm", TRIAL_STATUS_TEXT_CLASS[viewing.status])}>
               <span className={cn("size-1.5 rounded-full", TRIAL_STATUS_DOT_CLASS[viewing.status])} />
               {viewing.status}
             </span>
@@ -1417,20 +1417,20 @@ function LeaverRow({ leaver, onView }: { leaver: LeaverRecord; onView: (leaver: 
         <input type="checkbox" className="size-4 accent-[#3b2513]" />
       </td>
       <td className="px-4 py-3">
-        <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{leaver.childName}</p>
-        <p className="font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">
+        <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">{leaver.childName}</p>
+        <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#9ca3af]">
           {leaver.gender} • Blood: {leaver.bloodGroup}
         </p>
       </td>
-      <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">
+      <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">
         {leaver.roomIcon} {leaver.room}
       </td>
-      <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{leaver.reason}</td>
-      <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{leaver.lastDay}</td>
-      <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{leaver.noticeGiven}</td>
-      <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{leaver.exitSurvey}</td>
+      <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{leaver.reason}</td>
+      <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{leaver.lastDay}</td>
+      <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{leaver.noticeGiven}</td>
+      <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{leaver.exitSurvey}</td>
       <td className="px-4 py-3">
-        <span className="flex items-center gap-1.5 font-[family-name:var(--font-nunito)] text-sm text-[#009061]">
+        <span className="flex items-center gap-1.5 font-[family-name:var(--font-urbanist)] text-sm text-[#009061]">
           <span className="size-1.5 rounded-full bg-[#009061]" />
           {leaver.dataArchived}
         </span>
@@ -1482,7 +1482,7 @@ function LeaversTab() {
             <tr className="bg-[#edd9c0]">
               <th className="w-10 px-4 py-3" />
               {["Child", "Room", "Reason", "Last Day", "Notice Given", "Exit Survey", "Data Archived"].map((h) => (
-                <th key={h} className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black">
+                <th key={h} className="px-4 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-normal text-black">
                   {h}
                 </th>
               ))}
@@ -1491,7 +1491,7 @@ function LeaversTab() {
           <tbody className="bg-white">
             {filtered.length === 0 ? (
               <tr>
-                <td colSpan={8} className="py-10 text-center font-[family-name:var(--font-nunito)] text-sm text-[#9ca3af]">
+                <td colSpan={8} className="py-10 text-center font-[family-name:var(--font-urbanist)] text-sm text-[#9ca3af]">
                   No leavers match your search or filters.
                 </td>
               </tr>
@@ -1504,7 +1504,7 @@ function LeaversTab() {
       {/* Mobile cards */}
       <div className="flex flex-col gap-2 px-4 pb-4 lg:hidden">
         {filtered.length === 0 && (
-          <p className="py-6 text-center font-[family-name:var(--font-nunito)] text-sm text-[#9ca3af]">
+          <p className="py-6 text-center font-[family-name:var(--font-urbanist)] text-sm text-[#9ca3af]">
             No leavers match your search or filters.
           </p>
         )}
@@ -1514,8 +1514,8 @@ function LeaversTab() {
             onClick={() => setViewing(leaver)}
             className="cursor-pointer rounded-xl border border-[#eaecf0] p-3"
           >
-            <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{leaver.childName}</span>
-            <p className="mt-1 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+            <span className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">{leaver.childName}</span>
+            <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
               {leaver.roomIcon} {leaver.room} • {leaver.reason}
             </p>
           </div>

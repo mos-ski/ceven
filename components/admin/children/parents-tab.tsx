@@ -49,7 +49,7 @@ export function ParentsTab() {
             <thead>
               <tr className="bg-table-header-bg">
                 {["Parent", "Emergency Contact", "Child/Children", "Due Payment", "App Status", "Action"].map((col) => (
-                  <th key={col} className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black">
+                  <th key={col} className="px-4 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-normal text-black">
                     {col}
                   </th>
                 ))}
@@ -59,21 +59,21 @@ export function ParentsTab() {
               {PARENTS.map((parent) => (
                 <tr key={parent.id} className="border-t border-table-border hover:bg-[#faf9f7]">
                   <td className="px-4 py-3">
-                    <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-black">{parent.name}</p>
-                    <p className="font-[family-name:var(--font-nunito)] text-[10px] text-otp-text">
+                    <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-black">{parent.name}</p>
+                    <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-otp-text">
                       {parent.email} • {parent.phone}
                     </p>
                   </td>
                   <td className="px-4 py-3">
-                    <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-black">{parent.name}</p>
-                    <p className="font-[family-name:var(--font-nunito)] text-[10px] text-otp-text">
+                    <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-black">{parent.name}</p>
+                    <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-otp-text">
                       {parent.email} • {parent.phone}
                     </p>
                   </td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">
                     {parent.childName}
                   </td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm">
+                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm">
                     {parent.dueAmount ? (
                       <span className="font-semibold text-[#cd3030]">{parent.dueAmount}</span>
                     ) : (
@@ -86,7 +86,7 @@ export function ParentsTab() {
                         Installed
                       </Badge>
                     ) : (
-                      <button className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-brand-dark underline">
+                      <button className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-brand-dark underline">
                         Send App Invite
                       </button>
                     )}
@@ -122,18 +122,18 @@ export function ParentsTab() {
               className="block rounded-xl border border-[#eaecf0] p-3 transition-colors hover:bg-[#faf9f7]"
             >
               <div className="flex items-center justify-between">
-                <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-black">{parent.name}</span>
+                <span className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-black">{parent.name}</span>
                 {parent.appStatus === "Installed" ? (
                   <Badge variant="outline" className="border-transparent bg-badge-success-bg text-success-text">
                     Installed
                   </Badge>
                 ) : (
-                  <span className="font-[family-name:var(--font-nunito)] text-xs font-semibold text-brand-dark underline">
+                  <span className="font-[family-name:var(--font-urbanist)] text-xs font-semibold text-brand-dark underline">
                     Send App Invite
                   </span>
                 )}
               </div>
-              <span className="font-[family-name:var(--font-nunito)] text-xs text-[#858c98]">
+              <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#858c98]">
                 {parent.childName} • {parent.dueAmount ?? "No due payment"}
               </span>
             </Link>

@@ -179,10 +179,10 @@ export default function CaregiverInviteVerifyPage({ params }: { params: Promise<
                 : "Your caregiver profile is ready without a business setup step."}
             </p>
             <button
-              onClick={() => router.replace("/caregiver/children")}
+              onClick={() => router.replace("/caregiver/v3")}
               className="mt-6 w-full rounded-2xl bg-cg-brand py-3 text-sm font-bold text-white"
             >
-              View My Families
+              Open Parent/Caregiver v3
             </button>
           </div>
         </div>

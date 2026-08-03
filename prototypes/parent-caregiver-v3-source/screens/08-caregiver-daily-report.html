@@ -1,0 +1,66 @@
+<div style="flex:1;overflow-y:auto;padding:8px 20px 100px;display:flex;flex-direction:column;gap:16px" data-screen-label="Caregiver · Daily Report">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div>
+            <div style="font-family:'Merriweather';font-weight:700;font-size:24px;color:#1F2937">Daily report</div>
+            <div style="font-family:'Urbanist';font-size:13px;color:#6B7280;margin-top:2px">Saturday, 2 August · builds itself as you log</div>
+          </div>
+          <span style="{{reportChip}}">{{reportChipLabel}}</span>
+        </div>
+
+        <div style="background:#fff;border:1px solid #E6EBF3;border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="width:36px;height:36px;border-radius:50%;background:#F7E8D4;display:flex;align-items:center;justify-content:center;font-family:'Urbanist';font-weight:700;font-size:13px;color:#9A6033">Z</div>
+            <div style="font-family:'Urbanist';font-weight:700;font-size:15px;color:#1F2937">Zara · 4 yrs</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+            <div style="background:#FFF9F0;border-radius:8px;padding:10px 12px"><div style="font-family:'Urbanist';font-size:10.5px;font-weight:600;color:#6B7280">MEALS</div><div style="font-size:13px;color:#1F2937;font-weight:700;margin-top:2px">Ate all breakfast &amp; lunch</div></div>
+            <div style="background:#FFF9F0;border-radius:8px;padding:10px 12px"><div style="font-family:'Urbanist';font-size:10.5px;font-weight:600;color:#6B7280">ACTIVITIES</div><div style="font-size:13px;color:#1F2937;font-weight:700;margin-top:2px">Reading · drawing · outdoor play</div></div>
+          </div>
+          <div>
+            <div style="font-family:'Urbanist';font-size:10.5px;font-weight:600;color:#6B7280;margin-bottom:6px">MOOD TODAY</div>
+            <div style="display:flex;gap:6px">
+              <sc-for list="{{moodsZ}}" as="m" hint-placeholder-count="4"><button sc-camel-on-click="{{m.pick}}" style="{{m.style}}">{{m.icon}} {{m.name}}</button></sc-for>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:#fff;border:1px solid #E6EBF3;border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="width:36px;height:36px;border-radius:50%;background:#F7E8D4;display:flex;align-items:center;justify-content:center;font-family:'Urbanist';font-weight:700;font-size:13px;color:#9A6033">T</div>
+            <div style="font-family:'Urbanist';font-weight:700;font-size:15px;color:#1F2937">Tobi · 18 months</div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+            <div style="background:#FFF9F0;border-radius:8px;padding:10px 12px"><div style="font-family:'Urbanist';font-size:10.5px;font-weight:600;color:#6B7280">FEEDING</div><div style="font-size:13px;color:#1F2937;font-weight:700;margin-top:2px">2 bottles · half of lunch</div></div>
+            <div style="background:#FFF9F0;border-radius:8px;padding:10px 12px"><div style="font-family:'Urbanist';font-size:10.5px;font-weight:600;color:#6B7280">SLEEP</div><div style="font-size:13px;color:#1F2937;font-weight:700;margin-top:2px">Nap 10:30–12:10 (1h 40m)</div></div>
+            <div style="background:#FFF9F0;border-radius:8px;padding:10px 12px"><div style="font-family:'Urbanist';font-size:10.5px;font-weight:600;color:#6B7280">DIAPERS</div><div style="font-size:13px;color:#1F2937;font-weight:700;margin-top:2px">3 changes · all normal</div></div>
+            <div style="background:#FFF9F0;border-radius:8px;padding:10px 12px"><div style="font-family:'Urbanist';font-size:10.5px;font-weight:600;color:#6B7280">MEDICINE</div><div style="font-size:13px;color:{{tobiMedColor}};font-weight:700;margin-top:2px">{{tobiMedText}}</div></div>
+          </div>
+          <div>
+            <div style="font-family:'Urbanist';font-size:10.5px;font-weight:600;color:#6B7280;margin-bottom:6px">MOOD TODAY</div>
+            <div style="display:flex;gap:6px">
+              <sc-for list="{{moodsT}}" as="m" hint-placeholder-count="4"><button sc-camel-on-click="{{m.pick}}" style="{{m.style}}">{{m.icon}} {{m.name}}</button></sc-for>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:#fff;border:1px solid #E6EBF3;border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;justify-content:space-between;font-size:13px;color:#3B2513;padding:2px 0;border-bottom:1px solid #F1E6D6;padding-bottom:9px"><span>Spending today (receipt attached)</span><strong>₦4,500</strong></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;color:#3B2513"><span>Running low</span><strong style="color:#CD3030">Diapers · Milo · Fruits</strong></div>
+        </div>
+
+        <div style="background:#fff;border:1px solid #E6EBF3;border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:8px">
+          <div style="font-family:'Urbanist';font-weight:700;font-size:14px;color:#1F2937">Note for Mummy &amp; Daddy</div>
+          <textarea value="{{reportNote}}" sc-camel-on-change="{{onReportNote}}" placeholder="e.g. Tobi tried to say 'Zara' today!" style="border:1px solid #CCD2DC;border-radius:8px;padding:11px 14px;font-family:'Nunito';font-size:13.5px;min-height:72px;resize:none;outline:none;color:#1F2937;background:#fff"></textarea>
+          <div style="display:flex;gap:8px;align-items:center;font-size:12.5px;color:#6B7280"><span>📷 4 photos attached</span><span>·</span><span>🎙 1 voice note</span></div>
+        </div>
+
+        <sc-if value="{{reportNotSent}}" hint-placeholder-val="{{true}}">
+          <button sc-camel-on-click="{{sendReport}}" style="background:#3B2513;color:#FFF9F0;border:none;border-radius:8px;padding:15px;font-family:'Urbanist';font-weight:700;font-size:15px;cursor:pointer">Send today's report</button>
+        </sc-if>
+        <sc-if value="{{reportSentFlag}}" hint-placeholder-val="{{false}}">
+          <div style="background:#E1F5EC;border:1px solid #009061;border-radius:8px;padding:14px 16px;display:flex;gap:10px;align-items:center">
+            <svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="#009061" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+            <span style="font-size:13.5px;color:#009061;font-weight:700">Report sent at 6:02 PM — Mummy &amp; Daddy notified</span>
+          </div>
+        </sc-if>
+      </div>

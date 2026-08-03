@@ -1,0 +1,74 @@
+<div style="flex:1;overflow-y:auto;padding:8px 20px 100px;display:flex;flex-direction:column;gap:16px" data-screen-label="Tutor · Sessions">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div>
+            <div style="font-family:'Merriweather';font-weight:700;font-size:24px;color:#1F2937">Good afternoon, Daniel</div>
+            <div style="font-family:'Urbanist';font-size:13px;color:#6B7280;margin-top:2px">Tuesday, 5 August · Zara &amp; Tobi · 4:00–5:30 PM</div>
+          </div>
+          <div style="width:40px;height:40px;border-radius:50%;background:#E0BFA0;border:1px solid #D4A67F;display:flex;align-items:center;justify-content:center;font-family:'Urbanist';font-weight:700;font-size:14px;color:#3B2513">D</div>
+        </div>
+        <sc-if value="{{sessBefore}}" hint-placeholder-val="{{true}}">
+          <div style="background:#fff;border:1px solid #E6EBF3;border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-family:'Urbanist';font-weight:700;font-size:14px;color:#1F2937">Today's session</span>
+              <span style="font-family:'Urbanist';font-size:11px;font-weight:700;background:#EFF6FF;color:#3B82F6;padding:3px 10px;border-radius:99px">CONFIRMED</span>
+            </div>
+            <div style="font-size:13px;color:#6B7280;line-height:1.5">Zara — Maths (fractions) · Tobi — Phonics. Checking in starts the verified timer the parents see, even from work.</div>
+            <button sc-camel-on-click="{{tCheckIn}}" style="background:#3B2513;color:#FFF9F0;border:none;border-radius:8px;padding:13px;font-family:'Urbanist';font-weight:700;font-size:14px;cursor:pointer">Check in — start session</button>
+          </div>
+        </sc-if>
+        <sc-if value="{{sessLive}}" hint-placeholder-val="{{false}}">
+          <div style="background:#E1F5EC;border:1px solid #009061;border-radius:8px;padding:14px 16px;display:flex;gap:10px;align-items:center">
+            <span style="width:9px;height:9px;border-radius:50%;background:#009061;animation:pulse 1.6s infinite;flex:none"></span>
+            <span style="font-size:13px;color:#009061;font-weight:700;flex:1">In session — checked in 4:02 PM. Funke sees this live.</span>
+          </div>
+          <div style="background:#fff;border:1px solid #E6EBF3;border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:6px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+              <span style="font-family:'Urbanist';font-weight:700;font-size:14px;color:#1F2937">Lesson plan</span>
+              <span style="font-family:'Urbanist';font-size:11px;font-weight:700;color:#6B7280">{{objDone}}/{{objTotal}} done</span>
+            </div>
+            <div style="height:6px;background:#F1E6D6;border-radius:99px;overflow:hidden;margin-bottom:6px"><div style="{{objBarStyle}}"></div></div>
+            <sc-for list="{{tPlan}}" as="p" hint-placeholder-count="4">
+              <div style="display:flex;flex-direction:column">
+                <div sc-camel-on-click="{{p.toggle}}" style="{{p.row}}">
+                  <span style="{{p.circle}}"><sc-if value="{{p.done}}" hint-placeholder-val="{{false}}"><svg width="12" height="12" sc-camel-view-box="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></sc-if></span>
+                  <span style="{{p.text}}">{{p.name}}</span>
+                </div>
+                <sc-if value="{{p.showRate}}" hint-placeholder-val="{{false}}">
+                  <div style="display:flex;gap:5px;align-items:center;margin:0 0 8px 32px">
+                    <sc-for list="{{p.rates}}" as="r" hint-placeholder-count="3">
+                      <button sc-camel-on-click="{{r.pick}}" style="{{r.style}}">{{r.n}}</button>
+                    </sc-for>
+                    <button sc-camel-on-click="{{p.addEv}}" style="{{p.evStyle}}">{{p.evLabel}}</button>
+                  </div>
+                </sc-if>
+              </div>
+            </sc-for>
+            <div style="display:flex;gap:8px;margin-top:6px">
+              <input value="{{tTopicInput}}" sc-camel-on-change="{{onTopicInput}}" sc-camel-on-key-down="{{onTopicKey}}" placeholder="Add a topic — Funke sees the plan live" style="flex:1;border:1px solid #CCD2DC;border-radius:8px;padding:10px 13px;font-family:'Nunito';font-size:13px;background:#fff;outline:none;color:#1F2937">
+              <button sc-camel-on-click="{{addTopic}}" style="background:#3B2513;color:#FFF9F0;border:none;border-radius:8px;padding:0 16px;font-family:'Urbanist';font-weight:700;font-size:13px;cursor:pointer">Add</button>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+            <button sc-camel-on-click="{{tLogQuiz}}" style="{{quizBtnStyle}}">{{quizBtnLabel}}</button>
+            <button sc-camel-on-click="{{openCam}}" style="background:#fff;border:1.5px dashed #D4A67F;border-radius:8px;padding:11px 6px;font-family:'Urbanist';font-weight:700;font-size:11.5px;color:#3B2513;cursor:pointer">📷 Work sample</button>
+            <button sc-camel-on-click="{{tAssignHw}}" style="{{hwBtnStyle}}">{{hwBtnLabel}}</button>
+          </div>
+          <button sc-camel-on-click="{{tEndSession}}" style="background:#3B2513;color:#FFF9F0;border:none;border-radius:8px;padding:14px;font-family:'Urbanist';font-weight:700;font-size:14px;cursor:pointer">End session — recap goes to parents automatically</button>
+        </sc-if>
+        <sc-if value="{{sessDone}}" hint-placeholder-val="{{false}}">
+          <div style="background:#E1F5EC;border:1px solid #009061;border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:6px">
+            <div style="font-family:'Urbanist';font-weight:700;font-size:14px;color:#009061">Session ended 5:31 PM · 1h 29m verified ✓</div>
+            <div style="font-size:12.5px;color:#1F2937;line-height:1.5">Recap sent to Funke &amp; Tunde. All work marked in-app — they don't need to check any books.</div>
+          </div>
+        </sc-if>
+        <div style="background:#fff;border:1px solid #E6EBF3;border-radius:8px;padding:14px 16px;display:flex;flex-direction:column;gap:4px">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-family:'Urbanist';font-weight:700;font-size:14px;color:#1F2937">Planned for Thursday</span>
+            <span style="font-family:'Urbanist';font-size:11px;font-weight:700;background:#F7E8D4;color:#9A6033;padding:3px 10px;border-radius:99px">SHARED WITH PARENTS</span>
+          </div>
+          <div style="font-size:12.5px;color:#6B7280;line-height:1.5">Review fractions with real objects · new sounds F, L · 5-min recall quiz.</div>
+        </div>
+        <div style="background:#F7E8D4;border:1px solid #EDD9C0;border-radius:8px;padding:11px 14px;display:flex;gap:8px;align-items:flex-start">
+          <span style="font-size:12px">📌</span><span style="font-size:12.5px;color:#3B2513;font-weight:600;line-height:1.5">From Funke: Zara has swimming Thursday — please finish by 5:15 sharp. Snacks are in the blue cooler.</span>
+        </div>
+      </div>

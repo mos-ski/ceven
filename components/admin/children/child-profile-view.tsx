@@ -103,8 +103,8 @@ function OverviewTab({ child }: { child: Child }) {
         <div className="grid grid-cols-2 gap-3 lg:grid-cols-3">
           {infoCards.map((card) => (
             <div key={card.label} className="rounded-xl border border-[#e6ebf3] bg-white p-3">
-              <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{card.label}</p>
-              <p className="mt-1 font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{card.value}</p>
+              <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{card.label}</p>
+              <p className="mt-1 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">{card.value}</p>
             </div>
           ))}
         </div>
@@ -114,13 +114,13 @@ function OverviewTab({ child }: { child: Child }) {
           <p className="mb-3 font-[family-name:var(--font-merriweather)] text-sm font-bold text-[#2d1810]">Primary Parent</p>
           <div className="flex items-center gap-3">
             <div className="flex size-10 items-center justify-center rounded-full bg-[#edd9c0]">
-              <span className="font-[family-name:var(--font-nunito)] text-sm font-bold text-[#3b2513]">
+              <span className="font-[family-name:var(--font-urbanist)] text-sm font-bold text-[#3b2513]">
                 {getInitials(child.parentName)}
               </span>
             </div>
             <div>
-              <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{child.parentName}</p>
-              <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{child.parentEmail}</p>
+              <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">{child.parentName}</p>
+              <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{child.parentEmail}</p>
             </div>
           </div>
           <div className="mt-3 flex gap-2">
@@ -144,7 +144,7 @@ function OverviewTab({ child }: { child: Child }) {
               />
             ))}
           </div>
-          <p className="mt-2 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Avg 4.1 / 5 this week</p>
+          <p className="mt-2 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Avg 4.1 / 5 this week</p>
         </div>
 
         {/* Health Status */}
@@ -152,18 +152,18 @@ function OverviewTab({ child }: { child: Child }) {
           <p className="mb-2 font-[family-name:var(--font-merriweather)] text-sm font-bold text-[#2d1810]">Health Status</p>
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Allergies</span>
-              <span className="font-[family-name:var(--font-nunito)] text-xs font-medium text-[#ef4444]">
+              <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Allergies</span>
+              <span className="font-[family-name:var(--font-urbanist)] text-xs font-medium text-[#ef4444]">
                 {child.healthFlag ?? "None reported"}
               </span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Last Checkup</span>
-              <span className="font-[family-name:var(--font-nunito)] text-xs font-medium text-[#2d1810]">Oct 5, 2025</span>
+              <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Last Checkup</span>
+              <span className="font-[family-name:var(--font-urbanist)] text-xs font-medium text-[#2d1810]">Oct 5, 2025</span>
             </div>
             <div className="flex items-center justify-between">
-              <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Health Flag</span>
-              <span className="font-[family-name:var(--font-nunito)] text-xs font-medium text-[#f59e0b]">
+              <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Health Flag</span>
+              <span className="font-[family-name:var(--font-urbanist)] text-xs font-medium text-[#f59e0b]">
                 {child.healthFlag ? "Monitor" : "None"}
               </span>
             </div>
@@ -197,9 +197,9 @@ function ActivityLogTab({ child }: { child: Child }) {
         <div className="mb-4 grid grid-cols-3 gap-3">
           {todayCards.map((item) => (
             <div key={item.label} className="rounded-lg border border-[#e6ebf3] p-3">
-              <p className="font-[family-name:var(--font-nunito)] text-[10px] text-[#6b7280]">{item.label}</p>
+              <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#6b7280]">{item.label}</p>
               <p
-                className="mt-1 font-[family-name:var(--font-nunito)] text-sm font-semibold"
+                className="mt-1 font-[family-name:var(--font-urbanist)] text-sm font-semibold"
                 style={{ color: item.color }}
               >
                 {item.value}
@@ -208,11 +208,11 @@ function ActivityLogTab({ child }: { child: Child }) {
           ))}
         </div>
         <div className="rounded-lg border border-[#e0bfa0] bg-[#fdf6e8] p-3">
-          <p className="mb-1 font-[family-name:var(--font-nunito)] text-xs font-semibold text-[#2d1810]">Caregiver Note</p>
-          <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+          <p className="mb-1 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-[#2d1810]">Caregiver Note</p>
+          <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
             {firstName} had a great day today! {child.gender === "M" ? "He" : "She"} participated actively in story time and showed kindness to younger children during play. Ate all {child.gender === "M" ? "his" : "her"} lunch and napped for 1hr 20min.
           </p>
-          <p className="mt-1 font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">— Mrs. Sarah Okonkwo, 3:50 PM</p>
+          <p className="mt-1 font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">— Mrs. Sarah Okonkwo, 3:50 PM</p>
         </div>
       </div>
 
@@ -230,7 +230,7 @@ function ActivityLogTab({ child }: { child: Child }) {
           <thead>
             <tr className="bg-[#edd9c0]">
               {["Date", "Mood", "Meals", "Nap", "Activity", "Caregiver", "Notes"].map((col) => (
-                <th key={col} className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black">
+                <th key={col} className="px-4 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-normal text-black">
                   {col}
                 </th>
               ))}
@@ -239,13 +239,13 @@ function ActivityLogTab({ child }: { child: Child }) {
           <tbody className="bg-white">
             {activityLogRows.map((row, i) => (
               <tr key={i} className="border-t border-[#eaecf0]">
-                <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{row.date}</td>
-                <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{row.mood}</td>
-                <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{row.meals}</td>
-                <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{row.nap}</td>
-                <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{row.activity}</td>
-                <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{row.caregiver}</td>
-                <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">{row.notes}</td>
+                <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{row.date}</td>
+                <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{row.mood}</td>
+                <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{row.meals}</td>
+                <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{row.nap}</td>
+                <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{row.activity}</td>
+                <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{row.caregiver}</td>
+                <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">{row.notes}</td>
               </tr>
             ))}
           </tbody>
@@ -255,8 +255,8 @@ function ActivityLogTab({ child }: { child: Child }) {
           {activityLogRows.map((row, i) => (
             <div key={i} className="rounded-xl border border-[#eaecf0] p-3">
               <div className="flex items-center justify-between">
-                <span className="font-[family-name:var(--font-nunito)] text-xs font-medium text-[#2d1810]">{row.date}</span>
-                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{row.caregiver}</span>
+                <span className="font-[family-name:var(--font-urbanist)] text-xs font-medium text-[#2d1810]">{row.date}</span>
+                <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{row.caregiver}</span>
               </div>
               <div className="mt-2 flex flex-wrap gap-2">
                 <span className="rounded-full bg-[#ecfff8] px-2 py-0.5 font-[family-name:var(--font-urbanist)] text-[10px] text-[#009061]">{row.mood}</span>
@@ -265,7 +265,7 @@ function ActivityLogTab({ child }: { child: Child }) {
                 <span className="rounded-full bg-[#f5f5f5] px-2 py-0.5 font-[family-name:var(--font-urbanist)] text-[10px] text-[#6b7280]">{row.activity}</span>
               </div>
               {row.notes && (
-                <p className="mt-2 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{row.notes}</p>
+                <p className="mt-2 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{row.notes}</p>
               )}
             </div>
           ))}
@@ -302,7 +302,7 @@ function HealthStatusTab({ child }: { child: Child }) {
           <p className="font-[family-name:var(--font-merriweather)] text-sm font-bold text-[#2d1810]">Health Information</p>
           <button
             onClick={() => setGrowthOpen(true)}
-            className="font-[family-name:var(--font-nunito)] text-xs font-semibold text-[#3b2513] underline"
+            className="font-[family-name:var(--font-urbanist)] text-xs font-semibold text-[#3b2513] underline"
           >
             Log Growth
           </button>
@@ -310,8 +310,8 @@ function HealthStatusTab({ child }: { child: Child }) {
         <div className="space-y-3">
           {healthInfo.map(([k, v]) => (
             <div key={k} className="flex items-start justify-between border-b border-[#f3f4f6] pb-2 last:border-0">
-              <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{k}</span>
-              <span className="max-w-[180px] text-right font-[family-name:var(--font-nunito)] text-xs font-semibold text-[#2d1810]">{v}</span>
+              <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{k}</span>
+              <span className="max-w-[180px] text-right font-[family-name:var(--font-urbanist)] text-xs font-semibold text-[#2d1810]">{v}</span>
             </div>
           ))}
         </div>
@@ -327,8 +327,8 @@ function HealthStatusTab({ child }: { child: Child }) {
                   <FileText className="size-4 text-[#3b2513]" />
                 </div>
                 <div>
-                  <p className="font-[family-name:var(--font-nunito)] text-xs font-semibold text-[#2d1810]">{doc.name}</p>
-                  <p className="font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">{doc.date}</p>
+                  <p className="font-[family-name:var(--font-urbanist)] text-xs font-semibold text-[#2d1810]">{doc.name}</p>
+                  <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">{doc.date}</p>
                 </div>
               </div>
               <button className="font-[family-name:var(--font-urbanist)] text-xs text-[#3b2513] underline">View</button>
@@ -370,7 +370,7 @@ function PaymentHistoryTab() {
           <thead>
             <tr className="bg-[#edd9c0]">
               {["Room Plan", "Reference ID", "Amount", "Date", "Invoice", "Status", "Action"].map((col) => (
-                <th key={col} className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black">
+                <th key={col} className="px-4 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-normal text-black">
                   {col}
                 </th>
               ))}
@@ -381,14 +381,14 @@ function PaymentHistoryTab() {
               <tr key={i} className="border-t border-[#eaecf0]">
                 <td className="px-4 py-3">
                   <div className="flex flex-col gap-0.5">
-                    <span className="font-[family-name:var(--font-nunito)] text-sm font-bold text-[#2d1810]">{row.plan}</span>
-                    <span className="font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">{row.boldAmount}</span>
+                    <span className="font-[family-name:var(--font-urbanist)] text-sm font-bold text-[#2d1810]">{row.plan}</span>
+                    <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#9ca3af]">{row.boldAmount}</span>
                   </div>
                 </td>
-                <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{row.ref}</td>
-                <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{row.amount}</td>
-                <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{row.date}</td>
-                <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{row.invoice}</td>
+                <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{row.ref}</td>
+                <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{row.amount}</td>
+                <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{row.date}</td>
+                <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{row.invoice}</td>
                 <td className="px-4 py-3">
                   <PaymentStatusBadge status={row.status} />
                 </td>
@@ -408,13 +408,13 @@ function PaymentHistoryTab() {
             <div key={i} className="rounded-xl border border-[#eaecf0] p-3">
               <div className="flex items-center justify-between">
                 <div className="flex flex-col gap-0.5">
-                  <span className="font-[family-name:var(--font-nunito)] text-sm font-bold text-[#2d1810]">{row.plan}</span>
-                  <span className="font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">{row.boldAmount}</span>
+                  <span className="font-[family-name:var(--font-urbanist)] text-sm font-bold text-[#2d1810]">{row.plan}</span>
+                  <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#9ca3af]">{row.boldAmount}</span>
                 </div>
                 <PaymentStatusBadge status={row.status} />
               </div>
               <div className="mt-2 flex items-center justify-between">
-                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{row.date} • {row.invoice}</span>
+                <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{row.date} • {row.invoice}</span>
                 <button className="flex items-center gap-1.5 text-[#3b2513] hover:opacity-70">
                   <Download className="h-3.5 w-3.5" />
                   <span className="font-[family-name:var(--font-urbanist)] text-[10px]">Receipt</span>
@@ -450,7 +450,7 @@ function DevelopmentTab() {
                 {m.achieved ? "✓" : "○"}
               </span>
               <span
-                className={`font-[family-name:var(--font-nunito)] text-sm ${
+                className={`font-[family-name:var(--font-urbanist)] text-sm ${
                   m.achieved ? "text-[#2d1810]" : "text-[#9ca3af]"
                 }`}
               >
@@ -500,7 +500,7 @@ function ContactTab({ child }: { child: Child }) {
         <thead>
           <tr className="bg-[#edd9c0]">
             {["Name", "Relationship", "Phone", "Email", "Access Level", "Action"].map((col) => (
-              <th key={col} className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black">
+              <th key={col} className="px-4 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-normal text-black">
                 {col}
               </th>
             ))}
@@ -509,10 +509,10 @@ function ContactTab({ child }: { child: Child }) {
         <tbody className="bg-white">
           {contacts.map((c, i) => (
             <tr key={i} className="border-t border-[#eaecf0]">
-              <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{c.name}</td>
-              <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">{c.relationship}</td>
-              <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{c.phone}</td>
-              <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{c.email}</td>
+              <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">{c.name}</td>
+              <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">{c.relationship}</td>
+              <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{c.phone}</td>
+              <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{c.email}</td>
               <td className="px-4 py-3">
                 {c.access === "Primary" ? (
                   <span className="inline-flex items-center rounded-full bg-[#2d1810] px-2.5 py-0.5 font-[family-name:var(--font-urbanist)] text-xs text-[#faf2e1]">
@@ -539,8 +539,8 @@ function ContactTab({ child }: { child: Child }) {
           <div key={i} className="rounded-xl border border-[#eaecf0] p-3">
             <div className="flex items-center justify-between">
               <div className="flex flex-col gap-0.5">
-                <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{c.name}</span>
-                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{c.relationship}</span>
+                <span className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">{c.name}</span>
+                <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{c.relationship}</span>
               </div>
               {c.access === "Primary" ? (
                 <span className="inline-flex items-center rounded-full bg-[#2d1810] px-2.5 py-0.5 font-[family-name:var(--font-urbanist)] text-xs text-[#faf2e1]">
@@ -553,7 +553,7 @@ function ContactTab({ child }: { child: Child }) {
               )}
             </div>
             <div className="mt-2 flex items-center justify-between">
-              <span className="font-[family-name:var(--font-nunito)] text-xs text-[#2d1810]">{c.phone}</span>
+              <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#2d1810]">{c.phone}</span>
               <button className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#3b2513] underline hover:opacity-70">Edit</button>
             </div>
           </div>
@@ -638,7 +638,7 @@ export function ChildProfileView({ child }: { child: Child }) {
           <div className="text-center">
             <span className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#c78c5f]">Child ID: {child.id}</span>
             <h2 className="font-[family-name:var(--font-merriweather)] text-xl font-bold text-[#f5edd8]">{child.name}</h2>
-            <p className="font-[family-name:var(--font-nunito)] text-xs text-[#c78c5f]">
+            <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#c78c5f]">
               {child.gender === "M" ? "Male" : "Female"} • {child.age} • Blood: {child.bloodGroup}
             </p>
             <div className="mt-2 flex items-center justify-center gap-2">
@@ -663,7 +663,7 @@ export function ChildProfileView({ child }: { child: Child }) {
           <div className="absolute left-44 top-1/2 -translate-y-1/2">
             <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#c78c5f]">Child ID: {child.id}</span>
             <h2 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#f5edd8]">{child.name}</h2>
-            <p className="font-[family-name:var(--font-nunito)] text-xs text-[#c78c5f]">
+            <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#c78c5f]">
               {child.gender === "M" ? "Male" : "Female"} • {child.age} • Blood: {child.bloodGroup}
             </p>
             <div className="mt-2 flex items-center gap-2">
@@ -681,8 +681,8 @@ export function ChildProfileView({ child }: { child: Child }) {
         <div className="flex items-start gap-3 rounded-xl border border-[#e0bfa0] bg-[#fdf6e8] px-4 py-3">
           <span className="text-[#c47b2c]">✦</span>
           <div className="flex-1">
-            <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">Ada AI Observations</p>
-            <p className="mt-0.5 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+            <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">Ada AI Observations</p>
+            <p className="mt-0.5 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
               {firstName} has shown improved social engagement this week. {child.gender === "M" ? "His" : "Her"} mood score is trending up at 4.2/5. Consider scheduling a parent update to share the progress.
             </p>
           </div>

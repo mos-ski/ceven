@@ -34,7 +34,7 @@ export default function SuccessModal({ title, description, onClose, closeLabel =
             <p className="font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">
               {title}
             </p>
-            <p className="font-[family-name:var(--font-nunito)] text-sm leading-relaxed text-[#6b7280]">
+            <p className="font-[family-name:var(--font-urbanist)] text-sm leading-relaxed text-[#6b7280]">
               {description}
             </p>
           </div>

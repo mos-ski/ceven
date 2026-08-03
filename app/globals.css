@@ -42,22 +42,22 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  /* ── Border radius (all 0 — CEven uses sharp corners) ────────────────── */
-  --radius: 0px;
-  --radius-sm: 0px;
-  --radius-md: 0px;
-  --radius-lg: 0px;
-  --radius-xl: 0px;
-  --radius-2xl: 0px;
-  --radius-3xl: 0px;
-  --radius-4xl: 0px;
+  /* ── Border radius (CEven uses soft 8px component corners) ───────────── */
+  --radius: 8px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 8px;
+  --radius-2xl: 8px;
+  --radius-3xl: 8px;
+  --radius-4xl: 8px;
 
   /* ── Typography ──────────────────────────────────────────────────────── */
-  --font-sans: var(--font-nunito-import);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-urbanist-import);
+  --font-mono: var(--font-urbanist-import);
   --font-heading: var(--font-merriweather-import);
   --font-display: var(--font-mogra-import);
-  --font-body: var(--font-nunito-import);
+  --font-body: var(--font-urbanist-import);
   --font-ui: var(--font-urbanist-import);
 
   /* ── Spacing scale (4px base) ────────────────────────────────────────── */
@@ -247,7 +247,6 @@
   --font-mogra: var(--font-mogra-import);
   --font-merriweather: var(--font-merriweather-import);
   --font-urbanist: var(--font-urbanist-import);
-  --font-nunito: var(--font-nunito-import);
 
   /* ── Caregiver app tokens ────────────────────────────────────────────── */
   --color-cg-bg: #F5F0E8;

@@ -74,14 +74,14 @@ function RunPayrollModal({
             <h2 className="font-[family-name:var(--font-merriweather)] text-xl font-bold text-[#2d1810]">
               Payroll Processed
             </h2>
-            <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+            <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
               {selectedIds.length} staff member{selectedIds.length > 1 ? "s" : ""} paid successfully for {selectedMonth}. Total: {formatCurrency(totalAmount)}
             </p>
           </div>
           <div className="border-t border-[#eaecf0] px-6 py-4 flex justify-center">
             <button
               onClick={onClose}
-              className="rounded-lg bg-[#3b2513] px-6 py-2.5 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]"
+              className="rounded-lg bg-[#3b2513] px-6 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]"
             >
               Done
             </button>
@@ -100,7 +100,7 @@ function RunPayrollModal({
               <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
                 Verify Payment
               </h2>
-              <p className="mt-0.5 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+              <p className="mt-0.5 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
                 Authorize this payroll run.
               </p>
             </div>
@@ -121,7 +121,7 @@ function RunPayrollModal({
             <h3 className="font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">
               Enter OTP
             </h3>
-            <p className="max-w-xs text-center font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+            <p className="max-w-xs text-center font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
               Enter the 6-digit code sent to your registered phone number to authorize payment of {formatCurrency(totalAmount)} for {selectedMonth}.
             </p>
             <input
@@ -141,7 +141,7 @@ function RunPayrollModal({
             </button>
             <button
               type="button"
-              className="font-[family-name:var(--font-nunito)] text-sm text-[#c47b2c] hover:underline"
+              className="font-[family-name:var(--font-urbanist)] text-sm text-[#c47b2c] hover:underline"
             >
               Resend OTP
             </button>
@@ -159,7 +159,7 @@ function RunPayrollModal({
             <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
               Confirm Payroll
             </h2>
-            <p className="mt-0.5 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+            <p className="mt-0.5 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
               Review and confirm this payroll run.
             </p>
           </div>
@@ -176,13 +176,13 @@ function RunPayrollModal({
         <div className="flex flex-col gap-4 px-6 py-5">
           {/* Pay for month */}
           <div className="flex flex-col gap-1.5">
-            <label className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
+            <label className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
               Pay for
             </label>
             <select
               value={selectedMonth}
               onChange={(e) => setSelectedMonth(e.target.value)}
-              className="rounded-lg border border-[#d0d5dd] bg-white px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+              className="rounded-lg border border-[#d0d5dd] bg-white px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
             >
               {PAYROLL_MONTHS.map((month) => (
                 <option key={month} value={month} disabled={!selectableMonths.has(month)}>
@@ -197,26 +197,26 @@ function RunPayrollModal({
           <div className="flex items-center justify-between rounded-lg bg-[#faf9f7] px-4 py-3">
             <div className="flex items-center gap-2">
               <Wallet className="size-4 text-[#6b7280]" />
-              <span className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+              <span className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
                 Wallet Balance
               </span>
             </div>
-            <span className="font-[family-name:var(--font-nunito)] text-sm font-bold text-[#2d1810]">
+            <span className="font-[family-name:var(--font-urbanist)] text-sm font-bold text-[#2d1810]">
               {formatCurrency(walletBalance)}
             </span>
           </div>
 
           {/* Summary */}
           <div className="flex items-center justify-between rounded-lg bg-[#faf9f7] px-4 py-3">
-            <span className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+            <span className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
               Staff to Pay
             </span>
-            <span className="font-[family-name:var(--font-nunito)] text-sm font-bold text-[#2d1810]">
+            <span className="font-[family-name:var(--font-urbanist)] text-sm font-bold text-[#2d1810]">
               {selectedIds.length}
             </span>
           </div>
           <div className="flex items-center justify-between rounded-lg bg-[#faf9f7] px-4 py-3">
-            <span className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+            <span className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
               Total Net Pay
             </span>
             <span className="font-[family-name:var(--font-merriweather)] text-base font-bold text-[#3b2513]">
@@ -229,16 +229,16 @@ function RunPayrollModal({
             <div className="flex items-start gap-3 rounded-lg border border-[#ef4444] bg-[#fff5f5] px-4 py-3">
               <AlertTriangle className="mt-0.5 size-5 shrink-0 text-[#ef4444]" />
               <div className="flex flex-col gap-1">
-                <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#ef4444]">
+                <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#ef4444]">
                   Insufficient Balance
                 </p>
-                <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+                <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
                   You need {formatCurrency(totalAmount - walletBalance)} more to complete this payroll. Top up your wallet to proceed.
                 </p>
                 <Link
                   href="/admin/v2/finance"
                   onClick={onClose}
-                  className="mt-1 inline-block w-fit rounded-lg bg-[#3b2513] px-4 py-1.5 font-[family-name:var(--font-nunito)] text-xs font-medium text-[#faf2e1]"
+                  className="mt-1 inline-block w-fit rounded-lg bg-[#3b2513] px-4 py-1.5 font-[family-name:var(--font-urbanist)] text-xs font-medium text-[#faf2e1]"
                 >
                   Top Up Wallet
                 </Link>
@@ -251,7 +251,7 @@ function RunPayrollModal({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg border border-[#d0d5dd] px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810] hover:bg-[#f9fafb]"
+            className="rounded-lg border border-[#d0d5dd] px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810] hover:bg-[#f9fafb]"
           >
             Cancel
           </button>
@@ -259,7 +259,7 @@ function RunPayrollModal({
             type="button"
             disabled={!hasEnough}
             onClick={() => setStep("otp")}
-            className="rounded-lg px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium disabled:cursor-not-allowed disabled:opacity-50 bg-[#3b2513] text-[#faf2e1]"
+            className="rounded-lg px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium disabled:cursor-not-allowed disabled:opacity-50 bg-[#3b2513] text-[#faf2e1]"
           >
             Confirm &amp; Pay
           </button>
@@ -280,7 +280,7 @@ function NewSalarySetupModal({ onClose }: { onClose: () => void }) {
             <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
               New Salary Setup
             </h2>
-            <p className="mt-0.5 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+            <p className="mt-0.5 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
               Set up payment details for a staff member.
             </p>
           </div>
@@ -295,10 +295,10 @@ function NewSalarySetupModal({ onClose }: { onClose: () => void }) {
         </div>
         <div className="flex flex-col gap-4 px-6 py-5">
           <div className="flex flex-col gap-1.5">
-            <label className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
+            <label className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
               Staff Member
             </label>
-            <select className="rounded-lg border border-[#d0d5dd] bg-white px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]">
+            <select className="rounded-lg border border-[#d0d5dd] bg-white px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]">
               {SALARY_SETUPS.map((s) => (
                 <option key={s.id}>{s.name}</option>
               ))}
@@ -306,66 +306,66 @@ function NewSalarySetupModal({ onClose }: { onClose: () => void }) {
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div className="flex flex-col gap-1.5">
-              <label className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
+              <label className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
                 Employment Type
               </label>
-              <select className="rounded-lg border border-[#d0d5dd] bg-white px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]">
+              <select className="rounded-lg border border-[#d0d5dd] bg-white px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]">
                 <option>Full time</option>
                 <option>Contract</option>
                 <option>Part time</option>
               </select>
             </div>
             <div className="flex flex-col gap-1.5">
-              <label className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
+              <label className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
                 Basic Salary
               </label>
               <input
                 type="number"
                 placeholder="0"
-                className="rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+                className="rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
               />
             </div>
           </div>
           <div className="flex flex-col gap-1.5">
-            <label className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
+            <label className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
               Bank Name
             </label>
             <input
               type="text"
               placeholder="e.g. GT Bank"
-              className="rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+              className="rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
             />
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div className="flex flex-col gap-1.5">
-              <label className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
+              <label className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
                 Account Number
               </label>
               <input
                 type="text"
                 placeholder="0123456789"
-                className="rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+                className="rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
               />
             </div>
             <div className="flex flex-col gap-1.5">
-              <label className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
+              <label className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
                 Pension PIN
               </label>
               <input
                 type="text"
                 placeholder="PEN..."
-                className="rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+                className="rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
               />
             </div>
           </div>
           <div className="flex flex-col gap-1.5">
-            <label className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
+            <label className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
               Tax ID
             </label>
             <input
               type="text"
               placeholder="TIN..."
-              className="rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+              className="rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
             />
           </div>
         </div>
@@ -373,14 +373,14 @@ function NewSalarySetupModal({ onClose }: { onClose: () => void }) {
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg border border-[#d0d5dd] px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810] hover:bg-[#f9fafb]"
+            className="rounded-lg border border-[#d0d5dd] px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810] hover:bg-[#f9fafb]"
           >
             Cancel
           </button>
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]"
+            className="rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]"
           >
             Save Setup
           </button>
@@ -399,7 +399,7 @@ function PayrollHistoryTable() {
         <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
           Payroll History
         </h2>
-        <button className="flex items-center gap-1.5 rounded-lg border border-[#d0d5dd] bg-white px-3 py-1.5 font-[family-name:var(--font-nunito)] text-xs">
+        <button className="flex items-center gap-1.5 rounded-lg border border-[#d0d5dd] bg-white px-3 py-1.5 font-[family-name:var(--font-urbanist)] text-xs">
           Month
           <ChevronDown className="size-3" />
         </button>
@@ -409,7 +409,7 @@ function PayrollHistoryTable() {
           <thead>
             <tr className="bg-[#edd9c0]">
               {["Month", "Staffs", "Gross Payroll", "Deduction", "Net Paid", "Run by", "Date Paid", "Status", "Action"].map((h) => (
-                <th key={h} className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]">
+                <th key={h} className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-urbanist)] text-[#2d1810]">
                   {h}
                 </th>
               ))}
@@ -418,19 +418,19 @@ function PayrollHistoryTable() {
           <tbody className="divide-y divide-[#eaecf0]">
             {PAYROLL_HISTORY.map((h) => (
               <tr key={h.id} className="hover:bg-[#faf9f7]">
-                <td className="px-4 py-3 text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">{h.month}</td>
-                <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{h.staffCount} staffs</td>
-                <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{formatCurrency(h.grossPayroll)}</td>
-                <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{formatCurrency(h.deductions)}</td>
-                <td className="px-4 py-3 text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">{formatCurrency(h.netPaid)}</td>
-                <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{h.runBy}</td>
-                <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{h.datePaid}</td>
+                <td className="px-4 py-3 text-sm font-bold font-[family-name:var(--font-urbanist)] text-[#2d1810]">{h.month}</td>
+                <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{h.staffCount} staffs</td>
+                <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{formatCurrency(h.grossPayroll)}</td>
+                <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{formatCurrency(h.deductions)}</td>
+                <td className="px-4 py-3 text-sm font-bold font-[family-name:var(--font-urbanist)] text-[#2d1810]">{formatCurrency(h.netPaid)}</td>
+                <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{h.runBy}</td>
+                <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{h.datePaid}</td>
                 <td className="px-4 py-3">
                   <span className="rounded-full bg-[#ecfff8] border border-[#009061] px-2.5 py-0.5 font-[family-name:var(--font-urbanist)] text-xs text-[#009061]">
                     Paid
                   </span>
                 </td>
-                <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#3b2513] underline">View Details</td>
+                <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#3b2513] underline">View Details</td>
               </tr>
             ))}
           </tbody>
@@ -441,12 +441,12 @@ function PayrollHistoryTable() {
         {PAYROLL_HISTORY.map((h) => (
           <div key={h.id} className="rounded-xl border border-[#eaecf0] p-3">
             <div className="flex items-center justify-between">
-              <p className="text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">{h.month}</p>
+              <p className="text-sm font-bold font-[family-name:var(--font-urbanist)] text-[#2d1810]">{h.month}</p>
               <span className="rounded-full bg-[#ecfff8] border border-[#009061] px-2.5 py-0.5 font-[family-name:var(--font-urbanist)] text-xs text-[#009061]">
                 Paid
               </span>
             </div>
-            <p className="mt-1 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+            <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
               {h.staffCount} staffs • {formatCurrency(h.netPaid)} net
             </p>
           </div>
@@ -461,15 +461,15 @@ function PayrollHistoryTable() {
 function SalarySetupRow({ setup }: { setup: SalarySetup }) {
   return (
     <tr className="hover:bg-[#faf9f7]">
-      <td className="px-4 py-3 text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">{setup.name}</td>
-      <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{setup.role}</td>
-      <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{setup.employment}</td>
-      <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{formatCurrency(setup.basicSalary)}</td>
-      <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{setup.bankName}</td>
-      <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{setup.accountNumber}</td>
-      <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{setup.pensionPin}</td>
-      <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{setup.taxId}</td>
-      <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#3b2513] underline">Edit</td>
+      <td className="px-4 py-3 text-sm font-bold font-[family-name:var(--font-urbanist)] text-[#2d1810]">{setup.name}</td>
+      <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{setup.role}</td>
+      <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{setup.employment}</td>
+      <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{formatCurrency(setup.basicSalary)}</td>
+      <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{setup.bankName}</td>
+      <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{setup.accountNumber}</td>
+      <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{setup.pensionPin}</td>
+      <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{setup.taxId}</td>
+      <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#3b2513] underline">Edit</td>
     </tr>
   );
 }
@@ -482,11 +482,11 @@ function SalarySetupTable() {
           Salary Setup
         </h2>
         <div className="flex flex-wrap items-center gap-2">
-          <button className="flex items-center gap-1.5 rounded-lg border border-[#d0d5dd] bg-white px-3 py-1.5 font-[family-name:var(--font-nunito)] text-xs">
+          <button className="flex items-center gap-1.5 rounded-lg border border-[#d0d5dd] bg-white px-3 py-1.5 font-[family-name:var(--font-urbanist)] text-xs">
             Date Added
             <ChevronDown className="size-3" />
           </button>
-          <button className="flex items-center gap-1.5 rounded-lg border border-[#d0d5dd] bg-white px-3 py-1.5 font-[family-name:var(--font-nunito)] text-xs">
+          <button className="flex items-center gap-1.5 rounded-lg border border-[#d0d5dd] bg-white px-3 py-1.5 font-[family-name:var(--font-urbanist)] text-xs">
             All Role
             <ChevronDown className="size-3" />
           </button>
@@ -497,7 +497,7 @@ function SalarySetupTable() {
           <thead>
             <tr className="bg-[#edd9c0]">
               {["Staff", "Role", "Employment", "Basic Salary", "Bank Name", "Account Number", "Pension Pin", "Tax ID", "Action"].map((h) => (
-                <th key={h} className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]">
+                <th key={h} className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-urbanist)] text-[#2d1810]">
                   {h}
                 </th>
               ))}
@@ -514,8 +514,8 @@ function SalarySetupTable() {
       <div className="flex flex-col gap-2 p-4 lg:hidden">
         {SALARY_SETUPS.map((setup) => (
           <div key={setup.id} className="rounded-xl border border-[#eaecf0] p-3">
-            <p className="text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">{setup.name}</p>
-            <p className="mt-1 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+            <p className="text-sm font-bold font-[family-name:var(--font-urbanist)] text-[#2d1810]">{setup.name}</p>
+            <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
               {setup.role} • {setup.employment} • {formatCurrency(setup.basicSalary)}
             </p>
           </div>
@@ -560,7 +560,7 @@ function ThisMonthPaymentFlow({ onOpenModal }: { onOpenModal: (ids: string[], to
       {selected.size > 0 && (
         <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-[#e6ebf3] bg-white p-4 shadow-sm">
           <div className="flex items-center gap-4">
-            <span className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+            <span className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
               {selected.size} staff selected
             </span>
             <span className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#3b2513]">
@@ -570,7 +570,7 @@ function ThisMonthPaymentFlow({ onOpenModal }: { onOpenModal: (ids: string[], to
           <button
             disabled={selected.size === 0}
             onClick={() => onOpenModal(Array.from(selected), selectedTotal)}
-            className="rounded-lg bg-[#3b2513] px-5 py-2.5 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1] disabled:cursor-not-allowed disabled:opacity-50"
+            className="rounded-lg bg-[#3b2513] px-5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1] disabled:cursor-not-allowed disabled:opacity-50"
           >
             Pay Selected
           </button>
@@ -584,7 +584,7 @@ function ThisMonthPaymentFlow({ onOpenModal }: { onOpenModal: (ids: string[], to
             Staff Payment List
           </h2>
           <div className="flex flex-wrap items-center gap-2">
-            <button className="flex items-center gap-1.5 rounded-lg border border-[#d0d5dd] bg-white px-3 py-1.5 font-[family-name:var(--font-nunito)] text-xs">
+            <button className="flex items-center gap-1.5 rounded-lg border border-[#d0d5dd] bg-white px-3 py-1.5 font-[family-name:var(--font-urbanist)] text-xs">
               All Role
               <ChevronDown className="size-3" />
             </button>
@@ -607,7 +607,7 @@ function ThisMonthPaymentFlow({ onOpenModal }: { onOpenModal: (ids: string[], to
                 {["Staff", "Role", "Date Joined", "Net Pay", "Last Paid", "Status"].map((h) => (
                   <th
                     key={h}
-                    className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]"
+                    className="px-4 py-3 text-xs font-semibold font-[family-name:var(--font-urbanist)] text-[#2d1810]"
                   >
                     {h}
                   </th>
@@ -633,20 +633,20 @@ function ThisMonthPaymentFlow({ onOpenModal }: { onOpenModal: (ids: string[], to
                     />
                   </td>
                   <td className="px-4 py-3">
-                    <p className="text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">
+                    <p className="text-sm font-bold font-[family-name:var(--font-urbanist)] text-[#2d1810]">
                       {p.name}
                     </p>
                   </td>
-                  <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">
+                  <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">
                     {p.role}
                   </td>
-                  <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">
+                  <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">
                     {p.dateJoined}
                   </td>
-                  <td className="px-4 py-3 text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">
+                  <td className="px-4 py-3 text-sm font-bold font-[family-name:var(--font-urbanist)] text-[#2d1810]">
                     {formatCurrency(p.netPay)}
                   </td>
-                  <td className="px-4 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">
+                  <td className="px-4 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">
                     {p.lastPaidDate}
                   </td>
                   <td className="px-4 py-3">
@@ -680,7 +680,7 @@ function ThisMonthPaymentFlow({ onOpenModal }: { onOpenModal: (ids: string[], to
                     className="accent-[#3b2513]"
                   />
                   <div>
-                    <p className="text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">
+                    <p className="text-sm font-bold font-[family-name:var(--font-urbanist)] text-[#2d1810]">
                       {p.name}
                     </p>
                     <p className="text-[10px] text-[#858c98]">{p.role}</p>
@@ -689,15 +689,15 @@ function ThisMonthPaymentFlow({ onOpenModal }: { onOpenModal: (ids: string[], to
                 <StatusBadge status={p.status} />
               </div>
               <div className="mt-2 flex items-center justify-between pl-9">
-                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+                <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
                   Date Joined
                 </span>
-                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#454b54]">
+                <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#454b54]">
                   {p.dateJoined}
                 </span>
               </div>
               <div className="mt-1 flex items-center justify-between pl-9">
-                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+                <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
                   Net Pay
                 </span>
                 <span className="font-[family-name:var(--font-merriweather)] text-sm font-bold text-[#3b2513]">
@@ -705,10 +705,10 @@ function ThisMonthPaymentFlow({ onOpenModal }: { onOpenModal: (ids: string[], to
                 </span>
               </div>
               <div className="mt-1 flex items-center justify-between pl-9">
-                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+                <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
                   Last Paid
                 </span>
-                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#454b54]">
+                <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#454b54]">
                   {p.lastPaidDate}
                 </span>
               </div>
@@ -738,7 +738,7 @@ export function PayrollTab() {
         <div className="flex justify-end gap-3">
           <button
             onClick={() => setSetupOpen(true)}
-            className="rounded-lg border border-[#3b2513] px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#3b2513]"
+            className="rounded-lg border border-[#3b2513] px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#3b2513]"
           >
             New Salary Setup
           </button>

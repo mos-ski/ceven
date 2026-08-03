@@ -1,0 +1,132 @@
+<div style="flex:1;overflow-y:auto;padding:8px 20px 100px;display:flex;flex-direction:column;gap:16px" data-screen-label="Parent · Home">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div>
+            <div style="font-family:'Merriweather';font-weight:700;font-size:24px;color:#1F2937">Good morning, Funke</div>
+            <div style="font-family:'Urbanist';font-size:13px;color:#6B7280;margin-top:2px">Saturday, 2 August</div>
+          </div>
+          <div style="width:40px;height:40px;border-radius:50%;background:#E0BFA0;border:1px solid #D4A67F;display:flex;align-items:center;justify-content:center;font-family:'Urbanist';font-weight:700;font-size:14px;color:#3B2513">FA</div>
+        </div>
+
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+          <div style="display:flex;align-items:center;gap:7px">
+            <span style="{{dutyDot}}"></span>
+            <span style="font-family:'Urbanist';font-weight:600;font-size:12.5px;color:#3B2513">{{dutyLabel}}</span>
+          </div>
+          <div style="display:flex;gap:4px;background:#fff;border:1px solid #E6EBF3;border-radius:99px;padding:3px">
+            <sc-for list="{{statusPills}}" as="p" hint-placeholder-count="3">
+              <button sc-camel-on-click="{{p.pick}}" style="{{p.style}}">{{p.name}}</button>
+            </sc-for>
+          </div>
+        </div>
+
+        <sc-if value="{{sosSent}}" hint-placeholder-val="{{false}}">
+          <div style="background:#CD3030;border-radius:8px;padding:14px 16px;display:flex;gap:12px;align-items:center">
+            <span style="font-size:19px">🚨</span>
+            <div style="flex:1">
+              <div style="font-family:'Urbanist';font-weight:700;font-size:14px;color:#fff">Blessing pressed Emergency · 9:41 AM</div>
+              <div style="font-size:12.5px;color:#FDE8E8;margin-top:2px">Daddy has also been alerted</div>
+            </div>
+            <button style="background:#fff;color:#CD3030;border:none;border-radius:8px;padding:9px 14px;font-family:'Urbanist';font-weight:700;font-size:13px;cursor:pointer">Call now</button>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{offline}}" hint-placeholder-val="{{false}}">
+          <div style="background:#F9F1E6;border:1px solid #FF9A01;border-radius:8px;padding:10px 14px;display:flex;gap:10px;align-items:center">
+            <span style="width:8px;height:8px;border-radius:50%;background:#FF9A01;animation:pulse 1.6s infinite"></span>
+            <span style="font-size:13px;color:#3B2513;font-weight:600">You're offline — showing last sync, 8:52 AM</span>
+          </div>
+        </sc-if>
+
+<div sc-camel-on-click="{{goAudit}}" style="background:#fff;border:1px solid #E6EBF3;border-radius:8px;padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer">
+          <div style="width:40px;height:40px;border-radius:8px;background:#F7E8D4;display:flex;align-items:center;justify-content:center;flex:none"><svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="#9A6033" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 3"></path><circle cx="12" cy="12" r="10"></circle></svg></div>
+          <div style="flex:1;min-width:0">
+            <div style="font-family:'Urbanist';font-weight:700;font-size:14px;color:#1F2937">Blessing's activity today</div>
+            <div style="font-size:12.5px;color:#6B7280;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{auditLatest}}</div>
+          </div>
+          <span style="font-family:'Urbanist';font-weight:700;font-size:12px;background:#F7E8D4;color:#9A6033;padding:4px 10px;border-radius:99px;flex:none">{{auditCount}}</span>
+        </div>
+
+        <div sc-camel-on-click="{{goLearning}}" style="background:#fff;border:1px solid #E6EBF3;border-radius:8px;padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer">
+          <div style="width:40px;height:40px;border-radius:8px;background:#EFF6FF;display:flex;align-items:center;justify-content:center;flex:none"><svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></div>
+          <div style="flex:1;min-width:0">
+            <div style="font-family:'Urbanist';font-weight:700;font-size:14px;color:#1F2937">Learning — Zara &amp; Tobi</div>
+            <div style="font-size:12.5px;color:#6B7280;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{learnLatest}}</div>
+          </div>
+          <span style="{{learnChipStyle}}">{{learnChip}}</span>
+        </div>
+
+        <sc-if value="{{reportArrived}}" hint-placeholder-val="{{false}}">
+          <div style="background:#fff;border:1px solid #009061;border-radius:8px;padding:16px;display:flex;align-items:center;gap:12px">
+            <div style="width:40px;height:40px;border-radius:8px;background:#E1F5EC;display:flex;align-items:center;justify-content:center"><svg width="19" height="19" sc-camel-view-box="0 0 24 24" fill="none" stroke="#009061" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><path d="M14 2v6h6"></path></svg></div>
+            <div style="flex:1">
+              <div style="font-family:'Urbanist';font-weight:700;font-size:14px;color:#1F2937">Daily report from Blessing</div>
+              <div style="font-size:12.5px;color:#6B7280;margin-top:2px">Zara happy · Tobi napped 1h 40m · 4 photos</div>
+            </div>
+            <span style="font-family:'Urbanist';font-weight:700;font-size:13px;color:#9A6033">View →</span>
+          </div>
+        </sc-if>
+
+        <div style="background:#3B2513;border-radius:8px;padding:18px;color:#FFF9F0;display:flex;flex-direction:column;gap:12px">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span style="font-family:'Urbanist';font-weight:600;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#E0BFA0">Up next · 12:30 PM</span>
+            <span style="font-family:'Urbanist';font-size:11px;background:rgba(224,191,160,.18);padding:3px 8px;border-radius:99px;color:#E0BFA0">From the timetable</span>
+          </div>
+          <div style="font-family:'Merriweather';font-weight:700;font-size:19px;line-height:1.3">Jollof rice with grilled chicken</div>
+          <div style="font-size:13px;color:#EDD9C0">Zara &amp; Tobi · small portions, no pepper for Tobi</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:2px">
+            <div style="display:flex;align-items:center;gap:8px">
+              <div style="width:28px;height:28px;border-radius:50%;background:#E0BFA0;display:flex;align-items:center;justify-content:center;font-family:'Urbanist';font-weight:700;font-size:11px;color:#3B2513">B</div>
+              <span style="font-size:12.5px;color:#EDD9C0">Blessing has today's menu</span>
+            </div>
+            <button sc-camel-on-click="{{goFood}}" style="background:#E0BFA0;border:1px solid #D4A67F;color:#3B2513;font-family:'Urbanist';font-weight:700;font-size:13px;padding:8px 16px;border-radius:8px;cursor:pointer">Timetable</button>
+          </div>
+        </div>
+
+        <div sc-camel-on-click="{{goCalendar}}" style="background:#fff;border:1px solid #E6EBF3;border-radius:8px;padding:16px;display:flex;align-items:center;gap:14px;cursor:pointer">
+          <div style="width:46px;height:46px;border-radius:8px;background:#EFF6FF;display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none">
+            <span style="font-family:'Urbanist';font-weight:600;font-size:9.5px;color:#3B82F6">TUE</span>
+            <span style="font-family:'Merriweather';font-weight:700;font-size:18px;color:#1F2937">5</span>
+          </div>
+          <div style="flex:1">
+            <div style="font-family:'Urbanist';font-weight:700;font-size:14.5px;color:#1F2937">Zara's swimming lesson · 4:00 PM</div>
+            <div style="font-size:12.5px;color:#6B7280;margin-top:2px">Swim bag: {{swimDone}} of {{swimTotal}} packed by Blessing</div>
+          </div>
+          <span style="font-family:'Urbanist';font-weight:700;font-size:13px;color:#9A6033">Checklist →</span>
+        </div>
+
+        <sc-if value="{{approvalPending}}" hint-placeholder-val="{{true}}">
+          <div style="background:#fff;border:1px solid #E6EBF3;border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-family:'Urbanist';font-weight:700;font-size:14px;color:#1F2937">Market money request</span>
+              <span style="font-family:'Urbanist';font-size:11px;font-weight:700;background:#F9F1E6;color:#FF9A01;padding:3px 10px;border-radius:99px">PENDING</span>
+            </div>
+            <div style="font-size:13.5px;color:#6B7280;line-height:1.5">Blessing requests <strong style="color:#1F2937">₦4,500</strong> — baby wipes ×2, Milo refill, fruits for the week.</div>
+            <div style="display:flex;gap:8px">
+              <button sc-camel-on-click="{{approve}}" style="flex:1;background:#3B2513;color:#FFF9F0;border:none;border-radius:8px;padding:11px;font-family:'Urbanist';font-weight:700;font-size:14px;cursor:pointer">Approve ₦4,500</button>
+              <button style="flex:1;background:#fff;color:#3B2513;border:1px solid #CCD2DC;border-radius:8px;padding:11px;font-family:'Urbanist';font-weight:700;font-size:14px;cursor:pointer">Ask why</button>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{approvalDone}}" hint-placeholder-val="{{false}}">
+          <div style="background:#E1F5EC;border:1px solid #009061;border-radius:8px;padding:14px 16px;display:flex;gap:10px;align-items:center">
+            <svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="#009061" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+            <span style="font-size:13.5px;color:#009061;font-weight:700">₦4,500 approved — Blessing has been notified</span>
+          </div>
+        </sc-if>
+
+        <div style="display:flex;flex-direction:column;gap:2px">
+          <div style="font-family:'Urbanist';font-weight:700;font-size:14px;color:#1F2937;margin-bottom:10px">Today so far</div>
+          <sc-for list="{{feed}}" as="ev" hint-placeholder-count="3">
+            <div style="display:flex;gap:12px;padding:0 2px">
+              <div style="display:flex;flex-direction:column;align-items:center;width:14px;flex:none">
+                <span style="{{ev.dot}}"></span>
+                <span style="width:1.5px;flex:1;background:#EDD9C0"></span>
+              </div>
+              <div style="padding-bottom:16px;flex:1">
+                <div style="display:flex;justify-content:space-between;gap:8px"><span style="font-family:'Urbanist';font-weight:700;font-size:13.5px;color:#1F2937">{{ev.title}}</span><span style="font-size:11.5px;color:#6B7280;flex:none">{{ev.time}}</span></div>
+                <div style="font-size:12.5px;color:#6B7280;margin-top:2px">{{ev.sub}}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>

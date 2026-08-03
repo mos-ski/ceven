@@ -20,7 +20,7 @@ const planOptions = [
 
 function FieldLabel({ children, required }: { children: React.ReactNode; required?: boolean }) {
   return (
-    <label className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
+    <label className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
       {children}
       {required && <span className="ml-0.5 text-[#ef4444]">*</span>}
     </label>
@@ -38,14 +38,14 @@ function TextInput({
     <input
       type={type}
       placeholder={placeholder}
-      className="w-full rounded-lg border border-[#d0d5dd] bg-white px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+      className="w-full rounded-lg border border-[#d0d5dd] bg-white px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
     />
   );
 }
 
 function SelectInput({ options, placeholder }: { options: string[]; placeholder?: string }) {
   return (
-    <select className="w-full rounded-lg border border-[#d0d5dd] bg-white px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]">
+    <select className="w-full rounded-lg border border-[#d0d5dd] bg-white px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]">
       {placeholder && (
         <option value="" disabled selected>
           {placeholder}
@@ -97,7 +97,7 @@ export default function EnrollChildModal({ onClose }: Props) {
             <h2 className="font-[family-name:var(--font-merriweather)] text-xl font-bold text-[#2d1810]">
               Add New Child
             </h2>
-            <p className="mt-0.5 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+            <p className="mt-0.5 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
               Fill in the details below to enroll a new child.
             </p>
           </div>
@@ -114,7 +114,7 @@ export default function EnrollChildModal({ onClose }: Props) {
           {/* Info note */}
           <div className="flex items-start gap-2.5 rounded-xl border border-[#e0bfa0] bg-[#fdf6e8] px-4 py-3">
             <Info className="mt-0.5 h-4 w-4 shrink-0 text-[#c47b2c]" />
-            <p className="font-[family-name:var(--font-nunito)] text-xs leading-relaxed text-[#6b7280]">
+            <p className="font-[family-name:var(--font-urbanist)] text-xs leading-relaxed text-[#6b7280]">
               All fields marked with <span className="font-bold text-[#ef4444]">*</span> are required.
               Enrollment will be set to <span className="font-semibold text-[#2d1810]">Pending</span> until
               verified by an admin.
@@ -163,7 +163,7 @@ export default function EnrollChildModal({ onClose }: Props) {
               <textarea
                 placeholder="List any known allergies or medical conditions..."
                 rows={3}
-                className="w-full resize-none rounded-lg border border-[#d0d5dd] bg-white px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+                className="w-full resize-none rounded-lg border border-[#d0d5dd] bg-white px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
               />
             </div>
           </div>
@@ -200,7 +200,7 @@ export default function EnrollChildModal({ onClose }: Props) {
                   className="h-4 w-4 rounded border-[#d0d5dd] accent-[#c47b2c]"
                 />
               </div>
-              <span className="font-[family-name:var(--font-nunito)] text-sm leading-relaxed text-[#6b7280]">
+              <span className="font-[family-name:var(--font-urbanist)] text-sm leading-relaxed text-[#6b7280]">
                 I confirm that I have the parent or guardian&apos;s consent to enroll this child and share
                 their data with the creche.
               </span>

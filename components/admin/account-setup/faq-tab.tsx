@@ -53,13 +53,13 @@ function FaqForm({
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-5 p-6">
       <div className="flex flex-col gap-1.5">
-        <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">
+        <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">
           Category
         </label>
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-          className="h-11 rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+          className="h-11 rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
         >
           {FAQ_CATEGORIES.map((cat) => (
             <option key={cat} value={cat}>
@@ -70,7 +70,7 @@ function FaqForm({
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">
+        <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">
           Question
         </label>
         <input
@@ -78,12 +78,12 @@ function FaqForm({
           value={question}
           onChange={(e) => setQuestion(e.target.value)}
           placeholder="e.g. What age groups do you accept?"
-          className="h-11 rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+          className="h-11 rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] outline-none focus:ring-2 focus:ring-[#c47b2c]"
         />
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">
+        <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">
           Answer
         </label>
         <textarea
@@ -91,7 +91,7 @@ function FaqForm({
           value={answer}
           onChange={(e) => setAnswer(e.target.value)}
           placeholder="Type the answer here..."
-          className="resize-none rounded-xl border border-[#e6ebf3] bg-white px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+          className="resize-none rounded-xl border border-[#e6ebf3] bg-white px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] outline-none focus:ring-2 focus:ring-[#c47b2c]"
         />
       </div>
 
@@ -128,10 +128,10 @@ function DeleteConfirm({
       <h3 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
         Delete FAQ
       </h3>
-      <p className="mt-2 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+      <p className="mt-2 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
         Are you sure you want to delete this FAQ? This action cannot be undone.
       </p>
-      <p className="mt-3 rounded-lg bg-[#f9f8f6] px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">
+      <p className="mt-3 rounded-lg bg-[#f9f8f6] px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">
         &ldquo;{faq.question}&rdquo;
       </p>
       <div className="mt-6 flex w-full gap-3">
@@ -176,7 +176,7 @@ function FaqRow({
         <GripVertical size={16} className="shrink-0 text-[#d0d5dd]" />
 
         <div className="min-w-0 flex-1">
-          <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810] truncate">
+          <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810] truncate">
             {faq.question}
           </p>
           <span className="font-[family-name:var(--font-urbanist)] text-[10px] font-medium text-[#c47b2c]">
@@ -225,7 +225,7 @@ function FaqRow({
 
       {expanded && (
         <div className="border-t border-[#f3f4f6] px-4 py-3">
-          <p className="font-[family-name:var(--font-nunito)] text-sm leading-relaxed text-[#6b7280]">
+          <p className="font-[family-name:var(--font-urbanist)] text-sm leading-relaxed text-[#6b7280]">
             {faq.answer}
           </p>
         </div>
@@ -314,7 +314,7 @@ export function FaqTab() {
           <h1 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
             FAQ Management
           </h1>
-          <p className="mt-1 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+          <p className="mt-1 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
             Manage frequently asked questions that parents see when browsing your creche.
           </p>
         </div>
@@ -358,7 +358,7 @@ export function FaqTab() {
       {filtered.length === 0 ? (
         <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-[#d0d5dd] py-16">
           <HelpCircle size={40} className="text-[#d0d5dd]" />
-          <p className="mt-3 font-[family-name:var(--font-nunito)] text-sm text-[#9ca3af]">
+          <p className="mt-3 font-[family-name:var(--font-urbanist)] text-sm text-[#9ca3af]">
             No FAQs yet. Click &ldquo;Add FAQ&rdquo; to get started.
           </p>
         </div>
@@ -381,7 +381,7 @@ export function FaqTab() {
 
       {/* Stats */}
       <div className="rounded-xl bg-[#f9f8f6] px-4 py-3">
-        <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+        <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
           {faqs.length} FAQ{faqs.length !== 1 ? "s" : ""} total
           {filterCategory !== "All" && ` · ${filtered.length} in "${filterCategory.trim()}"`}
         </p>

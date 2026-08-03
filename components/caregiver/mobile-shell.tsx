@@ -100,7 +100,7 @@ export function MobileShell({ children }: { children: React.ReactNode }) {
                 alignItems: "center",
                 justifyContent: "space-between",
                 color: "#111",
-                fontFamily: "var(--font-nunito)",
+                fontFamily: "var(--font-urbanist)",
                 fontSize: 12,
                 fontWeight: 800,
                 pointerEvents: "none",
@@ -123,7 +123,7 @@ export function MobileShell({ children }: { children: React.ReactNode }) {
                 display: "flex",
                 flexDirection: "column",
                 overflow: "hidden",
-                fontFamily: "var(--font-nunito)",
+                fontFamily: "var(--font-urbanist)",
                 paddingTop: 52,
               }}
             >

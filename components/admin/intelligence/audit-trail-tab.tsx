@@ -39,12 +39,12 @@ export function AuditTrailTab() {
               </div>
               <div className="flex-1">
                 <div className="flex flex-wrap items-center justify-between gap-2">
-                  <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
+                  <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
                     {entry.actorName} <span className="font-normal text-[#6b7280]">{entry.action}</span>
                   </p>
-                  <span className="font-[family-name:var(--font-nunito)] text-xs text-[#9ca3af]">{entry.timestamp}</span>
+                  <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#9ca3af]">{entry.timestamp}</span>
                 </div>
-                <p className="mt-0.5 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{entry.detail}</p>
+                <p className="mt-0.5 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{entry.detail}</p>
               </div>
             </div>
           ))}

@@ -1,0 +1,100 @@
+[
+  {
+    "index": 1,
+    "label": "Parent · Home",
+    "slug": "parent-home",
+    "file": "screens/01-parent-home.html",
+    "bytes": 11554
+  },
+  {
+    "index": 2,
+    "label": "Parent · Food timetable",
+    "slug": "parent-food-timetable",
+    "file": "screens/02-parent-food-timetable.html",
+    "bytes": 4708
+  },
+  {
+    "index": 3,
+    "label": "Shared calendar",
+    "slug": "shared-calendar",
+    "file": "screens/03-shared-calendar.html",
+    "bytes": 2892
+  },
+  {
+    "index": 4,
+    "label": "Chat",
+    "slug": "chat",
+    "file": "screens/04-chat.html",
+    "bytes": 4213
+  },
+  {
+    "index": 5,
+    "label": "Caregiver · Join",
+    "slug": "caregiver-join",
+    "file": "screens/05-caregiver-join.html",
+    "bytes": 1415
+  },
+  {
+    "index": 6,
+    "label": "Caregiver · Welcome",
+    "slug": "caregiver-welcome",
+    "file": "screens/06-caregiver-welcome.html",
+    "bytes": 1093
+  },
+  {
+    "index": 7,
+    "label": "Caregiver · Today",
+    "slug": "caregiver-today",
+    "file": "screens/07-caregiver-today.html",
+    "bytes": 9321
+  },
+  {
+    "index": 8,
+    "label": "Caregiver · Daily Report",
+    "slug": "caregiver-daily-report",
+    "file": "screens/08-caregiver-daily-report.html",
+    "bytes": 6760
+  },
+  {
+    "index": 9,
+    "label": "Caregiver · Ask CEvenAI",
+    "slug": "caregiver-ask-cevenai",
+    "file": "screens/09-caregiver-ask-cevenai.html",
+    "bytes": 10598
+  },
+  {
+    "index": 10,
+    "label": "Parent · Activity trail",
+    "slug": "parent-activity-trail",
+    "file": "screens/10-parent-activity-trail.html",
+    "bytes": 1960
+  },
+  {
+    "index": 11,
+    "label": "Caregiver · Family camera",
+    "slug": "caregiver-family-camera",
+    "file": "screens/11-caregiver-family-camera.html",
+    "bytes": 2123
+  },
+  {
+    "index": 12,
+    "label": "Tutor · Sessions",
+    "slug": "tutor-sessions",
+    "file": "screens/12-tutor-sessions.html",
+    "bytes": 7388
+  },
+  {
+    "index": 13,
+    "label": "Tutor · Students",
+    "slug": "tutor-students",
+    "file": "screens/13-tutor-students.html",
+    "bytes": 3354
+  },
+  {
+    "index": 14,
+    "label": "Parent · Learning",
+    "slug": "parent-learning",
+    "file": "screens/14-parent-learning.html",
+    "bytes": 9255
+  }
+]

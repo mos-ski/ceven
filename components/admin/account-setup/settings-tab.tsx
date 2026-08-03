@@ -55,7 +55,7 @@ function RoleAccessSection() {
             setEditingRole(null);
             setModalOpen(true);
           }}
-          className="flex items-center gap-1.5 rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]"
+          className="flex items-center gap-1.5 rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]"
         >
           <Plus className="size-3.5" />
           Add Role
@@ -66,7 +66,7 @@ function RoleAccessSection() {
           <thead>
             <tr className="bg-[#edd9c0]">
               {["Role", "Description", "Staff", "Status", "Action"].map((h) => (
-                <th key={h} className="px-5 py-3 text-xs font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]">
+                <th key={h} className="px-5 py-3 text-xs font-semibold font-[family-name:var(--font-urbanist)] text-[#2d1810]">
                   {h}
                 </th>
               ))}
@@ -75,9 +75,9 @@ function RoleAccessSection() {
           <tbody className="divide-y divide-[#eaecf0]">
             {ROLE_TEMPLATES.map((role) => (
               <tr key={role.id} className="hover:bg-[#faf9f7]">
-                <td className="px-5 py-3 text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">{role.name}</td>
-                <td className="max-w-[360px] px-5 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{role.description}</td>
-                <td className="px-5 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{role.staffCount}</td>
+                <td className="px-5 py-3 text-sm font-bold font-[family-name:var(--font-urbanist)] text-[#2d1810]">{role.name}</td>
+                <td className="max-w-[360px] px-5 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{role.description}</td>
+                <td className="px-5 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{role.staffCount}</td>
                 <td className="px-5 py-3">
                   <span className={`rounded-full border px-2.5 py-0.5 font-[family-name:var(--font-urbanist)] text-xs ${STATUS_BADGE_CLASS[role.status]}`}>
                     {role.status}
@@ -105,12 +105,12 @@ function RoleAccessSection() {
         {ROLE_TEMPLATES.map((role) => (
           <div key={role.id} className="rounded-xl border border-[#eaecf0] p-3">
             <div className="flex items-center justify-between">
-              <span className="font-[family-name:var(--font-nunito)] text-sm font-bold text-[#2d1810]">{role.name}</span>
+              <span className="font-[family-name:var(--font-urbanist)] text-sm font-bold text-[#2d1810]">{role.name}</span>
               <span className={`rounded-full border px-2.5 py-0.5 font-[family-name:var(--font-urbanist)] text-xs ${STATUS_BADGE_CLASS[role.status]}`}>
                 {role.status}
               </span>
             </div>
-            <p className="mt-1 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{role.description}</p>
+            <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{role.description}</p>
           </div>
         ))}
       </div>
@@ -131,35 +131,35 @@ function BranchProfileSection() {
       <p className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">Branch Profile</p>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="flex flex-col gap-1.5">
-          <label className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">Creche Name</label>
+          <label className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">Creche Name</label>
           <input
             defaultValue={MOCK_CRECHE_PROFILE.name}
-            className="rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+            className="rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
           />
         </div>
         <div className="flex flex-col gap-1.5">
-          <label className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">Email</label>
+          <label className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">Email</label>
           <input
             defaultValue={MOCK_CRECHE_PROFILE.email}
-            className="rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+            className="rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
           />
         </div>
         <div className="flex flex-col gap-1.5">
-          <label className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">Phone</label>
+          <label className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">Phone</label>
           <input
             defaultValue={MOCK_CRECHE_PROFILE.phone}
-            className="rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+            className="rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
           />
         </div>
         <div className="flex flex-col gap-1.5">
-          <label className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">Address</label>
+          <label className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">Address</label>
           <input
             defaultValue={MOCK_CRECHE_PROFILE.address}
-            className="rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+            className="rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
           />
         </div>
       </div>
-      <button className="self-end rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]">
+      <button className="self-end rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]">
         Save Changes
       </button>
     </div>
@@ -182,15 +182,15 @@ function NotificationSection() {
         {prefs.map((pref) => (
           <div key={pref.id} className="flex items-center justify-between gap-4 py-3">
             <div>
-              <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{pref.label}</p>
-              <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{pref.description}</p>
+              <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">{pref.label}</p>
+              <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{pref.description}</p>
             </div>
             <div className="flex shrink-0 gap-4">
-              <label className="flex items-center gap-2 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+              <label className="flex items-center gap-2 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
                 <Checkbox checked={pref.email} onCheckedChange={() => toggle(pref.id, "email")} />
                 Email
               </label>
-              <label className="flex items-center gap-2 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+              <label className="flex items-center gap-2 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
                 <Checkbox checked={pref.sms} onCheckedChange={() => toggle(pref.id, "sms")} />
                 SMS
               </label>
@@ -209,50 +209,50 @@ function SecuritySection() {
     <div className="flex flex-col gap-6 rounded-xl bg-white p-5">
       <div>
         <p className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">Security</p>
-        <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+        <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
           Keep your personal information up to date and secure
         </p>
       </div>
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <div>
-          <p className="font-[family-name:var(--font-nunito)] text-base font-semibold text-[#1f2937]">Password</p>
-          <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">Change password access to this creche platform</p>
+          <p className="font-[family-name:var(--font-urbanist)] text-base font-semibold text-[#1f2937]">Password</p>
+          <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">Change password access to this creche platform</p>
         </div>
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-1.5">
-            <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">Branch Name</label>
+            <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-black">Branch Name</label>
             <input
               defaultValue={MOCK_SECURITY_PROFILE.branchName}
-              className="rounded-xl border border-[#e6ebf3] px-3.5 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#111] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+              className="rounded-xl border border-[#e6ebf3] px-3.5 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#111] outline-none focus:ring-2 focus:ring-[#c47b2c]"
             />
           </div>
           <div className="flex flex-col gap-1.5">
-            <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">Email Address</label>
+            <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-black">Email Address</label>
             <input
               defaultValue={MOCK_SECURITY_PROFILE.email}
-              className="rounded-xl border border-[#e6ebf3] px-3.5 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#111] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+              className="rounded-xl border border-[#e6ebf3] px-3.5 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#111] outline-none focus:ring-2 focus:ring-[#c47b2c]"
             />
           </div>
           <div className="flex flex-col gap-1.5">
-            <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">Phone Number</label>
+            <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-black">Phone Number</label>
             <input
               defaultValue={MOCK_SECURITY_PROFILE.phone}
-              className="rounded-xl border border-[#e6ebf3] px-3.5 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#111] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+              className="rounded-xl border border-[#e6ebf3] px-3.5 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#111] outline-none focus:ring-2 focus:ring-[#c47b2c]"
             />
           </div>
-          <button className="self-end rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]">
+          <button className="self-end rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]">
             Save Changes
           </button>
         </div>
       </div>
       <div className="h-px w-full bg-[#eaecf0]" />
       <div className="flex flex-col gap-3">
-        <p className="font-[family-name:var(--font-nunito)] text-base font-semibold text-[#1f2937]">Activity Privacy</p>
+        <p className="font-[family-name:var(--font-urbanist)] text-base font-semibold text-[#1f2937]">Activity Privacy</p>
         <label className="flex items-center gap-4">
           <Checkbox checked={activityVisible} onCheckedChange={(v) => setActivityVisible(Boolean(v))} />
           <div>
-            <p className="font-[family-name:var(--font-nunito)] text-base font-semibold text-[#1f2937]">Activity Status</p>
-            <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">Let all active members show active status</p>
+            <p className="font-[family-name:var(--font-urbanist)] text-base font-semibold text-[#1f2937]">Activity Status</p>
+            <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">Let all active members show active status</p>
           </div>
         </label>
       </div>
@@ -285,29 +285,29 @@ function NewPlanModal({
 
         <div className="flex flex-col gap-4 px-6 py-5">
           <div className="flex flex-col gap-1">
-            <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">Plan Name</label>
+            <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-black">Plan Name</label>
             <input
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g. Daily"
-              className="h-[52px] w-full rounded-xl border border-[#e6ebf3] px-4 font-[family-name:var(--font-nunito)] text-sm text-[#111] outline-none placeholder:text-[#9ca3af] focus:ring-2 focus:ring-[#c47b2c]"
+              className="h-[52px] w-full rounded-xl border border-[#e6ebf3] px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#111] outline-none placeholder:text-[#9ca3af] focus:ring-2 focus:ring-[#c47b2c]"
             />
           </div>
           <div className="flex flex-col gap-1">
-            <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">Amount</label>
+            <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-black">Amount</label>
             <input
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               placeholder="₦"
-              className="h-[52px] w-full rounded-xl border border-[#e6ebf3] px-4 font-[family-name:var(--font-nunito)] text-sm text-[#111] outline-none placeholder:text-[#9ca3af] focus:ring-2 focus:ring-[#c47b2c]"
+              className="h-[52px] w-full rounded-xl border border-[#e6ebf3] px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#111] outline-none placeholder:text-[#9ca3af] focus:ring-2 focus:ring-[#c47b2c]"
             />
           </div>
           <div className="flex flex-col gap-1">
-            <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">Duration</label>
+            <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-black">Duration</label>
             <select
               value={cycle}
               onChange={(e) => setCycle(e.target.value as FeePlanCycle)}
-              className="h-[52px] w-full rounded-xl border border-[#e6ebf3] px-4 font-[family-name:var(--font-nunito)] text-sm text-[#111] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+              className="h-[52px] w-full rounded-xl border border-[#e6ebf3] px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#111] outline-none focus:ring-2 focus:ring-[#c47b2c]"
             >
               {FEE_PLAN_DURATIONS.map((d) => (
                 <option key={d} value={d}>
@@ -351,7 +351,7 @@ function FeePlansSection() {
         <p className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">Fee Plans</p>
         <button
           onClick={() => setNewPlanOpen(true)}
-          className="flex items-center gap-1.5 rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]"
+          className="flex items-center gap-1.5 rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]"
         >
           <Plus className="size-3.5" />
           Add Plan
@@ -362,7 +362,7 @@ function FeePlansSection() {
           <thead>
             <tr className="bg-[#edd9c0]">
               {["Plan", "Amount", "Billing Cycle", "Applies To", "Status"].map((h) => (
-                <th key={h} className="px-5 py-3 text-xs font-semibold font-[family-name:var(--font-nunito)] text-[#2d1810]">
+                <th key={h} className="px-5 py-3 text-xs font-semibold font-[family-name:var(--font-urbanist)] text-[#2d1810]">
                   {h}
                 </th>
               ))}
@@ -371,10 +371,10 @@ function FeePlansSection() {
           <tbody className="divide-y divide-[#eaecf0]">
             {plans.map((plan) => (
               <tr key={plan.id} className="hover:bg-[#faf9f7]">
-                <td className="px-5 py-3 text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">{plan.name}</td>
-                <td className="px-5 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{plan.amount}</td>
-                <td className="px-5 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{plan.cycle}</td>
-                <td className="px-5 py-3 text-sm font-[family-name:var(--font-nunito)] text-[#454b54]">{plan.appliesTo}</td>
+                <td className="px-5 py-3 text-sm font-bold font-[family-name:var(--font-urbanist)] text-[#2d1810]">{plan.name}</td>
+                <td className="px-5 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{plan.amount}</td>
+                <td className="px-5 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{plan.cycle}</td>
+                <td className="px-5 py-3 text-sm font-[family-name:var(--font-urbanist)] text-[#454b54]">{plan.appliesTo}</td>
                 <td className="px-5 py-3">
                   <span
                     className={`rounded-full border px-2.5 py-0.5 font-[family-name:var(--font-urbanist)] text-xs ${
@@ -393,10 +393,10 @@ function FeePlansSection() {
         {plans.map((plan) => (
           <div key={plan.id} className="rounded-xl border border-[#eaecf0] p-3">
             <div className="flex items-center justify-between">
-              <span className="font-[family-name:var(--font-nunito)] text-sm font-bold text-[#2d1810]">{plan.name}</span>
-              <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{plan.amount}</span>
+              <span className="font-[family-name:var(--font-urbanist)] text-sm font-bold text-[#2d1810]">{plan.name}</span>
+              <span className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">{plan.amount}</span>
             </div>
-            <p className="mt-1 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+            <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
               {plan.cycle} • {plan.appliesTo}
             </p>
           </div>
@@ -443,16 +443,16 @@ function AdmissionsSection() {
       <div className="flex items-center justify-between gap-3">
         <div>
           <p className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">New Child Enrollment</p>
-          <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">Enrollment form requirements</p>
+          <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">Enrollment form requirements</p>
         </div>
-        <button className="rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]">
+        <button className="rounded-lg bg-[#3b2513] px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]">
           Add Form
         </button>
       </div>
       <div className="flex flex-col gap-4">
         {steps.map((step) => (
           <div key={step.id} className="flex flex-col gap-3 rounded-xl border border-[#e6ebf3] p-4">
-            <p className="font-[family-name:var(--font-nunito)] text-base font-semibold text-[#1f2937]">{step.title}</p>
+            <p className="font-[family-name:var(--font-urbanist)] text-base font-semibold text-[#1f2937]">{step.title}</p>
             {step.fields.map((field) => (
               <div key={field.id} className="flex items-center gap-4 rounded-lg border border-[#ccd2dc] px-3 py-3">
                 <button
@@ -464,11 +464,11 @@ function AdmissionsSection() {
                   <span className={`absolute top-0.5 size-4 rounded-full bg-white transition-transform ${field.enabled ? "translate-x-[18px]" : "translate-x-0.5"}`} />
                 </button>
                 <div className="flex-1">
-                  <p className="font-[family-name:var(--font-nunito)] text-sm text-[#1f2937]">{field.label}</p>
-                  <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{field.description}</p>
+                  <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#1f2937]">{field.label}</p>
+                  <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{field.description}</p>
                 </div>
                 {field.required && (
-                  <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Required</span>
+                  <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Required</span>
                 )}
               </div>
             ))}
@@ -495,14 +495,14 @@ function AiSettingsSection() {
           A
         </div>
         <div>
-          <p className="font-[family-name:var(--font-nunito)] text-xs text-[#c78c5f]">AI Name</p>
+          <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#c78c5f]">AI Name</p>
           <p className="font-[family-name:var(--font-merriweather)] text-xl font-bold text-[#f5edd8]">Ada</p>
           <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#faf2e1]">Always on creche intelligence</p>
         </div>
       </div>
 
       <div className="flex flex-col gap-3">
-        <p className="font-[family-name:var(--font-nunito)] text-base font-semibold text-black">Personality & Tone</p>
+        <p className="font-[family-name:var(--font-urbanist)] text-base font-semibold text-black">Personality & Tone</p>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           {AI_TONE_OPTIONS.map((opt) => (
             <button
@@ -512,15 +512,15 @@ function AiSettingsSection() {
                 tone === opt.id ? "border-[#3b2513] bg-[#fdf6e8]" : "border-[#e6ebf3]"
               }`}
             >
-              <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-black">{opt.label}</p>
-              <p className="font-[family-name:var(--font-nunito)] text-xs text-[#707070]">{opt.description}</p>
+              <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-black">{opt.label}</p>
+              <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#707070]">{opt.description}</p>
             </button>
           ))}
         </div>
       </div>
 
       <div className="flex flex-col gap-3">
-        <p className="font-[family-name:var(--font-nunito)] text-base font-semibold text-black">Display Gradient</p>
+        <p className="font-[family-name:var(--font-urbanist)] text-base font-semibold text-black">Display Gradient</p>
         <div className="flex gap-3">
           {AI_GRADIENT_OPTIONS.map((color, i) => (
             <button
@@ -535,13 +535,13 @@ function AiSettingsSection() {
       </div>
 
       <div className="flex flex-col gap-3">
-        <p className="font-[family-name:var(--font-nunito)] text-base font-semibold text-black">Alert Frequency</p>
+        <p className="font-[family-name:var(--font-urbanist)] text-base font-semibold text-black">Alert Frequency</p>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           {AI_ALERT_FREQUENCIES.map((freq) => (
             <button
               key={freq}
               onClick={() => setFrequency(freq)}
-              className={`rounded-lg border px-3 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-semibold ${
+              className={`rounded-lg border px-3 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-semibold ${
                 frequency === freq ? "border-[#3b2513] bg-[#fdf6e8] text-[#3b2513]" : "border-[#e6ebf3] text-black"
               }`}
             >
@@ -552,7 +552,7 @@ function AiSettingsSection() {
       </div>
 
       <div className="flex flex-col gap-3">
-        <p className="font-[family-name:var(--font-nunito)] text-base font-semibold text-black">AI Feature Controls</p>
+        <p className="font-[family-name:var(--font-urbanist)] text-base font-semibold text-black">AI Feature Controls</p>
         <div className="flex flex-col gap-3">
           {features.map((feat) => (
             <div key={feat.id} className="flex items-center gap-4 rounded-lg border border-[#e6ebf3] px-4 py-3">
@@ -565,8 +565,8 @@ function AiSettingsSection() {
                 <span className={`absolute top-0.5 size-4 rounded-full bg-white transition-transform ${feat.enabled ? "translate-x-[18px]" : "translate-x-0.5"}`} />
               </button>
               <div>
-                <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-black">{feat.label}</p>
-                <p className="font-[family-name:var(--font-nunito)] text-xs text-[#707070]">{feat.description}</p>
+                <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-black">{feat.label}</p>
+                <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#707070]">{feat.description}</p>
               </div>
             </div>
           ))}
@@ -584,7 +584,7 @@ function OtherAppsSection() {
         {OTHER_APPS.map((app) => (
           <div key={app.id} className="flex flex-col gap-3 rounded-lg border border-[#e6ebf3] p-4">
             <div className="flex items-center justify-between">
-              <p className="font-[family-name:var(--font-nunito)] text-sm font-bold text-[#2d1810]">{app.name}</p>
+              <p className="font-[family-name:var(--font-urbanist)] text-sm font-bold text-[#2d1810]">{app.name}</p>
               <span
                 className={`rounded-full border px-2.5 py-0.5 font-[family-name:var(--font-urbanist)] text-xs ${
                   app.status === "Connected" ? "border-[#009061] bg-[#ecfff8] text-[#009061]" : "border-[#9ca3af] bg-[#f3f4f6] text-[#6b7280]"
@@ -593,9 +593,9 @@ function OtherAppsSection() {
                 {app.status}
               </span>
             </div>
-            <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{app.description}</p>
+            <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{app.description}</p>
             <button
-              className={`self-start rounded-lg px-4 py-2 font-[family-name:var(--font-nunito)] text-sm font-medium ${
+              className={`self-start rounded-lg px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-medium ${
                 app.status === "Connected" ? "border border-[#d0d5dd] text-[#2d1810]" : "bg-[#3b2513] text-[#faf2e1]"
               }`}
             >

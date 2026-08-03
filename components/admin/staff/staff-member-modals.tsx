@@ -61,7 +61,7 @@ export function EditMemberModal({
 
         <div className="flex flex-col gap-4 px-6 py-5">
           <div className="flex flex-col gap-1">
-            <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">Name</label>
+            <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-black">Name</label>
             <input
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -69,7 +69,7 @@ export function EditMemberModal({
             />
           </div>
           <div className="flex flex-col gap-1">
-            <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">Email address</label>
+            <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-black">Email address</label>
             <input
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -77,7 +77,7 @@ export function EditMemberModal({
             />
           </div>
           <div className="flex flex-col gap-1">
-            <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">Phone number</label>
+            <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-black">Phone number</label>
             <input
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
@@ -88,7 +88,7 @@ export function EditMemberModal({
           <div className="h-px w-full bg-[#e6ebf3]" />
 
           <div className="flex flex-col gap-1">
-            <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-black">Assign role</label>
+            <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-black">Assign role</label>
             <select
               value={role}
               onChange={(e) => setRole(e.target.value)}
@@ -110,7 +110,7 @@ export function EditMemberModal({
             <div className="flex flex-col gap-4">
               {STAFF_PERMISSION_GROUPS.map((group) => (
                 <div key={group} className="flex items-center justify-between">
-                  <p className="font-[family-name:var(--font-nunito)] text-sm text-[#252525]">{group}</p>
+                  <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#252525]">{group}</p>
                   <div className="flex items-center gap-4">
                     <Toggle label="Full access" on={permissions[group] === "full"} onToggle={() => setPermission(group, "full")} />
                     <Toggle label="View only" on={permissions[group] === "view"} onToggle={() => setPermission(group, "view")} />
@@ -172,10 +172,10 @@ export function DeactivateMemberModal({
         <div className="mt-4 h-px w-full bg-[#e6ebf3]" />
 
         <div className="mt-6 flex flex-col gap-1">
-          <p className="font-[family-name:var(--font-nunito)] text-base font-medium text-[#131313]">
+          <p className="font-[family-name:var(--font-urbanist)] text-base font-medium text-[#131313]">
             Why are you suspending {member.name}&apos;s account
           </p>
-          <p className="font-[family-name:var(--font-nunito)] text-sm text-[#7e7e7e]">
+          <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#7e7e7e]">
             Let the user know why their account is being suspended. The user will be notified.
           </p>
         </div>
@@ -183,7 +183,7 @@ export function DeactivateMemberModal({
         <div className="mt-6 flex flex-col gap-4">
           {DEACTIVATION_REASONS.map((r) => (
             <label key={r} className="flex items-center justify-between gap-3">
-              <span className="font-[family-name:var(--font-nunito)] text-sm text-[#2e2e2e]">{r}</span>
+              <span className="font-[family-name:var(--font-urbanist)] text-sm text-[#2e2e2e]">{r}</span>
               <input
                 type="radio"
                 name="deactivation-reason"
@@ -194,13 +194,13 @@ export function DeactivateMemberModal({
             </label>
           ))}
           <div className="flex flex-col gap-2">
-            <p className="font-[family-name:var(--font-nunito)] text-sm text-[#2e2e2e]">Others</p>
+            <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#2e2e2e]">Others</p>
             <textarea
               value={otherReason}
               onChange={(e) => setOtherReason(e.target.value)}
               placeholder="Type your reason"
               rows={3}
-              className="resize-none rounded-xl border border-[#c7c7c7] p-4 font-[family-name:var(--font-nunito)] text-sm text-black outline-none placeholder:text-[#7e7e7e] focus:ring-2 focus:ring-[#c47b2c]"
+              className="resize-none rounded-xl border border-[#c7c7c7] p-4 font-[family-name:var(--font-urbanist)] text-sm text-black outline-none placeholder:text-[#7e7e7e] focus:ring-2 focus:ring-[#c47b2c]"
             />
           </div>
         </div>

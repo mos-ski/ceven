@@ -92,7 +92,7 @@ export function StaffProfileView({ staff }: { staff: StaffMember }) {
                 <p className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
                   {staff.name}
                 </p>
-                <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+                <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
                   Staff ID: CEV-STF-{staff.id.padStart(4, "0")}
                 </p>
               </div>
@@ -110,8 +110,8 @@ export function StaffProfileView({ staff }: { staff: StaffMember }) {
             <div className="space-y-3">
               {details.map(({ label, value }) => (
                 <div key={label}>
-                  <p className="font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">{label}</p>
-                  <p className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">{value}</p>
+                  <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">{label}</p>
+                  <p className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">{value}</p>
                 </div>
               ))}
             </div>
@@ -133,10 +133,10 @@ export function StaffProfileView({ staff }: { staff: StaffMember }) {
                       <FileText className="size-3.5 text-[#3b2513]" />
                     </div>
                     <div>
-                      <p className="font-[family-name:var(--font-nunito)] text-xs font-medium text-[#2d1810]">
+                      <p className="font-[family-name:var(--font-urbanist)] text-xs font-medium text-[#2d1810]">
                         {doc.name}
                       </p>
-                      <p className="font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">{doc.date}</p>
+                      <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">{doc.date}</p>
                     </div>
                   </div>
                   <button className="font-[family-name:var(--font-urbanist)] text-xs text-[#3b2513] hover:underline">
@@ -149,7 +149,7 @@ export function StaffProfileView({ staff }: { staff: StaffMember }) {
             {/* Upload area */}
             <div className="mt-3 rounded-lg border-2 border-dashed border-[#d0d5dd] p-4 text-center">
               <Upload className="mx-auto mb-1 size-5 text-[#9ca3af]" />
-              <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+              <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
                 Drop files here or{" "}
                 <span className="cursor-pointer text-[#3b2513] underline">browse</span>
               </p>
@@ -164,10 +164,10 @@ export function StaffProfileView({ staff }: { staff: StaffMember }) {
             <div className="flex items-start gap-3">
               <span className="text-lg text-[#c47b2c]">✦</span>
               <div className="flex-1">
-                <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
+                <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
                   Ada AI Flag
                 </p>
-                <p className="mt-0.5 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+                <p className="mt-0.5 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
                   {staff.name}&apos;s log compliance has dropped to 52% this week (below the 72% threshold).
                   Recommended action: Brief check-in before end of day.
                 </p>
@@ -194,16 +194,16 @@ export function StaffProfileView({ staff }: { staff: StaffMember }) {
             <table className="w-full">
               <thead>
                 <tr className="bg-[#edd9c0]">
-                  <th className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-xs font-semibold text-[#2d1810]">
+                  <th className="px-4 py-3 text-left font-[family-name:var(--font-urbanist)] text-xs font-semibold text-[#2d1810]">
                     Activity
                   </th>
-                  <th className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-xs font-semibold text-[#2d1810]">
+                  <th className="px-4 py-3 text-left font-[family-name:var(--font-urbanist)] text-xs font-semibold text-[#2d1810]">
                     Child
                   </th>
-                  <th className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-xs font-semibold text-[#2d1810]">
+                  <th className="px-4 py-3 text-left font-[family-name:var(--font-urbanist)] text-xs font-semibold text-[#2d1810]">
                     Date &amp; Time
                   </th>
-                  <th className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-xs font-semibold text-[#2d1810]">
+                  <th className="px-4 py-3 text-left font-[family-name:var(--font-urbanist)] text-xs font-semibold text-[#2d1810]">
                     Status
                   </th>
                 </tr>
@@ -211,13 +211,13 @@ export function StaffProfileView({ staff }: { staff: StaffMember }) {
               <tbody className="divide-y divide-[#eaecf0]">
                 {logs.map((log, i) => (
                   <tr key={i} className="hover:bg-[#faf9f7]">
-                    <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">
+                    <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">
                       {log.activity}
                     </td>
-                    <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+                    <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
                       {log.child}
                     </td>
-                    <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+                    <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
                       {log.time}
                     </td>
                     <td className="px-4 py-3">

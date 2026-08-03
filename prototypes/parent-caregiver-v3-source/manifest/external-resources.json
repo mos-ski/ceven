@@ -1,0 +1,10 @@
+[
+  {
+    "id": "https://unpkg.com/react@18.3.1/umd/react.production.min.js",
+    "uuid": "54f35857-c847-425f-879b-63df1dc5db3e"
+  },
+  {
+    "id": "https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js",
+    "uuid": "139e8ad5-1cfc-4e3c-bdfe-0ee723881e85"
+  }
+]

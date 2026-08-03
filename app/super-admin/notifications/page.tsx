@@ -28,7 +28,7 @@ export default function NotificationsPage() {
               0
             </span>
           </div>
-          <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-heading">Total Activity Logs</p>
+          <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-heading">Total Activity Logs</p>
         </div>
       </div>
 
@@ -41,16 +41,16 @@ export default function NotificationsPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search notifications..."
-              className="h-9 w-full rounded-lg border border-input-border bg-white pl-9 pr-3 font-[family-name:var(--font-nunito)] text-sm placeholder:text-muted-text focus:outline-none focus:ring-2 focus:ring-brand-accent"
+              className="h-9 w-full rounded-lg border border-input-border bg-white pl-9 pr-3 font-[family-name:var(--font-urbanist)] text-sm placeholder:text-muted-text focus:outline-none focus:ring-2 focus:ring-brand-accent"
             />
           </div>
-          <button type="button" className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-heading">
+          <button type="button" className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">
             <ArrowUpDown className="size-3.5" /> Sort by: Most recent
           </button>
-          <button type="button" className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-heading">
+          <button type="button" className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">
             <Download className="size-3.5" /> Export as
           </button>
-          <button type="button" className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-heading">
+          <button type="button" className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">
             <Printer className="size-3.5" /> Print
           </button>
         </div>
@@ -59,11 +59,11 @@ export default function NotificationsPage() {
           <table className="w-full text-left">
             <thead>
               <tr className="bg-table-header-bg">
-                <th className="px-4 py-3 font-[family-name:var(--font-nunito)] text-xs font-semibold text-white">Date Created</th>
-                <th className="px-4 py-3 font-[family-name:var(--font-nunito)] text-xs font-semibold text-white">Recipients</th>
-                <th className="px-4 py-3 font-[family-name:var(--font-nunito)] text-xs font-semibold text-white">Title</th>
-                <th className="px-4 py-3 font-[family-name:var(--font-nunito)] text-xs font-semibold text-white">Message</th>
-                <th className="px-4 py-3 font-[family-name:var(--font-nunito)] text-xs font-semibold text-white">Action</th>
+                <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">Date Created</th>
+                <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">Recipients</th>
+                <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">Title</th>
+                <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">Message</th>
+                <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -74,7 +74,7 @@ export default function NotificationsPage() {
                       <div className="flex size-12 items-center justify-center rounded-full bg-slate-100">
                         <span className="text-2xl">📄</span>
                       </div>
-                      <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-heading">
+                      <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-heading">
                         No Data Available Yet!
                       </p>
                     </div>
@@ -83,12 +83,12 @@ export default function NotificationsPage() {
               ) : (
                 PLATFORM_NOTIFICATIONS.map((notification) => (
                   <tr key={notification.id} className="border-b border-table-border last:border-0 hover:bg-slate-50">
-                    <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-heading">{notification.time}</td>
-                    <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-heading">All</td>
-                    <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm font-semibold text-heading">{notification.title}</td>
-                    <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-muted-text">{notification.message}</td>
+                    <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">{notification.time}</td>
+                    <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">All</td>
+                    <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-heading">{notification.title}</td>
+                    <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-muted-text">{notification.message}</td>
                     <td className="px-4 py-3">
-                      <button type="button" className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-brand-accent hover:underline">
+                      <button type="button" className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-brand-accent hover:underline">
                         View
                       </button>
                     </td>
@@ -100,7 +100,7 @@ export default function NotificationsPage() {
         </div>
 
         <div className="flex items-center justify-between border-t border-card-border px-4 py-3">
-          <span className="font-[family-name:var(--font-nunito)] text-xs text-muted-text">10 per page</span>
+          <span className="font-[family-name:var(--font-urbanist)] text-xs text-muted-text">10 per page</span>
           <div className="flex items-center gap-1">
             <button type="button" className="flex size-8 items-center justify-center rounded-lg border border-card-border text-muted-text">
               <ChevronLeft className="size-4" />

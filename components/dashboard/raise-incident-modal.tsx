@@ -14,7 +14,7 @@ const severityOptions = ["Low - no treatment needed", "Medium - first aid given"
 
 function FieldLabel({ children }: { children: React.ReactNode }) {
   return (
-    <label className="font-[family-name:var(--font-nunito)] text-sm text-[#666]">{children}</label>
+    <label className="font-[family-name:var(--font-urbanist)] text-sm text-[#666]">{children}</label>
   );
 }
 
@@ -24,7 +24,7 @@ function TextField({ placeholder, type = "text", rows }: { placeholder?: string;
       <textarea
         placeholder={placeholder}
         rows={rows}
-        className="w-full resize-none rounded-xl border border-[#dcdcdc] bg-white px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+        className="w-full resize-none rounded-xl border border-[#dcdcdc] bg-white px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
       />
     );
   }
@@ -32,14 +32,14 @@ function TextField({ placeholder, type = "text", rows }: { placeholder?: string;
     <input
       type={type}
       placeholder={placeholder}
-      className="h-[52px] w-full rounded-xl border border-[#dcdcdc] bg-white px-4 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+      className="h-[52px] w-full rounded-xl border border-[#dcdcdc] bg-white px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
     />
   );
 }
 
 function SelectField({ options, placeholder }: { options: string[]; placeholder?: string }) {
   return (
-    <select className="h-[52px] w-full appearance-none rounded-xl border border-[#dcdcdc] bg-white px-4 font-[family-name:var(--font-nunito)] text-sm text-[#111] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]">
+    <select className="h-[52px] w-full appearance-none rounded-xl border border-[#dcdcdc] bg-white px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#111] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]">
       {placeholder && (
         <option value="" disabled selected>
           {placeholder}
@@ -81,7 +81,7 @@ export default function RaiseIncidentModal({ onClose }: Props) {
             <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#171f26]">
               Raise Incident
             </h2>
-            <p className="mt-0.5 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+            <p className="mt-0.5 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
               This will be escalated to the managers immediately, parents will be notified within few hours
             </p>
           </div>
@@ -97,7 +97,7 @@ export default function RaiseIncidentModal({ onClose }: Props) {
         <div className="flex flex-1 flex-col gap-4 overflow-y-auto px-6 py-5">
           <div className="flex items-start gap-2 rounded-xl bg-[#faf2e1] px-3 py-2.5">
             <Info className="mt-0.5 h-4 w-4 shrink-0 text-[#3b2513]" />
-            <p className="font-[family-name:var(--font-nunito)] text-xs text-black">
+            <p className="font-[family-name:var(--font-urbanist)] text-xs text-black">
               High-severity incidents are immediately flagged to the crèche owner. Always document accurately
               and factually.
             </p>
@@ -116,7 +116,7 @@ export default function RaiseIncidentModal({ onClose }: Props) {
             <div className="flex flex-col gap-2">
               <div className="flex items-center gap-1">
                 <FieldLabel>Severity</FieldLabel>
-                <span className="rounded bg-[#ffeded] px-1 py-0.5 font-[family-name:var(--font-nunito)] text-[8px] text-[#ee1d52]">
+                <span className="rounded bg-[#ffeded] px-1 py-0.5 font-[family-name:var(--font-urbanist)] text-[8px] text-[#ee1d52]">
                   High = Instant alert
                 </span>
               </div>

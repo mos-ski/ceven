@@ -65,8 +65,8 @@ function CreateRoomModal({
           </FieldGroup>
           <div className="flex items-center justify-between rounded-lg border border-[#e6ebf3] p-3">
             <div>
-              <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">Enable Waitlist</p>
-              <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+              <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">Enable Waitlist</p>
+              <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
                 Allow children to be waitlisted once this room is full.
               </p>
             </div>
@@ -140,11 +140,11 @@ export function RoomsClassesTab() {
                   <p className="font-[family-name:var(--font-merriweather)] text-base font-bold text-stat-heading">
                     {room.name}
                   </p>
-                  <p className="font-[family-name:var(--font-nunito)] text-xs text-muted-text">{room.ageRange}</p>
+                  <p className="font-[family-name:var(--font-urbanist)] text-xs text-muted-text">{room.ageRange}</p>
                 </div>
               </div>
               <div className="mt-4">
-                <div className="flex items-center justify-between font-[family-name:var(--font-nunito)] text-xs text-muted-text">
+                <div className="flex items-center justify-between font-[family-name:var(--font-urbanist)] text-xs text-muted-text">
                   <span>
                     {room.enrolled}/{room.capacity} enrolled
                   </span>
@@ -157,7 +157,7 @@ export function RoomsClassesTab() {
                   />
                 </div>
               </div>
-              <p className="mt-3 font-[family-name:var(--font-nunito)] text-xs text-muted-text">
+              <p className="mt-3 font-[family-name:var(--font-urbanist)] text-xs text-muted-text">
                 Caregiver: <span className="font-semibold text-[#2d1810]">{room.caregiver}</span>
               </p>
             </div>

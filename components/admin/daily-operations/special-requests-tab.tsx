@@ -87,10 +87,10 @@ function RequestDetailModal({
                   {request.parentAvatar}
                 </div>
                 <div>
-                  <p className="font-[family-name:var(--font-nunito)] text-sm font-bold text-[#2d1810]">
+                  <p className="font-[family-name:var(--font-urbanist)] text-sm font-bold text-[#2d1810]">
                     {request.parentName}
                   </p>
-                  <p className="font-[family-name:var(--font-nunito)] text-[10px] text-[#6b7280]">
+                  <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#6b7280]">
                     Sent on {request.date}
                   </p>
                 </div>
@@ -115,10 +115,10 @@ function RequestDetailModal({
                 ["Additional Comment", request.comment || "—"],
               ].map(([label, value]) => (
                 <div key={label} className="flex gap-4">
-                  <p className="w-[140px] shrink-0 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#6b7280]">
+                  <p className="w-[140px] shrink-0 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#6b7280]">
                     {label}
                   </p>
-                  <p className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#1f2937]">
+                  <p className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#1f2937]">
                     {value}
                   </p>
                 </div>
@@ -175,33 +175,33 @@ function AddRequestModal({
         </DialogHeader>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4 px-6 py-5">
           <div className="flex flex-col gap-1.5">
-            <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">Task</label>
-            <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="e.g. Apply sunscreen before outdoor play" className="h-10 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] outline-none focus:ring-2 focus:ring-[#c47b2c]" />
+            <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">Task</label>
+            <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="e.g. Apply sunscreen before outdoor play" className="h-10 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] outline-none focus:ring-2 focus:ring-[#c47b2c]" />
           </div>
           <div className="flex flex-col gap-1.5">
-            <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">Description</label>
-            <textarea rows={3} value={description} onChange={(e) => setDescription(e.target.value)} placeholder="What needs to be done..." className="resize-none rounded-lg border border-[#d0d5dd] px-3 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] outline-none focus:ring-2 focus:ring-[#c47b2c]" />
+            <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">Description</label>
+            <textarea rows={3} value={description} onChange={(e) => setDescription(e.target.value)} placeholder="What needs to be done..." className="resize-none rounded-lg border border-[#d0d5dd] px-3 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] outline-none focus:ring-2 focus:ring-[#c47b2c]" />
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div className="flex flex-col gap-1.5">
-              <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">Child</label>
-              <input type="text" value={childName} onChange={(e) => setChildName(e.target.value)} placeholder="Child name" className="h-10 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] outline-none focus:ring-2 focus:ring-[#c47b2c]" />
+              <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">Child</label>
+              <input type="text" value={childName} onChange={(e) => setChildName(e.target.value)} placeholder="Child name" className="h-10 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] outline-none focus:ring-2 focus:ring-[#c47b2c]" />
             </div>
             <div className="flex flex-col gap-1.5">
-              <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">Caregiver</label>
-              <input type="text" value={caregiver} onChange={(e) => setCaregiver(e.target.value)} placeholder="Assigned to" className="h-10 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] outline-none focus:ring-2 focus:ring-[#c47b2c]" />
+              <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">Caregiver</label>
+              <input type="text" value={caregiver} onChange={(e) => setCaregiver(e.target.value)} placeholder="Assigned to" className="h-10 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] outline-none focus:ring-2 focus:ring-[#c47b2c]" />
             </div>
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div className="flex flex-col gap-1.5">
-              <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">Priority</label>
-              <select value={priority} onChange={(e) => setPriority(e.target.value as SpecialRequestPriority)} className="h-10 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]">
+              <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">Priority</label>
+              <select value={priority} onChange={(e) => setPriority(e.target.value as SpecialRequestPriority)} className="h-10 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]">
                 <option>Low</option><option>Medium</option><option>High</option>
               </select>
             </div>
             <div className="flex flex-col gap-1.5">
-              <label className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">Scheduled Time</label>
-              <input type="text" value={scheduledTime} onChange={(e) => setScheduledTime(e.target.value)} placeholder="e.g. 12:30pm" className="h-10 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] outline-none focus:ring-2 focus:ring-[#c47b2c]" />
+              <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">Scheduled Time</label>
+              <input type="text" value={scheduledTime} onChange={(e) => setScheduledTime(e.target.value)} placeholder="e.g. 12:30pm" className="h-10 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] outline-none focus:ring-2 focus:ring-[#c47b2c]" />
             </div>
           </div>
           <DialogFooter className="border-t border-[#eaecf0] px-0 pt-2">
@@ -272,7 +272,7 @@ export function SpecialRequestsTab() {
           { label: "Done", value: stats.done, color: "text-[#009061]" },
         ].map((s) => (
           <div key={s.label} className="flex flex-col gap-1 rounded-xl border border-[#e6ebf3] bg-white p-3">
-            <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{s.label}</p>
+            <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{s.label}</p>
             <p className={`font-[family-name:var(--font-merriweather)] text-xl font-bold ${s.color}`}>{s.value}</p>
           </div>
         ))}
@@ -293,7 +293,7 @@ export function SpecialRequestsTab() {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search requests, parents, children…"
-                className="h-8 w-full rounded-lg border border-[rgba(45,24,16,0.12)] bg-[#f5edd8] pl-7 pr-3 font-[family-name:var(--font-nunito)] text-xs text-[#2d1810] placeholder:text-[#9ca3af] focus:outline-none sm:w-64"
+                className="h-8 w-full rounded-lg border border-[rgba(45,24,16,0.12)] bg-[#f5edd8] pl-7 pr-3 font-[family-name:var(--font-urbanist)] text-xs text-[#2d1810] placeholder:text-[#9ca3af] focus:outline-none sm:w-64"
               />
             </div>
             <button
@@ -345,7 +345,7 @@ export function SpecialRequestsTab() {
             <thead>
               <tr className="bg-[#edd9c0]">
                 {["Parent", "Request", "Child", "Caregiver", "Source", "Priority", "Due", "Status", "Action"].map((h) => (
-                  <th key={h} className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black">
+                  <th key={h} className="px-4 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-normal text-black">
                     {h}
                   </th>
                 ))}
@@ -354,7 +354,7 @@ export function SpecialRequestsTab() {
             <tbody className="bg-white">
               {filtered.length === 0 ? (
                 <tr>
-                  <td colSpan={9} className="py-10 text-center font-[family-name:var(--font-nunito)] text-sm text-[#9ca3af]">
+                  <td colSpan={9} className="py-10 text-center font-[family-name:var(--font-urbanist)] text-sm text-[#9ca3af]">
                     No requests match your search or filters.
                   </td>
                 </tr>
@@ -366,34 +366,34 @@ export function SpecialRequestsTab() {
                         <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#edd9c0] font-[family-name:var(--font-urbanist)] text-[10px] font-bold text-[#3b2513]">
                           {req.parentAvatar}
                         </div>
-                        <span className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">
+                        <span className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">
                           {req.parentName}
                         </span>
                       </div>
                     </td>
                     <td className="max-w-[180px] px-4 py-3">
-                      <p className="truncate font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{req.title}</p>
+                      <p className="truncate font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{req.title}</p>
                     </td>
                     <td className="px-4 py-3">
-                      <p className="font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{req.childName}</p>
-                      <p className="font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">{req.childRoom}</p>
+                      <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{req.childName}</p>
+                      <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">{req.childRoom}</p>
                     </td>
-                    <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+                    <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
                       {req.caregiverName}
                     </td>
                     <td className="px-4 py-3"><SourceBadge source={req.source} /></td>
                     <td className="px-4 py-3">
-                      <span className="inline-flex items-center gap-1.5 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">
+                      <span className="inline-flex items-center gap-1.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">
                         <span className={`h-2 w-2 rounded-full ${PRIORITY_DOT[req.priority]}`} />
                         {req.priority}
                       </span>
                     </td>
-                    <td className="px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+                    <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
                       {req.dueDate}
                     </td>
                     <td className="px-4 py-3"><StatusBadge status={req.status} /></td>
                     <td className="px-4 py-3 text-center">
-                      <button onClick={() => setViewing(req)} className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#3b2513] underline">
+                      <button onClick={() => setViewing(req)} className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#3b2513] underline">
                         View
                       </button>
                     </td>
@@ -407,7 +407,7 @@ export function SpecialRequestsTab() {
         {/* Mobile card list */}
         <div className="flex flex-col gap-2 px-4 pb-4 lg:hidden">
           {filtered.length === 0 && (
-            <p className="py-6 text-center font-[family-name:var(--font-nunito)] text-sm text-[#9ca3af]">
+            <p className="py-6 text-center font-[family-name:var(--font-urbanist)] text-sm text-[#9ca3af]">
               No requests match your search or filters.
             </p>
           )}
@@ -423,21 +423,21 @@ export function SpecialRequestsTab() {
                     {req.parentAvatar}
                   </div>
                   <div>
-                    <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">{req.parentName}</p>
-                    <p className="font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">{req.childName} • {req.caregiverName}</p>
+                    <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">{req.parentName}</p>
+                    <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">{req.childName} • {req.caregiverName}</p>
                   </div>
                 </div>
                 <StatusBadge status={req.status} />
               </div>
-              <p className="mt-1.5 truncate font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{req.title}</p>
+              <p className="mt-1.5 truncate font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{req.title}</p>
               <div className="mt-1.5 flex items-center gap-2">
                 <SourceBadge source={req.source} />
-                <span className="inline-flex items-center gap-1 font-[family-name:var(--font-nunito)] text-[10px] text-[#6b7280]">
+                <span className="inline-flex items-center gap-1 font-[family-name:var(--font-urbanist)] text-[10px] text-[#6b7280]">
                   <span className={`h-1.5 w-1.5 rounded-full ${PRIORITY_DOT[req.priority]}`} />
                   {req.priority}
                 </span>
                 <span className="text-[#d0d5dd]">•</span>
-                <span className="font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">{req.dueDate}</span>
+                <span className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">{req.dueDate}</span>
               </div>
             </button>
           ))}

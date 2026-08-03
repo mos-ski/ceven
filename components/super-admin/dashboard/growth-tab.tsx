@@ -33,7 +33,7 @@ export default function GrowthTab() {
                   <stat.icon className={`size-5 ${stat.color}`} />
                 </div>
                 <div>
-                  <p className="font-[family-name:var(--font-nunito)] text-xs text-muted-text">{stat.label}</p>
+                  <p className="font-[family-name:var(--font-urbanist)] text-xs text-muted-text">{stat.label}</p>
                   <p className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-stat-heading">
                     {stat.value}
                   </p>
@@ -41,7 +41,7 @@ export default function GrowthTab() {
               </div>
               <div className="mt-3 flex items-center gap-1">
                 <TrendingUp className="size-3 text-success-text" />
-                <p className="font-[family-name:var(--font-nunito)] text-[10px] text-success-text">{stat.trend}</p>
+                <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-success-text">{stat.trend}</p>
               </div>
             </div>
           ))}

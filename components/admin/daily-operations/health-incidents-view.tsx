@@ -57,7 +57,7 @@ function FilterDropdown({
         render={
           <Button
             variant="outline"
-            className="h-8 gap-2 rounded-lg border-input-border bg-white px-3 font-[family-name:var(--font-nunito)] text-xs font-semibold text-[#454B54]"
+            className="h-8 gap-2 rounded-lg border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-[#454B54]"
           />
         }
       >
@@ -87,7 +87,7 @@ function ReportIncidentModal({
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Report Incident</DialogTitle>
-          <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+          <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
             Log a health or safety incident involving a child.
           </p>
         </DialogHeader>
@@ -98,7 +98,7 @@ function ReportIncidentModal({
             <select
               id="incident-child"
               defaultValue=""
-              className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+              className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
             >
               <option value="" disabled>
                 Select a child
@@ -117,7 +117,7 @@ function ReportIncidentModal({
               <select
                 id="incident-type"
                 defaultValue=""
-                className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+                className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
               >
                 <option value="" disabled>
                   Select type
@@ -134,7 +134,7 @@ function ReportIncidentModal({
               <select
                 id="incident-severity"
                 defaultValue="Minor"
-                className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+                className="h-9 rounded-lg border border-[#d0d5dd] bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
               >
                 <option value="Minor">Minor</option>
                 <option value="Moderate">Moderate</option>
@@ -154,13 +154,13 @@ function ReportIncidentModal({
               id="incident-description"
               rows={4}
               placeholder="Describe what happened, actions taken, and any follow-up required..."
-              className="resize-none rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+              className="resize-none rounded-lg border border-[#d0d5dd] px-3.5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
             />
           </div>
 
           <div className="flex items-center gap-2">
             <input type="checkbox" id="incident-notify" className="h-4 w-4 accent-[#3b2513]" />
-            <Label htmlFor="incident-notify" className="font-[family-name:var(--font-nunito)] text-sm font-normal text-[#2d1810]">
+            <Label htmlFor="incident-notify" className="font-[family-name:var(--font-urbanist)] text-sm font-normal text-[#2d1810]">
               Notify parent/guardian immediately
             </Label>
           </div>
@@ -171,7 +171,7 @@ function ReportIncidentModal({
             render={
               <Button
                 variant="outline"
-                className="h-9 rounded-lg border-[#d0d5dd] px-4 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]"
+                className="h-9 rounded-lg border-[#d0d5dd] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]"
               />
             }
           >
@@ -179,7 +179,7 @@ function ReportIncidentModal({
           </DialogClose>
           <Button
             onClick={() => onOpenChange(false)}
-            className="h-9 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#faf2e1]"
+            className="h-9 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]"
           >
             Submit Report
           </Button>
@@ -209,8 +209,8 @@ function ViewIncidentModal({
               <div className="flex items-center gap-2">
                 <div className="size-9 rounded-full bg-[#edd9c0]" />
                 <div>
-                  <p className="font-[family-name:var(--font-nunito)] text-sm font-bold text-black">{incident.child}</p>
-                  <p className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{incident.childInfo}</p>
+                  <p className="font-[family-name:var(--font-urbanist)] text-sm font-bold text-black">{incident.child}</p>
+                  <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{incident.childInfo}</p>
                 </div>
               </div>
               <div className="flex items-center gap-2">
@@ -233,10 +233,10 @@ function ViewIncidentModal({
                 ["Parent Notified", incident.parentNotified ? "Yes" : "No"],
               ].map(([label, value]) => (
                 <div key={label} className="flex gap-[52px]">
-                  <p className="w-[156px] shrink-0 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#6b7280]">
+                  <p className="w-[156px] shrink-0 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#6b7280]">
                     {label}
                   </p>
-                  <p className="font-[family-name:var(--font-nunito)] text-sm font-medium text-[#1f2937]">{value}</p>
+                  <p className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#1f2937]">{value}</p>
                 </div>
               ))}
             </div>
@@ -254,29 +254,29 @@ function IncidentRow({ incident, onView }: { incident: Incident; onView: (incide
         <input type="checkbox" className="h-4 w-4 accent-[#3b2513]" />
       </TableCell>
       <TableCell>
-        <p className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-black">
+        <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-black">
           {incident.child}
         </p>
-        <p className="font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">
+        <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">
           {incident.childInfo}
         </p>
       </TableCell>
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+      <TableCell className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
         {incident.type}
       </TableCell>
       <TableCell>
-        <span className="inline-flex items-center gap-1.5 font-[family-name:var(--font-nunito)] text-sm font-medium text-[#2d1810]">
+        <span className="inline-flex items-center gap-1.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">
           <span className={`h-2 w-2 rounded-full ${SEVERITY_DOT_CLASS[incident.severity]}`} />
           {incident.severity}
         </span>
       </TableCell>
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+      <TableCell className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
         {incident.time}
       </TableCell>
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+      <TableCell className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
         {incident.reportedBy}
       </TableCell>
-      <TableCell className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+      <TableCell className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
         {incident.parentNotified ? "Yes" : "No"}
       </TableCell>
       <TableCell>
@@ -332,7 +332,7 @@ export function HealthIncidentsView() {
             key={card.title}
             className="flex flex-col gap-1 rounded-xl border border-[#e6ebf3] bg-white p-4"
           >
-            <p className="font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">{card.title}</p>
+            <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">{card.title}</p>
             <p className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
               {card.value}
             </p>
@@ -345,7 +345,7 @@ export function HealthIncidentsView() {
         <span className="inline-flex items-center gap-1 rounded-full bg-[#e0bfa0] px-2 py-0.5 font-[family-name:var(--font-urbanist)] text-[10px] font-medium text-[#3b2513]">
           ✦ AI Insights
         </span>
-        <p className="font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">
+        <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">
           ⚠ Action required:2 open incidents have not been communicated to parents. <span className="font-bold">CEven</span> policy requires parent notification within 4 hours.
         </p>
         <button className="ml-auto text-[#9ca3af] hover:text-[#6b7280]">✕</button>
@@ -357,7 +357,7 @@ export function HealthIncidentsView() {
             Incident Log
           </h2>
           <div className="flex items-center gap-2">
-            <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">Filter by:</span>
+            <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Filter by:</span>
             <FilterDropdown label={severityFilter} options={["All Severity", "Minor", "Moderate", "Severe"]} onSelect={setSeverityFilter} />
             <FilterDropdown label={statusFilter} options={["All Status", "Open", "Under Review", "Resolved"]} onSelect={setStatusFilter} />
             <FilterDropdown label="Date" options={["All Dates", "Today", "This Week", "This Month"]} />
@@ -383,7 +383,7 @@ export function HealthIncidentsView() {
                 {["Child", "Type", "Severity", "Report Time", "Reported by", "Parent Notified", "Status", "Action"].map((h) => (
                   <th
                     key={h}
-                    className="px-4 py-3 text-left font-[family-name:var(--font-nunito)] text-sm font-normal text-black"
+                    className="px-4 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-normal text-black"
                   >
                     {h}
                   </th>
@@ -393,7 +393,7 @@ export function HealthIncidentsView() {
             <tbody className="bg-white">
               {filteredIncidents.length === 0 ? (
                 <tr>
-                  <td colSpan={9} className="py-10 text-center font-[family-name:var(--font-nunito)] text-sm text-[#9ca3af]">
+                  <td colSpan={9} className="py-10 text-center font-[family-name:var(--font-urbanist)] text-sm text-[#9ca3af]">
                     No incidents match your search or filters.
                   </td>
                 </tr>
@@ -409,7 +409,7 @@ export function HealthIncidentsView() {
         {/* Mobile card list */}
         <div className="flex flex-col gap-2 px-4 pb-4 lg:hidden">
           {filteredIncidents.length === 0 && (
-            <p className="py-6 text-center font-[family-name:var(--font-nunito)] text-sm text-[#9ca3af]">
+            <p className="py-6 text-center font-[family-name:var(--font-urbanist)] text-sm text-[#9ca3af]">
               No incidents match your search or filters.
             </p>
           )}
@@ -421,24 +421,24 @@ export function HealthIncidentsView() {
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <span className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
+                  <span className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
                     {incident.child}
                   </span>
-                  <p className="font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">{incident.childInfo}</p>
+                  <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">{incident.childInfo}</p>
                 </div>
                 <Badge variant="outline" className={STATUS_BADGE_CLASS[incident.status]}>
                   ● {incident.status}
                 </Badge>
               </div>
               <div className="mt-1.5 flex items-center gap-2">
-                <span className="font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">{incident.type}</span>
+                <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{incident.type}</span>
                 <span className="text-[#d0d5dd]">•</span>
-                <span className="inline-flex items-center gap-1 font-[family-name:var(--font-nunito)] text-xs text-[#6b7280]">
+                <span className="inline-flex items-center gap-1 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
                   <span className={`h-1.5 w-1.5 rounded-full ${SEVERITY_DOT_CLASS[incident.severity]}`} />
                   {incident.severity}
                 </span>
               </div>
-              <p className="mt-1 font-[family-name:var(--font-nunito)] text-[10px] text-[#9ca3af]">
+              <p className="mt-1 font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">
                 {incident.time} • by {incident.reportedBy}
               </p>
             </div>

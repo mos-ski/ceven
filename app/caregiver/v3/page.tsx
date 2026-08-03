@@ -1,13 +1,15 @@
-const PROTOTYPE_SRC = "/prototypes/parent-caregiver-v3.html";
+import { SourceArtifactRuntime } from "@/components/parent-caregiver-v3/source-artifact-runtime";
+import { loadParentCaregiverV3Source } from "@/lib/parent-caregiver-v3/source-loader";
 
-export default function CaregiverV3ImportPage() {
+export default async function CaregiverV3Page() {
+  const source = await loadParentCaregiverV3Source();
+
   return (
-    <main className="h-dvh w-full overflow-hidden bg-[#EFE6D8]">
-      <iframe
-        src={PROTOTYPE_SRC}
-        title="Parent/Caregiver v3 imported prototype"
-        className="h-full w-full border-0"
-      />
-    </main>
+    <SourceArtifactRuntime
+      markup={source.markup}
+      logic={source.logic}
+      styles={source.styles}
+      initialState={{ role: "caregiver", cScreen: "today" }}
+    />
   );
 }

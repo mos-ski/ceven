@@ -5,7 +5,7 @@ import type { ReactNode } from "react";
 
 export function FieldLabel({ children, required }: { children: ReactNode; required?: boolean }) {
   return (
-    <label className="font-[family-name:var(--font-nunito)] text-sm font-semibold text-[#2d1810]">
+    <label className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
       {children}
       {required && <span className="ml-0.5 text-[#ef4444]">*</span>}
     </label>
@@ -38,7 +38,7 @@ export function TextField({
         type={type}
         placeholder={placeholder}
         defaultValue={defaultValue}
-        className="h-[52px] w-full rounded-lg border border-[#d0d5dd] bg-white px-4 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+        className="h-[52px] w-full rounded-lg border border-[#d0d5dd] bg-white px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
       />
       {icon && (
         <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#9ca3af]">
@@ -62,7 +62,7 @@ export function SelectField({
     <div className="relative">
       <select
         defaultValue={defaultValue ?? ""}
-        className="h-[52px] w-full appearance-none rounded-lg border border-[#d0d5dd] bg-white px-4 pr-10 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+        className="h-[52px] w-full appearance-none rounded-lg border border-[#d0d5dd] bg-white px-4 pr-10 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
       >
         {placeholder && (
           <option value="" disabled>
@@ -85,7 +85,7 @@ export function TextAreaField({ placeholder, rows = 3 }: { placeholder?: string;
     <textarea
       placeholder={placeholder}
       rows={rows}
-      className="w-full resize-none rounded-lg border border-[#d0d5dd] bg-white px-4 py-3 font-[family-name:var(--font-nunito)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+      className="w-full resize-none rounded-lg border border-[#d0d5dd] bg-white px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
     />
   );
 }
@@ -106,7 +106,7 @@ export function ModalCheckbox({ label, defaultChecked }: { label: string; defaul
         defaultChecked={defaultChecked}
         className="size-4 rounded border-[#d0d5dd] accent-[#c47b2c]"
       />
-      <span className="font-[family-name:var(--font-nunito)] text-sm text-[#2d1810]">{label}</span>
+      <span className="font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">{label}</span>
     </label>
   );
 }

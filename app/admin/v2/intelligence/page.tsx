@@ -108,7 +108,7 @@ function GradientPill({ children }: { children: React.ReactNode }) {
 
 function DateFilterButton() {
   return (
-    <button className="flex items-center gap-1.5 rounded-lg border border-[#d0d5dd] bg-white px-3 py-2 font-[family-name:var(--font-nunito)] text-sm text-[#6b7280]">
+    <button className="flex items-center gap-1.5 rounded-lg border border-[#d0d5dd] bg-white px-3 py-2 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
       June 2026
       <ChevronDown className="h-4 w-4" />
     </button>
@@ -121,7 +121,7 @@ function IncidentCard({ title, desc }: { title: string; desc: string }) {
       <p className="text-sm font-semibold font-[family-name:var(--font-merriweather)] text-[#2d1810]">
         {title}
       </p>
-      <p className="mt-0.5 text-xs font-[family-name:var(--font-nunito)] text-[#6b7280]">{desc}</p>
+      <p className="mt-0.5 text-xs font-[family-name:var(--font-urbanist)] text-[#6b7280]">{desc}</p>
     </div>
   );
 }
@@ -168,14 +168,14 @@ function AdaChatPage({ onClose }: { onClose: () => void }) {
           >
             ✦
           </div>
-          <span className="ml-2 text-sm font-bold font-[family-name:var(--font-nunito)] text-[#c47b2c]">
+          <span className="ml-2 text-sm font-bold font-[family-name:var(--font-urbanist)] text-[#c47b2c]">
             ADA
           </span>
           <span className="ml-1.5 h-2 w-2 rounded-full bg-[#22c55e]" />
-          <span className="ml-auto text-xs font-[family-name:var(--font-nunito)] text-[#6b7280]">
+          <span className="ml-auto text-xs font-[family-name:var(--font-urbanist)] text-[#6b7280]">
             Professional &amp; Warm
           </span>
-          <button className="ml-2 cursor-pointer text-[10px] font-[family-name:var(--font-nunito)] text-[#c47b2c] underline">
+          <button className="ml-2 cursor-pointer text-[10px] font-[family-name:var(--font-urbanist)] text-[#c47b2c] underline">
             Personalize
           </button>
         </div>
@@ -189,7 +189,7 @@ function AdaChatPage({ onClose }: { onClose: () => void }) {
             className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
           >
             <div
-              className={`max-w-[85%] rounded-2xl p-3 text-xs font-[family-name:var(--font-nunito)] leading-relaxed ${
+              className={`max-w-[85%] rounded-2xl p-3 text-xs font-[family-name:var(--font-urbanist)] leading-relaxed ${
                 msg.role === "ai"
                   ? "rounded-tl-none bg-[#fdf6e8] text-[#2d1810]"
                   : "self-end rounded-tr-none bg-[#c47b2c] text-white"
@@ -228,7 +228,7 @@ function AdaChatPage({ onClose }: { onClose: () => void }) {
           <button
             key={prompt}
             onClick={() => send(prompt)}
-            className="cursor-pointer rounded-full border border-[#edd9c0] bg-white px-3 py-1.5 font-[family-name:var(--font-nunito)] text-[10px] text-[#6b7280] hover:border-[#c47b2c] hover:text-[#c47b2c]"
+            className="cursor-pointer rounded-full border border-[#edd9c0] bg-white px-3 py-1.5 font-[family-name:var(--font-urbanist)] text-[10px] text-[#6b7280] hover:border-[#c47b2c] hover:text-[#c47b2c]"
           >
             {prompt}
           </button>
@@ -243,7 +243,7 @@ function AdaChatPage({ onClose }: { onClose: () => void }) {
           onChange={(e) => setAdaInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && send(adaInput)}
           placeholder="Ask Ada anything…"
-          className="flex-1 rounded-full border border-[#edd9c0] bg-white px-4 py-2 font-[family-name:var(--font-nunito)] text-sm placeholder:text-[#9ca3af] focus:border-[#c47b2c] focus:outline-none"
+          className="flex-1 rounded-full border border-[#edd9c0] bg-white px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm placeholder:text-[#9ca3af] focus:border-[#c47b2c] focus:outline-none"
         />
         <button
           className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-white"
@@ -263,7 +263,7 @@ function AICommandCenterView() {
   const [adaOpen, setAdaOpen] = useState(false);
 
   return (
-    <div className="flex flex-col gap-6 font-[family-name:var(--font-nunito)]">
+    <div className="flex flex-col gap-6 font-[family-name:var(--font-urbanist)]">
       {/* Page Header */}
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <h1 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
@@ -325,7 +325,7 @@ function AICommandCenterView() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {/* Staff Compliance */}
               <div className="rounded-xl border border-[#edd9c0] p-4">
-                <h3 className="mb-3 text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">
+                <h3 className="mb-3 text-sm font-bold font-[family-name:var(--font-urbanist)] text-[#2d1810]">
                   Staff Compliance
                 </h3>
                 {staffRows.map((staff) => (
@@ -336,16 +336,16 @@ function AICommandCenterView() {
                           {getInitials(staff.name)}
                         </div>
                         <div>
-                          <p className="text-xs font-[family-name:var(--font-nunito)] text-[#2d1810]">
+                          <p className="text-xs font-[family-name:var(--font-urbanist)] text-[#2d1810]">
                             {staff.name}
                           </p>
-                          <p className="text-[10px] font-[family-name:var(--font-nunito)] text-[#6b7280]">
+                          <p className="text-[10px] font-[family-name:var(--font-urbanist)] text-[#6b7280]">
                             {staff.role}
                           </p>
                         </div>
                       </div>
                       <span
-                        className="text-xs font-bold font-[family-name:var(--font-nunito)]"
+                        className="text-xs font-bold font-[family-name:var(--font-urbanist)]"
                         style={{ color: staff.color }}
                       >
                         {staff.pct}%
@@ -363,7 +363,7 @@ function AICommandCenterView() {
 
               {/* Finance Overview */}
               <div className="rounded-xl border border-[#edd9c0] p-4">
-                <h3 className="mb-3 text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">
+                <h3 className="mb-3 text-sm font-bold font-[family-name:var(--font-urbanist)] text-[#2d1810]">
                   Outstanding Payments
                 </h3>
                 {payments.map((p) => (
@@ -372,14 +372,14 @@ function AICommandCenterView() {
                     className="flex items-center justify-between mb-3 last:mb-0"
                   >
                     <div>
-                      <p className="text-xs font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">
+                      <p className="text-xs font-bold font-[family-name:var(--font-urbanist)] text-[#2d1810]">
                         {p.family}
                       </p>
-                      <p className="text-[10px] font-[family-name:var(--font-nunito)] text-[#ef4444]">
+                      <p className="text-[10px] font-[family-name:var(--font-urbanist)] text-[#ef4444]">
                         {p.days}
                       </p>
                     </div>
-                    <span className="text-xs font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">
+                    <span className="text-xs font-bold font-[family-name:var(--font-urbanist)] text-[#2d1810]">
                       {p.amount}
                     </span>
                   </div>
@@ -388,7 +388,7 @@ function AICommandCenterView() {
 
               {/* Quick Templates */}
               <div className="rounded-xl border border-[#edd9c0] p-4">
-                <h3 className="mb-3 text-sm font-bold font-[family-name:var(--font-nunito)] text-[#2d1810]">
+                <h3 className="mb-3 text-sm font-bold font-[family-name:var(--font-urbanist)] text-[#2d1810]">
                   Quick Templates
                 </h3>
                 {templates.map((t) => (
@@ -396,10 +396,10 @@ function AICommandCenterView() {
                     key={t.label}
                     className="mb-2 last:mb-0 cursor-pointer rounded-lg border border-[#e6ebf3] bg-[#fcfcfc] p-3 hover:border-[#c47b2c]"
                   >
-                    <p className="text-xs font-[family-name:var(--font-nunito)] font-medium text-[#2d1810]">
+                    <p className="text-xs font-[family-name:var(--font-urbanist)] font-medium text-[#2d1810]">
                       {t.label}
                     </p>
-                    <p className="text-[10px] font-[family-name:var(--font-nunito)] text-[#c47b2c]">
+                    <p className="text-[10px] font-[family-name:var(--font-urbanist)] text-[#c47b2c]">
                       Use template
                     </p>
                   </div>
@@ -446,7 +446,7 @@ function IntelligenceContent() {
 
   if (tab && tab in SECTION_TITLES) {
     return (
-      <div className="flex flex-col gap-6 font-[family-name:var(--font-nunito)]">
+      <div className="flex flex-col gap-6 font-[family-name:var(--font-urbanist)]">
         <h1 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
           {SECTION_TITLES[tab]}
         </h1>

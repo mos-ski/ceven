@@ -1,0 +1,40 @@
+<div style="flex:1;display:flex;flex-direction:column;overflow:hidden" data-screen-label="Chat">
+        <sc-if value="{{showThreads}}" hint-placeholder-val="{{false}}">
+          <div style="flex:none;display:flex;gap:4px;margin:0 20px 10px;background:#fff;border:1px solid #E6EBF3;border-radius:99px;padding:3px">
+            <button sc-camel-on-click="{{threadNanny}}" style="{{thNannyStyle}}">Aunty Blessing</button>
+            <button sc-camel-on-click="{{threadTutor}}" style="{{thTutorStyle}}">Mr Daniel · Tutor</button>
+          </div>
+        </sc-if>
+        <div style="flex:none;padding:8px 20px 12px;border-bottom:1px solid #EDD9C0;display:flex;align-items:center;gap:12px;background:#FFF9F0">
+          
+          <div style="width:42px;height:42px;border-radius:50%;background:#E0BFA0;border:1px solid #D4A67F;display:flex;align-items:center;justify-content:center;font-family:'Urbanist';font-weight:700;font-size:14px;color:#3B2513;position:relative">{{chatAvatar}}<span style="position:absolute;bottom:1px;right:1px;width:10px;height:10px;border-radius:50%;background:#009061;border:2px solid #FFF9F0"></span></div>
+          <div style="flex:1">
+            <div style="font-family:'Urbanist';font-weight:700;font-size:15px;color:#1F2937">{{chatName}}</div>
+            <div style="font-size:12px;color:#009061;font-weight:700">Online</div>
+          </div>
+          <svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="#3B2513" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        </div>
+        <sc-if value="{{showPin}}" hint-placeholder-val="{{true}}">
+          <div style="flex:none;margin:10px 20px 0;background:#F7E8D4;border:1px solid #EDD9C0;border-radius:8px;padding:9px 14px;display:flex;gap:8px;align-items:center">
+            <span style="font-size:12px">📌</span><span style="font-size:12.5px;color:#3B2513;font-weight:600">Pinned: No sugar for Zara · warm water for Tobi's bath</span>
+          </div>
+        </sc-if>
+        <sc-if value="{{mummyBusyBanner}}" hint-placeholder-val="{{false}}">
+          <div style="flex:none;margin:8px 20px 0;background:#F9F1E6;border:1px solid #FF9A01;border-radius:8px;padding:9px 14px;font-size:12.5px;color:#3B2513;font-weight:600">{{mummyStatus}} — a voice note is better than calling right now 🎙</div>
+        </sc-if>
+        <div style="flex:1;overflow-y:auto;padding:14px 20px;display:flex;flex-direction:column;gap:10px">
+          <div style="align-self:center;font-family:'Urbanist';font-size:11px;font-weight:600;color:#6B7280;background:#F1E6D6;padding:4px 12px;border-radius:99px">Today</div>
+          <sc-for list="{{msgs}}" as="m" hint-placeholder-count="4">
+            <div style="{{m.row}}">
+              <div style="{{m.bubble}}">
+                <div style="font-size:14px;line-height:1.5">{{m.text}}</div>
+                <div style="{{m.time_style}}">{{m.time}}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="flex:none;padding:12px 20px 8px;display:flex;gap:8px;align-items:center;border-top:1px solid #EDD9C0;background:#FFF9F0">
+          <input value="{{chatInput}}" sc-camel-on-change="{{onChatInput}}" sc-camel-on-key-down="{{onChatKey}}" placeholder="Type a message…" style="flex:1;border:1px solid #CCD2DC;border-radius:99px;padding:11px 16px;font-family:'Nunito';font-size:14px;background:#fff;outline:none;color:#1F2937">
+          <button sc-camel-on-click="{{sendMsg}}" style="width:42px;height:42px;flex:none;border-radius:50%;background:#3B2513;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="17" height="17" sc-camel-view-box="0 0 24 24" fill="none" stroke="#FFF9F0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"></path><path d="M22 2 11 13"></path></svg></button>
+        </div>
+      </div>
