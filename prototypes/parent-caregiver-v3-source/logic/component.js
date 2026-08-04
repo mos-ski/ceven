@@ -1,15 +1,15 @@
 class Component extends DCLogic {
   state = {
     role: 'parent', pScreen: 'home', cScreen: 'join',
-    foodDay: 5, weekShared: false, approval: 'pending',
-    openEvent: 0, reportSent: false, moodZ: 'Happy', moodT: 'Calm', reportNote: '', medGiven: false,
+    foodDay: 5, weekShared: false,
+    openEvent: -1, reportSent: false, moodZ: 'Happy', moodT: 'Calm', reportNote: '', medGiven: false,
     chatInput: '', pStatus: 'Busy', cAiMsgs: [], cAiTyping: false, camOpen: false, camMode: 'photo', lessonOpen: false, quizPick: null,
     audit: [
-      {time: '11:15 AM', cat: 'MONEY', text: 'Requested \u20a64,500 market money — wipes, Milo, fruits'},
+      {time: '11:15 AM', cat: 'MONEY', text: 'Requested \u20a64,500 market money \u2014 wipes, Milo, fruits'},
       {time: '10:30 AM', cat: 'CARE', text: 'Started Tobi\u2019s nap timer'},
       {time: '9:40 AM', cat: 'MEDIA', text: '2 photos captured in-app \u2192 family vault (not on her phone)'},
       {time: '8:40 AM', cat: 'AI', text: 'Asked CEvenAI: \u201cHow do I remove palm oil stain from a school uniform?\u201d'},
-      {time: '7:20 AM', cat: 'CARE', text: 'Marked breakfast done — Zara ate all, Tobi half'},
+      {time: '7:20 AM', cat: 'CARE', text: 'Marked breakfast done \u2014 Zara ate all, Tobi half'},
       {time: '7:02 AM', cat: 'DUTY', text: 'Checked in for the day'},
     ], cgDuty: 'in', sosOpen: false, sosSent: false, listening: false, shopInput: '',
     tScreen: 'today', sess: 'before', recap: false, quizLogged: false, hwAssigned: false, openStudent: 0, chatThread: 'nanny',
@@ -22,7 +22,7 @@ class Component extends DCLogic {
     tMsgs: [
       {from: 't', text: 'Good evening Ma. Zara scored 8/10 on fractions today \u2014 big jump from 5/10 last week. Full recap is in your Learning tab.', time: 'Thu 5:35 PM'},
       {from: 'p', text: 'Wonderful, thank you! So I don\u2019t need to check her workbook?', time: 'Thu 6:02 PM'},
-      {from: 't', text: 'Not at all \u2014 everything is marked with corrections inside. Just try the dinner question 😊', time: 'Thu 6:04 PM'}],
+      {from: 't', text: 'Not at all \u2014 everything is marked with corrections inside. Just try the dinner question \ud83d\ude0a', time: 'Thu 6:04 PM'}],
     shopping: [
       {name: 'Diapers size 4', by: 'Blessing', got: false},
       {name: 'Peak milk (tin)', by: 'Blessing', got: false},
@@ -30,25 +30,42 @@ class Component extends DCLogic {
       {name: 'Fruits for the week', by: 'Mummy', got: true},
     ],
     msgs: [
-      {from: 'c', text: 'Good morning Ma! Zara ate all her breakfast today 🎉', time: '7:20 AM'},
+      {from: 'c', text: 'Good morning Ma! Zara ate all her breakfast today \ud83c\udf89', time: '7:20 AM'},
       {from: 'p', text: 'Wonderful! Please remember Tobi\u2019s vitamin at 2pm', time: '7:24 AM'},
       {from: 'c', text: 'Yes Ma, the app already reminded me. I will mark it when done.', time: '7:25 AM'},
     ],
     cMeals: [
-      {slot: 'BREAKFAST', time: '7:00', dish: 'Pap & akara', note: 'No sugar in Zara\u2019s pap · Tobi: half portion, cooled', done: true},
-      {slot: 'LUNCH', time: '12:30', dish: 'Jollof rice & grilled chicken', note: 'Small portions · no pepper for Tobi', done: false},
+      {slot: 'BREAKFAST', time: '7:00', dish: 'Pap & akara', note: 'No sugar in Zara\u2019s pap \u00b7 Tobi: half portion, cooled', done: true},
+      {slot: 'LUNCH', time: '12:30', dish: 'Jollof rice & grilled chicken', note: 'Small portions \u00b7 no pepper for Tobi', done: false},
       {slot: 'SNACK', time: '16:00', dish: 'Watermelon & garden eggs', note: 'Wash fruit twice', done: false},
-      {slot: 'DINNER', time: '18:30', dish: 'Beans porridge & plantain', note: 'Soft beans for Tobi · dinner before 7', done: false},
+      {slot: 'DINNER', time: '18:30', dish: 'Beans porridge & plantain', note: 'Soft beans for Tobi \u00b7 dinner before 7', done: false},
     ],
     events: [
-      {dow: 'TUE', dom: '5', name: 'Zara\u2019s swimming lesson', meta: '4:00 PM · Ikoyi Club · Blessing takes her', note: 'Leave home by 3:30 — traffic on Awolowo Rd. Daddy picks them up at 5:30.',
+      {dow: 'TUE', dom: '5', name: 'Zara\u2019s swimming lesson', meta: '4:00 PM \u00b7 Ikoyi Club \u00b7 Blessing takes her', note: 'Leave home by 3:30 \u2014 traffic on Awolowo Rd. Daddy picks them up at 5:30.',
         prep: [{name: 'Pack towel & swimsuit', done: true}, {name: 'Armbands & swim cap', done: true}, {name: 'Snack & water bottle', done: false}, {name: 'Extra change of clothes', done: false}, {name: 'Sunscreen (in bathroom cabinet)', done: false}]},
-      {dow: 'SAT', dom: '9', name: 'Emeka\u2019s birthday party', meta: '12:00 PM · Zara & Tobi attending', note: 'Gift is on the dining table. Party ends 4 PM — Mummy will pick them up.',
+      {dow: 'SAT', dom: '9', name: 'Emeka\u2019s birthday party', meta: '12:00 PM \u00b7 Zara & Tobi attending', note: 'Gift is on the dining table. Party ends 4 PM \u2014 Mummy will pick them up.',
         prep: [{name: 'Wrap the gift', done: false}, {name: 'Iron Zara\u2019s yellow dress', done: false}, {name: 'Pack spare clothes for Tobi', done: false}, {name: 'Charge the camera / phone', done: false}]},
-      {dow: 'MON', dom: '11', name: 'Tobi\u2019s vaccination', meta: '9:00 AM · Dr Adichie, Lekki Clinic', note: 'Mummy is taking him — Blessing stays home with Zara.',
+      {dow: 'MON', dom: '11', name: 'Tobi\u2019s vaccination', meta: '9:00 AM \u00b7 Dr Adichie, Lekki Clinic', note: 'Mummy is taking him \u2014 Blessing stays home with Zara.',
         prep: [{name: 'Find the red health card', done: false}, {name: 'Pack water & light snack', done: false}]},
     ],
-    weekMeals: null,
+    moneyRequests: [
+      {id: 1, amount: '4,500', purpose: 'Baby wipes \u00d72, Milo refill, fruits for the week', status: 'approved', receipt: null, spentAmount: null, spentDesc: null},
+    ],
+    showMoneyForm: false,
+    moneyAmount: '',
+    moneyPurpose: '',
+    lowStock: [
+      {name: 'Diapers size 4', flagged: true},
+      {name: 'Peak milk (tin)', flagged: true},
+      {name: 'Baby wipes', flagged: false},
+    ],
+    lowStockInput: '',
+    showEventForm: false,
+    newEventName: '',
+    newEventDow: '',
+    newEventTime: '',
+    newEventNote: '',
+    calSub: '',
   };
   toast(msg) {
     clearTimeout(this._tt);
@@ -57,7 +74,7 @@ class Component extends DCLogic {
   }
   _moods(key, cur) {
     return [
-      {icon: '😄', name: 'Happy'}, {icon: '😌', name: 'Calm'}, {icon: '😢', name: 'Fussy'}, {icon: '🤒', name: 'Unwell'},
+      {icon: '\ud83d\ude04', name: 'Happy'}, {icon: '\ud83d\ude0c', name: 'Calm'}, {icon: '\ud83d\ude22', name: 'Fussy'}, {icon: '\ud83d\ude21', name: 'Unwell'},
     ].map(m => ({...m, pick: () => this.setState({[key]: m.name}),
       style: {flex: 1, border: '1.5px solid ' + (cur === m.name ? '#3B2513' : '#E6EBF3'), background: cur === m.name ? '#F7E8D4' : '#fff', borderRadius: 8, padding: '8px 2px', fontFamily: 'Urbanist', fontWeight: 700, fontSize: 11, color: '#3B2513', cursor: 'pointer'}}));
   }
@@ -70,7 +87,7 @@ class Component extends DCLogic {
     const by = this.state.role === 'parent' ? 'Mummy' : 'Blessing';
     this.setState({shopping: [...this.state.shopping, {name: t, by, got: false}], shopInput: ''});
     if (by === 'Blessing') this._audit('MONEY', 'Added \u201c' + t + '\u201d to the market list');
-    this.toast('Added — ' + (this.state.role === 'parent' ? 'Blessing' : 'Mummy') + ' sees it too');
+    this.toast('Added \u2014 ' + (this.state.role === 'parent' ? 'Blessing' : 'Mummy') + ' sees it too');
   }
   _addTopic() {
     const t = this.state.tTopicInput.trim();
@@ -86,6 +103,13 @@ class Component extends DCLogic {
     if (tutorThread) this.setState({tMsgs: [...st.tMsgs, {from, text: t, time: '9:41 AM'}], chatInput: ''});
     else this.setState({msgs: [...st.msgs, {from, text: t, time: '9:41 AM'}], chatInput: ''});
   }
+  _addLowStock() {
+    const t = this.state.lowStockInput.trim();
+    if (!t) return;
+    this.setState({lowStock: [...this.state.lowStock, {name: t, flagged: true}], lowStockInput: ''});
+    this._audit('CARE', 'Flagged low stock: ' + t);
+    this.toast('Flagged \u2014 Mummy sees it in the report');
+  }
   renderVals() {
     const s = this.state, B = '#3B2513', tan = '#E0BFA0', mut = '#B9A38F';
     const isP = s.role === 'parent', isT = s.role === 'tutor', pc = isP ? s.pScreen : null, cc = s.role === 'caregiver' ? s.cScreen : null, tc = isT ? s.tScreen : null;
@@ -97,21 +121,27 @@ class Component extends DCLogic {
     const dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     const menus = [
       [{slot: 'BREAKFAST', time: '7:00 AM', dish: 'Akara & pap', note: 'No sugar for Zara.'}, {slot: 'LUNCH', time: '12:30 PM', dish: 'Rice & fish stew', note: 'Debone fish well for Tobi.'}, {slot: 'SNACK', time: '4:00 PM', dish: 'Banana & tigernuts', note: 'No tigernuts for Tobi.'}, {slot: 'DINNER', time: '6:30 PM', dish: 'Yam porridge', note: 'Soft pieces for Tobi.'}],
-      [{slot: 'BREAKFAST', time: '7:00 AM', dish: 'Bread, egg & Milo', note: 'Milo without sugar for Zara.'}, {slot: 'LUNCH', time: '12:30 PM', dish: 'Spaghetti jollof', note: 'Cut short for Tobi.'}, {slot: 'SNACK', time: '4:00 PM', dish: 'Pawpaw slices', note: 'Zara\u2019s favourite.'}, {slot: 'DINNER', time: '6:30 PM', dish: 'Beans & fried plantain', note: 'Early dinner — swimming day.'}],
+      [{slot: 'BREAKFAST', time: '7:00 AM', dish: 'Bread, egg & Milo', note: 'Milo without sugar for Zara.'}, {slot: 'LUNCH', time: '12:30 PM', dish: 'Spaghetti jollof', note: 'Cut short for Tobi.'}, {slot: 'SNACK', time: '4:00 PM', dish: 'Pawpaw slices', note: 'Zara\u2019s favourite.'}, {slot: 'DINNER', time: '6:30 PM', dish: 'Beans & fried plantain', note: 'Early dinner \u2014 swimming day.'}],
       [{slot: 'BREAKFAST', time: '7:00 AM', dish: 'Oats & banana', note: 'Warm, not hot, for Tobi.'}, {slot: 'LUNCH', time: '12:30 PM', dish: 'Amala & ewedu', note: 'Small amala for Zara.'}, {slot: 'SNACK', time: '4:00 PM', dish: 'Cucumber & carrot sticks', note: 'With yoghurt dip.'}, {slot: 'DINNER', time: '6:30 PM', dish: 'Rice & vegetable sauce', note: 'Extra veg for both.'}],
       [{slot: 'BREAKFAST', time: '7:00 AM', dish: 'Moi moi & pap', note: 'Check moi moi has no fish bones.'}, {slot: 'LUNCH', time: '12:30 PM', dish: 'Eba & okro soup', note: 'Tobi eats rice instead.'}, {slot: 'SNACK', time: '4:00 PM', dish: 'Orange slices', note: 'Wash twice.'}, {slot: 'DINNER', time: '6:30 PM', dish: 'Noodles & egg', note: 'Once a week treat.'}],
-      [{slot: 'BREAKFAST', time: '7:00 AM', dish: 'Yam & egg sauce', note: 'Soft yam centre for Tobi.'}, {slot: 'LUNCH', time: '12:30 PM', dish: 'Fried rice & chicken', note: 'Shred chicken for Tobi.'}, {slot: 'SNACK', time: '4:00 PM', dish: 'Puff puff (2 each)', note: 'Friday treat — no more than 2!'}, {slot: 'DINNER', time: '6:30 PM', dish: 'Pepper-free ofada', note: 'Zara helps set the table.'}],
-      [{slot: 'BREAKFAST', time: '7:00 AM', dish: 'Pap & akara', note: 'No sugar in Zara\u2019s pap · Tobi half portion.'}, {slot: 'LUNCH', time: '12:30 PM', dish: 'Jollof rice & grilled chicken', note: 'Small portions · no pepper for Tobi.'}, {slot: 'SNACK', time: '4:00 PM', dish: 'Watermelon & garden eggs', note: 'Wash fruit twice.'}, {slot: 'DINNER', time: '6:30 PM', dish: 'Beans porridge & plantain', note: 'Soft beans for Tobi.'}],
-      [{slot: 'BREAKFAST', time: '8:00 AM', dish: 'Pancakes & fruit', note: 'Sunday late breakfast after church.'}, {slot: 'LUNCH', time: '1:30 PM', dish: 'Rice, stew & salad', note: 'Family lunch — Mummy cooks!'}, {slot: 'SNACK', time: '4:30 PM', dish: 'Chin chin (small bowl)', note: 'Share one bowl.'}, {slot: 'DINNER', time: '6:30 PM', dish: 'Light: bread & tea', note: 'Early bedtime for school.'}],
+      [{slot: 'BREAKFAST', time: '7:00 AM', dish: 'Yam & egg sauce', note: 'Soft yam centre for Tobi.'}, {slot: 'LUNCH', time: '12:30 PM', dish: 'Fried rice & chicken', note: 'Shred chicken for Tobi.'}, {slot: 'SNACK', time: '4:00 PM', dish: 'Puff puff (2 each)', note: 'Friday treat \u2014 no more than 2!'}, {slot: 'DINNER', time: '6:30 PM', dish: 'Pepper-free ofada', note: 'Zara helps set the table.'}],
+      [{slot: 'BREAKFAST', time: '7:00 AM', dish: 'Pap & akara', note: 'No sugar in Zara\u2019s pap \u00b7 Tobi half portion.'}, {slot: 'LUNCH', time: '12:30 PM', dish: 'Jollof rice & grilled chicken', note: 'Small portions \u00b7 no pepper for Tobi.'}, {slot: 'SNACK', time: '4:00 PM', dish: 'Watermelon & garden eggs', note: 'Wash fruit twice.'}, {slot: 'DINNER', time: '6:30 PM', dish: 'Beans porridge & plantain', note: 'Soft beans for Tobi.'}],
+      [{slot: 'BREAKFAST', time: '8:00 AM', dish: 'Pancakes & fruit', note: 'Sunday late breakfast after church.'}, {slot: 'LUNCH', time: '1:30 PM', dish: 'Rice, stew & salad', note: 'Family lunch \u2014 Mummy cooks!'}, {slot: 'SNACK', time: '4:30 PM', dish: 'Chin chin (small bowl)', note: 'Share one bowl.'}, {slot: 'DINNER', time: '6:30 PM', dish: 'Light: bread & tea', note: 'Early bedtime for school.'}],
     ];
     const swim = s.events[0], swimDone = swim.prep.filter(p => p.done).length;
     const prepRow = (evIdx, pIdx, p) => ({
       ...p,
-      toggle: () => { const events = s.events.map((e, i) => i !== evIdx ? e : {...e, prep: e.prep.map((q, j) => j !== pIdx ? q : {name: q.name, done: !q.done})}); this.setState({events}); if (!p.done && !isP) this.toast('Ticked — Mummy sees it live'); },
+      toggle: () => { const events = s.events.map((e, i) => i !== evIdx ? e : {...e, prep: e.prep.map((q, j) => j !== pIdx ? q : {name: q.name, done: !q.done})}); this.setState({events}); if (!p.done && !isP) this.toast('Ticked \u2014 Mummy sees it live'); },
       row: {display: 'flex', alignItems: 'center', gap: 10, padding: '7px 0', cursor: 'pointer'},
       circle: {width: 22, height: 22, flex: 'none', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: p.done ? '#009061' : '#fff', border: p.done ? '1.5px solid #009061' : '1.5px solid #CCD2DC'},
       text: {fontSize: 13.5, color: p.done ? '#6B7280' : '#1F2937', fontWeight: 600, textDecoration: p.done ? 'line-through' : 'none'},
     });
+
+    const latestReq = s.moneyRequests[s.moneyRequests.length - 1];
+    const reqApproved = latestReq && latestReq.status === 'approved';
+    const reqPending = latestReq && latestReq.status === 'pending';
+    const reqDeclined = latestReq && latestReq.status === 'declined';
+
     return {
       offline, isParent: isP,
       setParent: () => this.setState({role: 'parent'}),
@@ -128,23 +158,27 @@ class Component extends DCLogic {
       nAsk: cc === 'ask' ? B : mut,
       showPNav: isP, showCNav: cc !== null && cc !== 'join' && cc !== 'welcome', showTNav: isT,
       goHome: () => this.setState({pScreen: 'home'}), goFood: () => this.setState({pScreen: 'food'}),
-      goCalendar: () => this.setState({pScreen: 'calendar'}), goChat: () => this.setState({pScreen: 'chat'}),
+      goCalendar: () => { this.setState({showEventForm: false}); if (isP) this.setState({pScreen: 'calendar'}); else this.setState({cScreen: 'calendar'}); },
+      goChat: () => this.setState({pScreen: 'chat'}),
       goToday: () => this.setState({cScreen: 'today'}), goCCal: () => this.setState({cScreen: 'calendar'}),
       goReport: () => this.setState({cScreen: 'report'}), goCChat: () => this.setState({cScreen: 'chat'}),
-      nHome: pc === 'home' ? B : mut, nFood: pc === 'food' ? B : mut, nCal: pc === 'calendar' ? B : mut, nChat: pc === 'chat' ? B : mut,
+      nHome: pc === 'home' ? B : mut, nFood: pc === 'food' ? B : mut, nCal: (pc === 'calendar' || cc === 'calendar') ? B : mut, nChat: (pc === 'chat' || cc === 'chat') ? B : mut,
       nToday: cc === 'today' ? B : mut, nCCal: cc === 'calendar' ? B : mut, nRep: cc === 'report' ? B : mut, nCChat: cc === 'chat' ? B : mut,
       joinFamily: () => this.setState({cScreen: 'welcome'}),
       enterApp: () => this.setState({cScreen: 'today'}),
       otp: ['A', 'D', 'Y', '4', '8', '2'].map(c => ({c})),
-      approvalPending: s.approval === 'pending', approvalDone: s.approval === 'done',
-      approve: () => { this.setState({approval: 'done'}); this.toast('Blessing has been notified'); },
+      approvalPending: reqPending, approvalDone: reqApproved, approvalDeclined: reqDeclined,
+      approve: () => { const moneyRequests = s.moneyRequests.map((r, i) => i === s.moneyRequests.length - 1 ? {...r, status: 'approved'} : r); this.setState({moneyRequests}); this._audit('MONEY', 'Approved \u20a6' + latestReq.amount + ' market money'); this.toast('Blessing has been notified \u2014 approved!'); },
+      decline: () => { const moneyRequests = s.moneyRequests.map((r, i) => i === s.moneyRequests.length - 1 ? {...r, status: 'declined'} : r); this.setState({moneyRequests}); this._audit('MONEY', 'Declined \u20a6' + latestReq.amount + ' market money request'); this.toast('Blessing has been notified \u2014 declined'); },
+      reqAmount: latestReq ? latestReq.amount : '0',
+      reqPurpose: latestReq ? latestReq.purpose : '',
       swimDone, swimTotal: swim.prep.length,
       feed: [
-        {title: 'Breakfast finished', sub: 'Zara ate everything · Tobi ate half — Blessing', time: '7:20 AM', c: '#009061'},
+        {title: 'Breakfast finished', sub: 'Zara ate everything \u00b7 Tobi ate half \u2014 Blessing', time: '7:20 AM', c: '#009061'},
         {title: 'Photo added', sub: 'Zara reading her picture book', time: '10:15 AM', c: '#3B82F6'},
         {title: 'Nap started', sub: 'Tobi went down easily today', time: '10:30 AM', c: '#9A6033'},
-        ...(s.sess !== 'before' ? [{title: 'Mr Daniel checked in', sub: 'Maths & Phonics session — verified in-app', time: '4:02 PM', c: '#3B82F6'}] : []),
-        ...(s.recap ? [{title: 'Tutoring recap arrived', sub: 'Zara 8/10 fractions · Tobi +2 letter sounds — nothing to mark', time: '5:31 PM', c: '#9A6033'}] : []),
+        ...(s.sess !== 'before' ? [{title: 'Mr Daniel checked in', sub: 'Maths & Phonics session \u2014 verified in-app', time: '4:02 PM', c: '#3B82F6'}] : []),
+        ...(s.recap ? [{title: 'Tutoring recap arrived', sub: 'Zara 8/10 fractions \u00b7 Tobi +2 letter sounds \u2014 nothing to mark', time: '5:31 PM', c: '#9A6033'}] : []),
       ].map(e => ({...e, dot: {width: 10, height: 10, flex: 'none', borderRadius: '50%', background: e.c, marginTop: 4}})),
       week: dayNames.map((name, i) => {
         const sel = s.foodDay === i;
@@ -156,7 +190,7 @@ class Component extends DCLogic {
       weekShared: s.weekShared,
       shareDay: () => this.toast(dayNames[s.foodDay] + '\u2019s menu sent to Blessing'),
       shareWeek: () => { this.setState({weekShared: true}); this.toast('Full week shared with Blessing'); },
-      calSub: isP ? 'Add an event, attach a get-ready checklist — Blessing knows exactly what to do.' : 'What\u2019s coming up, and what Mummy needs you to prepare.',
+      calSub: isP ? 'Add an event, attach a get-ready checklist \u2014 Blessing knows exactly what to do.' : 'What\u2019s coming up, and what Mummy needs you to prepare.',
       events: s.events.map((e, i) => {
         const dn = e.prep.filter(p => p.done).length, all = dn === e.prep.length;
         return {...e,
@@ -165,11 +199,11 @@ class Component extends DCLogic {
           datebox: {width: 46, height: 46, borderRadius: 8, background: i === 0 ? '#EFF6FF' : '#F7E8D4', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', flex: 'none', color: i === 0 ? '#3B82F6' : '#9A6033'},
           chip: {fontFamily: 'Urbanist', fontSize: 10.5, fontWeight: 700, padding: '3px 10px', borderRadius: 99, flex: 'none', background: all ? '#E1F5EC' : '#F9F1E6', color: all ? '#009061' : '#FF9A01'},
           chipLabel: dn + '/' + e.prep.length + ' READY',
-          prepLabel: 'GET-READY CHECKLIST' + (isP ? ' — ASSIGNED TO BLESSING' : ''),
+          prepLabel: 'GET-READY CHECKLIST' + (isP ? ' \u2014 ASSIGNED TO BLESSING' : ''),
           prep: e.prep.map((p, j) => prepRow(i, j, p)),
         };
       }),
-      chatName: isP ? (thread === 'tutor' ? 'Mr Daniel — Tutor' : 'Aunty Blessing') : isT ? 'Mrs Funke (Parent)' : 'Mrs Funke (Mummy)',
+      chatName: isP ? (thread === 'tutor' ? 'Mr Daniel \u2014 Tutor' : 'Aunty Blessing') : isT ? 'Mrs Funke (Parent)' : 'Mrs Funke (Mummy)',
       chatAvatar: isP ? (thread === 'tutor' ? 'D' : 'B') : 'F',
       showThreads: isP, showPin: thread !== 'tutor',
       threadNanny: () => this.setState({chatThread: 'nanny'}), threadTutor: () => this.setState({chatThread: 'tutor'}),
@@ -185,8 +219,8 @@ class Component extends DCLogic {
       onChatKey: e => { if (e.key === 'Enter') this._send(); },
       sendMsg: () => this._send(),
       syncChip: {fontFamily: 'Urbanist', fontSize: 11, fontWeight: 700, padding: '5px 11px', borderRadius: 99, background: offline ? '#F9F1E6' : '#E1F5EC', color: offline ? '#FF9A01' : '#009061', flex: 'none'},
-      syncLabel: offline ? '3 queued · will sync' : 'All synced',
-      logMeal: () => this.toast('Meal logged — Mummy notified'), logNap: () => this.toast('Nap timer started'),
+      syncLabel: offline ? '3 queued \u00b7 will sync' : 'All synced',
+      logMeal: () => this.toast('Meal logged \u2014 Mummy notified'), logNap: () => this.toast('Nap timer started'),
       logDiaper: () => this.toast('Diaper change logged'), logPhoto: () => this.toast('Photo sent to family'),
       cMeals: s.cMeals.map((m, i) => ({...m,
         toggle: () => { const cMeals = s.cMeals.map((q, j) => j !== i ? q : {...q, done: !q.done}); this.setState({cMeals}); if (!m.done) this.toast('Meal marked done'); },
@@ -194,9 +228,9 @@ class Component extends DCLogic {
         circle: {width: 24, height: 24, flex: 'none', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: m.done ? '#009061' : '#fff', border: m.done ? '1.5px solid #009061' : '1.5px solid #CCD2DC'},
         title: {fontFamily: 'Urbanist', fontWeight: 700, fontSize: 14, color: m.done ? '#6B7280' : '#1F2937', textDecoration: m.done ? 'line-through' : 'none'},
       })),
-      giveMed: () => { if (!s.medGiven) { this.setState({medGiven: true}); this._audit('CARE', 'Gave Tobi\u2019s vitamin D drops \u00b7 2:00 PM dose'); this.toast('Medicine marked given — Mummy notified'); } },
+      giveMed: () => { if (!s.medGiven) { this.setState({medGiven: true}); this._audit('CARE', 'Gave Tobi\u2019s vitamin D drops \u00b7 2:00 PM dose'); this.toast('Medicine marked given \u2014 Mummy notified'); } },
       medBtn: {flex: 'none', background: s.medGiven ? '#E1F5EC' : B, color: s.medGiven ? '#009061' : '#FFF9F0', border: s.medGiven ? '1px solid #009061' : 'none', borderRadius: 8, padding: '9px 14px', fontFamily: 'Urbanist', fontWeight: 700, fontSize: 12.5, cursor: 'pointer'},
-      medLabel: s.medGiven ? 'Given ✓' : 'Mark given',
+      medLabel: s.medGiven ? 'Given \u2713' : 'Mark given',
       swimPrep: swim.prep.map((p, j) => prepRow(0, j, p)),
       reportNotSent: !s.reportSent, reportSentFlag: s.reportSent, reportArrived: s.reportSent,
       reportChip: {fontFamily: 'Urbanist', fontSize: 11, fontWeight: 700, padding: '5px 11px', borderRadius: 99, background: s.reportSent ? '#E1F5EC' : '#F9F1E6', color: s.reportSent ? '#009061' : '#FF9A01', flex: 'none'},
@@ -217,9 +251,9 @@ class Component extends DCLogic {
       openLessonC: () => this.setState({lessonOpen: true, quizPick: null}),
       closeLessonC: () => this.setState({lessonOpen: false, quizPick: null}),
       cLessons: [
-        {icon: '🌡', name: 'Managing a mild fever', meta: '6 min · quiz · badge', st: 'NEW'},
-        {icon: '🧺', name: 'Removing stains from uniforms', meta: '4 min · practical demo', st: 'NEW'},
-        {icon: '🍚', name: 'Safe feeding for toddlers', meta: '8 min · completed June', st: 'DONE'},
+        {icon: '\ud83c\udf21\ufe0f', name: 'Managing a mild fever', meta: '6 min \u00b7 quiz \u00b7 badge', st: 'NEW'},
+        {icon: '\ud83e\uddfa', name: 'Removing stains from uniforms', meta: '4 min \u00b7 practical demo', st: 'NEW'},
+        {icon: '\ud83c\udf5a', name: 'Safe feeding for toddlers', meta: '8 min \u00b7 completed June', st: 'DONE'},
       ].map(l => ({...l, status: l.st, badge: {fontFamily: 'Urbanist', fontSize: 10, fontWeight: 700, padding: '3px 9px', borderRadius: 99, flex: 'none', background: l.st === 'DONE' ? '#E1F5EC' : '#F9F1E6', color: l.st === 'DONE' ? '#009061' : '#FF9A01'}})),
       quiz: [
         {k: 'a', label: 'Use a kitchen teaspoon instead', ok: false},
@@ -228,13 +262,13 @@ class Component extends DCLogic {
       ].map(q => ({label: q.label, pick: () => this.setState({quizPick: q.k}),
         style: {textAlign: 'left', background: s.quizPick === q.k ? (q.ok ? '#E1F5EC' : '#FDE8E8') : '#fff', border: '1.5px solid ' + (s.quizPick === q.k ? (q.ok ? '#009061' : '#CD3030') : '#E6EBF3'), borderRadius: 8, padding: '12px 15px', fontFamily: 'Nunito', fontSize: 13, fontWeight: 600, color: '#1F2937', cursor: 'pointer'}})),
       quizCorrect: s.quizPick === 'b', quizWrong: s.quizPick !== null && s.quizPick !== 'b',
-      completeLessonC: () => { this.setState({lessonOpen: false, quizPick: null}); this._audit('LEARN', 'Completed lesson: Giving medicine safely \u00b7 earned a badge'); this.toast('Badge earned: Medicine Safety 🎉'); },
+      completeLessonC: () => { this.setState({lessonOpen: false, quizPick: null}); this._audit('LEARN', 'Completed lesson: Giving medicine safely \u00b7 earned a badge'); this.toast('Badge earned: Medicine Safety \ud83c\udf89'); },
       cAiReset: () => this.setState({cAiMsgs: [], cAiTyping: false}),
       cAiPrompts: [
-        {icon: '🧺', label: 'How do I remove a stain from Zara\u2019s uniform?', reply: 'For palm oil or food stains: 1) Don\u2019t use hot water first — it sets the stain. 2) Rub a little dish soap on it and leave for 10 minutes. 3) Wash with warm water and detergent. 4) Dry in the sun. If it remains, repeat before ironing.'},
-        {icon: '🌡', label: 'Zara feels warm. What do I do first?', reply: 'Stay calm. 1) Check her temperature — the thermometer is in the medicine drawer. 2) If above 37.5\u00b0C, remove heavy clothing and give water. 3) Message Mummy now — I\u2019ve made that one tap from here. Never give medicine without asking first.'},
-        {icon: '🍚', label: 'What is for lunch and how do I make it?', reply: 'Today\u2019s lunch is jollof rice with grilled chicken at 12:30. Mummy\u2019s notes: small portions, NO pepper for Tobi, and remember no groundnut oil (Zara\u2019s allergy). The full recipe is in the family recipe book — want me to read it step by step?'},
-        {icon: '🎲', label: 'What can Tobi play inside when it rains?', reply: 'Good ones for 18 months: 1) Pot-and-spoon drumming (his favourite sounds!). 2) Hide the teddy — hide it under a cloth and let him find it. 3) Stacking cups. Keep small objects away — anything smaller than his fist can choke.'},
+        {icon: '\ud83e\uddfa', label: 'How do I remove a stain from Zara\u2019s uniform?', reply: 'For palm oil or food stains: 1) Don\u2019t use hot water first \u2014 it sets the stain. 2) Rub a little dish soap on it and leave for 10 minutes. 3) Wash with warm water and detergent. 4) Dry in the sun. If it remains, repeat before ironing.'},
+        {icon: '\ud83c\udf21\ufe0f', label: 'Zara feels warm. What do I do first?', reply: 'Stay calm. 1) Check her temperature \u2014 the thermometer is in the medicine drawer. 2) If above 37.5\u00b0C, remove heavy clothing and give water. 3) Message Mummy now \u2014 I\u2019ve made that one tap from here. Never give medicine without asking first.'},
+        {icon: '\ud83c\udf5a', label: 'What is for lunch and how do I make it?', reply: 'Today\u2019s lunch is jollof rice with grilled chicken at 12:30. Mummy\u2019s notes: small portions, NO pepper for Tobi, and remember no groundnut oil (Zara\u2019s allergy). The full recipe is in the family recipe book \u2014 want me to read it step by step?'},
+        {icon: '\ud83c\udfb2', label: 'What can Tobi play inside when it rains?', reply: 'Good ones for 18 months: 1) Pot-and-spoon drumming (his favourite sounds!). 2) Hide the teddy \u2014 hide it under a cloth and let him find it. 3) Stacking cups. Keep small objects away \u2014 anything smaller than his fist can choke.'},
       ].map(p => ({...p, pick: () => {
         this._audit('AI', 'Asked CEvenAI: \u201c' + p.label + '\u201d');
         this.setState({cAiMsgs: [...s.cAiMsgs, {mine: true, text: p.label}], cAiTyping: true});
@@ -268,8 +302,8 @@ class Component extends DCLogic {
       dutyDot: {width: 9, height: 9, borderRadius: '50%', flex: 'none', background: s.cgDuty === 'in' ? '#009061' : s.cgDuty === 'closed' ? '#6B7280' : '#FF9A01'},
       dutyLabel: s.cgDuty === 'in' ? 'Blessing on duty since 7:02 AM' : s.cgDuty === 'closed' ? 'Blessing closed the day at 6:15 PM' : 'Blessing has not arrived yet',
       notCheckedIn: s.cgDuty === 'out', onDuty: s.cgDuty === 'in', dayClosed: s.cgDuty === 'closed',
-      checkIn: () => { this.setState({cgDuty: 'in'}); this._audit('DUTY', 'Checked in for the day'); this.toast('Checked in — Mummy & Daddy notified'); },
-      closeDay: () => { this.setState({cgDuty: 'closed'}); this._audit('DUTY', 'Closed the day \u00b7 handover sent'); this.toast('Handover sent — well done today! 🎉'); },
+      checkIn: () => { this.setState({cgDuty: 'in'}); this._audit('DUTY', 'Checked in for the day'); this.toast('Checked in \u2014 Mummy & Daddy notified'); },
+      closeDay: () => { this.setState({cgDuty: 'closed'}); this._audit('DUTY', 'Closed the day \u00b7 handover sent'); this.toast('Handover sent \u2014 well done today! \ud83c\udf89'); },
       mummyStatus: s.pStatus === 'Free' ? 'Mummy is free to talk' : s.pStatus === 'Busy' ? 'Mummy is busy' : 'Mummy is in court',
       mummyBusyBanner: !isP && s.pStatus !== 'Free',
       goLearning: () => this.setState({pScreen: 'learning'}),
@@ -355,18 +389,103 @@ class Component extends DCLogic {
       onShopInput: e => this.setState({shopInput: e.target.value}),
       onShopKey: e => { if (e.key === 'Enter') this._addShop(); },
       addShopItem: () => this._addShop(),
-      voiceLog: () => { if (s.listening) return; this.setState({listening: true}); setTimeout(() => { this.setState({listening: false}); this.toast('Logged: \u201cTobi drank one bottle\u201d ✓'); }, 1400); },
+      voiceLog: () => { if (s.listening) return; this.setState({listening: true}); setTimeout(() => { this.setState({listening: false}); this.toast('Logged: \u201cTobi drank one bottle\u201d \u2713'); }, 1400); },
       micStyle: {display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 9, border: s.listening ? '1.5px solid #CD3030' : '1.5px dashed #D4A67F', background: s.listening ? '#FDE8E8' : '#fff', color: s.listening ? '#CD3030' : '#3B2513', borderRadius: 8, padding: '13px', cursor: 'pointer', animation: s.listening ? 'pulse 1s infinite' : 'none'},
-      micLabel: s.listening ? 'Listening… speak now' : 'Tap to speak — log anything by voice',
+      micLabel: s.listening ? 'Listening\u2026 speak now' : 'Tap to speak \u2014 log anything by voice',
       sosOpen: s.sosOpen, sosSent: s.sosSent,
       openSos: () => this.setState({sosOpen: true}),
       closeSos: () => this.setState({sosOpen: false}),
-      sendSos: () => { this.setState({sosOpen: false, sosSent: true}); this._audit('DUTY', '\ud83d\udea8 Pressed Emergency \u2014 both parents alerted'); this.toast('Mummy & Daddy alerted — help is coming'); },
+      sendSos: () => { this.setState({sosOpen: false, sosSent: true}); this._audit('DUTY', '\ud83d\udea8 Pressed Emergency \u2014 both parents alerted'); this.toast('Mummy & Daddy alerted \u2014 help is coming'); },
       sosContacts: [
-        {name: 'Mummy (Funke)', sub: '0803 XXX XXXX' + (s.pStatus !== 'Free' ? ' · ' + (s.pStatus === 'In court' ? 'in court' : 'busy') : '')},
+        {name: 'Mummy (Funke)', sub: '0803 XXX XXXX' + (s.pStatus !== 'Free' ? ' \u00b7 ' + (s.pStatus === 'In court' ? 'in court' : 'busy') : '')},
         {name: 'Daddy (Tunde)', sub: '0805 XXX XXXX'},
-        {name: 'Dr Adichie — paediatrician', sub: '0701 XXX XXXX · knows both children'},
+        {name: 'Dr Adichie \u2014 paediatrician', sub: '0701 XXX XXXX \u00b7 knows both children'},
       ],
+
+      /* ===== MONEY REQUEST FLOW (FR-C10 / FR-P03 / FR-P12) ===== */
+      moneyRequests: s.moneyRequests.map(r => ({...r,
+        isPending: r.status === 'pending',
+        isApproved: r.status === 'approved',
+        isDeclined: r.status === 'declined',
+        statusChip: {fontFamily: 'Urbanist', fontSize: 10, fontWeight: 700, padding: '3px 9px', borderRadius: 99,
+          background: r.status === 'approved' ? '#E1F5EC' : r.status === 'declined' ? '#FDE8E8' : '#F9F1E6',
+          color: r.status === 'approved' ? '#009061' : r.status === 'declined' ? '#CD3030' : '#FF9A01'},
+        statusLabel: r.status === 'approved' ? 'APPROVED' : r.status === 'declined' ? 'DECLINED' : 'PENDING',
+      })),
+      showMoneyForm: s.showMoneyForm,
+      openMoneyForm: () => this.setState({showMoneyForm: true}),
+      closeMoneyForm: () => this.setState({showMoneyForm: false, moneyAmount: '', moneyPurpose: ''}),
+      moneyAmount: s.moneyAmount,
+      onMoneyAmount: e => this.setState({moneyAmount: e.target.value}),
+      moneyPurpose: s.moneyPurpose,
+      onMoneyPurpose: e => this.setState({moneyPurpose: e.target.value}),
+      submitMoneyRequest: () => {
+        const amt = s.moneyAmount.trim();
+        const purp = s.moneyPurpose.trim();
+        if (!amt || !purp) return;
+        this.setState({
+          moneyRequests: [...s.moneyRequests, {id: Date.now(), amount: amt, purpose: purp, status: 'pending', receipt: null, spentAmount: null, spentDesc: null}],
+          showMoneyForm: false, moneyAmount: '', moneyPurpose: '',
+        });
+        this._audit('MONEY', 'Requested \u20a6' + amt + ' \u2014 ' + purp);
+        this.toast('Request sent to Mummy for approval');
+      },
+
+      /* ===== RECEIPT / SPENDING (FR-C11) ===== */
+      spendingRecorded: s.moneyRequests.length > 0 && s.moneyRequests[s.moneyRequests.length - 1].receipt !== null,
+      recordSpending: () => {
+        const moneyRequests = s.moneyRequests.map((r, i) => i === s.moneyRequests.length - 1
+          ? {...r, receipt: true, spentAmount: r.amount, spentDesc: 'Baby wipes \u00d72 \u20a61,200 \u00b7 Milo \u20a61,800 \u00b7 Fruits \u20a61,500'}
+          : r);
+        this.setState({moneyRequests});
+        this._audit('MONEY', 'Recorded spending with receipt \u2014 embedded in daily report');
+        this.toast('Receipt attached \u2014 appears in daily report');
+      },
+
+      /* ===== LOW STOCK FLAGS (FR-C12) ===== */
+      lowStock: s.lowStock.map(it => ({...it,
+        flagStyle: {fontFamily: 'Urbanist', fontSize: 10, fontWeight: 700, padding: '3px 9px', borderRadius: 99, background: it.flagged ? '#FDE8E8' : '#E1F5EC', color: it.flagged ? '#CD3030' : '#009061', flex: 'none'},
+        flagLabel: it.flagged ? 'LOW' : 'OK',
+      })),
+      lowStockInput: s.lowStockInput,
+      onLowStockInput: e => this.setState({lowStockInput: e.target.value}),
+      onLowStockKey: e => { if (e.key === 'Enter') this._addLowStock(); },
+      addLowStockItem: () => this._addLowStock(),
+
+      /* ===== CALENDAR EVENT CREATION (FR-P09) ===== */
+      showEventForm: s.showEventForm,
+      openEventForm: () => this.setState({showEventForm: true}),
+      closeEventForm: () => this.setState({showEventForm: false, newEventName: '', newEventDow: '', newEventTime: '', newEventNote: ''}),
+      newEventName: s.newEventName,
+      onNewEventName: e => this.setState({newEventName: e.target.value}),
+      newEventDow: s.newEventDow,
+      onNewEventDow: e => this.setState({newEventDow: e.target.value}),
+      newEventTime: s.newEventTime,
+      onNewEventTime: e => this.setState({newEventTime: e.target.value}),
+      newEventNote: s.newEventNote,
+      onNewEventNote: e => this.setState({newEventNote: e.target.value}),
+      submitEvent: () => {
+        const name = s.newEventName.trim();
+        const dow = s.newEventDow.trim().toUpperCase();
+        const time = s.newEventTime.trim();
+        if (!name || !dow) return;
+        const dom = String(Math.floor(Math.random() * 28) + 1);
+        this.setState({
+          events: [...s.events, {dow, dom, name, meta: (time || '10:00 AM') + ' \u00b7 Home', note: s.newEventNote || 'No additional notes.', prep: [{name: 'Prepare items', done: false}, {name: 'Check with Mummy', done: false}]}],
+          showEventForm: false, newEventName: '', newEventDow: '', newEventTime: '', newEventNote: '',
+        });
+        this._audit('CARE', 'Created event: ' + name);
+        this.toast('Event added \u2014 Blessing sees it on her calendar');
+      },
+
+      /* ===== FIX: Dead-end button handlers ===== */
+      callNowSos: () => this.toast('Calling Daddy \u2026'),
+      callSosContact: () => this.toast('Placing call \u2026'),
+      viewReport: () => { this.setState({cScreen: 'report', role: 'parent'}); this.toast('Viewing report \u2014 demo: switched to caregiver lens'); },
+      checklistClick: () => { this.setState({openEvent: 0}); this.toast('Showing swim-bag checklist'); },
+      editMeal: () => this.toast('Meal editor \u2014 coming in production'),
+      openVault: () => this.toast('Family vault \u2014 coming in production'),
+      voiceAsk: () => { this.setState({listening: true}); setTimeout(() => { this.setState({listening: false}); this.toast('Listening \u2026 try a prompt below'); }, 1200); },
     };
   }
 }

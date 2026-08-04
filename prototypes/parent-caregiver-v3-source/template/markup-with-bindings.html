@@ -405,7 +405,7 @@
               <div style="font-family:'Urbanist';font-weight:700;font-size:14px;color:#fff">Blessing pressed Emergency · 9:41 AM</div>
               <div style="font-size:12.5px;color:#FDE8E8;margin-top:2px">Daddy has also been alerted</div>
             </div>
-            <button style="background:#fff;color:#CD3030;border:none;border-radius:8px;padding:9px 14px;font-family:'Urbanist';font-weight:700;font-size:13px;cursor:pointer">Call now</button>
+            <button sc-camel-on-click="{{callNowSos}}" style="background:#fff;color:#CD3030;border:none;border-radius:8px;padding:9px 14px;font-family:'Urbanist';font-weight:700;font-size:13px;cursor:pointer">Call now</button>
           </div>
         </sc-if>
 
@@ -435,7 +435,7 @@
         </div>
 
         <sc-if value="{{reportArrived}}" hint-placeholder-val="{{false}}">
-          <div style="background:#fff;border:1px solid #009061;border-radius:8px;padding:16px;display:flex;align-items:center;gap:12px">
+          <div sc-camel-on-click="{{viewReport}}" style="background:#fff;border:1px solid #009061;border-radius:8px;padding:16px;display:flex;align-items:center;gap:12px;cursor:pointer">
             <div style="width:40px;height:40px;border-radius:8px;background:#E1F5EC;display:flex;align-items:center;justify-content:center"><svg width="19" height="19" sc-camel-view-box="0 0 24 24" fill="none" stroke="#009061" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><path d="M14 2v6h6"></path></svg></div>
             <div style="flex:1">
               <div style="font-family:'Urbanist';font-weight:700;font-size:14px;color:#1F2937">Daily report from Blessing</div>
@@ -470,7 +470,7 @@
             <div style="font-family:'Urbanist';font-weight:700;font-size:14.5px;color:#1F2937">Zara's swimming lesson · 4:00 PM</div>
             <div style="font-size:12.5px;color:#6B7280;margin-top:2px">Swim bag: {{swimDone}} of {{swimTotal}} packed by Blessing</div>
           </div>
-          <span style="font-family:'Urbanist';font-weight:700;font-size:13px;color:#9A6033">Checklist →</span>
+          <span sc-camel-on-click="{{checklistClick}}" style="font-family:'Urbanist';font-weight:700;font-size:13px;color:#9A6033;cursor:pointer">Checklist →</span>
         </div>
 
         <sc-if value="{{approvalPending}}" hint-placeholder-val="{{true}}">
@@ -479,17 +479,26 @@
               <span style="font-family:'Urbanist';font-weight:700;font-size:14px;color:#1F2937">Market money request</span>
               <span style="font-family:'Urbanist';font-size:11px;font-weight:700;background:#F9F1E6;color:#FF9A01;padding:3px 10px;border-radius:99px">PENDING</span>
             </div>
-            <div style="font-size:13.5px;color:#6B7280;line-height:1.5">Blessing requests <strong style="color:#1F2937">₦4,500</strong> — baby wipes ×2, Milo refill, fruits for the week.</div>
+            <div style="font-size:13.5px;color:#6B7280;line-height:1.5">Blessing requests <strong style="color:#1F2937">₦{{reqAmount}}</strong> — {{reqPurpose}}.</div>
             <div style="display:flex;gap:8px">
-              <button sc-camel-on-click="{{approve}}" style="flex:1;background:#3B2513;color:#FFF9F0;border:none;border-radius:8px;padding:11px;font-family:'Urbanist';font-weight:700;font-size:14px;cursor:pointer">Approve ₦4,500</button>
-              <button style="flex:1;background:#fff;color:#3B2513;border:1px solid #CCD2DC;border-radius:8px;padding:11px;font-family:'Urbanist';font-weight:700;font-size:14px;cursor:pointer">Ask why</button>
+              <button sc-camel-on-click="{{approve}}" style="flex:1;background:#3B2513;color:#FFF9F0;border:none;border-radius:8px;padding:11px;font-family:'Urbanist';font-weight:700;font-size:14px;cursor:pointer">Approve ₦{{reqAmount}}</button>
+              <button sc-camel-on-click="{{decline}}" style="flex:1;background:#fff;color:#CD3030;border:1px solid #CD3030;border-radius:8px;padding:11px;font-family:'Urbanist';font-weight:700;font-size:14px;cursor:pointer">Decline</button>
             </div>
           </div>
         </sc-if>
         <sc-if value="{{approvalDone}}" hint-placeholder-val="{{false}}">
-          <div style="background:#E1F5EC;border:1px solid #009061;border-radius:8px;padding:14px 16px;display:flex;gap:10px;align-items:center">
-            <svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="#009061" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
-            <span style="font-size:13.5px;color:#009061;font-weight:700">₦4,500 approved — Blessing has been notified</span>
+          <div style="background:#E1F5EC;border:1px solid #009061;border-radius:8px;padding:14px 16px;display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;gap:10px;align-items:center">
+              <svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="#009061" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+              <span style="font-size:13.5px;color:#009061;font-weight:700">₦{{reqAmount}} approved — Blessing has been notified</span>
+            </div>
+            <div style="font-size:12.5px;color:#009061;padding-left:28px">Spending receipt will appear here after market run</div>
+          </div>
+        </sc-if>
+        <sc-if value="{{approvalDeclined}}" hint-placeholder-val="{{false}}">
+          <div style="background:#FDE8E8;border:1px solid #CD3030;border-radius:8px;padding:14px 16px;display:flex;gap:10px;align-items:center">
+            <svg width="18" height="18" sc-camel-view-box="0 0 24 24" fill="none" stroke="#CD3030" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+            <span style="font-size:13.5px;color:#CD3030;font-weight:700">₦{{reqAmount}} request declined — Blessing notified</span>
           </div>
         </sc-if>
 
@@ -529,7 +538,7 @@
           <div style="background:#fff;border:1px solid #E6EBF3;border-radius:8px;padding:14px 16px;display:flex;flex-direction:column;gap:6px">
             <div style="display:flex;justify-content:space-between;align-items:center">
               <span style="font-family:'Urbanist';font-weight:600;font-size:11px;letter-spacing:.08em;color:#9A6033">{{m.slot}} · {{m.time}}</span>
-              <span style="font-family:'Urbanist';font-weight:700;font-size:12px;color:#9A6033;cursor:pointer">Edit</span>
+              <span sc-camel-on-click="{{editMeal}}" style="font-family:'Urbanist';font-weight:700;font-size:12px;color:#9A6033;cursor:pointer">Edit</span>
             </div>
             <div style="font-family:'Merriweather';font-weight:700;font-size:16px;color:#1F2937">{{m.dish}}</div>
             <div style="font-size:12.5px;color:#6B7280;line-height:1.5">{{m.note}}</div>
@@ -569,9 +578,24 @@
         
         <div style="display:flex;align-items:center;justify-content:space-between">
           <div style="font-family:'Merriweather';font-weight:700;font-size:24px;color:#1F2937">Family calendar</div>
-          <sc-if value="{{isParent}}" hint-placeholder-val="{{true}}"><button style="width:38px;height:38px;border-radius:50%;background:#3B2513;border:none;color:#FFF9F0;font-size:19px;cursor:pointer;display:flex;align-items:center;justify-content:center">+</button></sc-if>
+          <sc-if value="{{isParent}}" hint-placeholder-val="{{true}}"><button sc-camel-on-click="{{openEventForm}}" style="width:38px;height:38px;border-radius:50%;background:#3B2513;border:none;color:#FFF9F0;font-size:19px;cursor:pointer;display:flex;align-items:center;justify-content:center">+</button></sc-if>
         </div>
         <div style="font-size:13px;color:#6B7280;line-height:1.5;margin-top:-8px">{{calSub}}</div>
+        <sc-if value="{{showEventForm}}" hint-placeholder-val="{{false}}">
+          <div style="background:#fff;border:1px solid #D4A67F;border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:10px">
+            <div style="font-family:'Urbanist';font-weight:700;font-size:14px;color:#1F2937">New event</div>
+            <input value="{{newEventName}}" sc-camel-on-change="{{onNewEventName}}" placeholder="Event name e.g. Swimming lesson" style="border:1px solid #CCD2DC;border-radius:8px;padding:10px 13px;font-family:'Nunito';font-size:13px;background:#fff;outline:none;color:#1F2937">
+            <div style="display:flex;gap:8px">
+              <input value="{{newEventDow}}" sc-camel-on-change="{{onNewEventDow}}" placeholder="Day e.g. TUE" style="flex:1;border:1px solid #CCD2DC;border-radius:8px;padding:10px 13px;font-family:'Nunito';font-size:13px;background:#fff;outline:none;color:#1F2937">
+              <input value="{{newEventTime}}" sc-camel-on-change="{{onNewEventTime}}" placeholder="Time e.g. 4:00 PM" style="flex:1;border:1px solid #CCD2DC;border-radius:8px;padding:10px 13px;font-family:'Nunito';font-size:13px;background:#fff;outline:none;color:#1F2937">
+            </div>
+            <textarea value="{{newEventNote}}" sc-camel-on-change="{{onNewEventNote}}" placeholder="Note for Blessing e.g. Leave by 3:30, pack swim bag" style="border:1px solid #CCD2DC;border-radius:8px;padding:10px 13px;font-family:'Nunito';font-size:13px;min-height:56px;resize:none;outline:none;color:#1F2937;background:#fff"></textarea>
+            <div style="display:flex;gap:8px">
+              <button sc-camel-on-click="{{closeEventForm}}" style="flex:1;background:#fff;color:#6B7280;border:1px solid #CCD2DC;border-radius:8px;padding:11px;font-family:'Urbanist';font-weight:700;font-size:13px;cursor:pointer">Cancel</button>
+              <button sc-camel-on-click="{{submitEvent}}" style="flex:1;background:#3B2513;color:#FFF9F0;border:none;border-radius:8px;padding:11px;font-family:'Urbanist';font-weight:700;font-size:13px;cursor:pointer">Add event</button>
+            </div>
+          </div>
+        </sc-if>
         <sc-for list="{{events}}" as="e" hint-placeholder-count="3">
           <div style="background:#fff;border:1px solid #E6EBF3;border-radius:8px;overflow:hidden">
             <div sc-camel-on-click="{{e.open}}" style="padding:16px;display:flex;align-items:center;gap:14px;cursor:pointer">
@@ -606,7 +630,7 @@
 
     <!-- ============ CHAT (both) ============ -->
     <sc-if value="{{showChat}}" hint-placeholder-val="{{false}}">
-      <div style="flex:1;display:flex;flex-direction:column;overflow:hidden" data-screen-label="Chat">
+      <div style="flex:1;display:flex;flex-direction:column;overflow:hidden;padding-bottom:68px" data-screen-label="Chat">
         <sc-if value="{{showThreads}}" hint-placeholder-val="{{false}}">
           <div style="flex:none;display:flex;gap:4px;margin:0 20px 10px;background:#fff;border:1px solid #E6EBF3;border-radius:99px;padding:3px">
             <button sc-camel-on-click="{{threadNanny}}" style="{{thNannyStyle}}">Aunty Blessing</button>
@@ -749,6 +773,38 @@
           <button sc-camel-on-click="{{giveMed}}" style="{{medBtn}}">{{medLabel}}</button>
         </div>
 
+        <div style="font-family:'Urbanist';font-weight:600;font-size:11px;letter-spacing:.08em;color:#9A6033">MONEY REQUEST — ASK MUMMY</div>
+        <sc-if value="{{showMoneyForm}}" hint-placeholder-val="{{false}}">
+          <div style="background:#fff;border:1px solid #E6EBF3;border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:10px">
+            <div style="font-family:'Urbanist';font-weight:700;font-size:14px;color:#1F2937">Request market money</div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="font-family:'Urbanist';font-weight:700;font-size:18px;color:#1F2937">₦</span>
+              <input value="{{moneyAmount}}" sc-camel-on-change="{{onMoneyAmount}}" placeholder="Amount" style="flex:1;border:1px solid #CCD2DC;border-radius:8px;padding:10px 13px;font-family:'Nunito';font-size:15px;font-weight:700;background:#fff;outline:none;color:#1F2937">
+            </div>
+            <input value="{{moneyPurpose}}" sc-camel-on-change="{{onMoneyPurpose}}" placeholder="What is it for? e.g. diapers, milk, fruits" style="border:1px solid #CCD2DC;border-radius:8px;padding:10px 13px;font-family:'Nunito';font-size:13px;background:#fff;outline:none;color:#1F2937">
+            <div style="display:flex;gap:8px">
+              <button sc-camel-on-click="{{closeMoneyForm}}" style="flex:1;background:#fff;color:#6B7280;border:1px solid #CCD2DC;border-radius:8px;padding:11px;font-family:'Urbanist';font-weight:700;font-size:13px;cursor:pointer">Cancel</button>
+              <button sc-camel-on-click="{{submitMoneyRequest}}" style="flex:1;background:#3B2513;color:#FFF9F0;border:none;border-radius:8px;padding:11px;font-family:'Urbanist';font-weight:700;font-size:13px;cursor:pointer">Send request</button>
+            </div>
+          </div>
+        </sc-if>
+        <sc-if value="{{!showMoneyForm}}" hint-placeholder-val="{{true}}">
+          <button sc-camel-on-click="{{openMoneyForm}}" style="width:100%;background:#fff;border:1.5px dashed #D4A67F;border-radius:8px;padding:14px;font-family:'Urbanist';font-weight:700;font-size:13.5px;color:#3B2513;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px">
+            <span style="font-size:16px">₦</span> Request market money
+          </button>
+        </sc-if>
+        <sc-for list="{{moneyRequests}}" as="req" hint-placeholder-count="1">
+          <div style="background:#fff;border:1px solid #E6EBF3;border-radius:8px;padding:14px 16px;display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-family:'Urbanist';font-weight:700;font-size:13.5px;color:#1F2937">₦{{req.amount}} — {{req.purpose}}</span>
+              <span style="{{req.statusChip}}">{{req.statusLabel}}</span>
+            </div>
+            <sc-if value="{{req.isApproved}}" hint-placeholder-val="{{false}}">
+              <button sc-camel-on-click="{{recordSpending}}" style="width:100%;background:#E1F5EC;border:1px solid #009061;border-radius:8px;padding:10px;font-family:'Urbanist';font-weight:700;font-size:12.5px;color:#009061;cursor:pointer">Attach spending receipt</button>
+            </sc-if>
+          </div>
+        </sc-for>
+
         <div style="font-family:'Urbanist';font-weight:600;font-size:11px;letter-spacing:.08em;color:#9A6033">MARKET LIST — MUMMY SEES THIS</div>
         <div style="background:#fff;border:1px solid #E6EBF3;border-radius:8px;padding:6px 16px 12px">
           <sc-for list="{{shopping}}" as="it" hint-placeholder-count="3">
@@ -763,6 +819,21 @@
           <div style="display:flex;gap:8px;margin-top:8px">
             <input value="{{shopInput}}" sc-camel-on-change="{{onShopInput}}" sc-camel-on-key-down="{{onShopKey}}" placeholder="Something running low?" style="flex:1;border:1px solid #CCD2DC;border-radius:8px;padding:10px 13px;font-family:'Nunito';font-size:13px;background:#fff;outline:none;color:#1F2937">
             <button sc-camel-on-click="{{addShopItem}}" style="background:#3B2513;color:#FFF9F0;border:none;border-radius:8px;padding:0 16px;font-family:'Urbanist';font-weight:700;font-size:13px;cursor:pointer">Add</button>
+          </div>
+        </div>
+
+        <div style="font-family:'Urbanist';font-weight:600;font-size:11px;letter-spacing:.08em;color:#9A6033">LOW STOCK — FLAGGED FOR MUMMY</div>
+        <div style="background:#fff;border:1px solid #E6EBF3;border-radius:8px;padding:6px 16px 12px">
+          <sc-for list="{{lowStock}}" as="it" hint-placeholder-count="3">
+            <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #F1E6D6">
+              <span style="font-size:14px"><sc-if value="{{it.flagged}}" hint-placeholder-val="{{true}}">⚠️</sc-if><sc-if value="{{!it.flagged}}" hint-placeholder-val="{{false}}">✅</sc-if></span>
+              <span style="flex:1;font-size:13.5px;font-weight:600;color:#1F2937">{{it.name}}</span>
+              <span style="{{it.flagStyle}}">{{it.flagLabel}}</span>
+            </div>
+          </sc-for>
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <input value="{{lowStockInput}}" sc-camel-on-change="{{onLowStockInput}}" sc-camel-on-key-down="{{onLowStockKey}}" placeholder="Item running low?" style="flex:1;border:1px solid #CCD2DC;border-radius:8px;padding:10px 13px;font-family:'Nunito';font-size:13px;background:#fff;outline:none;color:#1F2937">
+            <button sc-camel-on-click="{{addLowStockItem}}" style="background:#CD3030;color:#fff;border:none;border-radius:8px;padding:0 16px;font-family:'Urbanist';font-weight:700;font-size:13px;cursor:pointer">Flag</button>
           </div>
         </div>
 
@@ -829,8 +900,30 @@
         </div>
 
         <div style="background:#fff;border:1px solid #E6EBF3;border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:10px">
-          <div style="display:flex;justify-content:space-between;font-size:13px;color:#3B2513;padding:2px 0;border-bottom:1px solid #F1E6D6;padding-bottom:9px"><span>Spending today (receipt attached)</span><strong>₦4,500</strong></div>
-          <div style="display:flex;justify-content:space-between;font-size:13px;color:#3B2513"><span>Running low</span><strong style="color:#CD3030">Diapers · Milo · Fruits</strong></div>
+          <div style="font-family:'Urbanist';font-weight:700;font-size:14px;color:#1F2937">Spending today</div>
+          <sc-for list="{{moneyRequests}}" as="req" hint-placeholder-count="1">
+            <div style="display:flex;flex-direction:column;gap:6px;padding:10px 0;border-bottom:1px solid #F1E6D6">
+              <div style="display:flex;justify-content:space-between;font-size:13px;color:#3B2513"><span>Approved amount</span><strong>₦{{req.amount}}</strong></div>
+              <div style="font-size:12px;color:#6B7280">{{req.purpose}}</div>
+              <sc-if value="{{req.isApproved}}" hint-placeholder-val="{{false}}">
+                <div style="display:flex;align-items:center;gap:8px;background:#E1F5EC;border-radius:8px;padding:8px 12px;margin-top:4px">
+                  <svg width="14" height="14" sc-camel-view-box="0 0 24 24" fill="none" stroke="#009061" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+                  <span style="font-size:12px;color:#009061;font-weight:700">Receipt attached — ₦{{req.amount}} spent</span>
+                </div>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="background:#fff;border:1px solid #E6EBF3;border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:10px">
+          <div style="font-family:'Urbanist';font-weight:700;font-size:14px;color:#1F2937">Running low in the house</div>
+          <sc-for list="{{lowStock}}" as="it" hint-placeholder-count="3">
+            <div style="display:flex;align-items:center;gap:10px;padding:6px 0">
+              <span style="font-size:13px"><sc-if value="{{it.flagged}}" hint-placeholder-val="{{true}}">⚠️</sc-if><sc-if value="{{!it.flagged}}" hint-placeholder-val="{{false}}">✅</sc-if></span>
+              <span style="flex:1;font-size:13px;color:#1F2937;font-weight:600">{{it.name}}</span>
+              <span style="{{it.flagStyle}}">{{it.flagLabel}}</span>
+            </div>
+          </sc-for>
         </div>
 
         <div style="background:#fff;border:1px solid #E6EBF3;border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:8px">
@@ -852,7 +945,7 @@
     </sc-if>
 
     <sc-if value="{{showAsk}}" hint-placeholder-val="{{false}}">
-      <div style="flex:1;display:flex;flex-direction:column;overflow:hidden" data-screen-label="Caregiver · Ask CEvenAI">
+      <div style="flex:1;display:flex;flex-direction:column;overflow:hidden;padding-bottom:68px" data-screen-label="Caregiver · Ask CEvenAI">
         <div style="flex:none;padding:8px 20px 12px;border-bottom:1px solid #EDD9C0;display:flex;align-items:center;gap:10px">
           <span style="color:#9A6033;font-size:17px">✦</span>
           <div style="font-family:'Merriweather';font-weight:700;font-size:19px;color:#1F2937">Ask &amp; Learn</div>
@@ -945,7 +1038,7 @@
         </div>
         <div style="flex:none;padding:12px 20px 8px;display:flex;gap:8px;align-items:center;border-top:1px solid #EDD9C0;background:#FFF9F0">
           <div style="flex:1;border:1px solid #CCD2DC;border-radius:99px;padding:11px 16px;font-size:14px;background:#fff;color:#6B7280">Ask or speak…</div>
-          <button style="width:42px;height:42px;flex:none;border-radius:50%;background:#3B2513;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="#FFF9F0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" x2="12" y1="19" y2="22"></line></svg></button>
+          <button sc-camel-on-click="{{voiceAsk}}" style="width:42px;height:42px;flex:none;border-radius:50%;background:#3B2513;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="16" height="16" sc-camel-view-box="0 0 24 24" fill="none" stroke="#FFF9F0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" x2="12" y1="19" y2="22"></line></svg></button>
         </div>
       </div>
     </sc-if>
@@ -1225,7 +1318,7 @@
             </sc-if>
           </div>
         </sc-for>
-        <div style="background:#fff;border:1px solid #E6EBF3;border-radius:8px;padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer">
+        <div sc-camel-on-click="{{openVault}}" style="background:#fff;border:1px solid #E6EBF3;border-radius:8px;padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer">
           <span style="font-size:17px">📁</span>
           <span style="flex:1;font-size:13px;font-weight:600;color:#1F2937">12 work samples in the family vault · <strong style="color:#3B82F6">3 new</strong></span>
           <span style="font-family:'Urbanist';font-weight:700;font-size:13px;color:#9A6033">View →</span>
@@ -1274,7 +1367,7 @@
                 <div style="font-family:'Urbanist';font-weight:700;font-size:14px;color:#1F2937">{{c.name}}</div>
                 <div style="font-size:12px;color:#6B7280;margin-top:1px">{{c.sub}}</div>
               </div>
-              <button style="background:#009061;color:#fff;border:none;border-radius:8px;padding:9px 16px;font-family:'Urbanist';font-weight:700;font-size:13px;cursor:pointer">Call</button>
+              <button sc-camel-on-click="{{callSosContact}}" style="background:#009061;color:#fff;border:none;border-radius:8px;padding:9px 16px;font-family:'Urbanist';font-weight:700;font-size:13px;cursor:pointer">Call</button>
             </div>
           </sc-for>
           <button sc-camel-on-click="{{sendSos}}" style="background:#CD3030;color:#fff;border:none;border-radius:8px;padding:15px;font-family:'Urbanist';font-weight:700;font-size:15px;cursor:pointer">🚨 Alert Mummy &amp; Daddy now</button>
