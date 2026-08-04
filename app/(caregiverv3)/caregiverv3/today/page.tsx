@@ -279,7 +279,7 @@ function EventPrepBlock() {
 export default function CaregiverV3TodayPage() {
   return (
     <div className="relative flex min-h-0 flex-1 flex-col overflow-hidden bg-cg-bg">
-      <div className="flex-1 overflow-y-auto px-4 pt-2 pb-4">
+      <div className="flex-1 overflow-y-auto scrollbar-thin px-4 pt-2 pb-4">
         <GreetingHeader />
         <div className="space-y-3">
           <MenuChecklist />

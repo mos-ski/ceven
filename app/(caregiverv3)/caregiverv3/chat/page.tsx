@@ -49,7 +49,7 @@ export default function CaregiverV3ChatPage() {
       </div>
 
       {/* Messages */}
-      <div ref={scrollRef} className="flex-1 overflow-y-auto px-6 py-3 space-y-3">
+      <div ref={scrollRef} className="flex-1 overflow-y-auto scrollbar-thin px-6 py-3 space-y-3">
         {messages.map((msg) => (
           <div
             key={msg.id}

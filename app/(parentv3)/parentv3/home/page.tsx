@@ -179,7 +179,7 @@ function ActivityFeedSection() {
 export default function ParentV3HomePage() {
   return (
     <div className="relative flex min-h-0 flex-1 flex-col overflow-hidden bg-[#fffefa]">
-      <div className="flex-1 overflow-y-auto px-6 pb-4">
+      <div className="flex-1 overflow-y-auto scrollbar-thin px-6 pb-4">
         {/* Top bar — matches v2 welcome pill */}
         <div className="flex items-center justify-between pt-4 pb-2">
           <div className="flex items-center gap-2 rounded-full bg-[#f4f5f6] px-3 py-2">

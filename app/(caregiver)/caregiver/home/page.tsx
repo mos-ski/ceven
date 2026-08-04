@@ -34,7 +34,7 @@ export default function HomePage() {
   return (
     <div className="relative flex flex-1 flex-col bg-cg-bg">
       {/* Scrollable content */}
-      <div className="flex-1 overflow-y-auto px-4 pt-2 pb-4">
+      <div className="flex-1 overflow-y-auto scrollbar-thin px-4 pt-2 pb-4">
         {/* Header */}
         <div className="mb-5 flex items-center justify-between">
           <div className="flex items-center gap-2 rounded-full bg-white px-3 py-1.5 shadow-sm">
