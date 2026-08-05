@@ -18,7 +18,7 @@ import {
   ArrowUpRight,
   FileBarChart,
 } from "lucide-react";
-import { CEIcon } from "@/components/admin-v3/ce-icon";
+import { Bot } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
 import EnrollChildModal from "@/components/dashboard/enroll-child-modal";
@@ -80,7 +80,7 @@ const QUICK_ACTIONS = [
  { id: "announce", icon: Megaphone, label: "Announce" },
  { id: "new-invoice", icon: Receipt, label: "New Invoice" },
  { id: "message-parent", icon: MessageSquare, label: "Message Parent" },
-  { id: "ai-insights", icon: CEIcon, label: "Insights" },
+  { id: "ai-insights", icon: Bot, label: "Insights" },
  { id: "view-reports", icon: BarChart3, label: "View Reports" },
 ] as const;
 
@@ -163,7 +163,7 @@ export default function DashboardV3Page() {
    onClick={() => router.push("/admin/v3/ai-command-center")}
    className="flex items-center gap-1.5 rounded-xl bg-[#C47B2C] px-3.5 py-2 text-xs font-bold text-white transition-opacity hover:opacity-90"
    >
-            <CEIcon className="h-3.5 w-3.5" /> AI Summary
+            <Bot className="h-3.5 w-3.5" /> Summary
    </button>
   </div>
   </div>
@@ -172,13 +172,13 @@ export default function DashboardV3Page() {
   <Card>
   <div className="mb-3 flex items-center justify-between">
    <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-[#1E2D4A] to-[#2D1810] px-3 py-1.5 text-[10px] font-bold uppercase tracking-wide text-[#F5EDD8]">
-            <CEIcon className="h-3 w-3 text-[#C47B2C]" /> Daily Brief
+            <Bot className="h-3 w-3 text-[#C47B2C]" /> Daily Brief
    </span>
    <button
    onClick={() => router.push("/admin/v3/ai-command-center")}
    className="flex items-center gap-1 text-xs font-bold text-[#3B2513] hover:opacity-70"
    >
-   Open AI Center <ArrowUpRight className="h-3.5 w-3.5" />
+   Open Command Center <ArrowUpRight className="h-3.5 w-3.5" />
    </button>
   </div>
   <div className="grid grid-cols-1 gap-3 md:grid-cols-3">

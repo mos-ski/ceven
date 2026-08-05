@@ -258,7 +258,7 @@ export default function AICommandCenterV3Page() {
   </div>
   <div className="flex shrink-0 gap-2 self-start sm:self-auto">
    <button
-   onClick={() => toast.success("Exporting AI report as PDF...")}
+   onClick={() => toast.success("Exporting report as PDF...")}
    className="flex items-center gap-1.5 rounded-lg border border-black/[0.12] bg-white px-4 py-2 text-xs font-bold text-[#2D1810] hover:border-[#C47B2C]"
    >
    <FileDown className="h-3.5 w-3.5" /> Export Report

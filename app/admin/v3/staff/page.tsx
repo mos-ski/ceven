@@ -91,7 +91,7 @@ export default function StaffV3Page() {
               <CEIcon className="h-3.5 w-3.5 text-[#C47B2C]" />
             </span>
             <p className="text-xs leading-5 text-[#2D1810]/70">
-              <span className="font-bold text-[#2D1810]">AI flags:</span>{" "}
+              <span className="font-bold text-[#2D1810]">Flags:</span>{" "}
               {flagged
                 .map((e, i) => (
                   <span key={e.name}>

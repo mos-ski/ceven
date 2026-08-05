@@ -231,7 +231,7 @@ export default function DailyLogsV3Page() {
           ✦ Insights
         </span>
         <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">
-          ⚠ Some rooms have not submitted today. AI has notified caregivers.
+          ⚠ Some rooms have not submitted today. System has notified caregivers.
         </p>
         <button className="ml-auto text-[#9ca3af] hover:text-[#6b7280]">✕</button>
       </div>

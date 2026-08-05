@@ -90,10 +90,10 @@ export default function BillingV3Page() {
    Record Payment
    </button>
    <button
-   onClick={() => toast.success("AI payment forecast generated")}
+   onClick={() => toast.success("Payment forecast generated")}
    className="flex items-center gap-1.5 rounded-lg border border-[#C47B2C]/40 bg-[#FAF2E1] px-4 py-2 text-sm font-semibold text-[#8A4F1C] hover:bg-[#F5E4C4]"
    >
-    <CEIcon className="h-3.5 w-3.5" /> AI Forecast
+    <CEIcon className="h-3.5 w-3.5" /> Forecast
    </button>
    <button
    onClick={() => setInvoiceOpen(true)}
