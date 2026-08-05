@@ -398,7 +398,7 @@ export default function LibraryPage() {
         />
       )}
 
-      {/* Sidebar — fixed, internal scroll */}
+      {/* Sidebar: fixed, internal scroll */}
       <aside className={cn(
         "fixed inset-y-0 left-0 z-50 w-60 shrink-0 border-r border-border bg-white p-4 overflow-y-auto scrollbar-thin transition-transform duration-200 lg:translate-x-0",
         sidebarOpen ? "translate-x-0" : "-translate-x-full"
@@ -406,7 +406,7 @@ export default function LibraryPage() {
           <div className="mb-6 flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2">
               <img src="/Logo/icon.svg" alt="CEven" className="h-8 w-8 object-contain" />
-              <span style={{ fontFamily: "var(--font-mogra-import)" }} className="text-lg text-brand-dark">CEven</span>
+              <span style={{ fontFamily: "var(--font-merriweather-import)" }} className="text-lg font-bold text-brand-dark">CEven</span>
             </Link>
             <button className="lg:hidden" onClick={() => setSidebarOpen(false)}>
               <X className="size-5 text-muted-text" />
@@ -479,7 +479,7 @@ export default function LibraryPage() {
             <button onClick={() => setSidebarOpen(true)}>
               <Menu className="size-5 text-heading" />
             </button>
-            <span style={{ fontFamily: "var(--font-mogra-import)" }} className="text-lg text-brand-dark">CEven</span>
+            <span style={{ fontFamily: "var(--font-merriweather-import)" }} className="text-lg font-bold text-brand-dark">CEven</span>
           </div>
 
           <div className="mx-auto max-w-4xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-10">
@@ -680,7 +680,7 @@ export default function LibraryPage() {
                       <div className="flex items-center gap-2">
                         <span className="text-[10px]">●●●●</span>
                         <span className="text-[10px]">WiFi</span>
-                        <span className="text-[10px]">🔋</span>
+                        <BatteryFull className="size-3" />
                       </div>
                     </div>
                     <div className="mt-2 mx-auto h-[28px] w-[120px] rounded-full bg-black" />
@@ -1087,30 +1087,28 @@ export default function LibraryPage() {
               <SectionDescription>Font families and type scale used in the CEven design system.</SectionDescription>
               <ComponentShowcase title="Font Families">
                 <div className="space-y-4">
-                  <div><p style={{ fontFamily: "var(--font-mogra-import)" }} className="text-2xl text-heading">Mogra — Display / Logo</p></div>
-                  <div><p style={{ fontFamily: "var(--font-merriweather-import)" }} className="text-xl text-heading font-bold">Merriweather — Headings</p></div>
-                  <div><p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-lg text-foreground font-medium">Urbanist — UI Labels</p></div>
-                  <div><p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-base text-foreground">Urbanist — Body Text</p></div>
+                  <div><p style={{ fontFamily: "var(--font-merriweather-import)" }} className="text-2xl text-heading font-bold">Merriweather (Headings / Display)</p></div>
+                  <div><p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-lg text-foreground font-medium">Urbanist (UI Labels)</p></div>
+                  <div><p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-base text-foreground">Urbanist (Body Text)</p></div>
                 </div>
               </ComponentShowcase>
               <ComponentShowcase title="Type Scale">
                 <div className="space-y-3">
-                  <p style={{ fontFamily: "var(--font-mogra-import)" }} className="text-5xl text-heading">Display — Mogra 400</p>
-                  <p style={{ fontFamily: "var(--font-merriweather-import)" }} className="text-[2.5rem] leading-tight text-heading font-bold">Heading 1 — Merriweather 700</p>
-                  <p style={{ fontFamily: "var(--font-merriweather-import)" }} className="text-[2rem] leading-tight text-heading font-bold">Heading 2 — Merriweather 700</p>
-                  <p style={{ fontFamily: "var(--font-merriweather-import)" }} className="text-2xl text-heading font-bold">Heading 3 — Merriweather 700</p>
-                  <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-xl text-heading font-semibold">Heading 4 — Urbanist 600</p>
-                  <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-lg text-heading font-semibold">Heading 5 — Urbanist 600</p>
-                  <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-base text-heading font-semibold">Heading 6 — Urbanist 600</p>
-                  <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-lg text-foreground">Body Large — Urbanist 400</p>
-                  <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-base text-foreground">Body — Urbanist 400</p>
-                  <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-sm text-foreground">Body Small — Urbanist 400</p>
-                  <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-xs text-foreground">Body Extra Small — Urbanist 400</p>
-                  <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-lg text-foreground font-medium">UI Large — Urbanist 500</p>
-                  <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-base text-foreground font-medium">UI — Urbanist 500</p>
-                  <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-sm text-foreground font-medium">UI Small — Urbanist 500</p>
-                  <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-xs text-muted-text">Caption — Urbanist 400 (muted)</p>
-                  <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-xs text-foreground font-semibold uppercase tracking-wider">Overline — Urbanist 600 Uppercase</p>
+                  <p style={{ fontFamily: "var(--font-merriweather-import)" }} className="text-[2.5rem] leading-tight text-heading font-bold">Heading 1 (Merriweather 700)</p>
+                  <p style={{ fontFamily: "var(--font-merriweather-import)" }} className="text-[2rem] leading-tight text-heading font-bold">Heading 2 (Merriweather 700)</p>
+                  <p style={{ fontFamily: "var(--font-merriweather-import)" }} className="text-2xl text-heading font-bold">Heading 3 (Merriweather 700)</p>
+                  <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-xl text-heading font-semibold">Heading 4 (Urbanist 600)</p>
+                  <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-lg text-heading font-semibold">Heading 5 (Urbanist 600)</p>
+                  <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-base text-heading font-semibold">Heading 6 (Urbanist 600)</p>
+                  <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-lg text-foreground">Body Large (Urbanist 400)</p>
+                  <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-base text-foreground">Body (Urbanist 400)</p>
+                  <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-sm text-foreground">Body Small (Urbanist 400)</p>
+                  <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-xs text-foreground">Body Extra Small (Urbanist 400)</p>
+                  <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-lg text-foreground font-medium">UI Large (Urbanist 500)</p>
+                  <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-base text-foreground font-medium">UI (Urbanist 500)</p>
+                  <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-sm text-foreground font-medium">UI Small (Urbanist 500)</p>
+                  <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-xs text-muted-text">Caption (Urbanist 400, muted)</p>
+                  <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-xs text-foreground font-semibold uppercase tracking-wider">Overline (Urbanist 600, Uppercase)</p>
                 </div>
               </ComponentShowcase>
             </section>
@@ -1151,10 +1149,10 @@ export default function LibraryPage() {
                     Daily Activity Report
                   </p>
                   <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-sm text-muted-text font-medium uppercase tracking-wider">
-                    January 15, 2025 — Sunshine Class
+                    January 15, 2025: Sunshine Class
                   </p>
                   <p style={{ fontFamily: "var(--font-urbanist-import)" }} className="text-base leading-relaxed text-foreground">
-                    All children participated in outdoor play from 10:00 AM to 11:30 AM. Emma showed great progress in sharing activities. Lunch was served at 12:00 PM — menu included grilled chicken, rice, and steamed vegetables.
+                    All children participated in outdoor play from 10:00 AM to 11:30 AM. Emma showed great progress in sharing activities. Lunch was served at 12:00 PM. The menu included grilled chicken, rice, and steamed vegetables.
                   </p>
                 </div>
               </ComponentShowcase>
@@ -2177,13 +2175,17 @@ export default function LibraryPage() {
                   </div>
                   <div className="mt-4 space-y-2">
                     {[
-                      { icon: "📄", text: "Summarize today's report" },
-                      { icon: "↗", text: "Any health patterns this week?" },
-                      { icon: "😊", text: "How was my child's mood?" },
-                      { icon: "📖", text: "What learning activity was done?" },
+                      { icon: FileText, text: "Summarize today's report" },
+                      { icon: ArrowUpRight, text: "Any health patterns this week?" },
+                      { icon: Smile, text: "How was my child's mood?" },
+                      { icon: BookOpen, text: "What learning activity was done?" },
                     ].map((p) => (
-                      <button key={p.text} className="flex w-full items-center gap-2 rounded-[8px] bg-[#F3EDE5] px-4 py-4 text-left text-sm text-brand-dark">
-                        <span>{p.icon}</span>
+                      <button
+                        key={p.text}
+                        onClick={() => toast.info(`Asking CEvenAI: "${p.text}"`)}
+                        className="flex w-full items-center gap-2 rounded-[8px] bg-[#F3EDE5] px-4 py-4 text-left text-sm text-brand-dark"
+                      >
+                        <p.icon className="size-4 shrink-0" />
                         <span>{p.text}</span>
                       </button>
                     ))}
@@ -2708,7 +2710,7 @@ export default function LibraryPage() {
 
             <footer className="pb-10 text-center">
               <p className="text-caption">
-                CEven Design System v1.0 — Built with Next.js, Tailwind CSS, and Base UI
+                CEven Design System v1.0: Built with Next.js, Tailwind CSS, and Base UI
               </p>
             </footer>
           </div>

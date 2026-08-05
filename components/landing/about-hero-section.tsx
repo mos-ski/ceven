@@ -41,7 +41,7 @@ export function AboutHeroSection() {
             <FadeUp delay={0.3}>
               <div className="flex flex-col items-center justify-center gap-4 sm:flex-row lg:justify-start">
                 <Link
-                  href="#"
+                  href="/get-started"
                   className="relative flex h-[50px] items-center gap-1 rounded-[12px] bg-[#3B2513] pl-1.5 pr-4 font-[family-name:var(--font-urbanist-import)] text-base font-medium leading-5 text-[#FAF2E1] shadow-[inset_0px_4px_12px_0px_rgba(255,255,255,0.12)] transition-all duration-150 hover:scale-[1.03] hover:bg-[#5B391E]"
                 >
                   <Image src="/google_play_icon.png.png" alt="" width={46} height={46} className="size-[46px]" />

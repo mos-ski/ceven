@@ -28,7 +28,7 @@ export function CrechesTransparencySection() {
             leave quietly and tell everyone why.
           </p>
           <p className="text-[#6B5744] text-base leading-relaxed">
-            CEven doesn&apos;t just improve parent satisfaction — it restructures your reputation.
+            CEven doesn&apos;t just improve parent satisfaction. It restructures your reputation.
             Every report sent is a proof point. Every notification is a trust deposit. Every
             calm parent at pickup is a future referral.
           </p>

@@ -6,7 +6,7 @@ import { Stagger, StaggerItem } from "@/components/animations/stagger";
 
 const WITHOUT = [
   "You leave and know nothing until pickup",
-  "You call the crèche — they're busy, no answer",
+  "You call the crèche: they're busy, no answer",
   "You check a WhatsApp group with 47 messages",
   "You miss a meeting moment, distracted, worried",
   'Pickup: "How was she?" "Fine." That\'s all you get.',
@@ -76,7 +76,7 @@ export function ParentsComparisonSection() {
 
         <FadeUp delay={0.1} className="flex justify-center">
           <Link
-            href="#"
+            href="/get-started"
             className="bg-[#3B2513] text-[#FAF2E1] text-sm font-semibold px-8 py-3.5 rounded-full hover:bg-[#5B391E] hover:scale-[1.03] transition-all duration-150"
           >
             Become A Better Parent

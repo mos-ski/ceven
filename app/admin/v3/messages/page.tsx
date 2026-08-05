@@ -73,7 +73,7 @@ export default function MessagesV3Page() {
     <div className="flex flex-col gap-5">
       <div>
         <h1 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2D1810]">Messages</h1>
-        <p className="mt-1 text-sm text-[#2D1810]/50">{unreadCount} unread · AI-assisted responses available</p>
+        <p className="mt-1 text-sm text-[#2D1810]/50">{unreadCount} unread · Smart responses available</p>
       </div>
 
       <div className="grid grid-cols-1 gap-5 lg:grid-cols-[340px_1fr]">
@@ -159,7 +159,7 @@ export default function MessagesV3Page() {
             {/* AI Suggested Message */}
             <div className="rounded-xl border border-[#C47B2C]/30 bg-[#FAF2E1] p-4">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-[#1E2D4A] to-[#2D1810] px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-[#F5EDD8]">
-                <Sparkles className="h-3 w-3 text-[#C47B2C]" /> AI Suggested Message
+                <Sparkles className="h-3 w-3 text-[#C47B2C]" /> Suggested Message
               </span>
               <p className="mt-2.5 text-xs leading-5 text-[#2D1810]/80">&ldquo;{aiSuggestion}&rdquo;</p>
               <button

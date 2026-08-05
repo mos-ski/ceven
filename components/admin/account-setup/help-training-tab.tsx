@@ -400,7 +400,7 @@ function AskAdaPanel() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && send(input)}
-            placeholder="Ask Ada anything…"
+            placeholder="Type a message…"
             className="h-10 w-full rounded-[10px] border border-[rgba(45,24,16,0.12)] bg-[#f5edd8] px-3 pr-12 font-[family-name:var(--font-urbanist)] text-xs font-medium text-[#2d1810] placeholder:text-[rgba(45,24,16,0.5)] outline-none"
           />
           <button

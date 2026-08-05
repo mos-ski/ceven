@@ -16,7 +16,7 @@ export function CrechesCTASection() {
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
           <Link
-            href="#"
+            href="/get-started"
             className="flex items-center gap-2.5 bg-[#FAF2E1] text-[#3B2513] text-sm font-semibold px-6 py-3.5 rounded-full hover:bg-white hover:scale-[1.03] transition-all duration-150"
           >
             <PlayStoreIcon />

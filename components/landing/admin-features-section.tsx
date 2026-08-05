@@ -174,7 +174,7 @@ function Card4() {
     <CardShell className="h-[440px] sm:h-[460px]">
       <div className="pt-7 px-7">
         <h3 className="font-[family-name:var(--font-urbanist-import)] font-bold text-[#1c1917] text-[15px] sm:text-[17px] leading-snug tracking-[-0.02em] mb-2">
-          AI that flags what needs you
+          Flags what needs you
         </h3>
         <p className="font-[family-name:var(--font-urbanist-import)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55] tracking-[-0.02em]">
           Unpaid fees, a caregiver falling behind, something that slipped through — surfaced before it becomes a bigger problem.
@@ -186,7 +186,7 @@ function Card4() {
         style={{ right: '14%', bottom: 0, width: '72%', height: '69%' }}>
         <Image
           src="/landing/admin-features/ai-ada-app.png"
-          alt="Ada AI assistant flagging issues"
+          alt="System flagging issues"
           fill
           className="object-cover object-top"
           sizes="(max-width: 768px) 72vw, 20vw"

@@ -16,7 +16,7 @@ import { CHILDREN, CAREGIVERS } from "@/lib/mock-data/children";
 // page used a single repeated placeholder row) — this derives rows from the
 // real CHILDREN/CAREGIVERS mock data instead, matching that same shape.
 
-type DailyLogStatus = "Done" | "AI Flag" | "Pending" | null;
+type DailyLogStatus = "Done" | "Flag" | "Pending" | null;
 
 type DailyLogRow = {
   child: string;
@@ -37,7 +37,7 @@ function caregiverForRoom(room: string) {
   return CAREGIVERS.find((c) => c.room === room)?.name ?? CAREGIVERS[0].name;
 }
 
-const STATUS_CYCLE: DailyLogStatus[] = ["Done", "Done", "AI Flag", "Pending", null, "Done", "Pending", "Done"];
+const STATUS_CYCLE: DailyLogStatus[] = ["Done", "Done", "Flag", "Pending", null, "Done", "Pending", "Done"];
 
 const dailyLogRows: DailyLogRow[] = CHILDREN.slice(0, 8).map((child, i) => {
   const status = STATUS_CYCLE[i % STATUS_CYCLE.length];
@@ -60,7 +60,7 @@ const dailyLogRows: DailyLogRow[] = CHILDREN.slice(0, 8).map((child, i) => {
       status,
     };
   }
-  if (status === "AI Flag") {
+  if (status === "Flag") {
     return {
       ...base,
       mood: "😊 Happy",
@@ -68,7 +68,7 @@ const dailyLogRows: DailyLogRow[] = CHILDREN.slice(0, 8).map((child, i) => {
       napTime: "--",
       hygiene: "1 nappy change",
       health: "Vitamin D administered",
-      note: "AI flagged: meal not logged for lunch.",
+      note: "Flagged: meal not logged for lunch.",
       status,
     };
   }
@@ -87,7 +87,7 @@ const dailyLogRows: DailyLogRow[] = CHILDREN.slice(0, 8).map((child, i) => {
   return { ...base, mood: "--", meal: "--", napTime: "--", hygiene: "--", health: "--", note: "", status: null };
 });
 
-const submittedCount = dailyLogRows.filter((r) => r.status === "Done" || r.status === "AI Flag").length;
+const submittedCount = dailyLogRows.filter((r) => r.status === "Done" || r.status === "Flag").length;
 const pendingCount = dailyLogRows.filter((r) => r.status === "Pending" || r.status === null).length;
 const compliancePct = Math.round((submittedCount / dailyLogRows.length) * 100);
 
@@ -114,10 +114,10 @@ function DailyLogStatusBadge({ status }: { status: DailyLogStatus }) {
         ● Done
       </Badge>
     );
-  if (status === "AI Flag")
+  if (status === "Flag")
     return (
       <Badge variant="outline" className="border-transparent bg-[#f3f4f6] text-[#454B54]">
-        ● AI Flag
+        ● Flag
       </Badge>
     );
   if (status === "Pending")
@@ -219,7 +219,7 @@ export default function DailyLogsV3Page() {
       {/* AI Insights Banner */}
       <div className="flex items-center gap-3 rounded-xl border border-[#e0bfa0] bg-[#fdf6e8] px-4 py-3">
         <span className="inline-flex items-center gap-1 rounded-full bg-[#e0bfa0] px-2 py-0.5 font-[family-name:var(--font-urbanist)] text-[10px] font-medium text-[#3b2513]">
-          ✦ AI Insights
+          ✦ Insights
         </span>
         <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">
           ⚠ Some rooms have not submitted today. AI has notified caregivers.
@@ -295,7 +295,7 @@ export default function DailyLogsV3Page() {
                     <DailyLogStatusBadge status={row.status} />
                   </td>
                   <td className="px-4 py-3">
-                    {row.status === "Done" || row.status === "AI Flag" ? (
+                    {row.status === "Done" || row.status === "Flag" ? (
                       <button
                         onClick={() => setViewingRow(row)}
                         className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#3b2513] underline"
@@ -319,8 +319,8 @@ export default function DailyLogsV3Page() {
           {dailyLogRows.map((row, i) => (
             <div
               key={i}
-              onClick={() => (row.status === "Done" || row.status === "AI Flag") && setViewingRow(row)}
-              className={`rounded-xl border border-[#eaecf0] p-3 ${row.status === "Done" || row.status === "AI Flag" ? "cursor-pointer" : ""}`}
+              onClick={() => (row.status === "Done" || row.status === "Flag") && setViewingRow(row)}
+              className={`rounded-xl border border-[#eaecf0] p-3 ${row.status === "Done" || row.status === "Flag" ? "cursor-pointer" : ""}`}
             >
               <div className="flex items-center justify-between">
                 <div>

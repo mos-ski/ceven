@@ -7,7 +7,7 @@ import { Stagger, StaggerItem } from "@/components/animations/stagger";
 const TESTIMONIALS = [
   {
     quote:
-      "I just want to know she's okay. That's it. I don't need photos every hour — I just need to know she's okay.",
+      "I just want to know she's okay. That's it. I don't need photos every hour. I just need to know she's okay.",
     name: "Chiamaka O.",
     role: "Working mother of a toddler · Chevron",
   },
@@ -39,7 +39,7 @@ export function CrechesTestimonialsSection() {
             <em className="text-[#C8823A] italic">what parents say.</em>
           </h2>
           <p className="text-[#6B5744] text-base mt-4">
-            Know what working parents need — and show them you already provide it.
+            Know what working parents need, and show them you already provide it.
           </p>
         </FadeUp>
 

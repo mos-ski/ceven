@@ -1,14 +1,36 @@
 "use client";
 
+import { useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, Search, ArrowUpDown, Download, Printer, ChevronLeft, ChevronRight } from "lucide-react";
 import { ASSIGNED_CHILDREN, CAREGIVERS } from "@/lib/super-admin/mock-data";
+import { exportRowsToCsv } from "@/lib/super-admin/export-csv";
+
+const PAGE_SIZE = 10;
 
 export default function AssignedChildrenPage() {
   const params = useParams();
   const caregiverId = params.id as string;
   const caregiver = CAREGIVERS.find((c) => c.id === caregiverId);
+  const [search, setSearch] = useState("");
+  const [page, setPage] = useState(1);
+  const [oldestFirst, setOldestFirst] = useState(false);
+
+  const filtered = ASSIGNED_CHILDREN.filter(
+    (child) => child.childName.toLowerCase().includes(search.toLowerCase()) || child.parentName.toLowerCase().includes(search.toLowerCase())
+  );
+  const sorted = oldestFirst ? [...filtered].reverse() : filtered;
+  const totalPages = Math.max(1, Math.ceil(sorted.length / PAGE_SIZE));
+  const paginated = sorted.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+
+  const handleExport = () => {
+    exportRowsToCsv(
+      "assigned-children.csv",
+      ["Assigned Date", "Parent Name", "Child Name", "Child Age", "Room"],
+      sorted.map((child) => [child.assignedDate, child.parentName, child.childName, child.childAge, child.room])
+    );
+  };
 
   return (
     <div className="flex flex-col gap-4">
@@ -36,17 +58,31 @@ export default function AssignedChildrenPage() {
             <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-text" />
             <input
               type="search"
+              value={search}
+              onChange={(e) => { setSearch(e.target.value); setPage(1); }}
               placeholder="Search children..."
               className="h-9 w-full rounded-lg border border-input-border bg-white pl-9 pr-3 font-[family-name:var(--font-urbanist)] text-sm placeholder:text-muted-text focus:outline-none focus:ring-2 focus:ring-brand-accent"
             />
           </div>
-          <button type="button" className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">
-            <ArrowUpDown className="size-3.5" /> Sort by
+          <button
+            type="button"
+            onClick={() => { setOldestFirst((v) => !v); setPage(1); }}
+            className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading"
+          >
+            <ArrowUpDown className="size-3.5" /> {oldestFirst ? "Oldest first" : "Newest first"}
           </button>
-          <button type="button" className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">
+          <button
+            type="button"
+            onClick={handleExport}
+            className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading"
+          >
             <Download className="size-3.5" /> Export as
           </button>
-          <button type="button" className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">
+          <button
+            type="button"
+            onClick={() => window.print()}
+            className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading"
+          >
             <Printer className="size-3.5" /> Print
           </button>
         </div>
@@ -67,7 +103,7 @@ export default function AssignedChildrenPage() {
               </tr>
             </thead>
             <tbody>
-              {ASSIGNED_CHILDREN.map((child) => (
+              {paginated.map((child) => (
                 <tr key={child.id} className="border-b border-table-border last:border-0 hover:bg-slate-50">
                   <td className="px-4 py-3"><input type="checkbox" className="rounded" /></td>
                   <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">{child.assignedDate}</td>
@@ -85,7 +121,7 @@ export default function AssignedChildrenPage() {
                   </td>
                 </tr>
               ))}
-              {ASSIGNED_CHILDREN.length === 0 && (
+              {paginated.length === 0 && (
                 <tr>
                   <td colSpan={7} className="px-4 py-12 text-center font-[family-name:var(--font-urbanist)] text-sm text-muted-text">
                     No assigned children found.
@@ -99,13 +135,32 @@ export default function AssignedChildrenPage() {
         <div className="flex items-center justify-between border-t border-card-border px-4 py-3">
           <span className="font-[family-name:var(--font-urbanist)] text-xs text-muted-text">10 per page</span>
           <div className="flex items-center gap-1">
-            <button type="button" className="flex size-8 items-center justify-center rounded-lg border border-card-border text-muted-text">
+            <button
+              type="button"
+              onClick={() => setPage((p) => Math.max(1, p - 1))}
+              disabled={page === 1}
+              className="flex size-8 items-center justify-center rounded-lg border border-card-border text-muted-text hover:bg-slate-50 disabled:opacity-40"
+            >
               <ChevronLeft className="size-4" />
             </button>
-            <button type="button" className="flex size-8 items-center justify-center rounded-lg bg-brand-dark font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">
-              1
-            </button>
-            <button type="button" className="flex size-8 items-center justify-center rounded-lg border border-card-border text-muted-text">
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+              <button
+                key={p}
+                type="button"
+                onClick={() => setPage(p)}
+                className={`flex size-8 items-center justify-center rounded-lg font-[family-name:var(--font-urbanist)] text-xs font-semibold ${
+                  p === page ? "bg-brand-dark text-white" : "border border-card-border text-heading hover:bg-slate-50"
+                }`}
+              >
+                {p}
+              </button>
+            ))}
+            <button
+              type="button"
+              onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+              disabled={page === totalPages}
+              className="flex size-8 items-center justify-center rounded-lg border border-card-border text-muted-text hover:bg-slate-50 disabled:opacity-40"
+            >
               <ChevronRight className="size-4" />
             </button>
           </div>

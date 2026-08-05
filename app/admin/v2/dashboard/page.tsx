@@ -394,7 +394,7 @@ function AIChatPanel({ onClose }: { onClose: () => void }) {
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && send(inputValue)}
-          placeholder="Ask Ada anything..."
+          placeholder="Type a message..."
           className="flex-1 rounded-full border border-[#edd9c0] bg-white px-4 py-2 font-[family-name:var(--font-urbanist)] text-xs text-[#2d1810] placeholder:text-[#9ca3af] focus:border-[#c47b2c] focus:outline-none"
         />
         <button
@@ -503,7 +503,7 @@ export default function DashboardPage() {
                   }`}
                 >
                   <BarChart2 className="h-4 w-4" />
-                  <span className="hidden sm:inline">AI Reports</span>
+                  <span className="hidden sm:inline">Reports</span>
                   <span className="sm:hidden">AI</span>
                 </button>
                 <button
@@ -579,10 +579,10 @@ export default function DashboardPage() {
                   >
                     <span className="font-[family-name:var(--font-urbanist)] text-[10px] font-medium tracking-wide text-[#f5edd8]">
                       <span className="text-[#c47b2c]">✦ </span>
-                      AI DAILY BRIEF
+                      DAILY BRIEF
                     </span>
                   </div>
-                  <LinkArrow label="Open AI Center" onClick={() => router.push("/admin/v2/intelligence")} />
+                  <LinkArrow label="Open Center" onClick={() => router.push("/admin/v2/intelligence")} />
                 </div>
                 <p className="font-[family-name:var(--font-urbanist)] text-sm">
                   <span className="text-[#6b7280]">Today&apos;s report</span>
@@ -752,7 +752,7 @@ export default function DashboardPage() {
                       <th className="px-4 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-normal text-black">Amount</th>
                       <th className="px-4 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-normal text-black">Due Date</th>
                       <th className="px-4 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-normal text-black">Status</th>
-                      <th className="px-4 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-normal text-black">AI Risk</th>
+                      <th className="px-4 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-normal text-black">Risk</th>
                       <th className="px-4 py-3 text-center font-[family-name:var(--font-urbanist)] text-sm font-normal text-black">Action</th>
                     </tr>
                   </thead>

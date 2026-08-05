@@ -162,7 +162,7 @@ export function ParentProfileView({ parent }: { parent: Parent }) {
           className="rounded-lg px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm text-[#faf2e1]"
           style={{ background: "linear-gradient(135deg, rgb(30,45,74) 0%, rgb(45,24,16) 100%)" }}
         >
-          ✦ AI Parent Update
+          ✦ Parent Update
         </button>
       </div>
 

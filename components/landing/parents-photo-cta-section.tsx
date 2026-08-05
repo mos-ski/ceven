@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { FadeUp } from "@/components/animations/fade-up";
 
 export function ParentsPhotoCTASection() {
@@ -21,13 +22,13 @@ export function ParentsPhotoCTASection() {
         <p className="text-[#FAF2E1]/70 text-sm sm:text-base leading-relaxed mb-8">
           Start your easier and better parenting journey with CEven.
         </p>
-        <a
-          href="#"
+        <Link
+          href="/get-started"
           className="inline-flex items-center gap-2.5 bg-[#FAF2E1] text-[#3B2513] text-sm font-semibold px-6 py-3.5 rounded-full hover:bg-white hover:scale-[1.03] transition-all duration-150"
         >
           <PlayStoreIcon />
           Download on Google Play
-        </a>
+        </Link>
       </FadeUp>
     </section>
   );

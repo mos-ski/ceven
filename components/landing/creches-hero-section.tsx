@@ -45,7 +45,7 @@ export function CrechesHeroSection() {
             <FadeUp delay={0.3}>
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
                 <Link
-                  href="#"
+                  href="/get-started"
                   className="flex items-center gap-2.5 bg-[#3B2513] text-[#FAF2E1] text-sm font-semibold px-5 py-3 rounded-full hover:bg-[#5B391E] hover:scale-[1.03] transition-all duration-150"
                 >
                   <Image src="/google-play-icon.png" alt="" width={16} height={16} className="w-4 h-4" />

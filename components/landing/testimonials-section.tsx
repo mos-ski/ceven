@@ -30,7 +30,7 @@ export function TestimonialsSection() {
             {/* Attribution */}
             <div className="flex flex-col gap-1">
               <p className="font-[family-name:var(--font-urbanist-import)] font-semibold text-white text-[18px] leading-[28px]">
-                — Renee Wells
+                Renee Wells
               </p>
               <p className="font-[family-name:var(--font-urbanist-import)] font-normal text-[#e4e7ec] text-[16px] leading-[24px]">
                 Product Designer, Quotient

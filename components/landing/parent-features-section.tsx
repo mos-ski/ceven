@@ -65,17 +65,17 @@ function CardShell({ children, className = "" }: { children: React.ReactNode; cl
 function Card1() {
   return (
     <CardShell className="h-auto sm:h-[460px] pb-7 sm:pb-0">
-      {/* Text — top-left, z above images */}
+      {/* Text: top-left, z above images */}
       <div className="pt-7 px-7 sm:absolute sm:top-0 sm:left-0 sm:z-10 sm:max-w-[52%]">
         <h3 className="font-[family-name:var(--font-urbanist-import)] font-bold text-[#1c1917] text-[15px] sm:text-[17px] leading-snug tracking-[-0.02em] mb-2">
           See what your child is doing, right now
         </h3>
         <p className="font-[family-name:var(--font-urbanist-import)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55] tracking-[-0.02em]">
-          From wherever you are — mood, activity, hygiene, everything, logged as it happens. Not a summary later. The actual day, live.
+          From wherever you are: mood, activity, hygiene, everything, logged as it happens. Not a summary later. The actual day, live.
         </p>
       </div>
 
-      {/* Moment post photo — lower left */}
+      {/* Moment post photo, lower left */}
       <div
         className="relative h-[220px] mx-7 mt-5 rounded-xl overflow-hidden sm:absolute sm:h-auto sm:mx-0 sm:mt-0 sm:left-[4%] sm:top-[37%] sm:w-[36%] sm:bottom-[2%]"
       >
@@ -88,7 +88,7 @@ function Card1() {
         />
       </div>
 
-      {/* Daily log app — right column, starts from near top */}
+      {/* Daily log app, right column, starts from near top */}
       <div
         className="relative h-[260px] mx-7 mt-4 rounded-xl overflow-hidden sm:absolute sm:h-auto sm:mx-0 sm:mt-0 sm:left-[57%] sm:top-[7%] sm:w-[36%] sm:bottom-0"
       >
@@ -117,7 +117,7 @@ function Card2() {
         </p>
       </div>
 
-      {/* Notifications feed — centered, lower */}
+      {/* Notifications feed, centered, lower */}
       <div className="absolute rounded-xl overflow-hidden"
         style={{ left: '14%', top: '38%', right: '14%', bottom: '2%' }}>
         <Image
@@ -141,11 +141,11 @@ function Card3() {
           One conversation, everyone who needs to be in it
         </h3>
         <p className="font-[family-name:var(--font-urbanist-import)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55] tracking-[-0.02em]">
-          You, the other parent, the admin, and the caregiver — one thread, not four separate conversations to keep track of.
+          You, the other parent, the admin, and the caregiver: one thread, not four separate conversations to keep track of.
         </p>
       </div>
 
-      {/* Chat thread — centered horizontally */}
+      {/* Chat thread, centered horizontally */}
       <div className="absolute rounded-xl overflow-hidden"
         style={{ left: '50%', transform: 'translateX(-50%)', top: '40%', width: '68%', bottom: '2%' }}>
         <Image
@@ -169,11 +169,11 @@ function Card4() {
           AI summary of your child&apos;s day
         </h3>
         <p className="font-[family-name:var(--font-urbanist-import)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55] tracking-[-0.02em]">
-          Ask for a read on mood, meals, or the whole day, and get a real answer back — not a scroll through old messages trying to piece it together.
+          Ask for a read on mood, meals, or the whole day, and get a real answer back. Not a scroll through old messages trying to piece it together.
         </p>
       </div>
 
-      {/* AI prompts list — lower left, matching Figma (left-aligned) */}
+      {/* AI prompts list, lower left, matching Figma (left-aligned) */}
       <div className="absolute rounded-xl overflow-hidden"
         style={{ left: '8%', top: '58%', width: '52%', bottom: '4%' }}>
         <Image
@@ -197,11 +197,11 @@ function Card5() {
           Send a special request
         </h3>
         <p className="font-[family-name:var(--font-urbanist-import)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55] tracking-[-0.02em]">
-          Forgot to mention something at drop-off? Send it straight to the caregiver — medication, an errand, anything — no waiting till pickup to remember.
+          Forgot to mention something at drop-off? Send it straight to the caregiver: medication, an errand, anything. No waiting till pickup to remember.
         </p>
       </div>
 
-      {/* Special requests screen — centered */}
+      {/* Special requests screen, centered */}
       <div className="absolute rounded-xl overflow-hidden"
         style={{ left: '50%', transform: 'translateX(-50%)', top: '38%', width: '64%', bottom: '2%' }}>
         <Image

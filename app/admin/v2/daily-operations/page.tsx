@@ -326,7 +326,7 @@ function QRStationView() {
 
 // ── VIEW 2: Daily Logs ────────────────────────────────────────────────────────
 
-type DailyLogStatus = "Done" | "AI Flag" | "Pending" | null;
+type DailyLogStatus = "Done" | "Flag" | "Pending" | null;
 
 type DailyLogRow = {
   child: string;
@@ -352,7 +352,7 @@ const dailyLogStatsCards = [
 const dailyLogRows: DailyLogRow[] = [
   { child: "King Andrew", childInfo: "M • 1year 2mnts", room: "Lion", caregiver: "Mr Ben Ayadi", reportTime: "08:20AM", mood: "😊 Happy", meal: "Finished all breakfast and lunch", napTime: "11:00am • 01:20pm", hygiene: "2 nappy changes, no concerns", health: "No medication administered", note: "Settled quickly after nap, in great spirits all day.", status: "Done" },
   { child: "King Andrew", childInfo: "M • 1year 2mnts", room: "Lion", caregiver: "Mr Ben Ayadi", reportTime: "08:20AM", mood: "😊 Happy", meal: "Finished all breakfast and lunch", napTime: "11:00am • 01:20pm", hygiene: "2 nappy changes, no concerns", health: "No medication administered", note: "Settled quickly after nap, in great spirits all day.", status: "Done" },
-  { child: "King Andrew", childInfo: "M • 1year 2mnts", room: "Lion", caregiver: "Mr Ben Ayadi", reportTime: "08:20AM", mood: "😊 Happy", meal: "--", napTime: "--", hygiene: "1 nappy change", health: "Vitamin D administered", note: "AI flagged: meal not logged for lunch.", status: "AI Flag" },
+  { child: "King Andrew", childInfo: "M • 1year 2mnts", room: "Lion", caregiver: "Mr Ben Ayadi", reportTime: "08:20AM", mood: "😊 Happy", meal: "--", napTime: "--", hygiene: "1 nappy change", health: "Vitamin D administered", note: "Flagged: meal not logged for lunch.", status: "Flag" },
   { child: "King Andrew", childInfo: "M • 1year 2mnts", room: "Lion", caregiver: "Mr Ben Ayadi", reportTime: "08:20AM", mood: "😊 Happy", meal: "--", napTime: "--", hygiene: "--", health: "--", note: "Report not yet submitted.", status: "Pending" },
   { child: "King Andrew", childInfo: "M • 1year 2mnts", room: "Lion", caregiver: "Mr Ben Ayadi", reportTime: "08:20AM", mood: "--", meal: "--", napTime: "--", hygiene: "--", health: "--", note: "", status: null },
   { child: "King Andrew", childInfo: "M • 1year 2mnts", room: "Lion", caregiver: "Mr Ben Ayadi", reportTime: "08:20AM", mood: "--", meal: "--", napTime: "--", hygiene: "--", health: "--", note: "", status: null },
@@ -363,8 +363,8 @@ const dailyLogRows: DailyLogRow[] = [
 function DailyLogStatusBadge({ status }: { status: DailyLogStatus }) {
   if (status === "Done")
     return <span className="inline-flex items-center gap-1 rounded-full bg-[#e6f9ee] px-2.5 py-1 font-[family-name:var(--font-urbanist)] text-xs font-medium text-[#009061]">● Done</span>;
-  if (status === "AI Flag")
-    return <span className="inline-flex items-center gap-1 rounded-full bg-[#f3f4f6] px-2.5 py-1 font-[family-name:var(--font-urbanist)] text-xs font-medium text-[#454B54]">● AI Flag</span>;
+  if (status === "Flag")
+    return <span className="inline-flex items-center gap-1 rounded-full bg-[#f3f4f6] px-2.5 py-1 font-[family-name:var(--font-urbanist)] text-xs font-medium text-[#454B54]">● Flag</span>;
   if (status === "Pending")
     return <span className="inline-flex items-center gap-1 rounded-full bg-[#fff6e6] px-2.5 py-1 font-[family-name:var(--font-urbanist)] text-xs font-medium text-[#cc8000]">● Pending</span>;
   return <span className="text-[#9ca3af]">--</span>;
@@ -461,7 +461,7 @@ function DailyLogsView() {
       {/* AI Insights Banner */}
       <div className="flex items-center gap-3 rounded-xl border border-[#e0bfa0] bg-[#fdf6e8] px-4 py-3">
         <span className="inline-flex items-center gap-1 rounded-full bg-[#e0bfa0] px-2 py-0.5 font-[family-name:var(--font-urbanist)] text-[10px] font-medium text-[#3b2513]">
-          ✦ AI Insights
+          ✦ Insights
         </span>
         <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">
           ⚠ Lion and Dolphin rooms have not submitted today. AI has notified caregivers.
@@ -538,7 +538,7 @@ function DailyLogsView() {
                     <DailyLogStatusBadge status={row.status} />
                   </td>
                   <td className="px-4 py-3">
-                    {row.status === "Done" || row.status === "AI Flag" ? (
+                    {row.status === "Done" || row.status === "Flag" ? (
                       <button
                         onClick={() => setViewingRow(row)}
                         className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#3b2513] underline"
@@ -566,8 +566,8 @@ function DailyLogsView() {
           {dailyLogRows.map((row, i) => (
             <div
               key={i}
-              onClick={() => (row.status === "Done" || row.status === "AI Flag") && setViewingRow(row)}
-              className={`rounded-xl border border-[#eaecf0] p-3 ${row.status === "Done" || row.status === "AI Flag" ? "cursor-pointer" : ""}`}
+              onClick={() => (row.status === "Done" || row.status === "Flag") && setViewingRow(row)}
+              className={`rounded-xl border border-[#eaecf0] p-3 ${row.status === "Done" || row.status === "Flag" ? "cursor-pointer" : ""}`}
             >
               <div className="flex items-center justify-between">
                 <div>

@@ -78,7 +78,7 @@ const QUICK_ACTIONS = [
   { id: "announce", icon: Megaphone, label: "Announce" },
   { id: "new-invoice", icon: Receipt, label: "New Invoice" },
   { id: "message-parent", icon: MessageSquare, label: "Message Parent" },
-  { id: "ai-insights", icon: Sparkles, label: "AI Insights" },
+  { id: "ai-insights", icon: Sparkles, label: "Insights" },
   { id: "view-reports", icon: BarChart3, label: "View Reports" },
 ] as const;
 
@@ -154,7 +154,7 @@ export default function DashboardV3Page() {
       <div className="rounded-2xl border border-[#C47B2C]/40 bg-white p-5">
         <div className="mb-3 flex items-center justify-between">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-[#1E2D4A] to-[#2D1810] px-3 py-1.5 text-[10px] font-bold uppercase tracking-wide text-[#F5EDD8]">
-            <Sparkles className="h-3 w-3 text-[#C47B2C]" /> AI Daily Brief
+            <Sparkles className="h-3 w-3 text-[#C47B2C]" /> Daily Brief
           </span>
           <button
             onClick={() => router.push("/admin/v3/ai-command-center")}
@@ -268,7 +268,7 @@ export default function DashboardV3Page() {
                 <th className="pb-2 pr-3 font-semibold">Parent</th>
                 <th className="pb-2 pr-3 font-semibold">Amount</th>
                 <th className="pb-2 pr-3 font-semibold">Due</th>
-                <th className="pb-2 pr-3 font-semibold">AI Risk</th>
+                <th className="pb-2 pr-3 font-semibold">Risk</th>
                 <th className="pb-2 font-semibold" />
               </tr>
             </thead>

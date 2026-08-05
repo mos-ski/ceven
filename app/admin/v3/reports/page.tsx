@@ -37,7 +37,7 @@ export default function ReportsV3Page() {
           Reports
         </h1>
         <p className="mt-1 text-sm text-[#2D1810]/50">
-          Generate a report on demand, manage what runs automatically, and download what Ada has already produced.
+          Generate a report on demand, manage what runs automatically, and download what System has already produced.
         </p>
       </div>
 

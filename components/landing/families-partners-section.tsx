@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { FadeUp } from "@/components/animations/fade-up";
 
 const LIST_ITEMS = [
@@ -38,7 +39,7 @@ export function FamiliesPartnersSection() {
 
               {/* Bold intro */}
               <p className="font-[family-name:var(--font-urbanist-import)] font-bold text-[#60657e] text-[15px] sm:text-[16px] leading-[24px] mb-5">
-                A child does better when the adults around them — parent and caregiver — are working off the same picture, not reconstructing it after the fact.
+                A child does better when the adults around them, parent and caregiver, are working off the same picture, not reconstructing it after the fact.
               </p>
 
               {/* Regular body */}
@@ -63,12 +64,12 @@ export function FamiliesPartnersSection() {
               </ul>
 
               {/* CTA */}
-              <a
-                href="#demo"
+              <Link
+                href="/contact"
                 className="inline-flex items-center h-12 px-6 rounded-xl font-[family-name:var(--font-urbanist-import)] font-medium text-[16px] text-[#faf2e1] bg-[#3b2513] hover:bg-[#2d1e0f] transition-colors shadow-[inset_0px_4px_12px_0px_rgba(255,255,255,0.12)]"
               >
                 Get a Free Demo
-              </a>
+              </Link>
             </div>
           </FadeUp>
 

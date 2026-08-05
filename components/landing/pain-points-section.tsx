@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { FadeUp } from "@/components/animations/fade-up";
 
 const CHECKLIST = [
@@ -17,7 +18,7 @@ export function PainPointsSection() {
 
         {/* ── Single frame: phones + white card ── */}
         <div className="relative">
-          {/* Phone mockups — positioned to overflow above the white card */}
+          {/* Phone mockups, positioned to overflow above the white card */}
           <FadeUp>
             <div className="flex justify-center items-end px-6 h-[340px] sm:h-[420px] lg:h-[500px] relative z-10">
               {/* Left phone: upright */}
@@ -48,7 +49,7 @@ export function PainPointsSection() {
             </div>
           </FadeUp>
 
-          {/* White pill card — overlaps bottom half of phones */}
+          {/* White pill card, overlaps bottom half of phones */}
           <div className="bg-white rounded-[56px] sm:rounded-[80px] lg:rounded-[113px] overflow-hidden -mt-[170px] sm:-mt-[210px] lg:-mt-[250px] relative z-0">
             <FadeUp delay={0.1}>
               <div className="flex flex-col items-center gap-6 sm:gap-8 px-6 sm:px-12 lg:px-16 pt-[234px] sm:pt-[280px] lg:pt-[326px] pb-10 sm:pb-12 lg:pb-14 text-center">
@@ -83,8 +84,8 @@ export function PainPointsSection() {
                     Google Play
                   </span>
                 </div>
-                <a
-                  href="#"
+                <Link
+                  href="/get-started"
                   className="flex items-center gap-2 h-[50px] px-4 rounded-[12px] border border-[#3d444f] text-[#3d444f] hover:bg-[#3d444f]/5 transition-colors"
                 >
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -93,7 +94,7 @@ export function PainPointsSection() {
                   <span className="font-[family-name:var(--font-urbanist-import)] font-semibold text-[16px] leading-[20px] whitespace-nowrap">
                     App Store
                   </span>
-                </a>
+                </Link>
               </div>
 
               {/* Checklist */}
@@ -140,7 +141,7 @@ export function PainPointsSection() {
                 </p>
                 <div className="flex flex-col gap-1">
                   <p className="font-[family-name:var(--font-urbanist-import)] font-semibold text-white text-[18px] leading-[28px]">
-                    — Renee Wells
+                    Renee Wells
                   </p>
                   <p className="font-[family-name:var(--font-urbanist-import)] font-normal text-[#e4e7ec] text-[16px] leading-[24px]">
                     Product Designer, Quotient

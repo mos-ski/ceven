@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Bell } from "lucide-react";
 import { NAV_ITEMS_SA } from "@/lib/super-admin/nav-items";
 
@@ -12,6 +12,7 @@ function useScreenTitle() {
 
 export function TopbarSA() {
   const title = useScreenTitle();
+  const router = useRouter();
 
   return (
     <header className="flex h-16 shrink-0 items-center justify-between border-b border-input-border bg-content-bg px-4 lg:px-6">
@@ -23,6 +24,7 @@ export function TopbarSA() {
         <button
           type="button"
           aria-label="Notifications"
+          onClick={() => router.push("/super-admin/notifications")}
           className="relative flex h-10 w-10 items-center justify-center rounded-full border border-input-border bg-white text-heading"
         >
           <Bell className="size-5" />

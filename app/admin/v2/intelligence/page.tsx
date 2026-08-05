@@ -242,7 +242,7 @@ function AdaChatPage({ onClose }: { onClose: () => void }) {
           value={adaInput}
           onChange={(e) => setAdaInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && send(adaInput)}
-          placeholder="Ask Ada anything…"
+          placeholder="Type a message…"
           className="flex-1 rounded-full border border-[#edd9c0] bg-white px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm placeholder:text-[#9ca3af] focus:border-[#c47b2c] focus:outline-none"
         />
         <button
@@ -267,7 +267,7 @@ function AICommandCenterView() {
       {/* Page Header */}
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <h1 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
-          AI Command Center
+          Command Center
         </h1>
         <div className="flex flex-wrap gap-3">
           <DateFilterButton />
@@ -305,7 +305,7 @@ function AICommandCenterView() {
             <div className="rounded-2xl bg-white shadow-sm p-5">
               <GradientPill>✦ Health &amp; Welfare Intelligence</GradientPill>
               <h2 className="mt-4 mb-3 text-sm font-bold font-[family-name:var(--font-merriweather)] text-[#2d1810]">
-                AI Analysis &amp; Recommendations
+                Analysis &amp; Recommendations
               </h2>
               {aiInsights.map((item) => (
                 <IncidentCard key={item.title} title={item.title} desc={item.desc} />
@@ -435,7 +435,7 @@ function AICommandCenterView() {
 }
 
 const SECTION_TITLES: Record<string, string> = {
-  analytics: "AI Analytics",
+  analytics: "Analytics",
   reports: "Reports",
   "audit-trail": "Audit Trail",
 };

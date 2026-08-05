@@ -1,5 +1,5 @@
 export type SpecialRequestPriority = "Low" | "Medium" | "High";
-export type SpecialRequestSource = "Parent" | "AI Assigned" | "Admin" | "Routine";
+export type SpecialRequestSource = "Parent" | "Auto-Assigned" | "Admin" | "Routine";
 export type SpecialRequestStatus = "Pending" | "In Progress" | "Done" | "Overdue" | "Cancelled";
 
 export type SpecialRequest = {
@@ -161,7 +161,7 @@ export const SPECIAL_REQUESTS: SpecialRequest[] = [
     reminderTime: "",
     comment: "Incident report filed.",
     priority: "High",
-    source: "AI Assigned",
+    source: "Auto-Assigned",
     status: "In Progress",
     date: "Jul 26, 2026",
     dueDate: "Jul 26, 2026",
@@ -169,9 +169,9 @@ export const SPECIAL_REQUESTS: SpecialRequest[] = [
   {
     id: "sr-9",
     title: "Submit daily report for Owl room",
-    description: "Daily activity reports for Owl room are overdue. AI has detected missing submissions.",
+    description: "Daily activity reports for Owl room are overdue. System has detected missing submissions.",
     parentName: "—",
-    parentAvatar: "AI",
+    parentAvatar: "SY",
     childName: "Owl Room",
     childRoom: "Owl",
     caregiverName: "Mr. Ben Ayadi",
@@ -179,7 +179,7 @@ export const SPECIAL_REQUESTS: SpecialRequest[] = [
     reminderTime: "5:30pm",
     comment: "",
     priority: "Medium",
-    source: "AI Assigned",
+    source: "Auto-Assigned",
     status: "Pending",
     date: "Jul 26, 2026",
     dueDate: "Jul 26, 2026",
@@ -187,9 +187,9 @@ export const SPECIAL_REQUESTS: SpecialRequest[] = [
   {
     id: "sr-10",
     title: "Weekly inventory check",
-    description: "AI detected that hygiene supplies are running low. Schedule an inventory check this week.",
+    description: "System detected that hygiene supplies are running low. Schedule an inventory check this week.",
     parentName: "—",
-    parentAvatar: "AI",
+    parentAvatar: "SY",
     childName: "—",
     childRoom: "All Rooms",
     caregiverName: "Mrs. Funke Obi",
@@ -197,7 +197,7 @@ export const SPECIAL_REQUESTS: SpecialRequest[] = [
     reminderTime: "Thursday EOD",
     comment: "Hand sanitizer and wet wipes below reorder level.",
     priority: "Medium",
-    source: "AI Assigned",
+    source: "Auto-Assigned",
     status: "Pending",
     date: "Jul 24, 2026",
     dueDate: "Jul 31, 2026",

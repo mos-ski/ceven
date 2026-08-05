@@ -97,7 +97,7 @@ export default function AnnouncementsV3Page() {
               onClick={() => setMessage(aiDraft)}
               className="flex items-center gap-1.5 rounded-full bg-gradient-to-r from-[#1E2D4A] to-[#2D1810] px-3.5 py-2 text-xs font-bold text-[#F5EDD8] hover:opacity-90"
             >
-              <Sparkles className="h-3.5 w-3.5 text-[#C47B2C]" /> AI Create
+              <Sparkles className="h-3.5 w-3.5 text-[#C47B2C]" /> Auto-Create
             </button>
             {ANNOUNCEMENT_QUICK_PROMPTS.map((prompt) => (
               <button

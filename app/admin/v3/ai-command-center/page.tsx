@@ -208,7 +208,7 @@ function AIChatPanel({ onClose }: { onClose?: () => void }) {
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && send(inputValue)}
-          placeholder="Ask Ada anything…"
+          placeholder="Type a message…"
           className="flex-1 rounded-full border border-black/[0.1] bg-white px-4 py-2 text-xs text-[#2D1810] placeholder:text-[#2D1810]/40 focus:border-[#C47B2C] focus:outline-none"
         />
         <button
@@ -233,10 +233,10 @@ export default function AICommandCenterV3Page() {
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2D1810]">
-            AI Command Center
+            Command Center
           </h1>
           <p className="mt-1 text-sm text-[#2D1810]/50">
-            Ada&apos;s live analysis across health, finance, and staff — refreshed every morning at 7am.
+            System analysis across health, finance, and staff — refreshed every morning at 7am.
           </p>
         </div>
         <button className="flex shrink-0 items-center gap-1.5 self-start rounded-lg bg-gradient-to-r from-[#1E2D4A] to-[#2D1810] px-4 py-2 text-xs font-bold text-[#F5EDD8] hover:opacity-90 sm:self-auto">
@@ -330,7 +330,7 @@ export default function AICommandCenterV3Page() {
       {/* Mobile chat FAB */}
       <button
         onClick={() => setChatOpen(true)}
-        aria-label="Open Ada chat"
+        aria-label="Open chat"
         className="fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#1E2D4A] to-[#2D1810] text-[#F5EDD8] shadow-lg xl:hidden"
       >
         <Bot className="h-6 w-6" />

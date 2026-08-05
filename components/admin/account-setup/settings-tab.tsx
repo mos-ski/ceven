@@ -31,7 +31,7 @@ const SETTINGS_TABS = [
   "Fee Plans",
   "Admissions",
   "Role Access",
-  "AI Settings",
+  "Automation",
   "Other Apps",
 ] as const;
 
@@ -495,7 +495,7 @@ function AiSettingsSection() {
           A
         </div>
         <div>
-          <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#c78c5f]">AI Name</p>
+          <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#c78c5f]">Assistant Name</p>
           <p className="font-[family-name:var(--font-merriweather)] text-xl font-bold text-[#f5edd8]">Ada</p>
           <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#faf2e1]">Always on creche intelligence</p>
         </div>
@@ -552,7 +552,7 @@ function AiSettingsSection() {
       </div>
 
       <div className="flex flex-col gap-3">
-        <p className="font-[family-name:var(--font-urbanist)] text-base font-semibold text-black">AI Feature Controls</p>
+        <p className="font-[family-name:var(--font-urbanist)] text-base font-semibold text-black">Feature Controls</p>
         <div className="flex flex-col gap-3">
           {features.map((feat) => (
             <div key={feat.id} className="flex items-center gap-4 rounded-lg border border-[#e6ebf3] px-4 py-3">
@@ -634,7 +634,7 @@ export function SettingsTab() {
       {activeTab === "Fee Plans" && <FeePlansSection />}
       {activeTab === "Admissions" && <AdmissionsSection />}
       {activeTab === "Role Access" && <RoleAccessSection />}
-      {activeTab === "AI Settings" && <AiSettingsSection />}
+      {activeTab === "Automation" && <AiSettingsSection />}
       {activeTab === "Other Apps" && <OtherAppsSection />}
     </div>
   );

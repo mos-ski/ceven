@@ -90,7 +90,7 @@ export function SidebarV3() {
         >
           <p className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-white/55">
             <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-400" />
-            Ada
+            System
           </p>
           <p className="mt-1.5 text-[13px] font-semibold leading-snug text-white">
             3 issues need your attention today

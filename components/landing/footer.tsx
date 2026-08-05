@@ -7,11 +7,11 @@ const FOOTER_LINKS = {
   Audience: [
     { label: "For Parents", href: "/for-parents" },
     { label: "For Crèches", href: "/for-creches" },
-    { label: "Download App", href: "#" },
+    { label: "Download App", href: "/get-started" },
   ],
   Company: [
     { label: "About", href: "/about" },
-    { label: "Swayosoo™", href: "#" },
+    { label: "Swayosoo™", href: "/about" },
     { label: "Contact Us", href: "/contact" },
   ],
   Legal: [

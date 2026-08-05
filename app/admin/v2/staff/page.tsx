@@ -469,7 +469,7 @@ function StaffPageInner() {
             <div className="flex items-start justify-between gap-4">
               <div className="space-y-2">
                 <span className="inline-block rounded-full bg-[#1e2d4a] px-2 py-0.5 text-xs text-white">
-                  ✦ Ada AI Flags
+                  ✦ Flags
                 </span>
                 <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">
                   Mrs Anita — compliance at 52% (below 72% threshold)

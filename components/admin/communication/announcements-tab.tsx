@@ -118,7 +118,7 @@ function SendAnnouncementForm() {
               }}
             >
               <Sparkles className="size-3.5" />
-              AI Create
+              Auto-Create
             </button>
             {ANNOUNCEMENT_QUICK_PROMPTS.map((prompt) => (
               <button

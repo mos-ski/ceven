@@ -112,7 +112,7 @@ export default function ParentsV3Page() {
                 <th className="pb-2 pr-3 font-semibold">Children</th>
                 <th className="pb-2 pr-3 font-semibold">Balance</th>
                 <th className="pb-2 pr-3 font-semibold">App Status</th>
-                <th className="pb-2 pr-3 font-semibold">AI Risk</th>
+                <th className="pb-2 pr-3 font-semibold">Risk</th>
                 <th className="pb-2 font-semibold text-center">Action</th>
               </tr>
             </thead>

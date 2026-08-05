@@ -27,7 +27,7 @@ const SUGGESTED_PROMPTS = [
 ];
 
 const MOCK_REPLY =
-  "Of course! As an AI language model, I am designed to assist with a variety of tasks. Here are some examples of what I can do:\n• Answer questions: Just ask me anything you like!\n• Generate text: I can write stories, poems, or summaries for you.";
+  "Of course! As a smart assistant, I am designed to assist with a variety of tasks. Here are some examples of what I can do:\n• Answer questions: Just ask me anything you like!\n• Generate text: I can write stories, poems, or summaries for you.";
 
 // ─── Main page ────────────────────────────────────────────────────────────────
 
@@ -89,7 +89,7 @@ export default function CEvenAIPage() {
 
         <div className="flex flex-1 items-center justify-center gap-2">
           <SparkleIcon size={22} className="text-cg-brand" />
-          <h1 className="text-lg font-bold text-gray-800">CEvenAI</h1>
+          <h1 className="text-lg font-bold text-gray-800">CEven</h1>
         </div>
 
         <div className="h-[34px] w-[34px]" aria-hidden="true" />
@@ -104,7 +104,7 @@ export default function CEvenAIPage() {
               <div className="mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-[#F3EDE5]">
                 <SparkleIcon size={30} className="text-cg-brand" />
               </div>
-              <h2 className="mb-1 text-base font-bold text-gray-800">Hi! I&apos;m CEvenAI</h2>
+              <h2 className="mb-1 text-base font-bold text-gray-800">Hi! I&apos;m CEeven</h2>
               <p className="max-w-[220px] text-xs text-gray-500">
                 Ask me about your child&apos;s day, health patterns, or activities.
               </p>

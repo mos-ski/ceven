@@ -144,7 +144,7 @@ export default function BillingV3Page() {
                 <th className="pb-2 pr-3 font-semibold">Amount</th>
                 <th className="pb-2 pr-3 font-semibold">Due</th>
                 <th className="pb-2 pr-3 font-semibold">Days</th>
-                <th className="pb-2 pr-3 font-semibold">AI Risk</th>
+                <th className="pb-2 pr-3 font-semibold">Risk</th>
                 <th className="pb-2 pr-3 font-semibold">Status</th>
                 <th className="pb-2 font-semibold">Actions</th>
               </tr>

@@ -109,7 +109,7 @@ export default function AnnouncementModal({ onClose }: Props) {
           <div className="flex items-start gap-2 rounded-xl bg-[#faf2e1] px-4 py-3">
             <Info className="mt-0.5 h-4 w-4 shrink-0 text-[#3b2513]" />
             <p className="font-[family-name:var(--font-urbanist)] text-xs text-black">
-              Let AI generate announcement for you
+              Auto-generate announcement
             </p>
           </div>
 
@@ -143,7 +143,7 @@ export default function AnnouncementModal({ onClose }: Props) {
               className="flex w-fit items-center gap-1 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-[#3b2513] underline hover:opacity-70 disabled:opacity-50"
             >
               <Sparkles className="h-3 w-3" />
-              {generating ? "Generating…" : "Generate With AI"}
+              {generating ? "Generating…" : "Auto-Generate"}
             </button>
           </div>
         </div>

@@ -248,7 +248,7 @@ export const CLEANING_TASKS: CleaningTask[] = [
 export type TaskStatus = "To Do" | "In Progress" | "Done" | "Overdue" | "Not Started";
 export type TaskPriority = "Low" | "Medium" | "High";
 
-export type TaskSource = "AI Assigned" | "Routine" | "Manual";
+export type TaskSource = "Auto-Assigned" | "Routine" | "Manual";
 
 export type StaffTask = {
   id: string;
@@ -263,7 +263,7 @@ export type StaffTask = {
 };
 
 export const STAFF_TASKS: StaffTask[] = [
-  { id: "task-1", title: "Notify Balogun's Parent", subtitle: "Incident - Minor fall", assignedTo: "Mr Idaosa", room: "All Rooms", dueDate: "Today 2pm", priority: "Medium", source: "AI Assigned", status: "In Progress" },
+  { id: "task-1", title: "Notify Balogun's Parent", subtitle: "Incident - Minor fall", assignedTo: "Mr Idaosa", room: "All Rooms", dueDate: "Today 2pm", priority: "Medium", source: "Auto-Assigned", status: "In Progress" },
   { id: "task-2", title: "Submit daily report", subtitle: null, assignedTo: "Mr Gbenga", room: "Bear Class", dueDate: "May 10", priority: "Low", source: "Routine", status: "Overdue" },
   { id: "task-3", title: "Random task", subtitle: null, assignedTo: "Mrs Funmi", room: "Lion Class", dueDate: "May 30", priority: "High", source: "Manual", status: "Not Started" },
   { id: "task-4", title: "Parent teachers meeting note", subtitle: null, assignedTo: "Mrs Funmi", room: "Lion Class", dueDate: "May 30", priority: "Low", source: "Routine", status: "Done" },

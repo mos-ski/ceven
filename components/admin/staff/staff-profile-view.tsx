@@ -165,7 +165,7 @@ export function StaffProfileView({ staff }: { staff: StaffMember }) {
               <span className="text-lg text-[#c47b2c]">✦</span>
               <div className="flex-1">
                 <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
-                  Ada AI Flag
+                  Flag
                 </p>
                 <p className="mt-0.5 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
                   {staff.name}&apos;s log compliance has dropped to 52% this week (below the 72% threshold).

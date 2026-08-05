@@ -38,7 +38,7 @@ export function SidebarSA() {
         <div className="flex items-center justify-between px-5 py-5">
           <div className="flex items-center gap-2">
             <img src="/Logo/icon.svg" alt="CEven" className="h-8 w-8" />
-            <span className="font-[family-name:var(--font-mogra)] text-xl font-bold text-white">
+            <span className="font-[family-name:var(--font-merriweather)] text-xl font-bold text-white">
               CEven
             </span>
           </div>

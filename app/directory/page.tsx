@@ -27,7 +27,7 @@ const APP_SECTIONS: AppSection[] = [
     title: "Design System",
     summary: {
       what: "CEven's shared visual language — the source of truth for colors, type, and components used across every app.",
-      entails: "Tokens (brand colors, fonts, spacing) plus live showcases for buttons, badges, cards, tables, modals, AI chat/messaging patterns, and marketing sections.",
+      entails: "Tokens (brand colors, fonts, spacing) plus live showcases for buttons, badges, cards, tables, modals, chat/messaging patterns, and marketing sections.",
       missing: "Not yet consumed as an actual shared package or theme — each app still hardcodes its own Tailwind classes rather than importing from here.",
       improved: "A single reference now exists instead of every app inventing its own button, card, and color treatment independently.",
     },
@@ -61,7 +61,7 @@ const APP_SECTIONS: AppSection[] = [
             { label: "Empty States", href: "/library#empty-state" },
           ],
           [
-            { label: "AI Chat", href: "/library#ai-chat" },
+            { label: "Chat", href: "/library#ai-chat" },
             { label: "Messaging", href: "/library#msg-thread-list" },
             { label: "Activity Feeds", href: "/library#activity-feeds" },
             { label: "Marketing", href: "/library#marketing" },
@@ -103,7 +103,7 @@ const APP_SECTIONS: AppSection[] = [
       what: "The operator dashboard a crèche's own staff/owner uses day-to-day — attendance, billing, staff, compliance, and more, scoped to their one crèche.",
       entails: "v1 was the original build. v2 (this codebase's main build) is a full operating system with real logic for nearly every module. v3 is the CEO's own reimagining of the product — new visual direction and flatter navigation — currently being converted from a static prototype into real, working code.",
       missing: "v3: most pages still need porting to real Next.js with live data — only the exact-replica reference and the conversion-in-progress exist so far.",
-      improved: "v2 added full feature breadth over v1 — payroll, compliance, AI Command Center, financial reports. v3 brings a cleaner, more distinctive visual language matching the CEO's original product vision.",
+      improved: "v2 added full feature breadth over v1 — payroll, compliance, Command Center, financial reports. v3 brings a cleaner, more distinctive visual language matching the CEO's original product vision.",
     },
     versions: [
       {
@@ -166,7 +166,7 @@ const APP_SECTIONS: AppSection[] = [
             { label: "Events Calendar", href: "/admin/v2/communication?tab=events-calendar" },
           ],
           [
-            { label: "AI Command Center", href: "/admin/v2/intelligence" },
+            { label: "Command Center", href: "/admin/v2/intelligence" },
             { label: "Analytics", href: "/admin/v2/intelligence?tab=analytics" },
             { label: "Reports", href: "/admin/v2/intelligence?tab=reports" },
             { label: "Audit Trail", href: "/admin/v2/intelligence?tab=audit-trail" },
@@ -218,7 +218,7 @@ const APP_SECTIONS: AppSection[] = [
             { label: "Events Calendar" },
           ],
           [
-            { label: "AI Command Center" },
+            { label: "Command Center" },
             { label: "Analytics" },
             { label: "Reports" },
             { label: "Audit Trail" },
@@ -240,7 +240,7 @@ const APP_SECTIONS: AppSection[] = [
       what: "The family-facing mobile app parents use to track their child's day, message the crèche, and manage billing.",
       entails: "v1 is this codebase's main build, started when the current team joined. v2 is the newest direction — it reimagines the relationship as parent ↔ independent caregiver, not just parent ↔ crèche.",
       missing: "v2 currently has 4 screens built (home, chat, food timetable, calendar) — most of v1's breadth hasn't been re-imagined for the independent-caregiver model yet.",
-      improved: "v1 added the CEvenAI assistant, richer settings, and health/growth/feeding tracking over the original production app.",
+      improved: "v1 added the CEven assistant, richer settings, and health/growth/feeding tracking over the original production app.",
     },
     versions: [
       {
@@ -260,7 +260,7 @@ const APP_SECTIONS: AppSection[] = [
             { label: "Forgot Password", href: "/parent/v1" },
           ],
           [
-            { label: "CEvenAI", href: "/parent/v1" },
+            { label: "CEven", href: "/parent/v1" },
             { label: "Chat", href: "/parent/v1" },
             { label: "Family Chat", href: "/parent/v1" },
           ],
@@ -324,7 +324,7 @@ const APP_SECTIONS: AppSection[] = [
       what: "The staff-facing mobile app caregivers use to log attendance, daily reports, and incidents — scoped to a single crèche.",
       entails: "v1 is the crèche-staff build from this codebase's main build. v2 is the reimagined version with a cleaner UI and richer daily workflows.",
       missing: "v2 currently has the core screens built (today, chat, daily report, calendar) — more modules are being expanded.",
-      improved: "v1 added AI chat, ratings, and a fuller settings/onboarding flow over the original production app. v2 brings a modern visual direction matching the new product vision.",
+      improved: "v1 added Chat, ratings, and a fuller settings/onboarding flow over the original production app. v2 brings a modern visual direction matching the new product vision.",
     },
     versions: [
       {
@@ -527,9 +527,9 @@ export default function DirectoryPage() {
                 {[
                   { app: "Super Admin", version: "v1", status: "Live", desc: "Platform console for internal operators", href: "/super-admin/dashboard" },
                   { app: "Crèche Admin", version: "v1", status: "Live", desc: "Original crèche operator dashboard", href: "/admin/v1/dashboard" },
-                  { app: "Crèche Admin", version: "v2", status: "Approved", desc: "Full operating system — payroll, compliance, AI, financials", href: "/admin/v2/dashboard" },
+                  { app: "Crèche Admin", version: "v2", status: "Approved", desc: "Full operating system — payroll, compliance, financials", href: "/admin/v2/dashboard" },
                   { app: "Crèche Admin", version: "v3", status: "In progress", desc: "CEO reimagining — new visual direction", href: "/admin/v3" },
-                  { app: "Parent App", version: "v1", status: "Approved", desc: "Current build — AI assistant, settings, health/growth tracking", href: "/parent/v1" },
+                  { app: "Parent App", version: "v1", status: "Approved", desc: "Current build — assistant, settings, health/growth tracking", href: "/parent/v1" },
                   { app: "Parent App", version: "v2", status: "In progress", desc: "Parent ↔ independent caregiver reimagining", href: "/parent/v2" },
                   { app: "Caregiver App", version: "v1", status: "Approved", desc: "Crèche-staff build — daily workflows, ratings, settings", href: "/caregiver/v1" },
                   { app: "Caregiver App", version: "v2", status: "In progress", desc: "Reimagined caregiver experience", href: "/caregiver/v2" },
@@ -573,9 +573,9 @@ export default function DirectoryPage() {
             {[
               { app: "Super Admin", version: "v1", status: "Live", desc: "Platform console for internal operators", href: "/super-admin/dashboard" },
               { app: "Crèche Admin", version: "v1", status: "Live", desc: "Original crèche operator dashboard", href: "/admin/v1/dashboard" },
-              { app: "Crèche Admin", version: "v2", status: "Completed", desc: "Full operating system — payroll, compliance, AI, financials", href: "/admin/v2/dashboard" },
+              { app: "Crèche Admin", version: "v2", status: "Completed", desc: "Full operating system — payroll, compliance, financials", href: "/admin/v2/dashboard" },
               { app: "Crèche Admin", version: "v3", status: "In progress", desc: "CEO reimagining — new visual direction", href: "/admin/v3" },
-              { app: "Parent App", version: "v1", status: "Completed", desc: "Current build — AI assistant, settings, health/growth tracking", href: "/parent/home" },
+              { app: "Parent App", version: "v1", status: "Completed", desc: "Current build — assistant, settings, health/growth tracking", href: "/parent/home" },
               { app: "Parent App", version: "v2", status: "In progress", desc: "Parent ↔ independent caregiver reimagining", href: "/parent/v2" },
               { app: "Caregiver App", version: "v1", status: "Completed", desc: "Crèche-staff build — daily workflows, ratings, settings", href: "/caregiver/home" },
               { app: "Caregiver App", version: "v2", status: "In progress", desc: "Reimagined caregiver experience", href: "/caregiverv3/today" },

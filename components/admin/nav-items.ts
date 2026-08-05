@@ -83,7 +83,7 @@ export const NAV_ITEMS: NavItem[] = [
     href: "/admin/v2/intelligence",
     icon: "intelligence",
     subItems: [
-      { label: "AI Command Center", href: "/admin/v2/intelligence" },
+      { label: "Command Center", href: "/admin/v2/intelligence" },
       { label: "Analytics", href: "/admin/v2/intelligence", tab: "analytics" },
       { label: "Reports", href: "/admin/v2/intelligence", tab: "reports" },
       { label: "Audit Trail", href: "/admin/v2/intelligence", tab: "audit-trail" },

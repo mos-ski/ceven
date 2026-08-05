@@ -584,7 +584,7 @@ function AiPredictsBanner({ onDismiss }: { onDismiss: () => void }) {
     <div className="flex items-center gap-4 rounded-xl border border-[#1e2d4a] bg-gradient-to-r from-[#faf2e1] to-[rgba(196,123,44,0.5)] px-4 py-3">
       <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-[#1e2d4a] px-2.5 py-1 font-[family-name:var(--font-urbanist)] text-xs text-white">
         <Sparkles className="size-3" />
-        AI Predicts
+        Predictions
       </span>
       <div className="flex flex-1 flex-wrap gap-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">
         {AI_PREDICTS_NOTES.map((note) => (

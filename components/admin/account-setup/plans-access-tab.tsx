@@ -64,7 +64,7 @@ const plans: Plan[] = [
       "Unlimited children",
       "Unlimited staff accounts",
       "Everything in Grow",
-      "AI reports & insights",
+      "Reports & insights",
       "Advanced analytics",
       "Priority support",
       "Multi-branch support",
@@ -109,14 +109,14 @@ const comparisonRows: ComparisonRow[] = [
   { feature: "Parent Mobile App", grow: "✓", thrive: "✓" },
   { feature: "Daily Reports", grow: "✓", thrive: "✓" },
   { feature: "Attendance Management", grow: "✓", thrive: "✓" },
-  { feature: "AI Reports & Insights", grow: "—", thrive: "✓" },
+  { feature: "Reports & Insights", grow: "—", thrive: "✓" },
   { feature: "Advanced Analytics", grow: "—", thrive: "✓" },
   { feature: "Priority Support", grow: "Email support", thrive: "Priority support" },
   { feature: "Multi-branch Support", grow: "—", thrive: "✓" },
 ];
 
 const initialAddOns: AddOn[] = [
-  { name: "AI Wellness Reports", price: "₦1,800/month", added: false },
+  { name: "Wellness Reports", price: "₦1,800/month", added: false },
   { name: "Custom Branding Package", price: "₦3,500/month", added: true },
   { name: "SMS Notifications", price: "₦2,000/month", added: false },
   { name: "Multi-Staff Training", price: "₦5,000/month", added: false },

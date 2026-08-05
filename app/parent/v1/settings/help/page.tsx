@@ -18,8 +18,8 @@ const FAQS = [
     a: "Yes! Tap 'Chat' in the bottom navigation to see your message threads with caregivers. You can send and receive messages in real time.",
   },
   {
-    q: "What is CEvenAI?",
-    a: "CEvenAI is your AI-powered parenting assistant. It can summarize your child's daily reports, identify health patterns, answer questions about your child's development, and much more.",
+    q: "What is CEeven Assistant?",
+    a: "CEeven Assistant is your parenting assistant. It can summarize your child's daily reports, identify health patterns, answer questions about your child's development, and much more.",
   },
   {
     q: "How do I update my profile?",

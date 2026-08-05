@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, X } from "lucide-react";
+import { ArrowLeft, X, FileText } from "lucide-react";
 import { ENROLLMENT_REQUESTS } from "@/lib/super-admin/mock-data";
 
 const TABS = ["Basic Information", "Rooms", "Time Schedule", "Creche Documents"] as const;
@@ -12,11 +12,13 @@ const DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", 
 
 export default function EnrollmentDetailPage() {
   const params = useParams();
+  const router = useRouter();
   const id = params.id as string;
   const enrollment = ENROLLMENT_REQUESTS.find((e) => e.id === id);
   const [activeTab, setActiveTab] = useState<(typeof TABS)[number]>("Basic Information");
   const [pricingModal, setPricingModal] = useState<{ roomName: string; pricing: Record<string, number> } | null>(null);
   const [requestInfoOpen, setRequestInfoOpen] = useState(false);
+  const [documentModal, setDocumentModal] = useState<string | null>(null);
 
   if (!enrollment) {
     return (
@@ -39,10 +41,18 @@ export default function EnrollmentDetailPage() {
           <button type="button" onClick={() => setRequestInfoOpen(true)} className="rounded-lg border border-brand-dark px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-brand-dark hover:bg-slate-50">
             Request More Details
           </button>
-          <button type="button" className="rounded-lg bg-error px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-white hover:bg-red-700">
+          <button
+            type="button"
+            onClick={() => router.push("/super-admin/enrollment")}
+            className="rounded-lg bg-error px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-white hover:bg-red-700"
+          >
             Reject
           </button>
-          <button type="button" className="rounded-lg bg-success-text px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-white hover:bg-emerald-700">
+          <button
+            type="button"
+            onClick={() => router.push("/super-admin/enrollment")}
+            className="rounded-lg bg-success-text px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-white hover:bg-emerald-700"
+          >
             Approve
           </button>
         </div>
@@ -100,13 +110,21 @@ export default function EnrollmentDetailPage() {
               </div>
               <div className="md:col-span-2">
                 <p className="font-[family-name:var(--font-urbanist)] text-xs text-muted-text">Profile Pictures</p>
-                <button type="button" className="mt-1 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-brand-accent hover:underline">
+                <button
+                  type="button"
+                  onClick={() => setDocumentModal("Profile Pictures")}
+                  className="mt-1 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-brand-accent hover:underline"
+                >
                   View Images
                 </button>
               </div>
               <div className="md:col-span-2">
                 <p className="font-[family-name:var(--font-urbanist)] text-xs text-muted-text">Policy Document</p>
-                <button type="button" className="mt-1 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-brand-accent hover:underline">
+                <button
+                  type="button"
+                  onClick={() => setDocumentModal("Policy Document")}
+                  className="mt-1 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-brand-accent hover:underline"
+                >
                   View Document
                 </button>
               </div>
@@ -156,9 +174,19 @@ export default function EnrollmentDetailPage() {
               {enrollment.documents.map((doc) => (
                 <div key={doc.label} className="flex items-center justify-between rounded-lg border border-card-border p-3">
                   <p className="font-[family-name:var(--font-urbanist)] text-sm text-heading">{doc.label}</p>
-                  <button type="button" className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-brand-accent hover:underline">
-                    {doc.uploaded ? "View Document" : "Not Uploaded"}
-                  </button>
+                  {doc.uploaded ? (
+                    <button
+                      type="button"
+                      onClick={() => setDocumentModal(doc.label)}
+                      className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-brand-accent hover:underline"
+                    >
+                      View Document
+                    </button>
+                  ) : (
+                    <span className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-muted-text">
+                      Not Uploaded
+                    </span>
+                  )}
                 </div>
               ))}
               <div className="flex items-center justify-between rounded-lg border border-card-border p-3">
@@ -171,6 +199,31 @@ export default function EnrollmentDetailPage() {
           )}
         </div>
       </div>
+
+      {documentModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+          <div className="relative w-full max-w-md rounded-xl bg-white p-6 shadow-xl">
+            <button
+              type="button"
+              onClick={() => setDocumentModal(null)}
+              className="absolute right-3 top-3 text-muted-text hover:text-heading"
+            >
+              <X className="size-5" />
+            </button>
+            <div className="mb-4 flex justify-center">
+              <div className="flex size-12 items-center justify-center rounded-full bg-slate-100">
+                <FileText className="size-6 text-slate-400" />
+              </div>
+            </div>
+            <h3 className="mb-1 text-center font-[family-name:var(--font-merriweather)] text-lg font-bold text-heading">
+              {documentModal}
+            </h3>
+            <p className="text-center font-[family-name:var(--font-urbanist)] text-sm text-muted-text">
+              Uploaded and on file for {enrollment.crecheName}.
+            </p>
+          </div>
+        </div>
+      )}
 
       {pricingModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">

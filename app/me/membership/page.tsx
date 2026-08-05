@@ -67,7 +67,7 @@ export default function MembershipPage() {
           <Zap size={20} className="text-cg-brand" />
           Choose Your Plan
         </h1>
-        <p className="text-sm text-gray-500">Unlock CEven AI and Special Requests with Premium.</p>
+        <p className="text-sm text-gray-500">Unlock CEeven Assistant and Special Requests with Premium.</p>
       </div>
 
       {isActive && (

@@ -33,7 +33,7 @@ export function ContactHeroSection() {
 
         <FadeUp delay={0.2}>
           <p className="text-[#6B5744] text-base leading-relaxed mb-10 max-w-xl mx-auto">
-            Whether you&apos;re a parent, a crèche operator, a journalist, or just curious —
+            Whether you&apos;re a parent, a crèche operator, a journalist, or just curious,
             we&apos;d love to hear from you.
           </p>
         </FadeUp>
@@ -41,7 +41,7 @@ export function ContactHeroSection() {
         <FadeUp delay={0.3}>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
             <Link
-              href="#"
+              href="/get-started"
               className="flex items-center gap-2.5 bg-[#3B2513] text-[#FAF2E1] text-sm font-semibold px-6 py-3.5 rounded-full hover:bg-[#5B391E] hover:scale-[1.03] transition-all duration-150"
             >
               <PlayStoreIcon />

@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
-import { ASSIGNED_CHILDREN, CHILD_PROFILES } from "@/lib/super-admin/mock-data";
+import { ArrowLeft, X } from "lucide-react";
+import { ASSIGNED_CHILDREN, CHILD_PROFILES, type ChildProfile } from "@/lib/super-admin/mock-data";
 
 const TABS = ["Personal Information", "Medical History", "Dietary & Feeding", "Development & Behavior", "Activity Log"] as const;
 
@@ -14,6 +14,8 @@ export default function ChildProfilePage() {
   const assignedChild = ASSIGNED_CHILDREN.find((c) => c.id === childId);
   const profile = CHILD_PROFILES.find((p) => p.id === childId) ?? CHILD_PROFILES[0];
   const [activeTab, setActiveTab] = useState<(typeof TABS)[number]>("Personal Information");
+  const [photoModalOpen, setPhotoModalOpen] = useState(false);
+  const [activeLog, setActiveLog] = useState<ChildProfile["activityLog"][number] | null>(null);
 
   const childName = assignedChild?.childName ?? `${profile.firstName} ${profile.lastName}`;
 
@@ -70,7 +72,11 @@ export default function ChildProfilePage() {
               <InfoRow label="Date of Birth" value={profile.dateOfBirth} />
               <div className="md:col-span-2">
                 <p className="font-[family-name:var(--font-urbanist)] text-xs text-muted-text">Photo</p>
-                <button type="button" className="mt-1 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-brand-accent hover:underline">
+                <button
+                  type="button"
+                  onClick={() => setPhotoModalOpen(true)}
+                  className="mt-1 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-brand-accent hover:underline"
+                >
                   View Image
                 </button>
               </div>
@@ -138,7 +144,11 @@ export default function ChildProfilePage() {
                         <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">{log.date}</td>
                         <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">{log.totalLogs}</td>
                         <td className="px-4 py-3">
-                          <button type="button" className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-brand-accent hover:underline">
+                          <button
+                            type="button"
+                            onClick={() => setActiveLog(log)}
+                            className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-brand-accent hover:underline"
+                          >
                             View Details
                           </button>
                         </td>
@@ -158,6 +168,56 @@ export default function ChildProfilePage() {
           )}
         </div>
       </div>
+
+      {photoModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+          <div className="relative w-full max-w-sm rounded-xl bg-white p-6 shadow-xl">
+            <button
+              type="button"
+              onClick={() => setPhotoModalOpen(false)}
+              className="absolute right-3 top-3 text-muted-text hover:text-heading"
+            >
+              <X className="size-5" />
+            </button>
+            <h3 className="mb-4 text-center font-[family-name:var(--font-merriweather)] text-lg font-bold text-heading">
+              {childName}
+            </h3>
+            <div className="flex justify-center">
+              <div className="flex size-48 items-center justify-center overflow-hidden rounded-xl bg-[#edd9c0]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={profile.photo} alt={childName} className="h-full w-full object-cover" />
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {activeLog && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+          <div className="relative w-full max-w-sm rounded-xl bg-white p-6 shadow-xl">
+            <button
+              type="button"
+              onClick={() => setActiveLog(null)}
+              className="absolute right-3 top-3 text-muted-text hover:text-heading"
+            >
+              <X className="size-5" />
+            </button>
+            <h3 className="mb-4 font-[family-name:var(--font-merriweather)] text-lg font-bold text-heading">
+              Activity Log
+            </h3>
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center justify-between rounded-lg border border-card-border p-3">
+                <p className="font-[family-name:var(--font-urbanist)] text-sm text-heading">Date</p>
+                <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-heading">{activeLog.date}</p>
+              </div>
+              <div className="flex items-center justify-between rounded-lg border border-card-border p-3">
+                <p className="font-[family-name:var(--font-urbanist)] text-sm text-heading">Total Logs</p>
+                <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-heading">{activeLog.totalLogs}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

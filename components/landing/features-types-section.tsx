@@ -79,7 +79,7 @@ export function FeaturesTypesSection() {
               </h2>
             </div>
             <p className="font-[family-name:var(--font-urbanist-import)] text-white/65 text-[16px] sm:text-[18px] lg:text-[20px] leading-[30px] max-w-[570px]">
-              Built for the ways care actually happens — not just the biggest, best-funded version of it.
+              Built for the ways care actually happens, not just the biggest, best-funded version of it.
             </p>
           </div>
 
@@ -144,7 +144,7 @@ export function FeaturesTypesSection() {
         </div>
       </div>
 
-      {/* Extra runway on desktop — scroll through here to advance tabs */}
+      {/* Extra runway on desktop: scroll through here to advance tabs */}
       <div
         className="hidden lg:block"
         style={{ height: `${(TYPES.length - 1) * SCROLL_STEP}px` }}

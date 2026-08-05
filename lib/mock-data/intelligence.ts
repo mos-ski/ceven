@@ -8,7 +8,7 @@ export type AnalyticsMetric = {
 };
 
 export const ANALYTICS_METRICS: AnalyticsMetric[] = [
-  { label: "AI Insights Generated", value: "248", trendLabel: "+18% this month", trendUp: true },
+  { label: "Insights Generated", value: "248", trendLabel: "+18% this month", trendUp: true },
   { label: "Avg. Response Time", value: "1.4s", trendLabel: "-0.3s vs last month", trendUp: true },
   { label: "Flags Resolved", value: "92%", trendLabel: "+4% this month", trendUp: true },
   { label: "Active Recommendations", value: "12", trendLabel: "3 awaiting action", trendUp: false },
@@ -136,7 +136,7 @@ export const GENERATED_REPORTS: GeneratedReport[] = [
     type: "Attendance",
     fileType: "PDF",
     generatedOn: "01 Jun 2026",
-    generatedBy: "Ada (AI)",
+    generatedBy: "System",
     status: "Ready",
   },
   {
@@ -154,7 +154,7 @@ export const GENERATED_REPORTS: GeneratedReport[] = [
     type: "Finance",
     fileType: "CSV",
     generatedOn: "18 Jun 2026",
-    generatedBy: "Ada (AI)",
+    generatedBy: "System",
     status: "Ready",
   },
   {
@@ -163,7 +163,7 @@ export const GENERATED_REPORTS: GeneratedReport[] = [
     type: "Health & Welfare",
     fileType: "PDF",
     generatedOn: "22 Jun 2026",
-    generatedBy: "Ada (AI)",
+    generatedBy: "System",
     status: "Scheduled",
   },
   {
@@ -199,7 +199,7 @@ export const REPORT_RECIPIENT_OPTIONS = [
 
 // ── Audit Trail tab ──────────────────────────────────────────────────────────
 
-export type AuditActor = "AI" | "Admin";
+export type AuditActor = "System" | "Admin";
 
 export type AuditLogEntry = {
   id: string;
@@ -213,8 +213,8 @@ export type AuditLogEntry = {
 export const AUDIT_LOG: AuditLogEntry[] = [
   {
     id: "log-1",
-    actor: "AI",
-    actorName: "Ada",
+    actor: "System",
+    actorName: "System",
     action: "Flagged attendance anomaly",
     detail: "3 children in Lion Class exceeded 40% absence rate this month.",
     timestamp: "21 Jun 2026, 8:02 AM",
@@ -229,8 +229,8 @@ export const AUDIT_LOG: AuditLogEntry[] = [
   },
   {
     id: "log-3",
-    actor: "AI",
-    actorName: "Ada",
+    actor: "System",
+    actorName: "System",
     action: "Generated report",
     detail: "Monthly Attendance Summary — May 2026 (PDF) auto-generated and sent to admin inbox.",
     timestamp: "20 Jun 2026, 6:00 AM",
@@ -245,8 +245,8 @@ export const AUDIT_LOG: AuditLogEntry[] = [
   },
   {
     id: "log-5",
-    actor: "AI",
-    actorName: "Ada",
+    actor: "System",
+    actorName: "System",
     action: "Drafted parent message",
     detail: "Drafted absence follow-up message for Mrs. Mohammed re: Zara M.",
     timestamp: "19 Jun 2026, 9:30 AM",
@@ -261,8 +261,8 @@ export const AUDIT_LOG: AuditLogEntry[] = [
   },
   {
     id: "log-7",
-    actor: "AI",
-    actorName: "Ada",
+    actor: "System",
+    actorName: "System",
     action: "Compliance gap identified",
     detail: "2 children found with outdated vaccination records — flagged for follow-up.",
     timestamp: "17 Jun 2026, 7:50 AM",

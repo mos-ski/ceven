@@ -4,19 +4,34 @@ import { useState } from "react";
 import Link from "next/link";
 import { Search, ArrowUpDown, Download, Printer, ChevronLeft, ChevronRight } from "lucide-react";
 import { SUBSCRIPTION_PLANS, SUBSCRIPTION_STATS } from "@/lib/super-admin/mock-data";
+import { exportRowsToCsv } from "@/lib/super-admin/export-csv";
 
 const STATUS_BADGE: Record<string, string> = {
   active: "bg-[#E1F5EC] text-[#009061]",
   inactive: "bg-red-50 text-red-600",
 };
 
+const PAGE_SIZE = 10;
+
 export default function SubscriptionsPage() {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
+  const [oldestFirst, setOldestFirst] = useState(false);
 
   const filtered = SUBSCRIPTION_PLANS.filter((s) =>
     s.planName.toLowerCase().includes(search.toLowerCase())
   );
+  const sorted = oldestFirst ? [...filtered].reverse() : filtered;
+  const totalPages = Math.max(1, Math.ceil(sorted.length / PAGE_SIZE));
+  const paginated = sorted.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+
+  const handleExport = () => {
+    exportRowsToCsv(
+      "subscription-plans.csv",
+      ["Date Created", "Plan Name", "Duration", "Subscribers", "Recipient", "Revenue", "Status"],
+      sorted.map((p) => [p.dateCreated, p.planName, p.duration.join("/"), p.subscribers, p.recipient, p.revenue, p.status])
+    );
+  };
 
   return (
     <div className="flex flex-col gap-4">
@@ -52,13 +67,25 @@ export default function SubscriptionsPage() {
               className="h-9 w-full rounded-lg border border-input-border bg-white pl-9 pr-3 font-[family-name:var(--font-urbanist)] text-sm placeholder:text-muted-text focus:outline-none focus:ring-2 focus:ring-brand-accent"
             />
           </div>
-          <button type="button" className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">
-            <ArrowUpDown className="size-3.5" /> Sort by: Most recent
+          <button
+            type="button"
+            onClick={() => { setOldestFirst((v) => !v); setPage(1); }}
+            className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading"
+          >
+            <ArrowUpDown className="size-3.5" /> Sort by: {oldestFirst ? "Oldest" : "Most recent"}
           </button>
-          <button type="button" className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">
+          <button
+            type="button"
+            onClick={handleExport}
+            className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading"
+          >
             <Download className="size-3.5" /> Export as
           </button>
-          <button type="button" className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">
+          <button
+            type="button"
+            onClick={() => window.print()}
+            className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading"
+          >
             <Printer className="size-3.5" /> Print
           </button>
         </div>
@@ -81,7 +108,7 @@ export default function SubscriptionsPage() {
               </tr>
             </thead>
             <tbody>
-              {filtered.map((plan) => (
+              {paginated.map((plan) => (
                 <tr key={plan.id} className="border-b border-table-border last:border-0 hover:bg-slate-50">
                   <td className="px-4 py-3"><input type="checkbox" className="rounded" /></td>
                   <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">{plan.dateCreated}</td>
@@ -105,7 +132,7 @@ export default function SubscriptionsPage() {
                   </td>
                 </tr>
               ))}
-              {filtered.length === 0 && (
+              {paginated.length === 0 && (
                 <tr>
                   <td colSpan={9} className="px-4 py-12 text-center font-[family-name:var(--font-urbanist)] text-sm text-muted-text">
                     No subscription plans found.
@@ -119,13 +146,32 @@ export default function SubscriptionsPage() {
         <div className="flex items-center justify-between border-t border-card-border px-4 py-3">
           <span className="font-[family-name:var(--font-urbanist)] text-xs text-muted-text">10 per page</span>
           <div className="flex items-center gap-1">
-            <button type="button" className="flex size-8 items-center justify-center rounded-lg border border-card-border text-muted-text">
+            <button
+              type="button"
+              onClick={() => setPage((p) => Math.max(1, p - 1))}
+              disabled={page === 1}
+              className="flex size-8 items-center justify-center rounded-lg border border-card-border text-muted-text hover:bg-slate-50 disabled:opacity-40"
+            >
               <ChevronLeft className="size-4" />
             </button>
-            <button type="button" className="flex size-8 items-center justify-center rounded-lg bg-brand-dark font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">
-              1
-            </button>
-            <button type="button" className="flex size-8 items-center justify-center rounded-lg border border-card-border text-muted-text">
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+              <button
+                key={p}
+                type="button"
+                onClick={() => setPage(p)}
+                className={`flex size-8 items-center justify-center rounded-lg font-[family-name:var(--font-urbanist)] text-xs font-semibold ${
+                  p === page ? "bg-brand-dark text-white" : "border border-card-border text-heading hover:bg-slate-50"
+                }`}
+              >
+                {p}
+              </button>
+            ))}
+            <button
+              type="button"
+              onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+              disabled={page === totalPages}
+              className="flex size-8 items-center justify-center rounded-lg border border-card-border text-muted-text hover:bg-slate-50 disabled:opacity-40"
+            >
               <ChevronRight className="size-4" />
             </button>
           </div>

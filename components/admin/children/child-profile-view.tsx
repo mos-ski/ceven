@@ -612,7 +612,7 @@ export function ChildProfileView({ child }: { child: Child }) {
             className="rounded-lg px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm text-[#faf2e1]"
             style={{ background: "linear-gradient(135deg, rgb(30,45,74) 0%, rgb(45,24,16) 100%)" }}
           >
-            ✦ AI Parent Update
+            ✦ Parent Update
           </button>
         </div>
       </div>
@@ -681,7 +681,7 @@ export function ChildProfileView({ child }: { child: Child }) {
         <div className="flex items-start gap-3 rounded-xl border border-[#e0bfa0] bg-[#fdf6e8] px-4 py-3">
           <span className="text-[#c47b2c]">✦</span>
           <div className="flex-1">
-            <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">Ada AI Observations</p>
+            <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">Observations</p>
             <p className="mt-0.5 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
               {firstName} has shown improved social engagement this week. {child.gender === "M" ? "His" : "Her"} mood score is trending up at 4.2/5. Consider scheduling a parent update to share the progress.
             </p>

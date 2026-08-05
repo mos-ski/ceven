@@ -32,10 +32,10 @@ export function AuditTrailTab() {
             <div key={entry.id} className="flex gap-3 p-4">
               <div
                 className={`flex size-8 shrink-0 items-center justify-center rounded-full ${
-                  entry.actor === "AI" ? "bg-[#1e2d4a] text-white" : "bg-[#edd9c0] text-[#3b2513]"
+                  entry.actor === "System" ? "bg-[#1e2d4a] text-white" : "bg-[#edd9c0] text-[#3b2513]"
                 }`}
               >
-                {entry.actor === "AI" ? <Bot className="size-4" /> : <User className="size-4" />}
+                {entry.actor === "System" ? <Bot className="size-4" /> : <User className="size-4" />}
               </div>
               <div className="flex-1">
                 <div className="flex flex-wrap items-center justify-between gap-2">

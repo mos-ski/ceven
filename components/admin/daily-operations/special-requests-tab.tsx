@@ -37,7 +37,7 @@ const PRIORITY_DOT: Record<SpecialRequestPriority, string> = {
 
 const SOURCE_BADGE: Record<SpecialRequestSource, string> = {
   Parent: "bg-[#fdf6e8] text-[#c47b2c] border-[#e0bfa0]",
-  "AI Assigned": "bg-[#ede9fe] text-[#7c3aed] border-[#c4b5fd]",
+  "Auto-Assigned": "bg-[#ede9fe] text-[#7c3aed] border-[#c4b5fd]",
   Admin: "bg-[#e8f0fe] text-[#1a73e8] border-[#93c5fd]",
   Routine: "bg-[#f3f4f6] text-[#6b7280] border-[#d0d5dd]",
 };
@@ -58,8 +58,8 @@ function StatusBadge({ status }: { status: SpecialRequestStatus }) {
 function SourceBadge({ source }: { source: SpecialRequestSource }) {
   return (
     <span className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 font-[family-name:var(--font-urbanist)] text-[10px] font-medium ${SOURCE_BADGE[source]}`}>
-      {source === "AI Assigned" && <Sparkles size={9} />}
-      {source}
+      {source === "Auto-Assigned" && <Sparkles size={9} />}
+      {source === "Auto-Assigned" ? "Auto-Assigned" : source}
     </span>
   );
 }
@@ -220,7 +220,7 @@ function AddRequestModal({
 
 // ── Main tab ──────────────────────────────────────────────────────────────────
 
-const SOURCE_FILTERS: SourceFilter[] = ["All", "Parent", "AI Assigned", "Admin", "Routine"];
+const SOURCE_FILTERS: SourceFilter[] = ["All", "Parent", "Auto-Assigned", "Admin", "Routine"];
 const STATUS_FILTERS: StatusFilter[] = ["All", "Pending", "In Progress", "Done", "Overdue", "Cancelled"];
 
 export function SpecialRequestsTab() {
@@ -252,7 +252,7 @@ export function SpecialRequestsTab() {
     return {
       total: all.length,
       parent: all.filter((r) => r.source === "Parent").length,
-      aiAssigned: all.filter((r) => r.source === "AI Assigned").length,
+      aiAssigned: all.filter((r) => r.source === "Auto-Assigned").length,
       pending: all.filter((r) => r.status === "Pending").length,
       inProgress: all.filter((r) => r.status === "In Progress").length,
       done: all.filter((r) => r.status === "Done").length,
@@ -266,7 +266,7 @@ export function SpecialRequestsTab() {
         {[
           { label: "Total", value: stats.total, color: "text-[#2d1810]" },
           { label: "From Parents", value: stats.parent, color: "text-[#c47b2c]" },
-          { label: "AI Assigned", value: stats.aiAssigned, color: "text-[#7c3aed]" },
+          { label: "Auto-Assigned", value: stats.aiAssigned, color: "text-[#7c3aed]" },
           { label: "Pending", value: stats.pending, color: "text-[#cc8000]" },
           { label: "In Progress", value: stats.inProgress, color: "text-[#1a73e8]" },
           { label: "Done", value: stats.done, color: "text-[#009061]" },
@@ -317,7 +317,7 @@ export function SpecialRequestsTab() {
                   : "border-[#d0d5dd] text-[#6b7280] hover:border-[#c47b2c]"
               }`}
             >
-              {s === "AI Assigned" ? "✦ AI Assigned" : s}
+              {s === "Auto-Assigned" ? "✦ Auto-Assigned" : s}
             </button>
           ))}
         </div>

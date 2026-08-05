@@ -47,7 +47,7 @@ export type PlatformActivityEvent = {
 
 export const PLATFORM_ACTIVITY: PlatformActivityEvent[] = [
   { id: "pa-1", text: "Ms. Funmilayo Bello upgraded from trial to Seedling", time: "12 min ago" },
-  { id: "pa-2", text: "Bright Beginnings Creche's payment failed — now Past Due", time: "1 hr ago" },
+  { id: "pa-2", text: "Bright Beginnings Creche's payment failed, account now Past Due", time: "1 hr ago" },
   { id: "pa-3", text: "New tenant signup: Mrs. Adaeze Nwosu (independent caregiver)", time: "3 hrs ago" },
   { id: "pa-4", text: "Tiny Tots Learning Home added 3 new staff seats", time: "5 hrs ago" },
   { id: "pa-5", text: "Support ticket #482 opened by St Gregory Creche", time: "6 hrs ago" },

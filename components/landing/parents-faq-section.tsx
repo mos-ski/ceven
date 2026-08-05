@@ -6,7 +6,7 @@ import { Stagger, StaggerItem } from "@/components/animations/stagger";
 
 const FAQS = [
   {
-    q: "My crèche isn't on CEven yet — what do I do?",
+    q: "My crèche isn't on CEven yet. What do I do?",
     a: "You can invite your crèche directly from the app. We'll reach out to them and help get them set up. Most crèches are live within a week.",
   },
   {
@@ -15,7 +15,7 @@ const FAQS = [
   },
   {
     q: "What if I'm in a meeting and can't check my phone?",
-    a: "Updates are stored and timestamped in real time. You'll see everything when you're free — nothing is lost. No need to chase or call.",
+    a: "Updates are stored and timestamped in real time. You'll see everything when you're free. Nothing is lost. No need to chase or call.",
   },
   {
     q: "Is my child's data private and secure?",

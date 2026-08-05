@@ -9,7 +9,7 @@ import { HouseIcon, SparkleIcon, ScrollIcon, CommunicationIcon, Setting2Icon } f
 
 const NAV_ITEMS = [
   { label: "Home", icon: HouseIcon, href: "/parent/home" },
-  { label: "CEvenAI", icon: SparkleIcon, href: "/parent/cevenai" },
+  { label: "CEven", icon: SparkleIcon, href: "/parent/cevenai" },
   { label: "Report", icon: ScrollIcon, href: "/parent/reports" },
   { label: "Chat", icon: CommunicationIcon, href: "/parent/chat" },
   { label: "Settings", icon: Setting2Icon, href: "/parent/settings" },

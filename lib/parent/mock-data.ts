@@ -144,7 +144,7 @@ export const PARENT_MEMBERSHIP: { status: ParentMembershipStatus } = {
 };
 
 /**
- * CEvenAI and direct messaging let a trial user actually use the feature for a
+ * Direct messaging let a trial user actually use the feature for a
  * few messages before surfacing membership status — never an upfront block.
  * The limit is enforced inline, as a reply within the conversation itself.
  */
@@ -472,7 +472,7 @@ export const mockAiMessages: AiMessage[] = [
     id: "ai-4",
     role: "ai",
     content:
-      "Of course! As an AI language model, I am designed to assist with a variety of tasks. Here are some examples of what I can do:\n• Answer questions: Just ask me anything you like!\n• Generate text: I can write |",
+      "Of course! I'm here to assist with a variety of tasks. Here are some examples of what I can do:\n• Answer questions: Just ask me anything you like!\n• Generate text: I can write |",
   },
 ];
 

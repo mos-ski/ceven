@@ -54,7 +54,7 @@ export function HeroSection() {
           className="font-[family-name:var(--font-urbanist-import)] font-normal text-[#3d444f] text-[16px] leading-[24px] mx-auto mt-[22px]"
           style={{ maxWidth: "518px" }}
         >
-          CEven turns your daily operations into the reason parents trust you — real-time updates, accountable staff, a business that runs like the professional operation it already is.
+          CEven turns your daily operations into the reason parents trust you: real-time updates, accountable staff, a business that runs like the professional operation it already is.
         </p>
 
         <div className="mt-[24px] flex flex-col items-center gap-[15px]">
@@ -68,7 +68,7 @@ export function HeroSection() {
           <p className="font-[family-name:var(--font-urbanist-import)] font-normal text-[#3d444f] text-[16px] leading-[28px]">
             Already Joined CEven?{" "}
             <Link
-              href="#"
+              href="/login"
               className="underline decoration-solid underline-offset-2 hover:opacity-70 transition-opacity"
             >
               Login Now

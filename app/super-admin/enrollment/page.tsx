@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Search, Filter, ArrowUpDown, Download, Printer, ChevronLeft, ChevronRight } from "lucide-react";
 import { ENROLLMENT_REQUESTS, type EnrollmentRequest } from "@/lib/super-admin/mock-data";
+import { exportRowsToCsv } from "@/lib/super-admin/export-csv";
 
 const STATUS_BADGE: Record<string, string> = {
   pending: "bg-[#F9F1E6] text-[#FF9A01]",
@@ -17,15 +18,25 @@ export default function EnrollmentPage() {
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<"all" | EnrollmentRequest["status"]>("all");
   const [page, setPage] = useState(1);
+  const [oldestFirst, setOldestFirst] = useState(false);
 
   const filtered = ENROLLMENT_REQUESTS.filter((e) => {
     const matchesSearch = e.crecheName.toLowerCase().includes(search.toLowerCase()) || e.email.toLowerCase().includes(search.toLowerCase());
     const matchesStatus = statusFilter === "all" || e.status === statusFilter;
     return matchesSearch && matchesStatus;
   });
+  const sorted = oldestFirst ? [...filtered].reverse() : filtered;
 
-  const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
-  const paginated = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+  const totalPages = Math.ceil(sorted.length / PAGE_SIZE);
+  const paginated = sorted.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+
+  const handleExport = () => {
+    exportRowsToCsv(
+      "enrollment-requests.csv",
+      ["Request Date", "Creche Name", "Email Address", "Status"],
+      sorted.map((e) => [e.requestDate, e.crecheName, e.email, e.status])
+    );
+  };
 
   const total = ENROLLMENT_REQUESTS.length;
   const pending = ENROLLMENT_REQUESTS.filter((e) => e.status === "pending").length;
@@ -76,13 +87,25 @@ export default function EnrollmentPage() {
             <option value="approved">Approved</option>
             <option value="declined">Declined</option>
           </select>
-          <button type="button" className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">
-            <ArrowUpDown className="size-3.5" /> Sort by
+          <button
+            type="button"
+            onClick={() => { setOldestFirst((v) => !v); setPage(1); }}
+            className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading"
+          >
+            <ArrowUpDown className="size-3.5" /> {oldestFirst ? "Oldest first" : "Newest first"}
           </button>
-          <button type="button" className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">
+          <button
+            type="button"
+            onClick={handleExport}
+            className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading"
+          >
             <Download className="size-3.5" /> Export as
           </button>
-          <button type="button" className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">
+          <button
+            type="button"
+            onClick={() => window.print()}
+            className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading"
+          >
             <Printer className="size-3.5" /> Print
           </button>
         </div>

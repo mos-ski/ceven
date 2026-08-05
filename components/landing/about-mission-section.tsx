@@ -25,7 +25,7 @@ export function AboutMissionSection() {
               </h3>
               <p className="text-[#6B5744] text-sm leading-relaxed">
                 We imagine an Africa where modern infrastructure catches up with modern
-                ambition. Where every working parent — in Lagos, in Nairobi, in Accra —
+                ambition. Where every working parent, in Lagos, in Nairobi, in Accra,
                 can build their career without surrendering their peace of mind.
               </p>
             </div>

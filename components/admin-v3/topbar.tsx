@@ -61,7 +61,7 @@ export function TopbarV3() {
 
         <button
           type="button"
-          aria-label="AI assistant"
+          aria-label="Assistant"
           className="flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-[#1E2D4A] to-[#2D1810] text-[#F5EDD8]"
         >
           <Bot className="h-4 w-4" />

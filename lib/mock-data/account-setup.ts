@@ -410,9 +410,9 @@ export type AiFeatureControl = {
 };
 
 export const AI_FEATURE_CONTROLS: AiFeatureControl[] = [
-  { id: "feat-1", label: "Predictive Enrolment Insights", description: "Ada flags at-risk waitlist conversions automatically.", enabled: true },
-  { id: "feat-2", label: "Auto-drafted Announcements", description: "Ada suggests announcement copy from templates.", enabled: true },
-  { id: "feat-3", label: "Financial Anomaly Detection", description: "Ada flags unusual expense or revenue patterns.", enabled: false },
+  { id: "feat-1", label: "Predictive Enrolment Insights", description: "System flags at-risk waitlist conversions automatically.", enabled: true },
+  { id: "feat-2", label: "Auto-drafted Announcements", description: "System suggests announcement copy from templates.", enabled: true },
+  { id: "feat-3", label: "Financial Anomaly Detection", description: "System flags unusual expense or revenue patterns.", enabled: false },
 ];
 
 // ── Settings: Other Apps ──────────────────────────────────────────────────────

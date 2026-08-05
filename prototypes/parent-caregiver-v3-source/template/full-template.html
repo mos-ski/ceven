@@ -558,7 +558,7 @@
         </div>
         <div style="background:linear-gradient(135deg,#FFF4E4,#F7E8D4);border:1px solid #EDD9C0;border-radius:8px;padding:14px 16px;display:flex;gap:8px;align-items:center">
           <span style="color:#9A6033;font-size:15px">✦</span>
-          <span style="font-size:13px;color:#3B2513;line-height:1.5">Stuck on next week? Ask CEvenAI to draft a timetable from your family's favourites.</span>
+          <span style="font-size:13px;color:#3B2513;line-height:1.5">Stuck on next week? Ask CEeven to draft a timetable from your family's favourites.</span>
         </div>
       </div>
     </sc-if>
@@ -852,7 +852,7 @@
     </sc-if>
 
     <sc-if value="{{showAsk}}" hint-placeholder-val="{{false}}">
-      <div style="flex:1;display:flex;flex-direction:column;overflow:hidden" data-screen-label="Caregiver · Ask CEvenAI">
+      <div style="flex:1;display:flex;flex-direction:column;overflow:hidden" data-screen-label="Caregiver · Ask CEeven">
         <div style="flex:none;padding:8px 20px 12px;border-bottom:1px solid #EDD9C0;display:flex;align-items:center;gap:10px">
           <span style="color:#9A6033;font-size:17px">✦</span>
           <div style="font-family:'Merriweather';font-weight:700;font-size:19px;color:#1F2937">Ask &amp; Learn</div>
@@ -860,7 +860,7 @@
         <div style="flex:1;overflow-y:auto;padding:16px 20px;display:flex;flex-direction:column;gap:12px">
           <sc-if value="{{cAiEmpty}}" hint-placeholder-val="{{true}}">
             <div style="display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;margin-top:22px">
-              <img src="a182399f-8816-4aac-9075-7eb3e3be480a" alt="CEvenAI" style="width:48px;height:48px">
+              <img src="a182399f-8816-4aac-9075-7eb3e3be480a" alt="CEven" style="width:48px;height:48px">
               <div style="font-family:'Merriweather';font-weight:700;font-size:20px;color:#1F2937">I'm here to help, Blessing</div>
               <div style="font-size:13.5px;color:#6B7280;line-height:1.55;max-width:270px">Ask me anything about the children, cooking, cleaning or the house. You can also speak instead of typing.</div>
             </div>
@@ -954,7 +954,7 @@
       <div style="flex:1;overflow-y:auto;padding:8px 20px 100px;display:flex;flex-direction:column;gap:16px" data-screen-label="Parent · Activity trail">
         <button sc-camel-on-click="{{goHome}}" style="align-self:flex-start;background:none;border:none;padding:0;font-family:'Urbanist';font-weight:700;font-size:13.5px;color:#9A6033;cursor:pointer">← Home</button>
         <div style="font-family:'Merriweather';font-weight:700;font-size:24px;color:#1F2937">Blessing's activity</div>
-        <div style="font-size:13px;color:#6B7280;line-height:1.5;margin-top:-8px">The important actions only — care, money, media and what she asks CEvenAI. Openness that builds trust both ways.</div>
+        <div style="font-size:13px;color:#6B7280;line-height:1.5;margin-top:-8px">The important actions only — care, money, media and what she asks CEeven. Openness that builds trust both ways.</div>
         <div style="background:#EFF6FF;border:1px solid #3B82F6;border-radius:8px;padding:10px 14px;font-size:12.5px;color:#1F2937;font-weight:600">🔒 Photos &amp; videos are taken inside the app and go straight to your family vault — they are never saved on Blessing's phone.</div>
         <div style="display:flex;flex-direction:column;gap:2px">
           <sc-for list="{{audit}}" as="a" hint-placeholder-count="6">
@@ -1298,7 +1298,7 @@ class Component extends DCLogic {
       {time: '11:15 AM', cat: 'MONEY', text: 'Requested \u20a64,500 market money — wipes, Milo, fruits'},
       {time: '10:30 AM', cat: 'CARE', text: 'Started Tobi\u2019s nap timer'},
       {time: '9:40 AM', cat: 'MEDIA', text: '2 photos captured in-app \u2192 family vault (not on her phone)'},
-      {time: '8:40 AM', cat: 'AI', text: 'Asked CEvenAI: \u201cHow do I remove palm oil stain from a school uniform?\u201d'},
+      {time: '8:40 AM', cat: 'System', text: 'Asked CEeven: \u201cHow do I remove palm oil stain from a school uniform?\u201d'},
       {time: '7:20 AM', cat: 'CARE', text: 'Marked breakfast done — Zara ate all, Tobi half'},
       {time: '7:02 AM', cat: 'DUTY', text: 'Checked in for the day'},
     ], cgDuty: 'in', sosOpen: false, sosSent: false, listening: false, shopInput: '',
@@ -1526,7 +1526,7 @@ class Component extends DCLogic {
         {icon: '🍚', label: 'What is for lunch and how do I make it?', reply: 'Today\u2019s lunch is jollof rice with grilled chicken at 12:30. Mummy\u2019s notes: small portions, NO pepper for Tobi, and remember no groundnut oil (Zara\u2019s allergy). The full recipe is in the family recipe book — want me to read it step by step?'},
         {icon: '🎲', label: 'What can Tobi play inside when it rains?', reply: 'Good ones for 18 months: 1) Pot-and-spoon drumming (his favourite sounds!). 2) Hide the teddy — hide it under a cloth and let him find it. 3) Stacking cups. Keep small objects away — anything smaller than his fist can choke.'},
       ].map(p => ({...p, pick: () => {
-        this._audit('AI', 'Asked CEvenAI: \u201c' + p.label + '\u201d');
+        this._audit('System', 'Asked CEeven: \u201c' + p.label + '\u201d');
         this.setState({cAiMsgs: [...s.cAiMsgs, {mine: true, text: p.label}], cAiTyping: true});
         setTimeout(() => this.setState({cAiMsgs: [...this.state.cAiMsgs, {mine: false, text: p.reply}], cAiTyping: false}), 1200);
       }})),

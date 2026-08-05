@@ -200,7 +200,7 @@ export function FeaturesSection() {
                 </div>
                 <div>
                   <div className="bg-[#f5f5f5] text-[#212121] font-[family-name:var(--font-urbanist-import)] font-normal text-[10.5px] px-4 py-3 rounded-br-[15px] rounded-bl-[15px] rounded-tl-[3px] rounded-tr-[15px] max-w-[214px] leading-[1.4]">
-                    Of course! As an AI language model, I am designed to assist with a variety of tasks. Here are some examples of what I can do:
+                    Of course! As a smart assistant, I am designed to assist with a variety of tasks. Here are some examples of what I can do:
                     <ul className="list-disc pl-4 mt-1">
                       <li>Answer questions: Just ask me anything!</li>
                       <li>Generate text: I can write |</li>
@@ -213,7 +213,7 @@ export function FeaturesSection() {
             {/* Card 4 — AI summary */}
             <div className="bg-[#fbfaf9] rounded-[12px] overflow-hidden p-7 min-h-[460px]">
               <h3 className="font-[family-name:var(--font-urbanist-import)] font-bold text-[#1c1917] text-[17px] leading-[1.2] tracking-[-0.02em] mb-2">
-                AI summary of your child&apos;s day
+                Summary of your child&apos;s day
               </h3>
               <p className="font-[family-name:var(--font-urbanist-import)] font-medium text-[#6a7074] text-[14px] leading-[1.47] tracking-[-0.02em] mb-6">
                 Ask for a read on mood, meals, or the whole day, and get a real answer back — not a scroll through old messages trying to piece it together.

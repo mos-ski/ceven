@@ -35,14 +35,14 @@ export function ParentsHeroSection() {
         <FadeUp delay={0.2}>
           <p className="text-[#6B5744] text-sm sm:text-base leading-relaxed mb-8 sm:mb-10 max-w-xl mx-auto">
             You&apos;re doing your best. CEven makes sure your child&apos;s crèche is doing theirs too.
-            You don&apos;t have to choose between your career and your child — you can have both.
+            You don&apos;t have to choose between your career and your child. You can have both.
           </p>
         </FadeUp>
 
         <FadeUp delay={0.3}>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
             <Link
-              href="#"
+              href="/get-started"
               className="flex items-center gap-2.5 bg-[#3B2513] text-[#FAF2E1] text-sm font-semibold px-6 py-3.5 rounded-full hover:bg-[#5B391E] hover:scale-[1.03] transition-all duration-150"
             >
               <Image src="/google-play-icon.png" alt="" width={16} height={16} className="w-4 h-4" />

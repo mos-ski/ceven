@@ -94,7 +94,7 @@ export const NAV_SECTIONS: NavSection[] = [
   {
     label: "Intelligence",
     items: [
-      { label: "AI Command Center", href: "/admin/v3/ai-command-center", icon: Bot, badge: 7 },
+      { label: "Command Center", href: "/admin/v3/ai-command-center", icon: Bot, badge: 7 },
       { label: "Analytics", href: "/admin/v3/analytics", icon: BarChart3 },
       { label: "Reports", href: "/admin/v3/reports", icon: FileText },
       { label: "Audit Trail", href: "/admin/v3/audit-trail", icon: Search },

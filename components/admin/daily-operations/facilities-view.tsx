@@ -440,7 +440,7 @@ export function FacilitiesView() {
       {/* AI Insights Banner */}
       <div className="flex items-center gap-3 rounded-xl border border-[#e0bfa0] bg-[#fdf6e8] px-4 py-3">
         <span className="inline-flex items-center gap-1 rounded-full bg-[#e0bfa0] px-2 py-0.5 font-[family-name:var(--font-urbanist)] text-[10px] font-medium text-[#3b2513]">
-          ✦ AI Insights
+          ✦ Insights
         </span>
         <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">
           ⚠ Sunflower room changing table broken strap, reported Apr 9. Not yet repaired. Needs to be repaired before next LASG inspection

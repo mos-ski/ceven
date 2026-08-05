@@ -14,7 +14,7 @@ const FEATURES = [
   {
     title: "Full Staff Oversight",
     description:
-      "Track attendance, compliance notes and payroll — with AI flags for anyone falling below threshold.",
+      "Track attendance, compliance notes and payroll, with AI flags for anyone falling below threshold.",
   },
   {
     title: "Financial Control",
@@ -24,7 +24,7 @@ const FEATURES = [
   {
     title: "AI-Powered Intelligence",
     description:
-      "IDA surfaces what needs your attention before you even ask — and drafts responses so you never start from blank.",
+      "IDA surfaces what needs your attention before you even ask. It drafts responses so you never start from blank.",
   },
 ];
 
@@ -76,7 +76,7 @@ export function CrechesPlatformSection() {
                 </h3>
                 <p className="text-[#6B5744] text-sm leading-relaxed">
                   The crèche owner or manager gets a comprehensive web dashboard. Every morning
-                  starts with an AI-generated briefing — what needs attention, who&apos;s at risk,
+                  starts with an AI-generated briefing: what needs attention, who&apos;s at risk,
                   what&apos;s outstanding. The big picture, always in focus.
                 </p>
               </div>

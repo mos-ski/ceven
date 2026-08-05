@@ -13,7 +13,7 @@ export default function AnalyticsV3Page() {
           Analytics
         </h1>
         <p className="mt-1 text-sm text-[#2D1810]/50">
-          Attendance, revenue, and staff performance trends, powered by Ada&apos;s ongoing analysis.
+          Attendance, revenue, and staff performance trends, powered by ongoing analysis.
         </p>
       </div>
 
@@ -21,7 +21,7 @@ export default function AnalyticsV3Page() {
       <div className="rounded-2xl border border-[#C47B2C]/40 bg-white p-5">
         <div className="mb-3 flex items-center justify-between">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-[#1E2D4A] to-[#2D1810] px-3 py-1.5 text-[10px] font-bold uppercase tracking-wide text-[#F5EDD8]">
-            <Sparkles className="h-3 w-3 text-[#C47B2C]" /> AI Forecast
+            <Sparkles className="h-3 w-3 text-[#C47B2C]" /> Forecast
           </span>
           <span className="text-xs text-[#2D1810]/40">Updated 7am today</span>
         </div>

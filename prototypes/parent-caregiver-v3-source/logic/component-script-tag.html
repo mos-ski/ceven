@@ -9,7 +9,7 @@ class Component extends DCLogic {
       {time: '11:15 AM', cat: 'MONEY', text: 'Requested \u20a64,500 market money — wipes, Milo, fruits'},
       {time: '10:30 AM', cat: 'CARE', text: 'Started Tobi\u2019s nap timer'},
       {time: '9:40 AM', cat: 'MEDIA', text: '2 photos captured in-app \u2192 family vault (not on her phone)'},
-      {time: '8:40 AM', cat: 'AI', text: 'Asked CEvenAI: \u201cHow do I remove palm oil stain from a school uniform?\u201d'},
+      {time: '8:40 AM', cat: 'System', text: 'Asked CEeven: \u201cHow do I remove palm oil stain from a school uniform?\u201d'},
       {time: '7:20 AM', cat: 'CARE', text: 'Marked breakfast done — Zara ate all, Tobi half'},
       {time: '7:02 AM', cat: 'DUTY', text: 'Checked in for the day'},
     ], cgDuty: 'in', sosOpen: false, sosSent: false, listening: false, shopInput: '',
@@ -209,8 +209,8 @@ class Component extends DCLogic {
       sendReport: () => { this.setState({reportSent: true}); this._audit('CARE', 'Sent the daily report'); this.toast('Report sent to Mummy & Daddy'); },
       toastOn: !!s.toast, toastMsg: s.toast,
       audit: s.audit.map(a => ({...a,
-        dot: {width: 10, height: 10, flex: 'none', borderRadius: '50%', marginTop: 4, background: (a.cat === 'AI' || a.cat === 'LEARN') ? '#9A6033' : a.cat === 'MEDIA' ? '#3B82F6' : a.cat === 'MONEY' ? '#FF9A01' : a.cat === 'DUTY' ? '#3B2513' : '#009061'},
-        badge: {fontFamily: 'Urbanist', fontSize: 10, fontWeight: 700, letterSpacing: '.06em', padding: '3px 9px', borderRadius: 99, background: (a.cat === 'AI' || a.cat === 'LEARN') ? '#F7E8D4' : a.cat === 'MEDIA' ? '#EFF6FF' : a.cat === 'MONEY' ? '#F9F1E6' : a.cat === 'DUTY' ? '#F1E6D6' : '#E1F5EC', color: (a.cat === 'AI' || a.cat === 'LEARN') ? '#9A6033' : a.cat === 'MEDIA' ? '#3B82F6' : a.cat === 'MONEY' ? '#FF9A01' : a.cat === 'DUTY' ? '#3B2513' : '#009061'},
+        dot: {width: 10, height: 10, flex: 'none', borderRadius: '50%', marginTop: 4, background: (a.cat === 'System' || a.cat === 'LEARN') ? '#9A6033' : a.cat === 'MEDIA' ? '#3B82F6' : a.cat === 'MONEY' ? '#FF9A01' : a.cat === 'DUTY' ? '#3B2513' : '#009061'},
+        badge: {fontFamily: 'Urbanist', fontSize: 10, fontWeight: 700, letterSpacing: '.06em', padding: '3px 9px', borderRadius: 99, background: (a.cat === 'System' || a.cat === 'LEARN') ? '#F7E8D4' : a.cat === 'MEDIA' ? '#EFF6FF' : a.cat === 'MONEY' ? '#F9F1E6' : a.cat === 'DUTY' ? '#F1E6D6' : '#E1F5EC', color: (a.cat === 'System' || a.cat === 'LEARN') ? '#9A6033' : a.cat === 'MEDIA' ? '#3B82F6' : a.cat === 'MONEY' ? '#FF9A01' : a.cat === 'DUTY' ? '#3B2513' : '#009061'},
       })),
       auditCount: s.audit.length + ' actions', auditLatest: s.audit[0].text,
       cAiEmpty: s.cAiMsgs.length === 0 && !s.cAiTyping && !s.lessonOpen, cAiHasMsgs: s.cAiMsgs.length > 1 && !s.lessonOpen, cAiTyping: s.cAiTyping && !s.lessonOpen,
@@ -237,7 +237,7 @@ class Component extends DCLogic {
         {icon: '🍚', label: 'What is for lunch and how do I make it?', reply: 'Today\u2019s lunch is jollof rice with grilled chicken at 12:30. Mummy\u2019s notes: small portions, NO pepper for Tobi, and remember no groundnut oil (Zara\u2019s allergy). The full recipe is in the family recipe book — want me to read it step by step?'},
         {icon: '🎲', label: 'What can Tobi play inside when it rains?', reply: 'Good ones for 18 months: 1) Pot-and-spoon drumming (his favourite sounds!). 2) Hide the teddy — hide it under a cloth and let him find it. 3) Stacking cups. Keep small objects away — anything smaller than his fist can choke.'},
       ].map(p => ({...p, pick: () => {
-        this._audit('AI', 'Asked CEvenAI: \u201c' + p.label + '\u201d');
+        this._audit('System', 'Asked CEeven: \u201c' + p.label + '\u201d');
         this.setState({cAiMsgs: [...s.cAiMsgs, {mine: true, text: p.label}], cAiTyping: true});
         setTimeout(() => this.setState({cAiMsgs: [...this.state.cAiMsgs, {mine: false, text: p.reply}], cAiTyping: false}), 1200);
       }})),

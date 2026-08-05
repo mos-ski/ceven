@@ -34,7 +34,7 @@ export function AboutOriginSection() {
                 But the joy didn&apos;t settle in before reality really hit.
               </p>
               <p className="text-[#3B2513] text-sm sm:text-base leading-relaxed mb-7">
-                She&apos;d go back to work six weeks after her baby was born — because the bills
+                She&apos;d go back to work six weeks after her baby was born. The bills
                 don&apos;t care about maternity leave. She would, and didn&apos;t, evaporate with a
                 birth announcement. Every morning she left the house, she carried something
                 heavier than her laptop bag.
@@ -55,7 +55,7 @@ export function AboutOriginSection() {
               <p className="text-[#3B2513] text-sm sm:text-base leading-relaxed mb-5">
                 CEven is the answer to that question. A childcare management platform built
                 to close the visibility gap between working parents and the crèches they
-                entrust their children to — not through surveillance, but through
+                entrust their children to, not through surveillance but through
                 communication, structure, and trust.
               </p>
               <p className="text-[#6B5744] text-sm leading-relaxed mb-8">

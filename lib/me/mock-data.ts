@@ -28,7 +28,7 @@ export const PLANS: Plan[] = [
     id: "free",
     name: "Free Plan",
     highlight: false,
-    features: ["5 messages", "5 CEvenAI chats", "1 special request per child", "1 device", "1 parent profile"],
+    features: ["5 messages", "5 CEeven chats", "1 special request per child", "1 device", "1 parent profile"],
   },
   {
     id: "premium_family",
@@ -36,7 +36,7 @@ export const PLANS: Plan[] = [
     highlight: true,
     pricing: { monthly: 9950, quarterly: 23880, yearly: 95520 },
     features: [
-      "CEven AI Assistant",
+      "CEven Assistant",
       "Special Requests Feature",
       "Unlimited children profiles",
       "Up to 2 devices",

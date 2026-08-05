@@ -65,7 +65,7 @@ const CURRENT_TOOLS_OPTIONS: OnboardingOption[] = [
   { value: "paper", label: "Paper & WhatsApp groups" },
   { value: "spreadsheets", label: "Spreadsheets" },
   { value: "other-software", label: "Another software" },
-  { value: "nothing-yet", label: "Nothing yet — just started" },
+  { value: "nothing-yet", label: "Nothing yet, just started" },
 ];
 
 const STAFF_COUNT_OPTIONS: OnboardingOption[] = [

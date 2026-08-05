@@ -25,7 +25,7 @@ const notifications: NotificationItem[] = [
     bg: "#f4f5f6",
     border: "#ccd2dc",
     titleColor: "#1e2d4a",
-    title: "AI Alert: 3 issues detected this morning",
+    title: "Alert: 3 issues detected this morning",
     desc: "Welfare check · Payment risk · Compliance drop",
     time: "7:00am",
   },

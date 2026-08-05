@@ -130,7 +130,7 @@ function ComposeView() {
                 "linear-gradient(135deg, rgb(30,45,74) 0%, rgb(45,24,16) 100%)",
             }}
           >
-            ✦ AI Create
+            ✦ Auto-Create
           </button>
           <button className="rounded-full border border-[#d0d5dd] px-3 py-1 text-xs text-[#6b7280] hover:bg-[#f9fafb]">
             Create incident message
