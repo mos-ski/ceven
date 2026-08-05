@@ -80,7 +80,7 @@ const QUICK_ACTIONS = [
  { id: "announce", icon: Megaphone, label: "Announce" },
  { id: "new-invoice", icon: Receipt, label: "New Invoice" },
  { id: "message-parent", icon: MessageSquare, label: "Message Parent" },
-  { id: "ai-insights", icon: CEIcon, label: "Insights", iconVariant: "fill-refined" as const },
+  { id: "ai-insights", icon: CEIcon, label: "Insights" },
  { id: "view-reports", icon: BarChart3, label: "View Reports" },
 ] as const;
 
@@ -207,13 +207,13 @@ export default function DashboardV3Page() {
   <Card>
   <p className="mb-3 text-xs font-bold uppercase tracking-wide text-[#2D1810]/50">Quick Actions</p>
   <div className="grid grid-cols-3 gap-2.5 sm:grid-cols-5">
-   {QUICK_ACTIONS.map(({ id, icon: Icon, label, iconVariant }) => (
+   {QUICK_ACTIONS.map(({ id, icon: Icon, label }) => (
     <button
      key={id}
      onClick={() => handleQuickAction(id)}
      className="flex flex-col items-center gap-1.5 rounded-xl bg-[#F5EDD8] px-2 py-3.5 text-center transition-colors hover:bg-[#C47B2C] hover:text-white"
     >
-     <Icon className="h-[18px] w-[18px]" variant={iconVariant} />
+     <Icon className="h-[18px] w-[18px]" />
     <span className="text-[11px] font-semibold leading-tight">{label}</span>
    </button>
    ))}
