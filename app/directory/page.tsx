@@ -572,6 +572,8 @@ export default function DirectoryPage() {
                   { app: "Caregiver App", version: "v2", status: "In progress", desc: "Reimagined caregiver experience", href: "/caregiver/today" },
                   { app: "Independent Caregiver", version: "v2", status: "In progress", desc: "First build for independent caregivers", href: "/independent-caregiver" },
                   { app: "Independent Tutor", version: "v2", status: "In progress", desc: "First build for independent tutors", href: "/independent-tutor" },
+                  { app: "Design System", version: "—", status: "In progress", desc: "Shared foundations & components", href: "/library" },
+                  { app: "Website", version: "—", status: "Completed", desc: "Public marketing site", href: "/" },
                 ].map((row, i) => (
                   <tr key={i} className="border-b border-card-border last:border-0">
                     <td className="px-4 py-3 font-semibold text-heading">{row.app}</td>
