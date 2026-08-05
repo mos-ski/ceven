@@ -468,6 +468,15 @@ export default function DirectoryPage() {
           Versions that are live on the app store are not listed here.
         </p>
 
+        <div className="mt-6 flex items-center gap-3 rounded-xl border border-card-border bg-white px-4 py-3 text-sm">
+          <span className="text-muted-text">Last updated:</span>
+          <span className="font-bold text-heading">5 Aug 2026</span>
+          <span className="text-muted-text">—</span>
+          <span className="text-muted-text">
+            Removed app-store v1s, renumbered v2→v1 &amp; v3→v2 for Parent &amp; Caregiver, added CTA buttons
+          </span>
+        </div>
+
         <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {NAV_CARDS.map((card) => (
             <a
