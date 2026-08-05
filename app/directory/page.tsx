@@ -531,12 +531,14 @@ export default function DirectoryPage() {
                   </div>
 
                   {version.href && (
-                    <Link
+                    <a
                       href={version.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="mt-4 inline-flex items-center gap-1.5 rounded-lg bg-brand-dark px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-brand-accent"
                     >
-                      Open {section.title} →
-                    </Link>
+                      Open {section.title} {version.label.split(" — ")[0]} →
+                    </a>
                   )}
                 </div>
               ))}
