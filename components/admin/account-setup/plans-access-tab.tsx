@@ -210,7 +210,7 @@ function Step1({ onNext }: { onNext: (plan: Plan) => void }) {
 
       {/* Billing cycle toggle */}
       <div className="mt-6 flex items-center justify-center">
-        <div className="inline-flex rounded-lg border border-[#e6ebf3] bg-white p-1">
+        <div className="inline-flex rounded-lg bg-[#F5EDD8]/50 p-1">
           {(["monthly", "quarterly", "yearly"] as BillingCycle[]).map((cycle) => (
             <button
               key={cycle}
@@ -238,7 +238,7 @@ function Step1({ onNext }: { onNext: (plan: Plan) => void }) {
           const total = getPriceForCycle(plan.monthlyPrice, billingCycle);
           const perMonth = getPerMonthPrice(plan.monthlyPrice, billingCycle);
           return (
-            <div key={plan.name} className="flex flex-col gap-4 rounded-2xl border border-[#edd9c0] bg-white p-6">
+            <div key={plan.name} className={`flex flex-col gap-4 rounded-2xl p-6 ${plan.highlighted ? "bg-[#D4522F]/[0.06]" : "bg-[#F5EDD8]/30"}`}>
               <div className="flex flex-col gap-1">
                 <p className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
                   {plan.name}
@@ -269,12 +269,16 @@ function Step1({ onNext }: { onNext: (plan: Plan) => void }) {
               </ul>
 
               {plan.buttonStyle === "current" ? (
-                <button className="w-full rounded-lg border border-[#d4a67f] bg-[#e0bfa0] py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#3b2513]">
+                <button className="w-full rounded-lg bg-[#D4522F]/10 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#D4522F]">
                   {plan.button}
                 </button>
               ) : (
                 <button
-                  className="w-full rounded-lg border border-[#3b2513] py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#3b2513]"
+                  className={`w-full rounded-lg py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-white transition-colors ${
+                    plan.highlighted
+                      ? "bg-[#D4522F] hover:bg-[#B94427]"
+                      : "bg-[#4C1D95] hover:bg-[#3B1673]"
+                  }`}
                   onClick={() => onNext(plan)}
                 >
                   {plan.button}
@@ -285,14 +289,14 @@ function Step1({ onNext }: { onNext: (plan: Plan) => void }) {
         })}
       </div>
 
-      <div className="mt-8 overflow-hidden rounded-2xl bg-white shadow-sm">
-        <p className="p-5 font-[family-name:var(--font-merriweather)] font-bold text-[#2d1810]">
+      <div className="mt-8 overflow-hidden rounded-2xl bg-[#F5EDD8]/30">
+        <p className="px-5 pt-5 font-[family-name:var(--font-merriweather)] font-bold text-[#2d1810]">
           Feature Comparison
         </p>
         <div className="overflow-x-auto">
           <table className="w-full border-collapse">
             <thead>
-              <tr className="bg-[#edd9c0]">
+              <tr>
                 <th className="px-5 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
                   Feature
                 </th>
@@ -306,7 +310,7 @@ function Step1({ onNext }: { onNext: (plan: Plan) => void }) {
             </thead>
             <tbody>
               {comparisonRows.map((row, i) => (
-                <tr key={row.feature} className={`border-b border-[#eaecf0] ${i % 2 === 0 ? "bg-white" : "bg-[#f9f8f6]"}`}>
+                <tr key={row.feature} className={i % 2 === 0 ? "bg-white/60" : "bg-transparent"}>
                   <td className="px-5 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">
                     {row.feature}
                   </td>
@@ -362,7 +366,7 @@ function PlanPeriodAndBilling({
 
       <div className="flex flex-col lg:flex-row gap-6">
         <div className="flex-1">
-          <div className="rounded-2xl border border-[#edd9c0] p-5" style={{ background: "rgba(241,155,2,0.08)" }}>
+          <div className="rounded-2xl p-5" style={{ background: "rgba(241,155,2,0.08)" }}>
             <div className="flex items-center justify-between">
               <div>
                 <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Subscribe for</p>
@@ -403,7 +407,7 @@ function PlanPeriodAndBilling({
               </p>
             )}
 
-            <div className="my-4 border-t border-[#edd9c0]" />
+            <div className="my-4 h-px bg-[#edd9c0]" />
 
             <div className="flex flex-col gap-1">
               <div className="flex items-center justify-between">
@@ -477,7 +481,7 @@ function PlanPeriodAndBilling({
         </div>
 
         <div className="w-full lg:w-[360px] shrink-0">
-          <div className="rounded-2xl border border-[#e6ebf3] bg-white p-5">
+          <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
             <p className="mb-4 font-[family-name:var(--font-urbanist)] font-semibold text-[#2d1810]">Summary</p>
 
             {baseCharges.map((charge) => (
@@ -487,7 +491,7 @@ function PlanPeriodAndBilling({
               </div>
             ))}
 
-            <div className="my-3 border-t border-[#e6ebf3]" />
+            <div className="my-3 h-px bg-[#e6ebf3]" />
 
             <div className="flex justify-between font-[family-name:var(--font-urbanist)] text-sm">
               <span className="font-bold text-[#2d1810]">Total Amount</span>
@@ -555,7 +559,7 @@ function ConfigureAddOns({
               {addOns.map((addon, i) => (
                 <div
                   key={addon.name}
-                  className="flex items-center justify-between gap-10 rounded-xl border border-[#ccd2dc] bg-white px-4 py-3"
+                  className="flex items-center justify-between gap-10 rounded-xl bg-[#F5EDD8]/30 px-4 py-3"
                 >
                   <div>
                     <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#1f2937]">{addon.name}</p>
@@ -585,7 +589,7 @@ function ConfigureAddOns({
         </div>
 
         <div className="w-full lg:w-[360px] shrink-0">
-          <div className="rounded-2xl border border-[#e6ebf3] bg-white p-5">
+          <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
             <p className="mb-4 font-[family-name:var(--font-urbanist)] font-semibold text-[#2d1810]">Summary</p>
 
             {addOns
@@ -601,7 +605,7 @@ function ConfigureAddOns({
               <span className="text-[#2d1810]">₦3,000.00</span>
             </div>
 
-            <div className="my-3 border-t border-[#e6ebf3]" />
+            <div className="my-3 h-px bg-[#e6ebf3]" />
 
             <div className="flex justify-between font-[family-name:var(--font-urbanist)] text-sm">
               <span className="font-bold text-[#2d1810]">Total Amount</span>

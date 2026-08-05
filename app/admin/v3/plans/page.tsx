@@ -46,7 +46,7 @@ const PLANS: Plan[] = [
       "Unlimited children",
       "Unlimited staff accounts",
       "Everything in Grow",
-      "AI reports & insights",
+      "Reports & insights",
       "Advanced analytics",
       "Priority support",
       "Multi-branch support",
@@ -69,7 +69,7 @@ const COMPARISON_ROWS: ComparisonRow[] = [
   { feature: "Parent Mobile App", grow: "✓", thrive: "✓" },
   { feature: "Daily Reports", grow: "✓", thrive: "✓" },
   { feature: "Attendance Management", grow: "✓", thrive: "✓" },
-  { feature: "AI Reports & Insights", grow: "—", thrive: "✓" },
+  { feature: "Reports & Insights", grow: "—", thrive: "✓" },
   { feature: "Advanced Analytics", grow: "—", thrive: "✓" },
   { feature: "Priority Support", grow: "Email support", thrive: "Priority support" },
   { feature: "Multi-branch Support", grow: "—", thrive: "✓" },
@@ -110,7 +110,7 @@ export default function PlansV3Page() {
   const [currentPlan] = useState<PlanTier>("CEven Grow");
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-6">
       {/* Header */}
       <div className="text-center">
         <h1 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2D1810]">
@@ -119,7 +119,7 @@ export default function PlansV3Page() {
         <p className="mt-2 text-sm text-[#2D1810]/50">
           Everything you need to manage your childcare centre, delight parents, and grow your business.
         </p>
-        <div className="mt-4 inline-flex items-center gap-3 rounded-full border border-black/[0.07] bg-white px-5 py-2 text-xs font-medium text-[#2D1810]/70">
+        <div className="mt-4 inline-flex items-center gap-3 rounded-full bg-[#F5EDD8]/60 px-5 py-2 text-xs font-medium text-[#2D1810]/70">
           <span>14-day free trial</span>
           <span className="text-black/20">|</span>
           <span>No credit card required</span>
@@ -135,10 +135,10 @@ export default function PlansV3Page() {
           return (
             <div
               key={plan.name}
-              className={`relative flex flex-col gap-5 rounded-2xl border p-6 ${
+              className={`relative flex flex-col gap-5 rounded-2xl p-6 ${
                 plan.highlighted
-                  ? "border-[#D4522F]/30 bg-[#FFF5F5]"
-                  : "border-black/[0.07] bg-white"
+                  ? "bg-[#D4522F]/[0.06]"
+                  : "bg-[#F5EDD8]/30"
               }`}
             >
               {plan.highlighted && (
@@ -168,7 +168,8 @@ export default function PlansV3Page() {
                 <span className="text-sm text-[#2D1810]/50">/month</span>
               </div>
 
-              <div className="h-px bg-black/[0.07]" />
+              {/* Subtle divider using background instead of border */}
+              <div className="h-px bg-[#2D1810]/[0.06]" />
 
               <ul className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
                 {plan.features.map((feature) => (
@@ -184,10 +185,10 @@ export default function PlansV3Page() {
               <button
                 className={`mt-auto w-full rounded-lg py-3 text-sm font-bold transition-colors ${
                   isCurrent
-                    ? "border border-[#D4522F]/40 bg-[#D4522F]/10 text-[#D4522F] cursor-default"
+                    ? "bg-[#D4522F]/10 text-[#D4522F] cursor-default"
                     : plan.highlighted
                     ? "bg-[#D4522F] text-white hover:bg-[#B94427]"
-                    : "border border-[#4C1D95] text-[#4C1D95] hover:bg-[#4C1D95]/5"
+                    : "bg-[#4C1D95] text-white hover:bg-[#3B1673]"
                 }`}
                 disabled={isCurrent}
               >
@@ -202,9 +203,9 @@ export default function PlansV3Page() {
         })}
       </div>
 
-      {/* Feature Comparison */}
-      <div className="rounded-2xl border border-black/[0.07] bg-white">
-        <div className="border-b border-black/[0.07] px-6 py-4">
+      {/* Feature Comparison — flat, no borders */}
+      <div className="rounded-2xl bg-[#F5EDD8]/30">
+        <div className="px-6 py-4">
           <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2D1810]">
             Feature Comparison
           </h2>
@@ -212,7 +213,7 @@ export default function PlansV3Page() {
         <div className="overflow-x-auto">
           <table className="w-full border-collapse">
             <thead>
-              <tr className="border-b border-black/[0.07]">
+              <tr>
                 <th className="px-6 py-3 text-left text-sm font-semibold text-[#2D1810]">Feature</th>
                 <th className="px-6 py-3 text-left text-sm font-semibold text-[#4C1D95]">CEven Grow</th>
                 <th className="px-6 py-3 text-left text-sm font-semibold text-[#D4522F]">CEven Thrive</th>
@@ -220,7 +221,7 @@ export default function PlansV3Page() {
             </thead>
             <tbody>
               {COMPARISON_ROWS.map((row, i) => (
-                <tr key={row.feature} className={`border-b border-black/[0.04] ${i % 2 === 0 ? "bg-white" : "bg-[#F9F8F6]"}`}>
+                <tr key={row.feature} className={i % 2 === 0 ? "bg-white/60" : "bg-transparent"}>
                   <td className="px-6 py-3 text-sm text-[#2D1810]">{row.feature}</td>
                   <td className="px-6 py-3">
                     {row.grow === "✓" ? (
