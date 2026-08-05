@@ -10,7 +10,7 @@ export function TrialBanner() {
  if (dismissed) return null;
 
  return (
-  <div className="flex shrink-0 items-center gap-2 bg-[#C47B2C] px-4 py-2 text-center text-xs text-white lg:px-6">
+  <div className="flex shrink-0 items-center gap-2 bg-[#D4522F] px-4 py-2 text-center text-xs text-white lg:px-6">
     <Clock className="h-3.5 w-3.5 shrink-0 text-white" />
     <p className="min-w-0 flex-1 truncate">
       Your 14-day free trial ends in <strong className="font-bold">9 days</strong>. After that, choose a plan to keep your crèche running without interruption.{" "}
