@@ -548,26 +548,37 @@ export default function DirectoryPage() {
                 <tr className="border-b border-card-border bg-gray-50">
                   <th className="px-4 py-3 font-bold text-heading">App</th>
                   <th className="px-4 py-3 font-bold text-heading">Version</th>
+                  <th className="px-4 py-3 font-bold text-heading">Status</th>
                   <th className="px-4 py-3 font-bold text-heading">Description</th>
                   <th className="px-4 py-3 font-bold text-heading">CTA</th>
                 </tr>
               </thead>
               <tbody>
                 {[
-                  { app: "Super Admin", version: "v1", desc: "Platform console for internal operators", href: "/super-admin/dashboard" },
-                  { app: "Crèche Admin", version: "v1", desc: "Original crèche operator dashboard", href: "/admin/v1/dashboard" },
-                  { app: "Crèche Admin", version: "v2", desc: "Full operating system — payroll, compliance, AI, financials", href: "/admin/v2/dashboard" },
-                  { app: "Crèche Admin", version: "v3", desc: "CEO reimagining — new visual direction", href: "/admin/v3" },
-                  { app: "Parent App", version: "v1", desc: "Current build — AI assistant, settings, health/growth tracking", href: "/parent/home" },
-                  { app: "Parent App", version: "v2", desc: "Parent ↔ independent caregiver reimagining", href: "/parentv2/home" },
-                  { app: "Caregiver App", version: "v1", desc: "Crèche-staff build — daily workflows, ratings, settings", href: "/caregiver/home" },
-                  { app: "Caregiver App", version: "v2", desc: "Reimagined caregiver experience", href: "/caregiver/today" },
-                  { app: "Independent Caregiver", version: "v2", desc: "First build for independent caregivers", href: "/independent-caregiver" },
-                  { app: "Independent Tutor", version: "v2", desc: "First build for independent tutors", href: "/independent-tutor" },
+                  { app: "Super Admin", version: "v1", status: "Completed", desc: "Platform console for internal operators", href: "/super-admin/dashboard" },
+                  { app: "Crèche Admin", version: "v1", status: "Completed", desc: "Original crèche operator dashboard", href: "/admin/v1/dashboard" },
+                  { app: "Crèche Admin", version: "v2", status: "Completed", desc: "Full operating system — payroll, compliance, AI, financials", href: "/admin/v2/dashboard" },
+                  { app: "Crèche Admin", version: "v3", status: "In progress", desc: "CEO reimagining — new visual direction", href: "/admin/v3" },
+                  { app: "Parent App", version: "v1", status: "Completed", desc: "Current build — AI assistant, settings, health/growth tracking", href: "/parent/home" },
+                  { app: "Parent App", version: "v2", status: "In progress", desc: "Parent ↔ independent caregiver reimagining", href: "/parentv2/home" },
+                  { app: "Caregiver App", version: "v1", status: "Completed", desc: "Crèche-staff build — daily workflows, ratings, settings", href: "/caregiver/home" },
+                  { app: "Caregiver App", version: "v2", status: "In progress", desc: "Reimagined caregiver experience", href: "/caregiver/today" },
+                  { app: "Independent Caregiver", version: "v2", status: "In progress", desc: "First build for independent caregivers", href: "/independent-caregiver" },
+                  { app: "Independent Tutor", version: "v2", status: "In progress", desc: "First build for independent tutors", href: "/independent-tutor" },
                 ].map((row, i) => (
                   <tr key={i} className="border-b border-card-border last:border-0">
                     <td className="px-4 py-3 font-semibold text-heading">{row.app}</td>
                     <td className="px-4 py-3 text-muted-text">{row.version}</td>
+                    <td className="px-4 py-3">
+                      <span className={`inline-block rounded-full px-2.5 py-0.5 text-xs font-bold ${
+                        row.status === "Live" ? "bg-green-100 text-green-700" :
+                        row.status === "Completed" ? "bg-blue-100 text-blue-700" :
+                        row.status === "Approved" ? "bg-purple-100 text-purple-700" :
+                        "bg-amber-100 text-amber-700"
+                      }`}>
+                        {row.status}
+                      </span>
+                    </td>
                     <td className="px-4 py-3 text-muted-text">{row.desc}</td>
                     <td className="px-4 py-3">
                       <a
