@@ -528,6 +528,18 @@ export default function DirectoryPage() {
           </span>
         </div>
 
+        <div className="mt-6 flex flex-wrap items-center gap-3 text-xs text-muted-text">
+          <span className="font-bold text-heading">Status:</span>
+          <span className="inline-block rounded-full bg-green-100 px-2.5 py-0.5 font-bold text-green-700">Live</span>
+          <span>In production</span>
+          <span className="inline-block rounded-full bg-purple-100 px-2.5 py-0.5 font-bold text-purple-700">Approved</span>
+          <span>CEO approved, ready for production</span>
+          <span className="inline-block rounded-full bg-blue-100 px-2.5 py-0.5 font-bold text-blue-700">Completed</span>
+          <span>Design complete, awaiting CEO approval</span>
+          <span className="inline-block rounded-full bg-amber-100 px-2.5 py-0.5 font-bold text-amber-700">In progress</span>
+          <span>Design in progress</span>
+        </div>
+
         <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {NAV_CARDS.map((card) => (
             <a
@@ -573,7 +585,7 @@ export default function DirectoryPage() {
                   { app: "Independent Caregiver", version: "v2", status: "In progress", desc: "First build for independent caregivers", href: "/independent-caregiver" },
                   { app: "Independent Tutor", version: "v2", status: "In progress", desc: "First build for independent tutors", href: "/independent-tutor" },
                   { app: "Design System", version: "—", status: "In progress", desc: "Shared foundations & components", href: "/library" },
-                  { app: "Website", version: "—", status: "Completed", desc: "Public marketing site", href: "/" },
+                  { app: "Website", version: "—", status: "In progress", desc: "Public marketing site", href: "/" },
                 ].map((row, i) => (
                   <tr key={i} className="border-b border-card-border last:border-0">
                     <td className="px-4 py-3 font-semibold text-heading">{row.app}</td>
