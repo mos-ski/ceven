@@ -532,7 +532,7 @@ const inventoryStatsCards = [
 
 function StockLevelsTable({ onUpdate }: { onUpdate: (item: InventoryItem) => void }) {
   return (
-    <div className="overflow-hidden rounded-xl bg-white shadow-sm">
+    <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
       <div className="flex flex-wrap items-center justify-between gap-4 p-4">
         <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
           Stock Levels
@@ -606,7 +606,7 @@ function StockLevelsTable({ onUpdate }: { onUpdate: (item: InventoryItem) => voi
 
 function EquipmentRegisterTable() {
   return (
-    <div className="overflow-hidden rounded-xl bg-white shadow-sm">
+    <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
       <div className="flex flex-wrap items-center justify-between gap-4 p-4">
         <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
           Equipment Log
@@ -676,7 +676,7 @@ function EquipmentRegisterTable() {
 
 function OrdersTable() {
   return (
-    <div className="overflow-hidden rounded-xl bg-white shadow-sm">
+    <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
       <div className="flex flex-wrap items-center justify-between gap-4 p-4">
         <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
           Order History

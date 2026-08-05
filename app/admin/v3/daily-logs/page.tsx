@@ -207,7 +207,7 @@ export default function DailyLogsV3Page() {
       {/* Stats row */}
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         {statsCards.map((card) => (
-          <div key={card.title} className="rounded-2xl border border-black/[0.07] bg-white p-5">
+          <div key={card.title} className="rounded-2xl bg-[#F5EDD8]/30 p-5">
             <p className="text-xs font-bold uppercase tracking-wide text-[#2D1810]/50">{card.title}</p>
             <p className="mt-1.5 font-[family-name:var(--font-merriweather)] text-[1.85rem] font-bold leading-none text-[#2D1810]">
               {card.value}
@@ -217,7 +217,7 @@ export default function DailyLogsV3Page() {
       </div>
 
       {/* AI Insights Banner */}
-      <div className="flex items-center gap-3 rounded-xl border border-[#e0bfa0] bg-[#fdf6e8] px-4 py-3">
+      <div className="flex items-center gap-3 rounded-xl bg-[#fdf6e8] px-4 py-3">
         <span className="inline-flex items-center gap-1 rounded-full bg-[#e0bfa0] px-2 py-0.5 font-[family-name:var(--font-urbanist)] text-[10px] font-medium text-[#3b2513]">
           ✦ Insights
         </span>
@@ -228,7 +228,7 @@ export default function DailyLogsV3Page() {
       </div>
 
       {/* Table */}
-      <div className="overflow-hidden rounded-2xl border border-black/[0.07] bg-white">
+      <div className="overflow-hidden rounded-2xl bg-[#F5EDD8]/30">
         <div className="flex flex-wrap items-center justify-between gap-4 px-5 py-4">
           <span className="font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">
             Today&apos;s Report Status
@@ -266,9 +266,9 @@ export default function DailyLogsV3Page() {
                 ))}
               </tr>
             </thead>
-            <tbody className="bg-white">
+            <tbody>
               {dailyLogRows.map((row, i) => (
-                <tr key={i} className="border-t border-[#eaecf0]">
+                <tr key={i} className={i % 2 === 0 ? "bg-white/60" : "bg-transparent"}>
                   <td className="px-4 py-3">
                     <input type="checkbox" className="h-4 w-4 accent-[#3b2513]" />
                   </td>
@@ -320,7 +320,7 @@ export default function DailyLogsV3Page() {
             <div
               key={i}
               onClick={() => (row.status === "Done" || row.status === "Flag") && setViewingRow(row)}
-              className={`rounded-xl border border-[#eaecf0] p-3 ${row.status === "Done" || row.status === "Flag" ? "cursor-pointer" : ""}`}
+              className={`rounded-xl p-3 ${row.status === "Done" || row.status === "Flag" ? "cursor-pointer" : ""}`}
             >
               <div className="flex items-center justify-between">
                 <div>

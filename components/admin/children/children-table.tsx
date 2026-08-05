@@ -103,7 +103,7 @@ function ChildRow({
   return (
     <TableRow
       onClick={() => router.push(`/children/${child.id}`)}
-      className="cursor-pointer border-table-border"
+      className="cursor-pointer"
     >
       <TableCell className="w-10" onClick={(e) => e.stopPropagation()}>
         <Checkbox />
@@ -218,7 +218,7 @@ export function ChildrenTable() {
   }, [search, roomFilter, statusFilter]);
 
   return (
-    <div className="overflow-hidden rounded-xl bg-white shadow-sm">
+    <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
       <div className="flex flex-col gap-3 p-4">
         <div className="flex items-center justify-between">
           <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-heading">
@@ -297,7 +297,7 @@ export function ChildrenTable() {
           <Link
             key={child.id}
             href={`/children/${child.id}`}
-            className="flex items-center justify-between rounded-xl border border-[#eaecf0] p-3 transition-colors hover:bg-[#faf9f7]"
+            className="flex items-center justify-between rounded-xl bg-[#F5EDD8]/30 p-3 transition-colors hover:bg-[#faf9f7]"
           >
             <div className="flex items-center gap-3">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#edd9c0] font-[family-name:var(--font-urbanist)] text-xs font-bold text-[#3b2513]">

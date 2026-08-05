@@ -145,7 +145,7 @@ export function ExpensesTab() {
 
       {/* Reoccurring Bills + Budget vs Actual + Expense Breakdown */}
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-        <div className="rounded-xl bg-white p-4 shadow-sm">
+        <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
           <h2 className="mb-3 font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">
             Reoccurring Bills
           </h2>
@@ -161,13 +161,13 @@ export function ExpensesTab() {
             ))}
           </div>
         </div>
-        <div className="rounded-xl bg-white p-4 shadow-sm">
+        <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
           <h2 className="mb-3 font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">
             April Budget vs Actual Expense
           </h2>
           <BudgetVsActualChart />
         </div>
-        <div className="rounded-xl bg-white p-4 shadow-sm">
+        <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
           <h2 className="mb-3 font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">
             Expense Breakdown
           </h2>
@@ -176,7 +176,7 @@ export function ExpensesTab() {
       </div>
 
       {/* Expense Log */}
-      <div className="overflow-hidden rounded-xl bg-white shadow-sm">
+      <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
         <div className="flex flex-wrap items-center gap-2 px-4 py-4">
           <h3 className="font-[family-name:var(--font-merriweather)] font-bold text-[#2d1810]">Expense Log</h3>
           <div className="ml-auto flex items-center gap-3">

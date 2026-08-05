@@ -66,7 +66,7 @@ function RunPayrollModal({
   if (step === "success") {
     return (
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
-        <div className="flex w-full max-w-[480px] flex-col rounded-2xl bg-white shadow-2xl">
+        <div className="flex w-full max-w-[480px] flex-col rounded-2xl bg-white">
           <div className="flex flex-col items-center px-6 pt-10 pb-6 text-center gap-4">
             <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#ecfff8]">
               <CheckCircle2 className="size-8 text-[#009061]" />
@@ -94,7 +94,7 @@ function RunPayrollModal({
   if (step === "otp") {
     return (
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
-        <div className="flex w-full max-w-[480px] flex-col rounded-2xl bg-white shadow-2xl">
+        <div className="flex w-full max-w-[480px] flex-col rounded-2xl bg-white">
           <div className="flex items-start justify-between border-b border-[#eaecf0] px-6 pt-6 pb-4">
             <div>
               <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
@@ -153,7 +153,7 @@ function RunPayrollModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
-      <div className="flex w-full max-w-[480px] flex-col rounded-2xl bg-white shadow-2xl">
+      <div className="flex w-full max-w-[480px] flex-col rounded-2xl bg-white">
         <div className="flex items-start justify-between border-b border-[#eaecf0] px-6 pt-6 pb-4">
           <div>
             <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
@@ -274,7 +274,7 @@ function RunPayrollModal({
 function NewSalarySetupModal({ onClose }: { onClose: () => void }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
-      <div className="flex w-full max-w-[480px] flex-col rounded-2xl bg-white shadow-2xl">
+      <div className="flex w-full max-w-[480px] flex-col rounded-2xl bg-white">
         <div className="flex items-start justify-between border-b border-[#eaecf0] px-6 pt-6 pb-4">
           <div>
             <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
@@ -394,7 +394,7 @@ function NewSalarySetupModal({ onClose }: { onClose: () => void }) {
 
 function PayrollHistoryTable() {
   return (
-    <div className="overflow-hidden rounded-xl bg-white shadow-sm">
+    <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
       <div className="flex flex-wrap items-center justify-between gap-3 p-4">
         <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
           Payroll History
@@ -476,7 +476,7 @@ function SalarySetupRow({ setup }: { setup: SalarySetup }) {
 
 function SalarySetupTable() {
   return (
-    <div className="overflow-hidden rounded-xl bg-white shadow-sm">
+    <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
       <div className="flex flex-wrap items-center justify-between gap-3 p-4">
         <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
           Salary Setup
@@ -558,7 +558,7 @@ function ThisMonthPaymentFlow({ onOpenModal }: { onOpenModal: (ids: string[], to
     <div className="space-y-4">
       {/* Selected total bar */}
       {selected.size > 0 && (
-        <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-[#e6ebf3] bg-white p-4 shadow-sm">
+        <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl bg-[#F5EDD8]/30 p-4">
           <div className="flex items-center gap-4">
             <span className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
               {selected.size} staff selected
@@ -578,7 +578,7 @@ function ThisMonthPaymentFlow({ onOpenModal }: { onOpenModal: (ids: string[], to
       )}
 
       {/* Staff payment list */}
-      <div className="overflow-hidden rounded-xl bg-white shadow-sm">
+      <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
         <div className="flex flex-wrap items-center justify-between gap-3 p-4">
           <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
             Staff Payment List

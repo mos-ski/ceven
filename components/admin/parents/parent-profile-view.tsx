@@ -40,7 +40,7 @@ function getInitials(name: string) {
 
 function ActivityLogTab() {
   return (
-    <div className="overflow-hidden rounded-xl bg-white shadow-sm">
+    <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
       <div className="flex items-center justify-between px-4 py-4">
         <h3 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">History</h3>
         <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Filter by: Date</span>
@@ -86,7 +86,7 @@ function ActivityLogTab() {
 
 function PaymentHistoryTab() {
   return (
-    <div className="overflow-hidden rounded-xl bg-white shadow-sm">
+    <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
       <div className="flex items-center justify-between px-4 py-4">
         <h3 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">Payment History</h3>
         <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Sort by: Date • All type</span>

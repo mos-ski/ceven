@@ -190,7 +190,6 @@ function AIChatPanel({ onClose }: { onClose?: () => void }) {
 
       {/* Quick prompts */}
       <div className="flex shrink-0 flex-wrap gap-2 px-4 py-3">
-        <div className="h-px w-full bg-black/[0.06] -mb-3 -mt-0" />
         {QUICK_PROMPTS.map((prompt) => (
           <button
             key={prompt}
@@ -203,7 +202,7 @@ function AIChatPanel({ onClose }: { onClose?: () => void }) {
       </div>
 
       {/* Input */}
-      <div className="flex shrink-0 items-center gap-2 border-t border-black/[0.07] px-4 py-3">
+      <div className="flex shrink-0 items-center gap-2 px-4 py-3">
         <input
           type="text"
           value={inputValue}
@@ -254,13 +253,13 @@ export default function AICommandCenterV3Page() {
           </div>
 
           {/* Staff & Finance Intelligence */}
-          <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
+          <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
             <div className="mb-4">
               <SectionBadge>Staff &amp; Finance Intelligence</SectionBadge>
             </div>
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
               {/* Staff Compliance */}
-              <div className="rounded-xl border border-black/[0.07] p-4">
+              <div className="rounded-xl bg-[#F5EDD8]/50 p-4">
                 <p className="mb-3 text-sm font-bold text-[#2D1810]">Staff Compliance</p>
                 <div className="flex flex-col gap-3">
                   {STAFF_COMPLIANCE.map((staff) => (
@@ -288,7 +287,7 @@ export default function AICommandCenterV3Page() {
               </div>
 
               {/* Outstanding Payments */}
-              <div className="rounded-xl border border-black/[0.07] p-4">
+              <div className="rounded-xl bg-[#F5EDD8]/50 p-4">
                 <p className="mb-3 text-sm font-bold text-[#2D1810]">Outstanding Payments</p>
                 <div className="flex flex-col gap-3">
                   {OUTSTANDING_PAYMENTS.map((p) => (
@@ -304,13 +303,13 @@ export default function AICommandCenterV3Page() {
               </div>
 
               {/* Quick Templates */}
-              <div className="rounded-xl border border-black/[0.07] p-4">
+              <div className="rounded-xl bg-[#F5EDD8]/50 p-4">
                 <p className="mb-3 text-sm font-bold text-[#2D1810]">Quick Templates</p>
                 <div className="flex flex-col gap-2">
                   {QUICK_TEMPLATES.map((label) => (
                     <button
                       key={label}
-                      className="rounded-lg border border-black/[0.07] bg-[#FAF2E1] p-3 text-left hover:border-[#C47B2C]"
+                      className="rounded-lg bg-[#FAF2E1] p-3 text-left hover:bg-[#C47B2C]/10"
                     >
                       <p className="text-xs font-medium text-[#2D1810]">{label}</p>
                       <p className="text-[10px] text-[#C47B2C]">Use template</p>
@@ -332,7 +331,7 @@ export default function AICommandCenterV3Page() {
       <button
         onClick={() => setChatOpen(true)}
         aria-label="Open chat"
-        className="fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#1E2D4A] to-[#2D1810] text-[#F5EDD8] shadow-lg xl:hidden"
+        className="fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#1E2D4A] to-[#2D1810] text-[#F5EDD8] xl:hidden"
       >
         <Bot className="h-6 w-6" />
       </button>

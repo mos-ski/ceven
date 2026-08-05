@@ -32,7 +32,7 @@ export default function AnnouncementsV3Page() {
 
       <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
         {/* Send Announcement form */}
-        <div className="flex flex-col gap-4 rounded-2xl border border-black/[0.07] bg-white p-5">
+        <div className="flex flex-col gap-4 rounded-2xl bg-[#F5EDD8]/30 p-5">
           <p className="text-sm font-bold text-[#2D1810]">Send Announcement</p>
 
           <div>
@@ -120,7 +120,7 @@ export default function AnnouncementsV3Page() {
                     setSubject(t.label);
                     setMessage(t.excerpt);
                   }}
-                  className="flex flex-col gap-1 rounded-xl border border-black/[0.08] p-3 text-left hover:border-[#C47B2C] hover:bg-[#FAF2E1]"
+                  className="flex flex-col gap-1 rounded-xl bg-[#F5EDD8]/50 p-3 text-left hover:bg-[#FAF2E1]"
                 >
                   <p className="text-sm font-semibold text-[#2D1810]">{t.label}</p>
                   <p className="line-clamp-2 text-xs text-[#2D1810]/50">{t.excerpt}</p>
@@ -138,11 +138,11 @@ export default function AnnouncementsV3Page() {
         </div>
 
         {/* Sent history */}
-        <div className="flex flex-col gap-4 rounded-2xl border border-black/[0.07] bg-white p-5">
+        <div className="flex flex-col gap-4 rounded-2xl bg-[#F5EDD8]/30 p-5">
           <p className="text-sm font-bold text-[#2D1810]">Sent Announcements</p>
           <div className="flex flex-col gap-3">
             {ANNOUNCEMENT_LOG.map((a) => (
-              <div key={a.id} className="rounded-xl border border-black/[0.08] p-4">
+              <div key={a.id} className="rounded-xl bg-[#F5EDD8]/50 p-4">
                 <div className="flex items-center justify-between gap-2">
                   <p className="text-sm font-bold text-[#2D1810]">{a.title}</p>
                   <span className="shrink-0 font-mono text-[10px] text-[#2D1810]/40">{a.date}</span>

@@ -59,7 +59,7 @@ function RecordNewModal({ subTab, onClose }: { subTab: ComplianceSubTab; onClose
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
-      <div className="flex w-full max-w-[480px] flex-col rounded-2xl bg-white shadow-2xl">
+      <div className="flex w-full max-w-[480px] flex-col rounded-2xl bg-white">
         <div className="flex items-start justify-between border-b border-[#eaecf0] px-6 pt-6 pb-4">
           <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
             {titleBySubTab[subTab]}
@@ -165,7 +165,7 @@ function FilterDropdown({ label }: { label: string }) {
 
 function DbsPoliceChecksTable() {
   return (
-    <div className="overflow-hidden rounded-xl bg-white shadow-sm">
+    <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
       <div className="flex flex-wrap items-center justify-between gap-3 p-4">
         <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
           DBS/Police Check Records
@@ -226,7 +226,7 @@ function DbsPoliceChecksTable() {
 function FireSafetyDrillTable() {
   const nextDrillNote = "Next drill was due April 14, 2025 (8 weeks interval).";
   return (
-    <div className="overflow-hidden rounded-xl bg-white shadow-sm">
+    <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
       <div className="flex flex-wrap items-center justify-between gap-3 p-4">
         <div>
           <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
@@ -284,7 +284,7 @@ function FireSafetyDrillTable() {
 
 function FoodHygieneTable() {
   return (
-    <div className="overflow-hidden rounded-xl bg-white shadow-sm">
+    <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
       <div className="flex flex-wrap items-center justify-between gap-3 p-4">
         <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">Food Hygiene</h2>
       </div>
@@ -335,7 +335,7 @@ function FoodHygieneTable() {
 
 function RiskAssessmentTable() {
   return (
-    <div className="overflow-hidden rounded-xl bg-white shadow-sm">
+    <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
       <div className="flex flex-wrap items-center justify-between gap-3 p-4">
         <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">Risk Assessment</h2>
       </div>

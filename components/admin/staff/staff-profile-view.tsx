@@ -177,7 +177,7 @@ export function StaffProfileView({ staff }: { staff: StaffMember }) {
           </div>
 
           {/* Log History Table */}
-          <div className="overflow-hidden rounded-xl bg-white shadow-sm">
+          <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
             <div className="flex items-center justify-between p-4">
               <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
                 Log History

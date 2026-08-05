@@ -38,7 +38,7 @@ function StatCard({
   trend: "up" | "down" | "neutral";
 }) {
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-black/[0.07] bg-white p-4">
+    <div className="relative overflow-hidden rounded-2xl bg-[#F5EDD8]/30 p-4">
       <p className="text-xs font-bold uppercase tracking-wide text-[#2D1810]/50">{label}</p>
       <p className="mt-1.5 font-[family-name:var(--font-merriweather)] text-[1.85rem] font-bold leading-none text-[#2D1810]">
         {value}
@@ -57,7 +57,7 @@ function StatCard({
 function PLColumn({ title, lines, tint }: { title: string; lines: typeof PL_INCOME; tint: string }) {
   return (
     <div>
-      <p className="mb-2 border-b border-black/[0.08] pb-1.5 text-xs font-bold uppercase tracking-wide text-[#2D1810]/50">
+      <p className="mb-2 pb-1.5 text-xs font-bold uppercase tracking-wide text-[#2D1810]/50">
         {title}
       </p>
       <div className="flex flex-col gap-2">
@@ -65,7 +65,7 @@ function PLColumn({ title, lines, tint }: { title: string; lines: typeof PL_INCO
           <div
             key={line.label}
             className={`flex items-center justify-between text-sm ${
-              line.bold ? "border-t border-black/[0.08] pt-2 font-bold text-[#2D1810]" : "text-[#2D1810]/70"
+              line.bold ? "pt-2 font-bold text-[#2D1810]" : "text-[#2D1810]/70"
             }`}
           >
             <span>{line.label}</span>
@@ -83,7 +83,7 @@ function PLSummarySection() {
   const netProfit = REPORT_SUMMARY.find((s) => s.label === "Net Profit");
   return (
     <div className="flex flex-col gap-5">
-      <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
+      <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
         <p className="mb-3 text-sm font-bold text-[#2D1810]">Profit &amp; Loss</p>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           <PLColumn title="Income" lines={PL_INCOME} tint="#2A8A52" />
@@ -91,7 +91,7 @@ function PLSummarySection() {
         </div>
       </div>
       {netProfit && (
-        <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
+        <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
           <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl bg-[#FAF2E1] p-4">
             <div>
               <p className="text-sm font-bold text-[#2D1810]">Net Result: This Month</p>
@@ -109,12 +109,12 @@ function PLSummarySection() {
 
 function RevenueBreakdownSection() {
   return (
-    <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
+    <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
       <p className="mb-3 text-sm font-bold text-[#2D1810]">Revenue by Room</p>
       <div className="overflow-x-auto">
         <table className="w-full border-collapse text-sm">
           <thead>
-            <tr className="border-b border-black/[0.08] text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
+            <tr className="text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
               <th className="pb-2 pr-3 font-semibold">Room</th>
               <th className="pb-2 pr-3 font-semibold">Children</th>
               <th className="pb-2 pr-3 font-semibold">Plan</th>
@@ -126,7 +126,7 @@ function RevenueBreakdownSection() {
           </thead>
           <tbody>
             {ROOM_PLAN_REVENUE.map((r) => (
-              <tr key={r.id} className="border-b border-black/[0.05] last:border-0">
+              <tr key={r.id} className={Number(r.id) % 2 === 0 ? "bg-white/60" : "bg-transparent"}>
                 <td className="py-2.5 pr-3 font-semibold text-[#2D1810]">{r.room}</td>
                 <td className="py-2.5 pr-3 text-[#2D1810]/70">{r.children}</td>
                 <td className="whitespace-pre-line py-2.5 pr-3 text-[#2D1810]/70">{r.plan}</td>
@@ -150,7 +150,7 @@ function RevenueBreakdownSection() {
 
 function CostAnalysisSection() {
   return (
-    <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
+    <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
       <p className="mb-3 text-sm font-bold text-[#2D1810]">Cost Analysis: Share of Total Expense</p>
       <div className="flex flex-col gap-3">
         {EXPENSE_BREAKDOWN.map((segment) => {
@@ -201,14 +201,14 @@ export default function FinancialReportsV3Page() {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-2 border-b border-black/[0.08]">
+      <div className="flex gap-2">
         {TABS.map((t) => (
           <button
             key={t}
             onClick={() => setTab(t)}
-            className={`px-3 py-2 text-sm font-semibold transition-colors ${
+            className={`rounded-lg px-3 py-2 text-sm font-semibold transition-colors ${
               tab === t
-                ? "border-b-2 border-[#C47B2C] text-[#2D1810]"
+                ? "bg-[#C47B2C]/10 text-[#2D1810]"
                 : "text-[#2D1810]/50 hover:text-[#2D1810]"
             }`}
           >

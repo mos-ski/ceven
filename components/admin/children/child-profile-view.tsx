@@ -217,7 +217,7 @@ function ActivityLogTab({ child }: { child: Child }) {
       </div>
 
       {/* Log History table */}
-      <div className="overflow-hidden rounded-xl bg-white shadow-sm">
+      <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
         <div className="flex items-center gap-3 px-4 py-4">
           <h3 className="font-[family-name:var(--font-merriweather)] font-bold text-[#2d1810]">Log History</h3>
           <div className="ml-auto flex items-center gap-3">
@@ -364,7 +364,7 @@ function PaymentHistoryTab() {
       </div>
 
       {/* Table */}
-      <div className="overflow-hidden rounded-xl bg-white shadow-sm">
+      <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
         {/* Desktop table */}
         <table className="hidden w-full border-collapse lg:table">
           <thead>
@@ -487,7 +487,7 @@ function ContactTab({ child }: { child: Child }) {
   ];
 
   return (
-    <div className="overflow-hidden rounded-xl bg-white shadow-sm">
+    <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
       <div className="flex items-center gap-3 px-4 py-4">
         <h3 className="font-[family-name:var(--font-merriweather)] font-bold text-[#2d1810]">Authorized Persons</h3>
         <div className="ml-auto">

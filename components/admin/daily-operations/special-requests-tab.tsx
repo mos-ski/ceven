@@ -279,7 +279,7 @@ export function SpecialRequestsTab() {
       </div>
 
       {/* Table card */}
-      <div className="overflow-hidden rounded-xl bg-white shadow-sm">
+      <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
         {/* Toolbar */}
         <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-4">
           <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">

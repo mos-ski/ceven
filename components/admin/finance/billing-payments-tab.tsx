@@ -130,7 +130,7 @@ export function BillingPaymentsTab() {
 
       {/* Chart row */}
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-        <div className="rounded-xl bg-white p-4 shadow-sm lg:col-span-2">
+        <div className="rounded-xl bg-[#F5EDD8]/30 p-4 lg:col-span-2">
           <div className="mb-2 flex items-center justify-between">
             <h2 className="font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">
               Collection Progress & Trend
@@ -148,7 +148,7 @@ export function BillingPaymentsTab() {
             ))}
           </div>
         </div>
-        <div className="rounded-xl bg-white p-4 shadow-sm">
+        <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
           <h2 className="mb-3 font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">
             Payment Status Breakdown
           </h2>
@@ -157,7 +157,7 @@ export function BillingPaymentsTab() {
       </div>
 
       {/* Invoice Tracking */}
-      <div className="overflow-hidden rounded-xl bg-white shadow-sm">
+      <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
         <div className="flex flex-wrap items-center gap-2 px-4 py-4">
           <h3 className="font-[family-name:var(--font-merriweather)] font-bold text-[#2d1810]">Invoice Tracking</h3>
           <div className="ml-auto flex items-center gap-3">

@@ -20,9 +20,9 @@ type SubTab = "DBS/Police Checks" | "Fire & Safety Drill" | "Food Hygiene" | "Ri
 const SUB_TABS: SubTab[] = ["DBS/Police Checks", "Fire & Safety Drill", "Food Hygiene", "Risk Assessment"];
 
 const DBS_STATUS_STYLES: Record<DbsCheckStatus, string> = {
-  Valid: "bg-[#EAF6EE] text-[#1E7A3D] border border-[#1E7A3D]/25",
-  "Renew Soon": "bg-[#FDF1E3] text-[#C47B2C] border border-[#C47B2C]/30",
-  Expired: "bg-[#FBEAE6] text-[#D4522F] border border-[#D4522F]/25",
+  Valid: "bg-[#EAF6EE] text-[#1E7A3D]",
+  "Renew Soon": "bg-[#FDF1E3] text-[#C47B2C]",
+  Expired: "bg-[#FBEAE6] text-[#D4522F]",
 };
 
 const FOOD_STATUS_STYLES: Record<FoodHygieneStatus, string> = {
@@ -38,8 +38,8 @@ const RISK_LEVEL_STYLES: Record<RiskLevel, string> = {
 };
 
 const RISK_ACTION_STYLES: Record<RiskActionStatus, string> = {
-  Current: "bg-black/[0.04] text-[#2D1810]/60 border border-black/[0.08]",
-  "Review Due": "bg-[#FDF1E3] text-[#C47B2C] border border-[#C47B2C]/30",
+  Current: "bg-black/[0.04] text-[#2D1810]/60",
+  "Review Due": "bg-[#FDF1E3] text-[#C47B2C]",
 };
 
 function Th({ children }: { children: React.ReactNode }) {
@@ -106,15 +106,15 @@ export default function ComplianceV3Page() {
       </div>
 
       {/* Sub-tab nav + table card */}
-      <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
-        <div className="mb-4 flex overflow-x-auto border-b border-black/[0.08]">
+      <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
+        <div className="mb-4 flex overflow-x-auto">
           {SUB_TABS.map((tab) => (
             <button
               key={tab}
               onClick={() => setSubTab(tab)}
-              className={`whitespace-nowrap px-4 py-2 text-sm font-semibold transition-colors ${
+              className={`whitespace-nowrap rounded-lg px-4 py-2 text-sm font-semibold transition-colors ${
                 subTab === tab
-                  ? "border-b-2 border-[#C47B2C] text-[#2D1810]"
+                  ? "bg-[#C47B2C]/10 text-[#2D1810]"
                   : "text-[#2D1810]/40 hover:text-[#2D1810]"
               }`}
             >
@@ -127,7 +127,7 @@ export default function ComplianceV3Page() {
           <div className="overflow-x-auto">
             <table className="w-full min-w-[760px] border-collapse text-sm">
               <thead>
-                <tr className="border-b border-black/[0.08] text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
+                <tr className="text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
                   <Th>Staff</Th>
                   <Th>Role</Th>
                   <Th>Check Type</Th>
@@ -139,7 +139,7 @@ export default function ComplianceV3Page() {
               </thead>
               <tbody>
                 {DBS_POLICE_CHECKS.map((c) => (
-                  <tr key={c.id} className="border-b border-black/[0.05] last:border-0">
+                  <tr key={c.id} className={c.id.length % 2 === 0 ? "bg-white/60" : "bg-transparent"}>
                     <td className="py-2.5 pr-3 font-semibold text-[#2D1810]">{c.name}</td>
                     <Td>{c.role}</Td>
                     <Td>{c.checkType}</Td>
@@ -162,7 +162,7 @@ export default function ComplianceV3Page() {
           <div className="overflow-x-auto">
             <table className="w-full min-w-[760px] border-collapse text-sm">
               <thead>
-                <tr className="border-b border-black/[0.08] text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
+                <tr className="text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
                   <Th>Date</Th>
                   <Th>Time</Th>
                   <Th>Duration</Th>
@@ -174,7 +174,7 @@ export default function ComplianceV3Page() {
               </thead>
               <tbody>
                 {FIRE_SAFETY_DRILLS.map((d) => (
-                  <tr key={d.id} className="border-b border-black/[0.05] last:border-0">
+                  <tr key={d.id} className={d.id.length % 2 === 0 ? "bg-white/60" : "bg-transparent"}>
                     <td className="py-2.5 pr-3 font-semibold text-[#2D1810]">{d.date}</td>
                     <Td>{d.time}</Td>
                     <Td>{d.duration}</Td>
@@ -195,7 +195,7 @@ export default function ComplianceV3Page() {
           <div className="overflow-x-auto">
             <table className="w-full min-w-[760px] border-collapse text-sm">
               <thead>
-                <tr className="border-b border-black/[0.08] text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
+                <tr className="text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
                   <Th>Date</Th>
                   <Th>Meal</Th>
                   <Th>Fridge Temp</Th>
@@ -208,7 +208,7 @@ export default function ComplianceV3Page() {
               </thead>
               <tbody>
                 {FOOD_HYGIENE_LOGS.map((f) => (
-                  <tr key={f.id} className="border-b border-black/[0.05] last:border-0">
+                  <tr key={f.id} className={f.id.length % 2 === 0 ? "bg-white/60" : "bg-transparent"}>
                     <td className="py-2.5 pr-3 font-semibold text-[#2D1810]">{f.date}</td>
                     <Td>{f.meal}</Td>
                     <Td>{f.fridgeTemp}</Td>
@@ -230,7 +230,7 @@ export default function ComplianceV3Page() {
           <div className="overflow-x-auto">
             <table className="w-full min-w-[760px] border-collapse text-sm">
               <thead>
-                <tr className="border-b border-black/[0.08] text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
+                <tr className="text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
                   <Th>Area / Activity</Th>
                   <Th>Risk Level</Th>
                   <Th>Controls in Place</Th>
@@ -241,7 +241,7 @@ export default function ComplianceV3Page() {
               </thead>
               <tbody>
                 {RISK_ASSESSMENTS.map((r) => (
-                  <tr key={r.id} className="border-b border-black/[0.05] last:border-0">
+                  <tr key={r.id} className={r.id.length % 2 === 0 ? "bg-white/60" : "bg-transparent"}>
                     <td className="py-2.5 pr-3 font-semibold text-[#2D1810]">{r.area}</td>
                     <td className={`py-2.5 pr-3 text-sm font-semibold ${RISK_LEVEL_STYLES[r.riskLevel]}`}>
                       ● {r.riskLevel}

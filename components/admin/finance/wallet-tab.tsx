@@ -204,7 +204,7 @@ export default function WalletTab() {
       )}
 
       {/* Transaction History */}
-      <div className="overflow-hidden rounded-xl bg-white shadow-sm">
+      <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
         <div className="flex flex-wrap items-center gap-2 px-4 py-4">
           <h3 className="font-[family-name:var(--font-merriweather)] font-bold text-[#2d1810]">
             Transaction History
@@ -367,7 +367,7 @@ export default function WalletTab() {
       </div>
 
       {/* Bank Account Card */}
-      <div className="rounded-xl bg-white p-4 shadow-sm">
+      <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
         <div className="flex items-center justify-between">
           <h3 className="font-[family-name:var(--font-merriweather)] font-bold text-[#2d1810]">Bank Account</h3>
           <button

@@ -27,7 +27,7 @@ function MonthGrid() {
   ];
 
   return (
-    <div className="flex w-full flex-col rounded-2xl border border-[#d3d3d3] bg-white p-4 lg:w-[768px]">
+    <div className="flex w-full flex-col rounded-2xl bg-[#F5EDD8]/30 p-4 lg:w-[768px]">
       <div className="mb-4 flex items-center gap-4">
         <button aria-label="Previous month" className="text-[#2b3641] hover:text-[#3b2513]">
           <ChevronLeft className="size-5" />

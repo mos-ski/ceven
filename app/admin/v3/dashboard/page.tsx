@@ -97,7 +97,7 @@ function StatCard({
   subColor?: string;
 }) {
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-black/[0.07] bg-white p-4">
+    <div className="relative overflow-hidden rounded-2xl bg-[#F5EDD8]/30 p-4">
       <p className="text-xs font-bold uppercase tracking-wide text-[#2D1810]/50">{label}</p>
       <p className="mt-1.5 font-[family-name:var(--font-merriweather)] text-[1.85rem] font-bold leading-none text-[#2D1810]">
         {value}
@@ -168,7 +168,7 @@ export default function DashboardV3Page() {
       </div>
 
       {/* AI Daily Brief */}
-      <div className="rounded-2xl border border-[#C47B2C]/40 bg-white p-5">
+      <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
         <div className="mb-3 flex items-center justify-between">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-[#1E2D4A] to-[#2D1810] px-3 py-1.5 text-[10px] font-bold uppercase tracking-wide text-[#F5EDD8]">
             <Sparkles className="h-3 w-3 text-[#C47B2C]" /> Daily Brief
@@ -182,7 +182,7 @@ export default function DashboardV3Page() {
         </div>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
           {AI_INSIGHTS.map((insight) => (
-            <div key={insight.bold} className="relative rounded-xl border border-black/[0.07] bg-[#FAF2E1] p-3 pl-7">
+            <div key={insight.bold} className="relative rounded-xl bg-[#FAF2E1] p-3 pl-7">
               <span className="absolute left-3 top-4 h-2 w-2 rounded-sm" style={{ background: insight.color }} />
               <p className="text-xs leading-5 text-[#2D1810]">
                 <span className="font-bold">{insight.bold}</span> <span className="text-[#2D1810]/50">{insight.text}</span>
@@ -203,14 +203,14 @@ export default function DashboardV3Page() {
       </div>
 
       {/* Quick Actions */}
-      <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
+      <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
         <p className="mb-3 text-xs font-bold uppercase tracking-wide text-[#2D1810]/50">Quick Actions</p>
         <div className="grid grid-cols-3 gap-2.5 sm:grid-cols-5">
           {QUICK_ACTIONS.map(({ id, icon: Icon, label }) => (
             <button
               key={id}
               onClick={() => handleQuickAction(id)}
-              className="flex flex-col items-center gap-1.5 rounded-xl border border-black/[0.08] bg-[#F5EDD8] px-2 py-3.5 text-center transition-colors hover:border-[#C47B2C] hover:bg-[#C47B2C] hover:text-white"
+              className="flex flex-col items-center gap-1.5 rounded-xl bg-[#F5EDD8] px-2 py-3.5 text-center transition-colors hover:bg-[#C47B2C] hover:text-white"
             >
               <Icon className="h-[18px] w-[18px]" />
               <span className="text-[11px] font-semibold leading-tight">{label}</span>
@@ -221,7 +221,7 @@ export default function DashboardV3Page() {
 
       <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
         {/* Room Occupancy */}
-        <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
+        <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
           <div className="mb-3 flex items-center justify-between">
             <p className="text-sm font-bold text-[#2D1810]">Room Occupancy</p>
             <button onClick={() => router.push("/admin/v3/rooms")} className="text-xs font-bold text-[#3B2513] hover:opacity-70">
@@ -246,7 +246,7 @@ export default function DashboardV3Page() {
         </div>
 
         {/* Live Activity */}
-        <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
+        <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
           <div className="mb-1 flex items-center justify-between">
             <p className="text-sm font-bold text-[#2D1810]">Live Activity</p>
             <button onClick={() => router.push("/admin/v3/audit-trail")} className="text-xs font-bold text-[#3B2513] hover:opacity-70">
@@ -255,7 +255,7 @@ export default function DashboardV3Page() {
           </div>
           <div className="flex flex-col">
             {ACTIVITY_FEED.map((item, i) => (
-              <div key={i} className="flex items-start gap-3 border-b border-black/[0.05] py-2.5 last:border-0">
+              <div key={i} className="flex items-start gap-3 py-2.5">
                 <span className={`mt-1.5 h-2 w-2 shrink-0 rounded-full ${item.color}`} />
                 <div className="min-w-0 flex-1">
                   <p className="text-[13px] font-medium text-[#2D1810]">
@@ -270,7 +270,7 @@ export default function DashboardV3Page() {
       </div>
 
       {/* Outstanding Payments */}
-      <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
+      <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
         <div className="mb-3 flex items-center justify-between">
           <p className="text-sm font-bold text-[#2D1810]">Outstanding Payments</p>
           <button onClick={() => router.push("/admin/v3/billing")} className="text-xs font-bold text-[#3B2513] hover:opacity-70">
@@ -280,7 +280,7 @@ export default function DashboardV3Page() {
         <div className="overflow-x-auto">
           <table className="w-full border-collapse text-sm">
             <thead>
-              <tr className="border-b border-black/[0.08] text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
+              <tr className="text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
                 <th className="pb-2 pr-3 font-semibold">Child</th>
                 <th className="pb-2 pr-3 font-semibold">Parent</th>
                 <th className="pb-2 pr-3 font-semibold">Amount</th>
@@ -291,7 +291,7 @@ export default function DashboardV3Page() {
             </thead>
             <tbody>
               {OUTSTANDING_PAYMENTS.map((row) => (
-                <tr key={row.child} className="border-b border-black/[0.05] last:border-0">
+                <tr key={row.child} className={row.child.length % 2 === 0 ? "bg-white/60" : "bg-transparent"}>
                   <td className="py-2.5 pr-3 font-semibold text-[#2D1810]">{row.child}</td>
                   <td className="py-2.5 pr-3 text-[#2D1810]/70">{row.parent}</td>
                   <td className="py-2.5 pr-3 font-mono text-[#2D1810]">{row.amount}</td>

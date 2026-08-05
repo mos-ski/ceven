@@ -148,7 +148,7 @@ function EnquiryPreviewModal({
   return (
     <Dialog open={!!enquiry} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-[540px]" showCloseButton={false}>
-        <div className="flex items-center justify-between border-b border-[#eaecf0] px-6 py-4">
+        <div className="flex items-center justify-between px-6 py-4">
           <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
             Inquiry Preview
           </h2>
@@ -229,7 +229,8 @@ function EnquiryPreviewModal({
             )}
           </div>
         </div>
-        <div className="flex flex-wrap items-center justify-end gap-3 border-t border-[#eaecf0] px-6 py-4">
+        <div className="flex flex-wrap items-center justify-end gap-3 px-6 py-4">
+          <div className="h-px bg-black/[0.06] absolute top-0 left-0 right-0" />
           <button
             onClick={() => onAction("request-info")}
             className="h-11 rounded-lg border border-[#d0d5dd] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810] hover:bg-[#f9fafb]"
@@ -302,14 +303,15 @@ function PipelineActionModal({
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-[540px]" showCloseButton={false}>
-        <div className="flex items-center justify-between border-b border-[#eaecf0] px-6 py-4">
+        <div className="flex items-center justify-between px-6 py-4">
           <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">{title}</h2>
           <button onClick={() => onOpenChange(false)} className="text-[#6b7280] hover:text-[#2d1810]">
             <X className="size-6" />
           </button>
         </div>
         <div className="max-h-[70vh] space-y-4 overflow-y-auto px-6 py-5">{fields}</div>
-        <div className="flex items-center justify-end gap-3 border-t border-[#eaecf0] px-6 py-4">
+        <div className="flex items-center justify-end gap-3 px-6 py-4">
+          <div className="h-px bg-black/[0.06] absolute top-0 left-0 right-0" />
           <button
             onClick={() => onOpenChange(false)}
             className="h-11 rounded-lg border border-[#d0d5dd] px-5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810] hover:bg-[#f9fafb]"
@@ -342,7 +344,7 @@ function DeclineReasonModal({
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-[492px]" showCloseButton={false}>
-        <div className="flex items-center justify-between border-b border-[#eaecf0] px-6 py-4">
+        <div className="flex items-center justify-between px-6 py-4">
           <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
             Decline request
           </h2>
@@ -367,7 +369,8 @@ function DeclineReasonModal({
             <TextAreaField placeholder="Type here..." rows={4} />
           </div>
         </div>
-        <div className="flex items-center justify-end gap-3 border-t border-[#eaecf0] px-6 py-4">
+        <div className="flex items-center justify-end gap-3 px-6 py-4">
+          <div className="h-px bg-black/[0.06] absolute top-0 left-0 right-0" />
           <button
             onClick={() => onOpenChange(false)}
             className="h-11 rounded-lg border border-[#d0d5dd] px-5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810] hover:bg-[#f9fafb]"
@@ -400,7 +403,7 @@ function RequestInfoModal({
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-[492px]" showCloseButton={false}>
-        <div className="flex items-center justify-between border-b border-[#eaecf0] px-6 py-4">
+        <div className="flex items-center justify-between px-6 py-4">
           <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
             Request Additional Information
           </h2>
@@ -414,7 +417,8 @@ function RequestInfoModal({
           </p>
           <TextAreaField placeholder="e.g. Please share the child's immunization records..." rows={6} />
         </div>
-        <div className="flex items-center justify-end gap-3 border-t border-[#eaecf0] px-6 py-4">
+        <div className="flex items-center justify-end gap-3 px-6 py-4">
+          <div className="h-px bg-black/[0.06] absolute top-0 left-0 right-0" />
           <button
             onClick={() => onOpenChange(false)}
             className="h-11 flex-1 rounded-lg border border-[#d0d5dd] font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810] hover:bg-[#f9fafb]"
@@ -439,7 +443,7 @@ function NewEnquiryModal({ open, onOpenChange, onSubmit }: { open: boolean; onOp
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-[640px]" showCloseButton={false}>
-        <div className="flex items-center justify-between border-b border-[#eaecf0] px-6 py-4">
+        <div className="flex items-center justify-between px-6 py-4">
           <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">New Enquiry</h2>
           <button onClick={() => onOpenChange(false)} className="text-[#6b7280] hover:text-[#2d1810]">
             <X className="size-6" />
@@ -474,7 +478,8 @@ function NewEnquiryModal({ open, onOpenChange, onSubmit }: { open: boolean; onOp
           </FieldGroup>
           <ModalCheckbox label="Send confirmation email to parent" defaultChecked />
         </div>
-        <div className="flex items-center justify-end gap-3 border-t border-[#eaecf0] px-6 py-4">
+        <div className="flex items-center justify-end gap-3 px-6 py-4">
+          <div className="h-px bg-black/[0.06] absolute top-0 left-0 right-0" />
           <button
             onClick={() => onOpenChange(false)}
             className="h-11 rounded-lg border border-[#d0d5dd] px-5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810] hover:bg-[#f9fafb]"
@@ -545,7 +550,7 @@ function OverviewStats() {
   const stats = ENROLMENT_WAITLIST_OVERVIEW;
   return (
     <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4">
-      <div className="rounded-xl border border-card-border bg-white p-4">
+      <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
         <p className="font-[family-name:var(--font-urbanist)] text-sm text-muted-text">Active Enquiries</p>
         <p className="mt-2 font-[family-name:var(--font-merriweather)] text-[32px] font-bold text-stat-heading">
           {stats.activeEnquiries}
@@ -554,21 +559,21 @@ function OverviewStats() {
           ↗ {stats.activeEnquiriesTrend}
         </p>
       </div>
-      <div className="rounded-xl border border-card-border bg-white p-4">
+      <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
         <p className="font-[family-name:var(--font-urbanist)] text-sm text-muted-text">Waitlisted</p>
         <p className="mt-2 font-[family-name:var(--font-merriweather)] text-[32px] font-bold text-stat-heading">
           {String(stats.waitlisted).padStart(2, "0")}
         </p>
         <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{stats.waitlistedByRoom}</p>
       </div>
-      <div className="rounded-xl border border-card-border bg-white p-4">
+      <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
         <p className="font-[family-name:var(--font-urbanist)] text-sm text-muted-text">Total Enrolled</p>
         <p className="mt-2 font-[family-name:var(--font-merriweather)] text-[32px] font-bold text-stat-heading">
           {stats.totalEnrolled}
         </p>
         <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#009061]">↗ {stats.totalEnrolledTrend}</p>
       </div>
-      <div className="rounded-xl border border-card-border bg-white p-4">
+      <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
         <p className="font-[family-name:var(--font-urbanist)] text-sm text-muted-text">Leavers</p>
         <p className="mt-2 font-[family-name:var(--font-merriweather)] text-[32px] font-bold text-stat-heading">
           {String(stats.leavers).padStart(2, "0")}
@@ -618,7 +623,7 @@ function EnrolmentTab() {
 
   return (
     <div className="space-y-4">
-      <div className="overflow-hidden rounded-xl bg-white shadow-sm">
+      <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
         <div className="flex flex-wrap items-center justify-between gap-3 p-4">
           <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
             Enrolment List
@@ -660,7 +665,7 @@ function EnrolmentTab() {
             </thead>
             <tbody className="bg-white">
               {ENROLMENT_RECORDS.map((r) => (
-                <tr key={r.id} className="border-t border-[#eaecf0]">
+                <tr key={r.id} className="hover:bg-[#faf9f7]">
                   <td className="px-4 py-3">
                     <input
                       type="checkbox"
@@ -696,7 +701,7 @@ function EnrolmentTab() {
         {/* Mobile cards */}
         <div className="flex flex-col gap-2 px-4 pb-4 lg:hidden">
           {ENROLMENT_RECORDS.map((r) => (
-            <div key={r.id} className="rounded-xl border border-[#eaecf0] p-3">
+            <div key={r.id} className="rounded-xl bg-[#F5EDD8]/30 p-3">
               <div className="flex items-center justify-between">
                 <span className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">{r.childName}</span>
                 <Badge variant="outline" className={ENROLMENT_STATUS_CLASS[r.status]}>
@@ -710,7 +715,8 @@ function EnrolmentTab() {
           ))}
         </div>
 
-        <div className="flex items-center justify-between border-t border-[#eaecf0] px-4 py-3">
+        <div className="flex items-center justify-between px-4 py-3">
+          <div className="h-px bg-black/[0.06] absolute top-0 left-0 right-0" />
           <button className="flex items-center gap-1 font-[family-name:var(--font-urbanist)] text-sm text-[#9ca3af]" disabled>
             <ChevronLeft className="size-4" />
             Previous
@@ -820,7 +826,7 @@ function EnquiryPipelineTab() {
 
   return (
     <>
-      <div className="overflow-hidden rounded-xl bg-white shadow-sm">
+      <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
         <div className="p-4">
           <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
             Enquiry Pipeline <span className="font-normal text-[#9ca3af]">, Kanban View</span>
@@ -1083,7 +1089,7 @@ const WAITLIST_STATUS_BADGE_CLASS: Record<WaitlistEntry["status"], string> = {
 
 function WaitlistRow({ entry, onView }: { entry: WaitlistEntry; onView: (entry: WaitlistEntry) => void }) {
   return (
-    <tr onClick={() => onView(entry)} className="cursor-pointer border-t border-[#eaecf0] hover:bg-[#faf9f7]">
+    <tr onClick={() => onView(entry)} className="cursor-pointer hover:bg-[#faf9f7]">
       <td className="w-10 px-4 py-3" onClick={(e) => e.stopPropagation()}>
         <input type="checkbox" className="size-4 accent-[#3b2513]" />
       </td>
@@ -1128,7 +1134,7 @@ function WaitlistTab() {
   });
 
   return (
-    <div className="overflow-hidden rounded-xl bg-white shadow-sm">
+    <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
       <div className="flex flex-wrap items-center justify-between gap-3 p-4">
         <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
           Waitlist <span className="font-normal text-[#9ca3af]">, By Room</span>
@@ -1182,7 +1188,7 @@ function WaitlistTab() {
           <div
             key={entry.id}
             onClick={() => setViewing(entry)}
-            className="cursor-pointer rounded-xl border border-[#eaecf0] p-3"
+            className="cursor-pointer rounded-xl bg-[#F5EDD8]/30 p-3"
           >
             <div className="flex items-center justify-between">
               <span className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">{entry.childName}</span>
@@ -1228,7 +1234,7 @@ function WaitlistTab() {
 
 function TrialSessionRow({ session, onView }: { session: TrialSession; onView: (session: TrialSession) => void }) {
   return (
-    <tr onClick={() => onView(session)} className="cursor-pointer border-t border-[#eaecf0] hover:bg-[#faf9f7]">
+    <tr onClick={() => onView(session)} className="cursor-pointer hover:bg-[#faf9f7]">
       <td className="w-10 px-4 py-3" onClick={(e) => e.stopPropagation()}>
         <input type="checkbox" className="size-4 accent-[#3b2513]" />
       </td>
@@ -1279,7 +1285,7 @@ function TrialSessionsTab() {
 
   return (
     <>
-      <div className="overflow-hidden rounded-xl bg-white shadow-sm">
+      <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
         <div className="flex flex-wrap items-center justify-between gap-3 p-4">
           <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
             Scheduled Trial Sessions
@@ -1346,7 +1352,7 @@ function TrialSessionsTab() {
             <div
               key={session.id}
               onClick={() => setViewing(session)}
-              className="cursor-pointer rounded-xl border border-[#eaecf0] p-3"
+              className="cursor-pointer rounded-xl bg-[#F5EDD8]/30 p-3"
             >
               <div className="flex items-center justify-between">
                 <span className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">{session.childName}</span>
@@ -1412,7 +1418,7 @@ function TrialSessionsTab() {
 
 function LeaverRow({ leaver, onView }: { leaver: LeaverRecord; onView: (leaver: LeaverRecord) => void }) {
   return (
-    <tr onClick={() => onView(leaver)} className="cursor-pointer border-t border-[#eaecf0] hover:bg-[#faf9f7]">
+    <tr onClick={() => onView(leaver)} className="cursor-pointer hover:bg-[#faf9f7]">
       <td className="w-10 px-4 py-3" onClick={(e) => e.stopPropagation()}>
         <input type="checkbox" className="size-4 accent-[#3b2513]" />
       </td>
@@ -1453,7 +1459,7 @@ function LeaversTab() {
   });
 
   return (
-    <div className="overflow-hidden rounded-xl bg-white shadow-sm">
+    <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
       <div className="flex flex-wrap items-center justify-between gap-3 p-4">
         <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
           Leavers <span className="font-normal text-[#9ca3af]">, This Academic Year</span>
@@ -1512,7 +1518,7 @@ function LeaversTab() {
           <div
             key={leaver.id}
             onClick={() => setViewing(leaver)}
-            className="cursor-pointer rounded-xl border border-[#eaecf0] p-3"
+            className="cursor-pointer rounded-xl bg-[#F5EDD8]/30 p-3"
           >
             <span className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">{leaver.childName}</span>
             <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">

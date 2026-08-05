@@ -91,7 +91,7 @@ export function LeaderboardTab() {
       </div>
 
       {/* Table */}
-      <div className="overflow-hidden rounded-xl bg-white shadow-sm">
+      <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
         <div className="hidden overflow-x-auto lg:block">
           <table className="w-full text-left">
             <thead>

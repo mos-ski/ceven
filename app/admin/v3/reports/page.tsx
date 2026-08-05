@@ -46,7 +46,7 @@ export default function ReportsV3Page() {
         <p className="mb-3 text-xs font-bold uppercase tracking-wide text-[#2D1810]/50">Generate a Report</p>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {REPORT_GENERATORS.map(({ type, icon: Icon, desc }) => (
-            <div key={type} className="rounded-2xl border border-black/[0.07] bg-white p-5">
+            <div key={type} className="rounded-2xl bg-[#F5EDD8]/30 p-5">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#F5EDD8] text-[#C47B2C]">
                 <Icon className="h-5 w-5" />
               </div>
@@ -63,12 +63,12 @@ export default function ReportsV3Page() {
       </div>
 
       {/* Scheduled reports */}
-      <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
+      <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
         <p className="mb-3 text-sm font-bold text-[#2D1810]">Scheduled Reports</p>
         <div className="overflow-x-auto">
           <table className="w-full border-collapse text-sm">
             <thead>
-              <tr className="border-b border-black/[0.08] text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
+              <tr className="text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
                 <th className="pb-2 pr-3 font-semibold">Report</th>
                 <th className="pb-2 pr-3 font-semibold">Cadence</th>
                 <th className="pb-2 pr-3 font-semibold">Recipient</th>
@@ -78,7 +78,7 @@ export default function ReportsV3Page() {
             </thead>
             <tbody>
               {SCHEDULED_REPORTS.map((r) => (
-                <tr key={r.name} className="border-b border-black/[0.05] last:border-0">
+                <tr key={r.name} className={r.name.length % 2 === 0 ? "bg-white/60" : "bg-transparent"}>
                   <td className="py-2.5 pr-3 font-semibold text-[#2D1810]">{r.name}</td>
                   <td className="py-2.5 pr-3 text-[#2D1810]/70">{r.cadence}</td>
                   <td className="py-2.5 pr-3 text-[#2D1810]/70">{r.recipient}</td>

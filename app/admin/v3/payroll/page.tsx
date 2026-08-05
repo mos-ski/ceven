@@ -22,9 +22,9 @@ function absenceDays(row: (typeof PAYROLL)[number]) {
 }
 
 const STATUS_STYLES: Record<PayrollStatus, string> = {
-  Paid: "bg-[#EAF6EE] text-[#1E7A3D] border border-[#1E7A3D]/25",
-  Pending: "bg-black/[0.04] text-[#2D1810]/60 border border-black/[0.08]",
-  Processing: "bg-[#FDF1E3] text-[#C47B2C] border border-[#C47B2C]/30",
+  Paid: "bg-[#EAF6EE] text-[#1E7A3D]",
+  Pending: "bg-black/[0.04] text-[#2D1810]/60",
+  Processing: "bg-[#FDF1E3] text-[#C47B2C]",
 };
 
 export default function PayrollV3Page() {
@@ -77,7 +77,7 @@ export default function PayrollV3Page() {
       </div>
 
       {/* Staff breakdown table */}
-      <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
+      <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
         <div className="mb-3 flex items-center justify-between">
           <p className="text-sm font-bold text-[#2D1810]">{CURRENT_PAYROLL_MONTH}: Staff Breakdown</p>
           <p className="text-xs text-[#2D1810]/40">Review each line before running payroll</p>
@@ -85,7 +85,7 @@ export default function PayrollV3Page() {
         <div className="overflow-x-auto">
           <table className="w-full min-w-[880px] border-collapse text-sm">
             <thead>
-              <tr className="border-b border-black/[0.08] text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
+              <tr className="text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
                 <th className="pb-2 pr-3 font-semibold">Staff</th>
                 <th className="pb-2 pr-3 font-semibold">Basic Salary</th>
                 <th className="pb-2 pr-3 font-semibold">Bonus</th>
@@ -99,7 +99,7 @@ export default function PayrollV3Page() {
             </thead>
             <tbody>
               {rows.map((row) => (
-                <tr key={row.id} className="border-b border-black/[0.05] last:border-0">
+                <tr key={row.id} className={Number(row.id) % 2 === 0 ? "bg-white/60" : "bg-transparent"}>
                   <td className="py-2.5 pr-3">
                     <p className="font-semibold text-[#2D1810]">{row.name}</p>
                     <p className="text-[11px] text-[#2D1810]/40">{row.role}</p>

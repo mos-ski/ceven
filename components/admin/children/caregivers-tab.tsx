@@ -24,7 +24,7 @@ function AddCaregiverModal({
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-[540px]" showCloseButton={false}>
-        <div className="flex items-center justify-between border-b border-[#eaecf0] px-6 py-4">
+        <div className="flex items-center justify-between px-6 py-4">
           <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
             Add Caregiver
           </h2>
@@ -32,6 +32,7 @@ function AddCaregiverModal({
             <X className="size-6" />
           </button>
         </div>
+        <div className="h-px bg-black/[0.06]" />
         <div className="space-y-4 px-6 py-5">
           <FieldGroup label="Select Caregiver" required>
             <SelectField options={["Mrs. Sarah Okonkwo", "Mr. Tunde Bakare", "Mrs. Ngozi Eze", "Mrs. Aisha Bello"]} placeholder="Select caregiver" />
@@ -43,7 +44,8 @@ function AddCaregiverModal({
             <SelectField options={ROOMS.map((r) => r.name)} placeholder="Select room" />
           </FieldGroup>
         </div>
-        <div className="flex items-center justify-end gap-3 border-t border-[#eaecf0] px-6 py-4">
+        <div className="flex items-center justify-end gap-3 px-6 py-4">
+          <div className="h-px bg-black/[0.06] absolute top-0 left-0 right-0" />
           <button
             onClick={() => onOpenChange(false)}
             className="h-11 rounded-lg border border-[#d0d5dd] px-5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810] hover:bg-[#f9fafb]"
@@ -68,7 +70,7 @@ export function CaregiversTab() {
 
   return (
     <div className="space-y-4">
-      <div className="overflow-hidden rounded-xl bg-white shadow-sm">
+      <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
         <div className="flex flex-wrap items-center justify-between gap-4 p-4">
           <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-heading">
             Caregivers
@@ -104,7 +106,7 @@ export function CaregiversTab() {
             </thead>
             <tbody className="bg-white">
               {CAREGIVERS.map((cg) => (
-                <tr key={cg.id} className="border-t border-table-border">
+                <tr key={cg.id}>
                   <td className="px-4 py-3">
                     <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-black">{cg.name}</p>
                     <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-otp-text">{cg.email}</p>
@@ -137,7 +139,7 @@ export function CaregiversTab() {
         {/* Mobile cards */}
         <div className="flex flex-col gap-2 px-4 pb-4 lg:hidden">
           {CAREGIVERS.map((cg) => (
-            <div key={cg.id} className="rounded-xl border border-[#eaecf0] p-3">
+            <div key={cg.id} className="rounded-xl bg-[#F5EDD8]/30 p-3">
               <div className="flex items-center justify-between">
                 <span className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-black">{cg.name}</span>
                 <Badge

@@ -146,7 +146,7 @@ export function FinancialReportsTab() {
 
       {/* P&L + Revenue Breakdown */}
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-        <div className="rounded-xl bg-white p-4 shadow-sm lg:col-span-2">
+        <div className="rounded-xl bg-[#F5EDD8]/30 p-4 lg:col-span-2">
           <div className="mb-3 flex items-center justify-between">
             <h2 className="font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">
               Profit &amp; Loss
@@ -206,7 +206,7 @@ export function FinancialReportsTab() {
             ))}
           </div>
         </div>
-        <div className="rounded-xl bg-white p-4 shadow-sm">
+        <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
           <h2 className="mb-3 font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">
             Revenue Breakdown
           </h2>
@@ -216,7 +216,7 @@ export function FinancialReportsTab() {
 
       {/* Revenue by Room Plan + Collection Efficiency */}
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-        <div className="overflow-hidden rounded-xl bg-white shadow-sm lg:col-span-2">
+        <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30 lg:col-span-2">
           <div className="flex flex-wrap items-center justify-between gap-2 p-4">
             <h2 className="font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">
               Revenue by Room Plan
@@ -315,7 +315,7 @@ export function FinancialReportsTab() {
             </button>
           </div>
         </div>
-        <div className="rounded-xl bg-white p-4 shadow-sm">
+        <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
           <h2 className="mb-3 font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">
             Collection Efficiency
           </h2>
@@ -332,7 +332,7 @@ export function FinancialReportsTab() {
 
       {/* Cash Flow Insight */}
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
-        <div className="rounded-xl bg-white p-4 shadow-sm lg:col-span-2">
+        <div className="rounded-xl bg-[#F5EDD8]/30 p-4 lg:col-span-2">
           <h2 className="mb-3 font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">
             Cash Flow Insight
           </h2>
@@ -342,7 +342,7 @@ export function FinancialReportsTab() {
           {CASH_FLOW_SUMMARY.map((s) => {
             const Icon = CASH_FLOW_ICON[s.label as keyof typeof CASH_FLOW_ICON];
             return (
-              <div key={s.label} className="flex items-center gap-3 rounded-xl bg-white p-4 shadow-sm">
+              <div key={s.label} className="flex items-center gap-3 rounded-xl bg-[#F5EDD8]/30 p-4">
                 <div className="flex size-9 shrink-0 items-center justify-center rounded-full border border-[#e6ebf3] text-[#3b2513]">
                   <Icon className="size-4" />
                 </div>

@@ -27,12 +27,13 @@ function CreateRoomModal({
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-[640px]" showCloseButton={false}>
-        <div className="flex items-center justify-between border-b border-[#eaecf0] px-6 py-4">
+        <div className="flex items-center justify-between px-6 py-4">
           <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">New Room</h2>
           <button onClick={() => onOpenChange(false)} className="text-[#6b7280] hover:text-[#2d1810]">
             <X className="size-6" />
           </button>
         </div>
+        <div className="h-px bg-black/[0.06]" />
         <div className="max-h-[70vh] space-y-4 overflow-y-auto px-6 py-5">
           <FieldGroup label="Room Name" required>
             <div className="flex gap-2">
@@ -63,7 +64,7 @@ function CreateRoomModal({
           <FieldGroup label="Assign Caregiver">
             <SelectField options={["Mrs. Sarah Okonkwo", "Mr. Tunde Bakare", "Mrs. Ngozi Eze", "Mrs. Aisha Bello"]} placeholder="Select" />
           </FieldGroup>
-          <div className="flex items-center justify-between rounded-lg border border-[#e6ebf3] p-3">
+          <div className="flex items-center justify-between rounded-lg bg-[#F5EDD8]/30 p-3">
             <div>
               <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">Enable Waitlist</p>
               <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
@@ -89,7 +90,8 @@ function CreateRoomModal({
             </FieldGroup>
           )}
         </div>
-        <div className="flex items-center justify-end gap-3 border-t border-[#eaecf0] px-6 py-4">
+        <div className="flex items-center justify-end gap-3 px-6 py-4">
+          <div className="h-px bg-black/[0.06] absolute top-0 left-0 right-0" />
           <button
             onClick={() => onOpenChange(false)}
             className="h-11 rounded-lg border border-[#d0d5dd] px-5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810] hover:bg-[#f9fafb]"
@@ -131,7 +133,7 @@ export function RoomsClassesTab() {
         {ROOMS.map((room) => {
           const pct = Math.round((room.enrolled / room.capacity) * 100);
           return (
-            <div key={room.id} className="rounded-xl border border-card-border bg-white p-4">
+            <div key={room.id} className="rounded-xl bg-[#F5EDD8]/30 p-4">
               <div className="flex items-center gap-3">
                 <div className="flex size-12 items-center justify-center rounded-full bg-[#edd9c0] text-2xl">
                   {room.icon}

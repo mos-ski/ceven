@@ -73,7 +73,7 @@ export default function WalletOnboardingWizard({ open, onComplete, onClose }: Pr
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-      <div className="mx-4 flex w-full max-w-[560px] flex-col overflow-hidden rounded-2xl bg-white shadow-2xl">
+      <div className="mx-4 flex w-full max-w-[560px] flex-col overflow-hidden rounded-2xl bg-white">
         {/* Header */}
         <div className="flex items-start justify-between border-b border-[#eaecf0] px-6 pb-4 pt-6">
           <div>

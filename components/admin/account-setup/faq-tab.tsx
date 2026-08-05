@@ -95,7 +95,8 @@ function FaqForm({
         />
       </div>
 
-      <DialogFooter className="border-t border-[#eaecf0] px-0 pt-4">
+      <DialogFooter className="px-0 pt-4">
+        <div className="h-px bg-black/[0.06] mb-4" />
         <DialogClose className="rounded-lg border border-[#d0d5dd] px-5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810] hover:bg-[#f9fafb]">
           Cancel
         </DialogClose>
@@ -171,7 +172,7 @@ function FaqRow({
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="rounded-xl border border-[#e6ebf3] bg-white">
+    <div className="rounded-xl bg-[#F5EDD8]/30">
       <div className="flex items-center gap-3 px-4 py-3">
         <GripVertical size={16} className="shrink-0 text-[#d0d5dd]" />
 
@@ -224,7 +225,8 @@ function FaqRow({
       </div>
 
       {expanded && (
-        <div className="border-t border-[#f3f4f6] px-4 py-3">
+        <div className="px-4 py-3">
+          <div className="h-px bg-black/[0.06] mb-3" />
           <p className="font-[family-name:var(--font-urbanist)] text-sm leading-relaxed text-[#6b7280]">
             {faq.answer}
           </p>
@@ -356,7 +358,7 @@ export function FaqTab() {
 
       {/* FAQ list */}
       {filtered.length === 0 ? (
-        <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-[#d0d5dd] py-16">
+        <div className="flex flex-col items-center justify-center rounded-xl py-16">
           <HelpCircle size={40} className="text-[#d0d5dd]" />
           <p className="mt-3 font-[family-name:var(--font-urbanist)] text-sm text-[#9ca3af]">
             No FAQs yet. Click &ldquo;Add FAQ&rdquo; to get started.

@@ -26,7 +26,7 @@ export function AuditTrailTab() {
         </div>
       </div>
 
-      <div className="overflow-hidden rounded-xl bg-white shadow-sm">
+      <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
         <div className="flex flex-col divide-y divide-[#eaecf0]">
           {AUDIT_LOG.map((entry) => (
             <div key={entry.id} className="flex gap-3 p-4">

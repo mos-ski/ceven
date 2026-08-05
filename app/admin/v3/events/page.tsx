@@ -39,9 +39,9 @@ const STATUS_BADGE_CLASS: Record<CalendarEventStatus, string> = {
 };
 
 const ACCENT_CARD_CLASS: Record<"navy" | "amber" | "green", string> = {
-  navy: "border-[#1E2D4A]/15 bg-[#1E2D4A]/[0.05]",
-  amber: "border-[#C47B2C]/20 bg-[#C47B2C]/[0.06]",
-  green: "border-[#2A8A52]/15 bg-[#2A8A52]/[0.05]",
+  navy: "bg-[#1E2D4A]/[0.05]",
+  amber: "bg-[#C47B2C]/[0.06]",
+  green: "bg-[#2A8A52]/[0.05]",
 };
 
 const MONTH_ABBR = CALENDAR_MONTH_LABEL.split(" ")[0]?.slice(0, 3).toUpperCase() ?? "";
@@ -58,7 +58,7 @@ export default function EventsV3Page() {
         </p>
       </div>
 
-      <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
+      <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
         <p className="mb-4 text-sm font-bold text-[#2D1810]">Upcoming Events</p>
         <div className="flex flex-col gap-3">
           {CALENDAR_EVENTS.map((event) => {
@@ -66,11 +66,11 @@ export default function EventsV3Page() {
             return (
               <div
                 key={event.id}
-                className={`rounded-xl border p-4 ${details ? ACCENT_CARD_CLASS[details.accent] : "border-black/[0.08] bg-[#F5EDD8]/40"}`}
+                className={`rounded-xl p-4 ${details ? ACCENT_CARD_CLASS[details.accent] : "bg-[#F5EDD8]/40"}`}
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex items-start gap-3">
-                    <div className="flex w-12 shrink-0 flex-col items-center rounded-lg bg-white px-2 py-1.5 shadow-sm">
+                    <div className="flex w-12 shrink-0 flex-col items-center rounded-lg bg-white px-2 py-1.5">
                       <span className="font-[family-name:var(--font-merriweather)] text-lg font-bold leading-none text-[#2D1810]">
                         {event.day}
                       </span>

@@ -351,6 +351,7 @@ function AskAdaPanel() {
           <span className="text-[rgba(45,24,16,0.5)]">Professional &amp; Warm</span>
           <button className="text-[#1f3345] underline">Personalize</button>
         </div>
+        <div className="h-px bg-black/[0.06] mt-1.5" />
       </div>
 
       <div className="flex-1 overflow-y-auto px-5 py-4">
@@ -385,7 +386,8 @@ function AskAdaPanel() {
         </div>
       </div>
 
-      <div className="flex shrink-0 flex-col gap-3 border-t border-[rgba(45,24,16,0.07)] px-5 py-3">
+      <div className="flex shrink-0 flex-col gap-3 px-5 py-3">
+        <div className="h-px bg-black/[0.06] mb-3" />
         <div className="flex flex-wrap gap-1">
           {ADA_SUGGESTED_PROMPTS.map((prompt) => (
             <button

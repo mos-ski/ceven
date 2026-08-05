@@ -39,7 +39,7 @@ function StatCard({
   sub: string;
 }) {
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-black/[0.07] bg-white p-4">
+    <div className="relative overflow-hidden rounded-2xl bg-[#F5EDD8]/30 p-4">
       <p className="text-xs font-bold uppercase tracking-wide text-[#2D1810]/50">{label}</p>
       <p className="mt-1.5 font-[family-name:var(--font-merriweather)] text-[1.85rem] font-bold leading-none text-[#2D1810]">
         {value}
@@ -87,7 +87,7 @@ export default function ParentsV3Page() {
         <StatCard Icon={PhoneMissed} label="Uncontacted Today" value={String(UNCONTACTED_TODAY).padStart(2, "0")} sub="No app activity yet" />
       </div>
 
-      <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
+      <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
         <div className="flex flex-col gap-3 pb-4 sm:flex-row sm:items-center sm:justify-between">
           <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2D1810]">
             Parent Directory
@@ -106,7 +106,7 @@ export default function ParentsV3Page() {
         <div className="overflow-x-auto">
           <table className="w-full border-collapse text-sm">
             <thead>
-              <tr className="border-b border-black/[0.08] text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
+              <tr className="text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
                 <th className="pb-2 pr-3 font-semibold">Parent</th>
                 <th className="pb-2 pr-3 font-semibold">Phone</th>
                 <th className="pb-2 pr-3 font-semibold">Children</th>
@@ -125,7 +125,7 @@ export default function ParentsV3Page() {
                 </tr>
               ) : (
                 filteredParents.map((parent) => (
-                  <tr key={parent.id} className="group border-b border-black/[0.05] last:border-0">
+                  <tr key={parent.id} className={`group ${parent.id.length % 2 === 0 ? "bg-white/60" : "bg-transparent"}`}>
                     <td className="py-3 pr-3">
                       <Link href={`/admin/v3/parents/${parent.id}`} className="flex items-center gap-3">
                         <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#EDD9C0] text-xs font-bold text-[#3B2513]">

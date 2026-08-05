@@ -78,7 +78,7 @@ export default function MessagesV3Page() {
 
       <div className="grid grid-cols-1 gap-5 lg:grid-cols-[340px_1fr]">
         {/* Inbox */}
-        <div className="flex flex-col rounded-2xl border border-black/[0.07] bg-white p-5">
+        <div className="flex flex-col rounded-2xl bg-[#F5EDD8]/30 p-5">
           <div className="mb-3 flex items-center justify-between">
             <p className="text-sm font-bold text-[#2D1810]">Inbox</p>
             <span className="rounded-full bg-[#C47B2C]/10 px-2 py-0.5 text-[11px] font-bold text-[#C47B2C]">
@@ -100,8 +100,8 @@ export default function MessagesV3Page() {
                 <button
                   key={msg.id}
                   onClick={() => handleSelect(msg)}
-                  className={`flex items-start gap-3 rounded-xl border px-3 py-2.5 text-left transition-colors ${
-                    isSelected ? "border-[#C47B2C]/40 bg-[#FAF2E1]" : "border-transparent hover:bg-[#F5EDD8]/60"
+                  className={`flex items-start gap-3 rounded-xl px-3 py-2.5 text-left transition-colors ${
+                    isSelected ? "bg-[#FAF2E1]" : "hover:bg-[#F5EDD8]/60"
                   }`}
                 >
                   <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#EDD9C0] text-xs font-bold text-[#3B2513]">
@@ -122,7 +122,7 @@ export default function MessagesV3Page() {
         </div>
 
         {/* Compose */}
-        <div className="flex flex-col rounded-2xl border border-black/[0.07] bg-white p-5">
+        <div className="flex flex-col rounded-2xl bg-[#F5EDD8]/30 p-5">
           <p className="mb-4 text-sm font-bold text-[#2D1810]">Compose Message</p>
           <div className="flex flex-col gap-4">
             <div>
@@ -157,7 +157,7 @@ export default function MessagesV3Page() {
             </div>
 
             {/* AI Suggested Message */}
-            <div className="rounded-xl border border-[#C47B2C]/30 bg-[#FAF2E1] p-4">
+            <div className="rounded-xl bg-[#FAF2E1] p-4">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-[#1E2D4A] to-[#2D1810] px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-[#F5EDD8]">
                 <Sparkles className="h-3 w-3 text-[#C47B2C]" /> Suggested Message
               </span>

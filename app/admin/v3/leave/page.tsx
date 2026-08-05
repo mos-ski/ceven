@@ -7,9 +7,9 @@ import { StatCardV3 } from "@/components/admin-v3/stat-card";
 import { ACTIVE_LEAVE, LEAVE_BALANCES, LEAVE_REQUESTS, type LeaveStatus } from "@/lib/mock-data/staff";
 
 const STATUS_STYLES: Record<LeaveStatus, string> = {
-  Approved: "bg-[#EAF6EE] text-[#1E7A3D] border border-[#1E7A3D]/25",
-  Pending: "bg-[#FDF1E3] text-[#C47B2C] border border-[#C47B2C]/30",
-  Rejected: "bg-[#FBEAE6] text-[#D4522F] border border-[#D4522F]/25",
+  Approved: "bg-[#EAF6EE] text-[#1E7A3D]",
+  Pending: "bg-[#FDF1E3] text-[#C47B2C]",
+  Rejected: "bg-[#FBEAE6] text-[#D4522F]",
 };
 
 // "Cover arranged" isn't tracked in the shared LEAVE_REQUESTS mock, derived deterministically

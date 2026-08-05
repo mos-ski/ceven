@@ -47,7 +47,7 @@ function RoleAccessSection() {
   const [editingRole, setEditingRole] = useState<RoleTemplate | null>(null);
 
   return (
-    <div className="overflow-hidden rounded-xl bg-white shadow-sm">
+    <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
       <div className="flex flex-wrap items-center justify-between gap-3 p-5">
         <p className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">Role & Access</p>
         <button
@@ -103,7 +103,7 @@ function RoleAccessSection() {
       {/* Mobile cards */}
       <div className="flex flex-col gap-2 p-4 lg:hidden">
         {ROLE_TEMPLATES.map((role) => (
-          <div key={role.id} className="rounded-xl border border-[#eaecf0] p-3">
+          <div key={role.id} className="rounded-xl bg-[#F5EDD8]/30 p-3">
             <div className="flex items-center justify-between">
               <span className="font-[family-name:var(--font-urbanist)] text-sm font-bold text-[#2d1810]">{role.name}</span>
               <span className={`rounded-full border px-2.5 py-0.5 font-[family-name:var(--font-urbanist)] text-xs ${STATUS_BADGE_CLASS[role.status]}`}>
@@ -275,12 +275,13 @@ function NewPlanModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
-      <div className="relative flex max-h-[90vh] w-full max-w-[640px] flex-col overflow-y-auto rounded-[20px] border-6 border-[#faf2e1] bg-white shadow-2xl">
-        <div className="sticky top-0 z-10 flex items-start justify-between border-b border-[#e6ebf3] bg-white px-6 py-5">
+      <div className="relative flex max-h-[90vh] w-full max-w-[640px] flex-col overflow-y-auto rounded-[20px] bg-white">
+        <div className="sticky top-0 z-10 flex items-start justify-between bg-white px-6 py-5">
           <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#171f26]">New Plan</h2>
           <button onClick={onClose} aria-label="Close modal" className="rounded p-1 text-[#6b7280] hover:text-[#2d1810]">
             <X className="size-5" />
           </button>
+          <div className="absolute bottom-0 left-0 right-0 h-px bg-black/[0.06]" />
         </div>
 
         <div className="flex flex-col gap-4 px-6 py-5">
@@ -318,7 +319,8 @@ function NewPlanModal({
           </div>
         </div>
 
-        <div className="sticky bottom-0 z-10 flex items-center justify-end gap-4 border-t border-[#e6ebf3] bg-white px-6 py-4">
+        <div className="sticky bottom-0 z-10 flex items-center justify-end gap-4 bg-white px-6 py-4">
+          <div className="absolute top-0 left-0 right-0 h-px bg-black/[0.06]" />
           <button
             onClick={onClose}
             className="flex h-11 items-center justify-center rounded-lg border border-[#3b2513] px-5 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#3b2513]"
@@ -346,7 +348,7 @@ function FeePlansSection() {
   const [newPlanOpen, setNewPlanOpen] = useState(false);
 
   return (
-    <div className="overflow-hidden rounded-xl bg-white shadow-sm">
+    <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
       <div className="flex flex-wrap items-center justify-between gap-3 p-5">
         <p className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">Fee Plans</p>
         <button
@@ -391,7 +393,7 @@ function FeePlansSection() {
       </div>
       <div className="flex flex-col gap-2 p-4 lg:hidden">
         {plans.map((plan) => (
-          <div key={plan.id} className="rounded-xl border border-[#eaecf0] p-3">
+          <div key={plan.id} className="rounded-xl bg-[#F5EDD8]/30 p-3">
             <div className="flex items-center justify-between">
               <span className="font-[family-name:var(--font-urbanist)] text-sm font-bold text-[#2d1810]">{plan.name}</span>
               <span className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">{plan.amount}</span>
@@ -451,10 +453,10 @@ function AdmissionsSection() {
       </div>
       <div className="flex flex-col gap-4">
         {steps.map((step) => (
-          <div key={step.id} className="flex flex-col gap-3 rounded-xl border border-[#e6ebf3] p-4">
+          <div key={step.id} className="flex flex-col gap-3 rounded-xl bg-[#F5EDD8]/30 p-4">
             <p className="font-[family-name:var(--font-urbanist)] text-base font-semibold text-[#1f2937]">{step.title}</p>
             {step.fields.map((field) => (
-              <div key={field.id} className="flex items-center gap-4 rounded-lg border border-[#ccd2dc] px-3 py-3">
+              <div key={field.id} className="flex items-center gap-4 rounded-lg bg-[#F5EDD8]/30 px-3 py-3">
                 <button
                   onClick={() => toggleField(step.id, field.id)}
                   role="switch"
@@ -555,7 +557,7 @@ function AiSettingsSection() {
         <p className="font-[family-name:var(--font-urbanist)] text-base font-semibold text-black">Feature Controls</p>
         <div className="flex flex-col gap-3">
           {features.map((feat) => (
-            <div key={feat.id} className="flex items-center gap-4 rounded-lg border border-[#e6ebf3] px-4 py-3">
+            <div key={feat.id} className="flex items-center gap-4 rounded-lg bg-[#F5EDD8]/30 px-4 py-3">
               <button
                 onClick={() => setFeatures((prev) => prev.map((f) => (f.id === feat.id ? { ...f, enabled: !f.enabled } : f)))}
                 role="switch"
@@ -578,11 +580,11 @@ function AiSettingsSection() {
 
 function OtherAppsSection() {
   return (
-    <div className="flex flex-col gap-4 rounded-xl bg-white p-5">
+    <div className="flex flex-col gap-4 rounded-xl bg-[#F5EDD8]/30 p-5">
       <p className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">Other Apps</p>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {OTHER_APPS.map((app) => (
-          <div key={app.id} className="flex flex-col gap-3 rounded-lg border border-[#e6ebf3] p-4">
+          <div key={app.id} className="flex flex-col gap-3 rounded-lg bg-[#F5EDD8]/30 p-4">
             <div className="flex items-center justify-between">
               <p className="font-[family-name:var(--font-urbanist)] text-sm font-bold text-[#2d1810]">{app.name}</p>
               <span
@@ -614,7 +616,7 @@ export function SettingsTab() {
   return (
     <div className="flex flex-col gap-4">
       <h1 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">Settings</h1>
-      <div className="flex gap-1 overflow-x-auto border-b border-[#dcdcdc]">
+      <div className="flex gap-1 overflow-x-auto">
         {SETTINGS_TABS.map((tab) => (
           <button
             key={tab}
@@ -627,6 +629,7 @@ export function SettingsTab() {
           </button>
         ))}
       </div>
+      <div className="h-px bg-black/[0.06]" />
 
       {activeTab === "Branch Profile" && <BranchProfileSection />}
       {activeTab === "Notification" && <NotificationSection />}

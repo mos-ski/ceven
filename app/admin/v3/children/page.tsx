@@ -11,7 +11,9 @@ import {
   Flag,
   ChevronDown,
   MoreVertical,
+  Download,
 } from "lucide-react";
+import { exportRowsToCsv } from "@/lib/super-admin/export-csv";
 
 import {
   DropdownMenu,
@@ -59,7 +61,7 @@ function StatCard({
   sub: string;
 }) {
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-black/[0.07] bg-white p-4">
+    <div className="relative overflow-hidden rounded-2xl bg-[#F5EDD8]/30 p-4">
       <p className="text-xs font-bold uppercase tracking-wide text-[#2D1810]/50">{label}</p>
       <p className="mt-1.5 font-[family-name:var(--font-merriweather)] text-[1.85rem] font-bold leading-none text-[#2D1810]">
         {value}
@@ -95,6 +97,23 @@ export default function ChildrenV3Page() {
     });
   }, [search, roomFilter, statusFilter]);
 
+  function handleExport() {
+    exportRowsToCsv(
+      "children.csv",
+      ["Child", "Age", "Room", "Parent", "Parent Email", "Status", "Health Flag", "Fee Status"],
+      filteredChildren.map((child) => [
+        child.name,
+        child.age,
+        child.room,
+        child.parentName,
+        child.parentEmail,
+        child.status,
+        child.healthFlag ?? "None",
+        child.feeStatus,
+      ]),
+    );
+  }
+
   return (
     <div className="flex flex-col gap-5">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -107,6 +126,12 @@ export default function ChildrenV3Page() {
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
+          <button
+            onClick={handleExport}
+            className="flex h-10 items-center gap-1.5 rounded-lg border border-black/[0.12] px-4 text-sm font-semibold text-[#2D1810] hover:bg-[#2D1810]/5"
+          >
+            <Download className="h-3.5 w-3.5" /> Export
+          </button>
           <button
             onClick={() => setEnrollOpen(true)}
             className="h-10 rounded-lg border border-[#2D1810] px-4 text-sm font-semibold text-[#2D1810] hover:bg-[#2D1810]/5"
@@ -123,7 +148,7 @@ export default function ChildrenV3Page() {
         <StatCard Icon={GraduationCap} label="Graduating Soon" value={String(GRADUATING_SOON).padStart(2, "0")} sub="Ageing out of current room" />
       </div>
 
-      <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
+      <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
         <div className="flex flex-col gap-3 pb-4 sm:flex-row sm:items-center sm:justify-between">
           <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2D1810]">
             Children Log
@@ -162,7 +187,7 @@ export default function ChildrenV3Page() {
         <div className="overflow-x-auto">
           <table className="w-full border-collapse text-sm">
             <thead>
-              <tr className="border-b border-black/[0.08] text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
+              <tr className="text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
                 <th className="pb-2 pr-3 font-semibold">Child</th>
                 <th className="pb-2 pr-3 font-semibold">Age</th>
                 <th className="pb-2 pr-3 font-semibold">Room</th>
@@ -182,7 +207,7 @@ export default function ChildrenV3Page() {
                 </tr>
               ) : (
                 filteredChildren.map((child) => (
-                  <tr key={child.id} className="group border-b border-black/[0.05] last:border-0">
+                  <tr key={child.id} className={`group ${child.id.length % 2 === 0 ? "bg-white/60" : "bg-transparent"}`}>
                     <td className="py-3 pr-3">
                       <Link href={`/admin/v3/children/${child.id}`} className="flex items-center gap-3">
                         <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#EDD9C0] text-xs font-bold text-[#3B2513]">
