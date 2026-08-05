@@ -172,28 +172,26 @@ function ViewMedicationModal({
                     {showHistory ? "Close Past Medications" : "View Past Medications"}
                   </button>
                   {showHistory && (
-                    <div className="overflow-hidden rounded-lg bg-[#F5EDD8]/30">
-                      <table className="w-full border-collapse">
-                        <thead>
-                          <tr className="bg-[#F5EDD8]/50">
-                            {["Date", "Time", "Medication", "Dose", "Attended by"].map((h) => (
-                              <th key={h} className="px-4 py-2 text-left font-[family-name:var(--font-urbanist)] text-xs font-medium text-black">{h}</th>
-                            ))}
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {entry.history.map((h, i) => (
-                            <tr key={i} className="border-b border-black/[0.05]">
-                              <td className="px-4 py-2 font-[family-name:var(--font-urbanist)] text-xs text-black">{h.date}</td>
-                              <td className="px-4 py-2 font-[family-name:var(--font-urbanist)] text-xs text-black">{h.time}</td>
-                              <td className="px-4 py-2 font-[family-name:var(--font-urbanist)] text-xs text-black">{h.medication}</td>
-                              <td className="px-4 py-2 font-[family-name:var(--font-urbanist)] text-xs text-black">{h.dosage}</td>
-                              <td className="px-4 py-2 font-[family-name:var(--font-urbanist)] text-xs text-black">{h.attendedBy}</td>
-                            </tr>
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          {["Date", "Time", "Medication", "Dose", "Attended by"].map((h) => (
+                            <TableHead key={h}>{h}</TableHead>
                           ))}
-                        </tbody>
-                      </table>
-                    </div>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {entry.history.map((h, i) => (
+                          <TableRow key={i}>
+                            <TableCell>{h.date}</TableCell>
+                            <TableCell>{h.time}</TableCell>
+                            <TableCell>{h.medication}</TableCell>
+                            <TableCell>{h.dosage}</TableCell>
+                            <TableCell>{h.attendedBy}</TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
                   )}
                 </div>
               )}
@@ -263,7 +261,7 @@ export function MedicationView() {
         <div className="hidden overflow-x-auto lg:block">
           <Table>
             <TableHeader>
-              <TableRow className="border-none bg-[#F5EDD8]/40 hover:bg-[#F5EDD8]/40">
+              <TableRow>
                 <TableHead>Child</TableHead>
                 <TableHead>Medication</TableHead>
                 <TableHead>Dose</TableHead>

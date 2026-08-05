@@ -5,6 +5,16 @@ Paste the whole block under a heading to the agent that's doing the page-level r
 
 ---
 
+## Do not override TableRow header className (2026-08-05)
+
+Found and fixed a recurring violation: several Daily Operations views imported the shared `Table` correctly but then overrode the header `<TableRow>` with `className="border-none bg-[#F5EDD8]/40 hover:bg-[#F5EDD8]/40"` — this cancels the bordered-header standard and adds an unwanted hover state on the header row itself. Fixed in `components/admin/daily-operations/{inventory-view,facilities-view,tasks-view,health-incidents-view}.tsx` and converted a legacy hand-rolled `<table>` (medication history sub-table) in `medication-view.tsx` to the shared component.
+
+**Rule going forward: never pass a custom `className` to the header `<TableRow>` that touches `border`, `bg`, or `hover:bg`.** If a page appears to need a different header look, that's a sign the design system decision needs revisiting — flag it, don't override it locally. Plain `<TableRow>` with no className inside `<TableHeader>` always inherits the correct standard from `components/ui/table.tsx`.
+
+Note: these Daily Operations views (`components/admin/daily-operations/*`) are shared between admin v2 and admin v3. Fixing the header override doesn't touch anything else and is safe for both, but any further table restructuring here needs to stay v2-safe since v2 is out of scope for this project.
+
+---
+
 ## Table + Card (components/ui/table.tsx, components/ui/card.tsx)
 
 The design system's `components/ui/table.tsx` and `components/ui/card.tsx` have been updated to the new CEven admin-v3 standard. Please refactor pages to use them instead of hand-rolled markup.

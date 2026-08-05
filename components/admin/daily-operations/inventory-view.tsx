@@ -337,7 +337,7 @@ export function InventoryView() {
           </div>
           <div className="hidden overflow-x-auto lg:block">
             <Table>
-              <TableHeader><TableRow className="border-none bg-[#F5EDD8]/40 hover:bg-[#F5EDD8]/40"><TableHead>Item</TableHead><TableHead>Category</TableHead><TableHead>Avail Stock</TableHead><TableHead>Min Level</TableHead><TableHead>Last Restocked</TableHead><TableHead>Status</TableHead><TableHead className="text-center">Action</TableHead></TableRow></TableHeader>
+              <TableHeader><TableRow><TableHead>Item</TableHead><TableHead>Category</TableHead><TableHead>Avail Stock</TableHead><TableHead>Min Level</TableHead><TableHead>Last Restocked</TableHead><TableHead>Status</TableHead><TableHead className="text-center">Action</TableHead></TableRow></TableHeader>
               <TableBody>{INVENTORY_ITEMS.map((item) => (<InventoryRow key={item.id} item={item} />))}</TableBody>
             </Table>
           </div>
@@ -367,7 +367,7 @@ export function InventoryView() {
           </div>
           <div className="hidden overflow-x-auto lg:block">
             <Table>
-              <TableHeader><TableRow className="border-none bg-[#F5EDD8]/40 hover:bg-[#F5EDD8]/40"><TableHead>Item</TableHead><TableHead>Room</TableHead><TableHead>QTY</TableHead><TableHead>Purchased Date</TableHead><TableHead>Condition</TableHead><TableHead>Last Serviced</TableHead><TableHead>Next Service</TableHead><TableHead>Status</TableHead><TableHead className="text-center">Action</TableHead></TableRow></TableHeader>
+              <TableHeader><TableRow><TableHead>Item</TableHead><TableHead>Room</TableHead><TableHead>QTY</TableHead><TableHead>Purchased Date</TableHead><TableHead>Condition</TableHead><TableHead>Last Serviced</TableHead><TableHead>Next Service</TableHead><TableHead>Status</TableHead><TableHead className="text-center">Action</TableHead></TableRow></TableHeader>
               <TableBody>{EQUIPMENT_ITEMS.map((item) => (<EquipmentRow key={item.id} item={item} />))}</TableBody>
             </Table>
           </div>
@@ -397,7 +397,7 @@ export function InventoryView() {
           </div>
           <div className="hidden overflow-x-auto lg:block">
             <Table>
-              <TableHeader><TableRow className="border-none bg-[#F5EDD8]/40 hover:bg-[#F5EDD8]/40"><TableHead>Order Date</TableHead><TableHead>Supplier</TableHead><TableHead>Items</TableHead><TableHead>QTY</TableHead><TableHead>Total Cost</TableHead><TableHead>Date Delivered</TableHead><TableHead>Status</TableHead><TableHead className="text-center">Action</TableHead></TableRow></TableHeader>
+              <TableHeader><TableRow><TableHead>Order Date</TableHead><TableHead>Supplier</TableHead><TableHead>Items</TableHead><TableHead>QTY</TableHead><TableHead>Total Cost</TableHead><TableHead>Date Delivered</TableHead><TableHead>Status</TableHead><TableHead className="text-center">Action</TableHead></TableRow></TableHeader>
               <TableBody>{SUPPLY_ORDERS.map((order) => (<OrderRow key={order.id} order={order} />))}</TableBody>
             </Table>
           </div>

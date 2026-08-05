@@ -272,7 +272,7 @@ export function FacilitiesView() {
           <div className="hidden overflow-x-auto lg:block">
             <Table>
               <TableHeader>
-                <TableRow className="border-none bg-[#F5EDD8]/40 hover:bg-[#F5EDD8]/40">
+                <TableRow>
                   <TableHead>Request Date</TableHead>
                   <TableHead>Area</TableHead>
                   <TableHead>Issue</TableHead>

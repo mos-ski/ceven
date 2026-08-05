@@ -274,7 +274,7 @@ export function TasksView() {
         <div className="hidden overflow-x-auto lg:block">
           <Table>
             <TableHeader>
-              <TableRow className="border-none bg-[#F5EDD8]/40 hover:bg-[#F5EDD8]/40">
+              <TableRow>
                 <TableHead className="w-10">
                   <input type="checkbox" className="h-4 w-4 accent-[#3b2513]" />
                 </TableHead>
