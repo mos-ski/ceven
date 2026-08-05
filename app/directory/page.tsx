@@ -538,6 +538,15 @@ export default function DirectoryPage() {
                       </p>
                     ))}
                   </div>
+
+                  {version.href && (
+                    <Link
+                      href={version.href}
+                      className="mt-4 inline-flex items-center gap-1.5 rounded-lg bg-brand-dark px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-brand-accent"
+                    >
+                      Open {section.title} →
+                    </Link>
+                  )}
                 </div>
               ))}
             </div>
