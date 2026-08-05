@@ -59,57 +59,57 @@ function CalendarModal({
 
  return (
  <div className="absolute inset-0 z-50 flex items-end justify-center bg-black/40">
-  <div className="w-full max-w-[430px] rounded-t-3xl bg-white pb-6">
-  <div className="flex items-center justify-between px-5 py-4">
-   <span className="text-base font-semibold text-gray-800">Select Date</span>
-   <button onClick={onClose}><X size={20} className="text-gray-500" /></button>
-  </div>
+ <div className="w-full max-w-[430px] rounded-t-3xl bg-white pb-6">
+ <div className="flex items-center justify-between px-5 py-4">
+  <span className="text-base font-semibold text-gray-800">Select Date</span>
+  <button onClick={onClose}><X size={20} className="text-gray-500" /></button>
+ </div>
 
-  <div className="flex items-center justify-between px-5 pb-3">
-   <button onClick={prevMonth} className="rounded-full p-1.5 hover:bg-gray-100">
-   <ChevronLeft size={18} className="text-gray-600" />
-   </button>
-   <span className="text-sm font-semibold text-gray-800">{MONTHS[month]} {year}</span>
-   <button onClick={nextMonth} className="rounded-full p-1.5 hover:bg-gray-100">
-   <ChevronRight size={18} className="text-gray-600" />
-   </button>
-  </div>
+ <div className="flex items-center justify-between px-5 pb-3">
+  <button onClick={prevMonth} className="rounded-full p-1.5 hover:bg-gray-100">
+  <ChevronLeft size={18} className="text-gray-600" />
+  </button>
+  <span className="text-sm font-semibold text-gray-800">{MONTHS[month]} {year}</span>
+  <button onClick={nextMonth} className="rounded-full p-1.5 hover:bg-gray-100">
+  <ChevronRight size={18} className="text-gray-600" />
+  </button>
+ </div>
 
-  <div className="grid grid-cols-7 px-4 pb-1">
-   {DAYS.map(d => (
-   <div key={d} className="text-center text-[11px] font-semibold text-gray-400 py-1">{d}</div>
-   ))}
-  </div>
+ <div className="grid grid-cols-7 px-4 pb-1">
+  {DAYS.map(d => (
+  <div key={d} className="text-center text-[11px] font-semibold text-gray-400 py-1">{d}</div>
+  ))}
+ </div>
 
-  <div className="grid grid-cols-7 px-4">
-   {cells.map((day, i) => (
-   <button
-    key={i}
-    onClick={() => day && setSelected(day)}
-    className={`flex h-9 w-9 mx-auto items-center justify-center rounded-full text-sm font-medium transition-colors ${
-    !day ? "invisible" :
-    day === selected
-     ? "bg-cg-brand text-white"
-     : "text-gray-700 hover:bg-gray-100"
-    }`}
-   >
-    {day}
-   </button>
-   ))}
-  </div>
+ <div className="grid grid-cols-7 px-4">
+  {cells.map((day, i) => (
+  <button
+  key={i}
+  onClick={() => day && setSelected(day)}
+  className={`flex h-9 w-9 mx-auto items-center justify-center rounded-full text-sm font-medium transition-colors ${
+  !day ? "invisible" :
+  day === selected
+   ? "bg-cg-brand text-white"
+   : "text-gray-700 hover:bg-gray-100"
+  }`}
+  >
+  {day}
+  </button>
+  ))}
+ </div>
 
-  <div className="px-5 pt-4">
-   <button
-   onClick={() => {
-    onSelect(`${MONTHS[month].slice(0, 3)} ${selected}`);
-    onClose();
-   }}
-   className="w-full rounded-xl bg-cg-brand py-3 text-sm font-semibold text-[#FAF2E1]"
-   >
-   Confirm
-   </button>
-  </div>
-  </div>
+ <div className="px-5 pt-4">
+  <button
+  onClick={() => {
+  onSelect(`${MONTHS[month].slice(0, 3)} ${selected}`);
+  onClose();
+  }}
+  className="w-full rounded-xl bg-cg-brand py-3 text-sm font-semibold text-[#FAF2E1]"
+  >
+  Confirm
+  </button>
+ </div>
+ </div>
  </div>
  );
 }
@@ -119,13 +119,13 @@ function CalendarModal({
 function MomentPhoto({ tag, src, caption }: { tag: string; src: string; caption: string }) {
  return (
  <div className="relative h-44 w-full overflow-hidden rounded-2xl bg-amber-100">
-  <img src={src} alt={caption} className="h-full w-full object-cover" />
-  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
-  <div className="absolute left-3 top-3">
-  <span className="rounded-full bg-white/90 px-2.5 py-0.5 text-xs font-semibold text-gray-700">
-   {tag}
-  </span>
-  </div>
+ <img src={src} alt={caption} className="h-full w-full object-cover" />
+ <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+ <div className="absolute left-3 top-3">
+ <span className="rounded-full bg-white/90 px-2.5 py-0.5 text-xs font-semibold text-gray-700">
+  {tag}
+ </span>
+ </div>
  </div>
  );
 }
@@ -157,216 +157,216 @@ function ReportsPageContent() {
 
  return (
  <div className="relative flex min-h-0 flex-1 flex-col overflow-hidden bg-[#F9F5F0]">
-  {/* AppBar */}
-  <div className="shrink-0 bg-white px-5 pt-12 pb-4">
-  <div className="flex items-center justify-between">
-   <h1 className="text-lg font-bold text-gray-800">Daily Report</h1>
-   <button className="relative">
-   <Bell size={22} className="text-gray-700" />
-   <span className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full bg-red-500" />
-   </button>
-  </div>
+ {/* AppBar */}
+ <div className="shrink-0 bg-white px-5 pt-12 pb-4">
+ <div className="flex items-center justify-between">
+  <h1 className="text-lg font-bold text-gray-800">Daily Report</h1>
+  <button className="relative">
+  <Bell size={22} className="text-gray-700" />
+  <span className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full bg-red-500" />
+  </button>
+ </div>
 
-  {/* Date row + Ask CEvenAI */}
-  <div className="mt-3 flex items-center justify-between">
-   <button
-   onClick={() => setShowCalendar(true)}
-   className="flex items-center gap-2 rounded-xl bg-[#F3EDE5] px-3 py-2"
-   >
-   <Calendar size={14} className="text-cg-brand" />
-   <span className="text-xs font-medium text-gray-700">{report?.date ?? ","}</span>
-   <ChevronRight size={12} className="text-gray-400" />
-   </button>
-
-   <button
-   onClick={() => router.push("/parent/cevenai")}
-   className="flex items-center gap-1.5 rounded-xl bg-amber-50 px-3 py-2"
-   >
-   <Sparkles size={14} className="text-amber-600" />
-   <span className="text-xs font-semibold text-amber-700">Ask CEeven</span>
-   </button>
-  </div>
-
-  {/* Child selector bar */}
+ {/* Date row + Ask CEvenAI */}
+ <div className="mt-3 flex items-center justify-between">
   <button
-   onClick={() => setShowChildPicker(true)}
-   className="mt-3 flex items-center gap-2 rounded-xl bg-cg-brand/5 px-3 py-2 w-full"
+  onClick={() => setShowCalendar(true)}
+  className="flex items-center gap-2 rounded-xl bg-[#F3EDE5] px-3 py-2"
   >
-   <div className="flex h-7 w-7 items-center justify-center rounded-full bg-cg-brand/10 text-[10px] font-bold text-cg-brand">
-   {selectedChild ? selectedChild.name.split(" ").map(n => n[0]).join("") : "?"}
-   </div>
-   <span className="flex-1 text-left text-xs font-semibold text-gray-700">
-   {selectedChild ? selectedChild.name : "Select Child"}
+  <Calendar size={14} className="text-cg-brand" />
+  <span className="text-xs font-medium text-gray-700">{report?.date ?? ","}</span>
+  <ChevronRight size={12} className="text-gray-400" />
+  </button>
+
+  <button
+  onClick={() => router.push("/parent/cevenai")}
+  className="flex items-center gap-1.5 rounded-xl bg-amber-50 px-3 py-2"
+  >
+  <Sparkles size={14} className="text-amber-600" />
+  <span className="text-xs font-semibold text-amber-700">Ask CEeven</span>
+  </button>
+ </div>
+
+ {/* Child selector bar */}
+ <button
+  onClick={() => setShowChildPicker(true)}
+  className="mt-3 flex items-center gap-2 rounded-xl bg-cg-brand/5 px-3 py-2 w-full"
+ >
+  <div className="flex h-7 w-7 items-center justify-center rounded-full bg-cg-brand/10 text-[10px] font-bold text-cg-brand">
+  {selectedChild ? selectedChild.name.split(" ").map(n => n[0]).join("") : "?"}
+  </div>
+  <span className="flex-1 text-left text-xs font-semibold text-gray-700">
+  {selectedChild ? selectedChild.name : "Select Child"}
+  </span>
+  <ChevronDown size={14} className="text-gray-400" />
+ </button>
+ </div>
+
+ {/* Main scroll area */}
+ <div className="flex-1 overflow-y-auto px-5 pb-4 pt-4">
+ {/* Progress + navigation */}
+ <div className="mb-4 flex items-center justify-between">
+  <div className="flex items-center gap-3">
+  <div className="relative h-10 w-10">
+   <svg className="h-10 w-10 -rotate-90" viewBox="0 0 36 36">
+   <circle cx="18" cy="18" r="15" fill="none" stroke="#EDE8E0" strokeWidth="3" />
+   <circle
+   cx="18" cy="18" r="15" fill="none"
+   stroke="#3B2513" strokeWidth="3"
+   strokeDasharray={`${(2 * Math.PI * 15 * progress) / 100} ${2 * Math.PI * 15 * (100 - progress) / 100}`}
+   strokeLinecap="round"
+   />
+   </svg>
+   <span className="absolute inset-0 flex items-center justify-center text-[9px] font-bold text-cg-brand">
+   {reportIndex + 1}/{total}
    </span>
-   <ChevronDown size={14} className="text-gray-400" />
+  </div>
+  <div>
+   <p className="text-sm font-bold text-gray-800">Daily Report</p>
+   <p className="text-xs text-gray-400">Report {reportIndex + 1} of {total}</p>
+  </div>
+  </div>
+
+  <div className="flex items-center gap-2">
+  <button
+   onClick={() => setReportIndex(i => Math.max(0, i - 1))}
+   disabled={reportIndex === 0}
+   className="flex h-9 w-9 items-center justify-center rounded-full bg-white disabled:opacity-40"
+  >
+   <ChevronLeft size={18} className="text-gray-600" />
+  </button>
+  <button
+   onClick={() => setReportIndex(i => Math.min(total - 1, i + 1))}
+   disabled={reportIndex === total - 1}
+   className="flex h-9 w-9 items-center justify-center rounded-full bg-white disabled:opacity-40"
+  >
+   <ChevronRight size={18} className="text-gray-600" />
   </button>
   </div>
-
-  {/* Main scroll area */}
-  <div className="flex-1 overflow-y-auto px-5 pb-4 pt-4">
-  {/* Progress + navigation */}
-  <div className="mb-4 flex items-center justify-between">
-    <div className="flex items-center gap-3">
-    <div className="relative h-10 w-10">
-     <svg className="h-10 w-10 -rotate-90" viewBox="0 0 36 36">
-     <circle cx="18" cy="18" r="15" fill="none" stroke="#EDE8E0" strokeWidth="3" />
-     <circle
-      cx="18" cy="18" r="15" fill="none"
-      stroke="#3B2513" strokeWidth="3"
-      strokeDasharray={`${(2 * Math.PI * 15 * progress) / 100} ${2 * Math.PI * 15 * (100 - progress) / 100}`}
-      strokeLinecap="round"
-     />
-     </svg>
-     <span className="absolute inset-0 flex items-center justify-center text-[9px] font-bold text-cg-brand">
-     {reportIndex + 1}/{total}
-     </span>
-    </div>
-    <div>
-     <p className="text-sm font-bold text-gray-800">Daily Report</p>
-     <p className="text-xs text-gray-400">Report {reportIndex + 1} of {total}</p>
-    </div>
-    </div>
-
-    <div className="flex items-center gap-2">
-    <button
-     onClick={() => setReportIndex(i => Math.max(0, i - 1))}
-     disabled={reportIndex === 0}
-     className="flex h-9 w-9 items-center justify-center rounded-full bg-white disabled:opacity-40"
-    >
-     <ChevronLeft size={18} className="text-gray-600" />
-    </button>
-    <button
-     onClick={() => setReportIndex(i => Math.min(total - 1, i + 1))}
-     disabled={reportIndex === total - 1}
-     className="flex h-9 w-9 items-center justify-center rounded-full bg-white disabled:opacity-40"
-    >
-     <ChevronRight size={18} className="text-gray-600" />
-    </button>
-    </div>
-   </div>
-
-   {/* Stat boxes */}
-   <div className="mb-3 grid grid-cols-2 gap-3">
-    <div className="rounded-2xl bg-[#FFF0F3] p-4">
-    <p className="mb-1 text-xs font-semibold text-[#FF6B8A]">Mood</p>
-    <p className="text-xl">{report.mood[0]?.split(" ")[0]}</p>
-    <p className="mt-0.5 text-sm font-semibold text-[#D63A5E]">
-     {report.mood[0]?.split(" ").slice(1).join(" ")}
-    </p>
-    </div>
-
-    <div className="rounded-2xl bg-[#FFF4E5] p-4">
-    <p className="mb-1 text-xs font-semibold text-[#F59E0B]">Meals</p>
-    <p className="text-2xl font-bold text-[#D97706]">{report.meals}</p>
-    <p className="mt-0.5 text-xs text-[#92400E]">meals today</p>
-    </div>
-
-    <div className="rounded-2xl bg-[#F3F0FF] p-4">
-    <p className="mb-1 text-xs font-semibold text-[#7C3AED]">Nap</p>
-    <p className="text-sm font-bold text-[#5B21B6]">{report.napDuration}</p>
-    <p className="mt-0.5 text-xs text-[#7C3AED]">duration</p>
-    </div>
-
-    <div className="rounded-2xl bg-[#E8FAF4] p-4">
-    <p className="mb-1 text-xs font-semibold text-[#059669]">Activities</p>
-    <p className="text-xs font-semibold leading-relaxed text-[#065F46]">{report.activities}</p>
-    </div>
-   </div>
-
-   {/* Hygiene */}
-   <div className="mb-4 flex items-center gap-3 rounded-2xl bg-white px-4 py-3 ">
-    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-50 text-lg">
-    🚿
-    </div>
-    <div>
-    <p className="text-xs font-semibold text-gray-400">Hygiene</p>
-    <p className="text-sm font-medium text-gray-700">{report.hygiene}</p>
-    </div>
-   </div>
-
-   {/* Photo carousel */}
-   <div className="mb-4 rounded-2xl bg-white p-4 ">
-    <p className="mb-3 text-sm font-semibold text-gray-800">Today&apos;s Moments</p>
-    <MomentPhoto tag={tagForPhoto(report)} src={report.photo} caption={report.photoCaption} />
-
-    <div className="mt-3 flex justify-center gap-1.5">
-    {reports.map((_, i) => (
-     <div
-     key={i}
-     className={`h-1.5 rounded-full transition-all ${i === reportIndex ? "w-4 bg-cg-brand" : "w-1.5 bg-gray-200"}`}
-     />
-    ))}
-    </div>
-
-    <p className="mt-3 text-sm leading-relaxed text-gray-600">{report.photoCaption}</p>
-   </div>
-
-   {/* Comment */}
-   <div className="rounded-2xl bg-white p-4 ">
-    <p className="mb-3 text-sm font-semibold text-gray-800">Leave a comment</p>
-    <div className="flex items-end gap-2 rounded-xl border border-gray-100 bg-gray-50 px-3 py-2.5">
-    <textarea
-     value={comment}
-     onChange={e => setComment(e.target.value)}
-     placeholder="Add a comment..."
-     rows={3}
-     className="flex-1 resize-none bg-transparent text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none"
-    />
-    <button
-     onClick={() => setComment("")}
-     disabled={!comment.trim()}
-     className="shrink-0 rounded-full bg-cg-brand p-2 disabled:opacity-40"
-    >
-     <Send size={14} className="text-white" />
-    </button>
-   </div>
   </div>
 
-  {/* Caregiver */}
+  {/* Stat boxes */}
+  <div className="mb-3 grid grid-cols-2 gap-3">
+  <div className="rounded-2xl bg-[#FFF0F3] p-4">
+  <p className="mb-1 text-xs font-semibold text-[#FF6B8A]">Mood</p>
+  <p className="text-xl">{report.mood[0]?.split(" ")[0]}</p>
+  <p className="mt-0.5 text-sm font-semibold text-[#D63A5E]">
+   {report.mood[0]?.split(" ").slice(1).join(" ")}
+  </p>
+  </div>
+
+  <div className="rounded-2xl bg-[#FFF4E5] p-4">
+  <p className="mb-1 text-xs font-semibold text-[#F59E0B]">Meals</p>
+  <p className="text-2xl font-bold text-[#D97706]">{report.meals}</p>
+  <p className="mt-0.5 text-xs text-[#92400E]">meals today</p>
+  </div>
+
+  <div className="rounded-2xl bg-[#F3F0FF] p-4">
+  <p className="mb-1 text-xs font-semibold text-[#7C3AED]">Nap</p>
+  <p className="text-sm font-bold text-[#5B21B6]">{report.napDuration}</p>
+  <p className="mt-0.5 text-xs text-[#7C3AED]">duration</p>
+  </div>
+
+  <div className="rounded-2xl bg-[#E8FAF4] p-4">
+  <p className="mb-1 text-xs font-semibold text-[#059669]">Activities</p>
+  <p className="text-xs font-semibold leading-relaxed text-[#065F46]">{report.activities}</p>
+  </div>
+  </div>
+
+  {/* Hygiene */}
+  <div className="mb-4 flex items-center gap-3 rounded-2xl bg-white px-4 py-3 ">
+  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-blue-50 text-lg">
+  🚿
+  </div>
+  <div>
+  <p className="text-xs font-semibold text-gray-400">Hygiene</p>
+  <p className="text-sm font-medium text-gray-700">{report.hygiene}</p>
+  </div>
+  </div>
+
+  {/* Photo carousel */}
+  <div className="mb-4 rounded-2xl bg-[#F5EDD8]/30 p-4 ">
+  <p className="mb-3 text-sm font-semibold text-gray-800">Today&apos;s Moments</p>
+  <MomentPhoto tag={tagForPhoto(report)} src={report.photo} caption={report.photoCaption} />
+
+  <div className="mt-3 flex justify-center gap-1.5">
+  {reports.map((_, i) => (
+   <div
+   key={i}
+   className={`h-1.5 rounded-full transition-all ${i === reportIndex ? "w-4 bg-cg-brand" : "w-1.5 bg-gray-200"}`}
+   />
+  ))}
+  </div>
+
+  <p className="mt-3 text-sm leading-relaxed text-gray-600">{report.photoCaption}</p>
+  </div>
+
+  {/* Comment */}
+  <div className="rounded-2xl bg-[#F5EDD8]/30 p-4 ">
+  <p className="mb-3 text-sm font-semibold text-gray-800">Leave a comment</p>
+  <div className="flex items-end gap-2 rounded-xl border border-gray-100 bg-gray-50 px-3 py-2.5">
+  <textarea
+   value={comment}
+   onChange={e => setComment(e.target.value)}
+   placeholder="Add a comment..."
+   rows={3}
+   className="flex-1 resize-none bg-transparent text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none"
+  />
   <button
-   onClick={() => setShowCaregiverSheet(true)}
-   className="mt-4 flex w-full items-center gap-3 rounded-2xl bg-white px-4 py-3 active:scale-[0.98] transition-transform"
+   onClick={() => setComment("")}
+   disabled={!comment.trim()}
+   className="shrink-0 rounded-full bg-cg-brand p-2 disabled:opacity-40"
   >
-   <div className="flex h-11 w-11 items-center justify-center rounded-full bg-cg-brand/10 text-sm font-bold text-cg-brand">
-   {selectedChild?.caregiverInitials}
-   </div>
-   <div className="flex-1 text-left">
-   <p className="text-xs font-semibold text-gray-400">Caregiver</p>
-   <p className="text-sm font-semibold text-gray-800">{selectedChild?.caregiver}</p>
-   </div>
-   <div className="flex items-center gap-1.5">
-   <span className="flex items-center gap-0.5 rounded-full bg-amber-50 px-2 py-0.5">
-    <Star size={10} className="fill-amber-400 text-amber-400" />
-    <span className="text-[10px] font-semibold text-amber-600">4.8</span>
-   </span>
-   <ChevronRight size={16} className="text-gray-300" />
-   </div>
+   <Send size={14} className="text-white" />
   </button>
   </div>
+ </div>
 
-  {showCaregiverSheet && selectedChild && (
-  <CaregiverActionSheet
-   caregiverName={selectedChild.caregiver}
-   caregiverInitials={selectedChild.caregiverInitials}
-   onClose={() => setShowCaregiverSheet(false)}
-  />
-  )}
+ {/* Caregiver */}
+ <button
+  onClick={() => setShowCaregiverSheet(true)}
+  className="mt-4 flex w-full items-center gap-3 rounded-2xl bg-white px-4 py-3 active:scale-[0.98] transition-transform"
+ >
+  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-cg-brand/10 text-sm font-bold text-cg-brand">
+  {selectedChild?.caregiverInitials}
+  </div>
+  <div className="flex-1 text-left">
+  <p className="text-xs font-semibold text-gray-400">Caregiver</p>
+  <p className="text-sm font-semibold text-gray-800">{selectedChild?.caregiver}</p>
+  </div>
+  <div className="flex items-center gap-1.5">
+  <span className="flex items-center gap-0.5 rounded-full bg-amber-50 px-2 py-0.5">
+  <Star size={10} className="fill-amber-400 text-amber-400" />
+  <span className="text-[10px] font-semibold text-amber-600">4.8</span>
+  </span>
+  <ChevronRight size={16} className="text-gray-300" />
+  </div>
+ </button>
+ </div>
 
-  {showChildPicker && (
-  <ChildPickerSheet
-   children={mockParentChildren}
-   onClose={() => setShowChildPicker(false)}
-  />
-  )}
+ {showCaregiverSheet && selectedChild && (
+ <CaregiverActionSheet
+  caregiverName={selectedChild.caregiver}
+  caregiverInitials={selectedChild.caregiverInitials}
+  onClose={() => setShowCaregiverSheet(false)}
+ />
+ )}
 
-  {showCalendar && (
-  <CalendarModal
-   onClose={() => setShowCalendar(false)}
-   onSelect={() => setShowCalendar(false)}
-  />
-  )}
+ {showChildPicker && (
+ <ChildPickerSheet
+  children={mockParentChildren}
+  onClose={() => setShowChildPicker(false)}
+ />
+ )}
 
-  <ParentBottomNav />
+ {showCalendar && (
+ <CalendarModal
+  onClose={() => setShowCalendar(false)}
+  onSelect={() => setShowCalendar(false)}
+ />
+ )}
+
+ <ParentBottomNav />
  </div>
  );
 }
@@ -374,7 +374,7 @@ function ReportsPageContent() {
 export default function ReportsPage() {
  return (
  <Suspense>
-  <ReportsPageContent />
+ <ReportsPageContent />
  </Suspense>
  );
 }

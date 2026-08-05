@@ -9,15 +9,15 @@ export default function AdminLayout({
 }) {
  return (
  <div className="flex h-screen w-full overflow-hidden">
-  <Suspense fallback={<div className="hidden w-[232px] shrink-0 bg-white lg:block" />}>
-  <Sidebar />
-  </Suspense>
-  <div className="flex min-w-0 flex-1 flex-col">
-  <Topbar />
-  <main className="flex-1 overflow-y-auto bg-content-bg p-4 lg:p-6">
-   {children}
-  </main>
-  </div>
+ <Suspense fallback={<div className="hidden w-[232px] shrink-0 bg-white lg:block" />}>
+ <Sidebar />
+ </Suspense>
+ <div className="flex min-w-0 flex-1 flex-col">
+ <Topbar />
+ <main className="flex-1 overflow-y-auto bg-content-bg p-4 lg:p-6">
+  {children}
+ </main>
+ </div>
  </div>
  );
 }

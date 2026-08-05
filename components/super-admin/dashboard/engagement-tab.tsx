@@ -25,64 +25,64 @@ const CHART_DATA = Array.from({ length: 28 }, (_, i) => {
 
 export default function EngagementTab() {
  return (
-  <div className="flex flex-col gap-6">
-   <div>
-    <h2 className="mb-1 font-[family-name:var(--font-urbanist)] text-lg font-bold text-heading">
-     Activity & Engagement Metrics
-    </h2>
-    <div className="grid grid-cols-3 gap-3">
-     {STATS.map((stat) => (
-      <div key={stat.label} className="rounded-xl bg-[#F5EDD8]/30 p-4">
-       <div className="flex items-center gap-3">
-        <div className={`flex size-10 items-center justify-center rounded-full ${stat.bg}`}>
-         <Activity className={`size-5 ${stat.color}`} />
-        </div>
-        <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-heading">
-         {stat.label}
-        </p>
-       </div>
-       <div className="mt-4 flex gap-4">
-        <div>
-         <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-muted-text">Parents %</p>
-         <p className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-stat-heading">
-          {stat.parents}%
-         </p>
-        </div>
-        <div className="border-l border-card-border pl-4">
-         <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-muted-text">Caregivers %</p>
-         <p className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-stat-heading">
-          {stat.caregivers}%
-         </p>
-        </div>
-       </div>
-      </div>
-     ))}
+ <div className="flex flex-col gap-6">
+  <div>
+  <h2 className="mb-1 font-[family-name:var(--font-urbanist)] text-lg font-bold text-heading">
+   Activity & Engagement Metrics
+  </h2>
+  <div className="grid grid-cols-3 gap-3">
+   {STATS.map((stat) => (
+   <div key={stat.label} className="rounded-xl bg-[#F5EDD8]/30 p-4">
+    <div className="flex items-center gap-3">
+    <div className={`flex size-10 items-center justify-center rounded-full ${stat.bg}`}>
+     <Activity className={`size-5 ${stat.color}`} />
     </div>
-   </div>
-
-   <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
-    <div className="mb-4">
-     <p className="font-[family-name:var(--font-urbanist)] text-sm font-bold text-heading">
-      User Login Frequency
-     </p>
-     <p className="font-[family-name:var(--font-urbanist)] text-xs text-muted-text">
-      Comparison of login patterns between caregivers and parents
+    <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-heading">
+     {stat.label}
+    </p>
+    </div>
+    <div className="mt-4 flex gap-4">
+    <div>
+     <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-muted-text">Parents %</p>
+     <p className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-stat-heading">
+     {stat.parents}%
      </p>
     </div>
-    <div className="h-[300px] w-full">
-     <ResponsiveContainer width="100%" height="100%">
-      <BarChart data={CHART_DATA}>
-       <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-       <XAxis dataKey="day" label={{ value: "Days", position: "insideBottom", offset: -5, fontSize: 12, fill: "#6B7280" }} tick={{ fontSize: 10, fill: "#6B7280" }} />
-       <YAxis label={{ value: "Numbers", angle: -90, position: "insideLeft", fontSize: 12, fill: "#6B7280" }} tick={{ fontSize: 12, fill: "#6B7280" }} />
-       <Tooltip />
-       <Legend />
-       <Bar dataKey="Caregivers" fill="#10b981" radius={[2, 2, 0, 0]} />
-       <Bar dataKey="Parents" fill="#f97316" radius={[2, 2, 0, 0]} />
-      </BarChart>
-     </ResponsiveContainer>
+    <div className="border-l border-card-border pl-4">
+     <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-muted-text">Caregivers %</p>
+     <p className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-stat-heading">
+     {stat.caregivers}%
+     </p>
+    </div>
     </div>
    </div>
+   ))}
   </div>
+  </div>
+
+  <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
+  <div className="mb-4">
+   <p className="font-[family-name:var(--font-urbanist)] text-sm font-bold text-heading">
+   User Login Frequency
+   </p>
+   <p className="font-[family-name:var(--font-urbanist)] text-xs text-muted-text">
+   Comparison of login patterns between caregivers and parents
+   </p>
+  </div>
+  <div className="h-[300px] w-full">
+   <ResponsiveContainer width="100%" height="100%">
+   <BarChart data={CHART_DATA}>
+    <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+    <XAxis dataKey="day" label={{ value: "Days", position: "insideBottom", offset: -5, fontSize: 12, fill: "#6B7280" }} tick={{ fontSize: 10, fill: "#6B7280" }} />
+    <YAxis label={{ value: "Numbers", angle: -90, position: "insideLeft", fontSize: 12, fill: "#6B7280" }} tick={{ fontSize: 12, fill: "#6B7280" }} />
+    <Tooltip />
+    <Legend />
+    <Bar dataKey="Caregivers" fill="#10b981" radius={[2, 2, 0, 0]} />
+    <Bar dataKey="Parents" fill="#f97316" radius={[2, 2, 0, 0]} />
+   </BarChart>
+   </ResponsiveContainer>
+  </div>
+  </div>
+ </div>
  );
 }

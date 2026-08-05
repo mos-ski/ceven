@@ -7,12 +7,12 @@ export default function SuperAdminLayout({
  children: React.ReactNode;
 }) {
  return (
-  <div className="flex h-screen w-full overflow-hidden bg-slate-50">
-   <SidebarSA />
-   <div className="flex min-w-0 flex-1 flex-col">
-    <TopbarSA />
-    <main className="flex-1 overflow-y-auto p-4 lg:p-6">{children}</main>
-   </div>
+ <div className="flex h-screen w-full overflow-hidden bg-slate-50">
+  <SidebarSA />
+  <div className="flex min-w-0 flex-1 flex-col">
+  <TopbarSA />
+  <main className="flex-1 overflow-y-auto p-4 lg:p-6">{children}</main>
   </div>
+ </div>
  );
 }

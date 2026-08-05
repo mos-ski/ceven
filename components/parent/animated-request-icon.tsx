@@ -16,11 +16,11 @@ const pulseKeyframes = `
 
 export function AnimatedRequestIcon() {
  return (
-  <>
-   <style>{pulseKeyframes}</style>
-   <div className="request-icon">
-    <Clock size={24} className="text-cg-brand" />
-   </div>
-  </>
+ <>
+  <style>{pulseKeyframes}</style>
+  <div className="request-icon">
+  <Clock size={24} className="text-cg-brand" />
+  </div>
+ </>
  );
 }

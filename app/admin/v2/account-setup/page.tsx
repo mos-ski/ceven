@@ -19,7 +19,7 @@ function AccountSetupContent() {
 export default function AccountSetupPage() {
  return (
  <Suspense>
-  <AccountSetupContent />
+ <AccountSetupContent />
  </Suspense>
  );
 }

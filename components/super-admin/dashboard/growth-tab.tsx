@@ -20,53 +20,53 @@ const CHART_DATA = Array.from({ length: 31 }, (_, i) => ({
 
 export default function GrowthTab() {
  return (
-  <div className="flex flex-col gap-6">
-   <div>
-    <h2 className="mb-1 font-[family-name:var(--font-urbanist)] text-lg font-bold text-heading">
-     Platform Growth & Adoption
-    </h2>
-    <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-     {STATS.map((stat) => (
-      <div key={stat.label} className="rounded-xl bg-[#F5EDD8]/30 p-4">
-       <div className="flex items-center gap-3">
-        <div className={`flex size-10 items-center justify-center rounded-full ${stat.bg}`}>
-         <stat.icon className={`size-5 ${stat.color}`} />
-        </div>
-        <div>
-         <p className="font-[family-name:var(--font-urbanist)] text-xs text-muted-text">{stat.label}</p>
-         <p className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-stat-heading">
-          {stat.value}
-         </p>
-        </div>
-       </div>
-       <div className="mt-3 flex items-center gap-1">
-        <TrendingUp className="size-3 text-success-text" />
-        <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-success-text">{stat.trend}</p>
-       </div>
-      </div>
-     ))}
+ <div className="flex flex-col gap-6">
+  <div>
+  <h2 className="mb-1 font-[family-name:var(--font-urbanist)] text-lg font-bold text-heading">
+   Platform Growth & Adoption
+  </h2>
+  <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+   {STATS.map((stat) => (
+   <div key={stat.label} className="rounded-xl bg-[#F5EDD8]/30 p-4">
+    <div className="flex items-center gap-3">
+    <div className={`flex size-10 items-center justify-center rounded-full ${stat.bg}`}>
+     <stat.icon className={`size-5 ${stat.color}`} />
+    </div>
+    <div>
+     <p className="font-[family-name:var(--font-urbanist)] text-xs text-muted-text">{stat.label}</p>
+     <p className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-stat-heading">
+     {stat.value}
+     </p>
+    </div>
+    </div>
+    <div className="mt-3 flex items-center gap-1">
+    <TrendingUp className="size-3 text-success-text" />
+    <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-success-text">{stat.trend}</p>
     </div>
    </div>
-
-   <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
-    <p className="mb-4 font-[family-name:var(--font-urbanist)] text-sm font-bold text-heading">
-     Platform Growth Trends
-    </p>
-    <div className="h-[300px] w-full">
-     <ResponsiveContainer width="100%" height="100%">
-      <LineChart data={CHART_DATA}>
-       <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-       <XAxis dataKey="day" label={{ value: "Days", position: "insideBottom", offset: -5, fontSize: 12, fill: "#6B7280" }} tick={{ fontSize: 10, fill: "#6B7280" }} />
-       <YAxis label={{ value: "Numbers", angle: -90, position: "insideLeft", fontSize: 12, fill: "#6B7280" }} tick={{ fontSize: 12, fill: "#6B7280" }} />
-       <Tooltip />
-       <Legend />
-       <Line type="monotone" dataKey="creches" stroke="#10b981" strokeWidth={2} name="creches" dot={false} />
-       <Line type="monotone" dataKey="parents" stroke="#f97316" strokeWidth={2} name="parents" dot={false} />
-       <Line type="monotone" dataKey="children" stroke="#3B2513" strokeWidth={2} name="children" dot={false} />
-      </LineChart>
-     </ResponsiveContainer>
-    </div>
-   </div>
+   ))}
   </div>
+  </div>
+
+  <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
+  <p className="mb-4 font-[family-name:var(--font-urbanist)] text-sm font-bold text-heading">
+   Platform Growth Trends
+  </p>
+  <div className="h-[300px] w-full">
+   <ResponsiveContainer width="100%" height="100%">
+   <LineChart data={CHART_DATA}>
+    <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+    <XAxis dataKey="day" label={{ value: "Days", position: "insideBottom", offset: -5, fontSize: 12, fill: "#6B7280" }} tick={{ fontSize: 10, fill: "#6B7280" }} />
+    <YAxis label={{ value: "Numbers", angle: -90, position: "insideLeft", fontSize: 12, fill: "#6B7280" }} tick={{ fontSize: 12, fill: "#6B7280" }} />
+    <Tooltip />
+    <Legend />
+    <Line type="monotone" dataKey="creches" stroke="#10b981" strokeWidth={2} name="creches" dot={false} />
+    <Line type="monotone" dataKey="parents" stroke="#f97316" strokeWidth={2} name="parents" dot={false} />
+    <Line type="monotone" dataKey="children" stroke="#3B2513" strokeWidth={2} name="children" dot={false} />
+   </LineChart>
+   </ResponsiveContainer>
+  </div>
+  </div>
+ </div>
  );
 }

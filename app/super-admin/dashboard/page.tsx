@@ -14,39 +14,39 @@ export default function SuperAdminDashboardPage() {
  const [month, setMonth] = useState("July");
 
  return (
-  <div className="flex flex-col gap-4">
-   <div className="flex items-center justify-between">
-    <div className="flex gap-1 rounded-lg bg-[#F5EDD8]/30 p-1">
-     {TABS.map((tab) => (
-      <button
-       key={tab}
-       type="button"
-       onClick={() => setActiveTab(tab)}
-       className={`rounded-md px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-semibold transition-colors ${
-        activeTab === tab
-         ? "bg-brand-dark text-white"
-         : "text-muted-text hover:text-heading"
-       }`}
-      >
-       {tab}
-      </button>
-     ))}
-    </div>
-
-    <select
-     value={month}
-     onChange={(e) => setMonth(e.target.value)}
-     className="h-9 rounded-lg bg-[#F5EDD8]/30 px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading focus:outline-none focus:ring-2 focus:ring-brand-accent"
-    >
-     {MONTHS.map((m) => (
-      <option key={m} value={m}>{m}</option>
-     ))}
-    </select>
-   </div>
-
-   {activeTab === "Growth" && <GrowthTab />}
-   {activeTab === "Financials" && <FinancialsTab />}
-   {activeTab === "Engagement" && <EngagementTab />}
+ <div className="flex flex-col gap-4">
+  <div className="flex items-center justify-between">
+  <div className="flex gap-1 rounded-lg bg-[#F5EDD8]/30 p-1">
+   {TABS.map((tab) => (
+   <button
+    key={tab}
+    type="button"
+    onClick={() => setActiveTab(tab)}
+    className={`rounded-md px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm font-semibold transition-colors ${
+    activeTab === tab
+     ? "bg-brand-dark text-white"
+     : "text-muted-text hover:text-heading"
+    }`}
+   >
+    {tab}
+   </button>
+   ))}
   </div>
+
+  <select
+   value={month}
+   onChange={(e) => setMonth(e.target.value)}
+   className="h-9 rounded-lg bg-[#F5EDD8]/30 px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading focus:outline-none focus:ring-2 focus:ring-brand-accent"
+  >
+   {MONTHS.map((m) => (
+   <option key={m} value={m}>{m}</option>
+   ))}
+  </select>
+  </div>
+
+  {activeTab === "Growth" && <GrowthTab />}
+  {activeTab === "Financials" && <FinancialsTab />}
+  {activeTab === "Engagement" && <EngagementTab />}
+ </div>
  );
 }

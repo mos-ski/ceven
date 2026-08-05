@@ -41,48 +41,48 @@ export default function HelpPage() {
 
  return (
  <div className="flex flex-1 flex-col overflow-hidden">
-  <div className="relative overflow-hidden bg-[#5B391E] px-6 pt-14 pb-6">
-  <div className="pointer-events-none absolute top-0 right-0 h-[220px] w-[220px] rounded-full bg-[#D4A67F] opacity-20" />
-  <button onClick={() => router.back()} className="mb-5 flex h-9 w-9 items-center justify-center rounded-full bg-white/20">
-   <ArrowLeft size={16} className="text-white" />
+ <div className="relative overflow-hidden bg-[#5B391E] px-6 pt-14 pb-6">
+ <div className="pointer-events-none absolute top-0 right-0 h-[220px] w-[220px] rounded-full bg-[#D4A67F] opacity-20" />
+ <button onClick={() => router.back()} className="mb-5 flex h-9 w-9 items-center justify-center rounded-full bg-white/20">
+  <ArrowLeft size={16} className="text-white" />
+ </button>
+ <h1 className="text-xl font-bold text-white">FAQs &amp; Help</h1>
+ <p className="mt-1 text-sm text-white/70">Find answers to common questions.</p>
+ </div>
+
+ <div className="flex-1 overflow-y-auto bg-white px-6 py-5">
+ <div className="mb-5 rounded-2xl border border-gray-100 overflow-hidden">
+  {FAQS.map((faq, i) => (
+  <div key={i} className={i < FAQS.length - 1 ? "border-b border-gray-50" : ""}>
+  <button
+  onClick={() => setOpen(open === i ? null : i)}
+  className="flex w-full items-center justify-between gap-3 px-4 py-4 text-left"
+  >
+  <span className="text-sm font-semibold text-gray-800">{faq.q}</span>
+  <ChevronDown
+   size={16}
+   className={`shrink-0 text-gray-400 transition-transform ${open === i ? "rotate-180" : ""}`}
+  />
   </button>
-  <h1 className="text-xl font-bold text-white">FAQs &amp; Help</h1>
-  <p className="mt-1 text-sm text-white/70">Find answers to common questions.</p>
+  {open === i && (
+  <div className="px-4 pb-4">
+   <p className="text-sm leading-relaxed text-gray-500">{faq.a}</p>
   </div>
+  )}
+  </div>
+  ))}
+ </div>
 
-  <div className="flex-1 overflow-y-auto bg-white px-6 py-5">
-  <div className="mb-5 rounded-2xl border border-gray-100 overflow-hidden">
-   {FAQS.map((faq, i) => (
-   <div key={i} className={i < FAQS.length - 1 ? "border-b border-gray-50" : ""}>
-    <button
-    onClick={() => setOpen(open === i ? null : i)}
-    className="flex w-full items-center justify-between gap-3 px-4 py-4 text-left"
-    >
-    <span className="text-sm font-semibold text-gray-800">{faq.q}</span>
-    <ChevronDown
-     size={16}
-     className={`shrink-0 text-gray-400 transition-transform ${open === i ? "rotate-180" : ""}`}
-    />
-    </button>
-    {open === i && (
-    <div className="px-4 pb-4">
-     <p className="text-sm leading-relaxed text-gray-500">{faq.a}</p>
-    </div>
-    )}
-   </div>
-   ))}
-  </div>
-
-  {/* Contact support */}
-  <div className="rounded-2xl bg-[#F9F5EE] p-4">
-   <p className="mb-1 text-sm font-semibold text-gray-800">Still need help?</p>
-   <p className="mb-3 text-xs text-gray-500">Our support team is available Mon–Fri, 8am–6pm.</p>
-   <button className="flex w-full items-center justify-center gap-2 rounded-xl bg-cg-brand py-3 text-sm font-semibold text-[#FAF2E1]">
-   <MessageSquare size={15} />
-   Contact Support
-   </button>
-  </div>
-  </div>
+ {/* Contact support */}
+ <div className="rounded-2xl bg-[#F9F5EE] p-4">
+  <p className="mb-1 text-sm font-semibold text-gray-800">Still need help?</p>
+  <p className="mb-3 text-xs text-gray-500">Our support team is available Mon–Fri, 8am–6pm.</p>
+  <button className="flex w-full items-center justify-center gap-2 rounded-xl bg-cg-brand py-3 text-sm font-semibold text-[#FAF2E1]">
+  <MessageSquare size={15} />
+  Contact Support
+  </button>
+ </div>
+ </div>
  </div>
  );
 }
