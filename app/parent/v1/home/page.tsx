@@ -248,7 +248,7 @@ function ImageStrip({
             <div className="relative w-full h-[38vh] rounded-xl overflow-hidden">
               <SafeImage
                 src={src}
-                alt={`${title} — ${i + 1}`}
+                alt={`${title}, ${i + 1}`}
                 className="w-full h-full object-cover"
               />
               {isVideo && i === 0 && (
@@ -594,7 +594,7 @@ export default function ParentHomePage() {
     <div className="relative flex min-h-0 flex-1 flex-col bg-[#fffefa]">
       {/* Scrollable Content */}
       <div ref={scrollRef} onScroll={handleScroll} className="flex-1 overflow-y-auto px-6 pb-4">
-        {/* Top bar — scrolls away */}
+        {/* Top bar, scrolls away */}
         <div className="flex items-center justify-between pt-4 pb-2">
           <div className="flex items-center gap-2 rounded-full bg-[#f4f5f6] px-3 py-2">
             <div className="flex h-6 w-6 items-center justify-center rounded-full bg-cg-brand text-[10px] font-bold text-white">
@@ -655,7 +655,7 @@ export default function ParentHomePage() {
           </div>
         ) : (
         <>
-        {/* Check-in toast — swipe left to dismiss */}
+        {/* Check-in toast, swipe left to dismiss */}
         {mockAttendanceHistory[0].checkInTime && !checkInDismissed && (
           <div
             className="mt-3 overflow-hidden rounded-lg border border-gray-100 bg-gray-50"
@@ -759,7 +759,7 @@ export default function ParentHomePage() {
         )}
       </div>
 
-      {/* FAB — menu or scroll-to-top */}
+      {/* FAB, menu or scroll-to-top */}
       <button
         onClick={scrolled ? scrollToTop : () => setMenuOpen(true)}
         aria-label={scrolled ? "Scroll to top" : "Open menu"}

@@ -94,7 +94,7 @@ function ChildSection({
             <div className="flex flex-wrap gap-1.5">
               {summary.diapers.map((d, i) => (
                 <span key={i} className="rounded-full bg-[#f4f5f6] px-2 py-0.5 text-[10px] text-gray-600">
-                  {d.time} — {d.type}
+                  {d.time}, {d.type}
                 </span>
               ))}
             </div>
@@ -108,7 +108,7 @@ function ChildSection({
               <div key={i} className="flex items-center gap-2">
                 <div className={`h-2 w-2 rounded-full ${med.status === "given" ? "bg-emerald-500" : med.status === "skipped" ? "bg-red-400" : "bg-amber-400"}`} />
                 <span className="text-[11px] text-gray-600">
-                  {med.name} ({med.dosage}) — {med.status}
+                  {med.name} ({med.dosage}), {med.status}
                 </span>
               </div>
             ))}

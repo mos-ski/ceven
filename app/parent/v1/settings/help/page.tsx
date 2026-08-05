@@ -31,7 +31,7 @@ const FAQS = [
   },
   {
     q: "How is my billing handled?",
-    a: "Payments are handled outside the app — contact your creche administrator to arrange payment. Once received, your invoice status and receipts update automatically under Settings → Billing History.",
+    a: "Payments are handled outside the app, contact your creche administrator to arrange payment. Once received, your invoice status and receipts update automatically under Settings → Billing History.",
   },
 ];
 

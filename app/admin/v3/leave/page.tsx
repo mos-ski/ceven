@@ -12,7 +12,7 @@ const STATUS_STYLES: Record<LeaveStatus, string> = {
   Rejected: "bg-[#FBEAE6] text-[#D4522F] border border-[#D4522F]/25",
 };
 
-// "Cover arranged" isn't tracked in the shared LEAVE_REQUESTS mock — derived deterministically
+// "Cover arranged" isn't tracked in the shared LEAVE_REQUESTS mock, derived deterministically
 // per request (short requests are easier to cover than long/maternity ones) purely for display.
 function coverArranged(days: number, index: number) {
   if (days > 30) return "TBC";
@@ -58,14 +58,14 @@ export default function LeaveV3Page() {
       </div>
 
       {/* Leave requests */}
-      <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
+      <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
         <div className="mb-3 flex items-center justify-between">
           <p className="text-sm font-bold text-[#2D1810]">Leave Requests</p>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full min-w-[880px] border-collapse text-sm">
             <thead>
-              <tr className="border-b border-black/[0.08] text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
+              <tr className="text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
                 <th className="pb-2 pr-3 font-semibold">Staff</th>
                 <th className="pb-2 pr-3 font-semibold">Type</th>
                 <th className="pb-2 pr-3 font-semibold">From</th>
@@ -79,7 +79,7 @@ export default function LeaveV3Page() {
             </thead>
             <tbody>
               {requests.map((r, i) => (
-                <tr key={r.id} className="border-b border-black/[0.05] last:border-0">
+                <tr key={r.id} className={i % 2 === 0 ? "bg-white/60" : "bg-transparent"}>
                   <td className="py-2.5 pr-3">
                     <p className="font-semibold text-[#2D1810]">{r.name}</p>
                     <p className="text-[11px] text-[#2D1810]/40">{r.role}</p>
@@ -122,7 +122,7 @@ export default function LeaveV3Page() {
                         </button>
                       </div>
                     ) : (
-                      <span className="text-xs text-[#2D1810]/30">—</span>
+                      <span className="text-xs text-[#2D1810]/30">–</span>
                     )}
                   </td>
                 </tr>

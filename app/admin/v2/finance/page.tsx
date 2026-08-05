@@ -25,10 +25,10 @@ function FinanceContent() {
 
   return (
     <div className="flex flex-col gap-6">
-      {/* Wallet — only show when no tab is active (i.e. user clicked "Wallet" in sidebar) */}
+      {/* Wallet, only show when no tab is active (i.e. user clicked "Wallet" in sidebar) */}
       {!activeTab && <WalletTab />}
 
-      {/* Other finance sections — only show when a tab is active */}
+      {/* Other finance sections, only show when a tab is active */}
       {activeTab && (
         <div>
           {/* Page header with title */}

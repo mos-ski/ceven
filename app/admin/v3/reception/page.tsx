@@ -248,7 +248,7 @@ export default function ReceptionV3Page() {
           Reception / QR
         </h1>
         <p className="mt-1 text-sm text-[#2D1810]/50">
-          Live QR check-in station — track today&apos;s attendance, exceptions, and manual overrides.
+          Live QR check-in station: track today&apos;s attendance, exceptions, and manual overrides.
         </p>
       </div>
 
@@ -284,12 +284,12 @@ export default function ReceptionV3Page() {
 
       {/* Two-column layout */}
       <div className="flex flex-col lg:flex-row gap-5">
-        {/* Left panel — real QR display (35%), incl. today's check-in/out/exception counts */}
+        {/* Left panel, real QR display (35%), incl. today's check-in/out/exception counts */}
         <div className="w-full lg:w-[35%] shrink-0">
           <QRDisplay />
         </div>
 
-        {/* Right panel — real live feed + exceptions + attendance grid (65%) */}
+        {/* Right panel, real live feed + exceptions + attendance grid (65%) */}
         <div className="flex w-full lg:flex-1 flex-col gap-5">
           <LiveFeed />
           <AttendanceGrid />

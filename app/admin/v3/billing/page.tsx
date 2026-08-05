@@ -48,7 +48,7 @@ function StatCard({
   sub: string;
 }) {
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-black/[0.07] bg-white p-4">
+    <div className="relative overflow-hidden rounded-2xl bg-[#F5EDD8]/30 p-4">
       <p className="text-xs font-bold uppercase tracking-wide text-[#2D1810]/50">{label}</p>
       <p className="mt-1.5 font-[family-name:var(--font-merriweather)] text-[1.85rem] font-bold leading-none text-[#2D1810]">
         {value}
@@ -100,7 +100,7 @@ export default function BillingV3Page() {
       </div>
 
       {/* Collection Progress */}
-      <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
+      <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
         <div className="mb-3 flex items-center justify-between">
           <p className="text-sm font-bold text-[#2D1810]">Collection Progress</p>
           <span className="text-xs text-[#2D1810]/50">
@@ -127,7 +127,7 @@ export default function BillingV3Page() {
       </div>
 
       {/* Invoice Tracker */}
-      <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
+      <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
         <div className="mb-3 flex items-center justify-between">
           <p className="text-sm font-bold text-[#2D1810]">Invoice Tracker</p>
           <button className="flex items-center gap-1.5 text-xs font-bold text-[#3B2513] hover:opacity-70">
@@ -137,7 +137,7 @@ export default function BillingV3Page() {
         <div className="overflow-x-auto">
           <table className="w-full border-collapse text-sm">
             <thead>
-              <tr className="border-b border-black/[0.08] text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
+              <tr className="text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
                 <th className="pb-2 pr-3 font-semibold">Child</th>
                 <th className="pb-2 pr-3 font-semibold">Parent</th>
                 <th className="pb-2 pr-3 font-semibold">Plan</th>
@@ -153,7 +153,7 @@ export default function BillingV3Page() {
               {INVOICE_TRACKING.map((row) => {
                 const status = STATUS_STYLES[row.status];
                 return (
-                  <tr key={row.id} className="border-b border-black/[0.05] last:border-0">
+                  <tr key={row.id} className={row.id % 2 === 0 ? "bg-white/60" : "bg-transparent"}>
                     <td className="py-2.5 pr-3 font-semibold text-[#2D1810]">
                       {row.child}
                       {row.extraChildren > 0 && (
@@ -166,7 +166,7 @@ export default function BillingV3Page() {
                     <td className="py-2.5 pr-3 text-[#2D1810]/70">{row.roomPlan}</td>
                     <td className="py-2.5 pr-3 font-mono text-[#2D1810]">{row.duePayment}</td>
                     <td className="py-2.5 pr-3 text-[#2D1810]/70">{row.dueDate}</td>
-                    <td className="py-2.5 pr-3 text-[#2D1810]/70">{row.daysOverdue ?? "—"}</td>
+                    <td className="py-2.5 pr-3 text-[#2D1810]/70">{row.daysOverdue ?? "–"}</td>
                     <td className="py-2.5 pr-3">
                       <AiRiskBadge level={toAiRiskLevel(row.risk)} />
                     </td>

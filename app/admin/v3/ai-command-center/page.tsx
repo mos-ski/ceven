@@ -16,13 +16,13 @@ const HEALTH_WELFARE_INSIGHTS: Insight[] = [
   {
     color: "#D4522F",
     name: "Zara Mohammed",
-    text: "has been absent 3× this week. Nut allergy on file — flag for welfare check.",
+    text: "has been absent 3× this week. Nut allergy on file. Flag for welfare check.",
     action: "Take Action",
   },
   {
     color: "#C47B2C",
     name: "Leo Adeyemi",
-    text: "— peanut exposure suspected in Lion Class this morning. Under observation.",
+    text: "Peanut exposure suspected in Lion Class this morning. Under observation.",
     action: "View Incident",
   },
   {
@@ -43,7 +43,7 @@ const FINANCE_INSIGHTS: Insight[] = [
   {
     color: "#D4522F",
     name: "Bello Family",
-    text: "has the largest outstanding balance — ₦110,000, now 14 days overdue.",
+    text: "has the largest outstanding balance, ₦110,000, now 14 days overdue.",
     action: "View Account",
   },
   {
@@ -104,11 +104,11 @@ function SectionBadge({ children }: { children: React.ReactNode }) {
 
 function InsightCard({ title, items }: { title: string; items: Insight[] }) {
   return (
-    <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
+    <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
       <SectionBadge>{title}</SectionBadge>
       <div className="mt-4 flex flex-col gap-3">
         {items.map((insight) => (
-          <div key={insight.name} className="relative rounded-xl border border-black/[0.07] bg-[#FAF2E1] p-3 pl-7">
+          <div key={insight.name} className="relative rounded-xl bg-[#FAF2E1] p-3 pl-7">
             <span className="absolute left-3 top-4 h-2 w-2 rounded-sm" style={{ background: insight.color }} />
             <p className="text-xs leading-5 text-[#2D1810]">
               <span className="font-bold">{insight.name}</span> <span className="text-[#2D1810]/50">{insight.text}</span>
@@ -139,9 +139,9 @@ function AIChatPanel({ onClose }: { onClose?: () => void }) {
   }
 
   return (
-    <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-black/[0.07] bg-white">
+    <div className="flex h-full flex-col overflow-hidden rounded-2xl bg-[#F5EDD8]/30">
       {/* Header */}
-      <div className="flex shrink-0 items-center justify-between border-b border-black/[0.07] px-4 py-4">
+      <div className="flex shrink-0 items-center justify-between px-4 py-4">
         <div className="flex items-center gap-3">
           <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-[#1E2D4A] to-[#2D1810]">
             <Bot className="h-5 w-5 text-[#F5EDD8]" />
@@ -189,7 +189,8 @@ function AIChatPanel({ onClose }: { onClose?: () => void }) {
       </div>
 
       {/* Quick prompts */}
-      <div className="flex shrink-0 flex-wrap gap-2 border-t border-black/[0.07] px-4 py-3">
+      <div className="flex shrink-0 flex-wrap gap-2 px-4 py-3">
+        <div className="h-px w-full bg-black/[0.06] -mb-3 -mt-0" />
         {QUICK_PROMPTS.map((prompt) => (
           <button
             key={prompt}
@@ -236,7 +237,7 @@ export default function AICommandCenterV3Page() {
             Command Center
           </h1>
           <p className="mt-1 text-sm text-[#2D1810]/50">
-            System analysis across health, finance, and staff — refreshed every morning at 7am.
+            System analysis across health, finance, and staff. Refreshed every morning at 7am.
           </p>
         </div>
         <button className="flex shrink-0 items-center gap-1.5 self-start rounded-lg bg-gradient-to-r from-[#1E2D4A] to-[#2D1810] px-4 py-2 text-xs font-bold text-[#F5EDD8] hover:opacity-90 sm:self-auto">
@@ -321,7 +322,7 @@ export default function AICommandCenterV3Page() {
           </div>
         </div>
 
-        {/* Persistent AI chat panel — desktop */}
+        {/* Persistent AI chat panel, desktop */}
         <div className="hidden xl:block xl:h-[calc(100vh-11rem)] xl:w-[360px] xl:shrink-0 xl:sticky xl:top-6">
           <AIChatPanel />
         </div>

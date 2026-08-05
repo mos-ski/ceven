@@ -67,7 +67,7 @@ export default function OnboardingPage() {
         </span>
       </div>
 
-      {/* Slide content — bottom */}
+      {/* Slide content, bottom */}
       <div className="relative z-10 mt-auto px-6 pb-4">
         <h2 className="mb-2 text-2xl font-bold leading-tight text-white">
           {slide.heading}

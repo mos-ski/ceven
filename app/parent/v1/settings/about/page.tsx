@@ -20,7 +20,7 @@ export default function AboutPage() {
           <ArrowLeft size={16} className="text-white" />
         </button>
         <h1 className="text-xl font-bold text-white">About App</h1>
-        <p className="mt-1 text-sm text-white/70">CEven — Connecting parents &amp; caregivers.</p>
+        <p className="mt-1 text-sm text-white/70">CEven, Connecting parents &amp; caregivers.</p>
       </div>
 
       <div className="flex-1 overflow-y-auto bg-white px-6 py-6">

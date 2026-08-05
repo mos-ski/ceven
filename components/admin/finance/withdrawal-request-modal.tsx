@@ -172,7 +172,7 @@ export default function WithdrawalRequestModal({ open, onOpenChange }: Props) {
                   type="text"
                   value={note}
                   onChange={(e) => setNote(e.target.value)}
-                  placeholder="e.g. Staff salary — Mrs. Sarah"
+                  placeholder="e.g. Staff salary, Mrs. Sarah"
                   className="h-[52px] w-full rounded-xl border border-[#e6ebf3] bg-white px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
                 />
               </div>

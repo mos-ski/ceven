@@ -19,7 +19,7 @@ const MOCK_MILESTONES: Milestone[] = [
   { id: "ms-1", childId: "child-1", date: "2025-02-20", title: "First Steps", description: "Liam took his first unassisted steps across the room.", recordedBy: "James Miller", recordedAt: Date.now() - 300 * 86400000 },
   { id: "ms-2", childId: "child-1", date: "2025-05-12", title: "First Words", description: "Said 'mama' clearly for the first time.", recordedBy: "Grace Miller", recordedAt: Date.now() - 200 * 86400000 },
   { id: "ms-3", childId: "child-1", date: "2025-08-01", title: "Walking Confidently", description: "Walking independently without holding onto furniture.", recordedBy: "Ms Anu", recordedAt: Date.now() - 120 * 86400000 },
-  { id: "ms-4", childId: "child-1", date: "2025-11-15", title: "First Sentence", description: "Said 'I want water please' — full sentence!", recordedBy: "Grace Miller", recordedAt: Date.now() - 30 * 86400000 },
+  { id: "ms-4", childId: "child-1", date: "2025-11-15", title: "First Sentence", description: "Said 'I want water please', full sentence!", recordedBy: "Grace Miller", recordedAt: Date.now() - 30 * 86400000 },
 ];
 
 function init() {
@@ -51,6 +51,6 @@ export function addMilestone(milestone: Omit<Milestone, "id" | "recordedAt">): M
   const all = sharedGetList<Milestone>(MILESTONE_KEY);
   const newMilestone: Milestone = { ...milestone, id: `ms-${Date.now()}`, recordedAt: Date.now() };
   sharedSet(MILESTONE_KEY, [...all, newMilestone]);
-  addNotification({ type: "milestone", title: "New Milestone", body: `${milestone.title} — ${milestone.description}`, childId: milestone.childId, data: { milestone: milestone.title } });
+  addNotification({ type: "milestone", title: "New Milestone", body: `${milestone.title}, ${milestone.description}`, childId: milestone.childId, data: { milestone: milestone.title } });
   return newMilestone;
 }

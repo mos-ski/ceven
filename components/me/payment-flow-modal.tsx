@@ -101,7 +101,7 @@ export function PaymentFlowModal({
               <CheckCircle2 size={36} className="text-green-500" />
             </div>
             <h2 className="mb-1 font-[family-name:var(--font-merriweather-import)] text-lg font-bold text-gray-800">Payment Successful</h2>
-            <p className="mb-6 text-sm text-gray-500">{description} — {amount}</p>
+            <p className="mb-6 text-sm text-gray-500">{description}, {amount}</p>
             <button
               onClick={() => { onSuccess(); onClose(); }}
               className="w-full rounded-xl bg-cg-brand py-3 text-sm font-semibold text-white"

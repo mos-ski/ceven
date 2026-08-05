@@ -141,8 +141,8 @@ function TaskDetailsModal({ task, onClose }: { task: Task; onClose: () => void }
               { label: "Task Title", value: task.title },
               { label: "Description", value: task.description },
               { label: "Scheduled Time", value: task.scheduledTime },
-              { label: "Reminder Time", value: task.reminderTime || "—" },
-              { label: "Additional Comment", value: task.comment || "—" },
+              { label: "Reminder Time", value: task.reminderTime || "," },
+              { label: "Additional Comment", value: task.comment || "," },
             ].map(({ label, value }) => (
               <div key={label} className="rounded-xl bg-[#F9F5EE] px-4 py-3">
                 <p className="mb-0.5 text-xs font-medium text-gray-400">{label}</p>

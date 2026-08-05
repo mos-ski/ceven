@@ -67,7 +67,7 @@ export function ScanFlow({ userRole, userId, userName }: Props) {
     childIds.forEach((childId) => {
       const child = state.childStates.find((c) => c.childId === childId);
       const isPickup = child?.isCheckedIn ?? false;
-      // Authorization only matters for pickup — dropping off your own
+      // Authorization only matters for pickup, dropping off your own
       // enrolled child never needs a check.
       const authorizedPickup = isPickup ? getAuthorizedPickup(childId) : true;
       dispatch({

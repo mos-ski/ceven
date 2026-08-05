@@ -25,7 +25,7 @@ export function LiveFeed() {
 
       {!hasRealScans && (
         <p className="mb-1 text-[10px] italic text-[#9ca3af]">
-          No scans yet today — showing example activity
+          No scans yet today, showing example activity
         </p>
       )}
 

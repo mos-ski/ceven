@@ -95,7 +95,7 @@ function buildIndex(): SearchResult[] {
   for (const lr of LEAVE_REQUESTS) {
     results.push({
       id: `leave-${lr.name}-${lr.leaveType}`,
-      title: `${lr.name} — ${lr.leaveType}`,
+      title: `${lr.name}, ${lr.leaveType}`,
       subtitle: `${lr.reason} · ${lr.status}`,
       category: "Leave",
       icon: Wallet,
@@ -107,7 +107,7 @@ function buildIndex(): SearchResult[] {
   for (const inv of INVOICE_TRACKING) {
     results.push({
       id: `invoice-${inv.id}`,
-      title: `${inv.child} — ${inv.duePayment}`,
+      title: `${inv.child}, ${inv.duePayment}`,
       subtitle: `${inv.parentName} · ${inv.roomPlan} · ${inv.status}`,
       category: "Invoices",
       icon: Receipt,
@@ -131,7 +131,7 @@ function buildIndex(): SearchResult[] {
   for (const inc of INCIDENTS) {
     results.push({
       id: `incident-${inc.child}-${inc.type}`,
-      title: `${inc.child} — ${inc.type}`,
+      title: `${inc.child}, ${inc.type}`,
       subtitle: `${inc.room} · ${inc.severity} · ${inc.status}`,
       category: "Incidents",
       icon: AlertTriangle,
@@ -143,7 +143,7 @@ function buildIndex(): SearchResult[] {
   for (const med of MEDICATIONS) {
     results.push({
       id: `med-${med.child}-${med.medication}`,
-      title: `${med.child} — ${med.medication}`,
+      title: `${med.child}, ${med.medication}`,
       subtitle: `${med.room} · ${med.status}`,
       category: "Medication",
       icon: Pill,
@@ -215,7 +215,7 @@ function buildIndex(): SearchResult[] {
   for (const log of AUDIT_LOG) {
     results.push({
       id: `audit-${log.id}`,
-      title: `${log.actorName} — ${log.action}`,
+      title: `${log.actorName}, ${log.action}`,
       subtitle: log.detail,
       category: "Audit Trail",
       icon: Hash,

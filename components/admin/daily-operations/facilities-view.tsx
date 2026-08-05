@@ -254,7 +254,7 @@ function MaintenanceRow({ issue }: { issue: FacilityIssue }) {
         </Badge>
       </TableCell>
       <TableCell className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
-        {issue.resolvedDate ?? "—"}
+        {issue.resolvedDate ?? ","}
       </TableCell>
       <TableCell>
         <button className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#3b2513] underline">

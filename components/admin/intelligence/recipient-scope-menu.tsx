@@ -17,7 +17,7 @@ type Props = {
   className?: string;
 };
 
-// Figma: node 10707:23129 "SEVERITY" — recipient scope selector used for
+// Figma: node 10707:23129 "SEVERITY", recipient scope selector used for
 // report recipients and broadcast/announcement audience selection.
 export function RecipientScopeMenu({ value, onChange, className }: Props) {
   return (

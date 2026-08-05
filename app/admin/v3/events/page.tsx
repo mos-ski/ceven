@@ -3,7 +3,7 @@
 import { Clock, Users } from "lucide-react";
 import { CALENDAR_EVENTS, CALENDAR_MONTH_LABEL, type CalendarEventStatus } from "@/lib/mock-data/communication";
 
-// The v2 calendar mock data only carries day/title/time/status — audience,
+// The v2 calendar mock data only carries day/title/time/status, audience,
 // description and action labels are invented here for the richer event-card
 // layout this page needs (no v2 equivalent existed for these fields).
 const EVENT_DETAILS: Record<

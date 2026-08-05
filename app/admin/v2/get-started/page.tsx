@@ -103,7 +103,7 @@ function CrecheProfileModal({ onComplete }: { onComplete: () => void }) {
 
   return (
     <form onSubmit={(e) => { e.preventDefault(); onComplete(); }} className="flex flex-col gap-4 px-6 py-5">
-      <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Pre-filled for you — edit if needed</p>
+      <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Pre-filled for you, edit if needed</p>
       <Field label="Crèche Name" value={name} onChange={setName} />
       <Field label="Phone" value={phone} onChange={setPhone} />
       <Field label="Address" value={address} onChange={setAddress} />
@@ -125,7 +125,7 @@ function RoomsModal({ onComplete }: { onComplete: () => void }) {
 
   return (
     <form onSubmit={(e) => { e.preventDefault(); onComplete(); }} className="flex flex-col gap-4 px-6 py-5">
-      <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">3 rooms pre-configured — edit as needed</p>
+      <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">3 rooms pre-configured, edit as needed</p>
       {rooms.map((room, i) => (
         <div key={i} className="flex gap-2">
           <input value={room.name} onChange={(e) => { const r = [...rooms]; r[i] = { ...r[i], name: e.target.value }; setRooms(r); }} className="h-10 flex-1 rounded-xl border border-[#e6ebf3] px-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]" />
@@ -236,7 +236,7 @@ function DailyReportModal({ onComplete }: { onComplete: () => void }) {
 
   return (
     <form onSubmit={(e) => { e.preventDefault(); onComplete(); }} className="flex flex-col gap-4 px-6 py-5">
-      <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Simulated report — all fields pre-filled</p>
+      <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Simulated report, all fields pre-filled</p>
       <div className="rounded-xl bg-[#faf2e1] px-4 py-3">
         <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">{child}</p>
         <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#6b7280]">Lion Room • Today</p>

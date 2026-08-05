@@ -99,7 +99,7 @@ function OverviewTab({ child }: { child: Child }) {
     <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
       {/* Left col (span 2) */}
       <div className="space-y-4 lg:col-span-2">
-        {/* Info cards — 2 cols on mobile, 3 on desktop */}
+        {/* Info cards, 2 cols on mobile, 3 on desktop */}
         <div className="grid grid-cols-2 gap-3 lg:grid-cols-3">
           {infoCards.map((card) => (
             <div key={card.label} className="rounded-xl border border-[#e6ebf3] bg-white p-3">
@@ -192,7 +192,7 @@ function ActivityLogTab({ child }: { child: Child }) {
       {/* Today's Log */}
       <div className="mb-4 rounded-xl border border-[#e6ebf3] bg-white p-4">
         <p className="mb-3 font-[family-name:var(--font-merriweather)] text-sm font-bold text-[#2d1810]">
-          Today&apos;s Log — Oct 10, 2025
+          Today&apos;s Log, Oct 10, 2025
         </p>
         <div className="mb-4 grid grid-cols-3 gap-3">
           {todayCards.map((item) => (
@@ -212,7 +212,7 @@ function ActivityLogTab({ child }: { child: Child }) {
           <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
             {firstName} had a great day today! {child.gender === "M" ? "He" : "She"} participated actively in story time and showed kindness to younger children during play. Ate all {child.gender === "M" ? "his" : "her"} lunch and napped for 1hr 20min.
           </p>
-          <p className="mt-1 font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">— Mrs. Sarah Okonkwo, 3:50 PM</p>
+          <p className="mt-1 font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">, Mrs. Sarah Okonkwo, 3:50 PM</p>
         </div>
       </div>
 

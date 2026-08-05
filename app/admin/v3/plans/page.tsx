@@ -69,10 +69,10 @@ const COMPARISON_ROWS: ComparisonRow[] = [
   { feature: "Parent Mobile App", grow: "✓", thrive: "✓" },
   { feature: "Daily Reports", grow: "✓", thrive: "✓" },
   { feature: "Attendance Management", grow: "✓", thrive: "✓" },
-  { feature: "Reports & Insights", grow: "—", thrive: "✓" },
-  { feature: "Advanced Analytics", grow: "—", thrive: "✓" },
+  { feature: "Reports & Insights", grow: "–", thrive: "✓" },
+  { feature: "Advanced Analytics", grow: "–", thrive: "✓" },
   { feature: "Priority Support", grow: "Email support", thrive: "Priority support" },
-  { feature: "Multi-branch Support", grow: "—", thrive: "✓" },
+  { feature: "Multi-branch Support", grow: "–", thrive: "✓" },
 ];
 
 function formatNaira(amount: number): string {
@@ -203,7 +203,7 @@ export default function PlansV3Page() {
         })}
       </div>
 
-      {/* Feature Comparison — flat, no borders */}
+      {/* Feature Comparison, flat, no borders */}
       <div className="rounded-2xl bg-[#F5EDD8]/30">
         <div className="px-6 py-4">
           <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2D1810]">

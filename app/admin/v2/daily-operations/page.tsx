@@ -306,12 +306,12 @@ function QRStationView() {
 
       {/* Two-column layout */}
       <div className="flex flex-col lg:flex-row gap-4">
-        {/* Left panel — real QR display (35%) */}
+        {/* Left panel, real QR display (35%) */}
         <div className="w-full lg:w-[35%] lg shrink-0">
           <QRDisplay />
         </div>
 
-        {/* Right panel — real live feed + grid (65%) */}
+        {/* Right panel, real live feed + grid (65%) */}
         <div className="flex w-full lg:flex-1 flex-col gap-4">
           <LiveFeed />
           <AttendanceGrid />
@@ -409,7 +409,7 @@ function DailyReportDetailsModal({
                 ["Nap Time", row.napTime],
                 ["Hygiene", row.hygiene],
                 ["Health", row.health],
-                ["Note", row.note || "—"],
+                ["Note", row.note || "–"],
                 ["Caregiver", row.caregiver],
                 ["Report Time", row.reportTime],
               ].map(([label, value]) => (

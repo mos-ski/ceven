@@ -223,9 +223,9 @@ function ViewMedicationModal({
                 ["Medication", entry.medication],
                 ["Dose", entry.dosage],
                 ["Frequency", entry.frequency],
-                ["Attended By", entry.administeredBy ?? "—"],
+                ["Attended By", entry.administeredBy ?? ","],
                 ["Time", entry.scheduledTime],
-                ["Additional Note", entry.note || "—"],
+                ["Additional Note", entry.note || ","],
               ].map(([label, value]) => (
                 <div key={label} className="flex gap-[52px]">
                   <p className="w-[156px] shrink-0 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#6b7280]">
@@ -300,7 +300,7 @@ function MedicationRow({ entry, onView }: { entry: MedicationEntry; onView: (ent
         {entry.frequency}
       </TableCell>
       <TableCell className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
-        {entry.administeredBy ?? "—"}
+        {entry.administeredBy ?? ","}
       </TableCell>
       <TableCell className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
         {entry.scheduledTime}

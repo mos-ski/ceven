@@ -257,7 +257,7 @@ export function AttendanceProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   // Hydrate from localStorage after mount (not during the initial render,
-  // so the server-rendered and first client render always match — avoids
+  // so the server-rendered and first client render always match, avoids
   // a hydration mismatch) so attendance state survives page reloads.
   useEffect(() => {
     try {
@@ -266,7 +266,7 @@ export function AttendanceProvider({ children }: { children: ReactNode }) {
         dispatch({ type: "HYDRATE", state: JSON.parse(raw) as AttendanceState });
       }
     } catch {
-      // corrupt or unavailable storage — keep the in-memory default
+      // corrupt or unavailable storage, keep the in-memory default
     }
   }, []);
 
@@ -275,11 +275,11 @@ export function AttendanceProvider({ children }: { children: ReactNode }) {
     try {
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     } catch {
-      // storage full or unavailable — demo still works in-memory
+      // storage full or unavailable, demo still works in-memory
     }
   }, [state]);
 
-  // Pick up changes made in *other* tabs — the "storage" event only fires
+  // Pick up changes made in *other* tabs, the "storage" event only fires
   // in sibling tabs of the same origin, never in the tab that wrote it.
   useEffect(() => {
     function handleStorage(event: StorageEvent) {

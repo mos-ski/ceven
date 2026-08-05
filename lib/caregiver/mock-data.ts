@@ -112,7 +112,7 @@ export const mockChildren: Child[] = [
     name: "Noah Davies",
     age: "4 Years",
     room: "Nursery",
-    alerts: [{ type: "warning", label: "Allergy", detail: "Peanut allergy — EpiPen in bag" }],
+    alerts: [{ type: "warning", label: "Allergy", detail: "Peanut allergy, EpiPen in bag" }],
     parentContact: { id: "contact-3", name: "Tom Davies", avatarInitials: "TD" },
   },
   {
@@ -402,7 +402,7 @@ export type ChildProfile = Child & {
 export const mockChildProfiles: ChildProfile[] = [
   { id: "child-1", name: "Liam Smith", age: "3 Years", room: "Toddler", gender: "Male", dob: "March 14, 2022", enrollDate: "January 10, 2024", bloodGroup: "O+", notes: "Very energetic, loves puzzles. Needs nap at 1pm.", alerts: [{ type: "info", label: "Nap Time", detail: "Needs nap at 1:00 PM" }], parentContact: { id: "contact-1", name: "James Miller", avatarInitials: "JM" } },
   { id: "child-2", name: "Olivia Brown", age: "2 Years", room: "Toddler", gender: "Female", dob: "June 22, 2022", enrollDate: "March 5, 2024", bloodGroup: "A+", notes: "Shy at first but warms up quickly. Loves painting.", alerts: [], parentContact: { id: "contact-2", name: "Sarah Brown", avatarInitials: "SB" } },
-  { id: "child-3", name: "Noah Davies", age: "4 Years", room: "Nursery", gender: "Male", dob: "September 3, 2021", enrollDate: "February 1, 2024", bloodGroup: "B+", notes: "Peanut allergy — EpiPen always in his bag. Very social.", alerts: [{ type: "warning", label: "Allergy", detail: "Peanut allergy — EpiPen in bag" }], parentContact: { id: "contact-3", name: "Tom Davies", avatarInitials: "TD" } },
+  { id: "child-3", name: "Noah Davies", age: "4 Years", room: "Nursery", gender: "Male", dob: "September 3, 2021", enrollDate: "February 1, 2024", bloodGroup: "B+", notes: "Peanut allergy, EpiPen always in his bag. Very social.", alerts: [{ type: "warning", label: "Allergy", detail: "Peanut allergy, EpiPen in bag" }], parentContact: { id: "contact-3", name: "Tom Davies", avatarInitials: "TD" } },
   { id: "child-4", name: "Johnson Emma", age: "3 Years", room: "Toddler", gender: "Female", dob: "December 11, 2021", enrollDate: "April 15, 2024", bloodGroup: "AB+", notes: "Loves storytime. Often asks for extra snacks.", alerts: [], parentContact: { id: "contact-4", name: "Kate Johnson", avatarInitials: "KJ" } },
   { id: "child-5", name: "Tosin Adeyemi", age: "2 Years", room: "Nursery", gender: "Female", dob: "January 30, 2023", enrollDate: "May 20, 2024", bloodGroup: "O-", notes: "Medication at 10am if needed. Very calm temperament.", alerts: [{ type: "info", label: "Medication", detail: "Calpol at 10:00 AM if needed" }], parentContact: { id: "contact-5", name: "Mercy Itom", avatarInitials: "MI" } },
 ];

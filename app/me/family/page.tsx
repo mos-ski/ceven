@@ -89,7 +89,7 @@ function SecuritySection() {
     <div className="rounded-2xl bg-white p-5 shadow-sm">
       <div className="mb-4 flex items-center gap-2">
         <Lock size={16} className="text-cg-brand" />
-        <p className="text-sm font-semibold text-gray-800">Security — Change Password</p>
+        <p className="text-sm font-semibold text-gray-800">Security, Change Password</p>
       </div>
       <div className="grid gap-3 sm:grid-cols-3">
         <input type="password" value={current} onChange={(e) => setCurrent(e.target.value)} placeholder="Current password" className="rounded-xl border border-gray-100 bg-gray-50 px-3 py-2.5 text-sm text-gray-800 placeholder:text-gray-400 focus:border-cg-brand focus:outline-none" />

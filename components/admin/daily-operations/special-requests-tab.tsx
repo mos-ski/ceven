@@ -105,14 +105,14 @@ function RequestDetailModal({
               {[
                 ["Request", request.title],
                 ["Description", request.description],
-                ["Child", request.childName === "—" ? "—" : `${request.childName} — ${request.childRoom} Room`],
+                ["Child", request.childName === "," ? "," : `${request.childName}, ${request.childRoom} Room`],
                 ["Assigned Caregiver", request.caregiverName],
                 ["Scheduled Time", request.scheduledTime],
                 ["Due Date", request.dueDate],
-                ["Reminder Time", request.reminderTime || "—"],
+                ["Reminder Time", request.reminderTime || ","],
                 ["Priority", request.priority],
                 ["Source", request.source],
-                ["Additional Comment", request.comment || "—"],
+                ["Additional Comment", request.comment || ","],
               ].map(([label, value]) => (
                 <div key={label} className="flex gap-4">
                   <p className="w-[140px] shrink-0 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#6b7280]">

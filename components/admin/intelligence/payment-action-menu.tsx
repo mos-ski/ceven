@@ -17,7 +17,7 @@ type Props = {
 
 const ACTIONS = ["Record Payment", "Send Reminder", "View History", "Contact Parent"] as const;
 
-// Figma: node 10707:23123 "staff action modal" — row action menu used on
+// Figma: node 10707:23123 "staff action modal", row action menu used on
 // Outstanding Payments rows in the AI Command Center and Reports tab.
 export function PaymentActionMenu({ family, onAction }: Props) {
   return (

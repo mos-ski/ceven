@@ -13,7 +13,7 @@ import { CHILDREN, CAREGIVERS } from "@/lib/mock-data/children";
 
 // ── Mock daily-report data ───────────────────────────────────────────────────
 // No v2 equivalent exists for per-child daily reports (v2's daily-operations
-// page used a single repeated placeholder row) — this derives rows from the
+// page used a single repeated placeholder row), this derives rows from the
 // real CHILDREN/CAREGIVERS mock data instead, matching that same shape.
 
 type DailyLogStatus = "Done" | "Flag" | "Pending" | null;
@@ -166,7 +166,7 @@ function DailyReportDetailsModal({
                 ["Nap Time", row.napTime],
                 ["Hygiene", row.hygiene],
                 ["Health", row.health],
-                ["Note", row.note || "—"],
+                ["Note", row.note || "–"],
                 ["Caregiver", row.caregiver],
                 ["Report Time", row.reportTime],
               ].map(([label, value]) => (

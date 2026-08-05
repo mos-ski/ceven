@@ -26,14 +26,14 @@ const APP_SECTIONS: AppSection[] = [
     id: "design-system",
     title: "Design System",
     summary: {
-      what: "CEven's shared visual language — the source of truth for colors, type, and components used across every app.",
+      what: "CEven's shared visual language, the source of truth for colors, type, and components used across every app.",
       entails: "Tokens (brand colors, fonts, spacing) plus live showcases for buttons, badges, cards, tables, modals, chat/messaging patterns, and marketing sections.",
-      missing: "Not yet consumed as an actual shared package or theme — each app still hardcodes its own Tailwind classes rather than importing from here.",
+      missing: "Not yet consumed as an actual shared package or theme, each app still hardcodes its own Tailwind classes rather than importing from here.",
       improved: "A single reference now exists instead of every app inventing its own button, card, and color treatment independently.",
     },
     versions: [
       {
-        label: "CEven library — foundations & components",
+        label: "CEven library, foundations & components",
         meta: "Next.js · /library",
         href: "/library",
         rows: [
@@ -74,10 +74,10 @@ const APP_SECTIONS: AppSection[] = [
     id: "super-admin",
     title: "Super Admin",
     summary: {
-      what: "CEven's own internal console — platform-operator oversight across every crèche on the platform, not a single crèche's view.",
+      what: "CEven's own internal console, platform-operator oversight across every crèche on the platform, not a single crèche's view.",
       entails: "Dashboard, a crèche directory with per-crèche caregiver/child drill-down, enrollment oversight, subscriptions, and notifications.",
-      missing: "Only one build exists (no v1/v2/v3 split yet), and it isn't linked from anywhere else in the product — reachable only by direct URL.",
-      improved: "New area — first working version, not an iteration over a prior one.",
+      missing: "Only one build exists (no v1/v2/v3 split yet), and it isn't linked from anywhere else in the product, reachable only by direct URL.",
+      improved: "New area, first working version, not an iteration over a prior one.",
     },
     versions: [
       {
@@ -100,14 +100,14 @@ const APP_SECTIONS: AppSection[] = [
     id: "creche-admin",
     title: "Crèche Admin",
     summary: {
-      what: "The operator dashboard a crèche's own staff/owner uses day-to-day — attendance, billing, staff, compliance, and more, scoped to their one crèche.",
-      entails: "v1 was the original build. v2 (this codebase's main build) is a full operating system with real logic for nearly every module. v3 is the CEO's own reimagining of the product — new visual direction and flatter navigation — currently being converted from a static prototype into real, working code.",
-      missing: "v3: most pages still need porting to real Next.js with live data — only the exact-replica reference and the conversion-in-progress exist so far.",
-      improved: "v2 added full feature breadth over v1 — payroll, compliance, Command Center, financial reports. v3 brings a cleaner, more distinctive visual language matching the CEO's original product vision.",
+      what: "The operator dashboard a crèche's own staff/owner uses day-to-day, attendance, billing, staff, compliance, and more, scoped to their one crèche.",
+      entails: "v1 was the original build. v2 (this codebase's main build) is a full operating system with real logic for nearly every module. v3 is the CEO's own reimagining of the product, new visual direction and flatter navigation, currently being converted from a static prototype into real, working code.",
+      missing: "v3: most pages still need porting to real Next.js with live data, only the exact-replica reference and the conversion-in-progress exist so far.",
+      improved: "v2 added full feature breadth over v1, payroll, compliance, Command Center, financial reports. v3 brings a cleaner, more distinctive visual language matching the CEO's original product vision.",
     },
     versions: [
       {
-        label: "v1 — original crèche admin",
+        label: "v1, original crèche admin",
         meta: "Next.js · /admin/v1",
         href: "/admin/v1/dashboard",
         rows: [
@@ -121,7 +121,7 @@ const APP_SECTIONS: AppSection[] = [
         ],
       },
       {
-        label: "v2 — full operating system",
+        label: "v2, full operating system",
         meta: "Next.js · /admin/v2",
         href: "/admin/v2/dashboard",
         rows: [
@@ -179,7 +179,7 @@ const APP_SECTIONS: AppSection[] = [
         ],
       },
       {
-        label: "v3 — CEO reimagining",
+        label: "v3, CEO reimagining",
         meta: "Next.js (in progress) · /admin/v3",
         note: "Exact-replica reference kept at /admin/v3-reference",
         href: "/admin/v3",
@@ -238,13 +238,13 @@ const APP_SECTIONS: AppSection[] = [
     title: "Parent App",
     summary: {
       what: "The family-facing mobile app parents use to track their child's day, message the crèche, and manage billing.",
-      entails: "v1 is this codebase's main build, started when the current team joined. v2 is the newest direction — it reimagines the relationship as parent ↔ independent caregiver, not just parent ↔ crèche.",
-      missing: "v2 currently has 4 screens built (home, chat, food timetable, calendar) — most of v1's breadth hasn't been re-imagined for the independent-caregiver model yet.",
+      entails: "v1 is this codebase's main build, started when the current team joined. v2 is the newest direction, it reimagines the relationship as parent ↔ independent caregiver, not just parent ↔ crèche.",
+      missing: "v2 currently has 4 screens built (home, chat, food timetable, calendar), most of v1's breadth hasn't been re-imagined for the independent-caregiver model yet.",
       improved: "v1 added the CEven assistant, richer settings, and health/growth/feeding tracking over the original production app.",
     },
     versions: [
       {
-        label: "v1 — current build",
+        label: "v1, current build",
         meta: "Next.js · /parent/v1",
         href: "/parent/v1",
         rows: [
@@ -303,7 +303,7 @@ const APP_SECTIONS: AppSection[] = [
         ],
       },
       {
-        label: "v2 — parent ↔ independent caregiver",
+        label: "v2, parent ↔ independent caregiver",
         meta: "Next.js · /parent/v2",
         href: "/parent/v2",
         rows: [
@@ -321,14 +321,14 @@ const APP_SECTIONS: AppSection[] = [
     id: "caregiver-app",
     title: "Caregiver App",
     summary: {
-      what: "The staff-facing mobile app caregivers use to log attendance, daily reports, and incidents — scoped to a single crèche.",
+      what: "The staff-facing mobile app caregivers use to log attendance, daily reports, and incidents, scoped to a single crèche.",
       entails: "v1 is the crèche-staff build from this codebase's main build. v2 is the reimagined version with a cleaner UI and richer daily workflows.",
-      missing: "v2 currently has the core screens built (today, chat, daily report, calendar) — more modules are being expanded.",
+      missing: "v2 currently has the core screens built (today, chat, daily report, calendar), more modules are being expanded.",
       improved: "v1 added Chat, ratings, and a fuller settings/onboarding flow over the original production app. v2 brings a modern visual direction matching the new product vision.",
     },
     versions: [
       {
-        label: "v1 — current build",
+        label: "v1, current build",
         meta: "Next.js · /caregiver/v1",
         href: "/caregiver/v1",
         rows: [
@@ -371,7 +371,7 @@ const APP_SECTIONS: AppSection[] = [
         ],
       },
       {
-        label: "v2 — reimagined",
+        label: "v2, reimagined",
         meta: "Next.js · /caregiver/v2",
         href: "/caregiver/v2",
         rows: [
@@ -389,14 +389,14 @@ const APP_SECTIONS: AppSection[] = [
     id: "independent-caregiver-app",
     title: "Independent Caregiver App",
     summary: {
-      what: "The mobile app for independent caregivers who work outside a single crèche — manages their own schedule, clients, and daily reports.",
+      what: "The mobile app for independent caregivers who work outside a single crèche, manages their own schedule, clients, and daily reports.",
       entails: "Separate app from the crèche-bound caregiver. v2 is the first build in this codebase. Users are routed here during sign-up or invite based on their role.",
-      missing: "v2 is in early development — core screens being built out.",
-      improved: "New app — first working version, purpose-built for independent caregivers.",
+      missing: "v2 is in early development, core screens being built out.",
+      improved: "New app, first working version, purpose-built for independent caregivers.",
     },
     versions: [
       {
-        label: "v2 — first build",
+        label: "v2, first build",
         meta: "Next.js · /independent-caregiver/v2",
         href: "/independent-caregiver/v2",
         rows: [
@@ -411,14 +411,14 @@ const APP_SECTIONS: AppSection[] = [
     id: "independent-tutor-app",
     title: "Independent Tutor App",
     summary: {
-      what: "The mobile app for independent tutors who provide one-on-one or small-group sessions — manages sessions, progress tracking, and parent communication.",
+      what: "The mobile app for independent tutors who provide one-on-one or small-group sessions, manages sessions, progress tracking, and parent communication.",
       entails: "Separate app from the crèche-bound caregiver. v2 is the first build in this codebase. Users are routed here during sign-up or invite based on their role.",
-      missing: "v2 is in early development — core screens being built out.",
-      improved: "New app — first working version, purpose-built for independent tutors.",
+      missing: "v2 is in early development, core screens being built out.",
+      improved: "New app, first working version, purpose-built for independent tutors.",
     },
     versions: [
       {
-        label: "v2 — first build",
+        label: "v2, first build",
         meta: "Next.js · /independent-tutor/v2",
         href: "/independent-tutor/v2",
         rows: [
@@ -435,8 +435,8 @@ const APP_SECTIONS: AppSection[] = [
     summary: {
       what: "CEven's public marketing site.",
       entails: "Home, audience-specific landing pages, company info, contact, and legal pages.",
-      missing: "Single version — no v1/v2/v3 split for the website.",
-      improved: "N/A — first and only build so far.",
+      missing: "Single version, no v1/v2/v3 split for the website.",
+      improved: "N/A, first and only build so far.",
     },
     versions: [
       {
@@ -492,7 +492,7 @@ export default function DirectoryPage() {
         </h1>
         <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-text">
           Every screen across the design system, super admin, crèche admin, parent, and caregiver
-          apps, plus the marketing site — grouped by version, with a short summary of what each one
+          apps, plus the marketing site, grouped by version, with a short summary of what each one
           is, what it covers, what&apos;s missing, and what improved over the last version.
           Versions that are live on the app store are not listed here.
         </p>
@@ -500,7 +500,7 @@ export default function DirectoryPage() {
         <div className="mt-6 flex items-center gap-3 rounded-xl border border-card-border bg-white px-4 py-3 text-sm">
           <span className="text-muted-text">Last updated:</span>
           <span className="font-bold text-heading">5 Aug 2026</span>
-          <span className="text-muted-text">—</span>
+          <span className="text-muted-text">,</span>
           <span className="text-muted-text">
             Removed app-store v1s, renumbered v2→v1 &amp; v3→v2 for Parent &amp; Caregiver, added CTA buttons, split caregiver into 3 separate apps (caregiver, independent caregiver, independent tutor)
           </span>
@@ -527,16 +527,16 @@ export default function DirectoryPage() {
                 {[
                   { app: "Super Admin", version: "v1", status: "Live", desc: "Platform console for internal operators", href: "/super-admin/dashboard" },
                   { app: "Crèche Admin", version: "v1", status: "Live", desc: "Original crèche operator dashboard", href: "/admin/v1/dashboard" },
-                  { app: "Crèche Admin", version: "v2", status: "Approved", desc: "Full operating system — payroll, compliance, financials", href: "/admin/v2/dashboard" },
-                  { app: "Crèche Admin", version: "v3", status: "In progress", desc: "CEO reimagining — new visual direction", href: "/admin/v3" },
-                  { app: "Parent App", version: "v1", status: "Approved", desc: "Current build — assistant, settings, health/growth tracking", href: "/parent/v1" },
+                  { app: "Crèche Admin", version: "v2", status: "Approved", desc: "Full operating system, payroll, compliance, financials", href: "/admin/v2/dashboard" },
+                  { app: "Crèche Admin", version: "v3", status: "In progress", desc: "CEO reimagining, new visual direction", href: "/admin/v3" },
+                  { app: "Parent App", version: "v1", status: "Approved", desc: "Current build, assistant, settings, health/growth tracking", href: "/parent/v1" },
                   { app: "Parent App", version: "v2", status: "In progress", desc: "Parent ↔ independent caregiver reimagining", href: "/parent/v2" },
-                  { app: "Caregiver App", version: "v1", status: "Approved", desc: "Crèche-staff build — daily workflows, ratings, settings", href: "/caregiver/v1" },
+                  { app: "Caregiver App", version: "v1", status: "Approved", desc: "Crèche-staff build, daily workflows, ratings, settings", href: "/caregiver/v1" },
                   { app: "Caregiver App", version: "v2", status: "In progress", desc: "Reimagined caregiver experience", href: "/caregiver/v2" },
                   { app: "Independent Caregiver", version: "v2", status: "Approved", desc: "First build for independent caregivers", href: "/independent-caregiver/v2" },
                   { app: "Independent Tutor", version: "v2", status: "In progress", desc: "First build for independent tutors", href: "/independent-tutor/v2" },
-                  { app: "Design System", version: "—", status: "In progress", desc: "Shared foundations & components", href: "/library" },
-                  { app: "Website", version: "—", status: "In progress", desc: "Public marketing site", href: "/" },
+                  { app: "Design System", version: ",", status: "In progress", desc: "Shared foundations & components", href: "/library" },
+                  { app: "Website", version: ",", status: "In progress", desc: "Public marketing site", href: "/" },
                 ].map((row, i) => (
                   <tr key={i} className="border-b border-card-border last:border-0">
                     <td className="px-4 py-3 font-semibold text-heading">{row.app}</td>
@@ -573,11 +573,11 @@ export default function DirectoryPage() {
             {[
               { app: "Super Admin", version: "v1", status: "Live", desc: "Platform console for internal operators", href: "/super-admin/dashboard" },
               { app: "Crèche Admin", version: "v1", status: "Live", desc: "Original crèche operator dashboard", href: "/admin/v1/dashboard" },
-              { app: "Crèche Admin", version: "v2", status: "Completed", desc: "Full operating system — payroll, compliance, financials", href: "/admin/v2/dashboard" },
-              { app: "Crèche Admin", version: "v3", status: "In progress", desc: "CEO reimagining — new visual direction", href: "/admin/v3" },
-              { app: "Parent App", version: "v1", status: "Completed", desc: "Current build — assistant, settings, health/growth tracking", href: "/parent/home" },
+              { app: "Crèche Admin", version: "v2", status: "Completed", desc: "Full operating system, payroll, compliance, financials", href: "/admin/v2/dashboard" },
+              { app: "Crèche Admin", version: "v3", status: "In progress", desc: "CEO reimagining, new visual direction", href: "/admin/v3" },
+              { app: "Parent App", version: "v1", status: "Completed", desc: "Current build, assistant, settings, health/growth tracking", href: "/parent/home" },
               { app: "Parent App", version: "v2", status: "In progress", desc: "Parent ↔ independent caregiver reimagining", href: "/parent/v2" },
-              { app: "Caregiver App", version: "v1", status: "Completed", desc: "Crèche-staff build — daily workflows, ratings, settings", href: "/caregiver/home" },
+              { app: "Caregiver App", version: "v1", status: "Completed", desc: "Crèche-staff build, daily workflows, ratings, settings", href: "/caregiver/home" },
               { app: "Caregiver App", version: "v2", status: "In progress", desc: "Reimagined caregiver experience", href: "/caregiverv3/today" },
               { app: "Independent Caregiver", version: "v2", status: "In progress", desc: "First build for independent caregivers", href: "#" },
               { app: "Independent Tutor", version: "v2", status: "In progress", desc: "First build for independent tutors", href: "#" },

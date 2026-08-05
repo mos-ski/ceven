@@ -20,16 +20,16 @@ const TIMELINE = [
     time: "9:00 AM",
     title: "Breakfast Logged",
     description:
-      "Meals are recorded with a single tap — portions, what was eaten, any allergic reactions noted immediately.",
+      "Meals are recorded with a single tap, portions, what was eaten, any allergic reactions noted immediately.",
     notification: null,
   },
   {
     time: "10:30 AM",
     title: "Activity Logged",
     description:
-      "Art, play, storytime, outdoor — caregivers log activities as they happen. Short, structured, fast.",
+      "Art, play, storytime, outdoor, caregivers log activities as they happen. Short, structured, fast.",
     notification: {
-      message: 'CEven sends: "Art session — Tolu painted a sun. Very proud of herself!"',
+      message: 'CEven sends: "Art session, Tolu painted a sun. Very proud of herself!"',
       label: "10:48 AM · Activity update",
     },
   },
@@ -54,7 +54,7 @@ const TIMELINE = [
     time: "5:30 PM",
     title: "Parent arrives. Calm. Informed. Loyal.",
     description:
-      "By the time they walk in, they've already lived the day with their child. They don't ask how was she — they already know. That trust? That's your referral engine.",
+      "By the time they walk in, they've already lived the day with their child. They don't ask how was she, they already know. That trust? That's your referral engine.",
     notification: null,
   },
 ];

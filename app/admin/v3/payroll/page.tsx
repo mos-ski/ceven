@@ -10,7 +10,7 @@ function formatCurrency(value: number) {
 }
 
 // PAYE / Pension aren't broken out in the shared PAYROLL mock (it only tracks a single
-// `deductions` figure) — derived here at standard Nigerian statutory rates purely for display,
+// `deductions` figure), derived here at standard Nigerian statutory rates purely for display,
 // and folded into a recomputed net pay so the breakdown is internally consistent.
 const PAYE_RATE = 0.09;
 const PENSION_RATE = 0.08;
@@ -79,7 +79,7 @@ export default function PayrollV3Page() {
       {/* Staff breakdown table */}
       <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
         <div className="mb-3 flex items-center justify-between">
-          <p className="text-sm font-bold text-[#2D1810]">{CURRENT_PAYROLL_MONTH} — Staff Breakdown</p>
+          <p className="text-sm font-bold text-[#2D1810]">{CURRENT_PAYROLL_MONTH}: Staff Breakdown</p>
           <p className="text-xs text-[#2D1810]/40">Review each line before running payroll</p>
         </div>
         <div className="overflow-x-auto">
@@ -114,7 +114,7 @@ export default function PayrollV3Page() {
                   <td className="py-2.5 pr-3 font-mono text-[#2D1810]/70">{formatCurrency(row.paye)}</td>
                   <td className="py-2.5 pr-3 font-mono text-[#2D1810]/70">{formatCurrency(row.pension)}</td>
                   <td className="py-2.5 pr-3 font-mono text-[#2D1810]/70">
-                    {row.absence > 0 ? `${row.absence} day${row.absence > 1 ? "s" : ""}` : "—"}
+                    {row.absence > 0 ? `${row.absence} day${row.absence > 1 ? "s" : ""}` : "–"}
                   </td>
                   <td className="py-2.5 pr-3 font-mono font-bold text-[#2D1810]">{formatCurrency(row.netPay)}</td>
                   <td className="py-2.5">

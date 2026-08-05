@@ -8,9 +8,9 @@ type RiskLevel = "high" | "medium" | "low" | "locked";
 
 type AiRiskBadgeProps = {
   level: RiskLevel;
-  /** Number of days overdue — used to calculate risk if level not provided */
+  /** Number of days overdue, used to calculate risk if level not provided */
   overdueDays?: number;
-  /** Plan tier — "seedling" shows locked state */
+  /** Plan tier, "seedling" shows locked state */
   planTier?: "seedling" | "nestling-pro" | "flourish";
 };
 

@@ -74,7 +74,7 @@ export default function ExpensesV3Page() {
       {/* Budget vs Actual */}
       <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
         <div className="mb-3 flex items-center justify-between">
-          <p className="text-sm font-bold text-[#2D1810]">Budget vs Actual — by Category</p>
+          <p className="text-sm font-bold text-[#2D1810]">Budget vs Actual by Category</p>
           <div className="flex items-center gap-3 text-[11px] text-[#2D1810]/60">
             <span className="flex items-center gap-1.5">
               <span className="h-2 w-2 rounded-full bg-[#8B9E7A]" /> Budget
@@ -143,7 +143,7 @@ export default function ExpensesV3Page() {
                           <Paperclip className="h-3 w-3" /> Attached
                         </span>
                       ) : (
-                        <span className="text-xs text-[#2D1810]/40">—</span>
+                        <span className="text-xs text-[#2D1810]/40">–</span>
                       )}
                     </td>
                     <td className="py-2.5">

@@ -184,7 +184,7 @@ export const ENQUIRIES: Enquiry[] = [
     parentEmail: "bankole.tiara@gmail.com",
     inquiryDate: "Apr 10",
     stage: "Enquiry Received",
-    notes: "Sibling already enrolled — flagged as high priority.",
+    notes: "Sibling already enrolled, flagged as high priority.",
   },
   {
     id: "enq-2",

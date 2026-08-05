@@ -68,7 +68,7 @@ export function administerDose(logId: string, administeredBy: string, notes: str
   if (!log) return;
   const actualTime = new Date().toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" }) + " AM";
   sharedSet(LOG_KEY, all.map((l) => (l.id === logId ? { ...l, status: "administered" as const, actualTime, administeredBy, notes } : l)));
-  addNotification({ type: "medication", title: "Medication Given", body: `${log.childName} — ${log.medication} ${log.dosage} administered by ${administeredBy} at ${actualTime}`, childId: log.childId, childName: log.childName, data: { medication: log.medication, dosage: log.dosage } });
+  addNotification({ type: "medication", title: "Medication Given", body: `${log.childName}, ${log.medication} ${log.dosage} administered by ${administeredBy} at ${actualTime}`, childId: log.childId, childName: log.childName, data: { medication: log.medication, dosage: log.dosage } });
 }
 
 export function markDoseMissed(logId: string, reason: string): void {

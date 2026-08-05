@@ -73,7 +73,7 @@ function Card1() {
           Log everything, in seconds
         </h3>
         <p className="font-[family-name:var(--font-urbanist-import)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55] tracking-[-0.02em]">
-          Every activity, logged as it happens — so the work you do all day is visible, not invisible.
+          Every activity, logged as it happens, so the work you do all day is visible, not invisible.
         </p>
       </div>
 
@@ -103,7 +103,7 @@ function Card2() {
           See every alert and need, the moment it comes in
         </h3>
         <p className="font-[family-name:var(--font-urbanist-import)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55] tracking-[-0.02em]">
-          Medication reminders, nap alerts, parent messages — nothing gets buried. It surfaces when it matters.
+          Medication reminders, nap alerts, parent messages, nothing gets buried. It surfaces when it matters.
         </p>
       </div>
 
@@ -133,7 +133,7 @@ function Card3() {
           Manage every child and every classroom, in one app
         </h3>
         <p className="font-[family-name:var(--font-urbanist-import)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55] tracking-[-0.02em]">
-          Multiple kids, multiple rooms — one place to track it all, not six different notebooks.
+          Multiple kids, multiple rooms, one place to track it all, not six different notebooks.
         </p>
       </div>
 
@@ -163,7 +163,7 @@ function Card4() {
           Tasks that don&apos;t let you forget
         </h3>
         <p className="font-[family-name:var(--font-urbanist-import)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55] tracking-[-0.02em]">
-          Medication, reminders, requests from parents — they land here and stay until done. Nothing depends on memory.
+          Medication, reminders, requests from parents, they land here and stay until done. Nothing depends on memory.
         </p>
       </div>
 
@@ -193,11 +193,11 @@ function Card5() {
           Know who&apos;s picking up, before they arrive
         </h3>
         <p className="font-[family-name:var(--font-urbanist-import)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55] tracking-[-0.02em]">
-          When a parent arranges pickup, you&apos;re told ahead of time — never caught off guard at the door.
+          When a parent arranges pickup, you&apos;re told ahead of time, never caught off guard at the door.
         </p>
       </div>
 
-      {/* Pickup status list — wide, short banner */}
+      {/* Pickup status list, wide, short banner */}
       <div className="absolute overflow-hidden rounded-xl"
         style={{ left: '3%', top: '40%', width: '95%', height: '32%' }}>
         <Image
@@ -212,7 +212,7 @@ function Card5() {
   );
 }
 
-/* ─── Card 6: Talk to parents directly (2035:1451 — empty in Figma) ───
+/* ─── Card 6: Talk to parents directly (2035:1451, empty in Figma) ───
    Keeping existing parent-chat-app.png, centered below text */
 function Card6() {
   return (
@@ -222,11 +222,11 @@ function Card6() {
           Talk to parents directly
         </h3>
         <p className="font-[family-name:var(--font-urbanist-import)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55] tracking-[-0.02em]">
-          Message, send photos, or hop on a video call — without leaving the app for WhatsApp.
+          Message, send photos, or hop on a video call, without leaving the app for WhatsApp.
         </p>
       </div>
 
-      {/* Chat thread — centered */}
+      {/* Chat thread, centered */}
       <div className="absolute overflow-hidden rounded-xl"
         style={{ left: '50%', transform: 'translateX(-50%)', top: '42%', width: '80%', bottom: 0 }}>
         <Image

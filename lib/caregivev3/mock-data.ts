@@ -179,7 +179,7 @@ export const EVENT_PREP: EventPrepItem[] = [
   },
   {
     eventId: "evt-2",
-    title: "Birthday Party — Chinwe",
+    title: "Birthday Party, Chinwe",
     date: "Sunday, Aug 6",
     time: "12:00 PM",
     icon: "🎉",
@@ -196,7 +196,7 @@ export const EVENT_PREP: EventPrepItem[] = [
 export const PENDING_MONEY_REQUEST: MoneyRequest = {
   id: "mr-1",
   amount: 5000,
-  purpose: "Groceries — rice, beans, tomatoes, onions, and cooking oil",
+  purpose: "Groceries, rice, beans, tomatoes, onions, and cooking oil",
   status: "pending",
   requestedAt: "9:15 AM",
 };
@@ -221,10 +221,10 @@ export const DAILY_REPORT: DailyReport = {
       childId: "zara",
       childName: "Zara",
       meals: [
-        { label: "Breakfast — Akamu & Akara", time: "7:45 AM", ticked: true },
-        { label: "Lunch — Jollof Rice & Moi-moi", time: "12:45 PM", ticked: true },
-        { label: "Snack — Fruit Salad & Juice", time: "3:15 PM", ticked: true },
-        { label: "Dinner — Eba & Egusi Soup", time: "7:00 PM", ticked: false },
+        { label: "Breakfast, Akamu & Akara", time: "7:45 AM", ticked: true },
+        { label: "Lunch, Jollof Rice & Moi-moi", time: "12:45 PM", ticked: true },
+        { label: "Snack, Fruit Salad & Juice", time: "3:15 PM", ticked: true },
+        { label: "Dinner, Eba & Egusi Soup", time: "7:00 PM", ticked: false },
       ],
       sleep: [
         { start: "10:00 AM", end: "11:30 AM", duration: "1h 30m" },
@@ -238,10 +238,10 @@ export const DAILY_REPORT: DailyReport = {
       childId: "tobi",
       childName: "Tobi",
       meals: [
-        { label: "Breakfast — Oats & Banana", time: "8:00 AM", ticked: true },
-        { label: "Lunch — Jollof Rice & Moi-moi", time: "12:30 PM", ticked: true },
-        { label: "Snack — Fruit Salad", time: "3:00 PM", ticked: false },
-        { label: "Dinner — Eba & Egusi Soup", time: "6:30 PM", ticked: false },
+        { label: "Breakfast, Oats & Banana", time: "8:00 AM", ticked: true },
+        { label: "Lunch, Jollof Rice & Moi-moi", time: "12:30 PM", ticked: true },
+        { label: "Snack, Fruit Salad", time: "3:00 PM", ticked: false },
+        { label: "Dinner, Eba & Egusi Soup", time: "6:30 PM", ticked: false },
       ],
       sleep: [
         { start: "10:00 AM", end: "12:00 PM", duration: "2h" },
@@ -297,7 +297,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   },
   {
     id: "evt-2",
-    title: "Birthday Party — Chinwe",
+    title: "Birthday Party, Chinwe",
     date: "Sunday, Aug 6",
     time: "12:00 PM",
     childIds: ["zara", "tobi"],
@@ -312,7 +312,7 @@ export const CALENDAR_EVENTS: CalendarEvent[] = [
   },
   {
     id: "evt-3",
-    title: "Vaccination — Tobi",
+    title: "Vaccination, Tobi",
     date: "Wednesday, Aug 9",
     time: "10:00 AM",
     childIds: ["tobi"],

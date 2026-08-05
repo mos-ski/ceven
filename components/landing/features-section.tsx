@@ -67,18 +67,18 @@ export function FeaturesSection() {
         <div className="flex flex-col gap-3 sm:gap-4">
           {/* Row 1 */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-4">
-            {/* Card 1 — See what your child is doing */}
+            {/* Card 1, See what your child is doing */}
             <div className="lg:col-span-2 bg-[#fbfaf9] rounded-[12px] overflow-hidden relative min-h-[460px]">
               <div className="p-7 pb-3 max-w-[52%]">
                 <h3 className="font-[family-name:var(--font-urbanist-import)] font-bold text-[#1c1917] text-[17px] leading-[1.2] tracking-[-0.02em] mb-2">
                   See what your child is doing, right now
                 </h3>
                 <p className="font-[family-name:var(--font-urbanist-import)] font-medium text-[#6a7074] text-[14px] leading-[1.47] tracking-[-0.02em]">
-                  From wherever you are — mood, activity, hygiene, everything, logged as it happens. Not a summary later. The actual day, live.
+                  From wherever you are, mood, activity, hygiene, everything, logged as it happens. Not a summary later. The actual day, live.
                 </p>
               </div>
 
-              {/* Social post — bottom left */}
+              {/* Social post, bottom left */}
               <div className="absolute bottom-6 left-6" style={{ width: "258px" }}>
                 <div className="bg-white rounded-[7px] overflow-hidden shadow-[4px_8px_20px_rgba(29,58,88,0.05)]">
                   <div className="relative h-[130px]">
@@ -113,7 +113,7 @@ export function FeaturesSection() {
                 </div>
               </div>
 
-              {/* Daily report app — right side */}
+              {/* Daily report app, right side */}
               <div className="absolute top-6 right-6" style={{ width: "230px" }}>
                 <div className="rounded-[6px] overflow-hidden shadow-[3px_6px_7.5px_rgba(29,58,88,0.05)]">
                   <div className="bg-[#3b2513] px-3 py-2 flex items-center gap-2">
@@ -137,7 +137,7 @@ export function FeaturesSection() {
               </div>
             </div>
 
-            {/* Card 2 — You get notified */}
+            {/* Card 2, You get notified */}
             <div className="bg-[#fbfaf9] rounded-[12px] overflow-hidden p-7">
               <h3 className="font-[family-name:var(--font-urbanist-import)] font-bold text-[#1c1917] text-[17px] leading-[1.2] tracking-[-0.02em] mb-2">
                 You get notified
@@ -174,13 +174,13 @@ export function FeaturesSection() {
 
           {/* Row 2 */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-4">
-            {/* Card 3 — One conversation */}
+            {/* Card 3, One conversation */}
             <div className="bg-[#fbfaf9] rounded-[12px] overflow-hidden p-7 min-h-[460px]">
               <h3 className="font-[family-name:var(--font-urbanist-import)] font-bold text-[#1c1917] text-[17px] leading-[1.2] tracking-[-0.02em] mb-2">
                 One conversation, everyone who needs to be in it
               </h3>
               <p className="font-[family-name:var(--font-urbanist-import)] font-medium text-[#6a7074] text-[14px] leading-[1.47] tracking-[-0.02em] mb-6">
-                You, the other parent, the admin, and the caregiver — one thread, not four separate conversations to keep track of.
+                You, the other parent, the admin, and the caregiver, one thread, not four separate conversations to keep track of.
               </p>
               <div className="flex flex-col gap-3 max-w-[245px] mx-auto">
                 <div className="flex justify-end">
@@ -210,13 +210,13 @@ export function FeaturesSection() {
               </div>
             </div>
 
-            {/* Card 4 — AI summary */}
+            {/* Card 4, AI summary */}
             <div className="bg-[#fbfaf9] rounded-[12px] overflow-hidden p-7 min-h-[460px]">
               <h3 className="font-[family-name:var(--font-urbanist-import)] font-bold text-[#1c1917] text-[17px] leading-[1.2] tracking-[-0.02em] mb-2">
                 Summary of your child&apos;s day
               </h3>
               <p className="font-[family-name:var(--font-urbanist-import)] font-medium text-[#6a7074] text-[14px] leading-[1.47] tracking-[-0.02em] mb-6">
-                Ask for a read on mood, meals, or the whole day, and get a real answer back — not a scroll through old messages trying to piece it together.
+                Ask for a read on mood, meals, or the whole day, and get a real answer back, not a scroll through old messages trying to piece it together.
               </p>
               {/* St. Greg card */}
               <div className="bg-white rounded-[8px] shadow-[4px_8px_10px_rgba(29,58,88,0.05)] p-3 flex gap-3 mb-4">
@@ -244,14 +244,14 @@ export function FeaturesSection() {
               </div>
             </div>
 
-            {/* Card 5 — Send a special request */}
+            {/* Card 5, Send a special request */}
             <div className="bg-[#fbfaf9] rounded-[12px] overflow-hidden min-h-[460px] relative">
               <div className="p-7">
                 <h3 className="font-[family-name:var(--font-urbanist-import)] font-bold text-[#1c1917] text-[17px] leading-[1.2] tracking-[-0.02em] mb-2">
                   Send a special request
                 </h3>
                 <p className="font-[family-name:var(--font-urbanist-import)] font-medium text-[#6a7074] text-[14px] leading-[1.47] tracking-[-0.02em]">
-                  Forgot to mention something at drop-off? Send it straight to the caregiver — medication, an errand, anything — no waiting till pickup to remember.
+                  Forgot to mention something at drop-off? Send it straight to the caregiver, medication, an errand, anything, no waiting till pickup to remember.
                 </p>
               </div>
               <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[220px]">

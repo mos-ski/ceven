@@ -34,7 +34,7 @@ export function addIncident(incident: Omit<SharedIncident, "id" | "followUpNotes
   const all = sharedGetList<SharedIncident>(STORAGE_KEY);
   const newIncident: SharedIncident = { ...incident, id: `inc-${Date.now()}`, followUpNotes: [], parentAcknowledged: false, callbackRequested: false, callbackResolved: false };
   sharedSet(STORAGE_KEY, [...all, newIncident]);
-  addNotification({ type: "incident", title: `Incident: ${incident.title}`, body: `${incident.childName} — ${incident.severity}. ${incident.description}`, childId: incident.childId, childName: incident.childName, data: { incidentId: newIncident.id, severity: incident.severity } });
+  addNotification({ type: "incident", title: `Incident: ${incident.title}`, body: `${incident.childName}, ${incident.severity}. ${incident.description}`, childId: incident.childId, childName: incident.childName, data: { incidentId: newIncident.id, severity: incident.severity } });
   return newIncident;
 }
 

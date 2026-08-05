@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { Search, Bot, Bell } from "lucide-react";
 import { NAV_SECTIONS } from "@/components/admin-v3/nav-items";
 import { GlobalSearchModal } from "@/components/admin-v3/global-search-modal";
+import { useAiPanel } from "@/components/admin-v3/ai-panel-context";
 
 function currentTitle(pathname: string): string {
   for (const section of NAV_SECTIONS) {
@@ -18,6 +19,7 @@ function currentTitle(pathname: string): string {
 export function TopbarV3() {
   const pathname = usePathname();
   const [searchOpen, setSearchOpen] = useState(false);
+  const { open: aiOpen, pinned: aiPinned, toggle: toggleAi } = useAiPanel();
 
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
@@ -61,8 +63,12 @@ export function TopbarV3() {
 
         <button
           type="button"
+          onClick={toggleAi}
           aria-label="Assistant"
-          className="flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-[#1E2D4A] to-[#2D1810] text-[#F5EDD8]"
+          aria-pressed={aiOpen || aiPinned}
+          className={`flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-[#1E2D4A] to-[#2D1810] text-[#F5EDD8] ${
+            aiOpen || aiPinned ? "ring-2 ring-[#C47B2C] ring-offset-1 ring-offset-[#FFFCF4]" : ""
+          }`}
         >
           <Bot className="h-4 w-4" />
         </button>

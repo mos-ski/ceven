@@ -18,7 +18,7 @@ export default function SplashPage() {
   return (
     <div className="flex flex-1 flex-col items-center justify-center bg-cg-bg">
       <div className="flex flex-col items-center gap-3">
-        {/* Logo mark — placeholder SVG matching Figma icon */}
+        {/* Logo mark, placeholder SVG matching Figma icon */}
         <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
           <circle cx="36" cy="36" r="36" fill="#3B2513" />
           <circle cx="28" cy="20" r="8" fill="#C9956A" />

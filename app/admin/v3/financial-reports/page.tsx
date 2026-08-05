@@ -94,7 +94,7 @@ function PLSummarySection() {
         <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
           <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl bg-[#FAF2E1] p-4">
             <div>
-              <p className="text-sm font-bold text-[#2D1810]">Net Result — This Month</p>
+              <p className="text-sm font-bold text-[#2D1810]">Net Result: This Month</p>
               <p className="text-xs text-[#2D1810]/50">{netProfit.helper}</p>
             </div>
             <p className="font-[family-name:var(--font-merriweather)] text-3xl font-bold text-[#2A8A52]">
@@ -151,7 +151,7 @@ function RevenueBreakdownSection() {
 function CostAnalysisSection() {
   return (
     <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
-      <p className="mb-3 text-sm font-bold text-[#2D1810]">Cost Analysis — Share of Total Expense</p>
+      <p className="mb-3 text-sm font-bold text-[#2D1810]">Cost Analysis: Share of Total Expense</p>
       <div className="flex flex-col gap-3">
         {EXPENSE_BREAKDOWN.map((segment) => {
           const category = segment.label.split(" - ")[0];

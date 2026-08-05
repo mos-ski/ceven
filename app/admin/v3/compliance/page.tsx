@@ -100,7 +100,7 @@ export default function ComplianceV3Page() {
         <StatCardV3
           icon={Building2}
           label="Next Inspection"
-          value={nextInspection?.label ?? "—"}
+          value={nextInspection?.label ?? ","}
           sub="scheduled review"
         />
       </div>

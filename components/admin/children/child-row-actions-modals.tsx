@@ -53,7 +53,7 @@ export function ReassignCaregiverModal({ child, onClose }: { child: Child; onClo
               </option>
               {CAREGIVERS.map((cg) => (
                 <option key={cg.id} value={cg.id}>
-                  {cg.name} — {cg.room} ({cg.childrenAssigned} assigned)
+                  {cg.name}, {cg.room} ({cg.childrenAssigned} assigned)
                 </option>
               ))}
             </select>

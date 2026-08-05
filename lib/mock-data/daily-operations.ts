@@ -181,7 +181,7 @@ export const SUPPLY_ORDERS: SupplyOrder[] = [
   { id: "order-1", orderDate: "10 Apr 2026", supplier: "Random", items: "Diaper", quantity: "10 unit", totalCost: "₦120,000.00", dateDelivered: "16 May", status: "Delivered" },
   { id: "order-2", orderDate: "10 Apr 2026", supplier: "Babies & Kiddies", items: "Toilet wash", quantity: "20", totalCost: "₦120,000.00", dateDelivered: null, status: "Pending" },
   { id: "order-3", orderDate: "10 Apr 2026", supplier: "Random", items: "Baby wipes", quantity: "50 packs", totalCost: "₦120,000.00", dateDelivered: "20 May", status: "Delivered" },
-  { id: "order-4", orderDate: "10 Apr 2026", supplier: "—", items: "Cleaner", quantity: "20", totalCost: "—", dateDelivered: null, status: "Pending" },
+  { id: "order-4", orderDate: "10 Apr 2026", supplier: ",", items: "Cleaner", quantity: "20", totalCost: ",", dateDelivered: null, status: "Pending" },
 ];
 
 // ─── Facilities ────────────────────────────────────────────────────────────────
@@ -234,13 +234,13 @@ export type CleaningTask = {
 export const CLEANING_TASKS: CleaningTask[] = [
   { id: "clean-1", room: "Butterfly Room", frequency: "Daily (Morning - 07:00am)", time: "07:30am", status: "Done" },
   { id: "clean-2", room: "Butterfly Room", frequency: "Daily (Morning - 07:00am)", time: "07:30am", status: "Done" },
-  { id: "clean-3", room: "Butterfly Room", frequency: "Daily (Morning - 07:00am)", time: "—", status: "Pending" },
-  { id: "clean-4", room: "Butterfly Room", frequency: "Daily (Morning - 07:00am)", time: "—", status: "Pending" },
-  { id: "clean-5", room: "Butterfly Room", frequency: "Daily (Morning - 07:00am)", time: "—", status: "Pending" },
-  { id: "clean-6", room: "Butterfly Room", frequency: "Daily (Morning - 07:00am)", time: "—", status: "Pending" },
-  { id: "clean-7", room: "Butterfly Room", frequency: "Daily (Morning - 07:00am)", time: "—", status: "Pending" },
-  { id: "clean-8", room: "Butterfly Room", frequency: "Daily (Morning - 07:00am)", time: "—", status: "Pending" },
-  { id: "clean-9", room: "Butterfly Room", frequency: "Daily (Morning - 07:00am)", time: "—", status: "Pending" },
+  { id: "clean-3", room: "Butterfly Room", frequency: "Daily (Morning - 07:00am)", time: ",", status: "Pending" },
+  { id: "clean-4", room: "Butterfly Room", frequency: "Daily (Morning - 07:00am)", time: ",", status: "Pending" },
+  { id: "clean-5", room: "Butterfly Room", frequency: "Daily (Morning - 07:00am)", time: ",", status: "Pending" },
+  { id: "clean-6", room: "Butterfly Room", frequency: "Daily (Morning - 07:00am)", time: ",", status: "Pending" },
+  { id: "clean-7", room: "Butterfly Room", frequency: "Daily (Morning - 07:00am)", time: ",", status: "Pending" },
+  { id: "clean-8", room: "Butterfly Room", frequency: "Daily (Morning - 07:00am)", time: ",", status: "Pending" },
+  { id: "clean-9", room: "Butterfly Room", frequency: "Daily (Morning - 07:00am)", time: ",", status: "Pending" },
 ];
 
 // ─── Tasks ──────────────────────────────────────────────────────────────────────

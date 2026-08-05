@@ -19,7 +19,7 @@ export function AdminFeaturesSection() {
               </span>
             </h2>
             <p className="font-[family-name:var(--font-urbanist-import)] text-[#5a6170] text-[16px] sm:text-[17px] leading-[1.6] max-w-2xl mx-auto">
-              Every room, every child, every naira — one place, not four notebooks and a group chat.
+              Every room, every child, every naira, one place, not four notebooks and a group chat.
             </p>
           </div>
         </FadeUp>
@@ -65,17 +65,17 @@ function CardShell({ children, className = "" }: { children: React.ReactNode; cl
 function Card1() {
   return (
     <CardShell className="h-auto sm:h-[460px] pb-7 sm:pb-0">
-      {/* Text — top-left, capped so it doesn't overlap pie chart */}
+      {/* Text, top-left, capped so it doesn't overlap pie chart */}
       <div className="pt-7 px-7 sm:absolute sm:top-0 sm:left-0 sm:z-10 sm:max-w-[48%]">
         <h3 className="font-[family-name:var(--font-urbanist-import)] font-bold text-[#1c1917] text-[15px] sm:text-[17px] leading-snug tracking-[-0.02em] mb-2">
           Every payment, invoice, and Naira in one place
         </h3>
         <p className="font-[family-name:var(--font-urbanist-import)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55] tracking-[-0.02em]">
-          Collections, outstanding fees, invoices — the whole financial picture, not scattered across a notebook and a bank app.
+          Collections, outstanding fees, invoices, the whole financial picture, not scattered across a notebook and a bank app.
         </p>
       </div>
 
-      {/* Payments summary widget — lower-left */}
+      {/* Payments summary widget, lower-left */}
       <div
         className="relative h-[200px] mx-7 mt-5 overflow-hidden rounded-xl sm:absolute sm:h-auto sm:mx-0 sm:mt-0 sm:left-[5%] sm:top-[37%] sm:w-[37%] sm:bottom-[17%]"
       >
@@ -88,7 +88,7 @@ function Card1() {
         />
       </div>
 
-      {/* Pie chart white card — right side */}
+      {/* Pie chart white card, right side */}
       <div
         className="relative bg-white rounded-xl overflow-hidden p-3 flex flex-col gap-2 h-[260px] mx-7 mt-4 sm:absolute sm:h-auto sm:mx-0 sm:mt-0 sm:left-[51%] sm:top-[22%] sm:w-[43%] sm:bottom-[16%]"
       >
@@ -119,11 +119,11 @@ function Card2() {
           Manage every application, in one pipeline
         </h3>
         <p className="font-[family-name:var(--font-urbanist-import)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55] tracking-[-0.02em]">
-          Every family trying to enroll, tracked from first enquiry to decision — not lost in a WhatsApp chat.
+          Every family trying to enroll, tracked from first enquiry to decision, not lost in a WhatsApp chat.
         </p>
       </div>
 
-      {/* Pipeline kanban — below text, left-padded */}
+      {/* Pipeline kanban, below text, left-padded */}
       <div className="absolute overflow-hidden rounded-xl"
         style={{ left: '8%', top: '39%', right: '8%', bottom: '0' }}>
         <Image
@@ -148,7 +148,7 @@ function Card3() {
           Reporting that thinks with you
         </h3>
         <p className="font-[family-name:var(--font-urbanist-import)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55] tracking-[-0.02em]">
-          Reports that build themselves from the day&apos;s activity — real intelligence on your creche, not just numbers in a spreadsheet.
+          Reports that build themselves from the day&apos;s activity, real intelligence on your creche, not just numbers in a spreadsheet.
         </p>
       </div>
 
@@ -177,11 +177,11 @@ function Card4() {
           Flags what needs you
         </h3>
         <p className="font-[family-name:var(--font-urbanist-import)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55] tracking-[-0.02em]">
-          Unpaid fees, a caregiver falling behind, something that slipped through — surfaced before it becomes a bigger problem.
+          Unpaid fees, a caregiver falling behind, something that slipped through, surfaced before it becomes a bigger problem.
         </p>
       </div>
 
-      {/* Ada AI chat — bottom-right aligned */}
+      {/* Ada AI chat, bottom-right aligned */}
       <div className="absolute overflow-hidden rounded-xl"
         style={{ right: '14%', bottom: 0, width: '72%', height: '69%' }}>
         <Image
@@ -206,7 +206,7 @@ function Card5() {
           See everything happening, live
         </h3>
         <p className="font-[family-name:var(--font-urbanist-import)] text-[#6a7074] text-[13px] sm:text-[14px] leading-[1.55] tracking-[-0.02em]">
-          Every parent, every caregiver, every room — one view of the whole creche, so you can step in the moment you&apos;re needed.
+          Every parent, every caregiver, every room, one view of the whole creche, so you can step in the moment you&apos;re needed.
         </p>
       </div>
 

@@ -109,10 +109,10 @@ const comparisonRows: ComparisonRow[] = [
   { feature: "Parent Mobile App", grow: "✓", thrive: "✓" },
   { feature: "Daily Reports", grow: "✓", thrive: "✓" },
   { feature: "Attendance Management", grow: "✓", thrive: "✓" },
-  { feature: "Reports & Insights", grow: "—", thrive: "✓" },
-  { feature: "Advanced Analytics", grow: "—", thrive: "✓" },
+  { feature: "Reports & Insights", grow: ",", thrive: "✓" },
+  { feature: "Advanced Analytics", grow: ",", thrive: "✓" },
   { feature: "Priority Support", grow: "Email support", thrive: "Priority support" },
-  { feature: "Multi-branch Support", grow: "—", thrive: "✓" },
+  { feature: "Multi-branch Support", grow: ",", thrive: "✓" },
 ];
 
 const initialAddOns: AddOn[] = [
@@ -544,7 +544,7 @@ function ConfigureAddOns({
 
       <div className="flex flex-col lg:flex-row gap-6">
         <div className="flex-1">
-          <div className="rounded-2xl border border-[#edd9c0] p-5" style={{ background: "rgba(241,155,2,0.08)" }}>
+          <div className="rounded-2xl p-5" style={{ background: "rgba(241,155,2,0.08)" }}>
             <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Subscribe for</p>
             <p className="font-[family-name:var(--font-merriweather)] text-xl font-bold text-[#2d1810]">{plan.name}</p>
             <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
@@ -552,7 +552,7 @@ function ConfigureAddOns({
             </p>
           </div>
 
-          <div className="mt-5 rounded-2xl border border-[#e6ebf3] bg-white p-5">
+          <div className="mt-5 rounded-2xl bg-[#F5EDD8]/30 p-5">
             <p className="mb-4 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">Add-ons</p>
 
             <div className="flex flex-col gap-3">

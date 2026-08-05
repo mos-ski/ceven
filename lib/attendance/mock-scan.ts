@@ -37,7 +37,7 @@ export function getAuthorizedPickup(childId: string): boolean {
 }
 
 // Which children each parent account is enrolled to act for. A parent only
-// ever sees and can drop off/pick up their own children — never the whole
+// ever sees and can drop off/pick up their own children, never the whole
 // creche roster. "parent-4" (the demo's logged-in parent) has two children,
 // one of which ("child-2") is shared with "parent-2" to demo the mixed-state
 // picker (one co-parent may have already dropped that child off).

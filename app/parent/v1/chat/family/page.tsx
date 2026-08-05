@@ -41,7 +41,7 @@ const CONVERSATION: ChatMessage[] = [
   { id: "c8", senderId: "james", text: "Thanks @Ms Anu! You're doing an amazing job with him. @Sarah should we celebrate tonight? 🎂", time: "9:20 AM" },
   { id: "c9", senderId: "sarah", text: "Absolutely! @James I'll pick up a small cake on the way home. @Ms Anu does he need any special shoes now that he's walking?", time: "9:21 AM" },
   { id: "c10", senderId: "ms-anu", text: "Not yet, he's still building strength. Soft-soled shoes are perfect for now. I can recommend some good ones if you like 👟", time: "9:22 AM" },
-  { id: "c11", senderId: "admin", text: "Just a reminder — we have the parent-teacher meeting next Tuesday. We can discuss Liam's progress there too 📅", time: "9:23 AM" },
+  { id: "c11", senderId: "admin", text: "Just a reminder, we have the parent-teacher meeting next Tuesday. We can discuss Liam's progress there too 📅", time: "9:23 AM" },
   { id: "c12", senderId: "james", text: "Perfect, we'll be there. Thanks everyone! This is the best start to the morning ☀️", time: "9:24 AM" },
 ];
 
@@ -49,7 +49,7 @@ const AUTO_REPLIES: Record<string, string[]> = {
   "ms-anu": [
     "He's doing so well! Every day brings something new 😊",
     "I'll make sure to capture more milestones today!",
-    "Don't forget to practice at home too — he loves holding onto the couch!",
+    "Don't forget to practice at home too, he loves holding onto the couch!",
   ],
   "sarah": [
     "This is why I love this creche! 💕",

@@ -457,7 +457,7 @@ function LeaveRequestTable({
                         </button>
                       </div>
                     ) : (
-                      <span className="text-xs text-[#9ca3af]">—</span>
+                      <span className="text-xs text-[#9ca3af]">,</span>
                     )}
                   </td>
                 </tr>

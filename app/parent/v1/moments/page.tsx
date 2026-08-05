@@ -134,7 +134,7 @@ function ImageStrip({ images, title, onDoubleTap, onImageClick }: {
             className="w-[75%] shrink-0 snap-start rounded-xl overflow-hidden cursor-pointer"
             onClick={(e) => { e.stopPropagation(); handleTap(); onImageClick(i); }}
           >
-            <SafeImage src={src} alt={`${title} — photo ${i + 1}`} className="h-[38vh] w-full object-cover" />
+            <SafeImage src={src} alt={`${title}, photo ${i + 1}`} className="h-[38vh] w-full object-cover" />
           </div>
         ))}
       </div>

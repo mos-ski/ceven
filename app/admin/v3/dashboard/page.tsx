@@ -17,6 +17,7 @@ import {
   Sparkles,
   BarChart3,
   ArrowUpRight,
+  FileBarChart,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import EnrollChildModal from "@/components/dashboard/enroll-child-modal";
@@ -32,19 +33,19 @@ const AI_INSIGHTS = [
   {
     color: "#D4522F",
     bold: "Zara Mohammed",
-    text: "has been absent 3× this week. Nut allergy on file — flag for welfare check.",
+    text: "has been absent 3× this week. Nut allergy on file. Flag for welfare check.",
     action: "Take Action",
   },
   {
     color: "#C47B2C",
     bold: "3 invoices",
-    text: "are 7+ days overdue. Mr. Okafor historically pays late in Q2 — auto-remind now?",
+    text: "are 7+ days overdue. Mr. Okafor historically pays late in Q2. Auto-remind now?",
     action: "Send Reminders",
   },
   {
     color: "#1E2D4A",
     bold: "Lion Class",
-    text: "caregiver logging compliance dropped to 62% this week — below 80% threshold.",
+    text: "caregiver logging compliance dropped to 62% this week, below 80% threshold.",
     action: "Assign Task",
   },
 ];
@@ -59,8 +60,8 @@ const ROOM_OCCUPANCY = [
 const ACTIVITY_FEED = [
   { color: "bg-[#2A8A52]", text: "Amara Johnson checked in", meta: "Lion Class · Ms Tunde", time: "8:14am" },
   { color: "bg-[#C47B2C]", text: "Daily report submitted", meta: "for Kofi Osei", time: "8:22am" },
-  { color: "bg-[#D4522F]", text: "Incident raised", meta: "minor fall — Emeka Balogun", time: "9:05am" },
-  { color: "bg-[#1E2D4A]", text: "Invoice sent", meta: "to Mr. Adeleke — ₦45,000", time: "9:30am" },
+  { color: "bg-[#D4522F]", text: "Incident raised", meta: "minor fall, Emeka Balogun", time: "9:05am" },
+  { color: "bg-[#1E2D4A]", text: "Invoice sent", meta: "to Mr. Adeleke, ₦45,000", time: "9:30am" },
   { color: "bg-[#8B9E7A]", text: "Announcement sent", meta: "Easter closure · 42 parents", time: "Apr 9" },
 ];
 
@@ -134,20 +135,36 @@ export default function DashboardV3Page() {
   return (
     <div className="flex flex-col gap-5">
       {/* Greeting */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#2D1810] via-[#3D2418] to-[#3D2418] px-7 py-6">
+      <div className="relative flex flex-col gap-4 overflow-hidden rounded-2xl bg-gradient-to-br from-[#2D1810] via-[#3D2418] to-[#3D2418] px-7 py-6 sm:flex-row sm:items-center sm:justify-between">
         <svg className="pointer-events-none absolute bottom-0 right-0 h-[140px] w-[220px] opacity-[0.08]" viewBox="0 0 220 140" fill="none">
           <path d="M20 30 Q45 5 70 30 Q95 55 70 80 Q45 105 70 130" stroke="#C47B2C" strokeWidth="10" fill="none" strokeLinecap="round" />
           <path d="M100 10 Q125 35 100 60 Q75 85 100 110 Q125 135 100 160" stroke="#8B9E7A" strokeWidth="8" fill="none" strokeLinecap="round" />
         </svg>
-        <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#D4913F]">
-          {new Date().toLocaleDateString("en-NG", { weekday: "long", day: "numeric", month: "long", year: "numeric" })}
-        </p>
-        <h1 className="mt-2 font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#F5EDD8]">
-          Good morning, Amaka 👋
-        </h1>
-        <p className="mt-1 text-sm text-[#F5EDD8]/55">
-          Sunshine Crèche, Lekki · 7 items need your attention today
-        </p>
+        <div className="relative z-10">
+          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#D4913F]">
+            {new Date().toLocaleDateString("en-NG", { weekday: "long", day: "numeric", month: "long", year: "numeric" })}
+          </p>
+          <h1 className="mt-2 font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#F5EDD8]">
+            Good morning, Amaka 👋
+          </h1>
+          <p className="mt-1 text-sm text-[#F5EDD8]/55">
+            Sunshine Crèche, Lekki · 7 items need your attention today
+          </p>
+        </div>
+        <div className="relative z-10 flex shrink-0 gap-2.5">
+          <button
+            onClick={() => router.push("/admin/v3/analytics")}
+            className="flex items-center gap-1.5 rounded-xl border border-[#F5EDD8]/15 px-3.5 py-2 text-xs font-bold text-[#F5EDD8]/60 transition-colors hover:border-[#F5EDD8]/30 hover:text-[#F5EDD8]"
+          >
+            <FileBarChart className="h-3.5 w-3.5" /> Reports
+          </button>
+          <button
+            onClick={() => router.push("/admin/v3/ai-command-center")}
+            className="flex items-center gap-1.5 rounded-xl bg-[#C47B2C] px-3.5 py-2 text-xs font-bold text-white transition-opacity hover:opacity-90"
+          >
+            <Sparkles className="h-3.5 w-3.5" /> AI Summary
+          </button>
+        </div>
       </div>
 
       {/* AI Daily Brief */}

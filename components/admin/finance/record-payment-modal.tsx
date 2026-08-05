@@ -65,7 +65,7 @@ export default function RecordPaymentModal({
   const selectedChild = CHILDREN.find((c) => c.id === child);
 
   function handleSubmit() {
-    // Mock submit — no backend wired up yet.
+    // Mock submit, no backend wired up yet.
     onOpenChange(false);
   }
 

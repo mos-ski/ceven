@@ -472,10 +472,10 @@ function StaffPageInner() {
                   ✦ Flags
                 </span>
                 <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">
-                  Mrs Anita — compliance at 52% (below 72% threshold)
+                  Mrs Anita, compliance at 52% (below 72% threshold)
                 </p>
                 <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810]">
-                  Mr Adamu — absent 3 of last 5 days
+                  Mr Adamu, absent 3 of last 5 days
                 </p>
               </div>
               <button

@@ -6,7 +6,7 @@ import { UserCog, UserCheck, UserX, Gauge, Sparkles } from "lucide-react";
 import { StatCardV3 } from "@/components/admin-v3/stat-card";
 import { STAFF, LEADERBOARD, STAFF_CLASS_OPTIONS, type StaffMember } from "@/lib/mock-data/staff";
 
-// Room isn't tracked on StaffMember in the shared mock data — assigned deterministically
+// Room isn't tracked on StaffMember in the shared mock data, assigned deterministically
 // from STAFF_CLASS_OPTIONS so each card has a room to display.
 function roomFor(index: number) {
   return STAFF_CLASS_OPTIONS[index % STAFF_CLASS_OPTIONS.length];

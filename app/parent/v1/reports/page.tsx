@@ -174,7 +174,7 @@ function ReportsPageContent() {
             className="flex items-center gap-2 rounded-xl bg-[#F3EDE5] px-3 py-2"
           >
             <Calendar size={14} className="text-cg-brand" />
-            <span className="text-xs font-medium text-gray-700">{report?.date ?? "—"}</span>
+            <span className="text-xs font-medium text-gray-700">{report?.date ?? ","}</span>
             <ChevronRight size={12} className="text-gray-400" />
           </button>
 

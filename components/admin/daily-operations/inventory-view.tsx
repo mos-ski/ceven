@@ -505,7 +505,7 @@ function OrderRow({ order }: { order: SupplyOrder }) {
         {order.totalCost}
       </TableCell>
       <TableCell className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
-        {order.dateDelivered ?? "—"}
+        {order.dateDelivered ?? ","}
       </TableCell>
       <TableCell>
         <Badge variant="outline" className={ORDER_STATUS_BADGE_CLASS[order.status]}>

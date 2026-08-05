@@ -13,15 +13,15 @@ import { getAdaReply } from "@/lib/ada-responses";
 
 const incidents = [
   {
-    title: "Minor Fall — Tiger Room",
+    title: "Minor Fall, Tiger Room",
     desc: "Ade B., 9:14am. Caregiver notified parent.",
   },
   {
-    title: "Allergy Alert — Lion Class",
+    title: "Allergy Alert, Lion Class",
     desc: "Leo A., peanut exposure suspected. Under observation.",
   },
   {
-    title: "Absence Pattern — Zara M.",
+    title: "Absence Pattern, Zara M.",
     desc: "3 consecutive absences. Follow-up call recommended.",
   },
   {
@@ -37,11 +37,11 @@ const aiInsights = [
   },
   {
     title: "Health trend flagged",
-    desc: "Uptick in minor injuries in Tiger Room — review play area.",
+    desc: "Uptick in minor injuries in Tiger Room. Review play area.",
   },
   {
     title: "Wellness check recommended",
-    desc: "Zara M. showing behavioral changes — recommend parent consult.",
+    desc: "Zara M. showing behavioral changes. Recommend parent consult.",
   },
   {
     title: "Compliance gap identified",
@@ -290,7 +290,7 @@ function AICommandCenterView() {
         <div className="flex flex-1 flex-col gap-4">
           {/* Top 2-column grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* Left top panel — Recent Incidents & Flags */}
+            {/* Left top panel, Recent Incidents & Flags */}
             <div className="rounded-2xl bg-white shadow-sm p-5">
               <GradientPill>✦ Health &amp; Welfare</GradientPill>
               <h2 className="mt-4 mb-3 text-sm font-bold font-[family-name:var(--font-merriweather)] text-[#2d1810]">
@@ -301,7 +301,7 @@ function AICommandCenterView() {
               ))}
             </div>
 
-            {/* Right top panel — AI Analysis & Recommendations */}
+            {/* Right top panel, AI Analysis & Recommendations */}
             <div className="rounded-2xl bg-white shadow-sm p-5">
               <GradientPill>✦ Health &amp; Welfare Intelligence</GradientPill>
               <h2 className="mt-4 mb-3 text-sm font-bold font-[family-name:var(--font-merriweather)] text-[#2d1810]">
@@ -313,7 +313,7 @@ function AICommandCenterView() {
             </div>
           </div>
 
-          {/* Bottom full-width card — Staff & Finance Intelligence */}
+          {/* Bottom full-width card, Staff & Finance Intelligence */}
           <div className="rounded-2xl bg-white shadow-sm p-5">
             {/* Header row */}
             <div className="flex items-center justify-between mb-4">
@@ -409,13 +409,13 @@ function AICommandCenterView() {
           </div>
         </div>
 
-        {/* RIGHT ADA PANEL — hidden on mobile, FAB replaces it */}
+        {/* RIGHT ADA PANEL, hidden on mobile, FAB replaces it */}
         <div className="hidden xl:flex w-[340px] shrink-0 flex-col overflow-hidden rounded-2xl border border-[#edd9c0] bg-[#fffcf4]">
           <AdaChatPage onClose={() => {}} />
         </div>
       </div>
 
-      {/* ADA FAB — visible only on mobile/tablet */}
+      {/* ADA FAB, visible only on mobile/tablet */}
       <button
         onClick={() => setAdaOpen(true)}
         className="xl:hidden fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full shadow-lg text-white"

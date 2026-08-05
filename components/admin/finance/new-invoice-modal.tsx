@@ -36,7 +36,7 @@ export default function NewInvoiceModal({ open, onOpenChange }: Props) {
   const selectedChild = CHILDREN.find((c) => c.id === child);
 
   function handleCreate() {
-    // Mock create — no backend wired up yet.
+    // Mock create, no backend wired up yet.
     onOpenChange(false);
     setChild("");
     setPlan("");

@@ -6,7 +6,7 @@ import { CHILDREN } from "@/lib/mock-data/children";
 
 // No v2 component or mock data exists for child development yet. Stats and per-child
 // milestone focus below are derived deterministically from real CHILDREN fields
-// (age, room, healthFlag) rather than invented outright — kept intentionally modest
+// (age, room, healthFlag) rather than invented outright, kept intentionally modest
 // per the build brief, since there's no v2 precedent to reuse.
 
 const MILESTONE_BY_AGE: Record<string, string> = {
@@ -32,7 +32,7 @@ const MONITORING = DEVELOPMENT_ROWS.filter((r) => r.status === "Monitoring").len
 // No SEND (Special Educational Needs & Disabilities) flag exists anywhere in the mock
 // data, so this is honestly reported as zero rather than fabricated.
 const SEND_REVIEW = 0;
-// "Observations this week" has no backing data source — approximated at 3 logged
+// "Observations this week" has no backing data source, approximated at 3 logged
 // observations per enrolled child, mirroring CHILDREN_STATS.averageActivityLog's role
 // on the Children page.
 const OBSERVATIONS_THIS_WEEK = CHILDREN.length * 3;

@@ -26,7 +26,7 @@ export default function MeOverviewPage() {
             )}
             <p className="text-sm font-semibold text-gray-800">Membership Status</p>
           </div>
-          <p className="font-[family-name:var(--font-merriweather-import)] text-lg font-bold text-gray-800">{isActive ? "Premium Family — Active" : "Trial ended"}</p>
+          <p className="font-[family-name:var(--font-merriweather-import)] text-lg font-bold text-gray-800">{isActive ? "Premium Family, Active" : "Trial ended"}</p>
           <Link href="/me/membership" className="mt-2 inline-block text-xs font-semibold text-cg-brand underline underline-offset-2">
             Manage membership
           </Link>

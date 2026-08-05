@@ -184,9 +184,9 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
             </h2>
             <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#666]">
               {view === "choice" && "Choose how you'd like to add staff members"}
-              {view === "manual-step1" && "1/3 — Basic information"}
-              {view === "manual-step2" && "2/3 — Compensation & banking"}
-              {view === "manual-step3" && "3/3 — Upload ID and work documents"}
+              {view === "manual-step1" && "1/3, Basic information"}
+              {view === "manual-step2" && "2/3, Compensation & banking"}
+              {view === "manual-step3" && "3/3, Upload ID and work documents"}
               {view === "bulk-upload" && "Upload an Excel file with your staff data"}
               {view === "bulk-preview" && `${selectedBulkCount} of ${bulkRows.length} staff selected`}
               {view === "bulk-done" && "All selected staff have been added"}
@@ -237,7 +237,7 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
                     Bulk Upload
                   </p>
                   <p className="mt-0.5 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
-                    Import multiple staff from an Excel spreadsheet — names, salaries, bank details & more
+                    Import multiple staff from an Excel spreadsheet, names, salaries, bank details & more
                   </p>
                 </div>
               </button>
@@ -505,7 +505,7 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
                       or <span className="text-[#3b2513] underline">browse files</span>
                     </p>
                     <p className="mt-2 font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">
-                      Supports .xlsx, .xls, .csv — Max 5 MB
+                      Supports .xlsx, .xls, .csv, Max 5 MB
                     </p>
                   </div>
                 </button>
@@ -575,7 +575,7 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
                         <p className="text-[10px] text-[#858c98]">{row.role}</p>
                         <p className="text-[10px] text-[#858c98]">{formatCurrency(row.salary)} salary • -{formatCurrency(row.deductions)} deductions</p>
                         <p className="text-xs font-bold text-[#3b2513]">Net: {formatCurrency(row.netPay)}</p>
-                        <p className="text-[10px] text-[#858c98]">{row.bankName} — {row.accountNumber}</p>
+                        <p className="text-[10px] text-[#858c98]">{row.bankName}, {row.accountNumber}</p>
                       </div>
                     </div>
                   </div>

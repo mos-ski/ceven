@@ -13,7 +13,7 @@ import {
 import AiRiskBadge, { calculateRisk } from "@/components/dashboard/ai-risk-badge";
 import { PARENTS } from "@/lib/mock-data/children";
 
-// Proxy overdue-days used only to feed the shared AI risk calculator — the mock Parent
+// Proxy overdue-days used only to feed the shared AI risk calculator, the mock Parent
 // record only carries a coarse feeStatus, not a real days-overdue figure.
 function proxyOverdueDays(feeStatus: (typeof PARENTS)[number]["feeStatus"]) {
   if (feeStatus === "Overdue") return 10;
@@ -23,7 +23,7 @@ function proxyOverdueDays(feeStatus: (typeof PARENTS)[number]["feeStatus"]) {
 
 const APP_ACTIVE = PARENTS.filter((p) => p.appStatus === "Installed").length;
 const HIGH_RISK = PARENTS.filter((p) => calculateRisk(proxyOverdueDays(p.feeStatus)) === "high").length;
-// "Uncontacted Today" has no v2 equivalent — approximated as parents who have not
+// "Uncontacted Today" has no v2 equivalent, approximated as parents who have not
 // installed the app (never reached digitally), a proxy until real contact-log data exists.
 const UNCONTACTED_TODAY = PARENTS.filter((p) => p.appStatus === "Not Installed").length;
 

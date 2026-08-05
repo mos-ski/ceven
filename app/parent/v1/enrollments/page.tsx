@@ -48,7 +48,7 @@ function DetailsSheet({ enrollment, onClose }: { enrollment: Enrollment; onClose
               { label: "Age At Enrollment", value: formatAge(enrollment.ageAtEnrollmentMonths) },
               { label: "Location", value: enrollment.location },
               { label: "Starts", value: enrollment.startDate ?? "N/A" },
-              { label: "Notes", value: enrollment.notes ?? "—" },
+              { label: "Notes", value: enrollment.notes ?? "," },
             ].map(({ label, value }) => (
               <div key={label} className="rounded-xl bg-[#F9F5EE] px-4 py-3">
                 <p className="mb-0.5 text-xs font-medium text-gray-400">{label}</p>

@@ -163,7 +163,7 @@ function MedicineReminders() {
                 <span className="text-[9px] text-gray-400 ml-auto">{med.time}</span>
               </div>
               <p className="text-[11px] text-gray-500 mb-1.5">
-                {med.medicine} — {med.dosage}
+                {med.medicine}, {med.dosage}
               </p>
               {med.status === "pending" ? (
                 <div className="flex gap-1.5">

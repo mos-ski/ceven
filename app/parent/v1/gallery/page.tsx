@@ -58,7 +58,7 @@ export default function GalleryPage() {
 
       <div className="flex-1 overflow-y-auto px-4 py-4">
         {tab === "photos" ? (
-          /* All Photos — Masonry (Pinterest) */
+          /* All Photos, Masonry (Pinterest) */
           <div className="columns-2 gap-2 space-y-2">
             {photos.map((photo) => {
               const aspectClass =
@@ -84,7 +84,7 @@ export default function GalleryPage() {
             })}
           </div>
         ) : (
-          /* Folders — grouped by date */
+          /* Folders, grouped by date */
           Object.entries(grouped).map(([date, datePhotos]) => (
             <div key={date} className="mb-5">
               <p className="mb-2 text-xs font-semibold text-gray-400">{date}</p>

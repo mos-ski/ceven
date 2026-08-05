@@ -75,7 +75,7 @@ export default function ParentAttendancePage() {
                 <p className="text-xs text-gray-400">Not at the creche today.</p>
               ) : (
                 <p className="text-xs text-gray-500">
-                  In {event.checkInTime ?? "—"} · Out {event.checkOutTime ?? "—"}
+                  In {event.checkInTime ?? ","} · Out {event.checkOutTime ?? ","}
                   {event.pickedUpBy && ` · ${event.pickedUpBy}`}
                 </p>
               )}

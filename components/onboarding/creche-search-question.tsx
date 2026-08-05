@@ -44,7 +44,7 @@ export function CrecheSearchQuestion({ value, onChange, onContinue }: CrecheSear
       />
       {checked && trimmed.length > 0 && !found && (
         <p className="rounded-xl bg-[#FDF3E7] px-4 py-3 font-[family-name:var(--font-urbanist-import)] text-sm text-muted-text">
-          We couldn&apos;t find that creche yet — no worries, we&apos;ve noted your interest and
+          We couldn&apos;t find that creche yet, no worries, we&apos;ve noted your interest and
           we&apos;ll reach out to them too.
         </p>
       )}

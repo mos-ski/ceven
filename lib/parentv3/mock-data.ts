@@ -188,7 +188,7 @@ export const UPCOMING_EVENTS: CalendarEvent[] = [
   },
   {
     id: "evt-2",
-    title: "Birthday Party — Chinwe",
+    title: "Birthday Party, Chinwe",
     date: "Sunday, Aug 6",
     time: "12:00 PM",
     childIds: ["zara", "tobi"],
@@ -203,7 +203,7 @@ export const UPCOMING_EVENTS: CalendarEvent[] = [
   },
   {
     id: "evt-3",
-    title: "Vaccination — Tobi",
+    title: "Vaccination, Tobi",
     date: "Wednesday, Aug 9",
     time: "10:00 AM",
     childIds: ["tobi"],
@@ -220,7 +220,7 @@ export const UPCOMING_EVENTS: CalendarEvent[] = [
 export const PENDING_MONEY_REQUEST: MoneyRequest = {
   id: "mr-1",
   amount: 5000,
-  purpose: "Groceries — rice, beans, tomatoes, onions, and cooking oil",
+  purpose: "Groceries, rice, beans, tomatoes, onions, and cooking oil",
   status: "pending",
   requestedAt: "9:15 AM",
 };
@@ -237,16 +237,16 @@ export const DAILY_REPORT: DailyReportSummary = {
 };
 
 export const ACTIVITY_FEED: ActivityFeedItem[] = [
-  { id: "af-1", type: "meal", description: "Zara had breakfast — Akamu & Akara", time: "7:45 AM", childId: "zara", icon: "🍽️" },
-  { id: "af-2", type: "meal", description: "Tobi had breakfast — Oats & Banana", time: "8:00 AM", childId: "tobi", icon: "🍽️" },
+  { id: "af-1", type: "meal", description: "Zara had breakfast, Akamu & Akara", time: "7:45 AM", childId: "zara", icon: "🍽️" },
+  { id: "af-2", type: "meal", description: "Tobi had breakfast, Oats & Banana", time: "8:00 AM", childId: "tobi", icon: "🍽️" },
   { id: "af-3", type: "medicine", description: "Tobi given Paracetamol syrup (5 ml)", time: "8:30 AM", childId: "tobi", icon: "💊" },
   { id: "af-4", type: "nap", description: "Tobi fell asleep", time: "10:00 AM", childId: "tobi", icon: "😴" },
-  { id: "af-5", type: "meal", description: "Zara had lunch — Jollof Rice & Moi-moi", time: "12:45 PM", childId: "zara", icon: "🍽️" },
-  { id: "af-6", type: "event", description: "Swim bag item packed — Swimsuit", time: "1:30 PM", icon: "🎒" },
-  { id: "af-7", type: "event", description: "Swim bag item packed — Towel", time: "1:32 PM", icon: "🎒" },
+  { id: "af-5", type: "meal", description: "Zara had lunch, Jollof Rice & Moi-moi", time: "12:45 PM", childId: "zara", icon: "🍽️" },
+  { id: "af-6", type: "event", description: "Swim bag item packed, Swimsuit", time: "1:30 PM", icon: "🎒" },
+  { id: "af-7", type: "event", description: "Swim bag item packed, Towel", time: "1:32 PM", icon: "🎒" },
   { id: "af-8", type: "diaper", description: "Tobi's diaper changed", time: "2:00 PM", childId: "tobi", icon: "🧒" },
-  { id: "af-9", type: "meal", description: "Snack served — Fruit Salad & Juice", time: "3:15 PM", childId: "zara", icon: "🍽️" },
-  { id: "af-10", type: "money", description: "Market money request — ₦5,000", time: "9:15 AM", icon: "💰" },
+  { id: "af-9", type: "meal", description: "Snack served, Fruit Salad & Juice", time: "3:15 PM", childId: "zara", icon: "🍽️" },
+  { id: "af-10", type: "money", description: "Market money request, ₦5,000", time: "9:15 AM", icon: "💰" },
 ];
 
 export const CHAT_MESSAGES: ChatMessage[] = [

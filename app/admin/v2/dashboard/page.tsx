@@ -63,10 +63,10 @@ type ActivityFeedItem = {
 
 const liveActivities: ActivityFeedItem[] = [
   { title: "Zara Mohammed absent", desc: "No contact from parent today", time: "2 min ago", type: "health", typeLabel: "Health" },
-  { title: "Payment received — ₦85,000", desc: "King Andrew monthly fee", time: "15 min ago", type: "finance", typeLabel: "Finance" },
+  { title: "Payment received, ₦85,000", desc: "King Andrew monthly fee", time: "15 min ago", type: "finance", typeLabel: "Finance" },
   { title: "Mr Moore submitted daily log", desc: "Lion Class activities logged", time: "1 hour ago", type: "operations", typeLabel: "Operations" },
-  { title: "DBS check expiring", desc: "Grace Nka — expires in 12 days", time: "2 hours ago", type: "compliance", typeLabel: "Compliance" },
-  { title: "New enrolment application", desc: "Tunde Adeyemi — Tiger Class", time: "3 hours ago", type: "enrolment", typeLabel: "Enrolment" },
+  { title: "DBS check expiring", desc: "Grace Nka, expires in 12 days", time: "2 hours ago", type: "compliance", typeLabel: "Compliance" },
+  { title: "New enrolment application", desc: "Tunde Adeyemi, Tiger Class", time: "3 hours ago", type: "enrolment", typeLabel: "Enrolment" },
 ];
 
 // ── Static data ───────────────────────────────────────────────────────────────
@@ -93,7 +93,7 @@ const aiInsights = [
   {
     color: "#f59e0b",
     bold: "Lion Class",
-    text: " caregiver logging compliance dropped to 62% this week — below 80% threshold.",
+    text: " caregiver logging compliance dropped to 62% this week, below 80% threshold.",
     tag: "Creche Performance",
   },
 ];
@@ -133,7 +133,7 @@ const chatMessages = [
   { role: "user" as const, text: "Yes, draft a reminder for Lion Class staff about logging." },
   {
     role: "ai" as const,
-    text: "Done! Here's a draft:\n\n\"Hi Lion Class team, logging compliance this week is at 62% — below our 80% target. Please ensure all activities and meals are logged before end of day. Thank you!\" — Shall I send this?",
+    text: "Done! Here's a draft:\n\n\"Hi Lion Class team, logging compliance this week is at 62%, below our 80% target. Please ensure all activities and meals are logged before end of day. Thank you!\". Shall I send this?",
   },
 ];
 
@@ -447,7 +447,7 @@ export default function DashboardPage() {
 
   return (
     <>
-      {/* Main content area — shrinks when AI panel is open */}
+      {/* Main content area, shrinks when AI panel is open */}
       <div className={`flex gap-4 ${aiPanelOpen ? "items-start" : "flex-col"}`}>
         {/* Left / main column */}
         <div className="flex min-w-0 flex-1 flex-col gap-4">
@@ -516,7 +516,7 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          {/* Quick Actions — visible when AI panel is open */}
+          {/* Quick Actions, visible when AI panel is open */}
           {aiPanelOpen && (
             <div className="flex items-center gap-3 overflow-x-auto rounded-xl bg-[#faf2e1] px-4 py-3">
               {quickActions.map(({ id, icon: Icon, label, color }) => (
@@ -542,7 +542,7 @@ export default function DashboardPage() {
             </div>
           )}
 
-          {/* 2. Stats Grid — swipeable on mobile, grid on desktop */}
+          {/* 2. Stats Grid, swipeable on mobile, grid on desktop */}
           <div className="flex flex-col gap-4">
             <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory pb-1 lg:grid lg:grid-cols-4 lg:overflow-visible lg:pb-0">
               {(stats?.row1 ?? []).map((card) => (
@@ -684,7 +684,7 @@ export default function DashboardPage() {
               </div>
             )}
 
-            {/* Activity Feed — coloured dots by type */}
+            {/* Activity Feed, coloured dots by type */}
             {!aiPanelOpen && (
               <div className="flex flex-col gap-4 rounded-xl border border-[#e6ebf3] bg-white p-4">
                 <div className="flex items-center justify-between">
@@ -735,7 +735,7 @@ export default function DashboardPage() {
 
           {/* 4. Bottom Tables */}
           <div className="flex flex-col gap-4 lg:flex-row lg:gap-4">
-            {/* Outstanding Payments — with AI Risk column */}
+            {/* Outstanding Payments, with AI Risk column */}
             <div className="flex min-w-0 flex-1 flex-col rounded-xl bg-white lg:flex-[8]">
               <div className="flex items-center justify-between px-4 py-4">
                 <h3 className="font-[family-name:var(--font-urbanist)] text-base font-medium text-black">
@@ -882,7 +882,7 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* Right — AI Chat Panel */}
+        {/* Right, AI Chat Panel */}
         {aiPanelOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 lg:static lg:inset-auto lg:z-auto lg:bg-transparent">
             <div className="relative w-full max-w-[360px] lg:w-[360px]">
@@ -892,7 +892,7 @@ export default function DashboardPage() {
         )}
       </div>
 
-      {/* Notification panel — floating overlay anchored top-right */}
+      {/* Notification panel, floating overlay anchored top-right */}
       {notificationOpen && (
         <div className="fixed right-6 top-16 z-40">
           <NotificationPanel onClose={() => setNotificationOpen(false)} />

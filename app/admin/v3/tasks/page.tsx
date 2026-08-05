@@ -8,7 +8,7 @@ export default function TasksV3Page() {
           Tasks
         </h1>
         <p className="mt-1 text-sm text-[#2D1810]/50">
-          Staff task list — assignments, due dates, and priority.
+          Staff task list: assignments, due dates, and priority.
         </p>
       </div>
       <TasksView />

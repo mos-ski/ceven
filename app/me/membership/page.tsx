@@ -74,7 +74,7 @@ export default function MembershipPage() {
         <div className="mb-6 flex items-center justify-between rounded-2xl bg-gradient-to-br from-cg-brand to-[#8B5E3C] p-5 text-white shadow-md">
           <div>
             <p className="text-xs text-white/70">Current Plan</p>
-            <p className="font-[family-name:var(--font-merriweather-import)] text-lg font-bold">Premium — Active</p>
+            <p className="font-[family-name:var(--font-merriweather-import)] text-lg font-bold">Premium, Active</p>
           </div>
           <button
             onClick={() => setShowCancel(true)}

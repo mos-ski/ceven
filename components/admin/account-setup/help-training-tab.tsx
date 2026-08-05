@@ -96,7 +96,8 @@ function FaqFormDialog({
               className="resize-none rounded-xl border border-[#e6ebf3] bg-white px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] outline-none focus:ring-2 focus:ring-[#c47b2c]"
             />
           </div>
-          <DialogFooter className="border-t border-[#eaecf0] px-0 pt-4">
+          <DialogFooter className="px-0 pt-4">
+            <div className="h-px bg-black/[0.06] mb-4" />
             <DialogClose className="rounded-lg border border-[#d0d5dd] px-5 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810] hover:bg-[#f9fafb]">
               Cancel
             </DialogClose>
@@ -285,7 +286,7 @@ function FaqRow({
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="rounded-xl border border-[#e6ebf3]">
+    <div className="rounded-xl bg-[#F5EDD8]/30">
       <div className="flex items-center gap-2 px-3 py-2.5">
         <GripVertical size={14} className="shrink-0 text-[#d0d5dd]" />
         <div className="min-w-0 flex-1">
@@ -303,7 +304,8 @@ function FaqRow({
         </div>
       </div>
       {expanded && (
-        <div className="border-t border-[#f3f4f6] px-3 py-2.5">
+        <div className="px-3 py-2.5">
+          <div className="h-px bg-black/[0.06] mb-2.5" />
           <p className="font-[family-name:var(--font-urbanist)] text-xs leading-relaxed text-[#6b7280]">{faq.answer}</p>
         </div>
       )}
@@ -337,8 +339,8 @@ function AskAdaPanel() {
   }
 
   return (
-    <div className="flex flex-1 flex-col overflow-hidden rounded-2xl border-l-[3px] border-[rgba(45,24,16,0.1)] bg-[#fffcf4]">
-      <div className="flex shrink-0 flex-col gap-1.5 border-b border-[rgba(45,24,16,0.07)] px-5 py-3.5">
+    <div className="flex flex-1 flex-col overflow-hidden rounded-2xl bg-[#fffcf4]">
+      <div className="flex shrink-0 flex-col gap-1.5 px-5 py-3.5">
         <div className="flex items-center gap-1">
           <span className="size-1.5 rounded-full bg-[#c47b2c]" />
           <span className="font-[family-name:var(--font-urbanist)] text-xs font-bold tracking-[0.84px] text-[#2d1810] uppercase">

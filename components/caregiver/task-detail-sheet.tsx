@@ -69,7 +69,7 @@ export function TaskDetailSheet({ task, onClose, onMarkDone, onMarkUndone }: Pro
           </button>
         </div>
 
-        {/* Step 1 — Info */}
+        {/* Step 1, Info */}
         {step === "info" && (
           <div className="px-5 pb-8 pt-3">
             <div className={ROW}><span className={LBL}>Task Title</span><span className={VAL}>{task.title}</span></div>
@@ -105,7 +105,7 @@ export function TaskDetailSheet({ task, onClose, onMarkDone, onMarkUndone }: Pro
           </div>
         )}
 
-        {/* Step 2 — Treat */}
+        {/* Step 2, Treat */}
         {step === "treat" && (
           <div className="flex flex-col gap-4 px-5 pb-8 pt-4">
             <div>

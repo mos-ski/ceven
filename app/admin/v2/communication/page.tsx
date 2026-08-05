@@ -252,7 +252,7 @@ function ConversationView({
         )}
       </div>
 
-      {/* Reply area — fixed at bottom */}
+      {/* Reply area, fixed at bottom */}
       <div className="border-t border-[#eaeef3] p-4 bg-white shrink-0">
         <textarea
           rows={2}
@@ -324,7 +324,7 @@ function MessagesView() {
 
   return (
     <>
-      {/* Page header — hidden when viewing a conversation on mobile */}
+      {/* Page header, hidden when viewing a conversation on mobile */}
       <div className={`flex items-center justify-between mb-4 ${selectedMessage !== null ? "hidden lg:flex" : ""}`}>
         <h1 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
           Messages
@@ -339,7 +339,7 @@ function MessagesView() {
 
       {/* Split layout */}
       <div className="flex flex-col lg:flex-row h-[calc(100vh-160px)]">
-        {/* ── LEFT PANEL — hidden on mobile when conversation is open ── */}
+        {/* ── LEFT PANEL, hidden on mobile when conversation is open ── */}
         <div className={`${selectedMessage !== null ? "hidden lg:flex" : "flex"} w-full lg:w-[340px] lg:flex-shrink-0 rounded-2xl bg-white shadow-sm flex-col overflow-hidden`}>
           {/* Search + date filter */}
           <div className="p-4 flex gap-2">
@@ -428,7 +428,7 @@ function MessagesView() {
           </div>
         </div>
 
-        {/* ── RIGHT PANEL — full width on mobile when conversation is open ── */}
+        {/* ── RIGHT PANEL, full width on mobile when conversation is open ── */}
         <div className={`${selectedMessage !== null ? "flex" : "hidden lg:flex"} flex-1 rounded-2xl bg-white shadow-sm flex-col overflow-hidden`}>
           {selectedMessage === null && <ComposeView />}
 

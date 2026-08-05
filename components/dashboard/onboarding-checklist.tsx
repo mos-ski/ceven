@@ -139,7 +139,7 @@ export default function OnboardingChecklist() {
   function handleStepCta(step: OnboardingStep) {
     markComplete(step.id);
     if (step.modal === "enroll") {
-      // Open enroll modal — parent will handle this
+      // Open enroll modal, parent will handle this
       router.push(step.route);
     } else if (step.modal === "announcement") {
       router.push(step.route);

@@ -121,7 +121,7 @@ export default function EnrollChildModal({ onClose }: Props) {
             </p>
           </div>
 
-          {/* Section 1 — Child's Information */}
+          {/* Section 1, Child's Information */}
           <div className="flex flex-col gap-4">
             <SectionHeading>Child&apos;s Information</SectionHeading>
 
@@ -171,7 +171,7 @@ export default function EnrollChildModal({ onClose }: Props) {
           {/* Divider */}
           <div className="h-px bg-[#f3f4f6]" />
 
-          {/* Section 2 — Parent / Guardian Info */}
+          {/* Section 2, Parent / Guardian Info */}
           <div className="flex flex-col gap-4">
             <SectionHeading>Parent / Guardian Info</SectionHeading>
 
@@ -210,7 +210,7 @@ export default function EnrollChildModal({ onClose }: Props) {
           {/* Divider */}
           <div className="h-px bg-[#f3f4f6]" />
 
-          {/* Section 3 — Subscription & Start Date */}
+          {/* Section 3, Subscription & Start Date */}
           <div className="flex flex-col gap-4">
             <SectionHeading>Subscription &amp; Start Date</SectionHeading>
 

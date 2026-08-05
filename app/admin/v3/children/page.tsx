@@ -31,7 +31,7 @@ import { CHILDREN, CHILDREN_STATS, type Child, type ChildStatus, type FeeStatus 
 const ROOMS = ["All Rooms", "Lion", "Panda", "Owl", "Bear"];
 const STATUSES: Array<"All Status" | ChildStatus> = ["All Status", "Present", "Late", "Absent"];
 
-// "Graduating Soon" has no v2 equivalent stat — derived here as children in the oldest
+// "Graduating Soon" has no v2 equivalent stat, derived here as children in the oldest
 // age bracket (5 years), a reasonable proxy until a real graduation-date field exists.
 const GRADUATING_SOON = CHILDREN.filter((c) => c.age === "5 years").length;
 

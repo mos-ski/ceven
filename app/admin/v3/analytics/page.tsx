@@ -18,7 +18,7 @@ export default function AnalyticsV3Page() {
       </div>
 
       {/* AI Forecast */}
-      <div className="rounded-2xl border border-[#C47B2C]/40 bg-white p-5">
+      <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
         <div className="mb-3 flex items-center justify-between">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-[#1E2D4A] to-[#2D1810] px-3 py-1.5 text-[10px] font-bold uppercase tracking-wide text-[#F5EDD8]">
             <Sparkles className="h-3 w-3 text-[#C47B2C]" /> Forecast
@@ -28,7 +28,7 @@ export default function AnalyticsV3Page() {
         <p className="text-sm leading-6 text-[#2D1810]">
           <span className="font-bold">Revenue collection</span>{" "}
           <span className="text-[#2D1810]/60">
-            is trending 12% above last month&apos;s pace — if the current velocity holds, this month should close
+            is trending 12% above last month&apos;s pace. If the current velocity holds, this month should close
             with collections outpacing billing for the first time this quarter.
           </span>
         </p>

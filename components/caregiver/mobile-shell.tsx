@@ -49,7 +49,7 @@ export function MobileShell({ children }: { children: React.ReactNode }) {
             boxShadow: "0 0 0 1.5px #3A3A3C, 0 30px 80px rgba(0,0,0,0.7), inset 0 0 0 2px #2C2C2E",
           }}
         >
-          {/* Side buttons — hidden on mobile via .cg-shell-chrome */}
+          {/* Side buttons, hidden on mobile via .cg-shell-chrome */}
           <div className="cg-shell-chrome">
             <div style={{ position: "absolute", left: -3.5, top: 160, width: 3.5, height: 36, background: "#3A3A3C", borderRadius: "3px 0 0 3px" }} />
             <div style={{ position: "absolute", left: -3.5, top: 208, width: 3.5, height: 36, background: "#3A3A3C", borderRadius: "3px 0 0 3px" }} />
@@ -72,7 +72,7 @@ export function MobileShell({ children }: { children: React.ReactNode }) {
               flexDirection: "column",
             }}
           >
-            {/* Dynamic Island — hidden on mobile */}
+            {/* Dynamic Island, hidden on mobile */}
             <div
               className="cg-shell-island"
               style={{
@@ -130,7 +130,7 @@ export function MobileShell({ children }: { children: React.ReactNode }) {
               {children}
             </div>
 
-            {/* Home indicator — hidden on mobile */}
+            {/* Home indicator, hidden on mobile */}
             <div
               className="cg-shell-chrome"
               style={{

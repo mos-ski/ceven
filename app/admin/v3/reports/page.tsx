@@ -6,7 +6,7 @@ import { ReportsTab } from "@/components/admin/intelligence/reports-tab";
 
 // ── Static data ──────────────────────────────────────────────────────────────
 // No v2 equivalent exists for report-generator cards or a scheduled-reports
-// list, so this data is invented — the report *types* reuse
+// list, so this data is invented, the report *types* reuse
 // REPORT_TYPE_OPTIONS/REPORT_REPEAT_OPTIONS/REPORT_RECIPIENT_OPTIONS from
 // lib/mock-data/intelligence.ts to stay consistent with the real Reports tab.
 
@@ -101,7 +101,7 @@ export default function ReportsV3Page() {
         </div>
       </div>
 
-      {/* Generated reports — reuse v2's ReportsTab data/logic */}
+      {/* Generated reports, reuse v2's ReportsTab data/logic */}
       <ReportsTab />
     </div>
   );

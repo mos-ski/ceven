@@ -210,13 +210,13 @@ function EnquiryPreviewModal({
                   />
                   {step}
                   {step === "Visit Scheduled" && enquiry.visitDate && (
-                    <span className="text-xs text-[#9ca3af]">— {enquiry.visitDate} {enquiry.visitTime}</span>
+                    <span className="text-xs text-[#9ca3af]">, {enquiry.visitDate} {enquiry.visitTime}</span>
                   )}
                   {step === "Trial Booked" && enquiry.trialDate && (
-                    <span className="text-xs text-[#9ca3af]">— {enquiry.trialDate} {enquiry.trialTime}</span>
+                    <span className="text-xs text-[#9ca3af]">, {enquiry.trialDate} {enquiry.trialTime}</span>
                   )}
                   {step === "Offer Made" && enquiry.offerPlan && (
-                    <span className="text-xs text-[#9ca3af]">— {enquiry.offerPlan}</span>
+                    <span className="text-xs text-[#9ca3af]">, {enquiry.offerPlan}</span>
                   )}
                 </div>
               ))}
@@ -823,7 +823,7 @@ function EnquiryPipelineTab() {
       <div className="overflow-hidden rounded-xl bg-white shadow-sm">
         <div className="p-4">
           <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
-            Enquiry Pipeline <span className="font-normal text-[#9ca3af]">— Kanban View</span>
+            Enquiry Pipeline <span className="font-normal text-[#9ca3af]">, Kanban View</span>
           </h2>
         </div>
         <div className="grid grid-cols-1 gap-3 p-4 pt-0 sm:grid-cols-2 lg:grid-cols-4">
@@ -1131,7 +1131,7 @@ function WaitlistTab() {
     <div className="overflow-hidden rounded-xl bg-white shadow-sm">
       <div className="flex flex-wrap items-center justify-between gap-3 p-4">
         <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
-          Waitlist <span className="font-normal text-[#9ca3af]">— By Room</span>
+          Waitlist <span className="font-normal text-[#9ca3af]">, By Room</span>
         </h2>
         <div className="flex items-center gap-2">
           <FilterDropdown label={statusFilter} options={["All Status", "Waiting", "Offered", "Expired"]} onSelect={setStatusFilter} />
@@ -1456,7 +1456,7 @@ function LeaversTab() {
     <div className="overflow-hidden rounded-xl bg-white shadow-sm">
       <div className="flex flex-wrap items-center justify-between gap-3 p-4">
         <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
-          Leavers <span className="font-normal text-[#9ca3af]">— This Academic Year</span>
+          Leavers <span className="font-normal text-[#9ca3af]">, This Academic Year</span>
         </h2>
         <div className="flex items-center gap-2">
           <FilterDropdown label={roomFilter} options={["All Rooms", ...ROOMS.map((r) => r.name)]} onSelect={setRoomFilter} />

@@ -41,7 +41,7 @@ export function formatAge(months: number): string {
 }
 
 // Parses room age ranges like "6-12 months", "1-2 years", "3-5 years",
-// "0 months - 1 year 2 months" is NOT handled — fail open with null.
+// "0 months - 1 year 2 months" is NOT handled, fail open with null.
 export function parseAgeRange(range: string): { minMonths: number; maxMonths: number } | null {
   const m = range.trim().toLowerCase().match(/^(\d+)\s*-\s*(\d+)\s*(months?|years?)$/);
   if (!m) return null;

@@ -33,7 +33,7 @@ export default function NewExpenseModal({ open, onOpenChange }: Props) {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   function handleSubmit() {
-    // Mock submit — no backend wired up yet.
+    // Mock submit, no backend wired up yet.
     onOpenChange(false);
     setDate("");
     setVendor("");

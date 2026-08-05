@@ -71,25 +71,25 @@ export default function HomePage() {
 
         {/* Quick Actions */}
         <p className="mb-3 text-sm font-semibold text-gray-600">Quick Actions</p>
-        {/* Quick Actions — Row 1 */}
+        {/* Quick Actions, Row 1 */}
         <div className="mb-3 flex gap-3">
           <QuickActionCard icon={ScanLine} label="Scan Code" onClick={() => router.push("/caregiver/scan")} isNew />
           <QuickActionCard icon={ClipboardList} label="Log Activity" onClick={openActivity} />
           <QuickActionCard icon={FileText} label="Log Report" onClick={() => router.push("/caregiver/report")} />
         </div>
-        {/* Quick Actions — Row 2 */}
+        {/* Quick Actions, Row 2 */}
         <div className="mb-3 flex gap-3">
           <QuickActionCard icon={CalendarCheck} label="Attendance" onClick={() => router.push("/caregiver/attendance")} />
           <QuickActionCard icon={CreditCard} label="Fees" onClick={() => router.push("/caregiver/fees")} />
           <QuickActionCard icon={Images} label="Gallery" onClick={() => router.push("/caregiver/gallery")} />
         </div>
-        {/* Quick Actions — Row 3 */}
+        {/* Quick Actions, Row 3 */}
         <div className="mb-3 flex gap-3">
           <QuickActionCard icon={Pill} label="Medication" onClick={() => router.push("/caregiver/medication")} isNew />
           <QuickActionCard icon={AlertTriangle} label="Incidents" onClick={() => router.push("/caregiver/incidents")} isNew />
           <QuickActionCard icon={TrendingUp} label="Growth" onClick={() => router.push("/caregiver/children/child-1/growth")} isNew />
         </div>
-        {/* Quick Actions — Row 4 */}
+        {/* Quick Actions, Row 4 */}
         <div className="flex gap-3">
           <QuickActionCard icon={Star} label="Ratings" onClick={() => router.push("/caregiver/ratings")} isNew />
           <QuickActionCard icon={CalendarDays} label="Events" onClick={() => router.push("/caregiver/events")} isNew />

@@ -53,7 +53,7 @@ export default function AcceptanceFeesPage() {
         <PaymentFlowModal
           title="Pay Acceptance Fee"
           amount={`₦${payingFee.amount.toLocaleString()}`}
-          description={`${payingFee.childName} — Acceptance Fee`}
+          description={`${payingFee.childName}, Acceptance Fee`}
           onClose={() => setPayingFee(null)}
           onSuccess={() => setPaidIds((prev) => [...prev, payingFee.id])}
         />

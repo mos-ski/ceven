@@ -145,7 +145,7 @@ export const PARENT_MEMBERSHIP: { status: ParentMembershipStatus } = {
 
 /**
  * Direct messaging let a trial user actually use the feature for a
- * few messages before surfacing membership status — never an upfront block.
+ * few messages before surfacing membership status, never an upfront block.
  * The limit is enforced inline, as a reply within the conversation itself.
  */
 export const TRIAL_MESSAGE_LIMIT = 5;
@@ -153,8 +153,8 @@ export const TRIAL_MESSAGE_LIMIT = 5;
 /**
  * Whether the trial user's one allotted Special Request has been used.
  * Module-level (not component state) because SpecialRequestsPanel is mounted
- * in two places — inline on Home's "Special Requests" tab and on its own
- * /parent/special-requests screen — and progress must survive either one
+ * in two places, inline on Home's "Special Requests" tab and on its own
+ * /parent/special-requests screen, and progress must survive either one
  * remounting (e.g. switching tabs and back).
  */
 export const SPECIAL_REQUEST_TRIAL: { used: boolean } = { used: false };
@@ -500,7 +500,7 @@ export const mockAttendanceHistory: AttendanceEvent[] = [
   { date: "Yesterday", shortDate: "Jan 8", status: "present", checkInTime: "08:12 AM", checkOutTime: "04:20 PM", pickedUpBy: "James Miller (Dad)", exception: null },
   { date: "Wed, Jan 7", shortDate: "Jan 7", status: "present", checkInTime: "07:58 AM", checkOutTime: "05:45 PM", pickedUpBy: "Aunty Bisi (authorized)", exception: null },
   { date: "Tue, Jan 6", shortDate: "Jan 6", status: "late", checkInTime: "09:20 AM", checkOutTime: "04:15 PM", pickedUpBy: "James Miller (Dad)", exception: null },
-  { date: "Mon, Jan 5", shortDate: "Jan 5", status: "present", checkInTime: "08:00 AM", checkOutTime: "06:10 PM", pickedUpBy: "Unrecognized pickup", exception: "Pickup attempted by someone not on the authorized list — front desk verified ID and contacted parent before release." },
+  { date: "Mon, Jan 5", shortDate: "Jan 5", status: "present", checkInTime: "08:00 AM", checkOutTime: "06:10 PM", pickedUpBy: "Unrecognized pickup", exception: "Pickup attempted by someone not on the authorized list, front desk verified ID and contacted parent before release." },
   { date: "Fri, Jan 2", shortDate: "Jan 2", status: "absent", checkInTime: null, checkOutTime: null, pickedUpBy: null, exception: null },
 ];
 

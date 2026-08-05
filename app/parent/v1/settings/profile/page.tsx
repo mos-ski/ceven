@@ -365,15 +365,15 @@ export default function ProfilesPage() {
           <ul className="space-y-2 text-xs text-gray-500">
             <li className="flex items-start gap-2">
               <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-cg-brand" />
-              <span><strong className="text-gray-700">Owner</strong> — full access: edit profile, manage family, emergency contacts, billing</span>
+              <span><strong className="text-gray-700">Owner</strong>, full access: edit profile, manage family, emergency contacts, billing</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-cg-brand" />
-              <span><strong className="text-gray-700">Family</strong> — view reports, chat with caregivers, receive notifications</span>
+              <span><strong className="text-gray-700">Family</strong>, view reports, chat with caregivers, receive notifications</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-cg-brand" />
-              <span><strong className="text-gray-700">Nanny</strong> — log attendance, send updates, manage daily reports</span>
+              <span><strong className="text-gray-700">Nanny</strong>, log attendance, send updates, manage daily reports</span>
             </li>
           </ul>
         </div>

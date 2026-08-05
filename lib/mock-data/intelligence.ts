@@ -132,7 +132,7 @@ export type GeneratedReport = {
 export const GENERATED_REPORTS: GeneratedReport[] = [
   {
     id: "rpt-1",
-    title: "Monthly Attendance Summary — May 2026",
+    title: "Monthly Attendance Summary, May 2026",
     type: "Attendance",
     fileType: "PDF",
     generatedOn: "01 Jun 2026",
@@ -141,7 +141,7 @@ export const GENERATED_REPORTS: GeneratedReport[] = [
   },
   {
     id: "rpt-2",
-    title: "Staff Compliance Audit — Q2 2026",
+    title: "Staff Compliance Audit, Q2 2026",
     type: "Compliance",
     fileType: "XLSX",
     generatedOn: "15 Jun 2026",
@@ -171,7 +171,7 @@ export const GENERATED_REPORTS: GeneratedReport[] = [
     title: "Enrolment & Waitlist Snapshot",
     type: "Enrolment",
     fileType: "PDF",
-    generatedOn: "—",
+    generatedOn: ",",
     generatedBy: "Mrs. Sarah",
     status: "Generating",
   },
@@ -224,7 +224,7 @@ export const AUDIT_LOG: AuditLogEntry[] = [
     actor: "Admin",
     actorName: "Mrs. Sarah",
     action: "Reviewed and dismissed flag",
-    detail: "Marked 'Health trend flagged — Tiger Room' as reviewed.",
+    detail: "Marked 'Health trend flagged, Tiger Room' as reviewed.",
     timestamp: "21 Jun 2026, 8:41 AM",
   },
   {
@@ -232,7 +232,7 @@ export const AUDIT_LOG: AuditLogEntry[] = [
     actor: "System",
     actorName: "System",
     action: "Generated report",
-    detail: "Monthly Attendance Summary — May 2026 (PDF) auto-generated and sent to admin inbox.",
+    detail: "Monthly Attendance Summary, May 2026 (PDF) auto-generated and sent to admin inbox.",
     timestamp: "20 Jun 2026, 6:00 AM",
   },
   {
@@ -264,7 +264,7 @@ export const AUDIT_LOG: AuditLogEntry[] = [
     actor: "System",
     actorName: "System",
     action: "Compliance gap identified",
-    detail: "2 children found with outdated vaccination records — flagged for follow-up.",
+    detail: "2 children found with outdated vaccination records, flagged for follow-up.",
     timestamp: "17 Jun 2026, 7:50 AM",
   },
   {
