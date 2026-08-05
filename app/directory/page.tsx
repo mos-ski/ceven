@@ -468,17 +468,6 @@ const APP_SECTIONS: AppSection[] = [
   },
 ];
 
-const NAV_CARDS = [
-  { id: "design-system", eyebrow: "Design System", desc: "Foundations & components · /library" },
-  { id: "super-admin", eyebrow: "Super Admin", desc: "Platform console · /super-admin" },
-  { id: "creche-admin", eyebrow: "Crèche Admin", desc: "Operator dashboard · v1, v2, v3" },
-  { id: "parent-app", eyebrow: "Parent App", desc: "Family mobile app · v1, v2" },
-  { id: "caregiver-app", eyebrow: "Caregiver App", desc: "Crèche staff app · v1, v2" },
-  { id: "independent-caregiver-app", eyebrow: "Independent Caregiver", desc: "Independent caregiver app · v2" },
-  { id: "independent-tutor-app", eyebrow: "Independent Tutor", desc: "Independent tutor app · v2" },
-  { id: "website", eyebrow: "Website", desc: "Marketing site · public pages" },
-];
-
 function SummaryBlock({ summary }: { summary: Summary }) {
   const rows: { label: string; text: string }[] = [
     { label: "What", text: summary.what },
@@ -538,21 +527,6 @@ export default function DirectoryPage() {
           <span>Design complete, awaiting CEO approval</span>
           <span className="inline-block rounded-full bg-amber-100 px-2.5 py-0.5 font-bold text-amber-700">In progress</span>
           <span>Design in progress</span>
-        </div>
-
-        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {NAV_CARDS.map((card) => (
-            <a
-              key={card.id}
-              href={`#${card.id}`}
-              className="rounded-2xl border border-card-border bg-white p-5 transition-colors hover:border-brand-accent"
-            >
-              <p className="text-xs font-bold uppercase tracking-wide text-brand-accent">
-                {card.eyebrow}
-              </p>
-              <p className="mt-1.5 text-sm text-muted-text">{card.desc}</p>
-            </a>
-          ))}
         </div>
 
         <div className="mt-12">
