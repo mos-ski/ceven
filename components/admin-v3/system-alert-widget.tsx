@@ -21,7 +21,7 @@ export function SystemAlertWidget() {
           </span>
         </button>
       ) : (
-        <div className="w-[280px] overflow-hidden rounded-2xl border border-[#C47B2C]/20 bg-gradient-to-br from-[#1E2D4A] to-[#2D1810] shadow-xl">
+        <div className="w-[280px] overflow-hidden rounded-2xl bg-gradient-to-br from-[#1E2D4A] to-[#2D1810] shadow-xl">
           <div className="flex items-center justify-between px-4 pt-3.5">
             <p className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-white/55">
               <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-400" />

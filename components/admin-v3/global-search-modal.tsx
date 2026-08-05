@@ -348,11 +348,11 @@ export function GlobalSearchModal({ open, onOpenChange }: { open: boolean; onOpe
         }`}
       >
         <div
-          className="w-full max-w-[580px] overflow-hidden rounded-2xl border border-black/[0.08] bg-white shadow-2xl"
+          className="w-full max-w-[580px] overflow-hidden rounded-2xl bg-white shadow-2xl"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Search input */}
-          <div className="flex items-center gap-3 border-b border-black/[0.06] px-4 py-3">
+          <div className="flex items-center gap-3 px-4 py-3" style={{ borderBottom: "1px solid rgba(0,0,0,0.06)" }}>
             <Search className="h-[18px] w-[18px] shrink-0 text-[#2D1810]/40" />
             <input
               ref={inputRef}
@@ -381,7 +381,7 @@ export function GlobalSearchModal({ open, onOpenChange }: { open: boolean; onOpe
                     <button
                       key={suggestion}
                       onClick={() => setQuery(suggestion)}
-                      className="rounded-full border border-black/[0.08] bg-[#F5EDD8]/50 px-3 py-1 text-xs font-medium text-[#2D1810]/50 hover:bg-[#F5EDD8] hover:text-[#2D1810]/70"
+                      className="rounded-full bg-[#F5EDD8]/50 px-3 py-1 text-xs font-medium text-[#2D1810]/50 hover:bg-[#F5EDD8] hover:text-[#2D1810]/70"
                     >
                       {suggestion}
                     </button>
@@ -435,7 +435,7 @@ export function GlobalSearchModal({ open, onOpenChange }: { open: boolean; onOpe
 
           {/* Footer */}
           {query.trim() && combined.length > 0 && (
-            <div className="flex items-center justify-between border-t border-black/[0.06] px-4 py-2.5">
+            <div className="flex items-center justify-between px-4 py-2.5" style={{ borderTop: "1px solid rgba(0,0,0,0.06)" }}>
               <p className="text-[11px] text-[#2D1810]/35">
                 {combined.length} result{combined.length !== 1 ? "s" : ""}
               </p>

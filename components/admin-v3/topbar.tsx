@@ -32,7 +32,7 @@ export function TopbarV3() {
 
   return (
     <>
-      <header className="flex h-[54px] shrink-0 items-center gap-3.5 border-b border-black/[0.07] bg-[#FFFCF4] px-4 lg:px-6">
+      <header className="flex h-[54px] shrink-0 items-center gap-3.5 bg-[#FFFCF4] px-4 lg:px-6">
         <div className="pl-12 flex flex-1 items-center gap-2 lg:pl-0">
           <h1 className="text-[15px] font-extrabold text-[#2D1810]">{currentTitle(pathname)}</h1>
           <span className="hidden rounded-full bg-gradient-to-r from-[#1E2D4A] to-[#C47B2C] px-2.5 py-1 text-[10px] font-extrabold tracking-wide text-white sm:inline">

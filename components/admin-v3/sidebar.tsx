@@ -50,7 +50,7 @@ export function SidebarV3() {
           <path d="M70 20 Q85 40 70 60 Q55 80 70 100 Q85 120 70 140" stroke="rgba(139,158,122,0.1)" strokeWidth="6" fill="none" strokeLinecap="round" />
         </svg>
 
-        <div className="flex flex-col gap-3.5 border-b border-white/[0.06] px-4 pb-3.5 pt-5">
+        <div className="flex flex-col gap-3.5 px-4 pb-3.5 pt-5" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <img src="/Logo/icon.svg" alt="CEven" className="h-8 w-8 shrink-0" />
@@ -72,7 +72,7 @@ export function SidebarV3() {
             </button>
           </div>
 
-          <div className="rounded-lg border border-white/[0.07] bg-white/5 px-3.5 py-2.5">
+          <div className="rounded-lg bg-white/5 px-3.5 py-2.5">
             <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-white/30">
               Active Branch
             </p>
@@ -119,7 +119,7 @@ export function SidebarV3() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2.5 border-t border-white/5 px-4 py-3.5">
+        <div className="flex items-center gap-2.5 px-4 py-3.5" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
           <div className="flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-full bg-[#C47B2C] text-[10px] font-bold text-[#2D1810]">
             {MOCK_ADMIN_USER.name
               .split(" ")
