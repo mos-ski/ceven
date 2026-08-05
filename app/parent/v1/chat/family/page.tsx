@@ -47,60 +47,60 @@ const CONVERSATION: ChatMessage[] = [
 
 const AUTO_REPLIES: Record<string, string[]> = {
  "ms-anu": [
-  "He's doing so well! Every day brings something new 😊",
-  "I'll make sure to capture more milestones today!",
-  "Don't forget to practice at home too, he loves holding onto the couch!",
+ "He's doing so well! Every day brings something new 😊",
+ "I'll make sure to capture more milestones today!",
+ "Don't forget to practice at home too, he loves holding onto the couch!",
  ],
  "sarah": [
-  "This is why I love this creche! 💕",
-  "I'm definitely crying happy tears right now 😭",
-  "Can we video call during lunch to see him walk?",
+ "This is why I love this creche! 💕",
+ "I'm definitely crying happy tears right now 😭",
+ "Can we video call during lunch to see him walk?",
  ],
  "james": [
-  "Best dad moment ever! 🥹",
-  "I need to baby-proof the house now!",
-  "Let's get him some new shoes this weekend!",
+ "Best dad moment ever! 🥹",
+ "I need to baby-proof the house now!",
+ "Let's get him some new shoes this weekend!",
  ],
  "admin": [
-  "We're so proud of Liam's progress!",
-  "Feel free to share this with family members.",
-  "Developmental milestones are tracked in the app 📊",
+ "We're so proud of Liam's progress!",
+ "Feel free to share this with family members.",
+ "Developmental milestones are tracked in the app 📊",
  ],
 };
 
 function MessageBubble({ msg, sender, isOwn }: { msg: ChatMessage; sender?: Participant; isOwn: boolean }) {
  if (isOwn) {
-  return (
-   <div className="flex justify-end">
-    <div className="max-w-[75%]">
-     <div className="rounded-2xl rounded-tr-sm bg-cg-brand px-4 py-2.5">
-      <p className="text-sm text-white whitespace-pre-line">{msg.text}</p>
-     </div>
-     <p className="mt-0.5 text-right text-[10px] text-gray-400">{msg.time}</p>
-    </div>
+ return (
+  <div className="flex justify-end">
+  <div className="max-w-[75%]">
+   <div className="rounded-2xl rounded-tr-sm bg-cg-brand px-4 py-2.5">
+   <p className="text-sm text-white whitespace-pre-line">{msg.text}</p>
    </div>
-  );
+   <p className="mt-0.5 text-right text-[10px] text-gray-400">{msg.time}</p>
+  </div>
+  </div>
+ );
  }
 
  return (
-  <div className="flex justify-start gap-2">
-   <div
-    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[10px] font-bold text-white mt-1"
-    style={{ backgroundColor: sender?.color ?? "#9CA3AF" }}
-   >
-    {sender?.initials ?? "?"}
-   </div>
-   <div className="max-w-[72%]">
-    <div className="mb-0.5 flex items-center gap-1.5">
-     <span className="text-[11px] font-semibold" style={{ color: sender?.color }}>{sender?.name}</span>
-     <span className="text-[9px] text-gray-400">{sender?.role}</span>
-    </div>
-    <div className="rounded-2xl rounded-tl-sm bg-gray-100 px-4 py-2.5">
-     <p className="text-sm text-gray-800 whitespace-pre-line">{msg.text}</p>
-    </div>
-    <p className="mt-0.5 text-[10px] text-gray-400">{msg.time}</p>
-   </div>
+ <div className="flex justify-start gap-2">
+  <div
+  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[10px] font-bold text-white mt-1"
+  style={{ backgroundColor: sender?.color ?? "#9CA3AF" }}
+  >
+  {sender?.initials ?? "?"}
   </div>
+  <div className="max-w-[72%]">
+  <div className="mb-0.5 flex items-center gap-1.5">
+   <span className="text-[11px] font-semibold" style={{ color: sender?.color }}>{sender?.name}</span>
+   <span className="text-[9px] text-gray-400">{sender?.role}</span>
+  </div>
+  <div className="rounded-2xl rounded-tl-sm bg-gray-100 px-4 py-2.5">
+   <p className="text-sm text-gray-800 whitespace-pre-line">{msg.text}</p>
+  </div>
+  <p className="mt-0.5 text-[10px] text-gray-400">{msg.time}</p>
+  </div>
+ </div>
  );
 }
 
@@ -115,200 +115,200 @@ export default function FamilyChatPage() {
  const inputRef = useRef<HTMLInputElement>(null);
 
  useEffect(() => {
-  bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+ bottomRef.current?.scrollIntoView({ behavior: "smooth" });
  }, [messages]);
 
  function getAutoReply(senderId: string): string {
-  const replies = AUTO_REPLIES[senderId] ?? ["Thanks for sharing!"];
-  const idx = replyIndex[senderId] ?? 0;
-  const reply = replies[idx % replies.length];
-  setReplyIndex(prev => ({ ...prev, [senderId]: idx + 1 }));
-  return reply;
+ const replies = AUTO_REPLIES[senderId] ?? ["Thanks for sharing!"];
+ const idx = replyIndex[senderId] ?? 0;
+ const reply = replies[idx % replies.length];
+ setReplyIndex(prev => ({ ...prev, [senderId]: idx + 1 }));
+ return reply;
  }
 
  function handleSend() {
-  if (limitReached) return;
-  const text = input.trim();
-  if (!text) return;
+ if (limitReached) return;
+ const text = input.trim();
+ if (!text) return;
 
-  const now = new Date();
-  const time = now.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+ const now = new Date();
+ const time = now.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
 
-  const sentCount = messages.filter(m => m.senderId === "james" && !m.isSystem).length + 1;
-  const userMsg: ChatMessage = {
-   id: Date.now().toString(),
-   senderId: "james",
-   text,
-   time,
+ const sentCount = messages.filter(m => m.senderId === "james" && !m.isSystem).length + 1;
+ const userMsg: ChatMessage = {
+  id: Date.now().toString(),
+  senderId: "james",
+  text,
+  time,
+  isNew: true,
+ };
+ setMessages(prev => [...prev, userMsg]);
+ setInput("");
+ setShowMentions(false);
+
+ if (PARENT_MEMBERSHIP.status !== "active" && sentCount > TRIAL_MESSAGE_LIMIT) {
+  setLimitReached(true);
+  setTimeout(() => {
+  setMessages(prev => [
+   ...prev,
+   {
+   id: `system-${Date.now()}`,
+   senderId: "system",
+   text: "Your trial has ended. Some family features are unavailable.",
+   time: new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }),
+   isSystem: true,
+   },
+  ]);
+  }, 800);
+  return;
+ }
+
+ // Simulate 2-3 participants replying after delays
+ const repliers = ["ms-anu", "sarah"];
+ repliers.forEach((replier, i) => {
+  setTimeout(() => {
+  const replyText = getAutoReply(replier);
+  setMessages(prev => [
+   ...prev,
+   {
+   id: `auto-${Date.now()}-${i}`,
+   senderId: replier,
+   text: replyText,
+   time: new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }),
    isNew: true,
-  };
-  setMessages(prev => [...prev, userMsg]);
-  setInput("");
-  setShowMentions(false);
-
-  if (PARENT_MEMBERSHIP.status !== "active" && sentCount > TRIAL_MESSAGE_LIMIT) {
-   setLimitReached(true);
-   setTimeout(() => {
-    setMessages(prev => [
-     ...prev,
-     {
-      id: `system-${Date.now()}`,
-      senderId: "system",
-      text: "Your trial has ended. Some family features are unavailable.",
-      time: new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }),
-      isSystem: true,
-     },
-    ]);
-   }, 800);
-   return;
-  }
-
-  // Simulate 2-3 participants replying after delays
-  const repliers = ["ms-anu", "sarah"];
-  repliers.forEach((replier, i) => {
-   setTimeout(() => {
-    const replyText = getAutoReply(replier);
-    setMessages(prev => [
-     ...prev,
-     {
-      id: `auto-${Date.now()}-${i}`,
-      senderId: replier,
-      text: replyText,
-      time: new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }),
-      isNew: true,
-     },
-    ]);
-   }, 1500 + i * 1200);
-  });
+   },
+  ]);
+  }, 1500 + i * 1200);
+ });
  }
 
  function insertMention(name: string) {
-  setInput(prev => prev + `@${name} `);
-  setShowMentions(false);
-  inputRef.current?.focus();
+ setInput(prev => prev + `@${name} `);
+ setShowMentions(false);
+ inputRef.current?.focus();
  }
 
  return (
-  <div className="flex min-h-0 flex-1 flex-col bg-[#FFFEFA]">
-   {/* Header */}
-   <div className="shrink-0 bg-white px-4 pt-12 pb-3 ">
-    <div className="flex items-center gap-3">
-     <button onClick={() => router.back()} className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-100">
-      <ArrowLeft size={16} className="text-gray-700" />
-     </button>
-     <div className="flex flex-1 items-center gap-2.5">
-      <div className="flex -space-x-2">
-       {PARTICIPANTS.slice(0, 3).map(p => (
-        <div
-         key={p.id}
-         className="flex h-9 w-9 items-center justify-center rounded-full text-[10px] font-bold text-white ring-2 ring-white"
-         style={{ backgroundColor: p.color }}
-        >
-         {p.initials}
-        </div>
-       ))}
-       <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-200 text-[10px] font-bold text-gray-500 ring-2 ring-white">
-        +{PARTICIPANTS.length - 3}
-       </div>
-      </div>
-      <div>
-       <p className="text-sm font-bold text-gray-800">Liam&apos;s Family</p>
-       <div className="flex items-center gap-1">
-        <Users size={10} className="text-gray-400" />
-        <p className="text-[10px] text-gray-400">{PARTICIPANTS.length} members</p>
-       </div>
-      </div>
-     </div>
-     <button className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-100">
-      <Info size={16} className="text-gray-700" />
-     </button>
+ <div className="flex min-h-0 flex-1 flex-col bg-[#FFFEFA]">
+  {/* Header */}
+  <div className="shrink-0 bg-white px-4 pt-12 pb-3 ">
+  <div className="flex items-center gap-3">
+   <button onClick={() => router.back()} className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-100">
+   <ArrowLeft size={16} className="text-gray-700" />
+   </button>
+   <div className="flex flex-1 items-center gap-2.5">
+   <div className="flex -space-x-2">
+    {PARTICIPANTS.slice(0, 3).map(p => (
+    <div
+     key={p.id}
+     className="flex h-9 w-9 items-center justify-center rounded-full text-[10px] font-bold text-white ring-2 ring-white"
+     style={{ backgroundColor: p.color }}
+    >
+     {p.initials}
+    </div>
+    ))}
+    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-200 text-[10px] font-bold text-gray-500 ring-2 ring-white">
+    +{PARTICIPANTS.length - 3}
     </div>
    </div>
-
-   {/* Topic banner */}
-   <div className="bg-amber-50 px-4 py-2">
-    <p className="text-center text-[11px] font-medium text-amber-700">🎉 Liam took his first steps today!</p>
-   </div>
-
-   {/* Messages */}
-   <div className="flex-1 overflow-y-auto px-4 py-4">
-    <div className="flex flex-col gap-4">
-     {messages.map(msg => {
-      if (msg.isSystem) {
-       return (
-        <div key={msg.id} className="flex justify-center py-1">
-         <div className="max-w-[88%]">
-          <TrialGateBanner message={msg.text} />
-         </div>
-        </div>
-       );
-      }
-      const sender = PARTICIPANTS.find(p => p.id === msg.senderId);
-      const isOwn = msg.senderId === "james";
-      return <MessageBubble key={msg.id} msg={msg} sender={sender} isOwn={isOwn} />;
-     })}
-     <div ref={bottomRef} />
+   <div>
+    <p className="text-sm font-bold text-gray-800">Liam&apos;s Family</p>
+    <div className="flex items-center gap-1">
+    <Users size={10} className="text-gray-400" />
+    <p className="text-[10px] text-gray-400">{PARTICIPANTS.length} members</p>
     </div>
    </div>
-
-   {/* Mention popup */}
-   {showMentions && (
-    <div className="absolute bottom-20 left-4 right-4 z-40 rounded-2xl bg-white border border-gray-100 p-2">
-     <p className="px-2 pb-1 text-[10px] font-semibold text-gray-400">Mention someone</p>
-     {PARTICIPANTS.filter(p => p.id !== "james").map(p => (
-      <button
-       key={p.id}
-       onClick={() => insertMention(p.name)}
-       className="flex w-full items-center gap-2.5 rounded-xl px-2 py-2 text-left hover:bg-gray-50"
-      >
-       <div
-        className="flex h-8 w-8 items-center justify-center rounded-full text-[10px] font-bold text-white"
-        style={{ backgroundColor: p.color }}
-       >
-        {p.initials}
-       </div>
-       <div>
-        <p className="text-sm font-medium text-gray-800">{p.name}</p>
-        <p className="text-[10px] text-gray-400">{p.role}</p>
-       </div>
-      </button>
-     ))}
-    </div>
-   )}
-
-   {/* Input bar */}
-   <div className="shrink-0 bg-white px-4 pb-safe pt-3 pb-4 border-t border-gray-100">
-    <div className="flex items-center gap-2">
-     <button
-      onClick={() => setShowMentions(!showMentions)}
-      disabled={limitReached}
-      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gray-100 disabled:opacity-40"
-     >
-      <AtSign size={16} className="text-gray-500" />
-     </button>
-     <div className="flex flex-1 items-center gap-2 rounded-full bg-gray-50 px-4 py-2.5">
-      <input
-       ref={inputRef}
-       value={input}
-       onChange={e => setInput(e.target.value)}
-       onKeyDown={e => {
-        if (e.key === "Enter") handleSend();
-        if (e.key === "@") setShowMentions(true);
-       }}
-       placeholder={limitReached ? "Manage your account to keep chatting" : "Type a message..."}
-       disabled={limitReached}
-       className="flex-1 bg-transparent text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none disabled:opacity-60"
-      />
-     </div>
-     <button
-      onClick={handleSend}
-      disabled={!input.trim() || limitReached}
-      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cg-brand disabled:opacity-40"
-     >
-      <Send size={14} className="text-white" />
-     </button>
-    </div>
    </div>
+   <button className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-100">
+   <Info size={16} className="text-gray-700" />
+   </button>
   </div>
+  </div>
+
+  {/* Topic banner */}
+  <div className="bg-amber-50 px-4 py-2">
+  <p className="text-center text-[11px] font-medium text-amber-700">🎉 Liam took his first steps today!</p>
+  </div>
+
+  {/* Messages */}
+  <div className="flex-1 overflow-y-auto px-4 py-4">
+  <div className="flex flex-col gap-4">
+   {messages.map(msg => {
+   if (msg.isSystem) {
+    return (
+    <div key={msg.id} className="flex justify-center py-1">
+     <div className="max-w-[88%]">
+     <TrialGateBanner message={msg.text} />
+     </div>
+    </div>
+    );
+   }
+   const sender = PARTICIPANTS.find(p => p.id === msg.senderId);
+   const isOwn = msg.senderId === "james";
+   return <MessageBubble key={msg.id} msg={msg} sender={sender} isOwn={isOwn} />;
+   })}
+   <div ref={bottomRef} />
+  </div>
+  </div>
+
+  {/* Mention popup */}
+  {showMentions && (
+  <div className="absolute bottom-20 left-4 right-4 z-40 rounded-2xl bg-white border border-gray-100 p-2">
+   <p className="px-2 pb-1 text-[10px] font-semibold text-gray-400">Mention someone</p>
+   {PARTICIPANTS.filter(p => p.id !== "james").map(p => (
+   <button
+    key={p.id}
+    onClick={() => insertMention(p.name)}
+    className="flex w-full items-center gap-2.5 rounded-xl px-2 py-2 text-left hover:bg-gray-50"
+   >
+    <div
+    className="flex h-8 w-8 items-center justify-center rounded-full text-[10px] font-bold text-white"
+    style={{ backgroundColor: p.color }}
+    >
+    {p.initials}
+    </div>
+    <div>
+    <p className="text-sm font-medium text-gray-800">{p.name}</p>
+    <p className="text-[10px] text-gray-400">{p.role}</p>
+    </div>
+   </button>
+   ))}
+  </div>
+  )}
+
+  {/* Input bar */}
+  <div className="shrink-0 bg-white px-4 pb-safe pt-3 pb-4 border-t border-gray-100">
+  <div className="flex items-center gap-2">
+   <button
+   onClick={() => setShowMentions(!showMentions)}
+   disabled={limitReached}
+   className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gray-100 disabled:opacity-40"
+   >
+   <AtSign size={16} className="text-gray-500" />
+   </button>
+   <div className="flex flex-1 items-center gap-2 rounded-full bg-gray-50 px-4 py-2.5">
+   <input
+    ref={inputRef}
+    value={input}
+    onChange={e => setInput(e.target.value)}
+    onKeyDown={e => {
+    if (e.key === "Enter") handleSend();
+    if (e.key === "@") setShowMentions(true);
+    }}
+    placeholder={limitReached ? "Manage your account to keep chatting" : "Type a message..."}
+    disabled={limitReached}
+    className="flex-1 bg-transparent text-sm text-gray-800 placeholder:text-gray-400 focus:outline-none disabled:opacity-60"
+   />
+   </div>
+   <button
+   onClick={handleSend}
+   disabled={!input.trim() || limitReached}
+   className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cg-brand disabled:opacity-40"
+   >
+   <Send size={14} className="text-white" />
+   </button>
+  </div>
+  </div>
+ </div>
  );
 }
