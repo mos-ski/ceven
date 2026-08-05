@@ -489,11 +489,11 @@ function SummaryBlock({ summary }: { summary: Summary }) {
 
 export default function DirectoryPage() {
   return (
-    <div className="min-h-screen bg-content-bg px-6 py-12 font-[family-name:var(--font-merriweather-import)] text-heading sm:px-10 lg:px-16">
+    <div className="min-h-screen bg-content-bg px-6 py-12 font-[family-name:var(--font-urbanist)] text-heading sm:px-10 lg:px-16">
       <div className="mx-auto max-w-5xl">
         <p className="font-[family-name:var(--font-mogra)] text-2xl text-brand-dark">CEven</p>
 
-        <h1 className="mt-4 text-4xl font-extrabold tracking-tight text-heading sm:text-5xl">
+        <h1 className="mt-4 font-[family-name:var(--font-merriweather-import)] text-4xl font-extrabold tracking-tight text-heading sm:text-5xl">
           App versions
         </h1>
         <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-text">
@@ -513,7 +513,7 @@ export default function DirectoryPage() {
         </div>
 
         <div className="mt-12">
-          <h2 className="border-b-2 border-brand-dark pb-3 text-2xl font-extrabold text-heading">
+          <h2 className="border-b-2 border-brand-dark pb-3 font-[family-name:var(--font-merriweather-import)] text-2xl font-extrabold text-heading">
             Overview
           </h2>
 
@@ -641,7 +641,7 @@ export default function DirectoryPage() {
           <section key={section.id} id={section.id} className="mt-16 scroll-mt-8">
             <details>
               <summary className="flex cursor-pointer list-none items-center justify-between border-b-2 border-brand-dark pb-3">
-                <h2 className="text-2xl font-extrabold text-heading">
+                <h2 className="font-[family-name:var(--font-merriweather-import)] text-2xl font-extrabold text-heading">
                   {section.title}
                 </h2>
                 <span className="text-sm font-bold text-brand-accent hover:text-heading">
@@ -654,7 +654,7 @@ export default function DirectoryPage() {
             <div className="mt-8 flex flex-col gap-10">
               {section.versions.map((version) => (
                 <div key={version.label}>
-                  <h3 className="text-lg font-bold text-brand-dark">
+                  <h3 className="font-[family-name:var(--font-merriweather-import)] text-lg font-bold text-brand-dark">
                     {version.href ? (
                       <Link href={version.href} className="hover:underline">
                         {version.label}
