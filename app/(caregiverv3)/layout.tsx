@@ -1,9 +1,9 @@
 import { MobileShell } from "@/components/caregivev3/mobile-shell";
 
 export default function CaregiverV3Layout({
-  children,
+ children,
 }: {
-  children: React.ReactNode;
+ children: React.ReactNode;
 }) {
-  return <MobileShell>{children}</MobileShell>;
+ return <MobileShell>{children}</MobileShell>;
 }

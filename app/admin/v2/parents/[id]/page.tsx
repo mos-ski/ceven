@@ -12,7 +12,7 @@ export default async function ParentProfilePage({
  const parent = PARENTS.find((p) => p.id === id);
 
  if (!parent) {
-  notFound();
+ notFound();
  }
 
  return <ParentProfileView parent={parent} />;

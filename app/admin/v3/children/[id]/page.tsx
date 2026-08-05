@@ -4,16 +4,16 @@ import { ChildProfileView } from "@/components/admin/children/child-profile-view
 import { CHILDREN } from "@/lib/mock-data/children";
 
 export default async function ChildProfileV3Page({
-  params,
+ params,
 }: {
-  params: Promise<{ id: string }>;
+ params: Promise<{ id: string }>;
 }) {
-  const { id } = await params;
-  const child = CHILDREN.find((c) => c.id === id);
+ const { id } = await params;
+ const child = CHILDREN.find((c) => c.id === id);
 
-  if (!child) {
-    notFound();
-  }
+ if (!child) {
+  notFound();
+ }
 
-  return <ChildProfileView child={child} />;
+ return <ChildProfileView child={child} />;
 }

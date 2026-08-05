@@ -12,7 +12,7 @@ export default async function ChildProfilePage({
  const child = CHILDREN.find((c) => c.id === id);
 
  if (!child) {
-  notFound();
+ notFound();
  }
 
  return <ChildProfileView child={child} />;

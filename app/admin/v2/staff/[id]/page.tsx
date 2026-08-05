@@ -12,7 +12,7 @@ export default async function StaffProfilePage({
  const staff = STAFF.find((s) => s.id === id);
 
  if (!staff) {
-  notFound();
+ notFound();
  }
 
  return <StaffProfileView staff={staff} />;
