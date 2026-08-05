@@ -5,8 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CEven Admin — Crèche Operating System</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+.ic{width:1em;height:1em;display:inline-block;vertical-align:-0.15em;stroke-width:2.2}
 html,body{height:100%;overflow:hidden}
 body{font-family:'Nunito',sans-serif;background:#F5EDD8;color:#2D1810}
 .trial-banner{background:var(--red2);color:#fff;text-align:center;padding:.4rem 1rem;font-size:.72rem;font-weight:700;flex-shrink:0;display:flex;align-items:center;justify-content:center;gap:.75rem}
@@ -1063,45 +1065,45 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
   <div class="sb-link active" onclick="S('dashboard',this)"><div class="sb-icon">⊞</div>Dashboard</div>
 
   <div class="sb-section">Children & People</div>
-  <div class="sb-link" onclick="S('children',this)"><div class="sb-icon">🧒</div>Children<span class="sb-badge g">42</span></div>
-  <div class="sb-link" onclick="S('parents',this)"><div class="sb-icon">👨‍👩‍👧</div>Parents</div>
-  <div class="sb-link" onclick="S('enrolment',this)"><div class="sb-icon">📝</div>Enrolment & Waitlist<span class="sb-badge a">3</span></div>
-  <div class="sb-link" onclick="S('development',this)"><div class="sb-icon">🌱</div>Child Development</div>
-  <div class="sb-link" onclick="S('staff',this)"><div class="sb-icon">👩‍🏫</div>Staff</div>
-  <div class="sb-link" onclick="S('payroll',this)"><div class="sb-icon">💵</div>Payroll</div>
-  <div class="sb-link" onclick="S('leave',this)"><div class="sb-icon">🌴</div>Leave Management</div>
-  <div class="sb-link" onclick="S('compliance',this)"><div class="sb-icon">🛡️</div>Compliance & Safety</div>
-  <div class="sb-link" onclick="S('rooms',this)"><div class="sb-icon">🏫</div>Rooms & Classes</div>
+  <div class="sb-link" onclick="S('children',this)"><div class="sb-icon"><i data-lucide="baby" class="ic"></i></div>Children<span class="sb-badge g">42</span></div>
+  <div class="sb-link" onclick="S('parents',this)"><div class="sb-icon"><i data-lucide="users" class="ic"></i></div>Parents</div>
+  <div class="sb-link" onclick="S('enrolment',this)"><div class="sb-icon"><i data-lucide="pencil" class="ic"></i></div>Enrolment & Waitlist<span class="sb-badge a">3</span></div>
+  <div class="sb-link" onclick="S('development',this)"><div class="sb-icon"><i data-lucide="sprout" class="ic"></i></div>Child Development</div>
+  <div class="sb-link" onclick="S('staff',this)"><div class="sb-icon">👩‍<i data-lucide="school" class="ic"></i></div>Staff</div>
+  <div class="sb-link" onclick="S('payroll',this)"><div class="sb-icon"><i data-lucide="banknote" class="ic"></i></div>Payroll</div>
+  <div class="sb-link" onclick="S('leave',this)"><div class="sb-icon"><i data-lucide="palmtree" class="ic"></i></div>Leave Management</div>
+  <div class="sb-link" onclick="S('compliance',this)"><div class="sb-icon"><i data-lucide="shield-alert" class="ic"></i></div>Compliance & Safety</div>
+  <div class="sb-link" onclick="S('rooms',this)"><div class="sb-icon"><i data-lucide="school" class="ic"></i></div>Rooms & Classes</div>
 
   <div class="sb-section">Daily Operations</div>
-  <div class="sb-link" onclick="S('reception',this)"><div class="sb-icon">📲</div>Reception / QR<span class="sb-badge a" style="margin-left:auto">Live</span></div>
-  <div class="sb-link" onclick="S('daily-logs',this)"><div class="sb-icon">📋</div>Daily Logs<span class="sb-badge a">5</span></div>
-  <div class="sb-link" onclick="S('health',this)"><div class="sb-icon">⚠️</div>Health & Incidents<span class="sb-badge r">2</span></div>
-  <div class="sb-link" onclick="S('medication',this)"><div class="sb-icon">💊</div>Medication</div>
-  <div class="sb-link" onclick="S('inventory',this)"><div class="sb-icon">📦</div>Inventory & Supplies</div>
-  <div class="sb-link" onclick="S('facilities',this)"><div class="sb-icon">🔧</div>Facilities</div>
-  <div class="sb-link" onclick="S('tasks',this)"><div class="sb-icon">📌</div>Tasks<span class="sb-badge r">3</span></div>
+  <div class="sb-link" onclick="S('reception',this)"><div class="sb-icon"><i data-lucide="qr-code" class="ic"></i></div>Reception / QR<span class="sb-badge a" style="margin-left:auto">Live</span></div>
+  <div class="sb-link" onclick="S('daily-logs',this)"><div class="sb-icon"><i data-lucide="clipboard-list" class="ic"></i></div>Daily Logs<span class="sb-badge a">5</span></div>
+  <div class="sb-link" onclick="S('health',this)"><div class="sb-icon"><i data-lucide="alert-triangle" class="ic"></i></div>Health & Incidents<span class="sb-badge r">2</span></div>
+  <div class="sb-link" onclick="S('medication',this)"><div class="sb-icon"><i data-lucide="pill" class="ic"></i></div>Medication</div>
+  <div class="sb-link" onclick="S('inventory',this)"><div class="sb-icon"><i data-lucide="package" class="ic"></i></div>Inventory & Supplies</div>
+  <div class="sb-link" onclick="S('facilities',this)"><div class="sb-icon"><i data-lucide="wrench" class="ic"></i></div>Facilities</div>
+  <div class="sb-link" onclick="S('tasks',this)"><div class="sb-icon"><i data-lucide="list-todo" class="ic"></i></div>Tasks<span class="sb-badge r">3</span></div>
 
   <div class="sb-section">Finance</div>
   <div class="sb-link" onclick="S('billing',this)"><div class="sb-icon">₦</div>Billing & Payments<span class="sb-badge r">8</span></div>
-  <div class="sb-link" onclick="S('expenses',this)"><div class="sb-icon">💸</div>Expenses</div>
-  <div class="sb-link" onclick="S('financial-reports',this)"><div class="sb-icon">📈</div>Financial Reports</div>
+  <div class="sb-link" onclick="S('expenses',this)"><div class="sb-icon"><i data-lucide="receipt" class="ic"></i></div>Expenses</div>
+  <div class="sb-link" onclick="S('financial-reports',this)"><div class="sb-icon"><i data-lucide="trending-up" class="ic"></i></div>Financial Reports</div>
 
   <div class="sb-section">Communication</div>
-  <div class="sb-link" onclick="S('comms',this)"><div class="sb-icon">💬</div>Messages<span class="sb-badge a">3</span></div>
-  <div class="sb-link" onclick="S('announcements',this)"><div class="sb-icon">📢</div>Announcements</div>
-  <div class="sb-link" onclick="S('events',this)"><div class="sb-icon">📅</div>Events Calendar</div>
+  <div class="sb-link" onclick="S('comms',this)"><div class="sb-icon"><i data-lucide="message-square" class="ic"></i></div>Messages<span class="sb-badge a">3</span></div>
+  <div class="sb-link" onclick="S('announcements',this)"><div class="sb-icon"><i data-lucide="megaphone" class="ic"></i></div>Announcements</div>
+  <div class="sb-link" onclick="S('events',this)"><div class="sb-icon"><i data-lucide="calendar" class="ic"></i></div>Events Calendar</div>
 
   <div class="sb-section">Intelligence</div>
-  <div class="sb-link" onclick="S('ai-center',this)"><div class="sb-icon">🤖</div>AI Command Center<span class="sb-badge n">7</span></div>
-  <div class="sb-link" onclick="S('analytics',this)"><div class="sb-icon">📊</div>Analytics</div>
-  <div class="sb-link" onclick="S('reports',this)"><div class="sb-icon">📑</div>Reports</div>
-  <div class="sb-link" onclick="S('audit',this)"><div class="sb-icon">🔍</div>Audit Trail</div>
+  <div class="sb-link" onclick="S('ai-center',this)"><div class="sb-icon"><i data-lucide="bot" class="ic"></i></div>AI Command Center<span class="sb-badge n">7</span></div>
+  <div class="sb-link" onclick="S('analytics',this)"><div class="sb-icon"><i data-lucide="bar-chart-3" class="ic"></i></div>Analytics</div>
+  <div class="sb-link" onclick="S('reports',this)"><div class="sb-icon"><i data-lucide="file-text" class="ic"></i></div>Reports</div>
+  <div class="sb-link" onclick="S('audit',this)"><div class="sb-icon"><i data-lucide="search" class="ic"></i></div>Audit Trail</div>
 
   <div class="sb-section">Account & Setup</div>
-  <div class="sb-link" onclick="S('subscription',this)"><div class="sb-icon">💎</div>Plans & Access</div>
-  <div class="sb-link" onclick="S('help',this)"><div class="sb-icon">🎓</div>Help & Training</div>
-  <div class="sb-link" onclick="S('settings',this)"><div class="sb-icon">⚙️</div>Settings</div>
+  <div class="sb-link" onclick="S('subscription',this)"><div class="sb-icon"><i data-lucide="gem" class="ic"></i></div>Plans & Access</div>
+  <div class="sb-link" onclick="S('help',this)"><div class="sb-icon"><i data-lucide="graduation-cap" class="ic"></i></div>Help & Training</div>
+  <div class="sb-link" onclick="S('settings',this)"><div class="sb-icon"><i data-lucide="settings" class="ic"></i></div>Settings</div>
 
   <div class="sb-user">
     <div class="sb-uav">AN</div>
@@ -1115,9 +1117,9 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
   <div class="topbar">
     <div class="tb-hamburger" id="tb-hamburger" onclick="toggleSidebar()">☰</div>
     <div class="tb-title" id="tb-title">Dashboard <span class="tb-plan-badge" id="tb-plan">Nestling Pro</span></div>
-    <div class="tb-search"><span style="font-size:.8rem;color:var(--text)">🔍</span><input placeholder="Search children, parents, staff, invoices…" id="search-input"></div>
+    <div class="tb-search"><span style="font-size:.8rem;color:var(--text)"><i data-lucide="search" class="ic"></i></span><input placeholder="Search children, parents, staff, invoices…" id="search-input"></div>
     <div class="tb-icon-btn" onclick="T('AI panel')" id="panel-ai-avatar" style="background:linear-gradient(135deg,var(--navy),var(--sidebar));color:#F5EDD8;border-color:var(--navy);font-size:.8rem">🤖<div class="tb-notif-dot"></div></div>
-    <div class="tb-icon-btn" onclick="S('notifications',null)">🔔<div class="tb-notif-dot"></div></div>
+    <div class="tb-icon-btn" onclick="S('notifications',null)"><i data-lucide="bell" class="ic"></i><div class="tb-notif-dot"></div></div>
     <button class="tb-cta" id="tb-cta" onclick="primaryAction()">+ Add Child</button>
   </div>
 
@@ -1147,8 +1149,8 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
       <p style="font-size:.8rem;color:rgba(245,237,216,.55);font-family:'Nunito',sans-serif;font-weight:500">Sunshine Crèche, Lekki &nbsp;·&nbsp; <span style="color:rgba(245,237,216,.35)">7 items need your attention today</span></p>
     </div>
     <div style="display:flex;gap:.65rem;flex-shrink:0;position:relative;z-index:1">
-      <button class="btn sc" style="border-color:rgba(245,237,216,.15);color:rgba(245,237,216,.6);background:transparent;font-family:'Nunito',sans-serif" onclick="S('analytics',null)">📊 Reports</button>
-      <button style="background:var(--amber);color:#fff;border:none;padding:.5rem 1.1rem;border-radius:10px;font-size:.75rem;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;display:flex;align-items:center;gap:.4rem;transition:all .2s" onclick="S('ai-center',null)">✦ AI Summary</button>
+      <button class="btn sc" style="border-color:rgba(245,237,216,.15);color:rgba(245,237,216,.6);background:transparent;font-family:'Nunito',sans-serif" onclick="S('analytics',null)"><i data-lucide="bar-chart-3" class="ic"></i> Reports</button>
+      <button style="background:var(--amber);color:#fff;border:none;padding:.5rem 1.1rem;border-radius:10px;font-size:.75rem;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;display:flex;align-items:center;gap:.4rem;transition:all .2s" onclick="S('ai-center',null)"><i data-lucide="sparkles" class="ic"></i> AI Summary</button>
     </div>
   </div>
 
@@ -1174,32 +1176,32 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
 
   <!-- STATS ROW 1 -->
   <div class="sg sg4" style="margin-bottom:.85rem">
-    <div class="scard sc-a"><div class="sc-lbl">Enrolled Children</div><div class="sc-val">42</div><div class="sc-sub sc-trend-up">↑ 3 this month</div><div class="sc-icon">🧒</div></div>
-    <div class="scard sc-g"><div class="sc-lbl">Present Today</div><div class="sc-val">36</div><div class="sc-sub">86% rate <span style="color:var(--green2)">↑ 2%</span></div><div class="sc-icon">✅</div></div>
-    <div class="scard sc-r"><div class="sc-lbl">Absent Today</div><div class="sc-val">6</div><div class="sc-sub sc-trend-dn">2 uncontacted ⚠️</div><div class="sc-icon">❌</div></div>
-    <div class="scard sc-n"><div class="sc-lbl">Staff on Duty</div><div class="sc-val">9/11</div><div class="sc-sub">2 absent today</div><div class="sc-icon">👩‍🏫</div></div>
+    <div class="scard sc-a"><div class="sc-lbl">Enrolled Children</div><div class="sc-val">42</div><div class="sc-sub sc-trend-up">↑ 3 this month</div><div class="sc-icon"><i data-lucide="baby" class="ic"></i></div></div>
+    <div class="scard sc-g"><div class="sc-lbl">Present Today</div><div class="sc-val">36</div><div class="sc-sub">86% rate <span style="color:var(--green2)">↑ 2%</span></div><div class="sc-icon"><i data-lucide="check-circle-2" class="ic"></i></div></div>
+    <div class="scard sc-r"><div class="sc-lbl">Absent Today</div><div class="sc-val">6</div><div class="sc-sub sc-trend-dn">2 uncontacted <i data-lucide="alert-triangle" class="ic"></i></div><div class="sc-icon"><i data-lucide="x-circle" class="ic"></i></div></div>
+    <div class="scard sc-n"><div class="sc-lbl">Staff on Duty</div><div class="sc-val">9/11</div><div class="sc-sub">2 absent today</div><div class="sc-icon">👩‍<i data-lucide="school" class="ic"></i></div></div>
   </div>
   <div class="sg sg4" style="margin-bottom:1rem">
     <div class="scard sc-s"><div class="sc-lbl">Outstanding Fees</div><div class="sc-val">₦480K</div><div class="sc-sub sc-trend-dn">8 invoices unpaid</div><div class="sc-icon">₦</div></div>
-    <div class="scard sc-r"><div class="sc-lbl">Open Incidents</div><div class="sc-val">2</div><div class="sc-sub">Need review today</div><div class="sc-icon">⚠️</div></div>
-    <div class="scard sc-a"><div class="sc-lbl">Reports Pending</div><div class="sc-val">5</div><div class="sc-sub">37/42 submitted</div><div class="sc-icon">📋</div></div>
-    <div class="scard sc-a"><div class="sc-lbl">Tasks Overdue</div><div class="sc-val">3</div><div class="sc-sub">11 total pending</div><div class="sc-icon">📌</div></div>
+    <div class="scard sc-r"><div class="sc-lbl">Open Incidents</div><div class="sc-val">2</div><div class="sc-sub">Need review today</div><div class="sc-icon"><i data-lucide="alert-triangle" class="ic"></i></div></div>
+    <div class="scard sc-a"><div class="sc-lbl">Reports Pending</div><div class="sc-val">5</div><div class="sc-sub">37/42 submitted</div><div class="sc-icon"><i data-lucide="clipboard-list" class="ic"></i></div></div>
+    <div class="scard sc-a"><div class="sc-lbl">Tasks Overdue</div><div class="sc-val">3</div><div class="sc-sub">11 total pending</div><div class="sc-icon"><i data-lucide="list-todo" class="ic"></i></div></div>
   </div>
 
   <!-- QUICK ACTIONS -->
   <div class="card" style="margin-bottom:1rem">
     <div class="card-head"><div class="card-title">Quick Actions</div></div>
     <div class="qa-grid">
-      <div class="qa-btn" onclick="OM('mo-add-child')"><span class="qa-icon">🧒</span>Add Child</div>
-      <div class="qa-btn" onclick="S('reception',null)"><span class="qa-icon">📲</span>QR Station</div>
-      <div class="qa-btn" onclick="OM('mo-log-report')"><span class="qa-icon">📋</span>Log Report</div>
-      <div class="qa-btn" onclick="OM('mo-raise-incident')"><span class="qa-icon">⚠️</span>Raise Incident</div>
-      <div class="qa-btn" onclick="OM('mo-announcement')"><span class="qa-icon">📢</span>Announce</div>
+      <div class="qa-btn" onclick="OM('mo-add-child')"><span class="qa-icon"><i data-lucide="baby" class="ic"></i></span>Add Child</div>
+      <div class="qa-btn" onclick="S('reception',null)"><span class="qa-icon"><i data-lucide="qr-code" class="ic"></i></span>QR Station</div>
+      <div class="qa-btn" onclick="OM('mo-log-report')"><span class="qa-icon"><i data-lucide="clipboard-list" class="ic"></i></span>Log Report</div>
+      <div class="qa-btn" onclick="OM('mo-raise-incident')"><span class="qa-icon"><i data-lucide="alert-triangle" class="ic"></i></span>Raise Incident</div>
+      <div class="qa-btn" onclick="OM('mo-announcement')"><span class="qa-icon"><i data-lucide="megaphone" class="ic"></i></span>Announce</div>
       <div class="qa-btn" onclick="OM('mo-invoice')"><span class="qa-icon">₦</span>New Invoice</div>
-      <div class="qa-btn" onclick="OM('mo-send-message')"><span class="qa-icon">💬</span>Message Parent</div>
-      <div class="qa-btn" onclick="S('ai-center',null)"><span class="qa-icon">🤖</span>AI Insights</div>
-      <div class="qa-btn" onclick="OM('mo-add-task')"><span class="qa-icon">📌</span>Add Task</div>
-      <div class="qa-btn" onclick="S('analytics',null)"><span class="qa-icon">📊</span>View Reports</div>
+      <div class="qa-btn" onclick="OM('mo-send-message')"><span class="qa-icon"><i data-lucide="message-square" class="ic"></i></span>Message Parent</div>
+      <div class="qa-btn" onclick="S('ai-center',null)"><span class="qa-icon"><i data-lucide="bot" class="ic"></i></span>AI Insights</div>
+      <div class="qa-btn" onclick="OM('mo-add-task')"><span class="qa-icon"><i data-lucide="list-todo" class="ic"></i></span>Add Task</div>
+      <div class="qa-btn" onclick="S('analytics',null)"><span class="qa-icon"><i data-lucide="bar-chart-3" class="ic"></i></span>View Reports</div>
     </div>
   </div>
 
@@ -1281,8 +1283,8 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
         <thead><tr><th>Child</th><th>Age</th><th>Room</th><th>Parent</th><th>Status</th><th>Health Flag</th><th>Fee Status</th><th>Actions</th></tr></thead>
         <tbody>
           <tr onclick="S('child-profile',null)"><td><div style="display:flex;align-items:center;gap:.6rem"><div class="av av28" style="background:#C47B2C">AJ</div><div><div class="td-main">Amara Johnson</div><div class="td-sub">F · Blood: O+</div></div></div></td><td>3y 1m</td><td><span class="bdg bdg-n">🦁 Lion</span></td><td>Mrs. Chioma J.</td><td><span class="bdg bdg-g">Present</span></td><td>—</td><td><span class="bdg bdg-g">Paid</span></td><td><button class="abtn" onclick="event.stopPropagation();S('child-profile',null)">Profile</button><button class="abtn" style="margin-left:.3rem" onclick="event.stopPropagation();OM('mo-log-report')">Log</button></td></tr>
-          <tr onclick="S('child-profile',null)"><td><div style="display:flex;align-items:center;gap:.6rem"><div class="av av28" style="background:var(--green2)">KO</div><div><div class="td-main">Kofi Osei</div><div class="td-sub">M · Blood: A+</div></div></div></td><td>1y 9m</td><td><span class="bdg bdg-g">🦋 Butterfly</span></td><td>Mr. Kwame O.</td><td><span class="bdg bdg-g">Present</span></td><td><span class="bdg bdg-a">Mood ⚠️</span></td><td><span class="bdg bdg-g">Paid</span></td><td><button class="abtn" onclick="event.stopPropagation();S('child-profile',null)">Profile</button><button class="abtn" style="margin-left:.3rem" onclick="event.stopPropagation();OM('mo-log-report')">Log</button></td></tr>
-          <tr onclick="S('child-profile',null)"><td><div style="display:flex;align-items:center;gap:.6rem"><div class="av av28" style="background:var(--navy2)">ZM</div><div><div class="td-main">Zara Mohammed</div><div class="td-sub">F · ⚠️ Nut allergy</div></div></div></td><td>3y 6m</td><td><span class="bdg bdg-n">🦁 Lion</span></td><td>Mrs. Fatima M.</td><td><span class="bdg bdg-r">Absent x3</span></td><td><span class="bdg bdg-r">AI Flag 🤖</span></td><td><span class="bdg bdg-g">Paid</span></td><td><button class="abtn" onclick="event.stopPropagation();S('child-profile',null)">Profile</button></td></tr>
+          <tr onclick="S('child-profile',null)"><td><div style="display:flex;align-items:center;gap:.6rem"><div class="av av28" style="background:var(--green2)">KO</div><div><div class="td-main">Kofi Osei</div><div class="td-sub">M · Blood: A+</div></div></div></td><td>1y 9m</td><td><span class="bdg bdg-g">🦋 Butterfly</span></td><td>Mr. Kwame O.</td><td><span class="bdg bdg-g">Present</span></td><td><span class="bdg bdg-a">Mood <i data-lucide="alert-triangle" class="ic"></i></span></td><td><span class="bdg bdg-g">Paid</span></td><td><button class="abtn" onclick="event.stopPropagation();S('child-profile',null)">Profile</button><button class="abtn" style="margin-left:.3rem" onclick="event.stopPropagation();OM('mo-log-report')">Log</button></td></tr>
+          <tr onclick="S('child-profile',null)"><td><div style="display:flex;align-items:center;gap:.6rem"><div class="av av28" style="background:var(--navy2)">ZM</div><div><div class="td-main">Zara Mohammed</div><div class="td-sub">F · <i data-lucide="alert-triangle" class="ic"></i> Nut allergy</div></div></div></td><td>3y 6m</td><td><span class="bdg bdg-n">🦁 Lion</span></td><td>Mrs. Fatima M.</td><td><span class="bdg bdg-r">Absent x3</span></td><td><span class="bdg bdg-r">AI Flag <i data-lucide="bot" class="ic"></i></span></td><td><span class="bdg bdg-g">Paid</span></td><td><button class="abtn" onclick="event.stopPropagation();S('child-profile',null)">Profile</button></td></tr>
           <tr onclick="S('child-profile',null)"><td><div style="display:flex;align-items:center;gap:.6rem"><div class="av av28" style="background:var(--sage2)">EB</div><div><div class="td-main">Emeka Balogun</div><div class="td-sub">M · Blood: B+</div></div></div></td><td>2y 3m</td><td><span class="bdg bdg-n">🐬 Dolphin</span></td><td>Mr. Biodun B.</td><td><span class="bdg bdg-a">Late arrival</span></td><td>—</td><td><span class="bdg bdg-r">Overdue</span></td><td><button class="abtn" onclick="event.stopPropagation();S('child-profile',null)">Profile</button><button class="abtn r" style="margin-left:.3rem" onclick="event.stopPropagation();T('Payment reminder sent to Mr Balogun')">Remind</button></td></tr>
           <tr onclick="S('child-profile',null)"><td><div style="display:flex;align-items:center;gap:.6rem"><div class="av av28" style="background:var(--red2)">IA</div><div><div class="td-main">Ifeoma Adekunle</div><div class="td-sub">F · Blood: O–</div></div></div></td><td>4 months</td><td><span class="bdg bdg-a">🌻 Sunflower</span></td><td>Mrs. Yetunde A.</td><td><span class="bdg bdg-g">Present</span></td><td>—</td><td><span class="bdg bdg-g">Paid</span></td><td><button class="abtn" onclick="event.stopPropagation();S('child-profile',null)">Profile</button><button class="abtn" style="margin-left:.3rem" onclick="event.stopPropagation();OM('mo-log-report')">Log</button></td></tr>
         </tbody>
@@ -1296,14 +1298,14 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
   <div class="ph">
     <div class="ph-left"><button class="abtn" style="margin-right:.5rem" onclick="S('children',null)">← Back</button><h1>Child Profile</h1><p>Deep care intelligence layer</p></div>
     <div class="ph-actions">
-      <button class="btn sc" onclick="OM('mo-log-report')">📋 Log Today</button>
-      <button class="btn sc" onclick="OM('mo-raise-incident')">⚠️ Incident</button>
-      <button class="btn ai-btn" onclick="T('AI generating parent update…')">✦ AI Parent Update</button>
+      <button class="btn sc" onclick="OM('mo-log-report')"><i data-lucide="clipboard-list" class="ic"></i> Log Today</button>
+      <button class="btn sc" onclick="OM('mo-raise-incident')"><i data-lucide="alert-triangle" class="ic"></i> Incident</button>
+      <button class="btn ai-btn" onclick="T('AI generating parent update…')"><i data-lucide="sparkles" class="ic"></i> AI Parent Update</button>
       <button class="btn pr" onclick="T('Edit mode enabled')">Edit</button>
     </div>
   </div>
   <!-- AI FLAG -->
-  <div class="al al-ai" style="margin-bottom:1rem"><div class="al-icon">🤖</div><div><strong>AI Observation:</strong> Kofi Osei has logged "sad/tired" mood 4 of the last 5 days. Attendance is normal but mood trend is unusual. AI suggests a gentle check-in message to parents. <span class="ai-action" onclick="OM('mo-announcement')" style="margin-left:.5rem">Generate Message →</span></div></div>
+  <div class="al al-ai" style="margin-bottom:1rem"><div class="al-icon"><i data-lucide="bot" class="ic"></i></div><div><strong>AI Observation:</strong> Kofi Osei has logged "sad/tired" mood 4 of the last 5 days. Attendance is normal but mood trend is unusual. AI suggests a gentle check-in message to parents. <span class="ai-action" onclick="OM('mo-announcement')" style="margin-left:.5rem">Generate Message →</span></div></div>
   <div class="phero">
     <div class="phero-av"><div class="av av48" style="background:var(--green2);border:3px solid rgba(30,107,62,.3)">KO</div></div>
     <div>
@@ -1324,7 +1326,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
   <div id="cp-overview">
     <div class="sg sg3" style="margin-bottom:1rem">
       <div style="background:var(--surface);border-radius:10px;border:1px solid var(--border2);padding:1rem"><div style="font-size:.6rem;color:var(--text);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.3rem">Room</div><div style="font-size:.88rem;font-weight:600">🦋 Butterfly (1–2yr)</div></div>
-      <div style="background:var(--surface);border-radius:10px;border:1px solid var(--border2);padding:1rem"><div style="font-size:.6rem;color:var(--text);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.3rem">Today</div><div style="font-size:.88rem;font-weight:600;color:var(--green2)">✅ Checked In 8:22am</div></div>
+      <div style="background:var(--surface);border-radius:10px;border:1px solid var(--border2);padding:1rem"><div style="font-size:.6rem;color:var(--text);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.3rem">Today</div><div style="font-size:.88rem;font-weight:600;color:var(--green2)"><i data-lucide="check-circle-2" class="ic"></i> Checked In 8:22am</div></div>
       <div style="background:var(--surface);border-radius:10px;border:1px solid var(--border2);padding:1rem"><div style="font-size:.6rem;color:var(--text);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.3rem">April Attendance</div><div style="font-size:.88rem;font-weight:600">9/9 days <span style="color:var(--green2);font-size:.72rem">(100%)</span></div></div>
       <div style="background:var(--surface);border-radius:10px;border:1px solid var(--border2);padding:1rem"><div style="font-size:.6rem;color:var(--text);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.3rem">Fee Plan</div><div style="font-size:.88rem;font-weight:600">Full Day · ₦45,000/mo</div></div>
       <div style="background:var(--surface);border-radius:10px;border:1px solid var(--border2);padding:1rem"><div style="font-size:.6rem;color:var(--text);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.3rem">Last Report</div><div style="font-size:.88rem;font-weight:600">Today, 9:12am</div></div>
@@ -1335,14 +1337,14 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
         <div style="display:flex;align-items:center;gap:.85rem">
           <div class="av av40" style="background:var(--green2)">KO</div>
           <div><div style="font-weight:700;font-size:.88rem">Mr. Kwame Osei</div><div class="td-sub">Father · 08034567890</div><div class="td-sub">kwame.o@email.com</div></div>
-          <button class="abtn" style="margin-left:auto" onclick="T('Opening message to Mr Osei…')">💬 Message</button>
+          <button class="abtn" style="margin-left:auto" onclick="T('Opening message to Mr Osei…')"><i data-lucide="message-square" class="ic"></i> Message</button>
         </div>
       </div>
       <div class="card"><div class="card-head"><div class="card-title">Mood Trend (7 days)</div></div>
         <div style="display:flex;align-items:center;gap:.5rem;margin-top:.3rem">
           <div style="text-align:center;font-size:1.1rem">😢</div><div style="text-align:center;font-size:1.1rem">😐</div><div style="text-align:center;font-size:1.1rem">😴</div><div style="text-align:center;font-size:1.1rem">😴</div><div style="text-align:center;font-size:1.1rem">😐</div><div style="text-align:center;font-size:1.1rem">😢</div><div style="text-align:center;font-size:1.1rem">😴</div>
         </div>
-        <div style="margin-top:.65rem;padding:.6rem .75rem;background:rgba(184,58,26,.06);border-radius:8px;font-size:.75rem;color:var(--red);line-height:1.5">⚠️ AI detected consistent low-mood pattern. Not a single happy/energetic log this week.</div>
+        <div style="margin-top:.65rem;padding:.6rem .75rem;background:rgba(184,58,26,.06);border-radius:8px;font-size:.75rem;color:var(--red);line-height:1.5"><i data-lucide="alert-triangle" class="ic"></i> AI detected consistent low-mood pattern. Not a single happy/energetic log this week.</div>
       </div>
     </div>
   </div>
@@ -1360,7 +1362,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
     </div>
   </div>
   <div id="cp-health" style="display:none">
-    <div class="al al-r"><div class="al-icon">⚠️</div><strong>No known allergies.</strong> Up to date on vaccinations as of Jan 2025. EpiPen: Not required.</div>
+    <div class="al al-r"><div class="al-icon"><i data-lucide="alert-triangle" class="ic"></i></div><strong>No known allergies.</strong> Up to date on vaccinations as of Jan 2025. EpiPen: Not required.</div>
     <div class="g2"><div class="card"><div class="card-head"><div class="card-title">Medical Profile</div></div><div style="display:flex;flex-direction:column;gap:.65rem"><div style="padding:.75rem;background:var(--green3);border-radius:8px;border-left:3px solid var(--green2)"><div style="font-weight:600;font-size:.82rem;color:var(--green)">✓ No Known Allergies</div><div class="td-sub">Last verified: March 2025</div></div><div style="padding:.75rem;background:var(--bg);border-radius:8px;border-left:3px solid var(--border)"><div style="font-weight:600;font-size:.82rem">General Health</div><div class="td-sub">No chronic conditions. Vaccinations current.</div></div></div></div>
     <div class="card"><div class="card-head"><div class="card-title">Medication History</div></div><table style="font-size:.76rem"><thead><tr><th>Medication</th><th>Dose</th><th>By</th><th>Date</th></tr></thead><tbody><tr><td>Iron supplement</td><td>5ml</td><td>Ms. Amaka</td><td>Apr 9</td></tr><tr><td>Paracetamol</td><td>2.5ml</td><td>Ms. Amaka</td><td>Mar 20</td></tr></tbody></table></div></div>
   </div>
@@ -1389,8 +1391,8 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
 
 <!-- ════════ BILLING ════════ -->
 <div class="screen" id="sc-billing">
-  <div class="ph"><div class="ph-left"><h1>Billing & Payments</h1><p>April 2025 · ₦1.26M collected · ₦480K outstanding</p></div><div class="ph-actions"><button class="btn sc" onclick="T('Bulk reminders sent to all overdue parents')">📨 Bulk Remind</button><button class="btn ai-btn" onclick="T('AI payment forecast generated')">✦ AI Forecast</button><button class="btn pr" onclick="OM('mo-invoice')">+ Invoice</button></div></div>
-  <div class="al al-ai"><div class="al-icon">🤖</div>AI predicts <strong>April will close at 73% collection rate</strong> — 3 high-risk families identified. Auto-reminders recommended for Mr. Okafor, Mrs. Adeyemi, and Mr. Balogun.</div>
+  <div class="ph"><div class="ph-left"><h1>Billing & Payments</h1><p>April 2025 · ₦1.26M collected · ₦480K outstanding</p></div><div class="ph-actions"><button class="btn sc" onclick="T('Bulk reminders sent to all overdue parents')"><i data-lucide="mail" class="ic"></i> Bulk Remind</button><button class="btn ai-btn" onclick="T('AI payment forecast generated')"><i data-lucide="sparkles" class="ic"></i> AI Forecast</button><button class="btn pr" onclick="OM('mo-invoice')">+ Invoice</button></div></div>
+  <div class="al al-ai"><div class="al-icon"><i data-lucide="bot" class="ic"></i></div>AI predicts <strong>April will close at 73% collection rate</strong> — 3 high-risk families identified. Auto-reminders recommended for Mr. Okafor, Mrs. Adeyemi, and Mr. Balogun.</div>
   <div class="sg sg4" style="margin-bottom:1rem">
     <div class="scard sc-g"><div class="sc-lbl">Collected (April)</div><div class="sc-val">₦1.26M</div><div class="sc-sub">28 of 42 invoices</div></div>
     <div class="scard sc-r"><div class="sc-lbl">Outstanding</div><div class="sc-val">₦480K</div><div class="sc-sub">8 invoices unpaid</div></div>
@@ -1424,7 +1426,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
         <thead><tr><th>Child</th><th>Parent</th><th>Plan</th><th>Amount</th><th>Due</th><th>Days</th><th>AI Risk</th><th>Status</th><th>Actions</th></tr></thead>
         <tbody>
           <tr onclick="T('Invoice: Amara Johnson — Paid ✓')"><td><div style="display:flex;align-items:center;gap:.55rem"><div class="av av28" style="background:var(--amber)">AJ</div><div><div class="td-main">Amara Johnson</div><div class="td-sub">F · Lion</div></div></div></td><td>Mrs. Chioma J.</td><td>Full Day</td><td class="td-mono">₦45,000</td><td>Apr 1</td><td style="color:var(--text)">—</td><td>—</td><td><span class="bdg bdg-g">Paid</span></td><td><button class="abtn" onclick="event.stopPropagation();T('Receipt downloaded')">Receipt</button></td></tr>
-          <tr onclick="T('Invoice: Emeka Okafor — Overdue')"><td><div style="display:flex;align-items:center;gap:.55rem"><div class="av av28" style="background:var(--red2)">EO</div><div><div class="td-main">Emeka Okafor</div><div class="td-sub">M · Dolphin</div></div></div></td><td>Mr. Charles O.</td><td>Full Day</td><td class="td-mono">₦45,000</td><td>Apr 1</td><td style="color:var(--red2);font-weight:800">10d</td><td><span class="bdg bdg-r">High</span></td><td><span class="bdg bdg-r">Overdue</span></td><td><button class="abtn" onclick="event.stopPropagation();T('SMS reminder sent to Mr Okafor')">Remind</button> <button class="abtn" onclick="event.stopPropagation();T('Calling Mr Okafor…')">📞</button></td></tr>
+          <tr onclick="T('Invoice: Emeka Okafor — Overdue')"><td><div style="display:flex;align-items:center;gap:.55rem"><div class="av av28" style="background:var(--red2)">EO</div><div><div class="td-main">Emeka Okafor</div><div class="td-sub">M · Dolphin</div></div></div></td><td>Mr. Charles O.</td><td>Full Day</td><td class="td-mono">₦45,000</td><td>Apr 1</td><td style="color:var(--red2);font-weight:800">10d</td><td><span class="bdg bdg-r">High</span></td><td><span class="bdg bdg-r">Overdue</span></td><td><button class="abtn" onclick="event.stopPropagation();T('SMS reminder sent to Mr Okafor')">Remind</button> <button class="abtn" onclick="event.stopPropagation();T('Calling Mr Okafor…')"><i data-lucide="phone" class="ic"></i></button></td></tr>
           <tr onclick="T('Invoice: Sade Bello — Pending')"><td><div style="display:flex;align-items:center;gap:.55rem"><div class="av av28" style="background:var(--sage2)">SB</div><div><div class="td-main">Sade Bello</div><div class="td-sub">F · Butterfly</div></div></div></td><td>Mrs. Folake B.</td><td>Half Day</td><td class="td-mono">₦38,000</td><td>Apr 5</td><td style="color:var(--amber);font-weight:800">6d</td><td><span class="bdg bdg-a">Medium</span></td><td><span class="bdg bdg-a">Pending</span></td><td><button class="abtn" onclick="event.stopPropagation();T('Invoice resent to Mrs Bello')">Resend</button></td></tr>
           <tr onclick="T('Invoice: Tunde Adeyemi — Overdue')"><td><div style="display:flex;align-items:center;gap:.55rem"><div class="av av28" style="background:var(--navy2)">TA</div><div><div class="td-main">Tunde Adeyemi</div><div class="td-sub">M · Lion</div></div></div></td><td>Mrs. Ngozi A.</td><td>Full+Meals</td><td class="td-mono">₦52,000</td><td>Apr 8</td><td style="color:var(--red2);font-weight:800">3d</td><td><span class="bdg bdg-r">High</span></td><td><span class="bdg bdg-r">Overdue</span></td><td><button class="abtn" onclick="event.stopPropagation();T('Reminder sent to Mrs Adeyemi')">Remind</button></td></tr>
           <tr onclick="T('Invoice: Emeka Balogun — Due soon')"><td><div style="display:flex;align-items:center;gap:.55rem"><div class="av av28" style="background:var(--sage)">EB</div><div><div class="td-main">Emeka Balogun</div><div class="td-sub">M · Dolphin</div></div></div></td><td>Mr. Biodun B.</td><td>Full Day</td><td class="td-mono">₦45,000</td><td>Apr 10</td><td style="color:var(--amber);font-weight:800">1d</td><td><span class="bdg bdg-a">Medium</span></td><td><span class="bdg bdg-a">Pending</span></td><td><button class="abtn" onclick="event.stopPropagation();T('Invoice resent to Mr Balogun')">Resend</button></td></tr>
@@ -1437,7 +1439,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
 
 <!-- ════════ DAILY LOGS ════════ -->
 <div class="screen" id="sc-daily-logs">
-  <div class="ph"><div class="ph-left"><h1>Daily Logs</h1><p>37 of 42 submitted today · 5 pending · Compliance: 88%</p></div><div class="ph-actions"><button class="btn sc" onclick="T('Sending reminder to caregivers…')">📣 Remind Caregivers</button><button class="btn pr" onclick="OM('mo-log-report')">+ New Log</button></div></div>
+  <div class="ph"><div class="ph-left"><h1>Daily Logs</h1><p>37 of 42 submitted today · 5 pending · Compliance: 88%</p></div><div class="ph-actions"><button class="btn sc" onclick="T('Sending reminder to caregivers…')"><i data-lucide="megaphone" class="ic"></i> Remind Caregivers</button><button class="btn pr" onclick="OM('mo-log-report')">+ New Log</button></div></div>
   <div class="al al-a"><div class="al-icon">⏰</div><strong>5 reports still pending</strong> for present children. Lion and Dolphin classes have not submitted today. AI has notified caregivers.</div>
   <div class="sg sg4" style="margin-bottom:1rem">
     <div class="scard sc-g"><div class="sc-lbl">Submitted</div><div class="sc-val">37</div></div>
@@ -1451,7 +1453,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
       <thead><tr><th>Child</th><th>Room</th><th>Caregiver</th><th>Submitted</th><th>Mood</th><th>Meals</th><th>Status</th><th></th></tr></thead>
       <tbody>
         <tr onclick="T('Viewing Kofi Osei report')"><td><div style="display:flex;align-items:center;gap:.55rem"><div class="av av28" style="background:var(--green2)">KO</div><div class="td-main">Kofi Osei</div></div></td><td>🦋 Butterfly</td><td>Ms. Amaka</td><td>9:12am</td><td>😴 Tired</td><td>🟡 Half</td><td><span class="bdg bdg-a">AI Flag</span></td><td><button class="abtn" onclick="event.stopPropagation();T('Viewing log…')">View</button></td></tr>
-        <tr onclick="T('Viewing Amara Johnson report')"><td><div style="display:flex;align-items:center;gap:.55rem"><div class="av av28" style="background:#C47B2C">AJ</div><div class="td-main">Amara Johnson</div></div></td><td>🦁 Lion</td><td>Ms. Tunde</td><td>9:30am</td><td>😊 Happy</td><td>✅ All</td><td><span class="bdg bdg-g">Done</span></td><td><button class="abtn" onclick="event.stopPropagation();T('Viewing log…')">View</button></td></tr>
+        <tr onclick="T('Viewing Amara Johnson report')"><td><div style="display:flex;align-items:center;gap:.55rem"><div class="av av28" style="background:#C47B2C">AJ</div><div class="td-main">Amara Johnson</div></div></td><td>🦁 Lion</td><td>Ms. Tunde</td><td>9:30am</td><td>😊 Happy</td><td><i data-lucide="check-circle-2" class="ic"></i> All</td><td><span class="bdg bdg-g">Done</span></td><td><button class="abtn" onclick="event.stopPropagation();T('Viewing log…')">View</button></td></tr>
         <tr onclick="OM('mo-log-report')"><td><div style="display:flex;align-items:center;gap:.55rem"><div class="av av28" style="background:var(--sage2)">EB</div><div class="td-main">Emeka Balogun</div></div></td><td>🐬 Dolphin</td><td>Mr. Seun</td><td>—</td><td>—</td><td>—</td><td><span class="bdg bdg-r">Pending</span></td><td><button class="abtn" onclick="event.stopPropagation();OM('mo-log-report')">Log Now</button></td></tr>
         <tr onclick="OM('mo-log-report')"><td><div style="display:flex;align-items:center;gap:.55rem"><div class="av av28" style="background:var(--red2)">IA</div><div class="td-main">Ifeoma Adekunle</div></div></td><td>🌻 Sunflower</td><td>Ms. Nkechi</td><td>—</td><td>—</td><td>—</td><td><span class="bdg bdg-r">Pending</span></td><td><button class="abtn" onclick="event.stopPropagation();OM('mo-log-report')">Log Now</button></td></tr>
       </tbody>
@@ -1468,7 +1470,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
     <div class="scard sc-r"><div class="sc-lbl">Absent</div><div class="sc-val">2</div><div class="sc-sub">No cover arranged</div></div>
     <div class="scard sc-n"><div class="sc-lbl">Avg Log Compliance</div><div class="sc-val">81%</div><div class="sc-sub sc-dn">↓ from 86% last wk</div></div>
   </div>
-  <div class="al al-n" style="margin-bottom:1rem"><div class="al-icon">🤖</div>AI flags: <strong>Ms. Tunde</strong> compliance at 62% (below 80% threshold) · <strong>Mr. Emeka</strong> absent 3 of last 5 days. Both require a check-in conversation.</div>
+  <div class="al al-n" style="margin-bottom:1rem"><div class="al-icon"><i data-lucide="bot" class="ic"></i></div>AI flags: <strong>Ms. Tunde</strong> compliance at 62% (below 80% threshold) · <strong>Mr. Emeka</strong> absent 3 of last 5 days. Both require a check-in conversation.</div>
   <div class="tabs" id="staff-tabs">
     <div class="tab active" onclick="staffTab(this,'stt-dir')">Directory</div>
     <div class="tab" onclick="staffTab(this,'stt-compliance')">Compliance</div>
@@ -1483,7 +1485,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
           <div class="sc-role">Lead Caregiver · 🦁 Lion</div>
         </div>
         <div style="text-align:right">
-          <div style="font-size:.65rem;color:var(--red2);font-weight:800">62% logs ⚠️</div>
+          <div style="font-size:.65rem;color:var(--red2);font-weight:800">62% logs <i data-lucide="alert-triangle" class="ic"></i></div>
           <div style="font-size:.6rem;color:var(--text)">In 7:50am</div>
         </div>
         <span class="bdg bdg-g" style="margin-left:.5rem">On Duty</span>
@@ -1543,7 +1545,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
           <div class="sc-role">Caregiver · 🐬 Dolphin</div>
         </div>
         <div style="text-align:right">
-          <div style="font-size:.65rem;color:var(--red2);font-weight:800">3/5 days ⚠️</div>
+          <div style="font-size:.65rem;color:var(--red2);font-weight:800">3/5 days <i data-lucide="alert-triangle" class="ic"></i></div>
           <div style="font-size:.6rem;color:var(--text)">Absent today</div>
         </div>
         <span class="bdg bdg-r" style="margin-left:.5rem">Absent</span>
@@ -1557,7 +1559,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
         <div style="display:flex;align-items:center;gap:1rem;padding:.75rem;background:var(--green3);border-radius:10px;border:1px solid rgba(30,107,62,.15)"><div class="av av34" style="background:var(--green2)">AO</div><div style="flex:1"><div style="font-weight:700;font-size:.82rem">Ms. Amaka Obiora</div><div style="font-size:.65rem;color:var(--text)">🦋 Butterfly · Top performer this week</div></div><div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;color:var(--green2)">96%</div><div style="width:100px"><div class="pb"><div class="pbf pbf-g" style="width:96%"></div></div></div></div>
         <div style="display:flex;align-items:center;gap:1rem;padding:.75rem;background:var(--green3);border-radius:10px;border:1px solid rgba(30,107,62,.15)"><div class="av av34" style="background:var(--sage2)">NK</div><div style="flex:1"><div style="font-weight:700;font-size:.82rem">Ms. Nkechi Eze</div><div style="font-size:.65rem;color:var(--text)">🌻 Sunflower · Consistent</div></div><div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;color:var(--green2)">91%</div><div style="width:100px"><div class="pb"><div class="pbf pbf-g" style="width:91%"></div></div></div></div>
         <div style="display:flex;align-items:center;gap:1rem;padding:.75rem;background:var(--amber4);border-radius:10px;border:1px solid rgba(196,123,44,.18)"><div class="av av34" style="background:var(--navy2)">SA</div><div style="flex:1"><div style="font-weight:700;font-size:.82rem">Mr. Seun Adeyemi</div><div style="font-size:.65rem;color:var(--text)">🐬 Dolphin · Reports late (after 11am)</div></div><div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;color:var(--amber)">74%</div><div style="width:100px"><div class="pb"><div class="pbf" style="width:74%"></div></div></div></div>
-        <div style="display:flex;align-items:center;gap:1rem;padding:.75rem;background:var(--red3);border-radius:10px;border:1px solid rgba(184,58,26,.15)"><div class="av av34" style="background:var(--amber)">TO</div><div style="flex:1"><div style="font-weight:700;font-size:.82rem">Ms. Tunde Obaseki</div><div style="font-size:.65rem;color:var(--red2)">🦁 Lion · ⚠️ Below 80% threshold — manager review recommended</div></div><div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;color:var(--red2)">62%</div><div style="width:100px"><div class="pb"><div class="pbf pbf-r" style="width:62%"></div></div></div></div>
+        <div style="display:flex;align-items:center;gap:1rem;padding:.75rem;background:var(--red3);border-radius:10px;border:1px solid rgba(184,58,26,.15)"><div class="av av34" style="background:var(--amber)">TO</div><div style="flex:1"><div style="font-weight:700;font-size:.82rem">Ms. Tunde Obaseki</div><div style="font-size:.65rem;color:var(--red2)">🦁 Lion · <i data-lucide="alert-triangle" class="ic"></i> Below 80% threshold — manager review recommended</div></div><div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;color:var(--red2)">62%</div><div style="width:100px"><div class="pb"><div class="pbf pbf-r" style="width:62%"></div></div></div></div>
       </div>
     </div>
   </div>
@@ -1570,7 +1572,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
           <tr><td><div class="td-main">Ms. Tunde</div></td><td>Caregiver</td><td><span class="bdg bdg-g">✓</span></td><td><span class="bdg bdg-g">✓</span></td><td><span class="bdg bdg-g">✓</span></td><td><span class="bdg bdg-g">✓</span></td><td><span class="bdg bdg-g">✓</span></td><td style="font-weight:800;color:var(--green2)">5/5</td></tr>
           <tr><td><div class="td-main">Ms. Amaka</div></td><td>Caregiver</td><td><span class="bdg bdg-g">✓</span></td><td><span class="bdg bdg-g">✓</span></td><td><span class="bdg bdg-g">✓</span></td><td><span class="bdg bdg-g">✓</span></td><td><span class="bdg bdg-g">✓</span></td><td style="font-weight:800;color:var(--green2)">5/5</td></tr>
           <tr><td><div class="td-main">Mr. Seun</div></td><td>Caregiver</td><td><span class="bdg bdg-g">✓</span></td><td><span class="bdg bdg-r">✗</span></td><td><span class="bdg bdg-g">✓</span></td><td><span class="bdg bdg-g">✓</span></td><td><span class="bdg bdg-g">✓</span></td><td style="font-weight:800;color:var(--amber)">4/5</td></tr>
-          <tr><td><div class="td-main">Mr. Emeka</div></td><td>Caregiver</td><td><span class="bdg bdg-g">✓</span></td><td><span class="bdg bdg-r">✗</span></td><td><span class="bdg bdg-r">✗</span></td><td><span class="bdg bdg-g">✓</span></td><td><span class="bdg bdg-r">✗</span></td><td style="font-weight:800;color:var(--red2)">2/5 ⚠️</td></tr>
+          <tr><td><div class="td-main">Mr. Emeka</div></td><td>Caregiver</td><td><span class="bdg bdg-g">✓</span></td><td><span class="bdg bdg-r">✗</span></td><td><span class="bdg bdg-r">✗</span></td><td><span class="bdg bdg-g">✓</span></td><td><span class="bdg bdg-r">✗</span></td><td style="font-weight:800;color:var(--red2)">2/5 <i data-lucide="alert-triangle" class="ic"></i></td></tr>
           <tr><td><div class="td-main">Ms. Nkechi</div></td><td>Caregiver</td><td><span class="bdg bdg-g">✓</span></td><td><span class="bdg bdg-g">✓</span></td><td><span class="bdg bdg-g">✓</span></td><td><span class="bdg bdg-g">✓</span></td><td><span class="bdg bdg-g">✓</span></td><td style="font-weight:800;color:var(--green2)">5/5</td></tr>
         </tbody>
       </table></div>
@@ -1581,7 +1583,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
 <!-- ════════ INCIDENTS ════════ -->
 <div class="screen" id="sc-health">
   <div class="ph"><div class="ph-left"><h1>Incidents & Health</h1><p>2 open · 5 this month · 3 resolved</p></div><div class="ph-actions"><button class="btn pr" onclick="OM('mo-raise-incident')">+ Raise Incident</button></div></div>
-  <div class="al al-r"><div class="al-icon">🚨</div><strong>Action required:</strong> 2 open incidents have not been communicated to parents. CEven policy requires parent notification within 4 hours.</div>
+  <div class="al al-r"><div class="al-icon"><i data-lucide="siren" class="ic"></i></div><strong>Action required:</strong> 2 open incidents have not been communicated to parents. CEven policy requires parent notification within 4 hours.</div>
   <div class="sg sg4" style="margin-bottom:1rem">
     <div class="scard sc-r"><div class="sc-lbl">Open</div><div class="sc-val">2</div></div>
     <div class="scard sc-a"><div class="sc-lbl">This Month</div><div class="sc-val">5</div></div>
@@ -1603,7 +1605,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
 
 <!-- ════════ COMMUNICATION ════════ -->
 <div class="screen" id="sc-comms">
-  <div class="ph"><div class="ph-left"><h1>Messages</h1><p>3 unread · AI-assisted responses available</p></div><div class="ph-actions"><button class="btn ai-btn" onclick="T('AI drafting response to Mrs Johnson…')">✦ AI Draft Reply</button><button class="btn pr" onclick="OM('mo-announcement')">+ New Message</button></div></div>
+  <div class="ph"><div class="ph-left"><h1>Messages</h1><p>3 unread · AI-assisted responses available</p></div><div class="ph-actions"><button class="btn ai-btn" onclick="T('AI drafting response to Mrs Johnson…')"><i data-lucide="sparkles" class="ic"></i> AI Draft Reply</button><button class="btn pr" onclick="OM('mo-announcement')">+ New Message</button></div></div>
   <div class="g2">
     <div>
       <div class="card" style="margin-bottom:1rem">
@@ -1631,7 +1633,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
 
 <!-- ════════ ANALYTICS ════════ -->
 <div class="screen" id="sc-analytics">
-  <div class="ph"><div class="ph-left"><h1>Analytics & Reports</h1><p>April 2025 · AI-powered insights included</p></div><div class="ph-actions"><button class="btn sc" onclick="T('Exporting PDF report…')">📄 Export PDF</button><button class="btn ai-btn" onclick="T('AI generating full analysis…')">✦ AI Analysis</button></div></div>
+  <div class="ph"><div class="ph-left"><h1>Analytics & Reports</h1><p>April 2025 · AI-powered insights included</p></div><div class="ph-actions"><button class="btn sc" onclick="T('Exporting PDF report…')"><i data-lucide="file-text" class="ic"></i> Export PDF</button><button class="btn ai-btn" onclick="T('AI generating full analysis…')"><i data-lucide="sparkles" class="ic"></i> AI Analysis</button></div></div>
   <div class="tabs">
     <div class="tab active" onclick="AT(this,'at-overview')">Overview</div>
     <div class="tab" onclick="AT(this,'at-attendance')">Attendance</div>
@@ -1667,9 +1669,9 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
     </div>
     <div class="ai-card"><div class="ai-badge">AI Revenue Forecast</div><div style="font-size:.82rem;color:var(--navy);line-height:1.7">At current collection rate, <strong>April will close at ₦1.27M (73%)</strong> vs target ₦1.74M. To reach 85% target, ₦210,000 must be collected from 3 families in the next 12 days. AI recommends: personal calls to Mr. Okafor and Mrs. Adeyemi by Thursday.</div></div>
   </div>
-  <div id="at-attendance" style="display:none"><div class="card"><div class="card-head"><div class="card-title">Attendance Deep Dive</div></div><div style="padding:1.5rem;text-align:center;color:var(--text)">📊 Full attendance analytics · 30-day trend · By room · By child · Export ready</div></div></div>
+  <div id="at-attendance" style="display:none"><div class="card"><div class="card-head"><div class="card-title">Attendance Deep Dive</div></div><div style="padding:1.5rem;text-align:center;color:var(--text)"><i data-lucide="bar-chart-3" class="ic"></i> Full attendance analytics · 30-day trend · By room · By child · Export ready</div></div></div>
   <div id="at-revenue" style="display:none"><div class="card"><div class="card-head"><div class="card-title">Revenue Breakdown</div></div><div style="padding:1.5rem;text-align:center;color:var(--text)">₦ Collections by plan · By family · Month-on-month · Forecast vs actual</div></div></div>
-  <div id="at-staff" style="display:none"><div class="card"><div class="card-head"><div class="card-title">Staff Performance Analytics</div></div><div style="padding:1.5rem;text-align:center;color:var(--text)">👩‍🏫 Logging compliance trends · Attendance · Task completion · Per-caregiver breakdown</div></div></div>
+  <div id="at-staff" style="display:none"><div class="card"><div class="card-head"><div class="card-title">Staff Performance Analytics</div></div><div style="padding:1.5rem;text-align:center;color:var(--text)">👩‍<i data-lucide="school" class="ic"></i> Logging compliance trends · Attendance · Task completion · Per-caregiver breakdown</div></div></div>
 </div>
 
 <!-- ════════ ROOMS ════════ -->
@@ -1677,7 +1679,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
   <div class="ph"><div class="ph-left"><h1>Rooms & Classes</h1><p>4 active rooms · 42/48 enrolled · Butterfly at capacity</p></div><div class="ph-actions"><button class="btn pr" onclick="T('Add room modal…')">+ Add Room</button></div></div>
   <div class="g2">
     <div class="room-card" onclick="T('Opening Sunflower room detail')"><div class="rc-top"><div><div class="rc-name" style="color:var(--amber)">🌻 Sunflower Class</div><div class="rc-age">Ages 0 – 12 months</div></div><span class="bdg bdg-a">Available</span></div><div class="rc-meta"><div class="rc-box"><div class="rc-box-l">Capacity</div><div class="rc-box-v">10</div></div><div class="rc-box"><div class="rc-box-l">Enrolled</div><div class="rc-box-v">8</div></div><div class="rc-box"><div class="rc-box-l">Present</div><div class="rc-box-v" style="color:var(--green2)">7</div></div><div class="rc-box"><div class="rc-box-l">Lead</div><div class="rc-box-v">Ms. Nkechi</div></div></div><div class="pb"><div class="pbf" style="width:80%"></div></div><div style="font-size:.65rem;color:var(--text);margin-top:.3rem">80% · 2 spots open</div></div>
-    <div class="room-card" onclick="T('Opening Butterfly room detail — FULL')"><div class="rc-top"><div><div class="rc-name" style="color:var(--sage2)">🦋 Butterfly Class</div><div class="rc-age">Ages 1 – 2 years</div></div><span class="bdg bdg-r">Full</span></div><div class="rc-meta"><div class="rc-box"><div class="rc-box-l">Capacity</div><div class="rc-box-v">12</div></div><div class="rc-box"><div class="rc-box-l">Enrolled</div><div class="rc-box-v">12</div></div><div class="rc-box"><div class="rc-box-l">Present</div><div class="rc-box-v" style="color:var(--green2)">11</div></div><div class="rc-box"><div class="rc-box-l">Lead</div><div class="rc-box-v">Ms. Amaka</div></div></div><div class="pb"><div class="pbf pbf-r" style="width:100%"></div></div><div style="font-size:.65rem;color:var(--red2);margin-top:.3rem">⚠️ 100% capacity — waitlist active</div></div>
+    <div class="room-card" onclick="T('Opening Butterfly room detail — FULL')"><div class="rc-top"><div><div class="rc-name" style="color:var(--sage2)">🦋 Butterfly Class</div><div class="rc-age">Ages 1 – 2 years</div></div><span class="bdg bdg-r">Full</span></div><div class="rc-meta"><div class="rc-box"><div class="rc-box-l">Capacity</div><div class="rc-box-v">12</div></div><div class="rc-box"><div class="rc-box-l">Enrolled</div><div class="rc-box-v">12</div></div><div class="rc-box"><div class="rc-box-l">Present</div><div class="rc-box-v" style="color:var(--green2)">11</div></div><div class="rc-box"><div class="rc-box-l">Lead</div><div class="rc-box-v">Ms. Amaka</div></div></div><div class="pb"><div class="pbf pbf-r" style="width:100%"></div></div><div style="font-size:.65rem;color:var(--red2);margin-top:.3rem"><i data-lucide="alert-triangle" class="ic"></i> 100% capacity — waitlist active</div></div>
     <div class="room-card" onclick="T('Opening Dolphin room detail')"><div class="rc-top"><div><div class="rc-name" style="color:var(--navy)">🐬 Dolphin Class</div><div class="rc-age">Ages 2 – 3 years</div></div><span class="bdg bdg-g">Available</span></div><div class="rc-meta"><div class="rc-box"><div class="rc-box-l">Capacity</div><div class="rc-box-v">14</div></div><div class="rc-box"><div class="rc-box-l">Enrolled</div><div class="rc-box-v">10</div></div><div class="rc-box"><div class="rc-box-l">Present</div><div class="rc-box-v" style="color:var(--green2)">9</div></div><div class="rc-box"><div class="rc-box-l">Lead</div><div class="rc-box-v">Mr. Seun</div></div></div><div class="pb"><div class="pbf pbf-n" style="width:71%"></div></div><div style="font-size:.65rem;color:var(--text);margin-top:.3rem">71% · 4 spots open</div></div>
     <div class="room-card" onclick="T('Opening Lion room detail')"><div class="rc-top"><div><div class="rc-name" style="color:var(--sidebar2)">🦁 Lion Class</div><div class="rc-age">Ages 3 – 4 years</div></div><span class="bdg bdg-g">Available</span></div><div class="rc-meta"><div class="rc-box"><div class="rc-box-l">Capacity</div><div class="rc-box-v">12</div></div><div class="rc-box"><div class="rc-box-l">Enrolled</div><div class="rc-box-v">8</div></div><div class="rc-box"><div class="rc-box-l">Present</div><div class="rc-box-v" style="color:var(--green2)">7</div></div><div class="rc-box"><div class="rc-box-l">Lead</div><div class="rc-box-v">Ms. Tunde</div></div></div><div class="pb"><div class="pbf pbf-g" style="width:67%"></div></div><div style="font-size:.65rem;color:var(--text);margin-top:.3rem">67% · 4 spots open</div></div>
   </div>
@@ -1727,7 +1729,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
           <td>Zara (🦁 Lion)</td>
           <td><span class="bdg bdg-g">Paid ✓</span></td>
           <td><span class="bdg bdg-g">App Active</span></td>
-          <td><span class="bdg bdg-a">Attendance ⚠️</span></td>
+          <td><span class="bdg bdg-a">Attendance <i data-lucide="alert-triangle" class="ic"></i></span></td>
           <td><button class="abtn" onclick="event.stopPropagation();OM('mo-send-message')">Message</button></td>
         </tr>
         <tr onclick="T('Opening Mr Kwame Osei profile')">
@@ -1755,7 +1757,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
 <!-- ════════ MEDICATION ════════ -->
 <div class="screen" id="sc-medication">
   <div class="ph"><div class="ph-left"><h1>Medication Logs</h1><p>2 standing orders today · 1 pending confirmation</p></div><div class="ph-actions"><button class="btn pr" onclick="T('Add medication log…')">+ Log Medication</button></div></div>
-  <div class="al al-a"><div class="al-icon">💊</div><strong>Kofi Osei</strong> — Iron supplement due at lunchtime. Ms. Amaka to confirm administration before 1pm.</div>
+  <div class="al al-a"><div class="al-icon"><i data-lucide="pill" class="ic"></i></div><strong>Kofi Osei</strong> — Iron supplement due at lunchtime. Ms. Amaka to confirm administration before 1pm.</div>
   <div class="card"><div class="card-head"><div class="card-title">Medication Log — April 2025</div></div>
     <div class="tw"><table>
       <thead><tr><th>Child</th><th>Medication</th><th>Dose</th><th>Frequency</th><th>By</th><th>Time</th><th>Status</th></tr></thead>
@@ -1791,7 +1793,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
   <div class="ph"><div class="ph-left"><h1>Announcements</h1><p>Broadcast to all parents or specific rooms</p></div></div>
   <div class="g2">
     <div class="card">
-      <div class="card-head"><div class="card-title">Send Announcement</div><div class="card-action" onclick="T('Loading AI templates…')">✦ AI Draft</div></div>
+      <div class="card-head"><div class="card-title">Send Announcement</div><div class="card-action" onclick="T('Loading AI templates…')"><i data-lucide="sparkles" class="ic"></i> AI Draft</div></div>
       <div class="fg"><label class="fl">Audience</label><select class="fsel"><option>All Parents (42)</option><option>🌻 Sunflower Parents</option><option>🦋 Butterfly Parents</option><option>🐬 Dolphin Parents</option><option>🦁 Lion Parents</option></select></div>
       <div class="fg"><label class="fl">Type</label><select class="fsel"><option>General Announcement</option><option>Holiday / Closure</option><option>Health & Safety Alert</option><option>Billing Reminder</option><option>Event Invitation</option></select></div>
       <div class="fg"><label class="fl">Subject</label><input class="fi" placeholder="e.g. Easter Holiday Closure Notice"></div>
@@ -1920,27 +1922,27 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
         <div class="card-head"><div class="card-title">AI Focus Areas</div><div style="font-size:.66rem;color:var(--text)">What should <span id="ai-focus-label">Ada</span> prioritise?</div></div>
         <div style="display:flex;flex-direction:column;gap:.6rem">
           <div class="focus-row" onclick="toggleFocus(this)">
-            <div class="focus-icon">💰</div>
+            <div class="focus-icon"><i data-lucide="wallet" class="ic"></i></div>
             <div class="focus-text"><div style="font-size:.82rem;font-weight:600">Revenue & Payments</div><div style="font-size:.68rem;color:var(--text)">Payment risks, overdue alerts, forecasts</div></div>
             <div class="focus-toggle on">ON</div>
           </div>
           <div class="focus-row" onclick="toggleFocus(this)">
-            <div class="focus-icon">🧒</div>
+            <div class="focus-icon"><i data-lucide="baby" class="ic"></i></div>
             <div class="focus-text"><div style="font-size:.82rem;font-weight:600">Child Welfare</div><div style="font-size:.68rem;color:var(--text)">Mood patterns, absence flags, health risks</div></div>
             <div class="focus-toggle on">ON</div>
           </div>
           <div class="focus-row" onclick="toggleFocus(this)">
-            <div class="focus-icon">👩‍🏫</div>
+            <div class="focus-icon">👩‍<i data-lucide="school" class="ic"></i></div>
             <div class="focus-text"><div style="font-size:.82rem;font-weight:600">Staff Performance</div><div style="font-size:.68rem;color:var(--text)">Logging compliance, attendance, consistency</div></div>
             <div class="focus-toggle on">ON</div>
           </div>
           <div class="focus-row" onclick="toggleFocus(this)">
-            <div class="focus-icon">📢</div>
+            <div class="focus-icon"><i data-lucide="megaphone" class="ic"></i></div>
             <div class="focus-text"><div style="font-size:.82rem;font-weight:600">Parent Communication</div><div style="font-size:.68rem;color:var(--text)">Drafts, responses, relationship health</div></div>
             <div class="focus-toggle on">ON</div>
           </div>
           <div class="focus-row" onclick="toggleFocus(this)">
-            <div class="focus-icon">📊</div>
+            <div class="focus-icon"><i data-lucide="bar-chart-3" class="ic"></i></div>
             <div class="focus-text"><div style="font-size:.82rem;font-weight:600">Operations & Compliance</div><div style="font-size:.68rem;color:var(--text)">Incomplete logs, room capacity, tasks</div></div>
             <div class="focus-toggle off">OFF</div>
           </div>
@@ -1957,7 +1959,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
         <div style="display:flex;align-items:center;justify-content:space-between;padding:.75rem;background:var(--bg);border-radius:8px"><div><div style="font-size:.82rem;font-weight:600">Auto-Task Assignment</div><div class="td-sub">AI creates tasks for flagged issues</div></div><div class="ai-toggle on" onclick="this.classList.toggle('on');this.classList.toggle('off');this.textContent=this.classList.contains('on')?'ON':'OFF'">ON</div></div>
         <div style="display:flex;align-items:center;justify-content:space-between;padding:.75rem;background:var(--bg);border-radius:8px"><div><div style="font-size:.82rem;font-weight:600">Child Welfare Scoring</div><div class="td-sub">Mood, absence & health intelligence</div></div><div class="ai-toggle on" onclick="this.classList.toggle('on');this.classList.toggle('off');this.textContent=this.classList.contains('on')?'ON':'OFF'">ON</div></div>
         <div style="display:flex;align-items:center;justify-content:space-between;padding:.75rem;background:var(--bg);border-radius:8px;grid-column:span 1"><div><div style="font-size:.82rem;font-weight:600">AI Message Drafting</div><div class="td-sub">Suggest replies &amp; announcements</div></div><div class="ai-toggle on" onclick="this.classList.toggle('on');this.classList.toggle('off');this.textContent=this.classList.contains('on')?'ON':'OFF'">ON</div></div>
-        <div style="display:flex;align-items:center;justify-content:space-between;padding:.75rem;background:rgba(30,45,74,.07);border-radius:8px;border:1px solid rgba(30,45,74,.15)"><div><div style="font-size:.82rem;font-weight:600;color:var(--navy)">🔒 Revenue Forecasting</div><div class="td-sub">AI Pro plan required</div></div><span onclick="S('subscription',null)" style="font-size:.66rem;color:var(--navy);font-weight:700;cursor:pointer;white-space:nowrap">Upgrade →</span></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:.75rem;background:rgba(30,45,74,.07);border-radius:8px;border:1px solid rgba(30,45,74,.15)"><div><div style="font-size:.82rem;font-weight:600;color:var(--navy)"><i data-lucide="lock" class="ic"></i> Revenue Forecasting</div><div class="td-sub">AI Pro plan required</div></div><span onclick="S('subscription',null)" style="font-size:.66rem;color:var(--navy);font-weight:700;cursor:pointer;white-space:nowrap">Upgrade →</span></div>
       </div>
     </div>
 
@@ -1969,19 +1971,19 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
   <div class="ph"><div class="ph-left"><h1>Notifications</h1><p>6 unread notifications</p></div><div class="ph-actions"><button class="btn sc" onclick="T('All marked as read')">Mark All Read</button></div></div>
   <div class="card"><div class="card-head"><div class="card-title">Recent Notifications</div></div>
     <div style="display:flex;flex-direction:column;gap:.5rem">
-      <div style="display:flex;gap:.75rem;padding:.85rem;background:rgba(30,45,74,.07);border-radius:10px;border:1px solid rgba(30,45,74,.15);cursor:pointer" onclick="S('ai-center',null)"><div style="font-size:1rem;flex-shrink:0">🤖</div><div><div style="font-weight:600;font-size:.82rem;color:var(--navy)">AI Alert: 3 issues detected this morning</div><div class="td-sub">Welfare check · Payment risk · Compliance drop</div></div><div class="af-time" style="margin-left:auto">7:00am</div></div>
-      <div style="display:flex;gap:.75rem;padding:.85rem;background:var(--red3);border-radius:10px;border:1px solid rgba(184,58,26,.15);cursor:pointer" onclick="S('health',null)"><div style="font-size:1rem;flex-shrink:0">⚠️</div><div><div style="font-weight:600;font-size:.82rem;color:var(--red2)">Incident raised — Emeka Balogun (minor fall)</div><div class="td-sub">Requires parent notification · Ms. Tunde · 9:05am</div></div><div class="af-time" style="margin-left:auto">9:05am</div></div>
+      <div style="display:flex;gap:.75rem;padding:.85rem;background:rgba(30,45,74,.07);border-radius:10px;border:1px solid rgba(30,45,74,.15);cursor:pointer" onclick="S('ai-center',null)"><div style="font-size:1rem;flex-shrink:0"><i data-lucide="bot" class="ic"></i></div><div><div style="font-weight:600;font-size:.82rem;color:var(--navy)">AI Alert: 3 issues detected this morning</div><div class="td-sub">Welfare check · Payment risk · Compliance drop</div></div><div class="af-time" style="margin-left:auto">7:00am</div></div>
+      <div style="display:flex;gap:.75rem;padding:.85rem;background:var(--red3);border-radius:10px;border:1px solid rgba(184,58,26,.15);cursor:pointer" onclick="S('health',null)"><div style="font-size:1rem;flex-shrink:0"><i data-lucide="alert-triangle" class="ic"></i></div><div><div style="font-weight:600;font-size:.82rem;color:var(--red2)">Incident raised — Emeka Balogun (minor fall)</div><div class="td-sub">Requires parent notification · Ms. Tunde · 9:05am</div></div><div class="af-time" style="margin-left:auto">9:05am</div></div>
       <div style="display:flex;gap:.75rem;padding:.85rem;background:var(--amber4);border-radius:10px;border:1px solid rgba(196,123,44,.2);cursor:pointer" onclick="S('billing',null)"><div style="font-size:1rem;flex-shrink:0">₦</div><div><div style="font-weight:600;font-size:.82rem;color:var(--amber)">3 invoices overdue — ₦142,000 outstanding</div><div class="td-sub">Okafor · Adeyemi · Balogun</div></div><div class="af-time" style="margin-left:auto">8:00am</div></div>
-      <div style="display:flex;gap:.75rem;padding:.85rem;background:var(--surface2);border-radius:10px;border:1px solid var(--border2);cursor:pointer" onclick="T('Reading message from Mrs Johnson…')"><div style="font-size:1rem;flex-shrink:0">💬</div><div><div style="font-weight:600;font-size:.82rem">Message from Mrs. Chioma Johnson</div><div class="td-sub">Asking about Amara's day · Received 9:12am</div></div><div class="af-time" style="margin-left:auto">9:12am</div></div>
-      <div style="display:flex;gap:.75rem;padding:.85rem;background:var(--green3);border-radius:10px;border:1px solid rgba(30,107,62,.15);cursor:pointer" onclick="T('Invoice paid! ₦45,000 received from Mrs Johnson')"><div style="font-size:1rem;flex-shrink:0">✅</div><div><div style="font-weight:600;font-size:.82rem;color:var(--green2)">Payment received — Mrs. Johnson · ₦45,000</div><div class="td-sub">Amara Johnson · April fee · Confirmed</div></div><div class="af-time" style="margin-left:auto">Apr 2</div></div>
+      <div style="display:flex;gap:.75rem;padding:.85rem;background:var(--surface2);border-radius:10px;border:1px solid var(--border2);cursor:pointer" onclick="T('Reading message from Mrs Johnson…')"><div style="font-size:1rem;flex-shrink:0"><i data-lucide="message-square" class="ic"></i></div><div><div style="font-weight:600;font-size:.82rem">Message from Mrs. Chioma Johnson</div><div class="td-sub">Asking about Amara's day · Received 9:12am</div></div><div class="af-time" style="margin-left:auto">9:12am</div></div>
+      <div style="display:flex;gap:.75rem;padding:.85rem;background:var(--green3);border-radius:10px;border:1px solid rgba(30,107,62,.15);cursor:pointer" onclick="T('Invoice paid! ₦45,000 received from Mrs Johnson')"><div style="font-size:1rem;flex-shrink:0"><i data-lucide="check-circle-2" class="ic"></i></div><div><div style="font-weight:600;font-size:.82rem;color:var(--green2)">Payment received — Mrs. Johnson · ₦45,000</div><div class="td-sub">Amara Johnson · April fee · Confirmed</div></div><div class="af-time" style="margin-left:auto">Apr 2</div></div>
     </div>
   </div>
 </div>
 
 <!-- ════════ RECEPTION / QR STATION ════════ -->
 <div class="screen" id="sc-reception">
-  <div class="ph"><div class="ph-left"><h1>Reception · QR Station</h1><p>Real-time check-in and check-out · Children + Staff · All via QR</p></div><div class="ph-actions"><button class="btn sc" onclick="OM('mo-qr-exception')">⚠️ Log Exception</button><button class="btn pr" onclick="OM('mo-manual-checkin')">+ Manual Check-In</button></div></div>
-  <div class="al al-g" style="margin-bottom:1rem"><div class="al-ico">📲</div><strong>QR Station Active.</strong> Display or print the QR code below at the reception desk. Parents and staff scan on arrival — the system auto-detects whether it's a child or staff member and logs the entry instantly.</div>
+  <div class="ph"><div class="ph-left"><h1>Reception · QR Station</h1><p>Real-time check-in and check-out · Children + Staff · All via QR</p></div><div class="ph-actions"><button class="btn sc" onclick="OM('mo-qr-exception')"><i data-lucide="alert-triangle" class="ic"></i> Log Exception</button><button class="btn pr" onclick="OM('mo-manual-checkin')">+ Manual Check-In</button></div></div>
+  <div class="al al-g" style="margin-bottom:1rem"><div class="al-ico"><i data-lucide="qr-code" class="ic"></i></div><strong>QR Station Active.</strong> Display or print the QR code below at the reception desk. Parents and staff scan on arrival — the system auto-detects whether it's a child or staff member and logs the entry instantly.</div>
   <div class="g2" style="margin-bottom:1rem;align-items:start">
     <div class="qr-station">
       <div style="font-family:'Nunito',sans-serif;font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:var(--amber2);margin-bottom:.75rem"><span style="display:inline-block;width:6px;height:6px;background:#4ade80;border-radius:50%;margin-right:.35rem;animation:pulse 2s infinite;vertical-align:middle"></span>STATION ACTIVE · Sunshine Crèche Lekki</div>
@@ -2007,7 +2009,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
         <div style="display:flex;flex-direction:column;gap:0">
           <div style="display:flex;gap:.75rem;padding:.62rem 0;border-bottom:1px solid var(--border2);align-items:center"><div class="av av28" style="background:var(--amber)">AJ</div><div style="flex:1"><div style="font-size:.8rem;font-weight:700">Amara Johnson</div><div style="font-size:.64rem;color:var(--text)">Child · 🦁 Lion Class</div></div><div style="text-align:right"><span class="bdg bdg-g">In</span><div style="font-family:'Nunito',sans-serif;font-size:.54rem;color:var(--text);margin-top:.1rem">8:14am</div></div></div>
           <div style="display:flex;gap:.75rem;padding:.62rem 0;border-bottom:1px solid var(--border2);align-items:center"><div class="av av28" style="background:var(--sage2)">TO</div><div style="flex:1"><div style="font-size:.8rem;font-weight:700">Ms. Tunde Obaseki</div><div style="font-size:.64rem;color:var(--text)">Staff · Lead Caregiver · 🦁 Lion</div></div><div style="text-align:right"><span class="bdg bdg-g">In</span><div style="font-family:'Nunito',sans-serif;font-size:.54rem;color:var(--text);margin-top:.1rem">7:50am</div></div></div>
-          <div style="display:flex;gap:.75rem;padding:.62rem 0;border-bottom:1px solid var(--border2);align-items:center"><div class="av av28" style="background:var(--red2)">ZM</div><div style="flex:1"><div style="font-size:.8rem;font-weight:700">Zara Mohammed ⚠️</div><div style="font-size:.64rem;color:var(--text)">Child · QR failed — override used</div></div><div style="text-align:right"><span class="bdg bdg-a">Override</span><div style="font-family:'Nunito',sans-serif;font-size:.54rem;color:var(--text);margin-top:.1rem">8:02am</div></div></div>
+          <div style="display:flex;gap:.75rem;padding:.62rem 0;border-bottom:1px solid var(--border2);align-items:center"><div class="av av28" style="background:var(--red2)">ZM</div><div style="flex:1"><div style="font-size:.8rem;font-weight:700">Zara Mohammed <i data-lucide="alert-triangle" class="ic"></i></div><div style="font-size:.64rem;color:var(--text)">Child · QR failed — override used</div></div><div style="text-align:right"><span class="bdg bdg-a">Override</span><div style="font-family:'Nunito',sans-serif;font-size:.54rem;color:var(--text);margin-top:.1rem">8:02am</div></div></div>
           <div style="display:flex;gap:.75rem;padding:.62rem 0;align-items:center"><div class="av av28" style="background:var(--navy2)">KO</div><div style="flex:1"><div style="font-size:.8rem;font-weight:700">Kofi Osei</div><div style="font-size:.64rem;color:var(--text)">Child · 🦋 Butterfly</div></div><div style="text-align:right"><span class="bdg bdg-g">In</span><div style="font-family:'Nunito',sans-serif;font-size:.54rem;color:var(--text);margin-top:.1rem">8:22am</div></div></div>
         </div>
       </div>
@@ -2045,11 +2047,11 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
 
 <!-- ════════ AI COMMAND CENTER ════════ -->
 <div class="screen" id="sc-ai-center">
-  <div class="ph"><div class="ph-left"><h1>AI Command Center</h1><p>7 active insights · Auto-generated 7:00am by <span id="ai-cc-name">Ada</span></p></div><div class="ph-actions"><button class="btn sc" onclick="T('Exporting AI report as PDF…')">Export Report</button><button class="btn btn-ai" onclick="T('Refreshing AI analysis…')">✦ Refresh Now</button></div></div>
+  <div class="ph"><div class="ph-left"><h1>AI Command Center</h1><p>7 active insights · Auto-generated 7:00am by <span id="ai-cc-name">Ada</span></p></div><div class="ph-actions"><button class="btn sc" onclick="T('Exporting AI report as PDF…')">Export Report</button><button class="btn btn-ai" onclick="T('Refreshing AI analysis…')"><i data-lucide="sparkles" class="ic"></i> Refresh Now</button></div></div>
   <div class="g2" style="margin-bottom:1rem">
     <div class="ai-card">
       <div class="ai-badge">Health & Welfare Intelligence</div>
-      <div class="ai-insight-item" style="display:flex;gap:.75rem;padding:.85rem;background:var(--surface2);border-radius:10px;border:1px solid var(--border2);margin-bottom:.6rem;cursor:pointer;transition:all .2s" onmouseover="this.style.borderColor='rgba(30,45,74,.22)'" onmouseout="this.style.borderColor='var(--border2)'"><div style="width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:.35rem;background:var(--red2)"></div><div><div style="font-size:.79rem;color:var(--ink);line-height:1.5"><strong>Zara Mohammed</strong> <span style="color:var(--text)">— absent 3 consecutive days. Nut allergy on file. No parent response to calls. Urgent welfare check recommended.</span></div><div style="font-size:.6rem;color:var(--text);margin-top:.2rem;font-family:'Nunito',sans-serif">Confidence: 94% · attendance + health flag + comms gap</div><div style="font-size:.67rem;font-weight:800;color:var(--amber);cursor:pointer;margin-top:.25rem" onclick="T('Welfare check call initiated for Zara')">📞 Initiate Welfare Check →</div></div></div>
+      <div class="ai-insight-item" style="display:flex;gap:.75rem;padding:.85rem;background:var(--surface2);border-radius:10px;border:1px solid var(--border2);margin-bottom:.6rem;cursor:pointer;transition:all .2s" onmouseover="this.style.borderColor='rgba(30,45,74,.22)'" onmouseout="this.style.borderColor='var(--border2)'"><div style="width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:.35rem;background:var(--red2)"></div><div><div style="font-size:.79rem;color:var(--ink);line-height:1.5"><strong>Zara Mohammed</strong> <span style="color:var(--text)">— absent 3 consecutive days. Nut allergy on file. No parent response to calls. Urgent welfare check recommended.</span></div><div style="font-size:.6rem;color:var(--text);margin-top:.2rem;font-family:'Nunito',sans-serif">Confidence: 94% · attendance + health flag + comms gap</div><div style="font-size:.67rem;font-weight:800;color:var(--amber);cursor:pointer;margin-top:.25rem" onclick="T('Welfare check call initiated for Zara')"><i data-lucide="phone" class="ic"></i> Initiate Welfare Check →</div></div></div>
       <div class="ai-insight-item" style="display:flex;gap:.75rem;padding:.85rem;background:var(--surface2);border-radius:10px;border:1px solid var(--border2);margin-bottom:.6rem;cursor:pointer;transition:all .2s" onmouseover="this.style.borderColor='rgba(30,45,74,.22)'" onmouseout="this.style.borderColor='var(--border2)'"><div style="width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:.35rem;background:var(--amber)"></div><div><div style="font-size:.79rem;color:var(--ink);line-height:1.5"><strong>Kofi Osei</strong> <span style="color:var(--text)">— "tired/sad" mood logged 4 of last 5 days. Eating below average 3 days. May indicate change at home.</span></div><div style="font-size:.6rem;color:var(--text);margin-top:.2rem;font-family:'Nunito',sans-serif">Confidence: 78% · daily mood log trend analysis</div><div style="font-size:.67rem;font-weight:800;color:var(--amber);cursor:pointer;margin-top:.25rem" onclick="OM('mo-send-message')">✉️ Generate Parent Message →</div></div></div>
       <div class="ai-insight-item" style="display:flex;gap:.75rem;padding:.85rem;background:var(--surface2);border-radius:10px;border:1px solid var(--border2);cursor:pointer;transition:all .2s" onmouseover="this.style.borderColor='rgba(30,45,74,.22)'" onmouseout="this.style.borderColor='var(--border2)'"><div style="width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:.35rem;background:var(--navy)"></div><div><div style="font-size:.79rem;color:var(--ink);line-height:1.5"><strong>Butterfly Class</strong> <span style="color:var(--text)">at 100% capacity. 2 waitlisted families waiting 3+ weeks. Consider transitioning a 2yr-old to Dolphin.</span></div><div style="font-size:.6rem;color:var(--text);margin-top:.2rem;font-family:'Nunito',sans-serif">Confidence: 100% · capacity data</div><div style="font-size:.67rem;font-weight:800;color:var(--amber);cursor:pointer;margin-top:.25rem" onclick="T('Room rebalancing suggestions viewed')">👀 Review Waitlist →</div></div></div>
     </div>
@@ -2077,15 +2079,15 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
           <div style="display:flex;justify-content:space-between;font-size:.78rem"><span>Ms. Tunde</span><span class="bdg bdg-g">5/5</span></div>
           <div style="display:flex;justify-content:space-between;font-size:.78rem"><span>Ms. Amaka</span><span class="bdg bdg-g">5/5</span></div>
           <div style="display:flex;justify-content:space-between;font-size:.78rem"><span>Mr. Seun</span><span class="bdg bdg-a">4/5</span></div>
-          <div style="display:flex;justify-content:space-between;font-size:.78rem"><span>Mr. Emeka</span><span class="bdg bdg-r">2/5 ⚠️</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:.78rem"><span>Mr. Emeka</span><span class="bdg bdg-r">2/5 <i data-lucide="alert-triangle" class="ic"></i></span></div>
           <div style="display:flex;justify-content:space-between;font-size:.78rem"><span>Ms. Nkechi</span><span class="bdg bdg-g">5/5</span></div>
         </div>
       </div>
       <div style="background:var(--surface);border-radius:10px;padding:1rem;border:1px solid var(--border2)">
         <div style="font-size:.64rem;font-weight:800;color:var(--text);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.65rem">AI Recommendations</div>
         <div style="display:flex;flex-direction:column;gap:.5rem">
-          <div style="padding:.55rem;background:var(--red3);border-radius:7px;font-size:.73rem;line-height:1.45;color:var(--red)">⚠️ Ms. Tunde: 3 days below 70% compliance. Recommend 1-on-1 review this week.</div>
-          <div style="padding:.55rem;background:var(--amber4);border-radius:7px;font-size:.73rem;line-height:1.45;color:#7A4A10">📋 Mr. Seun: Reports submitted late (after 11am). Set 9am daily task reminder.</div>
+          <div style="padding:.55rem;background:var(--red3);border-radius:7px;font-size:.73rem;line-height:1.45;color:var(--red)"><i data-lucide="alert-triangle" class="ic"></i> Ms. Tunde: 3 days below 70% compliance. Recommend 1-on-1 review this week.</div>
+          <div style="padding:.55rem;background:var(--amber4);border-radius:7px;font-size:.73rem;line-height:1.45;color:#7A4A10"><i data-lucide="clipboard-list" class="ic"></i> Mr. Seun: Reports submitted late (after 11am). Set 9am daily task reminder.</div>
           <div style="padding:.55rem;background:var(--green3);border-radius:7px;font-size:.73rem;line-height:1.45;color:var(--green)">✓ Ms. Amaka: Top performer this week. Consider recognition.</div>
         </div>
       </div>
@@ -2173,8 +2175,8 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
     <div class="card-head"><div class="card-title">Locked Features — Available on Flourish</div></div>
     <div style="display:flex;flex-direction:column;gap:.65rem">
       <div class="locked-row"><div><div style="font-size:.82rem;font-weight:700;color:var(--navy)">🔮 Predictive Revenue Forecasting</div><div style="font-size:.64rem;color:var(--text)">AI forecasts your collection rate 30 days ahead with actionable recommendations</div></div><button class="abtn" onclick="S('subscription',null)">Upgrade →</button></div>
-      <div class="locked-row"><div><div style="font-size:.82rem;font-weight:700;color:var(--navy)">🏢 Multi-Branch Management</div><div style="font-size:.64rem;color:var(--text)">Manage all your crèche locations from a single unified dashboard</div></div><button class="abtn" onclick="S('subscription',null)">Upgrade →</button></div>
-      <div class="locked-row"><div><div style="font-size:.82rem;font-weight:700;color:var(--navy)">📈 AI Staff Intelligence</div><div style="font-size:.64rem;color:var(--text)">Deep per-caregiver performance analysis and improvement recommendations</div></div><button class="abtn" onclick="S('subscription',null)">Upgrade →</button></div>
+      <div class="locked-row"><div><div style="font-size:.82rem;font-weight:700;color:var(--navy)"><i data-lucide="building-2" class="ic"></i> Multi-Branch Management</div><div style="font-size:.64rem;color:var(--text)">Manage all your crèche locations from a single unified dashboard</div></div><button class="abtn" onclick="S('subscription',null)">Upgrade →</button></div>
+      <div class="locked-row"><div><div style="font-size:.82rem;font-weight:700;color:var(--navy)"><i data-lucide="trending-up" class="ic"></i> AI Staff Intelligence</div><div style="font-size:.64rem;color:var(--text)">Deep per-caregiver performance analysis and improvement recommendations</div></div><button class="abtn" onclick="S('subscription',null)">Upgrade →</button></div>
       <div class="locked-row"><div><div style="font-size:.82rem;font-weight:700;color:var(--navy)">🧬 AI Child Welfare Scoring</div><div style="font-size:.64rem;color:var(--text)">Real-time wellbeing scores for every child based on mood, attendance, health, and feeding</div></div><button class="abtn" onclick="S('subscription',null)">Upgrade →</button></div>
     </div>
   </div>
@@ -2182,7 +2184,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
 
 <!-- ════════ HELP & TRAINING ════════ -->
 <div class="screen" id="sc-help">
-  <div class="ph"><div class="ph-left"><h1>Help & Training</h1><p>Guides, walkthroughs, and answers built for your whole team</p></div><div class="ph-actions"><button class="btn btn-ai" onclick="T('AI Help assistant…')">✦ Ask AI</button></div></div>
+  <div class="ph"><div class="ph-left"><h1>Help & Training</h1><p>Guides, walkthroughs, and answers built for your whole team</p></div><div class="ph-actions"><button class="btn btn-ai" onclick="T('AI Help assistant…')"><i data-lucide="sparkles" class="ic"></i> Ask AI</button></div></div>
   <!-- SETUP PROGRESS -->
   <div class="card" style="margin-bottom:1rem">
     <div class="card-head"><div class="card-title">Setup Progress</div><div style="font-size:.72rem;color:var(--text)">4 of 8 steps complete</div></div>
@@ -2200,9 +2202,9 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
     <div class="card">
       <div class="card-head"><div class="card-title">Role-Based Guides</div></div>
       <div style="display:flex;flex-direction:column;gap:.6rem">
-        <div style="padding:.85rem;background:var(--bg);border-radius:10px;border:1px solid var(--border2);cursor:pointer;transition:all .2s" onclick="T('Opening Crèche Owner guide…')"><div style="font-size:.85rem;font-weight:700">🏢 For Crèche Owners</div><div style="font-size:.68rem;color:var(--text);margin-top:.18rem">Revenue tracking, analytics, staff oversight, AI reports, strategic use</div></div>
-        <div style="padding:.85rem;background:var(--bg);border-radius:10px;border:1px solid var(--border2);cursor:pointer;transition:all .2s" onclick="T('Opening Branch Manager guide…')"><div style="font-size:.85rem;font-weight:700">📋 For Branch Managers</div><div style="font-size:.68rem;color:var(--text);margin-top:.18rem">Daily operations, attendance, tasks, billing follow-up, staff management</div></div>
-        <div style="padding:.85rem;background:var(--bg);border-radius:10px;border:1px solid var(--border2);cursor:pointer;transition:all .2s" onclick="T('Opening Receptionist guide…')"><div style="font-size:.85rem;font-weight:700">📲 For Receptionists</div><div style="font-size:.68rem;color:var(--text);margin-top:.18rem">QR station setup, check-in flows, exceptions handling, pickup management</div></div>
+        <div style="padding:.85rem;background:var(--bg);border-radius:10px;border:1px solid var(--border2);cursor:pointer;transition:all .2s" onclick="T('Opening Crèche Owner guide…')"><div style="font-size:.85rem;font-weight:700"><i data-lucide="building-2" class="ic"></i> For Crèche Owners</div><div style="font-size:.68rem;color:var(--text);margin-top:.18rem">Revenue tracking, analytics, staff oversight, AI reports, strategic use</div></div>
+        <div style="padding:.85rem;background:var(--bg);border-radius:10px;border:1px solid var(--border2);cursor:pointer;transition:all .2s" onclick="T('Opening Branch Manager guide…')"><div style="font-size:.85rem;font-weight:700"><i data-lucide="clipboard-list" class="ic"></i> For Branch Managers</div><div style="font-size:.68rem;color:var(--text);margin-top:.18rem">Daily operations, attendance, tasks, billing follow-up, staff management</div></div>
+        <div style="padding:.85rem;background:var(--bg);border-radius:10px;border:1px solid var(--border2);cursor:pointer;transition:all .2s" onclick="T('Opening Receptionist guide…')"><div style="font-size:.85rem;font-weight:700"><i data-lucide="qr-code" class="ic"></i> For Receptionists</div><div style="font-size:.68rem;color:var(--text);margin-top:.18rem">QR station setup, check-in flows, exceptions handling, pickup management</div></div>
         <div style="padding:.85rem;background:var(--bg);border-radius:10px;border:1px solid var(--border2);cursor:pointer;transition:all .2s" onclick="T('Opening Caregiver guide…')"><div style="font-size:.85rem;font-weight:700">🧑‍🍼 For Caregivers</div><div style="font-size:.68rem;color:var(--text);margin-top:.18rem">Daily logs, incidents, medication tracking, assigned children management</div></div>
         <div style="padding:.85rem;background:var(--bg);border-radius:10px;border:1px solid var(--border2);cursor:pointer;transition:all .2s" onclick="T('Opening Finance guide…')"><div style="font-size:.85rem;font-weight:700">₦ For Finance Staff</div><div style="font-size:.68rem;color:var(--text);margin-top:.18rem">Invoice creation, payment tracking, balances, overdue reminders</div></div>
       </div>
@@ -2210,14 +2212,14 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
     <div class="card">
       <div class="card-head"><div class="card-title">Help Articles</div></div>
       <div style="display:flex;flex-direction:column">
-        <div style="font-size:.8rem;padding:.65rem 0;border-bottom:1px solid var(--border2);cursor:pointer;color:var(--navy);font-weight:700" onclick="T('Article: How QR attendance works')">📲 How does QR attendance work?</div>
+        <div style="font-size:.8rem;padding:.65rem 0;border-bottom:1px solid var(--border2);cursor:pointer;color:var(--navy);font-weight:700" onclick="T('Article: How QR attendance works')"><i data-lucide="qr-code" class="ic"></i> How does QR attendance work?</div>
         <div style="font-size:.8rem;padding:.65rem 0;border-bottom:1px solid var(--border2);cursor:pointer;color:var(--navy);font-weight:700" onclick="T('Article: Creating and sending invoices')">₦ How to create and send invoices</div>
-        <div style="font-size:.8rem;padding:.65rem 0;border-bottom:1px solid var(--border2);cursor:pointer;color:var(--navy);font-weight:700" onclick="T('Article: Setting up rooms')">🏫 Setting up rooms and classes</div>
-        <div style="font-size:.8rem;padding:.65rem 0;border-bottom:1px solid var(--border2);cursor:pointer;color:var(--navy);font-weight:700" onclick="T('Article: How to log daily reports')">📋 How to log a daily child report</div>
-        <div style="font-size:.8rem;padding:.65rem 0;border-bottom:1px solid var(--border2);cursor:pointer;color:var(--navy);font-weight:700" onclick="T('Article: Raising incidents')">⚠️ How to raise and resolve an incident</div>
-        <div style="font-size:.8rem;padding:.65rem 0;border-bottom:1px solid var(--border2);cursor:pointer;color:var(--navy);font-weight:700" onclick="T('Article: AI personalisation')">🤖 Personalising your AI assistant</div>
-        <div style="font-size:.8rem;padding:.65rem 0;border-bottom:1px solid var(--border2);cursor:pointer;color:var(--navy);font-weight:700" onclick="T('Article: Understanding plans')">💎 Understanding plan limits & upgrades</div>
-        <div style="font-size:.8rem;padding:.65rem 0;cursor:pointer;color:var(--navy);font-weight:700" onclick="T('Article: QR exceptions')">🔧 Handling QR exceptions and overrides</div>
+        <div style="font-size:.8rem;padding:.65rem 0;border-bottom:1px solid var(--border2);cursor:pointer;color:var(--navy);font-weight:700" onclick="T('Article: Setting up rooms')"><i data-lucide="school" class="ic"></i> Setting up rooms and classes</div>
+        <div style="font-size:.8rem;padding:.65rem 0;border-bottom:1px solid var(--border2);cursor:pointer;color:var(--navy);font-weight:700" onclick="T('Article: How to log daily reports')"><i data-lucide="clipboard-list" class="ic"></i> How to log a daily child report</div>
+        <div style="font-size:.8rem;padding:.65rem 0;border-bottom:1px solid var(--border2);cursor:pointer;color:var(--navy);font-weight:700" onclick="T('Article: Raising incidents')"><i data-lucide="alert-triangle" class="ic"></i> How to raise and resolve an incident</div>
+        <div style="font-size:.8rem;padding:.65rem 0;border-bottom:1px solid var(--border2);cursor:pointer;color:var(--navy);font-weight:700" onclick="T('Article: AI personalisation')"><i data-lucide="bot" class="ic"></i> Personalising your AI assistant</div>
+        <div style="font-size:.8rem;padding:.65rem 0;border-bottom:1px solid var(--border2);cursor:pointer;color:var(--navy);font-weight:700" onclick="T('Article: Understanding plans')"><i data-lucide="gem" class="ic"></i> Understanding plan limits & upgrades</div>
+        <div style="font-size:.8rem;padding:.65rem 0;cursor:pointer;color:var(--navy);font-weight:700" onclick="T('Article: QR exceptions')"><i data-lucide="wrench" class="ic"></i> Handling QR exceptions and overrides</div>
       </div>
     </div>
   </div>
@@ -2226,8 +2228,8 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
 
 <!-- ════════ ENROLMENT & WAITLIST ════════ -->
 <div class="screen" id="sc-enrolment">
-  <div class="ph"><div class="ph-left"><h1>Enrolment & Waitlist</h1><p>6 active enquiries · 3 waitlisted · 2 trial sessions scheduled</p></div><div class="ph-actions"><button class="btn sc" onclick="T('Exporting enrolment report…')">Export</button><button class="btn ai-btn" onclick="T('AI: Analysing conversion pipeline…')">✦ AI Insights</button><button class="btn pr" onclick="T('New enquiry modal…')">+ New Enquiry</button></div></div>
-  <div class="al al-ai"><div class="al-icon">🤖</div>AI predicts <strong>2 of 3 waitlisted families are likely to convert</strong> this term. Butterfly Class has 2 spots opening when current children age up in June.</div>
+  <div class="ph"><div class="ph-left"><h1>Enrolment & Waitlist</h1><p>6 active enquiries · 3 waitlisted · 2 trial sessions scheduled</p></div><div class="ph-actions"><button class="btn sc" onclick="T('Exporting enrolment report…')">Export</button><button class="btn ai-btn" onclick="T('AI: Analysing conversion pipeline…')"><i data-lucide="sparkles" class="ic"></i> AI Insights</button><button class="btn pr" onclick="T('New enquiry modal…')">+ New Enquiry</button></div></div>
+  <div class="al al-ai"><div class="al-icon"><i data-lucide="bot" class="ic"></i></div>AI predicts <strong>2 of 3 waitlisted families are likely to convert</strong> this term. Butterfly Class has 2 spots opening when current children age up in June.</div>
   <div class="sg sg4" style="margin-bottom:1rem">
     <div class="scard sc-n"><div class="sc-lbl">Active Enquiries</div><div class="sc-val">6</div><div class="sc-sub">This month</div></div>
     <div class="scard sc-a"><div class="sc-lbl">Waitlisted</div><div class="sc-val">3</div><div class="sc-sub">Butterfly (2) · Lion (1)</div></div>
@@ -2306,8 +2308,8 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
 
 <!-- ════════ CHILD DEVELOPMENT ════════ -->
 <div class="screen" id="sc-development">
-  <div class="ph"><div class="ph-left"><h1>Child Development</h1><p>42 children · Milestones · Observations · Growth · Learning progress</p></div><div class="ph-actions"><button class="btn sc" onclick="T('Exporting development reports…')">Export Reports</button><button class="btn ai-btn" onclick="T('AI generating developmental summaries…')">✦ AI Summaries</button><button class="btn pr" onclick="T('New observation modal…')">+ Observation</button></div></div>
-  <div class="al al-n"><div class="al-icon">🤖</div>AI has generated <strong>Q1 2025 developmental progress summaries</strong> for all 42 children. 3 children flagged for SEND review based on milestone patterns.</div>
+  <div class="ph"><div class="ph-left"><h1>Child Development</h1><p>42 children · Milestones · Observations · Growth · Learning progress</p></div><div class="ph-actions"><button class="btn sc" onclick="T('Exporting development reports…')">Export Reports</button><button class="btn ai-btn" onclick="T('AI generating developmental summaries…')"><i data-lucide="sparkles" class="ic"></i> AI Summaries</button><button class="btn pr" onclick="T('New observation modal…')">+ Observation</button></div></div>
+  <div class="al al-n"><div class="al-icon"><i data-lucide="bot" class="ic"></i></div>AI has generated <strong>Q1 2025 developmental progress summaries</strong> for all 42 children. 3 children flagged for SEND review based on milestone patterns.</div>
   <div class="sg sg4" style="margin-bottom:1rem">
     <div class="scard sc-g"><div class="sc-lbl">On Track</div><div class="sc-val">36</div><div class="sc-sub">85% of children</div></div>
     <div class="scard sc-a"><div class="sc-lbl">Monitoring</div><div class="sc-val">3</div><div class="sc-sub">Slight delay flagged</div></div>
@@ -2326,8 +2328,8 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
         <thead><tr><th>Child</th><th>Age</th><th>Room</th><th>Motor Skills</th><th>Language</th><th>Social</th><th>Cognitive</th><th>Last Assessed</th><th>AI Flag</th></tr></thead>
         <tbody>
           <tr onclick="T('Opening Amara Johnson development profile')"><td><div style="display:flex;align-items:center;gap:.5rem"><div class="av av28" style="background:var(--amber)">AJ</div><div class="td-main">Amara Johnson</div></div></td><td>3y 1m</td><td>🦁 Lion</td><td><span class="bdg bdg-g">On Track</span></td><td><span class="bdg bdg-g">On Track</span></td><td><span class="bdg bdg-g">On Track</span></td><td><span class="bdg bdg-g">On Track</span></td><td>Apr 5</td><td>—</td></tr>
-          <tr onclick="T('Opening Kofi Osei development profile')"><td><div style="display:flex;align-items:center;gap:.5rem"><div class="av av28" style="background:var(--green2)">KO</div><div class="td-main">Kofi Osei</div></div></td><td>1y 8m</td><td>🦋 Butterfly</td><td><span class="bdg bdg-g">On Track</span></td><td><span class="bdg bdg-a">Monitoring</span></td><td><span class="bdg bdg-g">On Track</span></td><td><span class="bdg bdg-a">Monitoring</span></td><td>Mar 28</td><td><span class="bdg bdg-a">Language ⚠️</span></td></tr>
-          <tr onclick="T('Opening Zara Mohammed development profile')"><td><div style="display:flex;align-items:center;gap:.5rem"><div class="av av28" style="background:var(--navy2)">ZM</div><div class="td-main">Zara Mohammed</div></div></td><td>3y 4m</td><td>🦁 Lion</td><td><span class="bdg bdg-g">On Track</span></td><td><span class="bdg bdg-g">On Track</span></td><td><span class="bdg bdg-r">SEND Review</span></td><td><span class="bdg bdg-g">On Track</span></td><td>Apr 1</td><td><span class="bdg bdg-r">SEND ⚠️</span></td></tr>
+          <tr onclick="T('Opening Kofi Osei development profile')"><td><div style="display:flex;align-items:center;gap:.5rem"><div class="av av28" style="background:var(--green2)">KO</div><div class="td-main">Kofi Osei</div></div></td><td>1y 8m</td><td>🦋 Butterfly</td><td><span class="bdg bdg-g">On Track</span></td><td><span class="bdg bdg-a">Monitoring</span></td><td><span class="bdg bdg-g">On Track</span></td><td><span class="bdg bdg-a">Monitoring</span></td><td>Mar 28</td><td><span class="bdg bdg-a">Language <i data-lucide="alert-triangle" class="ic"></i></span></td></tr>
+          <tr onclick="T('Opening Zara Mohammed development profile')"><td><div style="display:flex;align-items:center;gap:.5rem"><div class="av av28" style="background:var(--navy2)">ZM</div><div class="td-main">Zara Mohammed</div></div></td><td>3y 4m</td><td>🦁 Lion</td><td><span class="bdg bdg-g">On Track</span></td><td><span class="bdg bdg-g">On Track</span></td><td><span class="bdg bdg-r">SEND Review</span></td><td><span class="bdg bdg-g">On Track</span></td><td>Apr 1</td><td><span class="bdg bdg-r">SEND <i data-lucide="alert-triangle" class="ic"></i></span></td></tr>
         </tbody>
       </table></div>
     </div>
@@ -2353,7 +2355,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
     </div>
   </div>
   <div id="dv-send" style="display:none">
-    <div class="al al-r" style="margin-bottom:1rem"><div class="al-icon">🛡️</div><strong>SEND Register — Confidential.</strong> Access restricted to Manager and Owner roles. All entries are immutable and audit-logged.</div>
+    <div class="al al-r" style="margin-bottom:1rem"><div class="al-icon"><i data-lucide="shield-alert" class="ic"></i></div><strong>SEND Register — Confidential.</strong> Access restricted to Manager and Owner roles. All entries are immutable and audit-logged.</div>
     <div class="card"><div class="card-head"><div class="card-title">Special Educational Needs & Disabilities Register</div><button class="btn pr" style="font-size:.72rem;padding:.32rem .9rem" onclick="T('Add SEND record modal…')">+ Add Record</button></div>
       <div class="tw"><table>
         <thead><tr><th>Child</th><th>Area of Need</th><th>Support Plan</th><th>Key Worker</th><th>External Agency</th><th>Review Date</th><th>Status</th></tr></thead>
@@ -2367,8 +2369,8 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
 
 <!-- ════════ PAYROLL ════════ -->
 <div class="screen" id="sc-payroll">
-  <div class="ph"><div class="ph-left"><h1>Payroll Management</h1><p>May 2025 · 11 staff · Run due May 28 · ₦2.48M total payroll</p></div><div class="ph-actions"><button class="btn sc" onclick="T('Exporting payroll report…')">Export</button><button class="btn ai-btn" onclick="T('AI reviewing payroll anomalies…')">✦ Review with AI</button><button class="btn pr" onclick="T('Running payroll…')">Run Payroll</button></div></div>
-  <div class="al al-n"><div class="al-icon">🤖</div>AI flagged: <strong>Mr. Seun Adeyemi</strong> has 3 absent days this month — deduction of ₦12,000 auto-calculated. <strong>Ms. Amaka Obiora</strong> is eligible for performance bonus (96% compliance). Review before running.</div>
+  <div class="ph"><div class="ph-left"><h1>Payroll Management</h1><p>May 2025 · 11 staff · Run due May 28 · ₦2.48M total payroll</p></div><div class="ph-actions"><button class="btn sc" onclick="T('Exporting payroll report…')">Export</button><button class="btn ai-btn" onclick="T('AI reviewing payroll anomalies…')"><i data-lucide="sparkles" class="ic"></i> Review with AI</button><button class="btn pr" onclick="T('Running payroll…')">Run Payroll</button></div></div>
+  <div class="al al-n"><div class="al-icon"><i data-lucide="bot" class="ic"></i></div>AI flagged: <strong>Mr. Seun Adeyemi</strong> has 3 absent days this month — deduction of ₦12,000 auto-calculated. <strong>Ms. Amaka Obiora</strong> is eligible for performance bonus (96% compliance). Review before running.</div>
   <div class="sg sg4" style="margin-bottom:1rem">
     <div class="scard sc-n"><div class="sc-lbl">Total Gross Payroll</div><div class="sc-val">₦2.48M</div><div class="sc-sub">11 staff this month</div></div>
     <div class="scard sc-r"><div class="sc-lbl">Deductions</div><div class="sc-val">₦186K</div><div class="sc-sub">Tax · Pension · Absences</div></div>
@@ -2387,7 +2389,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
         <tbody>
           <tr onclick="T('Reviewing Ms. Tunde Obaseki payslip')"><td><div style="display:flex;align-items:center;gap:.5rem"><div class="av av28" style="background:var(--amber)">TO</div><div class="td-main">Ms. Tunde Obaseki</div></div></td><td>Lead Caregiver</td><td class="td-mono">₦180,000</td><td class="td-mono" style="color:var(--green2)">₦0</td><td class="td-mono" style="color:var(--red2)">₦0</td><td class="td-mono">₦16,200</td><td class="td-mono">₦14,400</td><td class="td-mono">₦0</td><td class="td-mono" style="font-weight:800;color:var(--navy)">₦149,400</td><td><span class="bdg bdg-a">Pending</span></td></tr>
           <tr onclick="T('Reviewing Ms. Amaka Obiora payslip')"><td><div style="display:flex;align-items:center;gap:.5rem"><div class="av av28" style="background:var(--green2)">AO</div><div class="td-main">Ms. Amaka Obiora</div></div></td><td>Caregiver</td><td class="td-mono">₦150,000</td><td class="td-mono" style="color:var(--green2)">₦15,000</td><td class="td-mono" style="color:var(--red2)">₦0</td><td class="td-mono">₦13,500</td><td class="td-mono">₦12,000</td><td class="td-mono">₦0</td><td class="td-mono" style="font-weight:800;color:var(--navy)">₦139,500</td><td><span class="bdg bdg-a">Pending</span></td></tr>
-          <tr onclick="T('Reviewing Mr. Seun Adeyemi payslip — has deductions')"><td><div style="display:flex;align-items:center;gap:.5rem"><div class="av av28" style="background:var(--navy2)">SA</div><div class="td-main">Mr. Seun Adeyemi</div></div></td><td>Caregiver</td><td class="td-mono">₦150,000</td><td class="td-mono" style="color:var(--green2)">₦0</td><td class="td-mono" style="color:var(--red2)">₦12,000</td><td class="td-mono">₦12,600</td><td class="td-mono">₦11,520</td><td class="td-mono" style="color:var(--red2)">3 days</td><td class="td-mono" style="font-weight:800;color:var(--navy)">₦113,880</td><td><span class="bdg bdg-r">Review ⚠️</span></td></tr>
+          <tr onclick="T('Reviewing Mr. Seun Adeyemi payslip — has deductions')"><td><div style="display:flex;align-items:center;gap:.5rem"><div class="av av28" style="background:var(--navy2)">SA</div><div class="td-main">Mr. Seun Adeyemi</div></div></td><td>Caregiver</td><td class="td-mono">₦150,000</td><td class="td-mono" style="color:var(--green2)">₦0</td><td class="td-mono" style="color:var(--red2)">₦12,000</td><td class="td-mono">₦12,600</td><td class="td-mono">₦11,520</td><td class="td-mono" style="color:var(--red2)">3 days</td><td class="td-mono" style="font-weight:800;color:var(--navy)">₦113,880</td><td><span class="bdg bdg-r">Review <i data-lucide="alert-triangle" class="ic"></i></span></td></tr>
           <tr onclick="T('Reviewing Ms. Nkechi Eze payslip')"><td><div style="display:flex;align-items:center;gap:.5rem"><div class="av av28" style="background:var(--sage2)">NK</div><div class="td-main">Ms. Nkechi Eze</div></div></td><td>Caregiver</td><td class="td-mono">₦150,000</td><td class="td-mono" style="color:var(--green2)">₦0</td><td class="td-mono" style="color:var(--red2)">₦0</td><td class="td-mono">₦13,500</td><td class="td-mono">₦12,000</td><td class="td-mono">₦0</td><td class="td-mono" style="font-weight:800;color:var(--navy)">₦124,500</td><td><span class="bdg bdg-a">Pending</span></td></tr>
           <tr onclick="T('Reviewing Ms. Bisi Afolabi payslip')"><td><div style="display:flex;align-items:center;gap:.5rem"><div class="av av28" style="background:var(--sage)">BA</div><div class="td-main">Ms. Bisi Afolabi</div></div></td><td>Admin</td><td class="td-mono">₦120,000</td><td class="td-mono" style="color:var(--green2)">₦0</td><td class="td-mono" style="color:var(--red2)">₦0</td><td class="td-mono">₦10,800</td><td class="td-mono">₦9,600</td><td class="td-mono">₦0</td><td class="td-mono" style="font-weight:800;color:var(--navy)">₦99,600</td><td><span class="bdg bdg-a">Pending</span></td></tr>
         </tbody>
@@ -2426,7 +2428,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
 <!-- ════════ LEAVE MANAGEMENT ════════ -->
 <div class="screen" id="sc-leave">
   <div class="ph"><div class="ph-left"><h1>Leave Management</h1><p>2 pending requests · 1 staff currently on leave · Annual leave year: Jan – Dec</p></div><div class="ph-actions"><button class="btn sc" onclick="T('Exporting leave report…')">Export</button><button class="btn pr" onclick="T('New leave request modal…')">+ Leave Request</button></div></div>
-  <div class="al al-a"><div class="al-icon">⚠️</div><strong>Ms. Nkechi Eze</strong> has requested 5 days leave from May 5–9. <strong>Sunflower class will need cover.</strong> Only 1 other caregiver is qualified for this age group. Please arrange cover before approving.</div>
+  <div class="al al-a"><div class="al-icon"><i data-lucide="alert-triangle" class="ic"></i></div><strong>Ms. Nkechi Eze</strong> has requested 5 days leave from May 5–9. <strong>Sunflower class will need cover.</strong> Only 1 other caregiver is qualified for this age group. Please arrange cover before approving.</div>
   <div class="sg sg4" style="margin-bottom:1rem">
     <div class="scard sc-a"><div class="sc-lbl">Pending Requests</div><div class="sc-val">2</div></div>
     <div class="scard sc-r"><div class="sc-lbl">Currently On Leave</div><div class="sc-val">1</div></div>
@@ -2465,7 +2467,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
   </div>
   <div id="lv-calendar" style="display:none">
     <div class="card"><div class="card-head"><div class="card-title">Leave Calendar — May 2025</div></div>
-      <div style="text-align:center;padding:2rem;color:var(--text);font-size:.85rem">📅 Interactive leave calendar view — shows all approved and pending leave per staff member overlaid on the weekly schedule. Coming in next sprint.</div>
+      <div style="text-align:center;padding:2rem;color:var(--text);font-size:.85rem"><i data-lucide="calendar" class="ic"></i> Interactive leave calendar view — shows all approved and pending leave per staff member overlaid on the weekly schedule. Coming in next sprint.</div>
     </div>
   </div>
 </div>
@@ -2473,7 +2475,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
 <!-- ════════ COMPLIANCE & SAFETY ════════ -->
 <div class="screen" id="sc-compliance">
   <div class="ph"><div class="ph-left"><h1>Compliance & Safety</h1><p>Safeguarding · Risk assessments · Fire drills · Food hygiene · DBS records</p></div><div class="ph-actions"><button class="btn sc" onclick="T('Exporting compliance pack…')">Export Pack</button><button class="btn pr" onclick="T('New record modal…')">+ Record</button></div></div>
-  <div class="al al-r"><div class="al-icon">⚠️</div><strong>2 compliance actions overdue:</strong> Mr. Emeka Ozo's DBS check expired March 31. Fire drill is 8 weeks overdue (last drill: February 14). Both require immediate action.</div>
+  <div class="al al-r"><div class="al-icon"><i data-lucide="alert-triangle" class="ic"></i></div><strong>2 compliance actions overdue:</strong> Mr. Emeka Ozo's DBS check expired March 31. Fire drill is 8 weeks overdue (last drill: February 14). Both require immediate action.</div>
   <div class="sg sg4" style="margin-bottom:1rem">
     <div class="scard sc-g"><div class="sc-lbl">Compliant Items</div><div class="sc-val">24</div><div class="sc-sub">Up to date</div></div>
     <div class="scard sc-r"><div class="sc-lbl">Overdue</div><div class="sc-val">2</div><div class="sc-sub">Immediate action</div></div>
@@ -2494,7 +2496,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
         <tbody>
           <tr><td><div class="td-main">Ms. Tunde Obaseki</div></td><td>Lead Caregiver</td><td>Enhanced DBS</td><td>May 2023</td><td>May 2026</td><td class="td-mono">DBS-****-7821</td><td><span class="bdg bdg-g">Valid</span></td><td><button class="abtn" onclick="T('Viewing DBS certificate…')">View</button></td></tr>
           <tr><td><div class="td-main">Ms. Amaka Obiora</div></td><td>Caregiver</td><td>Enhanced DBS</td><td>Jun 2022</td><td>Jun 2025</td><td class="td-mono">DBS-****-4432</td><td><span class="bdg bdg-a">Renew Soon</span></td><td><button class="abtn" onclick="T('Initiating DBS renewal for Ms. Amaka')">Renew</button></td></tr>
-          <tr><td><div class="td-main">Mr. Emeka Ozo</div></td><td>Caregiver</td><td>Enhanced DBS</td><td>Mar 2022</td><td>Mar 2025</td><td class="td-mono">DBS-****-9913</td><td><span class="bdg bdg-r">EXPIRED ⚠️</span></td><td><button class="abtn r" onclick="T('⚠️ Urgent: DBS renewal initiated for Mr. Emeka')">Renew Now</button></td></tr>
+          <tr><td><div class="td-main">Mr. Emeka Ozo</div></td><td>Caregiver</td><td>Enhanced DBS</td><td>Mar 2022</td><td>Mar 2025</td><td class="td-mono">DBS-****-9913</td><td><span class="bdg bdg-r">EXPIRED <i data-lucide="alert-triangle" class="ic"></i></span></td><td><button class="abtn r" onclick="T('⚠️ Urgent: DBS renewal initiated for Mr. Emeka')">Renew Now</button></td></tr>
           <tr><td><div class="td-main">Ms. Nkechi Eze</div></td><td>Caregiver</td><td>Enhanced DBS</td><td>Jan 2024</td><td>Jan 2027</td><td class="td-mono">DBS-****-2245</td><td><span class="bdg bdg-g">Valid</span></td><td><button class="abtn" onclick="T('Viewing DBS certificate…')">View</button></td></tr>
           <tr><td><div class="td-main">Ms. Bisi Afolabi</div></td><td>Admin</td><td>Standard DBS</td><td>Apr 2023</td><td>Apr 2026</td><td class="td-mono">DBS-****-6618</td><td><span class="bdg bdg-g">Valid</span></td><td><button class="abtn" onclick="T('Viewing DBS certificate…')">View</button></td></tr>
         </tbody>
@@ -2510,7 +2512,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
           <tr><td>Nov 12, 2024</td><td>9:30am</td><td>3 min 05s</td><td><span class="bdg bdg-g">Yes ✓</span></td><td>Back gate slow to open</td><td>Gate mechanism serviced Nov 15</td><td>Ms. Bisi</td></tr>
         </tbody>
       </table></div>
-      <div class="al al-r" style="margin-top:.75rem"><div class="al-icon">⚠️</div>Next drill was due <strong>April 14, 2025</strong> (every 8 weeks). <strong>8 weeks overdue.</strong> Schedule immediately.</div>
+      <div class="al al-r" style="margin-top:.75rem"><div class="al-icon"><i data-lucide="alert-triangle" class="ic"></i></div>Next drill was due <strong>April 14, 2025</strong> (every 8 weeks). <strong>8 weeks overdue.</strong> Schedule immediately.</div>
     </div>
   </div>
   <div id="cp-food" style="display:none">
@@ -2520,7 +2522,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
         <tbody>
           <tr><td>May 1</td><td>Breakfast</td><td>4.2°C</td><td>-18.1°C</td><td>72°C</td><td>FRESH-042</td><td><span class="bdg bdg-g">Pass</span></td><td>Ms. Nkechi</td></tr>
           <tr><td>May 1</td><td>Lunch</td><td>4.0°C</td><td>-18.0°C</td><td>74°C</td><td>FRESH-043</td><td><span class="bdg bdg-g">Pass</span></td><td>Ms. Tunde</td></tr>
-          <tr><td>Apr 30</td><td>Snack</td><td>4.8°C</td><td>-17.5°C</td><td>68°C</td><td>FRESH-041</td><td><span class="bdg bdg-a">Low Temp ⚠️</span></td><td>Ms. Amaka</td></tr>
+          <tr><td>Apr 30</td><td>Snack</td><td>4.8°C</td><td>-17.5°C</td><td>68°C</td><td>FRESH-041</td><td><span class="bdg bdg-a">Low Temp <i data-lucide="alert-triangle" class="ic"></i></span></td><td>Ms. Amaka</td></tr>
         </tbody>
       </table></div>
     </div>
@@ -2538,7 +2540,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
     </div>
   </div>
   <div id="cp-safeguarding" style="display:none">
-    <div class="al al-r" style="margin-bottom:1rem"><div class="al-icon">🛡️</div><strong>Safeguarding records are confidential.</strong> Access restricted to Designated Safeguarding Lead (DSL) and Owner only. All entries are immutable and audit-logged.</div>
+    <div class="al al-r" style="margin-bottom:1rem"><div class="al-icon"><i data-lucide="shield-alert" class="ic"></i></div><strong>Safeguarding records are confidential.</strong> Access restricted to Designated Safeguarding Lead (DSL) and Owner only. All entries are immutable and audit-logged.</div>
     <div class="card"><div class="card-head"><div class="card-title">Child Protection Concern Log</div><button class="btn pr" style="font-size:.72rem;padding:.32rem .9rem" onclick="T('Log concern modal (DSL access required)…')">+ Log Concern</button></div>
       <div class="tw"><table>
         <thead><tr><th>Ref</th><th>Date Logged</th><th>Child</th><th>Nature of Concern</th><th>Reported By</th><th>DSL Action</th><th>Referred to Agency</th><th>Status</th></tr></thead>
@@ -2552,8 +2554,8 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
 
 <!-- ════════ INVENTORY & SUPPLIES ════════ -->
 <div class="screen" id="sc-inventory">
-  <div class="ph"><div class="ph-left"><h1>Inventory & Supplies</h1><p>4 items low stock · Monthly spend ₦180K · Last restocked Apr 8</p></div><div class="ph-actions"><button class="btn sc" onclick="T('Exporting inventory report…')">Export</button><button class="btn ai-btn" onclick="T('AI generating reorder suggestions…')">✦ AI Reorder</button><button class="btn pr" onclick="T('Add inventory item modal…')">+ Add Item</button></div></div>
-  <div class="al al-a"><div class="al-icon">📦</div><strong>4 items are below minimum stock level:</strong> Disposable nappies (Size 3), Baby wipes, Antiseptic wipes, Art paper A3. AI recommends placing a combined order to save on delivery costs.</div>
+  <div class="ph"><div class="ph-left"><h1>Inventory & Supplies</h1><p>4 items low stock · Monthly spend ₦180K · Last restocked Apr 8</p></div><div class="ph-actions"><button class="btn sc" onclick="T('Exporting inventory report…')">Export</button><button class="btn ai-btn" onclick="T('AI generating reorder suggestions…')"><i data-lucide="sparkles" class="ic"></i> AI Reorder</button><button class="btn pr" onclick="T('Add inventory item modal…')">+ Add Item</button></div></div>
+  <div class="al al-a"><div class="al-icon"><i data-lucide="package" class="ic"></i></div><strong>4 items are below minimum stock level:</strong> Disposable nappies (Size 3), Baby wipes, Antiseptic wipes, Art paper A3. AI recommends placing a combined order to save on delivery costs.</div>
   <div class="sg sg4" style="margin-bottom:1rem">
     <div class="scard sc-r"><div class="sc-lbl">Low Stock Alerts</div><div class="sc-val">4</div></div>
     <div class="scard sc-g"><div class="sc-lbl">Total Items Tracked</div><div class="sc-val">47</div></div>
@@ -2609,7 +2611,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
 <!-- ════════ FACILITIES ════════ -->
 <div class="screen" id="sc-facilities">
   <div class="ph"><div class="ph-left"><h1>Facilities</h1><p>1 open maintenance request · Cleaning schedule active · Last inspection Apr 2025</p></div><div class="ph-actions"><button class="btn pr" onclick="T('New maintenance request modal…')">+ Maintenance Request</button></div></div>
-  <div class="al al-r"><div class="al-icon">🔧</div><strong>Changing table in Sunflower room has a broken strap</strong> — reported Apr 9. Not yet repaired. Sunflower room caregiver is using the backup table. This must be repaired before next LASG inspection.</div>
+  <div class="al al-r"><div class="al-icon"><i data-lucide="wrench" class="ic"></i></div><strong>Changing table in Sunflower room has a broken strap</strong> — reported Apr 9. Not yet repaired. Sunflower room caregiver is using the backup table. This must be repaired before next LASG inspection.</div>
   <div class="sg sg4" style="margin-bottom:1rem">
     <div class="scard sc-r"><div class="sc-lbl">Open Requests</div><div class="sc-val">1</div></div>
     <div class="scard sc-g"><div class="sc-lbl">Resolved This Month</div><div class="sc-val">3</div></div>
@@ -2687,7 +2689,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
 
 <!-- ════════ FINANCIAL REPORTS ════════ -->
 <div class="screen" id="sc-financial-reports">
-  <div class="ph"><div class="ph-left"><h1>Financial Reports</h1><p>P&L · Revenue breakdown · Payroll cost ratio · Budget vs actual</p></div><div class="ph-actions"><button class="btn sc" onclick="T('Exporting P&L PDF…')">Export P&L</button><button class="btn ai-btn" onclick="T('AI generating financial narrative…')">✦ AI Summary</button></div></div>
+  <div class="ph"><div class="ph-left"><h1>Financial Reports</h1><p>P&L · Revenue breakdown · Payroll cost ratio · Budget vs actual</p></div><div class="ph-actions"><button class="btn sc" onclick="T('Exporting P&L PDF…')">Export P&L</button><button class="btn ai-btn" onclick="T('AI generating financial narrative…')"><i data-lucide="sparkles" class="ic"></i> AI Summary</button></div></div>
   <div class="tabs" id="fin-tabs">
     <div class="tab active" onclick="AT(this,'fn-pl')">P&L Summary</div>
     <div class="tab" onclick="AT(this,'fn-revenue')">Revenue Breakdown</div>
@@ -2792,7 +2794,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
 
 <!-- ════════ REPORTS ════════ -->
 <div class="screen" id="sc-reports">
-  <div class="ph"><div class="ph-left"><h1>Reports</h1><p>Generate, schedule, and export branch reports across all modules</p></div><div class="ph-actions"><button class="btn ai-btn" onclick="T('AI generating custom report…')">✦ AI Report Builder</button></div></div>
+  <div class="ph"><div class="ph-left"><h1>Reports</h1><p>Generate, schedule, and export branch reports across all modules</p></div><div class="ph-actions"><button class="btn ai-btn" onclick="T('AI generating custom report…')"><i data-lucide="sparkles" class="ic"></i> AI Report Builder</button></div></div>
   <div class="sg sg4" style="margin-bottom:1rem">
     <div class="scard sc-n"><div class="sc-lbl">Reports Generated</div><div class="sc-val">24</div><div class="sc-sub">This month</div></div>
     <div class="scard sc-g"><div class="sc-lbl">Scheduled Reports</div><div class="sc-val">5</div><div class="sc-sub">Auto-send monthly</div></div>
@@ -2803,14 +2805,14 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
     <div class="card">
       <div class="card-head"><div class="card-title">Standard Reports</div></div>
       <div style="display:flex;flex-direction:column;gap:.5rem">
-        <div style="padding:.8rem;background:var(--bg);border-radius:8px;border:1px solid var(--border2);display:flex;justify-content:space-between;align-items:center;cursor:pointer" onclick="T('Generating Occupancy Report PDF…')"><div><div style="font-weight:700;font-size:.82rem">📊 Occupancy Trend Report</div><div style="font-size:.65rem;color:var(--text)">Weekly/monthly enrolment & capacity</div></div><button class="abtn" onclick="event.stopPropagation();T('Downloading occupancy report…')">Generate</button></div>
-        <div style="padding:.8rem;background:var(--bg);border-radius:8px;border:1px solid var(--border2);display:flex;justify-content:space-between;align-items:center;cursor:pointer" onclick="T('Generating Attendance Report…')"><div><div style="font-weight:700;font-size:.82rem">📋 Attendance Pattern Report</div><div style="font-size:.65rem;color:var(--text)">By child · by room · trend analysis</div></div><button class="abtn" onclick="event.stopPropagation();T('Downloading attendance report…')">Generate</button></div>
+        <div style="padding:.8rem;background:var(--bg);border-radius:8px;border:1px solid var(--border2);display:flex;justify-content:space-between;align-items:center;cursor:pointer" onclick="T('Generating Occupancy Report PDF…')"><div><div style="font-weight:700;font-size:.82rem"><i data-lucide="bar-chart-3" class="ic"></i> Occupancy Trend Report</div><div style="font-size:.65rem;color:var(--text)">Weekly/monthly enrolment & capacity</div></div><button class="abtn" onclick="event.stopPropagation();T('Downloading occupancy report…')">Generate</button></div>
+        <div style="padding:.8rem;background:var(--bg);border-radius:8px;border:1px solid var(--border2);display:flex;justify-content:space-between;align-items:center;cursor:pointer" onclick="T('Generating Attendance Report…')"><div><div style="font-weight:700;font-size:.82rem"><i data-lucide="clipboard-list" class="ic"></i> Attendance Pattern Report</div><div style="font-size:.65rem;color:var(--text)">By child · by room · trend analysis</div></div><button class="abtn" onclick="event.stopPropagation();T('Downloading attendance report…')">Generate</button></div>
         <div style="padding:.8rem;background:var(--bg);border-radius:8px;border:1px solid var(--border2);display:flex;justify-content:space-between;align-items:center;cursor:pointer" onclick="T('Generating Revenue Report…')"><div><div style="font-weight:700;font-size:.82rem">₦ Revenue per Room Report</div><div style="font-size:.65rem;color:var(--text)">Collection rates · by room · by plan</div></div><button class="abtn" onclick="event.stopPropagation();T('Downloading revenue report…')">Generate</button></div>
-        <div style="padding:.8rem;background:var(--bg);border-radius:8px;border:1px solid var(--border2);display:flex;justify-content:space-between;align-items:center;cursor:pointer" onclick="T('Generating Incident Report…')"><div><div style="font-weight:700;font-size:.82rem">⚠️ Incident Trend Report</div><div style="font-size:.65rem;color:var(--text)">By type · by room · by month</div></div><button class="abtn" onclick="event.stopPropagation();T('Downloading incident report…')">Generate</button></div>
-        <div style="padding:.8rem;background:var(--bg);border-radius:8px;border:1px solid var(--border2);display:flex;justify-content:space-between;align-items:center;cursor:pointer" onclick="T('Generating Staff Performance Report…')"><div><div style="font-weight:700;font-size:.82rem">👩‍🏫 Staff Performance Report</div><div style="font-size:.65rem;color:var(--text)">Compliance · attendance · payroll summary</div></div><button class="abtn" onclick="event.stopPropagation();T('Downloading staff report…')">Generate</button></div>
-        <div style="padding:.8rem;background:var(--bg);border-radius:8px;border:1px solid var(--border2);display:flex;justify-content:space-between;align-items:center;cursor:pointer" onclick="T('Generating Regulatory Compliance Pack…')"><div><div style="font-weight:700;font-size:.82rem">🛡️ Regulatory Compliance Pack</div><div style="font-size:.65rem;color:var(--text)">DBS status · drills · risk assessments · food hygiene</div></div><button class="abtn" onclick="event.stopPropagation();T('Downloading compliance pack…')">Generate</button></div>
-        <div style="padding:.8rem;background:var(--bg);border-radius:8px;border:1px solid var(--border2);display:flex;justify-content:space-between;align-items:center;cursor:pointer" onclick="T('Generating Child Development Report…')"><div><div style="font-weight:700;font-size:.82rem">🌱 Child Development Summary</div><div style="font-size:.65rem;color:var(--text)">Milestones · SEND · growth per child</div></div><button class="abtn" onclick="event.stopPropagation();T('Downloading development report…')">Generate</button></div>
-        <div style="padding:.8rem;background:var(--ai-grad);border-radius:8px;cursor:pointer" onclick="T('Opening AI Report Builder…')"><div><div style="font-weight:700;font-size:.82rem;color:#F5EDD8">✦ AI Custom Report Builder</div><div style="font-size:.65rem;color:rgba(245,237,216,.65)">Describe what you want · AI builds the report</div></div></div>
+        <div style="padding:.8rem;background:var(--bg);border-radius:8px;border:1px solid var(--border2);display:flex;justify-content:space-between;align-items:center;cursor:pointer" onclick="T('Generating Incident Report…')"><div><div style="font-weight:700;font-size:.82rem"><i data-lucide="alert-triangle" class="ic"></i> Incident Trend Report</div><div style="font-size:.65rem;color:var(--text)">By type · by room · by month</div></div><button class="abtn" onclick="event.stopPropagation();T('Downloading incident report…')">Generate</button></div>
+        <div style="padding:.8rem;background:var(--bg);border-radius:8px;border:1px solid var(--border2);display:flex;justify-content:space-between;align-items:center;cursor:pointer" onclick="T('Generating Staff Performance Report…')"><div><div style="font-weight:700;font-size:.82rem">👩‍<i data-lucide="school" class="ic"></i> Staff Performance Report</div><div style="font-size:.65rem;color:var(--text)">Compliance · attendance · payroll summary</div></div><button class="abtn" onclick="event.stopPropagation();T('Downloading staff report…')">Generate</button></div>
+        <div style="padding:.8rem;background:var(--bg);border-radius:8px;border:1px solid var(--border2);display:flex;justify-content:space-between;align-items:center;cursor:pointer" onclick="T('Generating Regulatory Compliance Pack…')"><div><div style="font-weight:700;font-size:.82rem"><i data-lucide="shield-alert" class="ic"></i> Regulatory Compliance Pack</div><div style="font-size:.65rem;color:var(--text)">DBS status · drills · risk assessments · food hygiene</div></div><button class="abtn" onclick="event.stopPropagation();T('Downloading compliance pack…')">Generate</button></div>
+        <div style="padding:.8rem;background:var(--bg);border-radius:8px;border:1px solid var(--border2);display:flex;justify-content:space-between;align-items:center;cursor:pointer" onclick="T('Generating Child Development Report…')"><div><div style="font-weight:700;font-size:.82rem"><i data-lucide="sprout" class="ic"></i> Child Development Summary</div><div style="font-size:.65rem;color:var(--text)">Milestones · SEND · growth per child</div></div><button class="abtn" onclick="event.stopPropagation();T('Downloading development report…')">Generate</button></div>
+        <div style="padding:.8rem;background:var(--ai-grad);border-radius:8px;cursor:pointer" onclick="T('Opening AI Report Builder…')"><div><div style="font-weight:700;font-size:.82rem;color:#F5EDD8"><i data-lucide="sparkles" class="ic"></i> AI Custom Report Builder</div><div style="font-size:.65rem;color:rgba(245,237,216,.65)">Describe what you want · AI builds the report</div></div></div>
       </div>
     </div>
     <div class="card">
@@ -2905,7 +2907,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
         <div class="fg"><label class="fl">Blood Group <span style="font-size:.57rem;color:var(--text)">(Critical for emergencies)</span></label><select class="fsel"><option>Unknown</option><option>A+</option><option>A–</option><option>B+</option><option>B–</option><option>O+</option><option>O–</option><option>AB+</option><option>AB–</option></select></div>
         <div class="fg"><label class="fl">Assign to Room</label><select class="fsel"><option>🌻 Sunflower (0–12 months)</option><option>🦋 Butterfly (1–2 years)</option><option>🐬 Dolphin (2–3 years)</option><option>🦁 Lion (3–4 years)</option></select></div>
       </div>
-      <div class="fg"><label class="fl">Known Allergies / Medical Notes <span style="font-size:.57rem;color:var(--red2)">⚠️ Shown as alert to all caregivers</span></label><textarea class="fi" rows="2" placeholder="e.g. Peanut allergy — EpiPen required. Or leave blank if none."></textarea></div>
+      <div class="fg"><label class="fl">Known Allergies / Medical Notes <span style="font-size:.57rem;color:var(--red2)"><i data-lucide="alert-triangle" class="ic"></i> Shown as alert to all caregivers</span></label><textarea class="fi" rows="2" placeholder="e.g. Peanut allergy — EpiPen required. Or leave blank if none."></textarea></div>
       <div class="fg"><label class="fl">Parent / Guardian</label><input class="fi" placeholder="Search existing parent or type name to create new…"><div style="font-size:.65rem;color:var(--text);margin-top:.28rem">If the parent isn't found, they'll receive an app invitation automatically.</div></div>
       <div class="fg"><label class="fl">Fee Plan</label><select class="fsel"><option>Full Day — ₦45,000/month</option><option>Half Day (AM) — ₦28,000/month</option><option>Full Day + Meals — ₦52,000/month</option></select></div>
       <div class="fg"><label class="fl">Enrolment Start Date</label><input class="fi" type="date"></div>
@@ -2982,7 +2984,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
   <div class="mo-box">
     <div class="mo-head"><div class="mo-title">Raise Incident</div><button class="mo-x" onclick="CM('mo-incident')">✕</button></div>
     <div class="mo-body">
-      <div class="al al-r" style="margin-bottom:1rem"><div class="al-icon">⚠️</div>This incident will be logged, timestamped, and escalated to the manager. Parent will be notified within 4 hours per policy.</div>
+      <div class="al al-r" style="margin-bottom:1rem"><div class="al-icon"><i data-lucide="alert-triangle" class="ic"></i></div>This incident will be logged, timestamped, and escalated to the manager. Parent will be notified within 4 hours per policy.</div>
       <div class="fg"><label class="fl">Child</label><select class="fsel"><option>Select child…</option><option>Amara Johnson</option><option>Emeka Balogun</option><option>Kofi Osei</option><option>Zara Mohammed</option></select></div>
       <div class="g2"><div class="fg"><label class="fl">Incident Type</label><select class="fsel"><option>Minor Fall / Scrape</option><option>Allergic Reaction</option><option>Fever / Illness</option><option>Injury</option><option>Behaviour Incident</option><option>Medical Emergency</option><option>Other</option></select></div><div class="fg"><label class="fl">Severity</label><select class="fsel"><option>Low — no treatment</option><option>Medium — first aid applied</option><option>High — urgent / medical</option></select></div></div>
       <div class="fg"><label class="fl">Time of Incident</label><input class="fi" type="time"></div>
@@ -3029,7 +3031,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
   <div class="mo-box" style="width:460px">
     <div class="mo-head"><div><div class="mo-title">Log QR Exception</div><div class="mo-sub">Record attendance issues — logged in audit trail with your name</div></div><button class="mo-x" onclick="CM('mo-qr-exception')">✕</button></div>
     <div class="mo-body">
-      <div class="al al-a"><div class="al-ico">⚠️</div>All exceptions are timestamped and visible in the Audit Trail. Explain clearly for future reference.</div>
+      <div class="al al-a"><div class="al-ico"><i data-lucide="alert-triangle" class="ic"></i></div>All exceptions are timestamped and visible in the Audit Trail. Explain clearly for future reference.</div>
       <div class="fg"><label class="fl">Person Type</label><select class="fsel"><option>Child</option><option>Staff</option></select></div>
       <div class="fg"><label class="fl">Name</label><input class="fi" placeholder="Search name…"></div>
       <div class="fg"><label class="fl">Exception Type</label>
@@ -3086,7 +3088,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
   <div class="mo-box">
     <div class="mo-head"><div><div class="mo-title">Raise Incident</div><div class="mo-sub">Timestamped, escalated to manager. Parent notified within 4 hours.</div></div><button class="mo-x" onclick="CM('mo-raise-incident')">✕</button></div>
     <div class="mo-body">
-      <div class="al al-r"><div class="al-ico">🚨</div>High-severity incidents are immediately flagged to the crèche owner. Always document accurately and factually.</div>
+      <div class="al al-r"><div class="al-ico"><i data-lucide="siren" class="ic"></i></div>High-severity incidents are immediately flagged to the crèche owner. Always document accurately and factually.</div>
       <div class="fg"><label class="fl">Child</label><select class="fsel"><option>Select child…</option><option>Amara Johnson — Lion</option><option>Emeka Balogun — Dolphin</option><option>Kofi Osei — Butterfly</option><option>Zara Mohammed — Lion</option></select></div>
       <div class="g2"><div class="fg"><label class="fl">Incident Type</label><select class="fsel"><option>Minor Fall / Scrape</option><option>Allergic Reaction</option><option>Fever / Illness</option><option>Injury</option><option>Behaviour Incident</option><option>Medical Emergency</option><option>Other</option></select></div><div class="fg"><label class="fl">Severity <span class="tip" style="font-size:.58rem;background:var(--red3);color:var(--red2);padding:.1rem .4rem;border-radius:4px;font-weight:600">High = instant alert</span></label><select class="fsel"><option>Low — no treatment needed</option><option>Medium — first aid applied</option><option>High — urgent / medical attention</option></select></div></div>
       <div class="fg"><label class="fl">Time of Incident</label><input class="fi" type="time"></div>
@@ -3135,7 +3137,7 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
   <div class="mo-box">
     <div class="mo-head"><div><div class="mo-title">Send Announcement</div><div class="mo-sub">Broadcast to parents via app and SMS</div></div><button class="mo-x" onclick="CM('mo-announcement')">✕</button></div>
     <div class="mo-body">
-      <div class="al al-ai"><div class="al-ico">🤖</div>AI can draft this announcement for you. <span style="color:var(--amber);font-weight:700;cursor:pointer" onclick="T('AI drafting announcement…')">Generate Draft →</span></div>
+      <div class="al al-ai"><div class="al-ico"><i data-lucide="bot" class="ic"></i></div>AI can draft this announcement for you. <span style="color:var(--amber);font-weight:700;cursor:pointer" onclick="T('AI drafting announcement…')">Generate Draft →</span></div>
       <div class="fg"><label class="fl">Send To</label><select class="fsel"><option>All Parents (42)</option><option>🌻 Sunflower Parents</option><option>🦋 Butterfly Parents</option><option>🐬 Dolphin Parents</option><option>🦁 Lion Parents</option></select></div>
       <div class="fg"><label class="fl">Type</label><select class="fsel"><option>General</option><option>Holiday / Closure</option><option>Health Alert</option><option>Billing Reminder</option><option>Event</option></select></div>
       <div class="fg"><label class="fl">Subject</label><input class="fi" placeholder="e.g. Easter Holiday Closure Notice"></div>
@@ -3149,6 +3151,9 @@ td{padding:.65rem .9rem;color:var(--ink);vertical-align:middle}
 <div class="toast" id="toast"></div>
 
 <script>
+// ICONS
+if (window.lucide) lucide.createIcons();
+
 // SIDEBAR TOGGLE (mobile)
 function toggleSidebar(){
   document.querySelector('.sb').classList.toggle('open');
