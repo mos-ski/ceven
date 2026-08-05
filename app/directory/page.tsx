@@ -4,19 +4,113 @@ type Screen = { label: string; href?: string };
 type VersionBlock = {
   label: string;
   meta: string;
-  href: string;
+  href?: string;
+  note?: string;
   rows: Screen[][];
+};
+type Summary = {
+  what: string;
+  entails: string;
+  missing: string;
+  improved: string;
 };
 type AppSection = {
   id: string;
   title: string;
+  summary: Summary;
   versions: VersionBlock[];
 };
 
 const APP_SECTIONS: AppSection[] = [
   {
-    id: "admin",
-    title: "Admin",
+    id: "design-system",
+    title: "Design System",
+    summary: {
+      what: "CEven's shared visual language — the source of truth for colors, type, and components used across every app.",
+      entails: "Tokens (brand colors, fonts, spacing) plus live showcases for buttons, badges, cards, tables, modals, AI chat/messaging patterns, and marketing sections.",
+      missing: "Not yet consumed as an actual shared package or theme — each app still hardcodes its own Tailwind classes rather than importing from here.",
+      improved: "A single reference now exists instead of every app inventing its own button, card, and color treatment independently.",
+    },
+    versions: [
+      {
+        label: "CEven library — foundations & components",
+        meta: "Next.js · /library",
+        href: "/library",
+        rows: [
+          [
+            { label: "Logos", href: "/library#logos" },
+            { label: "Colors", href: "/library#colors" },
+            { label: "Typography", href: "/library#typography" },
+            { label: "Icons", href: "/library#icons" },
+          ],
+          [
+            { label: "Buttons", href: "/library#buttons" },
+            { label: "Badges", href: "/library#badges" },
+            { label: "Tags", href: "/library#tags" },
+            { label: "Inputs", href: "/library#input-fields" },
+            { label: "Dropdowns", href: "/library#dropdown" },
+            { label: "Switches", href: "/library#switches" },
+            { label: "Checkboxes", href: "/library#checkbox" },
+          ],
+          [
+            { label: "Cards", href: "/library#cards" },
+            { label: "Tables", href: "/library#tables" },
+            { label: "Tabs", href: "/library#tabs" },
+            { label: "Modals", href: "/library#modals" },
+            { label: "Alerts", href: "/library#alerts" },
+            { label: "Empty States", href: "/library#empty-state" },
+          ],
+          [
+            { label: "AI Chat", href: "/library#ai-chat" },
+            { label: "Messaging", href: "/library#msg-thread-list" },
+            { label: "Activity Feeds", href: "/library#activity-feeds" },
+            { label: "Marketing", href: "/library#marketing" },
+          ],
+        ],
+      },
+      {
+        label: "Vibrant preview",
+        meta: "Next.js · /library/vibrant-preview",
+        href: "/library/vibrant-preview",
+        rows: [[{ label: "Alternate theme preview", href: "/library/vibrant-preview" }]],
+      },
+    ],
+  },
+  {
+    id: "super-admin",
+    title: "Super Admin",
+    summary: {
+      what: "CEven's own internal console — platform-operator oversight across every crèche on the platform, not a single crèche's view.",
+      entails: "Dashboard, a crèche directory with per-crèche caregiver/child drill-down, enrollment oversight, subscriptions, and notifications.",
+      missing: "Only one build exists (no v1/v2/v3 split yet), and it isn't linked from anywhere else in the product — reachable only by direct URL.",
+      improved: "New area — first working version, not an iteration over a prior one.",
+    },
+    versions: [
+      {
+        label: "Platform console",
+        meta: "Next.js · /super-admin",
+        href: "/super-admin/dashboard",
+        rows: [
+          [
+            { label: "Dashboard", href: "/super-admin/dashboard" },
+            { label: "Crèches", href: "/super-admin/creches" },
+            { label: "Enrollment", href: "/super-admin/enrollment" },
+            { label: "Subscriptions", href: "/super-admin/subscriptions" },
+            { label: "Notifications", href: "/super-admin/notifications" },
+          ],
+        ],
+      },
+    ],
+  },
+  {
+    id: "creche-admin",
+    title: "Crèche Admin",
+    summary: {
+      what: "The operator dashboard a crèche's own staff/owner uses day-to-day — attendance, billing, staff, compliance, and more, scoped to their one crèche.",
+      entails: "v1 was the original build. v2 (this codebase's main build) is a full operating system with real logic for nearly every module. v3 is the CEO's own reimagining of the product — new visual direction and flatter navigation — currently being converted from a static prototype into real, working code.",
+      missing: "v3: most pages still need porting to real Next.js with live data — only the exact-replica reference and the conversion-in-progress exist so far.",
+      improved: "v2 added full feature breadth over v1 — payroll, compliance, AI Command Center, financial reports. v3 brings a cleaner, more distinctive visual language matching the CEO's original product vision.",
+    },
     versions: [
       {
         label: "v1 — original crèche admin",
@@ -91,8 +185,9 @@ const APP_SECTIONS: AppSection[] = [
         ],
       },
       {
-        label: "v3 — CEO reimagining (static prototype)",
-        meta: "Standalone HTML · /admin/v3",
+        label: "v3 — CEO reimagining",
+        meta: "Next.js (in progress) · /admin/v3",
+        note: "Exact-replica reference kept at /admin/v3-reference",
         href: "/admin/v3",
         rows: [
           [
@@ -145,11 +240,22 @@ const APP_SECTIONS: AppSection[] = [
     ],
   },
   {
-    id: "parent",
-    title: "Parent",
+    id: "parent-app",
+    title: "Parent App",
+    summary: {
+      what: "The family-facing mobile app parents use to track their child's day, message the crèche, and manage billing.",
+      entails: "v1 is live on the app store today (not part of this codebase). v2 is this codebase's main build, started when the current team joined. v3 is the newest direction — it reimagines the relationship as parent ↔ independent caregiver, not just parent ↔ crèche.",
+      missing: "v3 currently has 4 screens built (home, chat, food timetable, calendar) — most of v2's breadth hasn't been re-imagined for the independent-caregiver model yet.",
+      improved: "v2 added the CEvenAI assistant, richer settings, and health/growth/feeding tracking that v1 doesn't have.",
+    },
     versions: [
       {
-        label: "Current",
+        label: "v1 — live on the app store",
+        meta: "External · not in this codebase",
+        rows: [[{ label: "Current production app used by real parents today" }]],
+      },
+      {
+        label: "v2 — current build",
         meta: "Next.js · /parent",
         href: "/parent/home",
         rows: [
@@ -208,7 +314,7 @@ const APP_SECTIONS: AppSection[] = [
         ],
       },
       {
-        label: "v3 — reimagined family app",
+        label: "v3 — parent ↔ independent caregiver",
         meta: "Next.js · /parentv3",
         href: "/parentv3/home",
         rows: [
@@ -223,11 +329,22 @@ const APP_SECTIONS: AppSection[] = [
     ],
   },
   {
-    id: "caregiver",
-    title: "Caregiver",
+    id: "caregiver-app",
+    title: "Caregiver App",
+    summary: {
+      what: "The staff-facing mobile app caregivers use to log attendance, daily reports, and incidents.",
+      entails: "Same version history as the Parent App: v1 live on the app store, v2 this codebase's main build, v3 the parent ↔ independent-caregiver reimagining.",
+      missing: "v3 currently has 4 screens built (today, chat, daily report, calendar) — same early stage as Parent v3.",
+      improved: "v2 added AI chat, ratings, and a fuller settings/onboarding flow over v1.",
+    },
     versions: [
       {
-        label: "Current",
+        label: "v1 — live on the app store",
+        meta: "External · not in this codebase",
+        rows: [[{ label: "Current production app used by real caregivers today" }]],
+      },
+      {
+        label: "v2 — current build",
         meta: "Next.js · /caregiver",
         href: "/caregiver/home",
         rows: [
@@ -270,7 +387,7 @@ const APP_SECTIONS: AppSection[] = [
         ],
       },
       {
-        label: "v3 — reimagined staff app",
+        label: "v3 — parent ↔ independent caregiver",
         meta: "Next.js · /caregiverv3",
         href: "/caregiverv3/today",
         rows: [
@@ -285,56 +402,14 @@ const APP_SECTIONS: AppSection[] = [
     ],
   },
   {
-    id: "design-system",
-    title: "Design System",
-    versions: [
-      {
-        label: "CEven library — foundations & components",
-        meta: "Next.js · /library",
-        href: "/library",
-        rows: [
-          [
-            { label: "Logos", href: "/library#logos" },
-            { label: "Colors", href: "/library#colors" },
-            { label: "Typography", href: "/library#typography" },
-            { label: "Icons", href: "/library#icons" },
-          ],
-          [
-            { label: "Buttons", href: "/library#buttons" },
-            { label: "Badges", href: "/library#badges" },
-            { label: "Tags", href: "/library#tags" },
-            { label: "Inputs", href: "/library#input-fields" },
-            { label: "Dropdowns", href: "/library#dropdown" },
-            { label: "Switches", href: "/library#switches" },
-            { label: "Checkboxes", href: "/library#checkbox" },
-          ],
-          [
-            { label: "Cards", href: "/library#cards" },
-            { label: "Tables", href: "/library#tables" },
-            { label: "Tabs", href: "/library#tabs" },
-            { label: "Modals", href: "/library#modals" },
-            { label: "Alerts", href: "/library#alerts" },
-            { label: "Empty States", href: "/library#empty-state" },
-          ],
-          [
-            { label: "AI Chat", href: "/library#ai-chat" },
-            { label: "Messaging", href: "/library#msg-thread-list" },
-            { label: "Activity Feeds", href: "/library#activity-feeds" },
-            { label: "Marketing", href: "/library#marketing" },
-          ],
-        ],
-      },
-      {
-        label: "Vibrant preview",
-        meta: "Next.js · /library/vibrant-preview",
-        href: "/library/vibrant-preview",
-        rows: [[{ label: "Alternate theme preview", href: "/library/vibrant-preview" }]],
-      },
-    ],
-  },
-  {
     id: "website",
-    title: "Marketing Website",
+    title: "Website",
+    summary: {
+      what: "CEven's public marketing site.",
+      entails: "Home, audience-specific landing pages, company info, contact, and legal pages.",
+      missing: "Single version — no v1/v2/v3 split for the website.",
+      improved: "N/A — first and only build so far.",
+    },
     versions: [
       {
         label: "Public site",
@@ -360,12 +435,32 @@ const APP_SECTIONS: AppSection[] = [
 ];
 
 const NAV_CARDS = [
-  { id: "admin", eyebrow: "Admin", desc: "Crèche operator dashboard · v1, v2, v3" },
-  { id: "parent", eyebrow: "Parent", desc: "Family mobile app · current + v3" },
-  { id: "caregiver", eyebrow: "Caregiver", desc: "Staff mobile app · current + v3" },
   { id: "design-system", eyebrow: "Design System", desc: "Foundations & components · /library" },
+  { id: "super-admin", eyebrow: "Super Admin", desc: "Platform console · /super-admin" },
+  { id: "creche-admin", eyebrow: "Crèche Admin", desc: "Operator dashboard · v1, v2, v3" },
+  { id: "parent-app", eyebrow: "Parent App", desc: "Family mobile app · v1 (live), v2, v3" },
+  { id: "caregiver-app", eyebrow: "Caregiver App", desc: "Staff mobile app · v1 (live), v2, v3" },
   { id: "website", eyebrow: "Website", desc: "Marketing site · public pages" },
 ];
+
+function SummaryBlock({ summary }: { summary: Summary }) {
+  const rows: { label: string; text: string }[] = [
+    { label: "What", text: summary.what },
+    { label: "Entails", text: summary.entails },
+    { label: "Missing", text: summary.missing },
+    { label: "Improved", text: summary.improved },
+  ];
+  return (
+    <div className="mt-6 flex flex-col gap-3 rounded-2xl border border-card-border bg-white p-5">
+      {rows.map((row) => (
+        <p key={row.label} className="text-sm leading-relaxed">
+          <span className="font-bold text-brand-accent">{row.label}: </span>
+          <span className="text-muted-text">{row.text}</span>
+        </p>
+      ))}
+    </div>
+  );
+}
 
 export default function DirectoryPage() {
   return (
@@ -377,9 +472,9 @@ export default function DirectoryPage() {
           App versions, v1–v3
         </h1>
         <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-text">
-          Every screen across the admin, parent, and caregiver apps, grouped by version, plus the
-          design system and marketing site. Built screens link out below; the rest are listed as
-          reference.
+          Every screen across the design system, super admin, crèche admin, parent, and caregiver
+          apps, plus the marketing site — grouped by version, with a short summary of what each one
+          is, what it covers, what&apos;s missing, and what improved over the last version.
         </p>
 
         <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -403,15 +498,24 @@ export default function DirectoryPage() {
               {section.title}
             </h2>
 
+            <SummaryBlock summary={section.summary} />
+
             <div className="mt-8 flex flex-col gap-10">
               {section.versions.map((version) => (
                 <div key={version.label}>
                   <h3 className="text-lg font-bold text-brand-dark">
-                    <Link href={version.href} className="hover:underline">
-                      {version.label}
-                    </Link>
+                    {version.href ? (
+                      <Link href={version.href} className="hover:underline">
+                        {version.label}
+                      </Link>
+                    ) : (
+                      version.label
+                    )}
                   </h3>
                   <p className="mt-0.5 text-xs text-muted-text">{version.meta}</p>
+                  {version.note && (
+                    <p className="mt-0.5 text-xs italic text-muted-text">{version.note}</p>
+                  )}
 
                   <div className="mt-4 flex flex-col gap-2.5">
                     {version.rows.map((row, i) => (
