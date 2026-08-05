@@ -19,6 +19,7 @@ import {
   TableCell,
 } from "@/components/ui/table";
 import { Card } from "@/components/ui/card";
+import { PageHeader } from "@/components/ui/page-header";
 import AiRiskBadge, { calculateRisk } from "@/components/dashboard/ai-risk-badge";
 import { PARENTS } from "@/lib/mock-data/children";
 
@@ -80,14 +81,10 @@ export default function ParentsV3Page() {
 
   return (
     <div className="flex flex-col gap-5">
-      <div>
-        <h1 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2D1810]">
-          Parents
-        </h1>
-        <p className="mt-1 text-sm text-[#2D1810]/60">
-          Directory of registered parents and guardians, app adoption and payment risk.
-        </p>
-      </div>
+      <PageHeader
+        title="Parents"
+        description="Directory of registered parents and guardians, app adoption and payment risk."
+      />
 
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         <StatCard Icon={Users} label="Registered" value={String(PARENTS.length).padStart(2, "0")} sub="+12.5% vs last month" />

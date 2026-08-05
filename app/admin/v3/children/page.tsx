@@ -31,6 +31,7 @@ import {
 import { CHILDREN, CHILDREN_STATS, type Child, type ChildStatus, type FeeStatus } from "@/lib/mock-data/children";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 import { Card } from "@/components/ui/card";
+import { PageHeader } from "@/components/ui/page-header";
 
 const ROOMS = ["All Rooms", "Lion", "Panda", "Owl", "Bear"];
 const STATUSES: Array<"All Status" | ChildStatus> = ["All Status", "Present", "Late", "Absent"];
@@ -118,30 +119,26 @@ export default function ChildrenV3Page() {
 
  return (
  <div className="flex flex-col gap-5">
-  <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-  <div>
-   <h1 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2D1810]">
-   Children
-   </h1>
-   <p className="mt-1 text-sm text-[#2D1810]/60">
-   Manage enrolled children, rooms, health flags and daily records.
-   </p>
-  </div>
-  <div className="flex flex-wrap gap-2">
-   <button
-   onClick={handleExport}
-   className="flex h-10 items-center gap-1.5 rounded-lg border border-black/[0.12] px-4 text-sm font-semibold text-[#2D1810] hover:bg-[#2D1810]/5"
-   >
-   <Download className="h-3.5 w-3.5" /> Export
-   </button>
-   <button
-   onClick={() => setEnrollOpen(true)}
-   className="h-10 rounded-lg border border-[#2D1810] px-4 text-sm font-semibold text-[#2D1810] hover:bg-[#2D1810]/5"
-   >
-   Enroll a Child
-   </button>
-  </div>
-  </div>
+  <PageHeader
+   title="Children"
+   description="Manage enrolled children, rooms, health flags and daily records."
+   action={
+    <>
+     <button
+     onClick={handleExport}
+     className="flex h-10 items-center gap-1.5 rounded-lg border border-black/[0.12] px-4 text-sm font-semibold text-[#2D1810] hover:bg-[#2D1810]/5"
+     >
+     <Download className="h-3.5 w-3.5" /> Export
+     </button>
+     <button
+     onClick={() => setEnrollOpen(true)}
+     className="h-10 rounded-lg border border-[#2D1810] px-4 text-sm font-semibold text-[#2D1810] hover:bg-[#2D1810]/5"
+     >
+     Enroll a Child
+     </button>
+    </>
+   }
+  />
 
   <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
   <StatCard Icon={Baby} label="Total Enrolled" value={String(CHILDREN_STATS.totalEnrolled).padStart(2, "0")} sub="+12.5% vs last month" />

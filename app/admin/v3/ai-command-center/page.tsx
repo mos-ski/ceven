@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Send, X, RefreshCw, FileDown } from "lucide-react";
 import { CEIcon } from "@/components/admin-v3/ce-icon";
+import { PageHeader } from "@/components/ui/page-header";
 import { toast } from "sonner";
 import { getAdaReply } from "@/lib/ada-responses";
 
@@ -246,28 +247,23 @@ export default function AICommandCenterV3Page() {
 
  return (
  <div className="flex flex-col gap-5">
-  {/* Page header */}
-  <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-  <div>
-   <h1 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2D1810]">
-   Command Center
-   </h1>
-   <p className="mt-1 text-sm text-[#2D1810]/50">
-   System analysis across health, finance, and staff. Refreshed every morning at 7am.
-   </p>
-  </div>
-  <div className="flex shrink-0 gap-2 self-start sm:self-auto">
-   <button
-   onClick={() => toast.success("Exporting report as PDF...")}
-   className="flex items-center gap-1.5 rounded-lg border border-black/[0.12] bg-white px-4 py-2 text-xs font-bold text-[#2D1810] hover:border-[#C47B2C]"
-   >
-   <FileDown className="h-3.5 w-3.5" /> Export Report
-   </button>
-   <button className="flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-[#1E2D4A] to-[#2D1810] px-4 py-2 text-xs font-bold text-[#F5EDD8] hover:opacity-90">
-   <RefreshCw className="h-3.5 w-3.5" /> Refresh Analysis
-   </button>
-  </div>
-  </div>
+  <PageHeader
+   title="Command Center"
+   description="System analysis across health, finance, and staff. Refreshed every morning at 7am."
+   action={
+    <>
+     <button
+     onClick={() => toast.success("Exporting report as PDF...")}
+     className="flex items-center gap-1.5 rounded-lg border border-black/[0.12] bg-white px-4 py-2 text-xs font-bold text-[#2D1810] hover:border-[#C47B2C]"
+     >
+     <FileDown className="h-3.5 w-3.5" /> Export Report
+     </button>
+     <button className="flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-[#1E2D4A] to-[#2D1810] px-4 py-2 text-xs font-bold text-[#F5EDD8] hover:opacity-90">
+     <RefreshCw className="h-3.5 w-3.5" /> Refresh Analysis
+     </button>
+    </>
+   }
+  />
 
   <div className="flex flex-col gap-5 xl:flex-row xl:items-start">
   {/* Main content */}

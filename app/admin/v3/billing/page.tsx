@@ -7,6 +7,7 @@ import { toast } from "sonner";
 
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 import { Card } from "@/components/ui/card";
+import { PageHeader } from "@/components/ui/page-header";
 
 import NewInvoiceModal from "@/components/admin/finance/new-invoice-modal";
 import RecordPaymentModal from "@/components/admin/finance/record-payment-modal";
@@ -72,37 +73,32 @@ export default function BillingV3Page() {
 
  return (
  <div className="flex flex-col gap-5">
-  {/* Page header */}
-  <div className="flex flex-wrap items-start justify-between gap-3">
-  <div>
-   <h1 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2D1810]">
-   Billing &amp; Payments
-   </h1>
-   <p className="mt-1 text-sm text-[#2D1810]/50">
-   Track invoices, collections, and payment risk across every family.
-   </p>
-  </div>
-  <div className="flex flex-wrap gap-2.5">
-   <button
-   onClick={() => setPaymentOpen(true)}
-   className="rounded-lg border border-black/[0.12] bg-white px-4 py-2 text-sm font-semibold text-[#2D1810] hover:border-[#C47B2C]"
-   >
-   Record Payment
-   </button>
-   <button
-   onClick={() => toast.success("Payment forecast generated")}
-   className="flex items-center gap-1.5 rounded-lg border border-[#C47B2C]/40 bg-[#FAF2E1] px-4 py-2 text-sm font-semibold text-[#8A4F1C] hover:bg-[#F5E4C4]"
-   >
-    <CEIcon className="h-3.5 w-3.5" /> Forecast
-   </button>
-   <button
-   onClick={() => setInvoiceOpen(true)}
-   className="rounded-lg bg-[#C47B2C] px-4 py-2 text-sm font-semibold text-white hover:opacity-90"
-   >
-   + New Invoice
-   </button>
-  </div>
-  </div>
+  <PageHeader
+   title="Billing & Payments"
+   description="Track invoices, collections, and payment risk across every family."
+   action={
+    <>
+     <button
+     onClick={() => setPaymentOpen(true)}
+     className="rounded-lg border border-black/[0.12] bg-white px-4 py-2 text-sm font-semibold text-[#2D1810] hover:border-[#C47B2C]"
+     >
+     Record Payment
+     </button>
+     <button
+     onClick={() => toast.success("Payment forecast generated")}
+     className="flex items-center gap-1.5 rounded-lg border border-[#C47B2C]/40 bg-[#FAF2E1] px-4 py-2 text-sm font-semibold text-[#8A4F1C] hover:bg-[#F5E4C4]"
+     >
+      <CEIcon className="h-3.5 w-3.5" /> Forecast
+     </button>
+     <button
+     onClick={() => setInvoiceOpen(true)}
+     className="rounded-lg bg-[#C47B2C] px-4 py-2 text-sm font-semibold text-white hover:opacity-90"
+     >
+     + New Invoice
+     </button>
+    </>
+   }
+  />
 
   {/* AI Insight */}
   <div className="flex items-start gap-3 rounded-2xl border border-[#C47B2C]/30 bg-[#FAF2E1] p-4">

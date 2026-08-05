@@ -118,7 +118,7 @@ export function RoomsClassesTab() {
   <div className="space-y-4">
    <div className="flex items-center justify-between">
     <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-heading">
-     Rooms &amp; Classes
+     All Rooms
     </h2>
     <Button
      onClick={() => setCreateOpen(true)}

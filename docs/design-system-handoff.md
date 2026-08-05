@@ -5,6 +5,20 @@ Paste the whole block under a heading to the agent that's doing the page-level r
 
 ---
 
+## Page headers: use the shared PageHeader component (2026-08-05)
+
+Every admin-v3 page hand-rolls its own title/subtitle/action-buttons row, and they'd drifted: `rooms` had a literal duplicate "Rooms & Classes" heading (page h1 + an identically-named section heading inside the imported view component), `parents` had no action slot at all while `children`/`billing` did, and `ai-command-center`'s header used slightly different flex classes than the others. None of this was structural — it was N independent copies of the same markup slowly diverging.
+
+**`components/ui/page-header.tsx`** now has the canonical CEven-styled version: `<PageHeader title="..." description="..." action={...} />`. It renders `font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2D1810]` for the title, `mt-1 text-sm text-[#2D1810]/50` for the description, and lays out title+description on the left with `action` on the right (`flex-col` on mobile, `sm:flex-row` desktop) — this is byte-for-byte what `billing`, `children`, `ai-command-center`, `parents`, `rooms`, `reception`, `health`, `medication`, `inventory`, `facilities`, and `tasks` now use.
+
+**Already converted:** `dashboard` (via its own greeting card, not PageHeader — that one's intentionally different, it's a hero banner not a plain header), `rooms`, `children`, `parents`, `medication`, `billing`, `ai-command-center`, `reception`, `health`, `inventory`, `facilities`, `tasks`.
+
+**Still needs converting** (same mechanical swap — replace the hand-rolled `<div><h1>...</h1><p>...</p></div>` [+ optional action buttons div] with `<PageHeader title=... description=... action={...} />`): `announcements`, `audit-trail`, `compliance`, `expenses`, `analytics`, `enrolment`, `financial-reports`, `daily-logs`, `development`, `events`, `help`, `messages`, `settings`, `staff`, `plans`, `reports`, `payroll`, `leave`. Check each one's exact current title/description/action markup before swapping — some (like `billing` did) have multiple buttons that need wrapping in a `<>...</>` fragment for the `action` prop.
+
+**Also fixed:** `components/admin/children/rooms-classes-tab.tsx`'s internal section heading was literally "Rooms & Classes" (same text as the page's own h1 right above it) — renamed to "All Rooms" to match the "Children Log" / "Parent Directory" naming convention used by other section headings. This file is shared with admin v2, but the rename is a strict improvement there too (removes an existing duplicate-looking heading), so it wasn't scoped out.
+
+---
+
 ## Table padding architecture changed: cells own it, not the wrapper (2026-08-05)
 
 Superseded the previous fix (the "px-4 pb-4 on the wrapper div" approach) with a better one, per direct feedback: padding on an outer wrapper div creates a visible gap between the card edge and where the row's hover highlight starts — the hover background should reach the card edge directly, only the cell *content* should be inset.

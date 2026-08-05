@@ -19,19 +19,17 @@ function PageHeader({
  return (
   <div
    data-slot="page-header"
-   className={cn("flex flex-col gap-1", className)}
+   className={cn("flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between", className)}
    {...props}
   >
-   <div className="flex items-center justify-between gap-4">
-    <div className="flex flex-col gap-1">
-     {backLink}
-     <h1 className="text-h2 text-heading">{title}</h1>
-     {description && (
-      <p className="text-body-sm text-muted-text">{description}</p>
-     )}
-    </div>
-    {action && <div className="flex items-center gap-2">{action}</div>}
+   <div>
+    {backLink}
+    <h1 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2D1810]">{title}</h1>
+    {description && (
+     <p className="mt-1 text-sm text-[#2D1810]/50">{description}</p>
+    )}
    </div>
+   {action && <div className="flex shrink-0 items-center gap-2">{action}</div>}
   </div>
  )
 }
