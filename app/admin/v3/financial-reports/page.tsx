@@ -112,9 +112,9 @@ function PLSummarySection() {
 
 function RevenueBreakdownSection() {
   return (
-    <Card>
-      <p className="mb-3 text-sm font-bold text-[#2D1810]">Revenue by Room</p>
-      <Table>
+    <Card padding="none">
+      <p className="p-5 pb-3 text-sm font-bold text-[#2D1810]">Revenue by Room</p>
+      <Table className="pb-5">
         <TableHeader>
           <TableRow>
             <TableHead>Room</TableHead>

@@ -93,11 +93,11 @@ export default function DevelopmentV3Page() {
         <StatCard Icon={ClipboardList} label="Observations This Week" value={String(OBSERVATIONS_THIS_WEEK).padStart(2, "0")} sub="Logged by caregivers" />
       </div>
 
-      <Card>
-        <h2 className="mb-4 font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2D1810]">
+      <Card padding="none">
+        <h2 className="p-5 pb-4 font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2D1810]">
           Milestones
         </h2>
-        <Table>
+        <Table className="pb-5">
           <TableHeader>
             <TableRow>
               <TableHead>Child</TableHead>

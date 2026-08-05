@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Clock3, Palmtree, CheckCircle2, CalendarDays, Check, X } from "lucide-react";
 
 import { StatCardV3 } from "@/components/admin-v3/stat-card";
+import { Card } from "@/components/ui/card";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 import { ACTIVE_LEAVE, LEAVE_BALANCES, LEAVE_REQUESTS, type LeaveStatus } from "@/lib/mock-data/staff";
 
@@ -59,11 +60,11 @@ export default function LeaveV3Page() {
       </div>
 
       {/* Leave requests */}
-      <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
-        <div className="mb-3 flex items-center justify-between">
+      <Card padding="none">
+        <div className="flex items-center justify-between p-4">
           <p className="text-sm font-bold text-[#2D1810]">Leave Requests</p>
         </div>
-        <Table className="min-w-[880px]">
+        <Table className="min-w-[880px] pb-4">
           <TableHeader>
             <TableRow>
               <TableHead>Staff</TableHead>
@@ -129,7 +130,7 @@ export default function LeaveV3Page() {
             ))}
           </TableBody>
         </Table>
-      </div>
+      </Card>
     </div>
   );
 }

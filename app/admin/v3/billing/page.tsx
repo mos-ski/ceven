@@ -148,8 +148,8 @@ export default function BillingV3Page() {
   </Card>
 
   {/* Invoice Tracker */}
-  <Card>
-  <div className="mb-3 flex items-center justify-between">
+  <Card padding="none">
+  <div className="flex items-center justify-between p-4">
    <p className="text-sm font-bold text-[#2D1810]">Invoice Tracker</p>
    <button
    onClick={() =>
@@ -173,7 +173,7 @@ export default function BillingV3Page() {
    <Download className="h-3.5 w-3.5" /> Export
    </button>
   </div>
-  <Table>
+  <Table className="pb-4">
    <TableHeader>
     <TableRow>
     <TableHead>Child</TableHead>

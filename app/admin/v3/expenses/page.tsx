@@ -121,9 +121,9 @@ export default function ExpensesV3Page() {
       </Card>
 
       {/* Expense Log */}
-      <Card>
-        <p className="mb-3 text-sm font-bold text-[#2D1810]">Expense Log</p>
-        <Table>
+      <Card padding="none">
+        <p className="p-5 pb-3 text-sm font-bold text-[#2D1810]">Expense Log</p>
+        <Table className="pb-5">
           <TableHeader>
             <TableRow className="border-b border-black/[0.08]">
               <TableHead className="pb-2 pr-3">Date</TableHead>

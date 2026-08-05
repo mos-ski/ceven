@@ -150,8 +150,8 @@ export default function ChildrenV3Page() {
   <StatCard Icon={GraduationCap} label="Graduating Soon" value={String(GRADUATING_SOON).padStart(2, "0")} sub="Ageing out of current room" />
   </div>
 
-  <Card>
-  <div className="flex flex-col gap-3 pb-4 sm:flex-row sm:items-center sm:justify-between">
+  <Card padding="none">
+  <div className="flex flex-col gap-3 p-5 pb-4 sm:flex-row sm:items-center sm:justify-between">
    <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2D1810]">
    Children Log
    </h2>
@@ -186,7 +186,7 @@ export default function ChildrenV3Page() {
    </div>
   </div>
 
-   <Table>
+   <Table className="pb-5">
    <TableHeader>
      <TableRow>
     <TableHead>Child</TableHead>

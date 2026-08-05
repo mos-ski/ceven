@@ -96,8 +96,8 @@ export default function ParentsV3Page() {
         <StatCard Icon={PhoneMissed} label="Uncontacted Today" value={String(UNCONTACTED_TODAY).padStart(2, "0")} sub="No app activity yet" />
       </div>
 
-      <Card>
-        <div className="flex flex-col gap-3 pb-4 sm:flex-row sm:items-center sm:justify-between">
+      <Card padding="none">
+        <div className="flex flex-col gap-3 p-5 pb-4 sm:flex-row sm:items-center sm:justify-between">
           <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2D1810]">
             Parent Directory
           </h2>
@@ -112,7 +112,7 @@ export default function ParentsV3Page() {
           </div>
         </div>
 
-        <Table>
+        <Table className="pb-5">
           <TableHeader>
             <TableRow>
               <TableHead>Parent</TableHead>

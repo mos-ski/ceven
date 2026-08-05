@@ -79,12 +79,12 @@ export default function PayrollV3Page() {
       </div>
 
       {/* Staff breakdown table */}
-      <Card>
-        <div className="mb-3 flex items-center justify-between">
+      <Card padding="none">
+        <div className="flex items-center justify-between p-5 pb-3">
           <p className="text-sm font-bold text-[#2D1810]">{CURRENT_PAYROLL_MONTH} — Staff Breakdown</p>
           <p className="text-xs text-[#2D1810]/40">Review each line before running payroll</p>
         </div>
-        <Table className="min-w-[880px]">
+        <Table className="min-w-[880px] pb-5">
           <TableHeader>
             <TableRow>
               <TableHead>Staff</TableHead>

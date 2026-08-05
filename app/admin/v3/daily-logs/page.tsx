@@ -259,7 +259,7 @@ export default function DailyLogsV3Page() {
         </div>
 
         <div className="hidden lg:block">
-          <Table>
+          <Table className="pb-5">
             <TableHeader>
               <TableRow>
                 <TableHead>

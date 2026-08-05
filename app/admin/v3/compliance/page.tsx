@@ -104,8 +104,8 @@ export default function ComplianceV3Page() {
       </div>
 
       {/* Sub-tab nav + table card */}
-      <Card>
-        <div className="mb-4 flex overflow-x-auto border-b border-black/[0.08]">
+      <Card padding="none">
+        <div className="flex overflow-x-auto border-b border-black/[0.08] px-5 pt-5">
           {SUB_TABS.map((tab) => (
             <button
               key={tab}
@@ -122,7 +122,7 @@ export default function ComplianceV3Page() {
         </div>
 
         {subTab === "DBS/Police Checks" && (
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto px-5 pb-5 pt-4">
             <Table className="w-full min-w-[760px] border-collapse text-sm">
               <TableHeader>
                 <TableRow className="border-b border-black/[0.08] text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
@@ -157,7 +157,7 @@ export default function ComplianceV3Page() {
         )}
 
         {subTab === "Fire & Safety Drill" && (
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto px-5 pb-5 pt-4">
             <Table className="w-full min-w-[760px] border-collapse text-sm">
               <TableHeader>
                 <TableRow className="border-b border-black/[0.08] text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
@@ -190,7 +190,7 @@ export default function ComplianceV3Page() {
         )}
 
         {subTab === "Food Hygiene" && (
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto px-5 pb-5 pt-4">
             <Table className="w-full min-w-[760px] border-collapse text-sm">
               <TableHeader>
                 <TableRow className="border-b border-black/[0.08] text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
@@ -225,7 +225,7 @@ export default function ComplianceV3Page() {
         )}
 
         {subTab === "Risk Assessment" && (
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto px-5 pb-5 pt-4">
             <Table className="w-full min-w-[760px] border-collapse text-sm">
               <TableHeader>
                 <TableRow className="border-b border-black/[0.08] text-left text-xs uppercase tracking-wide text-[#2D1810]/50">

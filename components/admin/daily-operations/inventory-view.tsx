@@ -335,7 +335,7 @@ export function InventoryView() {
               </div>
             </div>
           </div>
-          <div className="hidden overflow-x-auto px-4 pb-4 lg:block">
+          <div className="hidden overflow-x-auto pb-4 lg:block">
             <Table>
               <TableHeader><TableRow><TableHead>Item</TableHead><TableHead>Category</TableHead><TableHead>Avail Stock</TableHead><TableHead>Min Level</TableHead><TableHead>Last Restocked</TableHead><TableHead>Status</TableHead><TableHead className="text-center">Action</TableHead></TableRow></TableHeader>
               <TableBody>{INVENTORY_ITEMS.map((item) => (<InventoryRow key={item.id} item={item} />))}</TableBody>
@@ -365,7 +365,7 @@ export function InventoryView() {
               </div>
             </div>
           </div>
-          <div className="hidden overflow-x-auto px-4 pb-4 lg:block">
+          <div className="hidden overflow-x-auto pb-4 lg:block">
             <Table>
               <TableHeader><TableRow><TableHead>Item</TableHead><TableHead>Room</TableHead><TableHead>QTY</TableHead><TableHead>Purchased Date</TableHead><TableHead>Condition</TableHead><TableHead>Last Serviced</TableHead><TableHead>Next Service</TableHead><TableHead>Status</TableHead><TableHead className="text-center">Action</TableHead></TableRow></TableHeader>
               <TableBody>{EQUIPMENT_ITEMS.map((item) => (<EquipmentRow key={item.id} item={item} />))}</TableBody>
@@ -395,7 +395,7 @@ export function InventoryView() {
               </div>
             </div>
           </div>
-          <div className="hidden overflow-x-auto px-4 pb-4 lg:block">
+          <div className="hidden overflow-x-auto pb-4 lg:block">
             <Table>
               <TableHeader><TableRow><TableHead>Order Date</TableHead><TableHead>Supplier</TableHead><TableHead>Items</TableHead><TableHead>QTY</TableHead><TableHead>Total Cost</TableHead><TableHead>Date Delivered</TableHead><TableHead>Status</TableHead><TableHead className="text-center">Action</TableHead></TableRow></TableHeader>
               <TableBody>{SUPPLY_ORDERS.map((order) => (<OrderRow key={order.id} order={order} />))}</TableBody>

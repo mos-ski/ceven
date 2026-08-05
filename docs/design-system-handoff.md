@@ -5,6 +5,30 @@ Paste the whole block under a heading to the agent that's doing the page-level r
 
 ---
 
+## Table padding architecture changed: cells own it, not the wrapper (2026-08-05)
+
+Superseded the previous fix (the "px-4 pb-4 on the wrapper div" approach) with a better one, per direct feedback: padding on an outer wrapper div creates a visible gap between the card edge and where the row's hover highlight starts — the hover background should reach the card edge directly, only the cell *content* should be inset.
+
+**`components/ui/table.tsx` now bakes horizontal inset into the cells themselves:** the `<table>` element carries `[&_td:first-child]:pl-4 [&_th:first-child]:pl-4 [&_td:last-child]:pr-4 [&_th:last-child]:pr-4`. This means every `<Table>` needs to sit inside a `<Card padding="none">` (or an equivalent zero-padding container) — if it sits inside a default-padding `<Card>` (p-5), you get double inset (card's p-5 + table's pl-4) and the first column shifts too far right.
+
+**Established pattern, used consistently in `leave`, `billing`, `children`, `compliance`, `development`, `expenses`, `financial-reports`, `parents`, `payroll`, `reports`, `daily-logs`, and all five Daily Operations views:**
+```tsx
+<Card padding="none">
+  <div className="flex items-center justify-between p-5 pb-3"> {/* or p-4 for daily-operations */}
+    <p className="text-sm font-bold text-[#2D1810]">Section Title</p>
+    {/* filters/buttons */}
+  </div>
+  <Table className="pb-5"> {/* pb-4 for daily-operations, to match their p-4 */}
+    ...
+  </Table>
+</Card>
+```
+The `pb-5`/`pb-4` on `<Table>` gives bottom breathing room before the card's rounded corner (padding on `<table>` itself renders fine despite `border-collapse`, verified in-browser). For multi-tab cards (like `compliance`'s 4 sub-tabs), each tab's own table wrapper div gets `px-5 pb-5 pt-4` since the tab-nav strip needs its own `px-5 pt-5` separately.
+
+**Known remaining gap, intentionally not fixed (out of scope):** `components/admin/children/children-table.tsx` has the same `border-none bg-table-header-bg hover:bg-table-header-bg` header override as the Daily Operations views did, but it's only used by `app/admin/v2/children/page.tsx` — admin v2 is out of scope for this project, left as-is.
+
+---
+
 ## Table needs its own horizontal padding when inside `Card padding="none"` (2026-08-05)
 
 `components/ui/table.tsx`'s `TableCell`/`TableHead` only carry `pr-3` (no left padding) — they were designed assuming the outer `Card`'s own `p-5`/`p-4` supplies the left/right inset (works fine on `leave`, `billing`, etc.). But every table in `components/admin/daily-operations/*` uses `<Card padding="none">` so its header/filter row can span full width, then wraps `<Table>` in a bare `<div className="hidden overflow-x-auto lg:block">` with zero padding — so the first column's checkbox/text was touching the card's left edge with no inset at all.

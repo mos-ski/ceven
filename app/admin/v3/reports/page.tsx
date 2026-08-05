@@ -65,9 +65,9 @@ export default function ReportsV3Page() {
       </div>
 
       {/* Scheduled reports */}
-      <Card>
-        <p className="mb-3 text-sm font-bold text-[#2D1810]">Scheduled Reports</p>
-        <Table>
+      <Card padding="none">
+        <p className="p-5 pb-3 text-sm font-bold text-[#2D1810]">Scheduled Reports</p>
+        <Table className="pb-5">
           <TableHeader>
               <TableRow className="border-b border-black/[0.08] text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
                 <TableHead>Report</TableHead>
