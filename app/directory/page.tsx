@@ -327,10 +327,10 @@ const APP_SECTIONS: AppSection[] = [
     id: "caregiver-app",
     title: "Caregiver App",
     summary: {
-      what: "A single 3-in-1 mobile app serving Caregivers, Independent Caregivers, and Independent Tutors — same codebase, different dashboards based on user type.",
-      entails: "v1 is the crèche-staff build from this codebase's main build. v2 is the reimagined version — during sign-up or invite, each user is routed to the correct dashboard (Caregiver, Independent Caregiver, or Independent Tutor) depending on their role.",
-      missing: "v2 currently has the core screens built (today, chat, daily report, calendar) — dashboards for all three roles are being expanded.",
-      improved: "v1 added AI chat, ratings, and a fuller settings/onboarding flow over the original production app. v2 unifies three previously separate apps into one, with role-based routing.",
+      what: "The staff-facing mobile app caregivers use to log attendance, daily reports, and incidents — scoped to a single crèche.",
+      entails: "v1 is the crèche-staff build from this codebase's main build. v2 is the reimagined version with a cleaner UI and richer daily workflows.",
+      missing: "v2 currently has the core screens built (today, chat, daily report, calendar) — more modules are being expanded.",
+      improved: "v1 added AI chat, ratings, and a fuller settings/onboarding flow over the original production app. v2 brings a modern visual direction matching the new product vision.",
     },
     versions: [
       {
@@ -377,18 +377,59 @@ const APP_SECTIONS: AppSection[] = [
         ],
       },
       {
-        label: "v2 — 3-in-1: caregiver / independent caregiver / independent tutor",
-        meta: "Next.js · /caregiverv2",
-        href: "/caregiverv2/today",
+        label: "v2 — reimagined",
+        meta: "Next.js · /caregiver",
+        href: "/caregiver/today",
         rows: [
           [
-            { label: "Today", href: "/caregiverv2/today" },
-            { label: "Chat", href: "/caregiverv2/chat" },
-            { label: "Daily Report", href: "/caregiverv2/daily-report" },
-            { label: "Calendar", href: "/caregiverv2/calendar" },
+            { label: "Today", href: "/caregiver/today" },
+            { label: "Chat", href: "/caregiver/chat" },
+            { label: "Daily Report", href: "/caregiver/daily-report" },
+            { label: "Calendar", href: "/caregiver/calendar" },
           ],
+        ],
+      },
+    ],
+  },
+  {
+    id: "independent-caregiver-app",
+    title: "Independent Caregiver App",
+    summary: {
+      what: "The mobile app for independent caregivers who work outside a single crèche — manages their own schedule, clients, and daily reports.",
+      entails: "Separate app from the crèche-bound caregiver. v2 is the first build in this codebase. Users are routed here during sign-up or invite based on their role.",
+      missing: "v2 is in early development — core screens being built out.",
+      improved: "New app — first working version, purpose-built for independent caregivers.",
+    },
+    versions: [
+      {
+        label: "v2 — first build",
+        meta: "Next.js · /independent-caregiver",
+        href: "/independent-caregiver",
+        rows: [
           [
-            { label: "Role-based routing: sign-up or invite determines which dashboard loads" },
+            { label: "Role-based routing: sign-up or invite routes independent caregivers here" },
+          ],
+        ],
+      },
+    ],
+  },
+  {
+    id: "independent-tutor-app",
+    title: "Independent Tutor App",
+    summary: {
+      what: "The mobile app for independent tutors who provide one-on-one or small-group sessions — manages sessions, progress tracking, and parent communication.",
+      entails: "Separate app from the crèche-bound caregiver. v2 is the first build in this codebase. Users are routed here during sign-up or invite based on their role.",
+      missing: "v2 is in early development — core screens being built out.",
+      improved: "New app — first working version, purpose-built for independent tutors.",
+    },
+    versions: [
+      {
+        label: "v2 — first build",
+        meta: "Next.js · /independent-tutor",
+        href: "/independent-tutor",
+        rows: [
+          [
+            { label: "Role-based routing: sign-up or invite routes independent tutors here" },
           ],
         ],
       },
@@ -432,7 +473,9 @@ const NAV_CARDS = [
   { id: "super-admin", eyebrow: "Super Admin", desc: "Platform console · /super-admin" },
   { id: "creche-admin", eyebrow: "Crèche Admin", desc: "Operator dashboard · v1, v2, v3" },
   { id: "parent-app", eyebrow: "Parent App", desc: "Family mobile app · v1, v2" },
-  { id: "caregiver-app", eyebrow: "Caregiver App", desc: "3-in-1 staff app · caregiver, independent caregiver, tutor" },
+  { id: "caregiver-app", eyebrow: "Caregiver App", desc: "Crèche staff app · v1, v2" },
+  { id: "independent-caregiver-app", eyebrow: "Independent Caregiver", desc: "Independent caregiver app · v2" },
+  { id: "independent-tutor-app", eyebrow: "Independent Tutor", desc: "Independent tutor app · v2" },
   { id: "website", eyebrow: "Website", desc: "Marketing site · public pages" },
 ];
 
@@ -476,7 +519,7 @@ export default function DirectoryPage() {
           <span className="font-bold text-heading">5 Aug 2026</span>
           <span className="text-muted-text">—</span>
           <span className="text-muted-text">
-            Removed app-store v1s, renumbered v2→v1 &amp; v3→v2 for Parent &amp; Caregiver, added CTA buttons, documented 3-in-1 caregiver app
+            Removed app-store v1s, renumbered v2→v1 &amp; v3→v2 for Parent &amp; Caregiver, added CTA buttons, split caregiver into 3 separate apps (caregiver, independent caregiver, independent tutor)
           </span>
         </div>
 
