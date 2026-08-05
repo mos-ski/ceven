@@ -304,14 +304,14 @@ const APP_SECTIONS: AppSection[] = [
       },
       {
         label: "v2 — parent ↔ independent caregiver",
-        meta: "Next.js · /parentv2",
-        href: "/parentv2/home",
+        meta: "Next.js · /parentv3",
+        href: "/parentv3/home",
         rows: [
           [
-            { label: "Home", href: "/parentv2/home" },
-            { label: "Chat", href: "/parentv2/chat" },
-            { label: "Food Timetable", href: "/parentv2/food-timetable" },
-            { label: "Calendar", href: "/parentv2/calendar" },
+            { label: "Home", href: "/parentv3/home" },
+            { label: "Chat", href: "/parentv3/chat" },
+            { label: "Food Timetable", href: "/parentv3/food-timetable" },
+            { label: "Calendar", href: "/parentv3/calendar" },
           ],
         ],
       },
@@ -372,14 +372,14 @@ const APP_SECTIONS: AppSection[] = [
       },
       {
         label: "v2 — reimagined",
-        meta: "Next.js · /caregiver",
-        href: "/caregiver/today",
+        meta: "Next.js · /caregiverv3",
+        href: "/caregiverv3/today",
         rows: [
           [
-            { label: "Today", href: "/caregiver/today" },
-            { label: "Chat", href: "/caregiver/chat" },
-            { label: "Daily Report", href: "/caregiver/daily-report" },
-            { label: "Calendar", href: "/caregiver/calendar" },
+            { label: "Today", href: "/caregiverv3/today" },
+            { label: "Chat", href: "/caregiverv3/chat" },
+            { label: "Daily Report", href: "/caregiverv3/daily-report" },
+            { label: "Calendar", href: "/caregiverv3/calendar" },
           ],
         ],
       },
@@ -398,7 +398,7 @@ const APP_SECTIONS: AppSection[] = [
       {
         label: "v2 — first build",
         meta: "Next.js · /independent-caregiver",
-        href: "/independent-caregiver",
+        href: "#",
         rows: [
           [
             { label: "Role-based routing: sign-up or invite routes independent caregivers here" },
@@ -420,7 +420,7 @@ const APP_SECTIONS: AppSection[] = [
       {
         label: "v2 — first build",
         meta: "Next.js · /independent-tutor",
-        href: "/independent-tutor",
+        href: "#",
         rows: [
           [
             { label: "Role-based routing: sign-up or invite routes independent tutors here" },
@@ -530,11 +530,11 @@ export default function DirectoryPage() {
                   { app: "Crèche Admin", version: "v2", status: "Approved", desc: "Full operating system — payroll, compliance, AI, financials", href: "/admin/v2/dashboard" },
                   { app: "Crèche Admin", version: "v3", status: "In progress", desc: "CEO reimagining — new visual direction", href: "/admin/v3" },
                   { app: "Parent App", version: "v1", status: "Approved", desc: "Current build — AI assistant, settings, health/growth tracking", href: "/parent/home" },
-                  { app: "Parent App", version: "v2", status: "In progress", desc: "Parent ↔ independent caregiver reimagining", href: "/parentv2/home" },
+                  { app: "Parent App", version: "v2", status: "In progress", desc: "Parent ↔ independent caregiver reimagining", href: "/parentv3/home" },
                   { app: "Caregiver App", version: "v1", status: "Approved", desc: "Crèche-staff build — daily workflows, ratings, settings", href: "/caregiver/home" },
-                  { app: "Caregiver App", version: "v2", status: "In progress", desc: "Reimagined caregiver experience", href: "/caregiver/today" },
-                  { app: "Independent Caregiver", version: "v2", status: "In progress", desc: "First build for independent caregivers", href: "/independent-caregiver" },
-                  { app: "Independent Tutor", version: "v2", status: "In progress", desc: "First build for independent tutors", href: "/independent-tutor" },
+{ app: "Caregiver App", version: "v2", status: "In progress", desc: "Reimagined caregiver experience", href: "/caregiverv3/today" },
+                  { app: "Independent Caregiver", version: "v2", status: "In progress", desc: "First build for independent caregivers", href: "#" },
+                  { app: "Independent Tutor", version: "v2", status: "In progress", desc: "First build for independent tutors", href: "#" },
                   { app: "Design System", version: "—", status: "In progress", desc: "Shared foundations & components", href: "/library" },
                   { app: "Website", version: "—", status: "In progress", desc: "Public marketing site", href: "/" },
                 ].map((row, i) => (
@@ -576,11 +576,11 @@ export default function DirectoryPage() {
               { app: "Crèche Admin", version: "v2", status: "Completed", desc: "Full operating system — payroll, compliance, AI, financials", href: "/admin/v2/dashboard" },
               { app: "Crèche Admin", version: "v3", status: "In progress", desc: "CEO reimagining — new visual direction", href: "/admin/v3" },
               { app: "Parent App", version: "v1", status: "Completed", desc: "Current build — AI assistant, settings, health/growth tracking", href: "/parent/home" },
-              { app: "Parent App", version: "v2", status: "In progress", desc: "Parent ↔ independent caregiver reimagining", href: "/parentv2/home" },
+              { app: "Parent App", version: "v2", status: "In progress", desc: "Parent ↔ independent caregiver reimagining", href: "/parentv3/home" },
               { app: "Caregiver App", version: "v1", status: "Completed", desc: "Crèche-staff build — daily workflows, ratings, settings", href: "/caregiver/home" },
-              { app: "Caregiver App", version: "v2", status: "In progress", desc: "Reimagined caregiver experience", href: "/caregiver/today" },
-              { app: "Independent Caregiver", version: "v2", status: "In progress", desc: "First build for independent caregivers", href: "/independent-caregiver" },
-              { app: "Independent Tutor", version: "v2", status: "In progress", desc: "First build for independent tutors", href: "/independent-tutor" },
+              { app: "Caregiver App", version: "v2", status: "In progress", desc: "Reimagined caregiver experience", href: "/caregiverv3/today" },
+              { app: "Independent Caregiver", version: "v2", status: "In progress", desc: "First build for independent caregivers", href: "#" },
+              { app: "Independent Tutor", version: "v2", status: "In progress", desc: "First build for independent tutors", href: "#" },
             ].map((row, i) => (
               <div key={i} className="rounded-2xl border border-card-border bg-white p-4">
                 <div className="flex items-center justify-between">
