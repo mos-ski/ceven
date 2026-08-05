@@ -557,8 +557,8 @@ export default function DirectoryPage() {
               </thead>
               <tbody>
                 {[
-                  { app: "Super Admin", version: "v1", status: "Completed", desc: "Platform console for internal operators", href: "/super-admin/dashboard" },
-                  { app: "Crèche Admin", version: "v1", status: "Completed", desc: "Original crèche operator dashboard", href: "/admin/v1/dashboard" },
+                  { app: "Super Admin", version: "v1", status: "Live", desc: "Platform console for internal operators", href: "/super-admin/dashboard" },
+                  { app: "Crèche Admin", version: "v1", status: "Live", desc: "Original crèche operator dashboard", href: "/admin/v1/dashboard" },
                   { app: "Crèche Admin", version: "v2", status: "Completed", desc: "Full operating system — payroll, compliance, AI, financials", href: "/admin/v2/dashboard" },
                   { app: "Crèche Admin", version: "v3", status: "In progress", desc: "CEO reimagining — new visual direction", href: "/admin/v3" },
                   { app: "Parent App", version: "v1", status: "Completed", desc: "Current build — AI assistant, settings, health/growth tracking", href: "/parent/home" },
@@ -601,8 +601,8 @@ export default function DirectoryPage() {
           {/* Mobile stacked cards */}
           <div className="mt-4 flex flex-col gap-3 lg:hidden">
             {[
-              { app: "Super Admin", version: "v1", status: "Completed", desc: "Platform console for internal operators", href: "/super-admin/dashboard" },
-              { app: "Crèche Admin", version: "v1", status: "Completed", desc: "Original crèche operator dashboard", href: "/admin/v1/dashboard" },
+              { app: "Super Admin", version: "v1", status: "Live", desc: "Platform console for internal operators", href: "/super-admin/dashboard" },
+              { app: "Crèche Admin", version: "v1", status: "Live", desc: "Original crèche operator dashboard", href: "/admin/v1/dashboard" },
               { app: "Crèche Admin", version: "v2", status: "Completed", desc: "Full operating system — payroll, compliance, AI, financials", href: "/admin/v2/dashboard" },
               { app: "Crèche Admin", version: "v3", status: "In progress", desc: "CEO reimagining — new visual direction", href: "/admin/v3" },
               { app: "Parent App", version: "v1", status: "Completed", desc: "Current build — AI assistant, settings, health/growth tracking", href: "/parent/home" },
