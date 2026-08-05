@@ -8,92 +8,92 @@ import { mockChildren } from "@/lib/caregiver/mock-data";
 const SEVERITY_OPTIONS = ["Minor", "Moderate", "Severe"] as const;
 
 export function IncidentForm() {
-  const [child, setChild] = useState("");
-  const [severity, setSeverity] = useState<(typeof SEVERITY_OPTIONS)[number] | "">("");
-  const [description, setDescription] = useState("");
-  const [action, setAction] = useState("");
-  const [notifyParent, setNotifyParent] = useState(true);
-  const [showChildDrop, setShowChildDrop] = useState(false);
-  const [showSevDrop, setShowSevDrop] = useState(false);
-  const { close, logIncident } = useLogSheet();
+ const [child, setChild] = useState("");
+ const [severity, setSeverity] = useState<(typeof SEVERITY_OPTIONS)[number] | "">("");
+ const [description, setDescription] = useState("");
+ const [action, setAction] = useState("");
+ const [notifyParent, setNotifyParent] = useState(true);
+ const [showChildDrop, setShowChildDrop] = useState(false);
+ const [showSevDrop, setShowSevDrop] = useState(false);
+ const { close, logIncident } = useLogSheet();
 
-  function handleSubmit() {
-    if (!child || !severity || !description.trim()) return;
-    logIncident({ child, severity, description, action, parentNotified: notifyParent });
-    close();
-  }
+ function handleSubmit() {
+  if (!child || !severity || !description.trim()) return;
+  logIncident({ child, severity, description, action, parentNotified: notifyParent });
+  close();
+ }
 
-  return (
-    <div className="flex flex-col gap-4">
-      {/* Child */}
-      <div>
-        <p className="mb-1.5 text-sm font-medium text-gray-700">Child <span className="text-red-500">*</span></p>
-        <div className="relative">
-          <button onClick={() => setShowChildDrop(!showChildDrop)} className="flex w-full items-center justify-between rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm">
-            <span className={child ? "text-cg-brand" : "text-gray-400"}>{child || "Select child"}</span>
-            <ChevronDown size={16} className="text-gray-400" />
-          </button>
-          {showChildDrop && (
-            <div className="absolute z-10 mt-1 w-full rounded-xl border border-gray-100 bg-white shadow-lg">
-              {mockChildren.map((c) => (
-                <button key={c.id} onClick={() => { setChild(c.name); setShowChildDrop(false); }} className="w-full px-4 py-3 text-left text-sm text-cg-brand hover:bg-gray-50">
-                  {c.name}
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
+ return (
+  <div className="flex flex-col gap-4">
+   {/* Child */}
+   <div>
+    <p className="mb-1.5 text-sm font-medium text-gray-700">Child <span className="text-red-500">*</span></p>
+    <div className="relative">
+     <button onClick={() => setShowChildDrop(!showChildDrop)} className="flex w-full items-center justify-between rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm">
+      <span className={child ? "text-cg-brand" : "text-gray-400"}>{child || "Select child"}</span>
+      <ChevronDown size={16} className="text-gray-400" />
+     </button>
+     {showChildDrop && (
+      <div className="absolute z-10 mt-1 w-full rounded-xl border border-gray-100 bg-white ">
+       {mockChildren.map((c) => (
+        <button key={c.id} onClick={() => { setChild(c.name); setShowChildDrop(false); }} className="w-full px-4 py-3 text-left text-sm text-cg-brand hover:bg-gray-50">
+         {c.name}
+        </button>
+       ))}
       </div>
-
-      {/* Severity */}
-      <div>
-        <p className="mb-1.5 text-sm font-medium text-gray-700">Severity <span className="text-red-500">*</span></p>
-        <div className="relative">
-          <button onClick={() => setShowSevDrop(!showSevDrop)} className="flex w-full items-center justify-between rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm">
-            <span className={severity ? "text-cg-brand" : "text-gray-400"}>{severity || "Select severity"}</span>
-            <ChevronDown size={16} className="text-gray-400" />
-          </button>
-          {showSevDrop && (
-            <div className="absolute z-10 mt-1 w-full rounded-xl border border-gray-100 bg-white shadow-lg">
-              {SEVERITY_OPTIONS.map((s) => (
-                <button key={s} onClick={() => { setSeverity(s); setShowSevDrop(false); }} className="w-full px-4 py-3 text-left text-sm text-cg-brand hover:bg-gray-50">{s}</button>
-              ))}
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* Description */}
-      <div>
-        <p className="mb-1.5 text-sm font-medium text-gray-700">What happened? <span className="text-red-500">*</span></p>
-        <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Describe the incident..." rows={3} className="w-full resize-none rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-cg-brand placeholder:text-gray-300 focus:border-cg-accent focus:outline-none" />
-      </div>
-
-      {/* Action taken */}
-      <div>
-        <p className="mb-1.5 text-sm font-medium text-gray-700">Action Taken</p>
-        <textarea value={action} onChange={(e) => setAction(e.target.value)} placeholder="What action was taken..." rows={2} className="w-full resize-none rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-cg-brand placeholder:text-gray-300 focus:border-cg-accent focus:outline-none" />
-      </div>
-
-      {/* Notify parent */}
-      <button
-        type="button"
-        onClick={() => setNotifyParent((v) => !v)}
-        className="flex items-center gap-2.5 rounded-xl border border-gray-200 bg-white px-4 py-3 text-left"
-      >
-        <span className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-md border ${notifyParent ? "border-cg-brand bg-cg-brand" : "border-gray-300"}`}>
-          {notifyParent && <Check size={13} className="text-white" />}
-        </span>
-        <span className="text-sm text-cg-brand">Notify parent about this incident</span>
-      </button>
-
-      <button
-        onClick={handleSubmit}
-        disabled={!child || !severity || !description.trim()}
-        className="w-full rounded-xl bg-red-500 py-3.5 text-sm font-semibold text-white disabled:opacity-40"
-      >
-        Log Incident
-      </button>
+     )}
     </div>
-  );
+   </div>
+
+   {/* Severity */}
+   <div>
+    <p className="mb-1.5 text-sm font-medium text-gray-700">Severity <span className="text-red-500">*</span></p>
+    <div className="relative">
+     <button onClick={() => setShowSevDrop(!showSevDrop)} className="flex w-full items-center justify-between rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm">
+      <span className={severity ? "text-cg-brand" : "text-gray-400"}>{severity || "Select severity"}</span>
+      <ChevronDown size={16} className="text-gray-400" />
+     </button>
+     {showSevDrop && (
+      <div className="absolute z-10 mt-1 w-full rounded-xl border border-gray-100 bg-white ">
+       {SEVERITY_OPTIONS.map((s) => (
+        <button key={s} onClick={() => { setSeverity(s); setShowSevDrop(false); }} className="w-full px-4 py-3 text-left text-sm text-cg-brand hover:bg-gray-50">{s}</button>
+       ))}
+      </div>
+     )}
+    </div>
+   </div>
+
+   {/* Description */}
+   <div>
+    <p className="mb-1.5 text-sm font-medium text-gray-700">What happened? <span className="text-red-500">*</span></p>
+    <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Describe the incident..." rows={3} className="w-full resize-none rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-cg-brand placeholder:text-gray-300 focus:border-cg-accent focus:outline-none" />
+   </div>
+
+   {/* Action taken */}
+   <div>
+    <p className="mb-1.5 text-sm font-medium text-gray-700">Action Taken</p>
+    <textarea value={action} onChange={(e) => setAction(e.target.value)} placeholder="What action was taken..." rows={2} className="w-full resize-none rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-cg-brand placeholder:text-gray-300 focus:border-cg-accent focus:outline-none" />
+   </div>
+
+   {/* Notify parent */}
+   <button
+    type="button"
+    onClick={() => setNotifyParent((v) => !v)}
+    className="flex items-center gap-2.5 rounded-xl border border-gray-200 bg-white px-4 py-3 text-left"
+   >
+    <span className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-md border ${notifyParent ? "border-cg-brand bg-cg-brand" : "border-gray-300"}`}>
+     {notifyParent && <Check size={13} className="text-white" />}
+    </span>
+    <span className="text-sm text-cg-brand">Notify parent about this incident</span>
+   </button>
+
+   <button
+    onClick={handleSubmit}
+    disabled={!child || !severity || !description.trim()}
+    className="w-full rounded-xl bg-red-500 py-3.5 text-sm font-semibold text-white disabled:opacity-40"
+   >
+    Log Incident
+   </button>
+  </div>
+ );
 }

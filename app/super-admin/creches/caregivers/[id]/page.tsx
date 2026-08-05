@@ -8,166 +8,166 @@ import { CAREGIVERS, APPROVED_CRECHES } from "@/lib/super-admin/mock-data";
 import { exportRowsToCsv } from "@/lib/super-admin/export-csv";
 
 const STATUS_BADGE: Record<string, string> = {
-  active: "bg-[#E1F5EC] text-[#009061]",
-  inactive: "bg-red-50 text-red-600",
+ active: "bg-[#E1F5EC] text-[#009061]",
+ inactive: "bg-red-50 text-red-600",
 };
 
 const PAGE_SIZE = 10;
 
 export default function CaregiversPage() {
-  const params = useParams();
-  const crecheId = params.id as string;
-  const creche = APPROVED_CRECHES.find((c) => c.id === crecheId);
-  const [search, setSearch] = useState("");
-  const [page, setPage] = useState(1);
-  const [oldestFirst, setOldestFirst] = useState(false);
+ const params = useParams();
+ const crecheId = params.id as string;
+ const creche = APPROVED_CRECHES.find((c) => c.id === crecheId);
+ const [search, setSearch] = useState("");
+ const [page, setPage] = useState(1);
+ const [oldestFirst, setOldestFirst] = useState(false);
 
-  const filtered = CAREGIVERS.filter(
-    (cg) => cg.fullName.toLowerCase().includes(search.toLowerCase()) || cg.email.toLowerCase().includes(search.toLowerCase())
+ const filtered = CAREGIVERS.filter(
+  (cg) => cg.fullName.toLowerCase().includes(search.toLowerCase()) || cg.email.toLowerCase().includes(search.toLowerCase())
+ );
+ const sorted = oldestFirst ? [...filtered].reverse() : filtered;
+ const totalPages = Math.max(1, Math.ceil(sorted.length / PAGE_SIZE));
+ const paginated = sorted.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+
+ const handleExport = () => {
+  exportRowsToCsv(
+   "caregivers.csv",
+   ["Full Name", "Email", "Assigned Children", "Phone Number", "Status"],
+   sorted.map((cg) => [cg.fullName, cg.email, cg.assignedChildren, cg.phoneNumber, cg.status])
   );
-  const sorted = oldestFirst ? [...filtered].reverse() : filtered;
-  const totalPages = Math.max(1, Math.ceil(sorted.length / PAGE_SIZE));
-  const paginated = sorted.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+ };
 
-  const handleExport = () => {
-    exportRowsToCsv(
-      "caregivers.csv",
-      ["Full Name", "Email", "Assigned Children", "Phone Number", "Status"],
-      sorted.map((cg) => [cg.fullName, cg.email, cg.assignedChildren, cg.phoneNumber, cg.status])
-    );
-  };
+ return (
+  <div className="flex flex-col gap-4">
+   <Link href="/super-admin/creches" className="flex items-center gap-1 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-brand-accent hover:underline">
+    <ArrowLeft className="size-4" /> Back to Creches
+   </Link>
 
-  return (
-    <div className="flex flex-col gap-4">
-      <Link href="/super-admin/creches" className="flex items-center gap-1 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-brand-accent hover:underline">
-        <ArrowLeft className="size-4" /> Back to Creches
-      </Link>
-
-      <div className="rounded-xl border border-card-border bg-white p-4">
-        <div className="mb-1 flex items-center gap-2">
-          <div className="flex size-8 items-center justify-center rounded-full bg-emerald-50">
-            <span className="font-[family-name:var(--font-merriweather)] text-sm font-bold text-emerald-600">
-              {CAREGIVERS.length}
-            </span>
-          </div>
-          <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-heading">Total Caregivers</p>
-        </div>
-        {creche && (
-          <p className="font-[family-name:var(--font-urbanist)] text-xs text-muted-text">{creche.crecheName}</p>
-        )}
-      </div>
-
-      <div className="rounded-xl border border-card-border bg-white">
-        <div className="flex flex-wrap items-center gap-3 border-b border-card-border p-4">
-          <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-text" />
-            <input
-              type="search"
-              value={search}
-              onChange={(e) => { setSearch(e.target.value); setPage(1); }}
-              placeholder="Search caregivers..."
-              className="h-9 w-full rounded-lg border border-input-border bg-white pl-9 pr-3 font-[family-name:var(--font-urbanist)] text-sm placeholder:text-muted-text focus:outline-none focus:ring-2 focus:ring-brand-accent"
-            />
-          </div>
-          <button
-            type="button"
-            onClick={() => { setOldestFirst((v) => !v); setPage(1); }}
-            className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading"
-          >
-            <ArrowUpDown className="size-3.5" /> {oldestFirst ? "Oldest first" : "Newest first"}
-          </button>
-          <button
-            type="button"
-            onClick={handleExport}
-            className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading"
-          >
-            <Download className="size-3.5" /> Export as
-          </button>
-          <button
-            type="button"
-            onClick={() => window.print()}
-            className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading"
-          >
-            <Printer className="size-3.5" /> Print
-          </button>
-        </div>
-
-        <div className="overflow-x-auto">
-          <table className="w-full text-left">
-            <thead>
-              <tr className="bg-table-header-bg">
-                <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">
-                  <input type="checkbox" className="rounded" />
-                </th>
-                <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">Full Name</th>
-                <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">Email</th>
-                <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">Assigned Children</th>
-                <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">Phone Number</th>
-                <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">Status</th>
-                <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {paginated.map((cg) => (
-                <tr key={cg.id} className="border-b border-table-border last:border-0 hover:bg-slate-50">
-                  <td className="px-4 py-3"><input type="checkbox" className="rounded" /></td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-heading">{cg.fullName}</td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-muted-text">{cg.email}</td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">{cg.assignedChildren}</td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">{cg.phoneNumber}</td>
-                  <td className="px-4 py-3">
-                    <span className={`rounded-full px-2.5 py-0.5 font-[family-name:var(--font-urbanist)] text-xs font-semibold ${STATUS_BADGE[cg.status]}`}>
-                      {cg.status}
-                    </span>
-                  </td>
-                  <td className="px-4 py-3">
-                    <Link
-                      href={`/super-admin/creches/assigned-children-caregiver/${cg.id}`}
-                      className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-brand-accent hover:underline"
-                    >
-                      View Details
-                    </Link>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        <div className="flex items-center justify-between border-t border-card-border px-4 py-3">
-          <span className="font-[family-name:var(--font-urbanist)] text-xs text-muted-text">10 per page</span>
-          <div className="flex items-center gap-1">
-            <button
-              type="button"
-              onClick={() => setPage((p) => Math.max(1, p - 1))}
-              disabled={page === 1}
-              className="flex size-8 items-center justify-center rounded-lg border border-card-border text-muted-text hover:bg-slate-50 disabled:opacity-40"
-            >
-              <ChevronLeft className="size-4" />
-            </button>
-            {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
-              <button
-                key={p}
-                type="button"
-                onClick={() => setPage(p)}
-                className={`flex size-8 items-center justify-center rounded-lg font-[family-name:var(--font-urbanist)] text-xs font-semibold ${
-                  p === page ? "bg-brand-dark text-white" : "border border-card-border text-heading hover:bg-slate-50"
-                }`}
-              >
-                {p}
-              </button>
-            ))}
-            <button
-              type="button"
-              onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-              disabled={page === totalPages}
-              className="flex size-8 items-center justify-center rounded-lg border border-card-border text-muted-text hover:bg-slate-50 disabled:opacity-40"
-            >
-              <ChevronRight className="size-4" />
-            </button>
-          </div>
-        </div>
-      </div>
+   <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
+    <div className="mb-1 flex items-center gap-2">
+     <div className="flex size-8 items-center justify-center rounded-full bg-emerald-50">
+      <span className="font-[family-name:var(--font-merriweather)] text-sm font-bold text-emerald-600">
+       {CAREGIVERS.length}
+      </span>
+     </div>
+     <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-heading">Total Caregivers</p>
     </div>
-  );
+    {creche && (
+     <p className="font-[family-name:var(--font-urbanist)] text-xs text-muted-text">{creche.crecheName}</p>
+    )}
+   </div>
+
+   <div className="rounded-xl bg-[#F5EDD8]/30">
+    <div className="flex flex-wrap items-center gap-3 border-b border-card-border p-4">
+     <div className="relative flex-1">
+      <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-text" />
+      <input
+       type="search"
+       value={search}
+       onChange={(e) => { setSearch(e.target.value); setPage(1); }}
+       placeholder="Search caregivers..."
+       className="h-9 w-full rounded-lg border border-input-border bg-white pl-9 pr-3 font-[family-name:var(--font-urbanist)] text-sm placeholder:text-muted-text focus:outline-none focus:ring-2 focus:ring-brand-accent"
+      />
+     </div>
+     <button
+      type="button"
+      onClick={() => { setOldestFirst((v) => !v); setPage(1); }}
+      className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading"
+     >
+      <ArrowUpDown className="size-3.5" /> {oldestFirst ? "Oldest first" : "Newest first"}
+     </button>
+     <button
+      type="button"
+      onClick={handleExport}
+      className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading"
+     >
+      <Download className="size-3.5" /> Export as
+     </button>
+     <button
+      type="button"
+      onClick={() => window.print()}
+      className="flex h-9 items-center gap-1.5 rounded-lg border border-input-border bg-white px-3 font-[family-name:var(--font-urbanist)] text-sm text-heading"
+     >
+      <Printer className="size-3.5" /> Print
+     </button>
+    </div>
+
+    <div className="overflow-x-auto">
+     <table className="w-full text-left">
+      <thead>
+       <tr className="bg-table-header-bg">
+        <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">
+         <input type="checkbox" className="rounded" />
+        </th>
+        <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">Full Name</th>
+        <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">Email</th>
+        <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">Assigned Children</th>
+        <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">Phone Number</th>
+        <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">Status</th>
+        <th className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-white">Action</th>
+       </tr>
+      </thead>
+      <tbody>
+       {paginated.map((cg) => (
+        <tr key={cg.id} className="border-b border-table-border last:border-0 hover:bg-slate-50">
+         <td className="px-4 py-3"><input type="checkbox" className="rounded" /></td>
+         <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-heading">{cg.fullName}</td>
+         <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-muted-text">{cg.email}</td>
+         <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">{cg.assignedChildren}</td>
+         <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-heading">{cg.phoneNumber}</td>
+         <td className="px-4 py-3">
+          <span className={`rounded-full px-2.5 py-0.5 font-[family-name:var(--font-urbanist)] text-xs font-semibold ${STATUS_BADGE[cg.status]}`}>
+           {cg.status}
+          </span>
+         </td>
+         <td className="px-4 py-3">
+          <Link
+           href={`/super-admin/creches/assigned-children-caregiver/${cg.id}`}
+           className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-brand-accent hover:underline"
+          >
+           View Details
+          </Link>
+         </td>
+        </tr>
+       ))}
+      </tbody>
+     </table>
+    </div>
+
+    <div className="flex items-center justify-between border-t border-card-border px-4 py-3">
+     <span className="font-[family-name:var(--font-urbanist)] text-xs text-muted-text">10 per page</span>
+     <div className="flex items-center gap-1">
+      <button
+       type="button"
+       onClick={() => setPage((p) => Math.max(1, p - 1))}
+       disabled={page === 1}
+       className="flex size-8 items-center justify-center rounded-lg border border-card-border text-muted-text hover:bg-slate-50 disabled:opacity-40"
+      >
+       <ChevronLeft className="size-4" />
+      </button>
+      {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+       <button
+        key={p}
+        type="button"
+        onClick={() => setPage(p)}
+        className={`flex size-8 items-center justify-center rounded-lg font-[family-name:var(--font-urbanist)] text-xs font-semibold ${
+         p === page ? "bg-brand-dark text-white" : "border border-card-border text-heading hover:bg-slate-50"
+        }`}
+       >
+        {p}
+       </button>
+      ))}
+      <button
+       type="button"
+       onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+       disabled={page === totalPages}
+       className="flex size-8 items-center justify-center rounded-lg border border-card-border text-muted-text hover:bg-slate-50 disabled:opacity-40"
+      >
+       <ChevronRight className="size-4" />
+      </button>
+     </div>
+    </div>
+   </div>
+  </div>
+ );
 }
