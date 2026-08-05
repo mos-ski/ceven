@@ -113,7 +113,7 @@ export default function CaregiverV3CalendarPage() {
     <div className="relative flex min-h-0 flex-1 flex-col overflow-hidden bg-cg-bg">
       <div className="flex-1 overflow-y-auto scrollbar-thin px-4 pt-2 pb-4">
         <div className="mb-4">
-          <h1 className="text-base font-bold text-gray-800">Calendar</h1>
+          <h1 className="text-base font-bold text-gray-800" style={{ fontFamily: "var(--font-merriweather)" }}>Calendar</h1>
           <p className="text-[10px] text-gray-500">Shared events & prep checklists</p>
         </div>
 

@@ -220,7 +220,7 @@ export default function CaregiverV3DailyReportPage() {
       <div className="flex-1 overflow-y-auto scrollbar-thin px-4 pt-2 pb-4">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h1 className="text-base font-bold text-gray-800">Daily Report</h1>
+            <h1 className="text-base font-bold text-gray-800" style={{ fontFamily: "var(--font-merriweather)" }}>Daily Report</h1>
             <p className="text-[10px] text-gray-500">{DAILY_REPORT.date}</p>
           </div>
           {sent && (

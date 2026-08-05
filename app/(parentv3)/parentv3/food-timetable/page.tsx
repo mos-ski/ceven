@@ -47,7 +47,7 @@ export default function ParentV3FoodTimetablePage() {
         {/* Top bar */}
         <div className="flex items-center justify-between pt-4 pb-2">
           <div>
-            <h1 className="text-base font-bold text-gray-800">Food Timetable</h1>
+            <h1 className="text-base font-bold text-gray-800" style={{ fontFamily: "var(--font-merriweather)" }}>Food Timetable</h1>
             <p className="text-[10px] text-gray-500">Plan meals for the week</p>
           </div>
           <button
