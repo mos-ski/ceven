@@ -489,7 +489,7 @@ function SummaryBlock({ summary }: { summary: Summary }) {
 
 export default function DirectoryPage() {
   return (
-    <div className="min-h-screen bg-content-bg px-6 py-12 font-[family-name:var(--font-nunito)] text-heading sm:px-10 lg:px-16">
+    <div className="min-h-screen bg-content-bg px-6 py-12 font-[family-name:var(--font-merriweather-import)] text-heading sm:px-10 lg:px-16">
       <div className="mx-auto max-w-5xl">
         <p className="font-[family-name:var(--font-mogra)] text-2xl text-brand-dark">CEven</p>
 
