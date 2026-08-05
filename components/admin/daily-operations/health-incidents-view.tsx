@@ -243,8 +243,16 @@ const statsCards = [
   { value: "--/--", title: "Parent Notified" },
 ];
 
-export function HealthIncidentsView() {
-  const [reportOpen, setReportOpen] = useState(false);
+export function HealthIncidentsView({
+  reportOpen: reportOpenProp,
+  onReportOpenChange: onReportOpenChangeProp,
+}: {
+  reportOpen?: boolean;
+  onReportOpenChange?: (open: boolean) => void;
+} = {}) {
+  const [reportOpenState, setReportOpenState] = useState(false);
+  const reportOpen = reportOpenProp ?? reportOpenState;
+  const onReportOpenChange = onReportOpenChangeProp ?? setReportOpenState;
   const [viewingIncident, setViewingIncident] = useState<Incident | null>(null);
   const [search, setSearch] = useState("");
   const [severityFilter, setSeverityFilter] = useState("All Severity");
@@ -260,9 +268,11 @@ export function HealthIncidentsView() {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex justify-end">
-        <Button onClick={() => setReportOpen(true)} className="h-9 gap-2 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]">Raise Incident</Button>
-      </div>
+      {!onReportOpenChangeProp && (
+        <div className="flex justify-end">
+          <Button onClick={() => onReportOpenChange(true)} className="h-9 gap-2 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]">Raise Incident</Button>
+        </div>
+      )}
 
       <div className="grid grid-cols-2 gap-3 lg:gap-4 lg:grid-cols-4">
         {statsCards.map((card) => (
@@ -348,7 +358,7 @@ export function HealthIncidentsView() {
         </div>
       </Card>
 
-      <ReportIncidentModal open={reportOpen} onOpenChange={setReportOpen} />
+      <ReportIncidentModal open={reportOpen} onOpenChange={onReportOpenChange} />
       <ViewIncidentModal incident={viewingIncident} onOpenChange={(open) => !open && setViewingIncident(null)} />
     </div>
   );

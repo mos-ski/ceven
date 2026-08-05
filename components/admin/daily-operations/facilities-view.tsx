@@ -208,24 +208,40 @@ const facilitiesStatsCards = [
   { value: "00", title: "Next Planned Services" },
 ];
 
-export function FacilitiesView() {
+export function FacilitiesView({
+  requestOpen: requestOpenProp,
+  onRequestOpenChange: onRequestOpenChangeProp,
+  scheduleOpen: scheduleOpenProp,
+  onScheduleOpenChange: onScheduleOpenChangeProp,
+}: {
+  requestOpen?: boolean;
+  onRequestOpenChange?: (open: boolean) => void;
+  scheduleOpen?: boolean;
+  onScheduleOpenChange?: (open: boolean) => void;
+} = {}) {
   const [subTab, setSubTab] = useState<FacilitiesSubTab>("Maintenance");
-  const [requestOpen, setRequestOpen] = useState(false);
-  const [scheduleOpen, setScheduleOpen] = useState(false);
+  const [requestOpenState, setRequestOpenState] = useState(false);
+  const [scheduleOpenState, setScheduleOpenState] = useState(false);
+  const requestOpen = requestOpenProp ?? requestOpenState;
+  const onRequestOpenChange = onRequestOpenChangeProp ?? setRequestOpenState;
+  const scheduleOpen = scheduleOpenProp ?? scheduleOpenState;
+  const onScheduleOpenChange = onScheduleOpenChangeProp ?? setScheduleOpenState;
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex justify-end">
-        {subTab === "Maintenance" ? (
-          <Button onClick={() => setRequestOpen(true)} className="h-9 gap-2 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]">
-            <Wrench className="h-4 w-4" />New Maintenance Request
-          </Button>
-        ) : (
-          <Button onClick={() => setScheduleOpen(true)} className="h-9 gap-2 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]">
-            <Sparkles className="h-4 w-4" />Schedule Cleaning
-          </Button>
-        )}
-      </div>
+      {!onRequestOpenChangeProp && (
+        <div className="flex justify-end">
+          {subTab === "Maintenance" ? (
+            <Button onClick={() => onRequestOpenChange(true)} className="h-9 gap-2 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]">
+              <Wrench className="h-4 w-4" />New Maintenance Request
+            </Button>
+          ) : (
+            <Button onClick={() => onScheduleOpenChange(true)} className="h-9 gap-2 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]">
+              <Sparkles className="h-4 w-4" />Schedule Cleaning
+            </Button>
+          )}
+        </div>
+      )}
 
       <div className="grid grid-cols-2 gap-3 lg:gap-4 lg:grid-cols-4">
         {facilitiesStatsCards.map((card) => (
@@ -323,8 +339,8 @@ export function FacilitiesView() {
         </Card>
       )}
 
-      <NewMaintenanceRequestModal open={requestOpen} onOpenChange={setRequestOpen} />
-      <ScheduleCleaningModal open={scheduleOpen} onOpenChange={setScheduleOpen} />
+      <NewMaintenanceRequestModal open={requestOpen} onOpenChange={onRequestOpenChange} />
+      <ScheduleCleaningModal open={scheduleOpen} onOpenChange={onScheduleOpenChange} />
     </div>
   );
 }

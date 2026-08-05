@@ -225,8 +225,16 @@ function MedicationRow({ entry, onView }: { entry: MedicationEntry; onView: (ent
   );
 }
 
-export function MedicationView() {
-  const [logOpen, setLogOpen] = useState(false);
+export function MedicationView({
+  logOpen: logOpenProp,
+  onLogOpenChange: onLogOpenChangeProp,
+}: {
+  logOpen?: boolean;
+  onLogOpenChange?: (open: boolean) => void;
+} = {}) {
+  const [logOpenState, setLogOpenState] = useState(false);
+  const logOpen = logOpenProp ?? logOpenState;
+  const onLogOpenChange = onLogOpenChangeProp ?? setLogOpenState;
   const [viewingEntry, setViewingEntry] = useState<MedicationEntry | null>(null);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("All Status");
@@ -240,10 +248,11 @@ export function MedicationView() {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex justify-end">
-        <Button onClick={() => setLogOpen(true)} className="h-9 gap-2 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]">Log Medication</Button>
-      </div>
-
+      {!onLogOpenChangeProp && (
+        <div className="flex justify-end">
+          <Button onClick={() => onLogOpenChange(true)} className="h-9 gap-2 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]">Log Medication</Button>
+        </div>
+      )}
       <Card padding="none">
         <div className="flex flex-wrap items-center justify-between gap-4 p-4">
           <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">Medication Log</h2>
@@ -307,7 +316,7 @@ export function MedicationView() {
         </div>
       </Card>
 
-      <LogMedicationModal open={logOpen} onOpenChange={setLogOpen} />
+      <LogMedicationModal open={logOpen} onOpenChange={onLogOpenChange} />
       <ViewMedicationModal entry={viewingEntry} onOpenChange={(open) => !open && setViewingEntry(null)} />
     </div>
   );

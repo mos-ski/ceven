@@ -280,25 +280,48 @@ const inventoryStatsCards = [
   { value: String(SUPPLY_ORDERS.filter((o) => o.status === "Pending").length).padStart(2, "0"), label: "awaiting delivery", title: "Pending Orders" },
 ];
 
-export function InventoryView() {
+export function InventoryView({
+  restockOpen: restockOpenProp,
+  onRestockOpenChange: onRestockOpenChangeProp,
+  equipmentOpen: equipmentOpenProp,
+  onEquipmentOpenChange: onEquipmentOpenChangeProp,
+  orderOpen: orderOpenProp,
+  onOrderOpenChange: onOrderOpenChangeProp,
+}: {
+  restockOpen?: boolean;
+  onRestockOpenChange?: (open: boolean) => void;
+  equipmentOpen?: boolean;
+  onEquipmentOpenChange?: (open: boolean) => void;
+  orderOpen?: boolean;
+  onOrderOpenChange?: (open: boolean) => void;
+} = {}) {
   const [subTab, setSubTab] = useState<InventorySubTab>("Stock Levels");
-  const [restockOpen, setRestockOpen] = useState(false);
-  const [equipmentOpen, setEquipmentOpen] = useState(false);
-  const [orderOpen, setOrderOpen] = useState(false);
+  const [restockOpenState, setRestockOpenState] = useState(false);
+  const [equipmentOpenState, setEquipmentOpenState] = useState(false);
+  const [orderOpenState, setOrderOpenState] = useState(false);
+  const restockOpen = restockOpenProp ?? restockOpenState;
+  const onRestockOpenChange = onRestockOpenChangeProp ?? setRestockOpenState;
+  const equipmentOpen = equipmentOpenProp ?? equipmentOpenState;
+  const onEquipmentOpenChange = onEquipmentOpenChangeProp ?? setEquipmentOpenState;
+  const orderOpen = orderOpenProp ?? orderOpenState;
+  const onOrderOpenChange = onOrderOpenChangeProp ?? setOrderOpenState;
+  const isControlled = !!onRestockOpenChangeProp;
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex justify-end gap-2">
-        {subTab === "Stock Levels" && (
-          <Button onClick={() => setRestockOpen(true)} className="h-9 gap-2 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]"><PackagePlus className="h-4 w-4" />Add Item</Button>
-        )}
-        {subTab === "Equipment Register" && (
-          <Button onClick={() => setEquipmentOpen(true)} className="h-9 gap-2 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]">Register Equipment</Button>
-        )}
-        {subTab === "Orders" && (
-          <Button onClick={() => setOrderOpen(true)} className="h-9 gap-2 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]">New Order</Button>
-        )}
-      </div>
+      {!isControlled && (
+        <div className="flex justify-end gap-2">
+          {subTab === "Stock Levels" && (
+            <Button onClick={() => onRestockOpenChange(true)} className="h-9 gap-2 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]"><PackagePlus className="h-4 w-4" />Add Item</Button>
+          )}
+          {subTab === "Equipment Register" && (
+            <Button onClick={() => onEquipmentOpenChange(true)} className="h-9 gap-2 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]">Register Equipment</Button>
+          )}
+          {subTab === "Orders" && (
+            <Button onClick={() => onOrderOpenChange(true)} className="h-9 gap-2 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]">New Order</Button>
+          )}
+        </div>
+      )}
 
       <div className="grid grid-cols-2 gap-3 lg:gap-4 lg:grid-cols-4">
         {inventoryStatsCards.map((card) => (
@@ -412,9 +435,9 @@ export function InventoryView() {
         </Card>
       )}
 
-      <AddRestockModal open={restockOpen} onOpenChange={setRestockOpen} />
-      <RegisterEquipmentModal open={equipmentOpen} onOpenChange={setEquipmentOpen} />
-      <NewOrderModal open={orderOpen} onOpenChange={setOrderOpen} />
+      <AddRestockModal open={restockOpen} onOpenChange={onRestockOpenChange} />
+      <RegisterEquipmentModal open={equipmentOpen} onOpenChange={onEquipmentOpenChange} />
+      <NewOrderModal open={orderOpen} onOpenChange={onOrderOpenChange} />
     </div>
   );
 }

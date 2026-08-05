@@ -5,6 +5,47 @@ Paste the whole block under a heading to the agent that's doing the page-level r
 
 ---
 
+## Primary CTA must live in the page header, not floating inside the view (2026-08-05)
+
+`health`, `medication`, `inventory`, `facilities` had their primary action button (Raise Incident, Log Medication, Add Item, New Maintenance Request) rendered *inside* the shared `components/admin/daily-operations/*-view.tsx` component, in a `flex justify-end` row above the card — not in the page's `PageHeader` action slot like every other page. Every admin-v3 page's header should have at least one CTA, on the same row as the title.
+
+**Pattern used to fix it** (controlled/uncontrolled hybrid, since these view components are also used unmodified by `app/admin/v2/daily-operations/page.tsx` which doesn't pass any props):
+```tsx
+// in the view component
+export function MedicationView({
+  logOpen: logOpenProp,
+  onLogOpenChange: onLogOpenChangeProp,
+}: {
+  logOpen?: boolean;
+  onLogOpenChange?: (open: boolean) => void;
+} = {}) {
+  const [logOpenState, setLogOpenState] = useState(false);
+  const logOpen = logOpenProp ?? logOpenState;
+  const onLogOpenChange = onLogOpenChangeProp ?? setLogOpenState;
+  // ...
+  return (
+    <div className="flex flex-col gap-4">
+      {!onLogOpenChangeProp && (
+        <div className="flex justify-end">
+          <Button onClick={() => onLogOpenChange(true)} className="...">Log Medication</Button>
+        </div>
+      )}
+      {/* rest of the view, using logOpen/onLogOpenChange as before */}
+```
+```tsx
+// in app/admin/v3/medication/page.tsx
+const [logOpen, setLogOpen] = useState(false);
+<PageHeader title="Medication" description="..." action={<Button onClick={() => setLogOpen(true)}>Log Medication</Button>} />
+<MedicationView logOpen={logOpen} onLogOpenChange={setLogOpen} />
+```
+When the page passes the props, the view's own internal button doesn't render (avoids a duplicate) and the page-level button controls the same modal. When nothing is passed (admin v2's usage), the view falls back to fully self-contained internal state + its own button, exactly as before — **v2 was not touched and still works unmodified**.
+
+`inventory` and `facilities` had their button *change based on the active sub-tab* (Add Item / Register Equipment / New Order depending on which of 3 tabs was open). Rather than lifting `subTab` state too (more prop-drilling, more risk), we just show all 3 buttons together in the header at once, same multi-button pattern already used on `billing` (Record Payment / Forecast / New Invoice). Primary action gets the solid `bg-[#3b2513]` style, secondary ones get `variant="outline"` with `border-[#d0d5dd]`.
+
+**Still needs the same treatment:** check every other admin-v3 page for a primary action currently living inside its imported view/tab component instead of the page's `PageHeader`. Not yet audited: `staff`, `enrolment`, `announcements`, `events`, `messages`, `settings`, `plans`, `audit-trail`, `analytics`, `daily-logs`, `development`, `expenses`, `financial-reports`, `payroll`, `leave`, `reports`, `compliance` (compliance's tabs each may need their own contextual action, worth checking).
+
+---
+
 ## Page headers: use the shared PageHeader component (2026-08-05)
 
 Every admin-v3 page hand-rolls its own title/subtitle/action-buttons row, and they'd drifted: `rooms` had a literal duplicate "Rooms & Classes" heading (page h1 + an identically-named section heading inside the imported view component), `parents` had no action slot at all while `children`/`billing` did, and `ai-command-center`'s header used slightly different flex classes than the others. None of this was structural — it was N independent copies of the same markup slowly diverging.
