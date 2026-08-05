@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, ChevronDown, ChevronUp, Check, UsersRound } from "lucide-react";
+import { ArrowLeft, ChevronDown, ChevronUp, Check, UsersRound, Baby } from "lucide-react";
 import { ChildCard } from "@/components/caregiver/child-card";
 import { mockChildren, mockClassrooms, type Child } from "@/lib/caregiver/mock-data";
 import { getAcceptedCaregiverChildren } from "@/lib/independent-caregiver-invites";
@@ -94,7 +94,7 @@ export default function ChildrenPage() {
             className="flex w-full items-center justify-between rounded-2xl bg-gray-50 px-4 py-3.5"
           >
             <div className="flex items-center gap-2">
-              <span className="text-base">🐻</span>
+              <Baby size={16} className="text-cg-accent" />
               <span className="text-sm font-medium text-cg-brand">{selectedLabel}</span>
             </div>
             {showDropdown ? (

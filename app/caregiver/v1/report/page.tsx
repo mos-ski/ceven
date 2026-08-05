@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Calendar, Users, Clock, FileText } from "lucide-react";
+import { Calendar, Users, Clock, FileText, Baby, MessageCircle } from "lucide-react";
 import { mockChildren } from "@/lib/caregiver/mock-data";
 import { BottomNav } from "@/components/caregiver/bottom-nav";
 import { LogSheet } from "@/components/caregiver/log-sheet";
@@ -16,8 +16,6 @@ const REPORT_STATUS: Record<string, { status: "pending" | "sent"; progress: [num
   "child-4": { status: "pending", progress: [0, 2] },
   "child-5": { status: "sent",    progress: [2, 2] },
 };
-
-const CHILD_EMOJI = "🐻";
 
 type Tab = "children" | "pending" | "sent";
 
@@ -101,8 +99,8 @@ export default function ReportPage() {
                 className="flex items-center justify-between rounded-2xl bg-white p-4 text-left shadow-sm"
               >
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cg-quick-action text-lg">
-                    {CHILD_EMOJI}
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cg-quick-action">
+                    <Baby size={18} className="text-cg-accent" />
                   </div>
                   <p className="text-sm font-semibold text-cg-brand">{child.name}</p>
                 </div>
@@ -113,7 +111,7 @@ export default function ReportPage() {
                     </span>
                   )}
                   {isSent && rs.progress[0] > 0 && (
-                    <span className="text-lg">💬</span>
+                    <MessageCircle size={16} className="text-cg-accent" />
                   )}
                   <span
                     className={`rounded-full px-3 py-1 text-[10px] font-semibold ${

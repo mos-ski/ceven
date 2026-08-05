@@ -2,7 +2,7 @@
 
 import { Suspense, useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, User, Users } from "lucide-react";
+import { ArrowLeft, User, Users, Hand } from "lucide-react";
 import Link from "next/link";
 import { OtpInput } from "@/components/caregiver/otp-input";
 
@@ -57,7 +57,7 @@ function AuthForm() {
     }
   }, [otp, router, role]);
 
-  const greeting = role === "parent" ? "Welcome Parent 👋" : "Welcome Caregiver 👋";
+  const greeting = role === "parent" ? "Welcome Parent" : "Welcome Caregiver";
 
   return (
     <div className="relative flex flex-1 flex-col bg-white">
@@ -70,10 +70,11 @@ function AuthForm() {
 
       <div className="flex flex-1 flex-col overflow-y-auto px-6">
         <h1
-          className="mb-1 text-2xl font-bold text-cg-brand"
+          className="mb-1 flex items-center gap-2 text-2xl font-bold text-cg-brand"
           style={{ fontFamily: "var(--font-merriweather)" }}
         >
           {greeting}
+          <Hand size={22} />
         </h1>
         <p className="mb-6 text-sm text-gray-500">
           We&apos;ve sent a one time OTP to your email/phone number.

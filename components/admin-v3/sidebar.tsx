@@ -83,22 +83,7 @@ export function SidebarV3() {
           </div>
         </div>
 
-        <Link
-          href="/admin/v3/ai-command-center"
-          onClick={() => setMobileOpen(false)}
-          className="relative mx-3 mt-3 overflow-hidden rounded-xl border border-[#C47B2C]/20 bg-gradient-to-br from-[#1E2D4A] to-[#2D1810] px-4 py-3.5 transition-transform hover:-translate-y-px"
-        >
-          <p className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-white/55">
-            <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-400" />
-            System
-          </p>
-          <p className="mt-1.5 text-[13px] font-semibold leading-snug text-white">
-            3 issues need your attention today
-          </p>
-          <p className="mt-1.5 text-[11px] text-white/60">1 welfare flag · 2 payment risks</p>
-        </Link>
-
-        <nav className="mt-1 flex flex-1 flex-col gap-0.5 overflow-y-auto px-3 pb-3 pt-3">
+        <nav className="mt-3 flex flex-1 flex-col gap-0.5 overflow-y-auto px-3 pb-3 pt-3">
           {NAV_SECTIONS.map((section) => (
             <div key={section.label} className="mb-1">
               <p className="px-2.5 pb-1 pt-3 font-mono text-[9px] uppercase tracking-[0.2em] text-white/20">

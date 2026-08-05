@@ -1,5 +1,5 @@
 import type { DailyReport } from "@/lib/caregiver/mock-data";
-import { CalendarDays, Heart, UtensilsCrossed, Moon, Droplets, AlertTriangle, Pill } from "lucide-react";
+import { CalendarDays, Heart, UtensilsCrossed, Moon, Droplets, AlertTriangle, Pill, Camera } from "lucide-react";
 
 type Props = { report: DailyReport };
 
@@ -71,8 +71,9 @@ export function DailyReportCard({ report }: Props) {
               {photo.label}
             </div>
             {/* Placeholder image area */}
-            <div className="flex h-full items-center justify-center text-sm text-gray-400">
-              📸 Playtime photo
+            <div className="flex h-full items-center justify-center gap-1.5 text-sm text-gray-400">
+              <Camera size={16} />
+              Playtime photo
             </div>
           </div>
           <p className="mt-2 text-xs text-gray-500">{photo.caption}</p>

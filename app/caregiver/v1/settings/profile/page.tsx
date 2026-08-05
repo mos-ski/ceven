@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, Check } from "lucide-react";
 import { mockUser } from "@/lib/caregiver/mock-data";
@@ -11,10 +11,18 @@ export default function ProfilePage() {
   const [email, setEmail] = useState("adeola.johnson@email.com");
   const [phone, setPhone] = useState("+234 801 234 5678");
   const [saved, setSaved] = useState(false);
+  const [avatarPreview, setAvatarPreview] = useState<string | null>(null);
+  const photoRef = useRef<HTMLInputElement>(null);
 
   function handleSave() {
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
+  }
+
+  function handlePhotoChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (file) setAvatarPreview(URL.createObjectURL(file));
+    e.target.value = "";
   }
 
   return (
@@ -38,10 +46,24 @@ export default function ProfilePage() {
       <div className="flex-1 overflow-y-auto px-4 pb-6">
         {/* Avatar */}
         <div className="mb-6 flex flex-col items-center gap-2 pt-2">
-          <div className="flex h-20 w-20 items-center justify-center rounded-full bg-cg-brand text-2xl font-bold text-white">
-            {mockUser.avatarInitials}
+          <input
+            ref={photoRef}
+            type="file"
+            accept=".png,.jpg,.jpeg"
+            className="hidden"
+            onChange={handlePhotoChange}
+          />
+          <div className="flex h-20 w-20 items-center justify-center overflow-hidden rounded-full bg-cg-brand text-2xl font-bold text-white">
+            {avatarPreview ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={avatarPreview} alt="Profile photo preview" className="h-full w-full object-cover" />
+            ) : (
+              mockUser.avatarInitials
+            )}
           </div>
-          <button className="text-xs font-semibold text-cg-accent">Change Photo</button>
+          <button onClick={() => photoRef.current?.click()} className="text-xs font-semibold text-cg-accent">
+            Change Photo
+          </button>
         </div>
 
         {/* Form */}

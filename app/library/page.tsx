@@ -137,6 +137,10 @@ import {
   Paperclip,
   SendHorizontal,
   AtSign,
+  Battery,
+  ArrowUpRight,
+  Smile,
+  BookOpen,
 } from "lucide-react"
 
 const NAV_GROUPS = [
@@ -680,7 +684,7 @@ export default function LibraryPage() {
                       <div className="flex items-center gap-2">
                         <span className="text-[10px]">●●●●</span>
                         <span className="text-[10px]">WiFi</span>
-                        <BatteryFull className="size-3" />
+                        <Battery className="size-3" />
                       </div>
                     </div>
                     <div className="mt-2 mx-auto h-[28px] w-[120px] rounded-full bg-black" />

@@ -39,7 +39,7 @@ export default function CaregiverRatingsPage() {
         <div className="mb-5 rounded-2xl bg-white p-5 shadow-sm">
           <div className="flex items-center gap-4">
             <div className="text-center">
-              <p className="text-4xl font-bold text-cg-brand">{avgRating.average || "—"}</p>
+              <p className="text-4xl font-bold text-cg-brand">{avgRating.average || "N/A"}</p>
               <div className="flex gap-0.5 justify-center">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star key={i} size={14} className={i < Math.round(avgRating.average) ? "text-amber-400" : "text-gray-200"} fill={i < Math.round(avgRating.average) ? "currentColor" : "none"} />

@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useState } from "react";
+import { use, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, Video, Paperclip, SendHorizontal } from "lucide-react";
 import { MessageBubble } from "@/components/caregiver/message-bubble";
@@ -15,13 +15,13 @@ export default function ActiveChatPage({
   const { id } = use(params);
   const router = useRouter();
   const [input, setInput] = useState("");
+  const [calling, setCalling] = useState(false);
+  const fileRef = useRef<HTMLInputElement>(null);
 
   const thread = mockChatThreads.find((t) => t.id === id || t.contact.id === id) ?? mockChatThreads[0];
   const [messages, setMessages] = useState<Message[]>(thread.messages);
 
-  function handleSend() {
-    const body = input.trim();
-    if (!body) return;
+  function sendMessage(body: string) {
     const msg: Message = {
       id: `m${Date.now()}`,
       body,
@@ -29,7 +29,24 @@ export default function ActiveChatPage({
       direction: "sent",
     };
     setMessages((prev) => [...prev, msg]);
+  }
+
+  function handleSend() {
+    const body = input.trim();
+    if (!body) return;
+    sendMessage(body);
     setInput("");
+  }
+
+  function handleStartCall() {
+    setCalling(true);
+    setTimeout(() => setCalling(false), 2500);
+  }
+
+  function handleAttach(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (file) sendMessage(`Attached: ${file.name}`);
+    e.target.value = "";
   }
 
   return (
@@ -45,7 +62,7 @@ export default function ActiveChatPage({
           </div>
           <p className="text-sm font-semibold text-cg-brand">{thread.contact.name}</p>
         </div>
-        <button className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-100">
+        <button onClick={handleStartCall} className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-100">
           <Video size={18} className="text-gray-500" />
         </button>
       </div>
@@ -55,7 +72,7 @@ export default function ActiveChatPage({
         {/* Session start */}
         <div className="mb-4 flex justify-center">
           <span className="rounded-full bg-gray-200 px-3 py-1 text-xs text-gray-500">
-            Session Start
+            {calling ? `Calling ${thread.contact.name}...` : "Session Start"}
           </span>
         </div>
 
@@ -67,7 +84,14 @@ export default function ActiveChatPage({
       {/* Input bar */}
       <div className="border-t border-gray-100 bg-white px-3 py-3">
         <div className="flex items-center gap-2">
-          <button className="flex h-9 w-9 items-center justify-center rounded-full text-gray-400">
+          <input
+            ref={fileRef}
+            type="file"
+            accept=".png,.jpg,.jpeg,.pdf"
+            className="hidden"
+            onChange={handleAttach}
+          />
+          <button onClick={() => fileRef.current?.click()} className="flex h-9 w-9 items-center justify-center rounded-full text-gray-400">
             <Paperclip size={20} />
           </button>
           <input

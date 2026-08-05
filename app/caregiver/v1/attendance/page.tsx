@@ -151,7 +151,7 @@ export default function AttendancePage() {
           Tap a status to cycle: Present → Late → Absent
         </p>
         <p className="mt-1.5 flex items-center justify-center gap-1.5 text-center text-xs text-gray-400">
-          <NewBadge /> &quot;Check out&quot; is new — tap it once a child has been picked up.
+          <NewBadge /> &quot;Check out&quot; is new. Tap it once a child has been picked up.
         </p>
 
         {/* Verify pickup code section */}

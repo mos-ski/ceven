@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ChevronDown, ChevronUp, AlertCircle, MessageSquare } from "lucide-react";
+import { ChevronDown, ChevronUp, AlertCircle, MessageSquare, Baby } from "lucide-react";
 import type { Child } from "@/lib/caregiver/mock-data";
 
 type Props = { child: Child };
@@ -18,7 +18,7 @@ export function ChildCard({ child }: Props) {
           href={`/caregiver/children/${child.id}`}
           className="flex flex-1 items-center gap-3"
         >
-          <span className="text-xl">🐻</span>
+          <Baby size={20} className="text-cg-accent" />
           <span className="text-sm font-semibold text-cg-brand">{child.name}</span>
         </Link>
         <button onClick={() => setExpanded(!expanded)} className="ml-2 p-1">
