@@ -63,74 +63,72 @@ export default function LeaveV3Page() {
         <div className="mb-3 flex items-center justify-between">
           <p className="text-sm font-bold text-[#2D1810]">Leave Requests</p>
         </div>
-        <div className="overflow-x-auto">
-          <table className="w-full min-w-[880px] border-collapse text-sm">
-            <thead>
-              <tr className="border-b border-black/[0.08] text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
-                <th className="pb-2 pr-3 font-semibold">Staff</th>
-                <th className="pb-2 pr-3 font-semibold">Type</th>
-                <th className="pb-2 pr-3 font-semibold">From</th>
-                <th className="pb-2 pr-3 font-semibold">To</th>
-                <th className="pb-2 pr-3 font-semibold">Days</th>
-                <th className="pb-2 pr-3 font-semibold">Reason</th>
-                <th className="pb-2 pr-3 font-semibold">Cover Arranged</th>
-                <th className="pb-2 pr-3 font-semibold">Status</th>
-                <th className="pb-2 font-semibold">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {requests.map((r, i) => (
-                <tr key={r.id} className="border-b border-black/[0.05] last:border-0">
-                  <td className="py-2.5 pr-3">
-                    <p className="font-semibold text-[#2D1810]">{r.name}</p>
-                    <p className="text-[11px] text-[#2D1810]/40">{r.role}</p>
-                  </td>
-                  <td className="py-2.5 pr-3 text-[#2D1810]/70">{r.leaveType}</td>
-                  <td className="py-2.5 pr-3 text-[#2D1810]/70">{r.startDate}</td>
-                  <td className="py-2.5 pr-3 text-[#2D1810]/70">{r.endDate}</td>
-                  <td className="py-2.5 pr-3 font-semibold text-[#2D1810]">{r.days}</td>
-                  <td className="py-2.5 pr-3 text-[#2D1810]/70">{r.reason}</td>
-                  <td className="py-2.5 pr-3">
-                    <span
-                      className={`text-xs font-semibold ${
-                        coverArranged(r.days, i) === "Arranged" ? "text-[#1E7A3D]" : "text-[#D4522F]"
-                      }`}
-                    >
-                      {coverArranged(r.days, i)}
-                    </span>
-                  </td>
-                  <td className="py-2.5 pr-3">
-                    <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${STATUS_STYLES[r.status]}`}>
-                      {r.status}
-                    </span>
-                  </td>
-                  <td className="py-2.5">
-                    {r.status === "Pending" ? (
-                      <div className="flex items-center gap-1.5">
-                        <button
-                          onClick={() => decide(r.id, "Approved")}
-                          aria-label={`Approve ${r.name}'s leave`}
-                          className="rounded-full p-1 text-[#1E7A3D] hover:bg-[#EAF6EE]"
-                        >
-                          <Check className="h-4 w-4" />
-                        </button>
-                        <button
-                          onClick={() => decide(r.id, "Rejected")}
-                          aria-label={`Decline ${r.name}'s leave`}
-                          className="rounded-full p-1 text-[#D4522F] hover:bg-[#FBEAE6]"
-                        >
-                          <X className="h-4 w-4" />
-                        </button>
-                      </div>
-                    ) : (
-                      <span className="text-xs text-[#2D1810]/30">—</span>
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <Table className="min-w-[880px]">
+          <TableHeader>
+            <TableRow>
+              <TableHead>Staff</TableHead>
+              <TableHead>Type</TableHead>
+              <TableHead>From</TableHead>
+              <TableHead>To</TableHead>
+              <TableHead>Days</TableHead>
+              <TableHead>Reason</TableHead>
+              <TableHead>Cover Arranged</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead className="pr-0">Actions</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {requests.map((r, i) => (
+              <TableRow key={r.id}>
+                <TableCell>
+                  <p className="font-semibold text-[#2D1810]">{r.name}</p>
+                  <p className="text-[11px] text-[#2D1810]/40">{r.role}</p>
+                </TableCell>
+                <TableCell>{r.leaveType}</TableCell>
+                <TableCell>{r.startDate}</TableCell>
+                <TableCell>{r.endDate}</TableCell>
+                <TableCell className="font-semibold text-[#2D1810]">{r.days}</TableCell>
+                <TableCell>{r.reason}</TableCell>
+                <TableCell>
+                  <span
+                    className={`text-xs font-semibold ${
+                      coverArranged(r.days, i) === "Arranged" ? "text-[#1E7A3D]" : "text-[#D4522F]"
+                    }`}
+                  >
+                    {coverArranged(r.days, i)}
+                  </span>
+                </TableCell>
+                <TableCell>
+                  <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${STATUS_STYLES[r.status]}`}>
+                    {r.status}
+                  </span>
+                </TableCell>
+                <TableCell className="pr-0">
+                  {r.status === "Pending" ? (
+                    <div className="flex items-center gap-1.5">
+                      <button
+                        onClick={() => decide(r.id, "Approved")}
+                        aria-label={`Approve ${r.name}'s leave`}
+                        className="rounded-full p-1 text-[#1E7A3D] hover:bg-[#EAF6EE]"
+                      >
+                        <Check className="h-4 w-4" />
+                      </button>
+                      <button
+                        onClick={() => decide(r.id, "Rejected")}
+                        aria-label={`Decline ${r.name}'s leave`}
+                        className="rounded-full p-1 text-[#D4522F] hover:bg-[#FBEAE6]"
+                      >
+                        <X className="h-4 w-4" />
+                      </button>
+                    </div>
+                  ) : (
+                    <span className="text-xs text-[#2D1810]/30">-</span>
+                  )}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
       </div>
     </div>
   );

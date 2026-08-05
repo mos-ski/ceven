@@ -187,7 +187,7 @@ export default function ChildrenV3Page() {
   <div className="overflow-x-auto">
    <table className="w-full border-collapse text-sm">
    <thead>
-    <tr className="text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
+     <tr className="border-b border-black/[0.08] text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
     <th className="pb-2 pr-3 font-semibold">Child</th>
     <th className="pb-2 pr-3 font-semibold">Age</th>
     <th className="pb-2 pr-3 font-semibold">Room</th>
