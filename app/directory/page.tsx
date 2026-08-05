@@ -178,7 +178,7 @@ const APP_SECTIONS: AppSection[] = [
             { label: "Audit Trail", href: "/admin/v2/intelligence?tab=audit-trail" },
           ],
           [
-            { label: "Plans & Access", href: "/admin/v2/account-setup" },
+            { label: "Plans & Access (Grow ₦25k, Thrive ₦37k)", href: "/admin/v2/account-setup" },
             { label: "Help & Training", href: "/admin/v2/account-setup?tab=help-training" },
             { label: "Settings", href: "/admin/v2/account-setup?tab=settings" },
           ],
