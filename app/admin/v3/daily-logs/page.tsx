@@ -252,14 +252,14 @@ export default function DailyLogsV3Page() {
         <div className="hidden overflow-x-auto lg:block">
           <table className="w-full border-collapse">
             <thead>
-              <tr className="bg-[#edd9c0]">
+              <tr className="border-b border-black/[0.08] text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
                 <th className="w-10 px-4 py-3">
                   <input type="checkbox" className="h-4 w-4 accent-[#3b2513]" />
                 </th>
                 {["Child", "Room", "Caregiver", "Report Time", "Mood", "Meal", "Status", "Action"].map((h) => (
                   <th
                     key={h}
-                    className="px-4 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-normal text-black"
+                    className="px-4 py-3 font-semibold text-[#2D1810]"
                   >
                     {h}
                   </th>

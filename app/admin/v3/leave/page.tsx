@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Clock3, Palmtree, CheckCircle2, CalendarDays, Check, X } from "lucide-react";
 
 import { StatCardV3 } from "@/components/admin-v3/stat-card";
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 import { ACTIVE_LEAVE, LEAVE_BALANCES, LEAVE_REQUESTS, type LeaveStatus } from "@/lib/mock-data/staff";
 
 const STATUS_STYLES: Record<LeaveStatus, string> = {
