@@ -517,18 +517,6 @@ export default function DirectoryPage() {
           </span>
         </div>
 
-        <div className="mt-6 flex flex-wrap items-center gap-3 text-xs text-muted-text">
-          <span className="font-bold text-heading">Status:</span>
-          <span className="inline-block rounded-full bg-green-100 px-2.5 py-0.5 font-bold text-green-700">Live</span>
-          <span>In production</span>
-          <span className="inline-block rounded-full bg-purple-100 px-2.5 py-0.5 font-bold text-purple-700">Approved</span>
-          <span>CEO approved, ready for production</span>
-          <span className="inline-block rounded-full bg-blue-100 px-2.5 py-0.5 font-bold text-blue-700">Completed</span>
-          <span>Design complete, awaiting CEO approval</span>
-          <span className="inline-block rounded-full bg-amber-100 px-2.5 py-0.5 font-bold text-amber-700">In progress</span>
-          <span>Design in progress</span>
-        </div>
-
         <div className="mt-12">
           <h2 className="border-b-2 border-brand-dark pb-3 text-2xl font-extrabold text-heading">
             Overview
@@ -631,6 +619,18 @@ export default function DirectoryPage() {
                 </a>
               </div>
             ))}
+          </div>
+
+          <div className="mt-4 flex flex-wrap items-center gap-3 text-xs text-muted-text">
+            <span className="font-bold text-heading">Status:</span>
+            <span className="inline-block rounded-full bg-green-100 px-2.5 py-0.5 font-bold text-green-700">Live</span>
+            <span>In production</span>
+            <span className="inline-block rounded-full bg-purple-100 px-2.5 py-0.5 font-bold text-purple-700">Approved</span>
+            <span>CEO approved, ready for production</span>
+            <span className="inline-block rounded-full bg-blue-100 px-2.5 py-0.5 font-bold text-blue-700">Completed</span>
+            <span>Design complete, awaiting CEO approval</span>
+            <span className="inline-block rounded-full bg-amber-100 px-2.5 py-0.5 font-bold text-amber-700">In progress</span>
+            <span>Design in progress</span>
           </div>
         </div>
 
