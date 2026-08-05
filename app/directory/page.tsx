@@ -476,19 +476,14 @@ function SummaryBlock({ summary }: { summary: Summary }) {
     { label: "Improved", text: summary.improved },
   ];
   return (
-    <details className="mt-6 rounded-2xl border border-card-border bg-white">
-      <summary className="cursor-pointer px-5 py-3 text-sm font-bold text-brand-accent hover:text-heading">
-        Show details
-      </summary>
-      <div className="flex flex-col gap-3 border-t border-card-border px-5 py-4">
-        {rows.map((row) => (
-          <p key={row.label} className="text-sm leading-relaxed">
-            <span className="font-bold text-brand-accent">{row.label}: </span>
-            <span className="text-muted-text">{row.text}</span>
-          </p>
-        ))}
-      </div>
-    </details>
+    <div className="mt-4 flex flex-col gap-3 rounded-2xl border border-card-border bg-white p-5">
+      {rows.map((row) => (
+        <p key={row.label} className="text-sm leading-relaxed">
+          <span className="font-bold text-brand-accent">{row.label}: </span>
+          <span className="text-muted-text">{row.text}</span>
+        </p>
+      ))}
+    </div>
   );
 }
 
@@ -644,11 +639,17 @@ export default function DirectoryPage() {
 
         {APP_SECTIONS.map((section) => (
           <section key={section.id} id={section.id} className="mt-16 scroll-mt-8">
-            <h2 className="border-b-2 border-brand-dark pb-3 text-2xl font-extrabold text-heading">
-              {section.title}
-            </h2>
-
-            <SummaryBlock summary={section.summary} />
+            <details>
+              <summary className="flex cursor-pointer list-none items-center justify-between border-b-2 border-brand-dark pb-3">
+                <h2 className="text-2xl font-extrabold text-heading">
+                  {section.title}
+                </h2>
+                <span className="text-sm font-bold text-brand-accent hover:text-heading">
+                  Details ▾
+                </span>
+              </summary>
+              <SummaryBlock summary={section.summary} />
+            </details>
 
             <div className="mt-8 flex flex-col gap-10">
               {section.versions.map((version) => (
