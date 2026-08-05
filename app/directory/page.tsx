@@ -68,12 +68,6 @@ const APP_SECTIONS: AppSection[] = [
           ],
         ],
       },
-      {
-        label: "Vibrant preview",
-        meta: "Next.js · /library/vibrant-preview",
-        href: "/library/vibrant-preview",
-        rows: [[{ label: "Alternate theme preview", href: "/library/vibrant-preview" }]],
-      },
     ],
   },
   {
