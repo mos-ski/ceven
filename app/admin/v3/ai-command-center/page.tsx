@@ -161,7 +161,7 @@ function AIChatPanel({ onClose }: { onClose?: () => void }) {
   <div className="flex shrink-0 items-center justify-between px-4 py-4">
   <div className="flex items-center gap-3">
    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-[#1E2D4A] to-[#2D1810]">
-       <CEIcon className="h-5 w-5 text-[#F5EDD8]" />
+       <CEIcon className="h-5 w-5 text-[#F5EDD8]" variant="stroke" />
    </div>
    <div>
    <p className="text-sm font-bold text-[#2D1810]">Ada</p>
@@ -181,7 +181,7 @@ function AIChatPanel({ onClose }: { onClose?: () => void }) {
    <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
    {msg.role === "ai" && (
     <div className="mr-2 mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#1E2D4A] to-[#2D1810]">
-         <CEIcon className="h-3.5 w-3.5 text-[#F5EDD8]" />
+          <CEIcon className="h-3.5 w-3.5 text-[#F5EDD8]" variant="thick" />
     </div>
    )}
    <div
@@ -358,7 +358,7 @@ export default function AICommandCenterV3Page() {
   aria-label="Open chat"
   className="fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#1E2D4A] to-[#2D1810] text-[#F5EDD8] xl:hidden"
   >
-     <CEIcon className="h-6 w-6" />
+      <CEIcon className="h-6 w-6" variant="thick" />
   </button>
 
   {/* Mobile chat overlay */}

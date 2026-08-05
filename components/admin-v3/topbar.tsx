@@ -71,7 +71,7 @@ export function TopbarV3() {
       aiOpen || aiPinned ? "ring-2 ring-[#C47B2C] ring-offset-1 ring-offset-[#FFFCF4]" : ""
      }`}
     >
-     <CEIcon className="h-4 w-4" />
+      <CEIcon className="h-4 w-4" variant="thick" />
     </button>
 
     <button
