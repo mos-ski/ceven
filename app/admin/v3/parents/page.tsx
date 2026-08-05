@@ -2,7 +2,8 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { Users, Smartphone, AlertTriangle, PhoneMissed, Search, MoreVertical } from "lucide-react";
+import { Users, Smartphone, AlertTriangle, PhoneMissed, Search, MoreVertical, Download, MessageSquarePlus } from "lucide-react";
+import { toast } from "sonner";
 
 import {
   DropdownMenu,
@@ -20,8 +21,10 @@ import {
 } from "@/components/ui/table";
 import { Card } from "@/components/ui/card";
 import { PageHeader } from "@/components/ui/page-header";
+import { Button } from "@/components/ui/button";
 import AiRiskBadge, { calculateRisk } from "@/components/dashboard/ai-risk-badge";
 import { PARENTS } from "@/lib/mock-data/children";
+import { exportRowsToCsv } from "@/lib/super-admin/export-csv";
 
 // Proxy overdue-days used only to feed the shared AI risk calculator — the mock Parent
 // record only carries a coarse feeStatus, not a real days-overdue figure.
@@ -84,6 +87,31 @@ export default function ParentsV3Page() {
       <PageHeader
         title="Parents"
         description="Directory of registered parents and guardians, app adoption and payment risk."
+        action={
+          <>
+            <Button
+              variant="outline"
+              onClick={() =>
+                exportRowsToCsv(
+                  "parents.csv",
+                  ["Parent", "Phone", "Children", "Fee Status", "App Status"],
+                  PARENTS.map((p) => [p.name, p.phone, p.childName, p.feeStatus, p.appStatus]),
+                )
+              }
+              className="h-9 gap-2 rounded-lg border-[#d0d5dd] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]"
+            >
+              <Download className="h-4 w-4" />
+              Export
+            </Button>
+            <Button
+              onClick={() => toast.success("Broadcast message sent to all parents")}
+              className="h-9 gap-2 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]"
+            >
+              <MessageSquarePlus className="h-4 w-4" />
+              Message All
+            </Button>
+          </>
+        }
       />
 
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">

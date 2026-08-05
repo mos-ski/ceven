@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { ChevronLeft, ChevronRight, Clock, Users, Plus, Calendar as CalendarIcon } from "lucide-react";
+import { toast } from "sonner";
 import { CALENDAR_EVENTS, type CalendarEvent, type CalendarEventStatus } from "@/lib/mock-data/communication";
 
 const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -171,7 +172,10 @@ export default function EventsV3Page() {
               Week
             </button>
           </div>
-          <button className="flex items-center gap-1.5 rounded-lg bg-[#3B2513] px-3 py-1.5 text-xs font-semibold text-[#FAF2E1] hover:bg-[#2D1810]">
+          <button
+            onClick={() => toast.success("New event created")}
+            className="flex items-center gap-1.5 rounded-lg bg-[#3B2513] px-3 py-1.5 text-xs font-semibold text-[#FAF2E1] hover:bg-[#2D1810]"
+          >
             <Plus className="h-3.5 w-3.5" /> New Event
           </button>
         </div>

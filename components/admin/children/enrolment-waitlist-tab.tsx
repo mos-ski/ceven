@@ -1555,10 +1555,15 @@ function LeaversTab() {
 type EnrolmentSubTab = "Enrolment" | "Enquiry Pipeline" | "Waitlist" | "Trial Sessions" | "Leavers";
 const SUB_TABS: EnrolmentSubTab[] = ["Enrolment", "Enquiry Pipeline", "Waitlist", "Trial Sessions", "Leavers"];
 
-export function EnrolmentWaitlistTab() {
+export function EnrolmentWaitlistTab({
+  newEnquiryOpen: controlledNewEnquiryOpen,
+  onNewEnquiryOpenChange,
+}: { newEnquiryOpen?: boolean; onNewEnquiryOpenChange?: (open: boolean) => void } = {}) {
  const [subTab, setSubTab] = useState<EnrolmentSubTab>("Enrolment");
  const [showAiBanner, setShowAiBanner] = useState(true);
- const [newEnquiryOpen, setNewEnquiryOpen] = useState(false);
+ const [internalNewEnquiryOpen, setInternalNewEnquiryOpen] = useState(false);
+ const newEnquiryOpen = controlledNewEnquiryOpen ?? internalNewEnquiryOpen;
+ const setNewEnquiryOpen = onNewEnquiryOpenChange ?? setInternalNewEnquiryOpen;
  const [enquirySuccess, setEnquirySuccess] = useState(false);
 
  return (

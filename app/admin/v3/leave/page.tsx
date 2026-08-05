@@ -1,12 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { Clock3, Palmtree, CheckCircle2, CalendarDays, Check, X } from "lucide-react";
+import { Clock3, Palmtree, CheckCircle2, CalendarDays, Check, X, Download, CalendarPlus } from "lucide-react";
+import { toast } from "sonner";
 
 import { StatCardV3 } from "@/components/admin-v3/stat-card";
 import { Card } from "@/components/ui/card";
+import { PageHeader } from "@/components/ui/page-header";
+import { Button } from "@/components/ui/button";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 import { ACTIVE_LEAVE, LEAVE_BALANCES, LEAVE_REQUESTS, type LeaveStatus } from "@/lib/mock-data/staff";
+import { exportRowsToCsv } from "@/lib/super-admin/export-csv";
 
 const STATUS_STYLES: Record<LeaveStatus, string> = {
   Approved: "bg-[#EAF6EE] text-[#1E7A3D] border border-[#1E7A3D]/25",
@@ -36,14 +40,35 @@ export default function LeaveV3Page() {
 
   return (
     <div className="flex flex-col gap-5">
-      <div className="flex flex-col gap-1">
-        <h1 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2D1810]">
-          Leave Management
-        </h1>
-        <p className="text-sm text-[#2D1810]/50">
-          {pendingCount} pending requests · 1 staff currently on leave · annual leave year: Jan–Dec
-        </p>
-      </div>
+      <PageHeader
+        title="Leave Management"
+        description={`${pendingCount} pending requests · 1 staff currently on leave · annual leave year: Jan–Dec`}
+        action={
+          <>
+            <Button
+              variant="outline"
+              onClick={() =>
+                exportRowsToCsv(
+                  "leave-requests.csv",
+                  ["Staff", "Type", "From", "To", "Days", "Status"],
+                  requests.map((r) => [r.name, r.leaveType, r.startDate, r.endDate, r.days, r.status]),
+                )
+              }
+              className="h-9 gap-2 rounded-lg border-[#d0d5dd] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]"
+            >
+              <Download className="h-4 w-4" />
+              Export
+            </Button>
+            <Button
+              onClick={() => toast.success("Leave request submitted")}
+              className="h-9 gap-2 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]"
+            >
+              <CalendarPlus className="h-4 w-4" />
+              Request Leave
+            </Button>
+          </>
+        }
+      />
 
       {/* Stats */}
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">

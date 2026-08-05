@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 import { Card } from "@/components/ui/card";
 import { PageHeader } from "@/components/ui/page-header";
+import { MoreActionsButton } from "@/components/ui/more-actions-button";
 
 import NewInvoiceModal from "@/components/admin/finance/new-invoice-modal";
 import RecordPaymentModal from "@/components/admin/finance/record-payment-modal";
@@ -78,18 +79,12 @@ export default function BillingV3Page() {
    description="Track invoices, collections, and payment risk across every family."
    action={
     <>
-     <button
-     onClick={() => setPaymentOpen(true)}
-     className="rounded-lg border border-black/[0.12] bg-white px-4 py-2 text-sm font-semibold text-[#2D1810] hover:border-[#C47B2C]"
-     >
-     Record Payment
-     </button>
-     <button
-     onClick={() => toast.success("Payment forecast generated")}
-     className="flex items-center gap-1.5 rounded-lg border border-[#C47B2C]/40 bg-[#FAF2E1] px-4 py-2 text-sm font-semibold text-[#8A4F1C] hover:bg-[#F5E4C4]"
-     >
-      <CEIcon className="h-3.5 w-3.5" /> Forecast
-     </button>
+     <MoreActionsButton
+      actions={[
+       { label: "Record Payment", icon: Wallet, onClick: () => setPaymentOpen(true) },
+       { label: "Forecast", icon: CEIcon, onClick: () => toast.success("Payment forecast generated") },
+      ]}
+     />
      <button
      onClick={() => setInvoiceOpen(true)}
      className="rounded-lg bg-[#C47B2C] px-4 py-2 text-sm font-semibold text-white hover:opacity-90"

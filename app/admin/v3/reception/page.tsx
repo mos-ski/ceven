@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { Zap } from "lucide-react";
+import { Zap, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PageHeader } from "@/components/ui/page-header";
+import { MoreActionsButton } from "@/components/ui/more-actions-button";
 import {
   Dialog,
   DialogClose,
@@ -248,34 +249,21 @@ export default function ReceptionV3Page() {
         title="Reception / QR"
         description="Live QR check-in station — track today's attendance, exceptions, and manual overrides."
         action={
-          <div className="flex flex-col sm:flex-row gap-3">
-            <button
-              onClick={simulateParentScan}
-              className="flex-1 sm:flex-initial flex items-center justify-center gap-2 rounded-lg border border-[#009061] bg-[#ecfff8] px-4 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#009061]"
-            >
-              <Zap className="h-4 w-4" />
-              Simulate Parent Scan
-            </button>
-            <button
-              onClick={simulateStaffScan}
-              className="flex-1 sm:flex-initial flex items-center justify-center gap-2 rounded-lg border border-[#c47b2c] bg-[#fffbf0] px-4 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#c47b2c]"
-            >
-              <Zap className="h-4 w-4" />
-              Simulate Staff Scan
-            </button>
-            <button
-              onClick={() => setExceptionOpen(true)}
-              className="flex-1 sm:flex-initial rounded-lg border border-[#3b2513] px-4 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#3b2513]"
-            >
-              Log Exception
-            </button>
+          <>
+            <MoreActionsButton
+              actions={[
+                { label: "Simulate Parent Scan", icon: Zap, onClick: simulateParentScan },
+                { label: "Simulate Staff Scan", icon: Zap, onClick: simulateStaffScan },
+                { label: "Log Exception", icon: AlertTriangle, onClick: () => setExceptionOpen(true) },
+              ]}
+            />
             <button
               onClick={() => setCheckInOpen(true)}
-              className="flex-1 sm:flex-initial rounded-lg bg-[#3b2513] px-4 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]"
+              className="rounded-lg bg-[#3b2513] px-4 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]"
             >
               Manual Check-In
             </button>
-          </div>
+          </>
         }
       />
 

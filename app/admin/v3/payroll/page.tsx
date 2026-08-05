@@ -1,11 +1,15 @@
 "use client";
 
-import { Wallet, MinusCircle, PiggyBank, Clock3 } from "lucide-react";
+import { Wallet, MinusCircle, PiggyBank, Clock3, Download, Play } from "lucide-react";
+import { toast } from "sonner";
 
 import { StatCardV3 } from "@/components/admin-v3/stat-card";
 import { Card } from "@/components/ui/card";
+import { PageHeader } from "@/components/ui/page-header";
+import { Button } from "@/components/ui/button";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 import { PAYROLL, CURRENT_PAYROLL_MONTH, type PayrollStatus } from "@/lib/mock-data/staff";
+import { exportRowsToCsv } from "@/lib/super-admin/export-csv";
 
 function formatCurrency(value: number) {
   return `₦${Math.round(value).toLocaleString("en-NG")}`;
@@ -45,12 +49,35 @@ export default function PayrollV3Page() {
 
   return (
     <div className="flex flex-col gap-5">
-      <div className="flex flex-col gap-1">
-        <h1 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2D1810]">Payroll</h1>
-        <p className="text-sm text-[#2D1810]/50">
-          {CURRENT_PAYROLL_MONTH} · {rows.length} staff · {paidCount} of {rows.length} paid
-        </p>
-      </div>
+      <PageHeader
+        title="Payroll"
+        description={`${CURRENT_PAYROLL_MONTH} · ${rows.length} staff · ${paidCount} of ${rows.length} paid`}
+        action={
+          <>
+            <Button
+              variant="outline"
+              onClick={() =>
+                exportRowsToCsv(
+                  "payroll.csv",
+                  ["Staff", "Basic Salary", "Bonus", "Deductions", "PAYE", "Pension", "Net Pay", "Status"],
+                  rows.map((r) => [r.name, r.baseSalary, r.bonuses, r.deductions, r.paye, r.pension, r.netPay, r.status]),
+                )
+              }
+              className="h-9 gap-2 rounded-lg border-[#d0d5dd] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]"
+            >
+              <Download className="h-4 w-4" />
+              Export
+            </Button>
+            <Button
+              onClick={() => toast.success("Payroll run started")}
+              className="h-9 gap-2 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]"
+            >
+              <Play className="h-4 w-4" />
+              Run Payroll
+            </Button>
+          </>
+        }
+      />
 
       {/* Stats */}
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">

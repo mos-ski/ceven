@@ -1,9 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, Search } from "lucide-react";
+import { ChevronDown, Search, Download } from "lucide-react";
+import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
+import { PageHeader } from "@/components/ui/page-header";
+import { exportRowsToCsv } from "@/lib/super-admin/export-csv";
 import {
   Dialog,
   DialogContent,
@@ -199,19 +202,33 @@ export default function DailyLogsV3Page() {
 
   return (
     <div className="flex flex-col gap-5">
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-        <div>
-          <h1 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2D1810]">
-            Daily Logs
-          </h1>
-          <p className="mt-1 text-sm text-[#2D1810]/50">
-            Today&apos;s child report submissions across all rooms.
-          </p>
-        </div>
-        <button className="rounded-lg border border-[#3b2513] px-4 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#3b2513] hover:bg-[#3b2513]/5">
-          Remind Caregivers
-        </button>
-      </div>
+      <PageHeader
+        title="Daily Logs"
+        description="Today's child report submissions across all rooms."
+        action={
+          <>
+            <button
+              onClick={() =>
+                exportRowsToCsv(
+                  "daily-logs.csv",
+                  ["Child", "Room", "Caregiver", "Report Time", "Mood", "Meal", "Status"],
+                  dailyLogRows.map((r) => [r.child, r.room, r.caregiver, r.reportTime, r.mood, r.meal, r.status ?? "-"]),
+                )
+              }
+              className="flex items-center gap-1.5 rounded-lg border border-[#d0d5dd] px-4 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810] hover:bg-[#F5EDD8]"
+            >
+              <Download className="h-4 w-4" />
+              Export
+            </button>
+            <button
+              onClick={() => toast.success("Reminder sent to caregivers")}
+              className="rounded-lg border border-[#3b2513] px-4 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#3b2513] hover:bg-[#3b2513]/5"
+            >
+              Remind Caregivers
+            </button>
+          </>
+        }
+      />
 
       {/* Stats row */}
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">

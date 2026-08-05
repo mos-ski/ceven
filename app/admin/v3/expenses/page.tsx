@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { Wallet, Receipt, PiggyBank, Clock3, Paperclip } from "lucide-react";
+import { Wallet, Receipt, PiggyBank, Clock3, Paperclip, Download } from "lucide-react";
 
 import { Card } from "@/components/ui/card";
+import { PageHeader } from "@/components/ui/page-header";
+import { Button } from "@/components/ui/button";
 import {
   Table,
   TableHeader,
@@ -13,6 +15,7 @@ import {
   TableCell,
 } from "@/components/ui/table";
 import NewExpenseModal from "@/components/admin/finance/new-expense-modal";
+import { exportRowsToCsv } from "@/lib/super-admin/export-csv";
 import {
   BUDGET_VS_ACTUAL,
   EXPENSES,
@@ -57,21 +60,34 @@ export default function ExpensesV3Page() {
 
   return (
     <div className="flex flex-col gap-5">
-      {/* Page header */}
-      <div className="flex flex-wrap items-start justify-between gap-3">
-        <div>
-          <h1 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2D1810]">Expenses</h1>
-          <p className="mt-1 text-sm text-[#2D1810]/50">
-            Monitor spend against budget and keep the expense log audit-ready.
-          </p>
-        </div>
-        <button
-          onClick={() => setExpenseOpen(true)}
-          className="rounded-lg bg-[#C47B2C] px-4 py-2 text-sm font-semibold text-white hover:opacity-90"
-        >
-          + New Expense
-        </button>
-      </div>
+      <PageHeader
+          title="Expenses"
+          description="Monitor spend against budget and keep the expense log audit-ready."
+          action={
+            <>
+              <Button
+                variant="outline"
+                onClick={() =>
+                  exportRowsToCsv(
+                    "expenses.csv",
+                    ["Date", "Vendor", "Category", "Description", "Amount", "Status"],
+                    EXPENSES.map((e) => [e.date, e.vendor, e.category, e.description, e.amount, e.status]),
+                  )
+                }
+                className="h-9 gap-2 rounded-lg border-[#d0d5dd] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]"
+              >
+                <Download className="h-4 w-4" />
+                Export
+              </Button>
+              <button
+                onClick={() => setExpenseOpen(true)}
+                className="rounded-lg bg-[#C47B2C] px-4 py-2 text-sm font-semibold text-white hover:opacity-90"
+              >
+                + New Expense
+              </button>
+            </>
+          }
+        />
 
       {/* Stats */}
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">

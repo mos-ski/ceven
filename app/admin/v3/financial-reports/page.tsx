@@ -2,9 +2,13 @@
 
 import { useState } from "react";
 import { TrendingUp, TrendingDown, BarChart3, Wallet, Download } from "lucide-react";
+import { toast } from "sonner";
+import { CEIcon } from "@/components/admin-v3/ce-icon";
 
 import { Card } from "@/components/ui/card";
+import { PageHeader } from "@/components/ui/page-header";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
+import { exportRowsToCsv } from "@/lib/super-admin/export-csv";
 
 import {
   EXPENSE_BREAKDOWN,
@@ -179,20 +183,32 @@ export default function FinancialReportsV3Page() {
 
   return (
     <div className="flex flex-col gap-5">
-      {/* Page header */}
-      <div className="flex flex-wrap items-start justify-between gap-3">
-        <div>
-          <h1 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2D1810]">
-            Financial Reports
-          </h1>
-          <p className="mt-1 text-sm text-[#2D1810]/50">
-            P&amp;L, revenue by room, and cost breakdown for the current period.
-          </p>
-        </div>
-        <button className="flex items-center gap-1.5 rounded-lg bg-[#C47B2C] px-4 py-2 text-sm font-semibold text-white hover:opacity-90">
-          <Download className="h-4 w-4" /> Export Report
-        </button>
-      </div>
+      <PageHeader
+          title="Financial Reports"
+          description="P&L, revenue by room, and cost breakdown for the current period."
+          action={
+            <>
+              <button
+                onClick={() =>
+                  exportRowsToCsv(
+                    "financial-summary.csv",
+                    ["Metric", "Value", "Detail"],
+                    REPORT_SUMMARY.map((s) => [s.label, s.value, s.helper]),
+                  )
+                }
+                className="flex items-center gap-1.5 rounded-lg border border-[#d0d5dd] px-4 py-2 text-sm font-semibold text-[#2D1810] hover:bg-[#F5EDD8]"
+              >
+                <Download className="h-4 w-4" /> Export Report
+              </button>
+              <button
+                onClick={() => toast.success("AI financial summary generated")}
+                className="flex items-center gap-1.5 rounded-lg bg-[#C47B2C] px-4 py-2 text-sm font-semibold text-white hover:opacity-90"
+              >
+                <CEIcon className="h-4 w-4" /> AI Summary
+              </button>
+            </>
+          }
+        />
 
       {/* Stats */}
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">

@@ -110,8 +110,13 @@ function CreateRoomModal({
  );
 }
 
-export function RoomsClassesTab() {
- const [createOpen, setCreateOpen] = useState(false);
+export function RoomsClassesTab({
+ createOpen: controlledCreateOpen,
+ onCreateOpenChange,
+}: { createOpen?: boolean; onCreateOpenChange?: (open: boolean) => void } = {}) {
+ const [internalCreateOpen, setInternalCreateOpen] = useState(false);
+ const createOpen = controlledCreateOpen ?? internalCreateOpen;
+ const setCreateOpen = onCreateOpenChange ?? setInternalCreateOpen;
  const [successOpen, setSuccessOpen] = useState(false);
 
  return (
@@ -120,13 +125,15 @@ export function RoomsClassesTab() {
     <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-heading">
      All Rooms
     </h2>
-    <Button
-     onClick={() => setCreateOpen(true)}
-     className="h-10 gap-1.5 rounded-lg bg-brand-dark px-4 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-sidebar-active-text"
-    >
-     <Plus className="size-4" />
-     New Room
-    </Button>
+    {controlledCreateOpen === undefined && (
+     <Button
+      onClick={() => setCreateOpen(true)}
+      className="h-10 gap-1.5 rounded-lg bg-brand-dark px-4 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-sidebar-active-text"
+     >
+      <Plus className="size-4" />
+      New Room
+     </Button>
+    )}
    </div>
 
    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">

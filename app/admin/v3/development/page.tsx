@@ -1,8 +1,13 @@
 "use client";
 
-import { CheckCircle2, Eye, ShieldAlert, ClipboardList } from "lucide-react";
+"use client";
+
+import { CheckCircle2, Eye, ShieldAlert, ClipboardList, Download, NotebookPen } from "lucide-react";
+import { toast } from "sonner";
 
 import { Card } from "@/components/ui/card";
+import { PageHeader } from "@/components/ui/page-header";
+import { Button } from "@/components/ui/button";
 import {
   Table,
   TableHeader,
@@ -12,6 +17,7 @@ import {
   TableCell,
 } from "@/components/ui/table";
 import { CHILDREN } from "@/lib/mock-data/children";
+import { exportRowsToCsv } from "@/lib/super-admin/export-csv";
 
 // No v2 component or mock data exists for child development yet. Stats and per-child
 // milestone focus below are derived deterministically from real CHILDREN fields
@@ -77,14 +83,35 @@ function StatCard({
 export default function DevelopmentV3Page() {
   return (
     <div className="flex flex-col gap-5">
-      <div>
-        <h1 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2D1810]">
-          Child Development
-        </h1>
-        <p className="mt-1 text-sm text-[#2D1810]/60">
-          Milestone tracking and observations across every enrolled child.
-        </p>
-      </div>
+      <PageHeader
+        title="Child Development"
+        description="Milestone tracking and observations across every enrolled child."
+        action={
+          <>
+            <Button
+              variant="outline"
+              onClick={() =>
+                exportRowsToCsv(
+                  "child-development.csv",
+                  ["Child", "Milestone", "Status"],
+                  DEVELOPMENT_ROWS.map((r) => [r.child.name, r.milestone, r.status]),
+                )
+              }
+              className="h-9 gap-2 rounded-lg border-[#d0d5dd] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]"
+            >
+              <Download className="h-4 w-4" />
+              Export
+            </Button>
+            <Button
+              onClick={() => toast.success("Observation logged")}
+              className="h-9 gap-2 rounded-lg bg-[#3b2513] px-4 font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#faf2e1]"
+            >
+              <NotebookPen className="h-4 w-4" />
+              Log Observation
+            </Button>
+          </>
+        }
+      />
 
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         <StatCard Icon={CheckCircle2} label="On Track" value={String(ON_TRACK).padStart(2, "0")} sub="No flags raised" />
