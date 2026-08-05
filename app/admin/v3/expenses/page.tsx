@@ -3,6 +3,15 @@
 import { useState } from "react";
 import { Wallet, Receipt, PiggyBank, Clock3, Paperclip } from "lucide-react";
 
+import { Card } from "@/components/ui/card";
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+} from "@/components/ui/table";
 import NewExpenseModal from "@/components/admin/finance/new-expense-modal";
 import {
   BUDGET_VS_ACTUAL,
@@ -31,14 +40,14 @@ function StatCard({
   sub: string;
 }) {
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-black/[0.07] bg-white p-4">
+    <Card padding="compact" className="relative overflow-hidden">
       <p className="text-xs font-bold uppercase tracking-wide text-[#2D1810]/50">{label}</p>
       <p className="mt-1.5 font-[family-name:var(--font-merriweather)] text-[1.85rem] font-bold leading-none text-[#2D1810]">
         {value}
       </p>
       <p className="mt-1.5 text-[11px] text-[#2D1810]/60">{sub}</p>
       <Icon className="pointer-events-none absolute right-3 top-3 h-6 w-6 text-[#2D1810]/10" />
-    </div>
+    </Card>
   );
 }
 
@@ -72,7 +81,7 @@ export default function ExpensesV3Page() {
       </div>
 
       {/* Budget vs Actual */}
-      <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
+      <Card>
         <div className="mb-3 flex items-center justify-between">
           <p className="text-sm font-bold text-[#2D1810]">Budget vs Actual — by Category</p>
           <div className="flex items-center gap-3 text-[11px] text-[#2D1810]/60">
@@ -109,58 +118,56 @@ export default function ExpensesV3Page() {
             </div>
           ))}
         </div>
-      </div>
+      </Card>
 
       {/* Expense Log */}
-      <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
+      <Card>
         <p className="mb-3 text-sm font-bold text-[#2D1810]">Expense Log</p>
-        <div className="overflow-x-auto">
-          <table className="w-full border-collapse text-sm">
-            <thead>
-              <tr className="border-b border-black/[0.08] text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
-                <th className="pb-2 pr-3 font-semibold">Date</th>
-                <th className="pb-2 pr-3 font-semibold">Vendor</th>
-                <th className="pb-2 pr-3 font-semibold">Category</th>
-                <th className="pb-2 pr-3 font-semibold">Description</th>
-                <th className="pb-2 pr-3 font-semibold">Amount</th>
-                <th className="pb-2 pr-3 font-semibold">Receipt</th>
-                <th className="pb-2 font-semibold">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {EXPENSES.map((row) => {
-                const status = STATUS_STYLES[row.status];
-                return (
-                  <tr key={row.id} className="border-b border-black/[0.05] last:border-0">
-                    <td className="py-2.5 pr-3 text-[#2D1810]/70">{row.date}</td>
-                    <td className="py-2.5 pr-3 font-semibold text-[#2D1810]">{row.vendor}</td>
-                    <td className="py-2.5 pr-3 text-[#2D1810]/70">{row.category}</td>
-                    <td className="py-2.5 pr-3 text-[#2D1810]/70">{row.description}</td>
-                    <td className="py-2.5 pr-3 font-mono text-[#2D1810]">{row.amount}</td>
-                    <td className="py-2.5 pr-3">
-                      {row.receipt ? (
-                        <span className="inline-flex items-center gap-1 text-xs text-[#2A8A52]">
-                          <Paperclip className="h-3 w-3" /> Attached
-                        </span>
-                      ) : (
-                        <span className="text-xs text-[#2D1810]/40">—</span>
-                      )}
-                    </td>
-                    <td className="py-2.5">
-                      <span
-                        className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold"
-                        style={{ backgroundColor: status.bg, color: status.text }}
-                      >
-                        {row.status === "Paid" ? "Approved" : row.status}
+        <Table>
+          <TableHeader>
+            <TableRow className="border-b border-black/[0.08]">
+              <TableHead className="pb-2 pr-3">Date</TableHead>
+              <TableHead className="pb-2 pr-3">Vendor</TableHead>
+              <TableHead className="pb-2 pr-3">Category</TableHead>
+              <TableHead className="pb-2 pr-3">Description</TableHead>
+              <TableHead className="pb-2 pr-3">Amount</TableHead>
+              <TableHead className="pb-2 pr-3">Receipt</TableHead>
+              <TableHead className="pb-2">Status</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {EXPENSES.map((row) => {
+              const status = STATUS_STYLES[row.status];
+              return (
+                <TableRow key={row.id} className="border-b border-black/[0.05] last:border-0">
+                  <TableCell className="py-2.5 pr-3 text-[#2D1810]/70">{row.date}</TableCell>
+                  <TableCell className="py-2.5 pr-3 font-semibold text-[#2D1810]">{row.vendor}</TableCell>
+                  <TableCell className="py-2.5 pr-3 text-[#2D1810]/70">{row.category}</TableCell>
+                  <TableCell className="py-2.5 pr-3 text-[#2D1810]/70">{row.description}</TableCell>
+                  <TableCell className="py-2.5 pr-3 font-mono text-[#2D1810]">{row.amount}</TableCell>
+                  <TableCell className="py-2.5 pr-3">
+                    {row.receipt ? (
+                      <span className="inline-flex items-center gap-1 text-xs text-[#2A8A52]">
+                        <Paperclip className="h-3 w-3" /> Attached
                       </span>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-      </div>
+                    ) : (
+                      <span className="text-xs text-[#2D1810]/40">—</span>
+                    )}
+                  </TableCell>
+                  <TableCell className="py-2.5">
+                    <span
+                      className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold"
+                      style={{ backgroundColor: status.bg, color: status.text }}
+                    >
+                      {row.status === "Paid" ? "Approved" : row.status}
+                    </span>
+                  </TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </Card>
 
       <NewExpenseModal open={expenseOpen} onOpenChange={setExpenseOpen} />
     </div>

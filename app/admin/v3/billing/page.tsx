@@ -5,6 +5,9 @@ import { Wallet, Clock3, AlertTriangle, Target, Download, Phone } from "lucide-r
 import { CEIcon } from "@/components/admin-v3/ce-icon";
 import { toast } from "sonner";
 
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
+import { Card } from "@/components/ui/card";
+
 import NewInvoiceModal from "@/components/admin/finance/new-invoice-modal";
 import RecordPaymentModal from "@/components/admin/finance/record-payment-modal";
 import AiRiskBadge from "@/components/dashboard/ai-risk-badge";
@@ -50,16 +53,16 @@ function StatCard({
  value: string;
  sub: string;
 }) {
- return (
- <div className="relative overflow-hidden rounded-2xl border border-black/[0.07] bg-white p-4">
-  <p className="text-xs font-bold uppercase tracking-wide text-[#2D1810]/50">{label}</p>
-  <p className="mt-1.5 font-[family-name:var(--font-merriweather)] text-[1.85rem] font-bold leading-none text-[#2D1810]">
-  {value}
-  </p>
-  <p className="mt-1.5 text-[11px] text-[#2D1810]/60">{sub}</p>
-  <Icon className="pointer-events-none absolute right-3 top-3 h-6 w-6 text-[#2D1810]/10" />
- </div>
- );
+  return (
+  <Card padding="compact" className="relative overflow-hidden">
+   <p className="text-xs font-bold uppercase tracking-wide text-[#2D1810]/50">{label}</p>
+   <p className="mt-1.5 font-[family-name:var(--font-merriweather)] text-[1.85rem] font-bold leading-none text-[#2D1810]">
+   {value}
+   </p>
+   <p className="mt-1.5 text-[11px] text-[#2D1810]/60">{sub}</p>
+   <Icon className="pointer-events-none absolute right-3 top-3 h-6 w-6 text-[#2D1810]/10" />
+  </Card>
+  );
 }
 
 export default function BillingV3Page() {
@@ -118,7 +121,7 @@ export default function BillingV3Page() {
   </div>
 
   {/* Collection Progress */}
-  <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
+  <Card>
   <div className="mb-3 flex items-center justify-between">
    <p className="text-sm font-bold text-[#2D1810]">Collection Progress</p>
    <span className="text-xs text-[#2D1810]/50">
@@ -142,10 +145,10 @@ export default function BillingV3Page() {
    </div>
    ))}
   </div>
-  </div>
+  </Card>
 
   {/* Invoice Tracker */}
-  <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
+  <Card>
   <div className="mb-3 flex items-center justify-between">
    <p className="text-sm font-bold text-[#2D1810]">Invoice Tracker</p>
    <button
@@ -170,51 +173,50 @@ export default function BillingV3Page() {
    <Download className="h-3.5 w-3.5" /> Export
    </button>
   </div>
-  <div className="overflow-x-auto">
-   <table className="w-full border-collapse text-sm">
-   <thead>
-    <tr className="border-b border-black/[0.08] text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
-    <th className="pb-2 pr-3 font-semibold">Child</th>
-    <th className="pb-2 pr-3 font-semibold">Parent</th>
-    <th className="pb-2 pr-3 font-semibold">Plan</th>
-    <th className="pb-2 pr-3 font-semibold">Amount</th>
-    <th className="pb-2 pr-3 font-semibold">Due</th>
-    <th className="pb-2 pr-3 font-semibold">Days</th>
-    <th className="pb-2 pr-3 font-semibold">Risk</th>
-    <th className="pb-2 pr-3 font-semibold">Status</th>
-    <th className="pb-2 font-semibold">Actions</th>
-    </tr>
-   </thead>
-   <tbody>
-    {INVOICE_TRACKING.map((row, index) => {
+  <Table>
+   <TableHeader>
+    <TableRow>
+    <TableHead>Child</TableHead>
+    <TableHead>Parent</TableHead>
+    <TableHead>Plan</TableHead>
+    <TableHead>Amount</TableHead>
+    <TableHead>Due</TableHead>
+    <TableHead>Days</TableHead>
+    <TableHead>Risk</TableHead>
+    <TableHead>Status</TableHead>
+    <TableHead>Actions</TableHead>
+    </TableRow>
+   </TableHeader>
+   <TableBody>
+    {INVOICE_TRACKING.map((row) => {
     const status = STATUS_STYLES[row.status];
     return (
-     <tr key={row.id} className={index % 2 === 0 ? "bg-white/60" : "bg-transparent"}>
-     <td className="py-2.5 pr-3 font-semibold text-[#2D1810]">
+     <TableRow key={row.id}>
+     <TableCell className="font-semibold text-[#2D1810]">
       {row.child}
       {row.extraChildren > 0 && (
       <span className="ml-1 rounded bg-black/[0.05] px-1.5 py-0.5 text-[10px] text-[#2D1810]/60">
        +{row.extraChildren}
       </span>
       )}
-     </td>
-     <td className="py-2.5 pr-3 text-[#2D1810]/70">{row.parentName}</td>
-     <td className="py-2.5 pr-3 text-[#2D1810]/70">{row.roomPlan}</td>
-     <td className="py-2.5 pr-3 font-mono text-[#2D1810]">{row.duePayment}</td>
-     <td className="py-2.5 pr-3 text-[#2D1810]/70">{row.dueDate}</td>
-     <td className="py-2.5 pr-3 text-[#2D1810]/70">{row.daysOverdue ?? "–"}</td>
-     <td className="py-2.5 pr-3">
+     </TableCell>
+     <TableCell className="text-[#2D1810]/70">{row.parentName}</TableCell>
+     <TableCell className="text-[#2D1810]/70">{row.roomPlan}</TableCell>
+     <TableCell className="font-mono text-[#2D1810]">{row.duePayment}</TableCell>
+     <TableCell className="text-[#2D1810]/70">{row.dueDate}</TableCell>
+     <TableCell className="text-[#2D1810]/70">{row.daysOverdue ?? "–"}</TableCell>
+     <TableCell>
       <AiRiskBadge level={toAiRiskLevel(row.risk)} />
-     </td>
-     <td className="py-2.5 pr-3">
+     </TableCell>
+     <TableCell>
       <span
       className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold"
       style={{ backgroundColor: status.bg, color: status.text }}
       >
       {row.status}
       </span>
-     </td>
-     <td className="py-2.5">
+     </TableCell>
+     <TableCell>
       {row.status === "Paid" ? (
       <button className="text-xs font-semibold text-[#2D1810] underline hover:opacity-70">
        Receipt
@@ -231,14 +233,13 @@ export default function BillingV3Page() {
        )}
       </div>
       )}
-     </td>
-     </tr>
+     </TableCell>
+     </TableRow>
     );
     })}
-   </tbody>
-   </table>
-  </div>
-  </div>
+   </TableBody>
+  </Table>
+  </Card>
 
   <NewInvoiceModal open={invoiceOpen} onOpenChange={setInvoiceOpen} />
   <RecordPaymentModal open={paymentOpen} onOpenChange={setPaymentOpen} />

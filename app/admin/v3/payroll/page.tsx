@@ -3,6 +3,8 @@
 import { Wallet, MinusCircle, PiggyBank, Clock3 } from "lucide-react";
 
 import { StatCardV3 } from "@/components/admin-v3/stat-card";
+import { Card } from "@/components/ui/card";
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 import { PAYROLL, CURRENT_PAYROLL_MONTH, type PayrollStatus } from "@/lib/mock-data/staff";
 
 function formatCurrency(value: number) {
@@ -77,57 +79,55 @@ export default function PayrollV3Page() {
       </div>
 
       {/* Staff breakdown table */}
-      <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
+      <Card>
         <div className="mb-3 flex items-center justify-between">
           <p className="text-sm font-bold text-[#2D1810]">{CURRENT_PAYROLL_MONTH} — Staff Breakdown</p>
           <p className="text-xs text-[#2D1810]/40">Review each line before running payroll</p>
         </div>
-        <div className="overflow-x-auto">
-          <table className="w-full min-w-[880px] border-collapse text-sm">
-            <thead>
-              <tr className="border-b border-black/[0.08] text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
-                <th className="pb-2 pr-3 font-semibold">Staff</th>
-                <th className="pb-2 pr-3 font-semibold">Basic Salary</th>
-                <th className="pb-2 pr-3 font-semibold">Bonus</th>
-                <th className="pb-2 pr-3 font-semibold">Deductions</th>
-                <th className="pb-2 pr-3 font-semibold">PAYE Tax</th>
-                <th className="pb-2 pr-3 font-semibold">Pension (8%)</th>
-                <th className="pb-2 pr-3 font-semibold">Absences</th>
-                <th className="pb-2 pr-3 font-semibold">Net Pay</th>
-                <th className="pb-2 font-semibold">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map((row) => (
-                <tr key={row.id} className="border-b border-black/[0.05] last:border-0">
-                  <td className="py-2.5 pr-3">
-                    <p className="font-semibold text-[#2D1810]">{row.name}</p>
-                    <p className="text-[11px] text-[#2D1810]/40">{row.role}</p>
-                  </td>
-                  <td className="py-2.5 pr-3 font-mono text-[#2D1810]">{formatCurrency(row.baseSalary)}</td>
-                  <td className="py-2.5 pr-3 font-mono text-[#1E7A3D]">
-                    {row.bonuses > 0 ? formatCurrency(row.bonuses) : "₦0"}
-                  </td>
-                  <td className="py-2.5 pr-3 font-mono text-[#D4522F]">
-                    {row.deductions > 0 ? formatCurrency(row.deductions) : "₦0"}
-                  </td>
-                  <td className="py-2.5 pr-3 font-mono text-[#2D1810]/70">{formatCurrency(row.paye)}</td>
-                  <td className="py-2.5 pr-3 font-mono text-[#2D1810]/70">{formatCurrency(row.pension)}</td>
-                  <td className="py-2.5 pr-3 font-mono text-[#2D1810]/70">
-                    {row.absence > 0 ? `${row.absence} day${row.absence > 1 ? "s" : ""}` : "—"}
-                  </td>
-                  <td className="py-2.5 pr-3 font-mono font-bold text-[#2D1810]">{formatCurrency(row.netPay)}</td>
-                  <td className="py-2.5">
-                    <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${STATUS_STYLES[row.status]}`}>
-                      {row.status}
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+        <Table className="min-w-[880px]">
+          <TableHeader>
+            <TableRow>
+              <TableHead>Staff</TableHead>
+              <TableHead>Basic Salary</TableHead>
+              <TableHead>Bonus</TableHead>
+              <TableHead>Deductions</TableHead>
+              <TableHead>PAYE Tax</TableHead>
+              <TableHead>Pension (8%)</TableHead>
+              <TableHead>Absences</TableHead>
+              <TableHead>Net Pay</TableHead>
+              <TableHead>Status</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {rows.map((row) => (
+              <TableRow key={row.id}>
+                <TableCell>
+                  <p className="font-semibold text-[#2D1810]">{row.name}</p>
+                  <p className="text-[11px] text-[#2D1810]/40">{row.role}</p>
+                </TableCell>
+                <TableCell className="font-mono text-[#2D1810]">{formatCurrency(row.baseSalary)}</TableCell>
+                <TableCell className="font-mono text-[#1E7A3D]">
+                  {row.bonuses > 0 ? formatCurrency(row.bonuses) : "₦0"}
+                </TableCell>
+                <TableCell className="font-mono text-[#D4522F]">
+                  {row.deductions > 0 ? formatCurrency(row.deductions) : "₦0"}
+                </TableCell>
+                <TableCell className="font-mono text-[#2D1810]/70">{formatCurrency(row.paye)}</TableCell>
+                <TableCell className="font-mono text-[#2D1810]/70">{formatCurrency(row.pension)}</TableCell>
+                <TableCell className="font-mono text-[#2D1810]/70">
+                  {row.absence > 0 ? `${row.absence} day${row.absence > 1 ? "s" : ""}` : "—"}
+                </TableCell>
+                <TableCell className="font-mono font-bold text-[#2D1810]">{formatCurrency(row.netPay)}</TableCell>
+                <TableCell>
+                  <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${STATUS_STYLES[row.status]}`}>
+                    {row.status}
+                  </span>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </Card>
     </div>
   );
 }

@@ -19,6 +19,7 @@ import {
   FileBarChart,
 } from "lucide-react";
 import { CEIcon } from "@/components/admin-v3/ce-icon";
+import { Card } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
 import EnrollChildModal from "@/components/dashboard/enroll-child-modal";
 import RaiseIncidentModal from "@/components/dashboard/raise-incident-modal";
@@ -168,7 +169,7 @@ export default function DashboardV3Page() {
   </div>
 
   {/* AI Daily Brief */}
-  <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
+  <Card>
   <div className="mb-3 flex items-center justify-between">
    <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-[#1E2D4A] to-[#2D1810] px-3 py-1.5 text-[10px] font-bold uppercase tracking-wide text-[#F5EDD8]">
             <CEIcon className="h-3 w-3 text-[#C47B2C]" /> Daily Brief
@@ -193,7 +194,7 @@ export default function DashboardV3Page() {
    </div>
    ))}
   </div>
-  </div>
+  </Card>
 
   {/* Stats */}
   <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
@@ -203,7 +204,7 @@ export default function DashboardV3Page() {
   </div>
 
   {/* Quick Actions */}
-  <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
+  <Card>
   <p className="mb-3 text-xs font-bold uppercase tracking-wide text-[#2D1810]/50">Quick Actions</p>
   <div className="grid grid-cols-3 gap-2.5 sm:grid-cols-5">
    {QUICK_ACTIONS.map(({ id, icon: Icon, label }) => (
@@ -217,11 +218,11 @@ export default function DashboardV3Page() {
    </button>
    ))}
   </div>
-  </div>
+  </Card>
 
   <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
   {/* Room Occupancy */}
-  <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
+  <Card>
    <div className="mb-3 flex items-center justify-between">
    <p className="text-sm font-bold text-[#2D1810]">Room Occupancy</p>
    <button onClick={() => router.push("/admin/v3/rooms")} className="text-xs font-bold text-[#3B2513] hover:opacity-70">
@@ -243,10 +244,10 @@ export default function DashboardV3Page() {
     </div>
    ))}
    </div>
-  </div>
+   </Card>
 
   {/* Live Activity */}
-  <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
+  <Card>
    <div className="mb-1 flex items-center justify-between">
    <p className="text-sm font-bold text-[#2D1810]">Live Activity</p>
    <button onClick={() => router.push("/admin/v3/audit-trail")} className="text-xs font-bold text-[#3B2513] hover:opacity-70">
@@ -266,11 +267,11 @@ export default function DashboardV3Page() {
     </div>
    ))}
    </div>
-  </div>
+   </Card>
   </div>
 
   {/* Outstanding Payments */}
-  <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
+  <Card>
   <div className="mb-3 flex items-center justify-between">
    <p className="text-sm font-bold text-[#2D1810]">Outstanding Payments</p>
    <button onClick={() => router.push("/admin/v3/billing")} className="text-xs font-bold text-[#3B2513] hover:opacity-70">
@@ -306,8 +307,8 @@ export default function DashboardV3Page() {
     ))}
    </tbody>
    </table>
-  </div>
-  </div>
+   </div>
+   </Card>
 
   {enrollOpen && <EnrollChildModal onClose={() => setEnrollOpen(false)} />}
   {incidentOpen && <RaiseIncidentModal onClose={() => setIncidentOpen(false)} />}

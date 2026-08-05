@@ -29,6 +29,8 @@ import {
  ReassignCaregiverModal,
 } from "@/components/admin/children/child-row-actions-modals";
 import { CHILDREN, CHILDREN_STATS, type Child, type ChildStatus, type FeeStatus } from "@/lib/mock-data/children";
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
+import { Card } from "@/components/ui/card";
 
 const ROOMS = ["All Rooms", "Lion", "Panda", "Owl", "Bear"];
 const STATUSES: Array<"All Status" | ChildStatus> = ["All Status", "Present", "Late", "Absent"];
@@ -61,14 +63,14 @@ function StatCard({
  sub: string;
 }) {
  return (
- <div className="relative overflow-hidden rounded-2xl border border-black/[0.07] bg-white p-4">
-  <p className="text-xs font-bold uppercase tracking-wide text-[#2D1810]/50">{label}</p>
-  <p className="mt-1.5 font-[family-name:var(--font-merriweather)] text-[1.85rem] font-bold leading-none text-[#2D1810]">
-  {value}
-  </p>
-  <p className="mt-1.5 text-[11px] text-[#2D1810]/60">{sub}</p>
-  <Icon className="pointer-events-none absolute right-3 top-3 h-6 w-6 text-[#2D1810]/10" />
- </div>
+ <Card padding="compact" className="relative overflow-hidden">
+   <p className="text-xs font-bold uppercase tracking-wide text-[#2D1810]/50">{label}</p>
+   <p className="mt-1.5 font-[family-name:var(--font-merriweather)] text-[1.85rem] font-bold leading-none text-[#2D1810]">
+   {value}
+   </p>
+   <p className="mt-1.5 text-[11px] text-[#2D1810]/60">{sub}</p>
+   <Icon className="pointer-events-none absolute right-3 top-3 h-6 w-6 text-[#2D1810]/10" />
+  </Card>
  );
 }
 
@@ -148,7 +150,7 @@ export default function ChildrenV3Page() {
   <StatCard Icon={GraduationCap} label="Graduating Soon" value={String(GRADUATING_SOON).padStart(2, "0")} sub="Ageing out of current room" />
   </div>
 
-  <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
+  <Card>
   <div className="flex flex-col gap-3 pb-4 sm:flex-row sm:items-center sm:justify-between">
    <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2D1810]">
    Children Log
@@ -184,31 +186,30 @@ export default function ChildrenV3Page() {
    </div>
   </div>
 
-  <div className="overflow-x-auto">
-   <table className="w-full border-collapse text-sm">
-   <thead>
-     <tr className="border-b border-black/[0.08] text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
-    <th className="pb-2 pr-3 font-semibold">Child</th>
-    <th className="pb-2 pr-3 font-semibold">Age</th>
-    <th className="pb-2 pr-3 font-semibold">Room</th>
-    <th className="pb-2 pr-3 font-semibold">Parent</th>
-    <th className="pb-2 pr-3 font-semibold">Status</th>
-    <th className="pb-2 pr-3 font-semibold">Health Flag</th>
-    <th className="pb-2 pr-3 font-semibold">Fee Status</th>
-    <th className="pb-2 font-semibold text-center">Action</th>
-    </tr>
-   </thead>
-   <tbody>
+   <Table>
+   <TableHeader>
+     <TableRow>
+    <TableHead>Child</TableHead>
+    <TableHead>Age</TableHead>
+    <TableHead>Room</TableHead>
+    <TableHead>Parent</TableHead>
+    <TableHead>Status</TableHead>
+    <TableHead>Health Flag</TableHead>
+    <TableHead>Fee Status</TableHead>
+    <TableHead className="text-center">Action</TableHead>
+     </TableRow>
+   </TableHeader>
+   <TableBody>
     {filteredChildren.length === 0 ? (
-    <tr>
-     <td colSpan={8} className="py-10 text-center text-sm text-[#2D1810]/50">
+    <TableRow>
+     <TableCell colSpan={8} className="py-10 text-center text-sm text-[#2D1810]/50">
      No children match your search or filters.
-     </td>
-    </tr>
+     </TableCell>
+    </TableRow>
     ) : (
     filteredChildren.map((child) => (
-     <tr key={child.id} className={`group ${child.id.length % 2 === 0 ? "bg-white/60" : "bg-transparent"}`}>
-     <td className="py-3 pr-3">
+     <TableRow key={child.id}>
+     <TableCell className="py-3 pr-3">
       <Link href={`/admin/v3/children/${child.id}`} className="flex items-center gap-3">
       <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#EDD9C0] text-xs font-bold text-[#3B2513]">
        {getInitials(child.name)}
@@ -218,15 +219,15 @@ export default function ChildrenV3Page() {
        <p className="text-[11px] text-[#2D1810]/50">{child.gender} • Blood: {child.bloodGroup}</p>
       </div>
       </Link>
-     </td>
-     <td className="py-3 pr-3 text-[#2D1810]/80">{child.age}</td>
-     <td className="py-3 pr-3 text-[#2D1810]/80">{child.room}</td>
-     <td className="py-3 pr-3">
+     </TableCell>
+     <TableCell className="py-3 pr-3 text-[#2D1810]/80">{child.age}</TableCell>
+     <TableCell className="py-3 pr-3 text-[#2D1810]/80">{child.room}</TableCell>
+     <TableCell className="py-3 pr-3">
       <p className="font-semibold text-[#2D1810]">{child.parentName}</p>
       <p className="text-[11px] text-[#2D1810]/50">{child.parentEmail}</p>
-     </td>
-     <td className={`py-3 pr-3 font-semibold ${STATUS_TEXT_CLASS[child.status]}`}>{child.status}</td>
-     <td className="py-3 pr-3">
+     </TableCell>
+     <TableCell className={`py-3 pr-3 font-semibold ${STATUS_TEXT_CLASS[child.status]}`}>{child.status}</TableCell>
+     <TableCell className="py-3 pr-3">
       {child.healthFlag ? (
       <span className="flex items-center gap-1.5 text-[#D4522F]">
        <Flag className="h-3.5 w-3.5" /> {child.healthFlag}
@@ -234,13 +235,13 @@ export default function ChildrenV3Page() {
       ) : (
       <span className="text-[#2D1810]/40">No flags</span>
       )}
-     </td>
-     <td className="py-3 pr-3">
+     </TableCell>
+     <TableCell className="py-3 pr-3">
       <span className={`rounded-full px-2.5 py-1 text-xs font-semibold ${FEE_BADGE_CLASS[child.feeStatus]}`}>
       {child.feeStatus}
       </span>
-     </td>
-     <td className="py-3">
+     </TableCell>
+     <TableCell className="py-3">
       <div className="flex items-center justify-center gap-1">
       <DropdownMenu>
        <DropdownMenuTrigger
@@ -269,14 +270,13 @@ export default function ChildrenV3Page() {
        </DropdownMenuContent>
       </DropdownMenu>
       </div>
-     </td>
-     </tr>
+     </TableCell>
+     </TableRow>
     ))
     )}
-   </tbody>
-   </table>
-  </div>
-  </div>
+   </TableBody>
+   </Table>
+  </Card>
 
   {enrollOpen && <EnrollChildModal onClose={() => setEnrollOpen(false)} />}
   {logTarget && (

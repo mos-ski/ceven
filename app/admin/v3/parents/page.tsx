@@ -10,6 +10,15 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+} from "@/components/ui/table";
+import { Card } from "@/components/ui/card";
 import AiRiskBadge, { calculateRisk } from "@/components/dashboard/ai-risk-badge";
 import { PARENTS } from "@/lib/mock-data/children";
 
@@ -39,14 +48,14 @@ function StatCard({
   sub: string;
 }) {
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-black/[0.07] bg-white p-4">
+    <Card padding="compact" className="relative overflow-hidden">
       <p className="text-xs font-bold uppercase tracking-wide text-[#2D1810]/50">{label}</p>
       <p className="mt-1.5 font-[family-name:var(--font-merriweather)] text-[1.85rem] font-bold leading-none text-[#2D1810]">
         {value}
       </p>
       <p className="mt-1.5 text-[11px] text-[#2D1810]/60">{sub}</p>
       <Icon className="pointer-events-none absolute right-3 top-3 h-6 w-6 text-[#2D1810]/10" />
-    </div>
+    </Card>
   );
 }
 
@@ -87,7 +96,7 @@ export default function ParentsV3Page() {
         <StatCard Icon={PhoneMissed} label="Uncontacted Today" value={String(UNCONTACTED_TODAY).padStart(2, "0")} sub="No app activity yet" />
       </div>
 
-      <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
+      <Card>
         <div className="flex flex-col gap-3 pb-4 sm:flex-row sm:items-center sm:justify-between">
           <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2D1810]">
             Parent Directory
@@ -103,83 +112,81 @@ export default function ParentsV3Page() {
           </div>
         </div>
 
-        <div className="overflow-x-auto">
-          <table className="w-full border-collapse text-sm">
-            <thead>
-              <tr className="border-b border-black/[0.08] text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
-                <th className="pb-2 pr-3 font-semibold">Parent</th>
-                <th className="pb-2 pr-3 font-semibold">Phone</th>
-                <th className="pb-2 pr-3 font-semibold">Children</th>
-                <th className="pb-2 pr-3 font-semibold">Balance</th>
-                <th className="pb-2 pr-3 font-semibold">App Status</th>
-                <th className="pb-2 pr-3 font-semibold">Risk</th>
-                <th className="pb-2 font-semibold text-center">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredParents.length === 0 ? (
-                <tr>
-                  <td colSpan={7} className="py-10 text-center text-sm text-[#2D1810]/50">
-                    No parents match your search.
-                  </td>
-                </tr>
-              ) : (
-                filteredParents.map((parent) => (
-                  <tr key={parent.id} className="group border-b border-black/[0.05] last:border-0">
-                    <td className="py-3 pr-3">
-                      <Link href={`/admin/v3/parents/${parent.id}`} className="flex items-center gap-3">
-                        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#EDD9C0] text-xs font-bold text-[#3B2513]">
-                          {getInitials(parent.name)}
-                        </div>
-                        <div>
-                          <p className="font-semibold text-[#2D1810] group-hover:underline">{parent.name}</p>
-                          <p className="text-[11px] text-[#2D1810]/50">{parent.email}</p>
-                        </div>
-                      </Link>
-                    </td>
-                    <td className="py-3 pr-3 text-[#2D1810]/80">{parent.phone}</td>
-                    <td className="py-3 pr-3 text-[#2D1810]/80">{parent.childName}</td>
-                    <td className="py-3 pr-3 font-mono">
-                      {parent.dueAmount ? (
-                        <span className="font-semibold text-[#D4522F]">{parent.dueAmount}</span>
-                      ) : (
-                        <span className="text-[#2D1810]/40">--</span>
-                      )}
-                    </td>
-                    <td className="py-3 pr-3">
-                      {parent.appStatus === "Installed" ? (
-                        <span className="rounded-full bg-[#2A8A52]/10 px-2.5 py-1 text-xs font-semibold text-[#2A8A52]">
-                          Installed
-                        </span>
-                      ) : (
-                        <button className="text-xs font-semibold text-[#2D1810] underline hover:opacity-70">
-                          Send App Invite
-                        </button>
-                      )}
-                    </td>
-                    <td className="py-3 pr-3">
-                      <AiRiskBadge level={calculateRisk(proxyOverdueDays(parent.feeStatus))} overdueDays={proxyOverdueDays(parent.feeStatus)} />
-                    </td>
-                    <td className="py-3">
-                      <div className="flex items-center justify-center">
-                        <DropdownMenu>
-                          <DropdownMenuTrigger render={<button className="flex h-8 w-8 items-center justify-center rounded-lg hover:bg-[#2D1810]/5" />}>
-                            <MoreVertical className="h-4 w-4 text-[#2D1810]/60" />
-                          </DropdownMenuTrigger>
-                          <DropdownMenuContent>
-                            <DropdownMenuItem render={<Link href={`/admin/v3/parents/${parent.id}`} />}>View Profile</DropdownMenuItem>
-                            <DropdownMenuItem render={<Link href={`/admin/v3/children/${parent.childId}`} />}>View Child</DropdownMenuItem>
-                          </DropdownMenuContent>
-                        </DropdownMenu>
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Parent</TableHead>
+              <TableHead>Phone</TableHead>
+              <TableHead>Children</TableHead>
+              <TableHead>Balance</TableHead>
+              <TableHead>App Status</TableHead>
+              <TableHead>Risk</TableHead>
+              <TableHead className="text-center">Action</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {filteredParents.length === 0 ? (
+              <TableRow>
+                <TableCell colSpan={7} className="py-10 text-center text-sm text-[#2D1810]/50">
+                  No parents match your search.
+                </TableCell>
+              </TableRow>
+            ) : (
+              filteredParents.map((parent) => (
+                <TableRow key={parent.id} className="group">
+                  <TableCell>
+                    <Link href={`/admin/v3/parents/${parent.id}`} className="flex items-center gap-3">
+                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#EDD9C0] text-xs font-bold text-[#3B2513]">
+                        {getInitials(parent.name)}
                       </div>
-                    </td>
-                  </tr>
-                ))
-              )}
-            </tbody>
-          </table>
-        </div>
-      </div>
+                      <div>
+                        <p className="font-semibold text-[#2D1810] group-hover:underline">{parent.name}</p>
+                        <p className="text-[11px] text-[#2D1810]/50">{parent.email}</p>
+                      </div>
+                    </Link>
+                  </TableCell>
+                  <TableCell>{parent.phone}</TableCell>
+                  <TableCell>{parent.childName}</TableCell>
+                  <TableCell className="font-mono">
+                    {parent.dueAmount ? (
+                      <span className="font-semibold text-[#D4522F]">{parent.dueAmount}</span>
+                    ) : (
+                      <span className="text-[#2D1810]/40">--</span>
+                    )}
+                  </TableCell>
+                  <TableCell>
+                    {parent.appStatus === "Installed" ? (
+                      <span className="rounded-full bg-[#2A8A52]/10 px-2.5 py-1 text-xs font-semibold text-[#2A8A52]">
+                        Installed
+                      </span>
+                    ) : (
+                      <button className="text-xs font-semibold text-[#2D1810] underline hover:opacity-70">
+                        Send App Invite
+                      </button>
+                    )}
+                  </TableCell>
+                  <TableCell>
+                    <AiRiskBadge level={calculateRisk(proxyOverdueDays(parent.feeStatus))} overdueDays={proxyOverdueDays(parent.feeStatus)} />
+                  </TableCell>
+                  <TableCell>
+                    <div className="flex items-center justify-center">
+                      <DropdownMenu>
+                        <DropdownMenuTrigger render={<button className="flex h-8 w-8 items-center justify-center rounded-lg hover:bg-[#2D1810]/5" />}>
+                          <MoreVertical className="h-4 w-4 text-[#2D1810]/60" />
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent>
+                          <DropdownMenuItem render={<Link href={`/admin/v3/parents/${parent.id}`} />}>View Profile</DropdownMenuItem>
+                          <DropdownMenuItem render={<Link href={`/admin/v3/children/${parent.childId}`} />}>View Child</DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))
+            )}
+          </TableBody>
+        </Table>
+      </Card>
     </div>
   );
 }

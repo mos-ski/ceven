@@ -2,6 +2,15 @@
 
 import { CheckCircle2, Eye, ShieldAlert, ClipboardList } from "lucide-react";
 
+import { Card } from "@/components/ui/card";
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+} from "@/components/ui/table";
 import { CHILDREN } from "@/lib/mock-data/children";
 
 // No v2 component or mock data exists for child development yet. Stats and per-child
@@ -54,14 +63,14 @@ function StatCard({
   sub: string;
 }) {
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-black/[0.07] bg-white p-4">
+    <Card padding="compact" className="relative overflow-hidden">
       <p className="text-xs font-bold uppercase tracking-wide text-[#2D1810]/50">{label}</p>
       <p className="mt-1.5 font-[family-name:var(--font-merriweather)] text-[1.85rem] font-bold leading-none text-[#2D1810]">
         {value}
       </p>
       <p className="mt-1.5 text-[11px] text-[#2D1810]/60">{sub}</p>
       <Icon className="pointer-events-none absolute right-3 top-3 h-6 w-6 text-[#2D1810]/10" />
-    </div>
+    </Card>
   );
 }
 
@@ -84,39 +93,37 @@ export default function DevelopmentV3Page() {
         <StatCard Icon={ClipboardList} label="Observations This Week" value={String(OBSERVATIONS_THIS_WEEK).padStart(2, "0")} sub="Logged by caregivers" />
       </div>
 
-      <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
+      <Card>
         <h2 className="mb-4 font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2D1810]">
           Milestones
         </h2>
-        <div className="overflow-x-auto">
-          <table className="w-full border-collapse text-sm">
-            <thead>
-              <tr className="border-b border-black/[0.08] text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
-                <th className="pb-2 pr-3 font-semibold">Child</th>
-                <th className="pb-2 pr-3 font-semibold">Age</th>
-                <th className="pb-2 pr-3 font-semibold">Room</th>
-                <th className="pb-2 pr-3 font-semibold">Milestone Focus</th>
-                <th className="pb-2 font-semibold">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              {DEVELOPMENT_ROWS.map(({ child, milestone, status }) => (
-                <tr key={child.id} className="border-b border-black/[0.05] last:border-0">
-                  <td className="py-3 pr-3 font-semibold text-[#2D1810]">{child.name}</td>
-                  <td className="py-3 pr-3 text-[#2D1810]/80">{child.age}</td>
-                  <td className="py-3 pr-3 text-[#2D1810]/80">{child.room}</td>
-                  <td className="py-3 pr-3 text-[#2D1810]/80">{milestone}</td>
-                  <td className="py-3">
-                    <span className={`rounded-full px-2.5 py-1 text-xs font-semibold ${STATUS_BADGE_CLASS[status]}`}>
-                      {status}
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Child</TableHead>
+              <TableHead>Age</TableHead>
+              <TableHead>Room</TableHead>
+              <TableHead>Milestone Focus</TableHead>
+              <TableHead>Status</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {DEVELOPMENT_ROWS.map(({ child, milestone, status }) => (
+              <TableRow key={child.id}>
+                <TableCell className="font-semibold text-[#2D1810]">{child.name}</TableCell>
+                <TableCell>{child.age}</TableCell>
+                <TableCell>{child.room}</TableCell>
+                <TableCell>{milestone}</TableCell>
+                <TableCell>
+                  <span className={`rounded-full px-2.5 py-1 text-xs font-semibold ${STATUS_BADGE_CLASS[status]}`}>
+                    {status}
+                  </span>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </Card>
     </div>
   );
 }

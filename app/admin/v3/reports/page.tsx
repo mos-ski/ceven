@@ -3,6 +3,8 @@
 import type { LucideIcon } from "lucide-react";
 import { ClipboardCheck, ShieldCheck, Banknote, HeartPulse, Users, UserCog } from "lucide-react";
 import { ReportsTab } from "@/components/admin/intelligence/reports-tab";
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
+import { Card } from "@/components/ui/card";
 
 // ── Static data ──────────────────────────────────────────────────────────────
 // No v2 equivalent exists for report-generator cards or a scheduled-reports
@@ -46,7 +48,7 @@ export default function ReportsV3Page() {
         <p className="mb-3 text-xs font-bold uppercase tracking-wide text-[#2D1810]/50">Generate a Report</p>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {REPORT_GENERATORS.map(({ type, icon: Icon, desc }) => (
-            <div key={type} className="rounded-2xl border border-black/[0.07] bg-white p-5">
+            <Card key={type}>
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#F5EDD8] text-[#C47B2C]">
                 <Icon className="h-5 w-5" />
               </div>
@@ -57,33 +59,32 @@ export default function ReportsV3Page() {
               <button className="mt-4 rounded-lg bg-[#2D1810] px-3.5 py-2 text-xs font-bold text-[#F5EDD8] hover:opacity-90">
                 Generate
               </button>
-            </div>
+            </Card>
           ))}
         </div>
       </div>
 
       {/* Scheduled reports */}
-      <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
+      <Card>
         <p className="mb-3 text-sm font-bold text-[#2D1810]">Scheduled Reports</p>
-        <div className="overflow-x-auto">
-          <table className="w-full border-collapse text-sm">
-            <thead>
-              <tr className="border-b border-black/[0.08] text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
-                <th className="pb-2 pr-3 font-semibold">Report</th>
-                <th className="pb-2 pr-3 font-semibold">Cadence</th>
-                <th className="pb-2 pr-3 font-semibold">Recipient</th>
-                <th className="pb-2 pr-3 font-semibold">Next Run</th>
-                <th className="pb-2 font-semibold">Status</th>
-              </tr>
-            </thead>
-            <tbody>
+        <Table>
+          <TableHeader>
+              <TableRow className="border-b border-black/[0.08] text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
+                <TableHead>Report</TableHead>
+                <TableHead>Cadence</TableHead>
+                <TableHead>Recipient</TableHead>
+                <TableHead>Next Run</TableHead>
+                <TableHead>Status</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
               {SCHEDULED_REPORTS.map((r) => (
-                <tr key={r.name} className="border-b border-black/[0.05] last:border-0">
-                  <td className="py-2.5 pr-3 font-semibold text-[#2D1810]">{r.name}</td>
-                  <td className="py-2.5 pr-3 text-[#2D1810]/70">{r.cadence}</td>
-                  <td className="py-2.5 pr-3 text-[#2D1810]/70">{r.recipient}</td>
-                  <td className="py-2.5 pr-3 font-mono text-[#2D1810]/70">{r.nextRun}</td>
-                  <td className="py-2.5">
+                <TableRow key={r.name}>
+                  <TableCell className="font-semibold text-[#2D1810]">{r.name}</TableCell>
+                  <TableCell>{r.cadence}</TableCell>
+                  <TableCell>{r.recipient}</TableCell>
+                  <TableCell className="font-mono">{r.nextRun}</TableCell>
+                  <TableCell>
                     <span
                       className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold ${
                         r.active
@@ -93,13 +94,12 @@ export default function ReportsV3Page() {
                     >
                       {r.active ? "Active" : "Paused"}
                     </span>
-                  </td>
-                </tr>
+                  </TableCell>
+                </TableRow>
               ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+            </TableBody>
+          </Table>
+      </Card>
 
       {/* Generated reports — reuse v2's ReportsTab data/logic */}
       <ReportsTab />

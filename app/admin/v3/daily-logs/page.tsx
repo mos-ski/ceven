@@ -3,12 +3,21 @@
 import { useState } from "react";
 import { ChevronDown, Search } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Card } from "@/components/ui/card";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableHead,
+  TableCell,
+} from "@/components/ui/table";
 import { CHILDREN, CAREGIVERS } from "@/lib/mock-data/children";
 
 // ── Mock daily-report data ───────────────────────────────────────────────────
@@ -207,12 +216,12 @@ export default function DailyLogsV3Page() {
       {/* Stats row */}
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         {statsCards.map((card) => (
-          <div key={card.title} className="rounded-2xl border border-black/[0.07] bg-white p-5">
+          <Card key={card.title}>
             <p className="text-xs font-bold uppercase tracking-wide text-[#2D1810]/50">{card.title}</p>
             <p className="mt-1.5 font-[family-name:var(--font-merriweather)] text-[1.85rem] font-bold leading-none text-[#2D1810]">
               {card.value}
             </p>
-          </div>
+          </Card>
         ))}
       </div>
 
@@ -249,52 +258,49 @@ export default function DailyLogsV3Page() {
           </div>
         </div>
 
-        <div className="hidden overflow-x-auto lg:block">
-          <table className="w-full border-collapse">
-            <thead>
-              <tr className="border-b border-black/[0.08] text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
-                <th className="w-10 px-4 py-3">
+        <div className="hidden lg:block">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>
                   <input type="checkbox" className="h-4 w-4 accent-[#3b2513]" />
-                </th>
+                </TableHead>
                 {["Child", "Room", "Caregiver", "Report Time", "Mood", "Meal", "Status", "Action"].map((h) => (
-                  <th
-                    key={h}
-                    className="px-4 py-3 font-semibold text-[#2D1810]"
-                  >
+                  <TableHead key={h}>
                     {h}
-                  </th>
+                  </TableHead>
                 ))}
-              </tr>
-            </thead>
-            <tbody className="bg-white">
+              </TableRow>
+            </TableHeader>
+            <TableBody>
               {dailyLogRows.map((row, i) => (
-                <tr key={i} className="border-t border-[#eaecf0]">
-                  <td className="px-4 py-3">
+                <TableRow key={i}>
+                  <TableCell>
                     <input type="checkbox" className="h-4 w-4 accent-[#3b2513]" />
-                  </td>
-                  <td className="px-4 py-3">
+                  </TableCell>
+                  <TableCell>
                     <p className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-[#2d1810]">{row.child}</p>
                     <p className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#9ca3af]">{row.childInfo}</p>
-                  </td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
+                  </TableCell>
+                  <TableCell>
                     {row.room}
-                  </td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
+                  </TableCell>
+                  <TableCell>
                     {row.caregiver}
-                  </td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
+                  </TableCell>
+                  <TableCell>
                     {row.reportTime}
-                  </td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
+                  </TableCell>
+                  <TableCell>
                     {row.mood}
-                  </td>
-                  <td className="px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
+                  </TableCell>
+                  <TableCell>
                     {row.meal}
-                  </td>
-                  <td className="px-4 py-3">
+                  </TableCell>
+                  <TableCell>
                     <DailyLogStatusBadge status={row.status} />
-                  </td>
-                  <td className="px-4 py-3">
+                  </TableCell>
+                  <TableCell>
                     {row.status === "Done" || row.status === "Flag" ? (
                       <button
                         onClick={() => setViewingRow(row)}
@@ -307,11 +313,11 @@ export default function DailyLogsV3Page() {
                         Log Now
                       </button>
                     )}
-                  </td>
-                </tr>
+                  </TableCell>
+                </TableRow>
               ))}
-            </tbody>
-          </table>
+            </TableBody>
+          </Table>
         </div>
 
         {/* Mobile card list */}

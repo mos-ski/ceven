@@ -1,4 +1,5 @@
 import type { LucideIcon } from "lucide-react";
+import { Card } from "@/components/ui/card";
 
 export function StatCardV3({
   icon: Icon,
@@ -14,7 +15,7 @@ export function StatCardV3({
   subColor?: string;
 }) {
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-black/[0.07] bg-white p-4">
+    <Card padding="compact" className="relative overflow-hidden">
       <p className="text-xs font-bold uppercase tracking-wide text-[#2D1810]/50">{label}</p>
       <p className="mt-1.5 font-[family-name:var(--font-merriweather)] text-[1.85rem] font-bold leading-none text-[#2D1810]">
         {value}
@@ -25,6 +26,6 @@ export function StatCardV3({
         </p>
       )}
       <Icon className="pointer-events-none absolute right-3 top-3 h-6 w-6 text-[#2D1810]/10" />
-    </div>
+    </Card>
   );
 }

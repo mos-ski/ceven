@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { TrendingUp, TrendingDown, BarChart3, Wallet, Download } from "lucide-react";
 
+import { Card } from "@/components/ui/card";
+
 import {
   EXPENSE_BREAKDOWN,
   PL_EXPENDITURE,
@@ -38,7 +40,7 @@ function StatCard({
   trend: "up" | "down" | "neutral";
 }) {
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-black/[0.07] bg-white p-4">
+    <Card padding="compact" className="relative overflow-hidden">
       <p className="text-xs font-bold uppercase tracking-wide text-[#2D1810]/50">{label}</p>
       <p className="mt-1.5 font-[family-name:var(--font-merriweather)] text-[1.85rem] font-bold leading-none text-[#2D1810]">
         {value}
@@ -50,7 +52,7 @@ function StatCard({
         {helper}
       </p>
       <Icon className="pointer-events-none absolute right-3 top-3 h-6 w-6 text-[#2D1810]/10" />
-    </div>
+    </Card>
   );
 }
 
@@ -83,13 +85,13 @@ function PLSummarySection() {
   const netProfit = REPORT_SUMMARY.find((s) => s.label === "Net Profit");
   return (
     <div className="flex flex-col gap-5">
-      <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
+      <Card>
         <p className="mb-3 text-sm font-bold text-[#2D1810]">Profit &amp; Loss</p>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           <PLColumn title="Income" lines={PL_INCOME} tint="#2A8A52" />
           <PLColumn title="Expenditure" lines={PL_EXPENDITURE} tint="#D4522F" />
         </div>
-      </div>
+      </Card>
       {netProfit && (
         <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
           <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl bg-[#FAF2E1] p-4">

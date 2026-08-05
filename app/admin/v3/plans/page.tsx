@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Check, Star } from "lucide-react";
+import { Card } from "@/components/ui/card";
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 
@@ -133,9 +134,10 @@ export default function PlansV3Page() {
         {PLANS.map((plan) => {
           const isCurrent = plan.name === currentPlan;
           return (
-            <div
+            <Card
               key={plan.name}
-              className={`relative flex flex-col gap-5 rounded-2xl p-6 ${
+              variant={plan.highlighted ? "highlight" : "default"}
+              className={`relative flex flex-col gap-5 p-6 ${
                 plan.highlighted
                   ? "bg-[#D4522F]/[0.06]"
                   : "bg-[#F5EDD8]/30"
@@ -198,13 +200,13 @@ export default function PlansV3Page() {
               <p className="text-center text-xs text-[#2D1810]/50">
                 No credit card required. Cancel anytime.
               </p>
-            </div>
+            </Card>
           );
         })}
       </div>
 
       {/* Feature Comparison — flat, no borders */}
-      <div className="rounded-2xl bg-[#F5EDD8]/30">
+      <Card className="bg-[#F5EDD8]/30">
         <div className="px-6 py-4">
           <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2D1810]">
             Feature Comparison
@@ -242,7 +244,7 @@ export default function PlansV3Page() {
             </tbody>
           </table>
         </div>
-      </div>
+      </Card>
     </div>
   );
 }
