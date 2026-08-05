@@ -84,6 +84,20 @@ The `pb-5`/`pb-4` on `<Table>` gives bottom breathing room before the card's rou
 
 ---
 
+## PageHeader rollout + lifting nested CTA buttons (2026-08-05)
+
+`components/ui/page-header.tsx` (`PageHeader`) is now restyled to the CEven brand and rolled out to every admin-v3 page: `title`/`description`/`action` props render as one row (`title+description` on the left, `action` right-aligned, `flex-col` on mobile). This replaced hand-rolled `<div><h1>...</h1><p>...</p></div>` blocks everywhere and fixed two real bugs along the way:
+
+1. **Duplicate page titles**: `rooms-classes-tab.tsx` and `help-training-tab.tsx` (both shared with admin v2) rendered their OWN `<h1>` matching the page's `<h1>` exactly, showing the title twice. Fixed by renaming the room-list's inner heading to "All Rooms", and adding an optional `showTitle` prop (default `true`, so v2 is unaffected) to `HelpTrainingTab` that v3's page sets to `false`.
+
+2. **CTA buttons stranded inside child view components**: `health-incidents-view.tsx`, `medication-view.tsx`, `inventory-view.tsx`, and `facilities-view.tsx` each owned their own `useState` for a "open X modal" flag and rendered their primary button inside their own layout instead of the page header. Lifted that state (and the sub-tab-dependent buttons for inventory/facilities, which now show ALL their actions at once rather than swapping one at a time, matching Billing's multi-button pattern) up into each `page.tsx`, which now passes `{state}`/`{onStateChange}` props down. The view components no longer render their own trigger buttons.
+
+**Still pending** (not done, flagged for the next pass): `analytics/page.tsx`'s "Announcement" button and `reports/page.tsx`'s "Generate Report" button are still nested inside their shared `AnalyticsTab`/`ReportsTab` v2-shared components, not lifted to the header. Same lift pattern as above applies; skipped this round for time. `Messages` and `Announcements` pages have no natural single CTA (composing IS the page), so they were just converted to `PageHeader` with no `action` — don't force a button there.
+
+**Rule going forward:** every new admin-v3 page should use `<PageHeader title=".." description=".." action={...} />` from `components/ui/page-header.tsx`, never a hand-rolled `<div><h1>` block. If a page's primary action lives inside a shared/child component, lift its open-state to the page level so the button can render in `PageHeader`'s `action` slot — don't leave it floating in the page body.
+
+---
+
 ## Table needs its own horizontal padding when inside `Card padding="none"` (2026-08-05)
 
 `components/ui/table.tsx`'s `TableCell`/`TableHead` only carry `pr-3` (no left padding) — they were designed assuming the outer `Card`'s own `p-5`/`p-4` supplies the left/right inset (works fine on `leave`, `billing`, etc.). But every table in `components/admin/daily-operations/*` uses `<Card padding="none">` so its header/filter row can span full width, then wraps `<Table>` in a bare `<div className="hidden overflow-x-auto lg:block">` with zero padding — so the first column's checkbox/text was touching the card's left edge with no inset at all.

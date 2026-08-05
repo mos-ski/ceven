@@ -508,7 +508,7 @@ function ArticleView({
  );
 }
 
-export function HelpTrainingTab() {
+export function HelpTrainingTab({ showTitle = true }: { showTitle?: boolean } = {}) {
  const [activeGuide, setActiveGuide] = useState<RoleGuide | null>(null);
  const [search, setSearch] = useState("");
 
@@ -526,9 +526,11 @@ export function HelpTrainingTab() {
 
  return (
   <div className="flex flex-col gap-4">
-   <h1 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
-    Help &amp; Training
-   </h1>
+   {showTitle && (
+    <h1 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
+     Help &amp; Training
+    </h1>
+   )}
    <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
     <div className="flex flex-col gap-4">
      <FaqManagement />

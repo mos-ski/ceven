@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { Eye, Users } from "lucide-react";
 import { CEIcon } from "@/components/admin-v3/ce-icon";
+import { PageHeader } from "@/components/ui/page-header";
 import { getAdaReply } from "@/lib/ada-responses";
 import {
   ANNOUNCEMENT_AUDIENCES,
@@ -24,12 +25,7 @@ export default function AnnouncementsV3Page() {
 
   return (
     <div className="flex flex-col gap-5">
-      <div>
-        <h1 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2D1810]">
-          Announcements
-        </h1>
-        <p className="mt-1 text-sm text-[#2D1810]/50">Broadcast to all parents or specific rooms</p>
-      </div>
+      <PageHeader title="Announcements" description="Broadcast to all parents or specific rooms" />
 
       <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
         {/* Send Announcement form */}

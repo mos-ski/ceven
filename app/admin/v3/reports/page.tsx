@@ -5,6 +5,7 @@ import { ClipboardCheck, ShieldCheck, Banknote, HeartPulse, Users, UserCog } fro
 import { ReportsTab } from "@/components/admin/intelligence/reports-tab";
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 import { Card } from "@/components/ui/card";
+import { PageHeader } from "@/components/ui/page-header";
 
 // ── Static data ──────────────────────────────────────────────────────────────
 // No v2 equivalent exists for report-generator cards or a scheduled-reports
@@ -33,15 +34,10 @@ const SCHEDULED_REPORTS = [
 export default function ReportsV3Page() {
   return (
     <div className="flex flex-col gap-5">
-      {/* Page header */}
-      <div>
-        <h1 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2D1810]">
-          Reports
-        </h1>
-        <p className="mt-1 text-sm text-[#2D1810]/50">
-          Generate a report on demand, manage what runs automatically, and download what System has already produced.
-        </p>
-      </div>
+      <PageHeader
+        title="Reports"
+        description="Generate a report on demand, manage what runs automatically, and download what System has already produced."
+      />
 
       {/* Report generator cards */}
       <div>

@@ -3,6 +3,7 @@
 import { useMemo, useState, useRef, useEffect } from "react";
 import { Search, Send, Users, Hash, ChevronDown, Paperclip, Image, Smile } from "lucide-react";
 import { CEIcon } from "@/components/admin-v3/ce-icon";
+import { PageHeader } from "@/components/ui/page-header";
 
 type FamilyChannel = {
   id: string;
@@ -256,8 +257,7 @@ export default function MessagesV3Page() {
   return (
     <div className="flex h-[calc(100vh-140px)] flex-col">
       <div className="mb-4">
-        <h1 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2D1810]">Messages</h1>
-        <p className="mt-1 text-sm text-[#2D1810]/50">{totalUnread} unread across {FAMILY_CHANNELS.length} families</p>
+        <PageHeader title="Messages" description={`${totalUnread} unread across ${FAMILY_CHANNELS.length} families`} />
       </div>
 
       <div className="flex min-h-0 flex-1 overflow-hidden rounded-2xl border border-black/[0.07] bg-white">

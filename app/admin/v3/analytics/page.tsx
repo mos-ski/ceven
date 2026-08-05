@@ -1,21 +1,17 @@
 "use client";
 
 import { CEIcon } from "@/components/admin-v3/ce-icon";
+import { PageHeader } from "@/components/ui/page-header";
 import { AnalyticsTab } from "@/components/admin/intelligence/analytics-tab";
 import { INSIGHT_CATEGORIES } from "@/lib/mock-data/intelligence";
 
 export default function AnalyticsV3Page() {
   return (
     <div className="flex flex-col gap-5">
-      {/* Page header */}
-      <div>
-        <h1 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2D1810]">
-          Analytics
-        </h1>
-        <p className="mt-1 text-sm text-[#2D1810]/50">
-          Attendance, revenue, and staff performance trends, powered by ongoing analysis.
-        </p>
-      </div>
+      <PageHeader
+        title="Analytics"
+        description="Attendance, revenue, and staff performance trends, powered by ongoing analysis."
+      />
 
       {/* AI Forecast */}
       <div className="rounded-2xl border border-[#C47B2C]/40 bg-white p-5">
