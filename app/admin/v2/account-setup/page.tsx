@@ -8,18 +8,18 @@ import { PlansAccessTab } from "@/components/admin/account-setup/plans-access-ta
 import { SettingsTab } from "@/components/admin/account-setup/settings-tab";
 
 function AccountSetupContent() {
-  const searchParams = useSearchParams();
-  const tab = searchParams.get("tab");
+ const searchParams = useSearchParams();
+ const tab = searchParams.get("tab");
 
-  if (tab === "help-training") return <HelpTrainingTab />;
-  if (tab === "settings") return <SettingsTab />;
-  return <PlansAccessTab />;
+ if (tab === "help-training") return <HelpTrainingTab />;
+ if (tab === "settings") return <SettingsTab />;
+ return <PlansAccessTab />;
 }
 
 export default function AccountSetupPage() {
-  return (
-    <Suspense>
-      <AccountSetupContent />
-    </Suspense>
-  );
+ return (
+  <Suspense>
+   <AccountSetupContent />
+  </Suspense>
+ );
 }
