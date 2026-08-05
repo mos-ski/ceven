@@ -46,7 +46,7 @@ export function TopbarV3() {
           className="hidden max-w-[260px] flex-1 items-center gap-2 rounded-lg border border-black/[0.12] bg-[#F5EDD8] px-3.5 py-1.5 text-left md:flex"
         >
           <Search className="h-3.5 w-3.5 shrink-0 text-[#2D1810]/50" />
-          <span className="w-full bg-transparent text-[13px] text-[#2D1810]/40">Search children, parents, staff, invoice…</span>
+          <span className="w-full shrink whitespace-nowrap bg-transparent text-[13px] text-[#2D1810]/40">Search anything…</span>
           <kbd className="ml-auto shrink-0 rounded border border-black/[0.1] bg-white/60 px-1.5 py-0.5 text-[10px] font-medium text-[#2D1810]/35">⌘K</kbd>
         </button>
 
