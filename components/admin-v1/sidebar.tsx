@@ -20,6 +20,7 @@ export function SidebarV1() {
   return (
     <aside className="flex h-screen w-[220px] shrink-0 flex-col overflow-y-auto bg-[#3B2513]">
       <div className="flex items-center gap-2 px-5 py-5">
+        <img src="/Logo/icon.svg" alt="CEven" className="h-8 w-8" />
         <span className="font-[family-name:var(--font-mogra)] text-xl font-bold text-white">
           CEven
         </span>

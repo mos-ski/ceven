@@ -27,13 +27,7 @@ export function SidebarV3() {
 
       <div className="flex flex-col gap-3.5 border-b border-white/[0.06] px-4 pb-3.5 pt-5">
         <div className="flex items-center gap-2">
-          <svg viewBox="0 0 36 36" fill="none" className="h-8 w-8 shrink-0">
-            <ellipse cx="13" cy="8" rx="4.5" ry="4.5" fill="#2D1810" />
-            <path d="M6 28 C6 20 8 16 13 16 C18 16 20 20 20 28Z" fill="#2D1810" />
-            <ellipse cx="23" cy="13" rx="3.5" ry="3.5" fill="#8B9E7A" />
-            <path d="M17 28 C17 22 19 18 23 18 C27 18 28 22 28 28Z" fill="#8B9E7A" />
-            <path d="M10 22 Q13 26 17 22" stroke="#C47B2C" strokeWidth="1.8" fill="none" strokeLinecap="round" />
-          </svg>
+          <img src="/Logo/icon.svg" alt="CEven" className="h-8 w-8 shrink-0" />
           <div>
             <p className="font-[family-name:var(--font-mogra)] text-xl leading-none text-[#F5EDD8]">
               CEven
