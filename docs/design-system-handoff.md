@@ -5,6 +5,16 @@ Paste the whole block under a heading to the agent that's doing the page-level r
 
 ---
 
+## Table needs its own horizontal padding when inside `Card padding="none"` (2026-08-05)
+
+`components/ui/table.tsx`'s `TableCell`/`TableHead` only carry `pr-3` (no left padding) — they were designed assuming the outer `Card`'s own `p-5`/`p-4` supplies the left/right inset (works fine on `leave`, `billing`, etc.). But every table in `components/admin/daily-operations/*` uses `<Card padding="none">` so its header/filter row can span full width, then wraps `<Table>` in a bare `<div className="hidden overflow-x-auto lg:block">` with zero padding — so the first column's checkbox/text was touching the card's left edge with no inset at all.
+
+Fixed by adding `px-4 pb-4` to that wrapper div in `health-incidents-view.tsx`, `inventory-view.tsx` (3 tables), `facilities-view.tsx`, `tasks-view.tsx`, and `medication-view.tsx`.
+
+**Rule going forward:** if a page uses `<Card padding="none">` around a `<Table>`, the immediate wrapper div around `<Table>` must carry `px-4 pb-4` (matching the `p-4` used on that card's own header/filter row) so content doesn't touch the card edges. Pages that use the default `<Card>` (with its own `p-5`) don't need this — don't add it there, it would double up the inset.
+
+---
+
 ## Do not override TableRow header className (2026-08-05)
 
 Found and fixed a recurring violation: several Daily Operations views imported the shared `Table` correctly but then overrode the header `<TableRow>` with `className="border-none bg-[#F5EDD8]/40 hover:bg-[#F5EDD8]/40"` — this cancels the bordered-header standard and adds an unwanted hover state on the header row itself. Fixed in `components/admin/daily-operations/{inventory-view,facilities-view,tasks-view,health-incidents-view}.tsx` and converted a legacy hand-rolled `<table>` (medication history sub-table) in `medication-view.tsx` to the shared component.

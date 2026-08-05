@@ -271,7 +271,7 @@ export function TasksView() {
           </div>
         </div>
 
-        <div className="hidden overflow-x-auto lg:block">
+        <div className="hidden overflow-x-auto px-4 pb-4 lg:block">
           <Table>
             <TableHeader>
               <TableRow>
