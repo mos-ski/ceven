@@ -641,14 +641,9 @@ export default function DirectoryPage() {
           <section key={section.id} id={section.id} className="mt-16 scroll-mt-8">
             <details>
               <summary className="flex cursor-pointer list-none items-center justify-between border-b-2 border-brand-dark pb-3">
-                <div className="flex items-center gap-3">
-                  {(section.id === "super-admin" || section.id === "creche-admin") && (
-                    <img src="/Logo/icon.svg" alt="CEven" className="h-8 w-8" />
-                  )}
-                  <h2 className="text-2xl font-extrabold text-heading">
-                    {section.title}
-                  </h2>
-                </div>
+                <h2 className="text-2xl font-extrabold text-heading">
+                  {section.title}
+                </h2>
                 <span className="text-sm font-bold text-brand-accent hover:text-heading">
                   Details ▾
                 </span>
