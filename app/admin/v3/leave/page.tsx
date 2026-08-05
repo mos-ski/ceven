@@ -58,7 +58,7 @@ export default function LeaveV3Page() {
    </div>
 
    {/* Leave requests */}
-   <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
+   <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
     <div className="mb-3 flex items-center justify-between">
      <p className="text-sm font-bold text-[#2D1810]">Leave Requests</p>
     </div>

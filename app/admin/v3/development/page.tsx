@@ -54,7 +54,7 @@ function StatCard({
  sub: string;
 }) {
  return (
-  <div className="relative overflow-hidden rounded-2xl bg-[#F5EDD8]/30 p-4">
+  <div className="relative overflow-hidden rounded-2xl border border-black/[0.07] bg-white p-4">
    <p className="text-xs font-bold uppercase tracking-wide text-[#2D1810]/50">{label}</p>
    <p className="mt-1.5 font-[family-name:var(--font-merriweather)] text-[1.85rem] font-bold leading-none text-[#2D1810]">
     {value}
@@ -84,7 +84,7 @@ export default function DevelopmentV3Page() {
     <StatCard Icon={ClipboardList} label="Observations This Week" value={String(OBSERVATIONS_THIS_WEEK).padStart(2, "0")} sub="Logged by caregivers" />
    </div>
 
-   <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
+   <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
     <h2 className="mb-4 font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2D1810]">
      Milestones
     </h2>

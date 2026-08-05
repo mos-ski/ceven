@@ -78,7 +78,7 @@ export default function MessagesV3Page() {
 
    <div className="grid grid-cols-1 gap-5 lg:grid-cols-[340px_1fr]">
     {/* Inbox */}
-    <div className="flex flex-col rounded-2xl bg-[#F5EDD8]/30 p-5">
+    <div className="flex flex-col rounded-2xl border border-black/[0.07] bg-white p-5">
      <div className="mb-3 flex items-center justify-between">
       <p className="text-sm font-bold text-[#2D1810]">Inbox</p>
       <span className="rounded-full bg-[#C47B2C]/10 px-2 py-0.5 text-[11px] font-bold text-[#C47B2C]">
@@ -122,7 +122,7 @@ export default function MessagesV3Page() {
     </div>
 
     {/* Compose */}
-    <div className="flex flex-col rounded-2xl bg-[#F5EDD8]/30 p-5">
+    <div className="flex flex-col rounded-2xl border border-black/[0.07] bg-white p-5">
      <p className="mb-4 text-sm font-bold text-[#2D1810]">Compose Message</p>
      <div className="flex flex-col gap-4">
       <div>

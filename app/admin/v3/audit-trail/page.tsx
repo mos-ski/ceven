@@ -12,7 +12,7 @@ export default function AuditTrailV3Page() {
     </p>
    </div>
 
-   <div className="rounded-2xl bg-[#F5EDD8]/30 p-1">
+   <div className="rounded-2xl border border-black/[0.07] bg-white p-1">
     <AuditTrailTab />
    </div>
   </div>

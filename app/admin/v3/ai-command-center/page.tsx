@@ -117,7 +117,7 @@ function SectionBadge({ children }: { children: React.ReactNode }) {
 
 function InsightCard({ title, items }: { title: string; items: Insight[] }) {
  return (
-  <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
+  <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
    <SectionBadge>{title}</SectionBadge>
    <div className="mt-4 flex flex-col gap-3">
     {items.map((insight) => (
@@ -155,7 +155,7 @@ function AIChatPanel({ onClose }: { onClose?: () => void }) {
  }
 
  return (
-  <div className="flex h-full flex-col overflow-hidden rounded-2xl bg-[#F5EDD8]/30">
+  <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-black/[0.07] bg-white">
    {/* Header */}
    <div className="flex shrink-0 items-center justify-between px-4 py-4">
     <div className="flex items-center gap-3">
@@ -210,7 +210,7 @@ function AIChatPanel({ onClose }: { onClose?: () => void }) {
      <button
       key={prompt}
       onClick={() => send(prompt)}
-      className="rounded-full bg-[#F5EDD8]/30 px-3 py-1 text-[10px] text-[#2D1810]/60 hover:border-[#C47B2C] hover:text-[#C47B2C]"
+      className="rounded-full border border-black/[0.07] bg-white px-3 py-1 text-[10px] text-[#2D1810]/60 hover:border-[#C47B2C] hover:text-[#C47B2C]"
      >
       {prompt}
      </button>
@@ -225,7 +225,7 @@ function AIChatPanel({ onClose }: { onClose?: () => void }) {
      onChange={(e) => setInputValue(e.target.value)}
      onKeyDown={(e) => e.key === "Enter" && send(inputValue)}
      placeholder="Type a message…"
-     className="flex-1 rounded-full bg-[#F5EDD8]/30 px-4 py-2 text-xs text-[#2D1810] placeholder:text-[#2D1810]/40 focus:border-[#C47B2C] focus:outline-none"
+     className="flex-1 rounded-full border border-black/[0.07] bg-white px-4 py-2 text-xs text-[#2D1810] placeholder:text-[#2D1810]/40 focus:border-[#C47B2C] focus:outline-none"
     />
     <button
      onClick={() => send(inputValue)}
@@ -277,7 +277,7 @@ export default function AICommandCenterV3Page() {
      </div>
 
      {/* Staff & Finance Intelligence */}
-     <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
+     <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
       <div className="mb-4">
        <SectionBadge>Staff &amp; Finance Intelligence</SectionBadge>
       </div>

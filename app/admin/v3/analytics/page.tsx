@@ -18,7 +18,7 @@ export default function AnalyticsV3Page() {
    </div>
 
    {/* AI Forecast */}
-   <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
+   <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
     <div className="mb-3 flex items-center justify-between">
      <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-[#1E2D4A] to-[#2D1810] px-3 py-1.5 text-[10px] font-bold uppercase tracking-wide text-[#F5EDD8]">
       <Sparkles className="h-3 w-3 text-[#C47B2C]" /> Forecast

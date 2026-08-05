@@ -97,7 +97,7 @@ function StatCard({
  subColor?: string;
 }) {
  return (
-  <div className="relative overflow-hidden rounded-2xl bg-[#F5EDD8]/30 p-4">
+  <div className="relative overflow-hidden rounded-2xl border border-black/[0.07] bg-white p-4">
    <p className="text-xs font-bold uppercase tracking-wide text-[#2D1810]/50">{label}</p>
    <p className="mt-1.5 font-[family-name:var(--font-merriweather)] text-[1.85rem] font-bold leading-none text-[#2D1810]">
     {value}
@@ -168,7 +168,7 @@ export default function DashboardV3Page() {
    </div>
 
    {/* AI Daily Brief */}
-   <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
+   <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
     <div className="mb-3 flex items-center justify-between">
      <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-[#1E2D4A] to-[#2D1810] px-3 py-1.5 text-[10px] font-bold uppercase tracking-wide text-[#F5EDD8]">
       <Sparkles className="h-3 w-3 text-[#C47B2C]" /> Daily Brief
@@ -203,7 +203,7 @@ export default function DashboardV3Page() {
    </div>
 
    {/* Quick Actions */}
-   <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
+   <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
     <p className="mb-3 text-xs font-bold uppercase tracking-wide text-[#2D1810]/50">Quick Actions</p>
     <div className="grid grid-cols-3 gap-2.5 sm:grid-cols-5">
      {QUICK_ACTIONS.map(({ id, icon: Icon, label }) => (
@@ -221,7 +221,7 @@ export default function DashboardV3Page() {
 
    <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
     {/* Room Occupancy */}
-    <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
+    <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
      <div className="mb-3 flex items-center justify-between">
       <p className="text-sm font-bold text-[#2D1810]">Room Occupancy</p>
       <button onClick={() => router.push("/admin/v3/rooms")} className="text-xs font-bold text-[#3B2513] hover:opacity-70">
@@ -246,7 +246,7 @@ export default function DashboardV3Page() {
     </div>
 
     {/* Live Activity */}
-    <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
+    <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
      <div className="mb-1 flex items-center justify-between">
       <p className="text-sm font-bold text-[#2D1810]">Live Activity</p>
       <button onClick={() => router.push("/admin/v3/audit-trail")} className="text-xs font-bold text-[#3B2513] hover:opacity-70">
@@ -270,7 +270,7 @@ export default function DashboardV3Page() {
    </div>
 
    {/* Outstanding Payments */}
-   <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
+   <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
     <div className="mb-3 flex items-center justify-between">
      <p className="text-sm font-bold text-[#2D1810]">Outstanding Payments</p>
      <button onClick={() => router.push("/admin/v3/billing")} className="text-xs font-bold text-[#3B2513] hover:opacity-70">

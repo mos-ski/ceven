@@ -31,7 +31,7 @@ function StatCard({
  sub: string;
 }) {
  return (
-  <div className="relative overflow-hidden rounded-2xl bg-[#F5EDD8]/30 p-4">
+  <div className="relative overflow-hidden rounded-2xl border border-black/[0.07] bg-white p-4">
    <p className="text-xs font-bold uppercase tracking-wide text-[#2D1810]/50">{label}</p>
    <p className="mt-1.5 font-[family-name:var(--font-merriweather)] text-[1.85rem] font-bold leading-none text-[#2D1810]">
     {value}
@@ -72,7 +72,7 @@ export default function ExpensesV3Page() {
    </div>
 
    {/* Budget vs Actual */}
-   <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
+   <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
     <div className="mb-3 flex items-center justify-between">
      <p className="text-sm font-bold text-[#2D1810]">Budget vs Actual by Category</p>
      <div className="flex items-center gap-3 text-[11px] text-[#2D1810]/60">
@@ -112,7 +112,7 @@ export default function ExpensesV3Page() {
    </div>
 
    {/* Expense Log */}
-   <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
+   <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
     <p className="mb-3 text-sm font-bold text-[#2D1810]">Expense Log</p>
     <div className="overflow-x-auto">
      <table className="w-full border-collapse text-sm">

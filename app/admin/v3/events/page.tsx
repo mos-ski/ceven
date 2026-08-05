@@ -58,7 +58,7 @@ export default function EventsV3Page() {
     </p>
    </div>
 
-   <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
+   <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
     <p className="mb-4 text-sm font-bold text-[#2D1810]">Upcoming Events</p>
     <div className="flex flex-col gap-3">
      {CALENDAR_EVENTS.map((event) => {
@@ -104,7 +104,7 @@ export default function EventsV3Page() {
            {details.actions.map((action) => (
             <button
              key={action}
-             className="rounded-full bg-[#F5EDD8]/30 px-3 py-1 text-[11px] font-semibold text-[#3B2513] hover:bg-[#F5EDD8]"
+             className="rounded-full border border-black/[0.07] bg-white px-3 py-1 text-[11px] font-semibold text-[#3B2513] hover:bg-[#F5EDD8]"
             >
              {action}
             </button>

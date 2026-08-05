@@ -84,7 +84,7 @@ export default function StaffV3Page() {
 
    {/* AI flags */}
    {flagged.length > 0 && (
-    <div className="rounded-2xl bg-[#F5EDD8]/30 p-4">
+    <div className="rounded-2xl border border-black/[0.07] bg-white p-4">
      <div className="flex items-start gap-3">
       <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-[#1E2D4A] to-[#2D1810]">
        <Sparkles className="h-3.5 w-3.5 text-[#C47B2C]" />
@@ -112,7 +112,7 @@ export default function StaffV3Page() {
       <button
        key={staff.id}
        onClick={() => router.push(`/admin/v2/staff/${staff.id}`)}
-       className="flex items-center gap-3 rounded-2xl bg-[#F5EDD8]/30 p-4 text-left transition-colors hover:bg-[#C47B2C]/10"
+       className="flex items-center gap-3 rounded-2xl border border-black/[0.07] bg-white p-4 text-left transition-colors hover:bg-[#C47B2C]/10"
       >
        <div
         className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full font-[family-name:var(--font-merriweather)] text-sm font-bold text-white"

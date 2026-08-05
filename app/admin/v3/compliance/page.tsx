@@ -106,7 +106,7 @@ export default function ComplianceV3Page() {
    </div>
 
    {/* Sub-tab nav + table card */}
-   <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
+   <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
     <div className="mb-4 flex overflow-x-auto">
      {SUB_TABS.map((tab) => (
       <button

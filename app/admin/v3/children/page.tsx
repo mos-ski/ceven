@@ -61,7 +61,7 @@ function StatCard({
  sub: string;
 }) {
  return (
-  <div className="relative overflow-hidden rounded-2xl bg-[#F5EDD8]/30 p-4">
+  <div className="relative overflow-hidden rounded-2xl border border-black/[0.07] bg-white p-4">
    <p className="text-xs font-bold uppercase tracking-wide text-[#2D1810]/50">{label}</p>
    <p className="mt-1.5 font-[family-name:var(--font-merriweather)] text-[1.85rem] font-bold leading-none text-[#2D1810]">
     {value}
@@ -148,7 +148,7 @@ export default function ChildrenV3Page() {
     <StatCard Icon={GraduationCap} label="Graduating Soon" value={String(GRADUATING_SOON).padStart(2, "0")} sub="Ageing out of current room" />
    </div>
 
-   <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
+   <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
     <div className="flex flex-col gap-3 pb-4 sm:flex-row sm:items-center sm:justify-between">
      <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2D1810]">
       Children Log

@@ -50,7 +50,7 @@ function StatCard({
  sub: string;
 }) {
  return (
-  <div className="relative overflow-hidden rounded-2xl bg-[#F5EDD8]/30 p-4">
+  <div className="relative overflow-hidden rounded-2xl border border-black/[0.07] bg-white p-4">
    <p className="text-xs font-bold uppercase tracking-wide text-[#2D1810]/50">{label}</p>
    <p className="mt-1.5 font-[family-name:var(--font-merriweather)] text-[1.85rem] font-bold leading-none text-[#2D1810]">
     {value}
@@ -117,7 +117,7 @@ export default function BillingV3Page() {
    </div>
 
    {/* Collection Progress */}
-   <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
+   <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
     <div className="mb-3 flex items-center justify-between">
      <p className="text-sm font-bold text-[#2D1810]">Collection Progress</p>
      <span className="text-xs text-[#2D1810]/50">
@@ -144,7 +144,7 @@ export default function BillingV3Page() {
    </div>
 
    {/* Invoice Tracker */}
-   <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
+   <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
     <div className="mb-3 flex items-center justify-between">
      <p className="text-sm font-bold text-[#2D1810]">Invoice Tracker</p>
      <button

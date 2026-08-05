@@ -207,7 +207,7 @@ export default function DailyLogsV3Page() {
    {/* Stats row */}
    <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
     {statsCards.map((card) => (
-     <div key={card.title} className="rounded-2xl bg-[#F5EDD8]/30 p-5">
+     <div key={card.title} className="rounded-2xl border border-black/[0.07] bg-white p-5">
       <p className="text-xs font-bold uppercase tracking-wide text-[#2D1810]/50">{card.title}</p>
       <p className="mt-1.5 font-[family-name:var(--font-merriweather)] text-[1.85rem] font-bold leading-none text-[#2D1810]">
        {card.value}
@@ -228,7 +228,7 @@ export default function DailyLogsV3Page() {
    </div>
 
    {/* Table */}
-   <div className="overflow-hidden rounded-2xl bg-[#F5EDD8]/30">
+   <div className="overflow-hidden rounded-2xl border border-black/[0.07] bg-white">
     <div className="flex flex-wrap items-center justify-between gap-4 px-5 py-4">
      <span className="font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">
       Today&apos;s Report Status

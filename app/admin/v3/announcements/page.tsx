@@ -32,7 +32,7 @@ export default function AnnouncementsV3Page() {
 
    <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
     {/* Send Announcement form */}
-    <div className="flex flex-col gap-4 rounded-2xl bg-[#F5EDD8]/30 p-5">
+    <div className="flex flex-col gap-4 rounded-2xl border border-black/[0.07] bg-white p-5">
      <p className="text-sm font-bold text-[#2D1810]">Send Announcement</p>
 
      <div>
@@ -103,7 +103,7 @@ export default function AnnouncementsV3Page() {
        <button
         key={prompt}
         onClick={() => setMessage(prompt)}
-        className="rounded-full bg-[#F5EDD8]/30 px-3.5 py-2 text-xs font-semibold text-[#3B2513] hover:bg-[#F5EDD8]"
+        className="rounded-full border border-black/[0.07] bg-white px-3.5 py-2 text-xs font-semibold text-[#3B2513] hover:bg-[#F5EDD8]"
        >
         {prompt}
        </button>
@@ -138,7 +138,7 @@ export default function AnnouncementsV3Page() {
     </div>
 
     {/* Sent history */}
-    <div className="flex flex-col gap-4 rounded-2xl bg-[#F5EDD8]/30 p-5">
+    <div className="flex flex-col gap-4 rounded-2xl border border-black/[0.07] bg-white p-5">
      <p className="text-sm font-bold text-[#2D1810]">Sent Announcements</p>
      <div className="flex flex-col gap-3">
       {ANNOUNCEMENT_LOG.map((a) => (
