@@ -1,5 +1,14 @@
-import { redirect } from "next/navigation";
+"use client";
 
-export default function CaregiverV1Page() {
-  redirect("/caregiver/auth");
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+
+export default function CaregiverRoot() {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace("/caregiver/auth");
+  }, [router]);
+
+  return null;
 }

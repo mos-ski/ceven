@@ -1,5 +1,12 @@
-import { redirect } from "next/navigation";
+"use client";
 
-export default function ParentV1Page() {
-  redirect("/parent/auth");
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+
+export default function ParentRoot() {
+  const router = useRouter();
+  useEffect(() => {
+    router.replace("/parent/auth");
+  }, [router]);
+  return null;
 }
