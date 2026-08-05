@@ -4,6 +4,7 @@ import { useState } from "react";
 import { TrendingUp, TrendingDown, BarChart3, Wallet, Download } from "lucide-react";
 
 import { Card } from "@/components/ui/card";
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
 
 import {
   EXPENSE_BREAKDOWN,
@@ -93,7 +94,7 @@ function PLSummarySection() {
         </div>
       </Card>
       {netProfit && (
-        <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
+        <Card>
           <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl bg-[#FAF2E1] p-4">
             <div>
               <p className="text-sm font-bold text-[#2D1810]">Net Result — This Month</p>
@@ -103,7 +104,7 @@ function PLSummarySection() {
               {netProfit.value}
             </p>
           </div>
-        </div>
+        </Card>
       )}
     </div>
   );
@@ -111,48 +112,46 @@ function PLSummarySection() {
 
 function RevenueBreakdownSection() {
   return (
-    <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
+    <Card>
       <p className="mb-3 text-sm font-bold text-[#2D1810]">Revenue by Room</p>
-      <div className="overflow-x-auto">
-        <table className="w-full border-collapse text-sm">
-          <thead>
-            <tr className="border-b border-black/[0.08] text-left text-xs uppercase tracking-wide text-[#2D1810]/50">
-              <th className="pb-2 pr-3 font-semibold">Room</th>
-              <th className="pb-2 pr-3 font-semibold">Children</th>
-              <th className="pb-2 pr-3 font-semibold">Plan</th>
-              <th className="pb-2 pr-3 font-semibold">Billed</th>
-              <th className="pb-2 pr-3 font-semibold">Collected</th>
-              <th className="pb-2 pr-3 font-semibold">Outstanding</th>
-              <th className="pb-2 font-semibold">Collection %</th>
-            </tr>
-          </thead>
-          <tbody>
-            {ROOM_PLAN_REVENUE.map((r) => (
-              <tr key={r.id} className="border-b border-black/[0.05] last:border-0">
-                <td className="py-2.5 pr-3 font-semibold text-[#2D1810]">{r.room}</td>
-                <td className="py-2.5 pr-3 text-[#2D1810]/70">{r.children}</td>
-                <td className="whitespace-pre-line py-2.5 pr-3 text-[#2D1810]/70">{r.plan}</td>
-                <td className="py-2.5 pr-3 font-mono text-[#2D1810]">{r.revBilled}</td>
-                <td className="py-2.5 pr-3 font-mono text-[#2A8A52]">{r.revCollected}</td>
-                <td className="py-2.5 pr-3 font-mono text-[#D4522F]">{r.outstanding}</td>
-                <td
-                  className="py-2.5 font-semibold"
-                  style={{ color: r.collectionPct >= 75 ? "#2A8A52" : r.collectionPct >= 65 ? "#C47B2C" : "#D4522F" }}
-                >
-                  {r.collectionPct}%
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead>Room</TableHead>
+            <TableHead>Children</TableHead>
+            <TableHead>Plan</TableHead>
+            <TableHead>Billed</TableHead>
+            <TableHead>Collected</TableHead>
+            <TableHead>Outstanding</TableHead>
+            <TableHead>Collection %</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {ROOM_PLAN_REVENUE.map((r) => (
+            <TableRow key={r.id}>
+              <TableCell className="font-semibold text-[#2D1810]">{r.room}</TableCell>
+              <TableCell>{r.children}</TableCell>
+              <TableCell className="whitespace-pre-line">{r.plan}</TableCell>
+              <TableCell className="font-mono text-[#2D1810]">{r.revBilled}</TableCell>
+              <TableCell className="font-mono text-[#2A8A52]">{r.revCollected}</TableCell>
+              <TableCell className="font-mono text-[#D4522F]">{r.outstanding}</TableCell>
+              <TableCell
+                className="font-semibold"
+                style={{ color: r.collectionPct >= 75 ? "#2A8A52" : r.collectionPct >= 65 ? "#C47B2C" : "#D4522F" }}
+              >
+                {r.collectionPct}%
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </Card>
   );
 }
 
 function CostAnalysisSection() {
   return (
-    <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
+    <Card>
       <p className="mb-3 text-sm font-bold text-[#2D1810]">Cost Analysis — Share of Total Expense</p>
       <div className="flex flex-col gap-3">
         {EXPENSE_BREAKDOWN.map((segment) => {
@@ -171,7 +170,7 @@ function CostAnalysisSection() {
           );
         })}
       </div>
-    </div>
+    </Card>
   );
 }
 
