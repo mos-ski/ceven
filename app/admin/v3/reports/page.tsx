@@ -15,7 +15,7 @@ type ReportGenerator = { type: string; icon: LucideIcon; desc: string };
 const REPORT_GENERATORS: ReportGenerator[] = [
   { type: "Attendance", icon: ClipboardCheck, desc: "Daily check-in/out summary by room, with absence trends." },
   { type: "Compliance", icon: ShieldCheck, desc: "Staff certifications, DBS checks, and safeguarding audit trail." },
-  { type: "Finance", icon: Banknote, desc: "Billing, collections, and outstanding balances by family." },
+  { type: "Finance", icon: Banknote, desc: "Billing, collection, and outstanding balances by family." },
   { type: "Health & Welfare", icon: HeartPulse, desc: "Incidents, medication logs, and welfare flags this period." },
   { type: "Enrolment", icon: Users, desc: "Waitlist movement, new enrolments, and room capacity." },
   { type: "Staff Performance", icon: UserCog, desc: "Logging compliance and caregiver ratings by room." },

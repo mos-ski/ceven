@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Sparkles, Bot, Send, X, RefreshCw } from "lucide-react";
+import { Sparkles, Bot, Send, X, RefreshCw, FileDown } from "lucide-react";
+import { toast } from "sonner";
 import { getAdaReply } from "@/lib/ada-responses";
 
 // ── Static data ──────────────────────────────────────────────────────────────
@@ -10,7 +11,7 @@ import { getAdaReply } from "@/lib/ada-responses";
 // are reproduced here rather than imported) and restyled to the v3 insight-card
 // shape used by app/admin/v3/dashboard/page.tsx's AI Daily Brief.
 
-type Insight = { color: string; name: string; text: string; action: string };
+type Insight = { color: string; name: string; text: string; action: string; confidence: number; source: string };
 
 const HEALTH_WELFARE_INSIGHTS: Insight[] = [
   {
@@ -18,18 +19,24 @@ const HEALTH_WELFARE_INSIGHTS: Insight[] = [
     name: "Zara Mohammed",
     text: "has been absent 3× this week. Nut allergy on file. Flag for welfare check.",
     action: "Take Action",
+    confidence: 94,
+    source: "attendance + health flag + comms gap",
   },
   {
     color: "#C47B2C",
     name: "Leo Adeyemi",
     text: "Peanut exposure suspected in Lion Class this morning. Under observation.",
     action: "View Incident",
+    confidence: 88,
+    source: "incident log + allergy record match",
   },
   {
     color: "#1E2D4A",
     name: "2 children",
     text: "have outdated vaccination records flagged by this week's compliance check.",
     action: "Review Records",
+    confidence: 100,
+    source: "compliance record scan",
   },
 ];
 
@@ -39,18 +46,24 @@ const FINANCE_INSIGHTS: Insight[] = [
     name: "3 invoices",
     text: "are 7+ days overdue, totalling ₦190,000. Mr Okafor historically pays late in Q2.",
     action: "Send Reminders",
+    confidence: 87,
+    source: "18-month payment pattern analysis",
   },
   {
     color: "#D4522F",
     name: "Bello Family",
     text: "has the largest outstanding balance, ₦110,000, now 14 days overdue.",
     action: "View Account",
+    confidence: 96,
+    source: "invoice aging report",
   },
   {
     color: "#2A8A52",
     name: "Collection rate",
     text: "improved to 92% this month, up 4 points on May's close.",
     action: "View Analytics",
+    confidence: 91,
+    source: "revenue forecast model",
   },
 ];
 
@@ -112,6 +125,9 @@ function InsightCard({ title, items }: { title: string; items: Insight[] }) {
             <span className="absolute left-3 top-4 h-2 w-2 rounded-sm" style={{ background: insight.color }} />
             <p className="text-xs leading-5 text-[#2D1810]">
               <span className="font-bold">{insight.name}</span> <span className="text-[#2D1810]/50">{insight.text}</span>
+            </p>
+            <p className="mt-1.5 text-[10px] text-[#2D1810]/35">
+              Confidence: {insight.confidence}% · {insight.source}
             </p>
             <button className="mt-2 text-xs font-semibold text-[#BA733E] hover:opacity-70">{insight.action} →</button>
           </div>
@@ -239,9 +255,17 @@ export default function AICommandCenterV3Page() {
             System analysis across health, finance, and staff. Refreshed every morning at 7am.
           </p>
         </div>
-        <button className="flex shrink-0 items-center gap-1.5 self-start rounded-lg bg-gradient-to-r from-[#1E2D4A] to-[#2D1810] px-4 py-2 text-xs font-bold text-[#F5EDD8] hover:opacity-90 sm:self-auto">
-          <RefreshCw className="h-3.5 w-3.5" /> Refresh Analysis
-        </button>
+        <div className="flex shrink-0 gap-2 self-start sm:self-auto">
+          <button
+            onClick={() => toast.success("Exporting AI report as PDF...")}
+            className="flex items-center gap-1.5 rounded-lg border border-black/[0.12] bg-white px-4 py-2 text-xs font-bold text-[#2D1810] hover:border-[#C47B2C]"
+          >
+            <FileDown className="h-3.5 w-3.5" /> Export Report
+          </button>
+          <button className="flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-[#1E2D4A] to-[#2D1810] px-4 py-2 text-xs font-bold text-[#F5EDD8] hover:opacity-90">
+            <RefreshCw className="h-3.5 w-3.5" /> Refresh Analysis
+          </button>
+        </div>
       </div>
 
       <div className="flex flex-col gap-5 xl:flex-row xl:items-start">
