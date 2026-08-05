@@ -538,6 +538,54 @@ export default function DirectoryPage() {
           ))}
         </div>
 
+        <div className="mt-12">
+          <h2 className="border-b-2 border-brand-dark pb-3 text-2xl font-extrabold text-heading">
+            Overview
+          </h2>
+          <div className="mt-4 overflow-hidden rounded-2xl border border-card-border">
+            <table className="w-full text-left text-sm">
+              <thead>
+                <tr className="border-b border-card-border bg-gray-50">
+                  <th className="px-4 py-3 font-bold text-heading">App</th>
+                  <th className="px-4 py-3 font-bold text-heading">Version</th>
+                  <th className="px-4 py-3 font-bold text-heading">Description</th>
+                  <th className="px-4 py-3 font-bold text-heading">CTA</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  { app: "Super Admin", version: "v1", desc: "Platform console for internal operators", href: "/super-admin/dashboard" },
+                  { app: "Crèche Admin", version: "v1", desc: "Original crèche operator dashboard", href: "/admin/v1/dashboard" },
+                  { app: "Crèche Admin", version: "v2", desc: "Full operating system — payroll, compliance, AI, financials", href: "/admin/v2/dashboard" },
+                  { app: "Crèche Admin", version: "v3", desc: "CEO reimagining — new visual direction", href: "/admin/v3" },
+                  { app: "Parent App", version: "v1", desc: "Current build — AI assistant, settings, health/growth tracking", href: "/parent/home" },
+                  { app: "Parent App", version: "v2", desc: "Parent ↔ independent caregiver reimagining", href: "/parentv2/home" },
+                  { app: "Caregiver App", version: "v1", desc: "Crèche-staff build — daily workflows, ratings, settings", href: "/caregiver/home" },
+                  { app: "Caregiver App", version: "v2", desc: "Reimagined caregiver experience", href: "/caregiver/today" },
+                  { app: "Independent Caregiver", version: "v2", desc: "First build for independent caregivers", href: "/independent-caregiver" },
+                  { app: "Independent Tutor", version: "v2", desc: "First build for independent tutors", href: "/independent-tutor" },
+                ].map((row, i) => (
+                  <tr key={i} className="border-b border-card-border last:border-0">
+                    <td className="px-4 py-3 font-semibold text-heading">{row.app}</td>
+                    <td className="px-4 py-3 text-muted-text">{row.version}</td>
+                    <td className="px-4 py-3 text-muted-text">{row.desc}</td>
+                    <td className="px-4 py-3">
+                      <a
+                        href={row.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 rounded-lg bg-brand-dark px-3 py-1.5 text-xs font-bold text-white transition-colors hover:bg-brand-accent"
+                      >
+                        Open →
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
         {APP_SECTIONS.map((section) => (
           <section key={section.id} id={section.id} className="mt-16 scroll-mt-8">
             <h2 className="border-b-2 border-brand-dark pb-3 text-2xl font-extrabold text-heading">
