@@ -487,14 +487,19 @@ function SummaryBlock({ summary }: { summary: Summary }) {
     { label: "Improved", text: summary.improved },
   ];
   return (
-    <div className="mt-6 flex flex-col gap-3 rounded-2xl border border-card-border bg-white p-5">
-      {rows.map((row) => (
-        <p key={row.label} className="text-sm leading-relaxed">
-          <span className="font-bold text-brand-accent">{row.label}: </span>
-          <span className="text-muted-text">{row.text}</span>
-        </p>
-      ))}
-    </div>
+    <details className="mt-6 rounded-2xl border border-card-border bg-white">
+      <summary className="cursor-pointer px-5 py-3 text-sm font-bold text-brand-accent hover:text-heading">
+        Show details
+      </summary>
+      <div className="flex flex-col gap-3 border-t border-card-border px-5 py-4">
+        {rows.map((row) => (
+          <p key={row.label} className="text-sm leading-relaxed">
+            <span className="font-bold text-brand-accent">{row.label}: </span>
+            <span className="text-muted-text">{row.text}</span>
+          </p>
+        ))}
+      </div>
+    </details>
   );
 }
 
@@ -687,17 +692,6 @@ export default function DirectoryPage() {
                       </p>
                     ))}
                   </div>
-
-                  {version.href && (
-                    <a
-                      href={version.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-4 inline-flex items-center gap-1.5 rounded-lg bg-brand-dark px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-brand-accent"
-                    >
-                      Open {section.title} {version.label.split(" — ")[0]} →
-                    </a>
-                  )}
                 </div>
               ))}
             </div>
