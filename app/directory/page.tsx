@@ -576,7 +576,7 @@ export default function DirectoryPage() {
               { app: "Crèche Admin", version: "v2", status: "Completed", desc: "Full operating system — payroll, compliance, AI, financials", href: "/admin/v2/dashboard" },
               { app: "Crèche Admin", version: "v3", status: "In progress", desc: "CEO reimagining — new visual direction", href: "/admin/v3" },
               { app: "Parent App", version: "v1", status: "Completed", desc: "Current build — AI assistant, settings, health/growth tracking", href: "/parent/home" },
-              { app: "Parent App", version: "v2", status: "In progress", desc: "Parent ↔ independent caregiver reimagining", href: "/parentv3/home" },
+              { app: "Parent App", version: "v2", status: "In progress", desc: "Parent ↔ independent caregiver reimagining", href: "/parent/v2" },
               { app: "Caregiver App", version: "v1", status: "Completed", desc: "Crèche-staff build — daily workflows, ratings, settings", href: "/caregiver/home" },
               { app: "Caregiver App", version: "v2", status: "In progress", desc: "Reimagined caregiver experience", href: "/caregiverv3/today" },
               { app: "Independent Caregiver", version: "v2", status: "In progress", desc: "First build for independent caregivers", href: "#" },

@@ -23,9 +23,8 @@ type Plan = {
 
 type ComparisonRow = {
   feature: string;
-  seedling: string;
-  nestling: string;
-  flourish: string;
+  grow: string;
+  thrive: string;
 };
 
 type AddOn = {
@@ -38,44 +37,44 @@ type AddOn = {
 
 const plans: Plan[] = [
   {
-    name: "Nuture",
-    monthlyPrice: 18500,
-    desc: "",
-    features: ["Up to 10 children", "2 staff accounts", "Basic reporting", "Email support"],
-    button: "Subscribe",
+    name: "CEven Grow",
+    monthlyPrice: 25000,
+    desc: "Perfect for growing childcare centres",
+    features: [
+      "Up to 35 children",
+      "Up to 10 staff accounts",
+      "Parent mobile app",
+      "Daily reports",
+      "Attendance management",
+      "Child records",
+      "Parent communication",
+      "Billing & invoicing",
+      "Basic analytics",
+      "Email support",
+    ],
+    button: "Start Your 14-Day Free Trial",
     buttonStyle: "outline",
     hasAddOns: false,
   },
   {
-    name: "Nuture Pro",
-    monthlyPrice: 45000,
-    desc: "",
-    features: [
-      "Up to 35 children",
-      "10 staff accounts",
-      "AI reports & insights",
-      "Priority support",
-      "Custom branding",
-    ],
-    button: "Current Plan",
-    buttonStyle: "current",
-    highlighted: true,
-    hasAddOns: true,
-  },
-  {
-    name: "Nuture Max",
-    monthlyPrice: 85000,
-    desc: "",
+    name: "CEven Thrive",
+    monthlyPrice: 37000,
+    desc: "Built for ambitious childcare providers",
     features: [
       "Unlimited children",
-      "Unlimited staff",
-      "Advanced AI suite",
-      "Dedicated support",
+      "Unlimited staff accounts",
+      "Everything in Grow",
+      "AI reports & insights",
+      "Advanced analytics",
+      "Priority support",
       "Multi-branch support",
-      "Custom integrations",
+      "Custom branding",
+      "API & integrations",
+      "Dedicated onboarding",
     ],
-    button: "Upgrade",
+    button: "Start Your 14-Day Free Trial",
     buttonStyle: "outline",
+    highlighted: true,
     hasAddOns: true,
   },
 ];
@@ -105,14 +104,15 @@ function getBillingLabel(cycle: BillingCycle): string {
 }
 
 const comparisonRows: ComparisonRow[] = [
-  { feature: "Children Limit", seedling: "Up to 10", nestling: "Up to 35", flourish: "Unlimited" },
-  { feature: "Staff Accounts", seedling: "2 accounts", nestling: "10 accounts", flourish: "Unlimited" },
-  { feature: "AI Reports", seedling: "✗", nestling: "✓", flourish: "✓" },
-  { feature: "Ada AI Assistant", seedling: "✗", nestling: "✓", flourish: "✓" },
-  { feature: "Custom Branding", seedling: "✗", nestling: "✓", flourish: "✓" },
-  { feature: "Priority Support", seedling: "✗", nestling: "✓", flourish: "✓" },
-  { feature: "Multi-Branch", seedling: "✗", nestling: "✗", flourish: "✓" },
-  { feature: "API Access", seedling: "✗", nestling: "✗", flourish: "✓" },
+  { feature: "Children Limit", grow: "Up to 35", thrive: "Unlimited" },
+  { feature: "Staff Accounts", grow: "Up to 10", thrive: "Unlimited" },
+  { feature: "Parent Mobile App", grow: "✓", thrive: "✓" },
+  { feature: "Daily Reports", grow: "✓", thrive: "✓" },
+  { feature: "Attendance Management", grow: "✓", thrive: "✓" },
+  { feature: "AI Reports & Insights", grow: "—", thrive: "✓" },
+  { feature: "Advanced Analytics", grow: "—", thrive: "✓" },
+  { feature: "Priority Support", grow: "Email support", thrive: "Priority support" },
+  { feature: "Multi-branch Support", grow: "—", thrive: "✓" },
 ];
 
 const initialAddOns: AddOn[] = [
@@ -296,14 +296,11 @@ function Step1({ onNext }: { onNext: (plan: Plan) => void }) {
                 <th className="px-5 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
                   Feature
                 </th>
-                <th className="px-5 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
-                  Nuture
+                <th className="px-5 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#4C1D95]">
+                  CEven Grow
                 </th>
-                <th className="px-5 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
-                  Nuture Pro
-                </th>
-                <th className="px-5 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
-                  Nuture Max
+                <th className="px-5 py-3 text-left font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#D4522F]">
+                  CEven Thrive
                 </th>
               </tr>
             </thead>
@@ -314,13 +311,10 @@ function Step1({ onNext }: { onNext: (plan: Plan) => void }) {
                     {row.feature}
                   </td>
                   <td className="px-5 py-3">
-                    <ComparisonCell value={row.seedling} />
+                    <ComparisonCell value={row.grow} />
                   </td>
                   <td className="px-5 py-3">
-                    <ComparisonCell value={row.nestling} />
-                  </td>
-                  <td className="px-5 py-3">
-                    <ComparisonCell value={row.flourish} />
+                    <ComparisonCell value={row.thrive} />
                   </td>
                 </tr>
               ))}

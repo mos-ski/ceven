@@ -1,248 +1,245 @@
 "use client";
 
 import { useState } from "react";
-import { Check, Lock, Sparkles, Gem, ArrowUpRight } from "lucide-react";
+import { Check, Star } from "lucide-react";
 
 // ── Data ──────────────────────────────────────────────────────────────────────
-// Same names/prices/features as the topbar plan badge and PlansAccessTab
-// (components/admin/account-setup/plans-access-tab.tsx) — figures are not invented.
 
-type PlanTier = "Seedling" | "Nestling Pro" | "Flourish";
+type PlanTier = "CEven Grow" | "CEven Thrive";
 
 type Plan = {
   name: PlanTier;
   monthlyPrice: number;
+  tagline: string;
+  icon: "leaf" | "star";
+  highlighted: boolean;
   features: string[];
 };
 
 const PLANS: Plan[] = [
   {
-    name: "Seedling",
-    monthlyPrice: 18500,
-    features: ["Up to 10 children", "2 staff accounts", "Basic reporting", "Email support"],
-  },
-  {
-    name: "Nestling Pro",
-    monthlyPrice: 45000,
+    name: "CEven Grow",
+    monthlyPrice: 25000,
+    tagline: "Perfect for growing childcare centres",
+    icon: "leaf",
+    highlighted: false,
     features: [
       "Up to 35 children",
-      "10 staff accounts",
-      "AI reports & insights",
-      "Priority support",
-      "Custom branding",
+      "Up to 10 staff accounts",
+      "Parent mobile app",
+      "Daily reports",
+      "Attendance management",
+      "Child records",
+      "Parent communication",
+      "Billing & invoicing",
+      "Basic analytics",
+      "Email support",
     ],
   },
   {
-    name: "Flourish",
-    monthlyPrice: 85000,
+    name: "CEven Thrive",
+    monthlyPrice: 37000,
+    tagline: "Built for ambitious childcare providers",
+    icon: "star",
+    highlighted: true,
     features: [
       "Unlimited children",
-      "Unlimited staff",
-      "Advanced AI suite",
-      "Dedicated support",
+      "Unlimited staff accounts",
+      "Everything in Grow",
+      "AI reports & insights",
+      "Advanced analytics",
+      "Priority support",
       "Multi-branch support",
-      "Custom integrations",
+      "Custom branding",
+      "API & integrations",
+      "Dedicated onboarding",
     ],
   },
 ];
 
-// Flourish-only capabilities, derived from the plan feature comparison in
-// PlansAccessTab — shown as "locked" for whichever tier is currently active.
-const FLOURISH_ONLY_FEATURES = [
-  "Multi-branch support",
-  "API access",
-  "Unlimited children & staff",
-  "Dedicated support",
-  "Custom integrations",
-];
-
-const PARENT_ADDON = {
-  name: "Parent Portal Premium",
-  price: "₦2,500/month",
-  description: "Unlock the premium parent app experience: milestone timelines, unlimited photo storage, and priority chat with staff.",
+type ComparisonRow = {
+  feature: string;
+  grow: string;
+  thrive: string;
 };
+
+const COMPARISON_ROWS: ComparisonRow[] = [
+  { feature: "Children Limit", grow: "Up to 35", thrive: "Unlimited" },
+  { feature: "Staff Accounts", grow: "Up to 10", thrive: "Unlimited" },
+  { feature: "Parent Mobile App", grow: "✓", thrive: "✓" },
+  { feature: "Daily Reports", grow: "✓", thrive: "✓" },
+  { feature: "Attendance Management", grow: "✓", thrive: "✓" },
+  { feature: "AI Reports & Insights", grow: "—", thrive: "✓" },
+  { feature: "Advanced Analytics", grow: "—", thrive: "✓" },
+  { feature: "Priority Support", grow: "Email support", thrive: "Priority support" },
+  { feature: "Multi-branch Support", grow: "—", thrive: "✓" },
+];
 
 function formatNaira(amount: number): string {
   return `₦${amount.toLocaleString("en-NG")}`;
 }
 
-export default function PlansV3Page() {
-  const [currentPlan, setCurrentPlan] = useState<PlanTier>("Nestling Pro");
-  const [addonEnabled, setAddonEnabled] = useState(true);
-  const [notice, setNotice] = useState<string | null>(null);
-
-  const lockedFeatures =
-    currentPlan === "Flourish"
-      ? []
-      : FLOURISH_ONLY_FEATURES.filter((f) => !PLANS.find((p) => p.name === currentPlan)!.features.some((pf) => pf.toLowerCase().includes(f.toLowerCase().split(" ")[0])));
-
-  function handlePlanAction(plan: Plan) {
-    setCurrentPlan(plan.name);
-    setNotice(`Switched to ${plan.name}. Billing will update on your next renewal date.`);
-    window.setTimeout(() => setNotice(null), 4000);
+function PlanIcon({ icon, highlighted }: { icon: "leaf" | "star"; highlighted: boolean }) {
+  if (icon === "leaf") {
+    return (
+      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#4C1D95]">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2} className="h-6 w-6">
+          <path d="M12 22c4-4 8-7.5 8-12a8 8 0 1 0-16 0c0 4.5 4 8 8 12z" />
+          <path d="M12 22V10" />
+          <path d="M8 14c2-1 4-1 6 0" />
+        </svg>
+      </div>
+    );
   }
+  return (
+    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#F59E0B]">
+      <Star className="h-6 w-6 text-white" />
+    </div>
+  );
+}
+
+function ComparisonCheck() {
+  return (
+    <svg viewBox="0 0 20 20" fill="currentColor" className="h-4 w-4 text-[#009061]">
+      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
+    </svg>
+  );
+}
+
+export default function PlansV3Page() {
+  const [currentPlan] = useState<PlanTier>("CEven Grow");
 
   return (
     <div className="flex flex-col gap-5">
       {/* Header */}
-      <div>
+      <div className="text-center">
         <h1 className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2D1810]">
-          Plans &amp; Access
+          Choose Your CEven Plan
         </h1>
-        <p className="mt-1 text-sm text-[#2D1810]/50">
-          Manage your crèche subscription, add-ons, and access settings.
+        <p className="mt-2 text-sm text-[#2D1810]/50">
+          Everything you need to manage your childcare centre, delight parents, and grow your business.
         </p>
-      </div>
-
-      {notice && (
-        <div className="rounded-xl border border-[#8B9E7A]/40 bg-[#8B9E7A]/10 px-4 py-2.5 text-sm font-semibold text-[#2D1810]">
-          {notice}
-        </div>
-      )}
-
-      {/* Current plan banner */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#2D1810] via-[#3D2418] to-[#3D2418] px-6 py-5">
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/10">
-              <Gem className="h-5 w-5 text-[#C47B2C]" />
-            </div>
-            <div>
-              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#D4913F]">Current Plan</p>
-              <p className="font-[family-name:var(--font-merriweather)] text-xl font-bold text-[#F5EDD8]">
-                {currentPlan}
-              </p>
-            </div>
-          </div>
-          <div className="text-right">
-            <p className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#F5EDD8]">
-              {formatNaira(PLANS.find((p) => p.name === currentPlan)!.monthlyPrice)}
-              <span className="ml-1 text-sm font-normal text-[#F5EDD8]/55">/month</span>
-            </p>
-            <p className="text-xs text-[#F5EDD8]/55">Next renewal · Sep 5, 2026</p>
-          </div>
+        <div className="mt-4 inline-flex items-center gap-3 rounded-full border border-black/[0.07] bg-white px-5 py-2 text-xs font-medium text-[#2D1810]/70">
+          <span>14-day free trial</span>
+          <span className="text-black/20">|</span>
+          <span>No credit card required</span>
+          <span className="text-black/20">|</span>
+          <span>Cancel anytime</span>
         </div>
       </div>
 
       {/* Pricing cards */}
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         {PLANS.map((plan) => {
           const isCurrent = plan.name === currentPlan;
-          const isUpgrade = PLANS.findIndex((p) => p.name === plan.name) > PLANS.findIndex((p) => p.name === currentPlan);
           return (
             <div
               key={plan.name}
-              className={`flex flex-col gap-4 rounded-2xl border bg-white p-5 ${
-                isCurrent ? "border-[#C47B2C]" : "border-black/[0.07]"
+              className={`relative flex flex-col gap-5 rounded-2xl border p-6 ${
+                plan.highlighted
+                  ? "border-[#D4522F]/30 bg-[#FFF5F5]"
+                  : "border-black/[0.07] bg-white"
               }`}
             >
-              <div>
-                <div className="flex items-center justify-between">
-                  <p className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2D1810]">
+              {plan.highlighted && (
+                <span className="absolute -right-2 -top-2 rounded-bl-xl rounded-tr-2xl bg-[#D4522F] px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-white">
+                  Most Popular
+                </span>
+              )}
+
+              <div className="flex items-start gap-4">
+                <PlanIcon icon={plan.icon} highlighted={plan.highlighted} />
+                <div className="flex-1">
+                  <p className={`font-[family-name:var(--font-merriweather)] text-xl font-bold ${
+                    plan.highlighted ? "text-[#D4522F]" : "text-[#4C1D95]"
+                  }`}>
                     {plan.name}
                   </p>
-                  {isCurrent && (
-                    <span className="rounded-full bg-[#C47B2C]/15 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-[#C47B2C]">
-                      Current
-                    </span>
-                  )}
+                  <p className="mt-0.5 text-sm text-[#2D1810]/50">{plan.tagline}</p>
                 </div>
-                <p className="mt-1 flex items-baseline gap-1">
-                  <span className="font-[family-name:var(--font-merriweather)] text-3xl font-bold text-[#2D1810]">
-                    {formatNaira(plan.monthlyPrice)}
-                  </span>
-                  <span className="text-sm text-[#2D1810]/50">/month</span>
-                </p>
               </div>
 
-              <ul className="flex flex-col gap-2">
+              <div className="flex items-baseline gap-1">
+                <span className={`font-[family-name:var(--font-merriweather)] text-3xl font-bold ${
+                  plan.highlighted ? "text-[#D4522F]" : "text-[#4C1D95]"
+                }`}>
+                  {formatNaira(plan.monthlyPrice)}
+                </span>
+                <span className="text-sm text-[#2D1810]/50">/month</span>
+              </div>
+
+              <div className="h-px bg-black/[0.07]" />
+
+              <ul className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
                 {plan.features.map((feature) => (
                   <li key={feature} className="flex items-start gap-2 text-sm text-[#2D1810]">
-                    <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#8B9E7A]" />
+                    <Check className={`mt-0.5 h-4 w-4 shrink-0 ${
+                      plan.highlighted ? "text-[#D4522F]" : "text-[#4C1D95]"
+                    }`} />
                     {feature}
                   </li>
                 ))}
               </ul>
 
-              {isCurrent ? (
-                <button
-                  disabled
-                  className="mt-auto w-full cursor-default rounded-lg border border-[#C47B2C]/40 bg-[#C47B2C]/10 py-2.5 text-sm font-bold text-[#C47B2C]"
-                >
-                  Current Plan
-                </button>
-              ) : (
-                <button
-                  onClick={() => handlePlanAction(plan)}
-                  className="mt-auto w-full rounded-lg bg-[#2D1810] py-2.5 text-sm font-bold text-[#F5EDD8] transition-colors hover:bg-[#3D2418]"
-                >
-                  {isUpgrade ? `Upgrade to ${plan.name}` : `Downgrade to ${plan.name}`}
-                </button>
-              )}
+              <button
+                className={`mt-auto w-full rounded-lg py-3 text-sm font-bold transition-colors ${
+                  isCurrent
+                    ? "border border-[#D4522F]/40 bg-[#D4522F]/10 text-[#D4522F] cursor-default"
+                    : plan.highlighted
+                    ? "bg-[#D4522F] text-white hover:bg-[#B94427]"
+                    : "border border-[#4C1D95] text-[#4C1D95] hover:bg-[#4C1D95]/5"
+                }`}
+                disabled={isCurrent}
+              >
+                {isCurrent ? "Current Plan" : "Start Your 14-Day Free Trial"}
+              </button>
+
+              <p className="text-center text-xs text-[#2D1810]/50">
+                No credit card required. Cancel anytime.
+              </p>
             </div>
           );
         })}
       </div>
 
-      <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
-        {/* Parent premium add-on */}
-        <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
-          <div className="flex items-start justify-between gap-4">
-            <div className="flex items-start gap-3">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#1E2D4A]/10">
-                <Sparkles className="h-4.5 w-4.5 text-[#1E2D4A]" />
-              </div>
-              <div>
-                <p className="font-[family-name:var(--font-merriweather)] font-bold text-[#2D1810]">
-                  {PARENT_ADDON.name}
-                </p>
-                <p className="mt-1 text-xs leading-5 text-[#2D1810]/50">{PARENT_ADDON.description}</p>
-              </div>
-            </div>
-          </div>
-          <div className="mt-4 flex items-center justify-between border-t border-black/[0.06] pt-4">
-            <p className="font-mono text-sm font-bold text-[#2D1810]">{PARENT_ADDON.price}</p>
-            <button
-              onClick={() => setAddonEnabled((v) => !v)}
-              className={`rounded-lg px-4 py-2 text-xs font-bold ${
-                addonEnabled
-                  ? "border border-[#D4522F] text-[#D4522F] hover:bg-[#D4522F]/5"
-                  : "bg-[#2D1810] text-[#F5EDD8] hover:bg-[#3D2418]"
-              }`}
-            >
-              {addonEnabled ? "Remove from Plan" : "Add to Plan"}
-            </button>
-          </div>
+      {/* Feature Comparison */}
+      <div className="rounded-2xl border border-black/[0.07] bg-white">
+        <div className="border-b border-black/[0.07] px-6 py-4">
+          <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2D1810]">
+            Feature Comparison
+          </h2>
         </div>
-
-        {/* Locked features */}
-        <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
-          <div className="mb-3 flex items-center justify-between">
-            <p className="font-[family-name:var(--font-merriweather)] font-bold text-[#2D1810]">
-              Locked on {currentPlan}
-            </p>
-            <ArrowUpRight className="h-4 w-4 text-[#2D1810]/30" />
-          </div>
-          {lockedFeatures.length === 0 ? (
-            <p className="text-sm text-[#2D1810]/50">You have every feature unlocked on Flourish.</p>
-          ) : (
-            <ul className="flex flex-col gap-2.5">
-              {lockedFeatures.map((feature) => (
-                <li
-                  key={feature}
-                  className="flex items-center justify-between gap-3 rounded-lg border border-black/[0.06] bg-[#F5EDD8]/40 px-3 py-2.5"
-                >
-                  <span className="flex items-center gap-2 text-sm text-[#2D1810]/70">
-                    <Lock className="h-3.5 w-3.5 shrink-0 text-[#2D1810]/35" />
-                    {feature}
-                  </span>
-                  <span className="shrink-0 text-[10px] font-bold uppercase tracking-wide text-[#C47B2C]">
-                    Flourish
-                  </span>
-                </li>
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse">
+            <thead>
+              <tr className="border-b border-black/[0.07]">
+                <th className="px-6 py-3 text-left text-sm font-semibold text-[#2D1810]">Feature</th>
+                <th className="px-6 py-3 text-left text-sm font-semibold text-[#4C1D95]">CEven Grow</th>
+                <th className="px-6 py-3 text-left text-sm font-semibold text-[#D4522F]">CEven Thrive</th>
+              </tr>
+            </thead>
+            <tbody>
+              {COMPARISON_ROWS.map((row, i) => (
+                <tr key={row.feature} className={`border-b border-black/[0.04] ${i % 2 === 0 ? "bg-white" : "bg-[#F9F8F6]"}`}>
+                  <td className="px-6 py-3 text-sm text-[#2D1810]">{row.feature}</td>
+                  <td className="px-6 py-3">
+                    {row.grow === "✓" ? (
+                      <ComparisonCheck />
+                    ) : (
+                      <span className="text-sm text-[#2D1810]/50">{row.grow}</span>
+                    )}
+                  </td>
+                  <td className="px-6 py-3">
+                    {row.thrive === "✓" ? (
+                      <ComparisonCheck />
+                    ) : (
+                      <span className="text-sm text-[#2D1810]/50">{row.thrive}</span>
+                    )}
+                  </td>
+                </tr>
               ))}
-            </ul>
-          )}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

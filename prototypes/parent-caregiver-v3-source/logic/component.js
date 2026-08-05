@@ -260,7 +260,7 @@ class Component extends DCLogic {
         {k: 'b', label: 'Message Mummy in the app before giving anything', ok: true},
         {k: 'c', label: 'Skip the dose and say nothing', ok: false},
       ].map(q => ({label: q.label, pick: () => this.setState({quizPick: q.k}),
-        style: {textAlign: 'left', background: s.quizPick === q.k ? (q.ok ? '#E1F5EC' : '#FDE8E8') : '#fff', border: '1.5px solid ' + (s.quizPick === q.k ? (q.ok ? '#009061' : '#CD3030') : '#E6EBF3'), borderRadius: 8, padding: '12px 15px', fontFamily: 'Nunito', fontSize: 13, fontWeight: 600, color: '#1F2937', cursor: 'pointer'}})),
+        style: {textAlign: 'left', background: s.quizPick === q.k ? (q.ok ? '#E1F5EC' : '#FDE8E8') : '#fff', border: '1.5px solid ' + (s.quizPick === q.k ? (q.ok ? '#009061' : '#CD3030') : '#E6EBF3'), borderRadius: 8, padding: '12px 15px', fontFamily: 'Urbanist', fontSize: 13, fontWeight: 600, color: '#1F2937', cursor: 'pointer'}})),
       quizCorrect: s.quizPick === 'b', quizWrong: s.quizPick !== null && s.quizPick !== 'b',
       completeLessonC: () => { this.setState({lessonOpen: false, quizPick: null}); this._audit('LEARN', 'Completed lesson: Giving medicine safely \u00b7 earned a badge'); this.toast('Badge earned: Medicine Safety \ud83c\udf89'); },
       cAiReset: () => this.setState({cAiMsgs: [], cAiTyping: false}),

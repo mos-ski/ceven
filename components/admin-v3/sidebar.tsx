@@ -18,10 +18,10 @@ export function SidebarV3() {
 
   return (
     <>
-      {/* Hamburger button */}
+      {/* Hamburger button — visible below lg */}
       <button
         onClick={() => setMobileOpen(true)}
-        className="fixed left-4 top-4 z-50 flex h-10 w-10 items-center justify-center rounded-lg bg-[#2D1810] text-[#F5EDD8] lg:hidden"
+        className="fixed left-4 top-4 z-50 flex h-10 w-10 items-center justify-center rounded-lg bg-[#2D1810] text-[#F5EDD8] shadow-lg lg:hidden"
         aria-label="Open menu"
       >
         <Menu className="h-5 w-5" />
@@ -30,15 +30,15 @@ export function SidebarV3() {
       {/* Backdrop */}
       {mobileOpen && (
         <div
-          className="fixed inset-0 z-40 bg-black/40 lg:hidden"
+          className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm transition-opacity lg:hidden"
           onClick={() => setMobileOpen(false)}
         />
       )}
 
-      {/* Sidebar */}
+      {/* Sidebar — fixed overlay on mobile, static on desktop */}
       <aside
-        className={`relative flex h-screen w-[236px] shrink-0 flex-col overflow-hidden bg-[#2D1810] text-[#F5EDD8] transition-transform duration-200 lg:static lg:translate-x-0 ${
-          mobileOpen ? "fixed inset-y-0 left-0 z-50 translate-x-0" : "-translate-x-full"
+        className={`fixed inset-y-0 left-0 z-50 flex h-screen w-[236px] shrink-0 flex-col overflow-hidden bg-[#2D1810] text-[#F5EDD8] transition-transform duration-200 lg:static ${
+          mobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
         }`}
       >
         <svg
