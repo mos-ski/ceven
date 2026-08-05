@@ -6,8 +6,8 @@ export function TopbarV1() {
   const crecheName = "Ringo Daycare";
 
   return (
-    <header className="flex h-[60px] shrink-0 items-center justify-between border-b border-gray-200 bg-white px-6">
-      <div className="flex items-center gap-2">
+    <header className="flex h-[60px] shrink-0 items-center justify-between border-b border-gray-200 bg-white px-4 lg:px-6">
+      <div className="pl-12 lg:pl-0">
         <span className="font-[family-name:var(--font-mogra)] text-xl font-bold text-[#3B2513]">
           CEven
         </span>
@@ -21,7 +21,7 @@ export function TopbarV1() {
         >
           <Bell className="h-5 w-5" />
         </button>
-        <span className="text-sm font-semibold text-gray-800">{crecheName}</span>
+        <span className="hidden text-sm font-semibold text-gray-800 sm:block">{crecheName}</span>
       </div>
     </header>
   );

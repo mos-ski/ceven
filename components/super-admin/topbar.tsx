@@ -15,7 +15,7 @@ export function TopbarSA() {
 
   return (
     <header className="flex h-16 shrink-0 items-center justify-between border-b border-input-border bg-content-bg px-4 lg:px-6">
-      <h1 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-heading">
+      <h1 className="pl-12 font-[family-name:var(--font-merriweather)] text-lg font-bold text-heading lg:pl-0">
         {title}
       </h1>
 

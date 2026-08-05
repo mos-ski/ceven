@@ -17,15 +17,15 @@ export function TopbarV3() {
   const pathname = usePathname();
 
   return (
-    <header className="flex h-[54px] shrink-0 items-center gap-3.5 border-b border-black/[0.07] bg-[#FFFCF4] px-6">
-      <div className="flex flex-1 items-center gap-2">
+    <header className="flex h-[54px] shrink-0 items-center gap-3.5 border-b border-black/[0.07] bg-[#FFFCF4] px-4 lg:px-6">
+      <div className="pl-12 flex flex-1 items-center gap-2 lg:pl-0">
         <h1 className="text-[15px] font-extrabold text-[#2D1810]">{currentTitle(pathname)}</h1>
-        <span className="rounded-full bg-gradient-to-r from-[#1E2D4A] to-[#C47B2C] px-2.5 py-1 text-[10px] font-extrabold tracking-wide text-white">
+        <span className="hidden rounded-full bg-gradient-to-r from-[#1E2D4A] to-[#C47B2C] px-2.5 py-1 text-[10px] font-extrabold tracking-wide text-white sm:inline">
           Nestling Pro
         </span>
       </div>
 
-      <div className="flex max-w-[260px] flex-1 items-center gap-2 rounded-lg border border-black/[0.12] bg-[#F5EDD8] px-3.5 py-1.5">
+      <div className="hidden max-w-[260px] flex-1 items-center gap-2 rounded-lg border border-black/[0.12] bg-[#F5EDD8] px-3.5 py-1.5 md:flex">
         <Search className="h-3.5 w-3.5 shrink-0 text-[#2D1810]/50" />
         <input
           placeholder="Search children, parents, staff, invoice…"

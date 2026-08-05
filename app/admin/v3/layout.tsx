@@ -7,7 +7,7 @@ export default function AdminV3Layout({ children }: { children: React.ReactNode 
       <SidebarV3 />
       <div className="flex min-w-0 flex-1 flex-col">
         <TopbarV3 />
-        <main className="flex-1 overflow-y-auto p-6">{children}</main>
+        <main className="flex-1 overflow-y-auto p-4 lg:p-6">{children}</main>
       </div>
     </div>
   );
