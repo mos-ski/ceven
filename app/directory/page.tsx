@@ -542,7 +542,9 @@ export default function DirectoryPage() {
           <h2 className="border-b-2 border-brand-dark pb-3 text-2xl font-extrabold text-heading">
             Overview
           </h2>
-          <div className="mt-4 overflow-hidden rounded-2xl border border-card-border">
+
+          {/* Desktop table */}
+          <div className="mt-4 hidden overflow-hidden rounded-2xl border border-card-border lg:block">
             <table className="w-full text-left text-sm">
               <thead>
                 <tr className="border-b border-card-border bg-gray-50">
@@ -594,6 +596,48 @@ export default function DirectoryPage() {
                 ))}
               </tbody>
             </table>
+          </div>
+
+          {/* Mobile stacked cards */}
+          <div className="mt-4 flex flex-col gap-3 lg:hidden">
+            {[
+              { app: "Super Admin", version: "v1", status: "Completed", desc: "Platform console for internal operators", href: "/super-admin/dashboard" },
+              { app: "Crèche Admin", version: "v1", status: "Completed", desc: "Original crèche operator dashboard", href: "/admin/v1/dashboard" },
+              { app: "Crèche Admin", version: "v2", status: "Completed", desc: "Full operating system — payroll, compliance, AI, financials", href: "/admin/v2/dashboard" },
+              { app: "Crèche Admin", version: "v3", status: "In progress", desc: "CEO reimagining — new visual direction", href: "/admin/v3" },
+              { app: "Parent App", version: "v1", status: "Completed", desc: "Current build — AI assistant, settings, health/growth tracking", href: "/parent/home" },
+              { app: "Parent App", version: "v2", status: "In progress", desc: "Parent ↔ independent caregiver reimagining", href: "/parentv2/home" },
+              { app: "Caregiver App", version: "v1", status: "Completed", desc: "Crèche-staff build — daily workflows, ratings, settings", href: "/caregiver/home" },
+              { app: "Caregiver App", version: "v2", status: "In progress", desc: "Reimagined caregiver experience", href: "/caregiver/today" },
+              { app: "Independent Caregiver", version: "v2", status: "In progress", desc: "First build for independent caregivers", href: "/independent-caregiver" },
+              { app: "Independent Tutor", version: "v2", status: "In progress", desc: "First build for independent tutors", href: "/independent-tutor" },
+            ].map((row, i) => (
+              <div key={i} className="rounded-2xl border border-card-border bg-white p-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className="font-semibold text-heading">{row.app}</span>
+                    <span className="text-xs text-muted-text">{row.version}</span>
+                  </div>
+                  <span className={`rounded-full px-2.5 py-0.5 text-xs font-bold ${
+                    row.status === "Live" ? "bg-green-100 text-green-700" :
+                    row.status === "Completed" ? "bg-blue-100 text-blue-700" :
+                    row.status === "Approved" ? "bg-purple-100 text-purple-700" :
+                    "bg-amber-100 text-amber-700"
+                  }`}>
+                    {row.status}
+                  </span>
+                </div>
+                <p className="mt-1.5 text-sm text-muted-text">{row.desc}</p>
+                <a
+                  href={row.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-3 inline-flex items-center gap-1 rounded-lg bg-brand-dark px-3 py-1.5 text-xs font-bold text-white transition-colors hover:bg-brand-accent"
+                >
+                  Open →
+                </a>
+              </div>
+            ))}
           </div>
         </div>
 
