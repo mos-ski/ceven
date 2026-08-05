@@ -244,18 +244,13 @@ const APP_SECTIONS: AppSection[] = [
     title: "Parent App",
     summary: {
       what: "The family-facing mobile app parents use to track their child's day, message the crèche, and manage billing.",
-      entails: "v1 is live on the app store today (not part of this codebase). v2 is this codebase's main build, started when the current team joined. v3 is the newest direction — it reimagines the relationship as parent ↔ independent caregiver, not just parent ↔ crèche.",
-      missing: "v3 currently has 4 screens built (home, chat, food timetable, calendar) — most of v2's breadth hasn't been re-imagined for the independent-caregiver model yet.",
-      improved: "v2 added the CEvenAI assistant, richer settings, and health/growth/feeding tracking that v1 doesn't have.",
+      entails: "v1 is this codebase's main build, started when the current team joined. v2 is the newest direction — it reimagines the relationship as parent ↔ independent caregiver, not just parent ↔ crèche.",
+      missing: "v2 currently has 4 screens built (home, chat, food timetable, calendar) — most of v1's breadth hasn't been re-imagined for the independent-caregiver model yet.",
+      improved: "v1 added the CEvenAI assistant, richer settings, and health/growth/feeding tracking over the original production app.",
     },
     versions: [
       {
-        label: "v1 — live on the app store",
-        meta: "External · not in this codebase",
-        rows: [[{ label: "Current production app used by real parents today" }]],
-      },
-      {
-        label: "v2 — current build",
+        label: "v1 — current build",
         meta: "Next.js · /parent",
         href: "/parent/home",
         rows: [
@@ -314,15 +309,15 @@ const APP_SECTIONS: AppSection[] = [
         ],
       },
       {
-        label: "v3 — parent ↔ independent caregiver",
-        meta: "Next.js · /parentv3",
-        href: "/parentv3/home",
+        label: "v2 — parent ↔ independent caregiver",
+        meta: "Next.js · /parentv2",
+        href: "/parentv2/home",
         rows: [
           [
-            { label: "Home", href: "/parentv3/home" },
-            { label: "Chat", href: "/parentv3/chat" },
-            { label: "Food Timetable", href: "/parentv3/food-timetable" },
-            { label: "Calendar", href: "/parentv3/calendar" },
+            { label: "Home", href: "/parentv2/home" },
+            { label: "Chat", href: "/parentv2/chat" },
+            { label: "Food Timetable", href: "/parentv2/food-timetable" },
+            { label: "Calendar", href: "/parentv2/calendar" },
           ],
         ],
       },
@@ -333,18 +328,13 @@ const APP_SECTIONS: AppSection[] = [
     title: "Caregiver App",
     summary: {
       what: "The staff-facing mobile app caregivers use to log attendance, daily reports, and incidents.",
-      entails: "Same version history as the Parent App: v1 live on the app store, v2 this codebase's main build, v3 the parent ↔ independent-caregiver reimagining.",
-      missing: "v3 currently has 4 screens built (today, chat, daily report, calendar) — same early stage as Parent v3.",
-      improved: "v2 added AI chat, ratings, and a fuller settings/onboarding flow over v1.",
+      entails: "v1 is this codebase's main build, started when the current team joined. v2 is the newest direction — it reimagines the relationship as parent ↔ independent caregiver.",
+      missing: "v2 currently has 4 screens built (today, chat, daily report, calendar) — same early stage as Parent v2.",
+      improved: "v1 added AI chat, ratings, and a fuller settings/onboarding flow over the original production app.",
     },
     versions: [
       {
-        label: "v1 — live on the app store",
-        meta: "External · not in this codebase",
-        rows: [[{ label: "Current production app used by real caregivers today" }]],
-      },
-      {
-        label: "v2 — current build",
+        label: "v1 — current build",
         meta: "Next.js · /caregiver",
         href: "/caregiver/home",
         rows: [
@@ -387,15 +377,15 @@ const APP_SECTIONS: AppSection[] = [
         ],
       },
       {
-        label: "v3 — parent ↔ independent caregiver",
-        meta: "Next.js · /caregiverv3",
-        href: "/caregiverv3/today",
+        label: "v2 — parent ↔ independent caregiver",
+        meta: "Next.js · /caregiverv2",
+        href: "/caregiverv2/today",
         rows: [
           [
-            { label: "Today", href: "/caregiverv3/today" },
-            { label: "Chat", href: "/caregiverv3/chat" },
-            { label: "Daily Report", href: "/caregiverv3/daily-report" },
-            { label: "Calendar", href: "/caregiverv3/calendar" },
+            { label: "Today", href: "/caregiverv2/today" },
+            { label: "Chat", href: "/caregiverv2/chat" },
+            { label: "Daily Report", href: "/caregiverv2/daily-report" },
+            { label: "Calendar", href: "/caregiverv2/calendar" },
           ],
         ],
       },
@@ -438,8 +428,8 @@ const NAV_CARDS = [
   { id: "design-system", eyebrow: "Design System", desc: "Foundations & components · /library" },
   { id: "super-admin", eyebrow: "Super Admin", desc: "Platform console · /super-admin" },
   { id: "creche-admin", eyebrow: "Crèche Admin", desc: "Operator dashboard · v1, v2, v3" },
-  { id: "parent-app", eyebrow: "Parent App", desc: "Family mobile app · v1 (live), v2, v3" },
-  { id: "caregiver-app", eyebrow: "Caregiver App", desc: "Staff mobile app · v1 (live), v2, v3" },
+  { id: "parent-app", eyebrow: "Parent App", desc: "Family mobile app · v1, v2" },
+  { id: "caregiver-app", eyebrow: "Caregiver App", desc: "Staff mobile app · v1, v2" },
   { id: "website", eyebrow: "Website", desc: "Marketing site · public pages" },
 ];
 
@@ -469,12 +459,13 @@ export default function DirectoryPage() {
         <p className="font-[family-name:var(--font-mogra)] text-2xl text-brand-dark">CEven</p>
 
         <h1 className="mt-4 text-4xl font-extrabold tracking-tight text-heading sm:text-5xl">
-          App versions, v1–v3
+          App versions
         </h1>
         <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-text">
           Every screen across the design system, super admin, crèche admin, parent, and caregiver
           apps, plus the marketing site — grouped by version, with a short summary of what each one
           is, what it covers, what&apos;s missing, and what improved over the last version.
+          Versions that are live on the app store are not listed here.
         </p>
 
         <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
