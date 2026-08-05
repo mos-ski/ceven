@@ -43,7 +43,7 @@ export default function ChildProfilePage({ params }: { params: Promise<{ id: str
   </div>
 
   {/* Details card */}
-  <div className="rounded-2xl bg-[#F5EDD8]/30 p-4 flex flex-col gap-3">
+  <div className="rounded-2xl border border-black/[0.07] bg-white p-4 flex flex-col gap-3">
    <p className="text-xs font-semibold uppercase tracking-wide text-gray-400">Details</p>
    {[
    { label: "Age", value: child.age },
@@ -61,7 +61,7 @@ export default function ChildProfilePage({ params }: { params: Promise<{ id: str
 
   {/* Notes */}
   {child.notes && (
-   <div className="rounded-2xl bg-[#F5EDD8]/30 p-4">
+   <div className="rounded-2xl border border-black/[0.07] bg-white p-4">
    <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-gray-400">Notes</p>
    <p className="text-sm text-gray-600 leading-relaxed">{child.notes}</p>
    </div>
@@ -69,7 +69,7 @@ export default function ChildProfilePage({ params }: { params: Promise<{ id: str
 
   {/* Alerts */}
   {child.alerts.length > 0 && (
-   <div className="rounded-2xl bg-[#F5EDD8]/30 p-4 flex flex-col gap-2">
+   <div className="rounded-2xl border border-black/[0.07] bg-white p-4 flex flex-col gap-2">
    <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-gray-400">Alerts &amp; Needs</p>
    {child.alerts.map((alert, i) => (
     <div key={i} className={`flex items-start gap-3 rounded-xl p-3 ${alert.type === "warning" ? "bg-red-50" : "bg-amber-50"}`}>
@@ -86,7 +86,7 @@ export default function ChildProfilePage({ params }: { params: Promise<{ id: str
   )}
 
   {/* Parent contact */}
-  <div className="rounded-2xl bg-[#F5EDD8]/30 p-4">
+  <div className="rounded-2xl border border-black/[0.07] bg-white p-4">
    <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-gray-400">Parent Contact</p>
    <div className="flex items-center justify-between">
    <div className="flex items-center gap-3">

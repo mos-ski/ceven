@@ -129,7 +129,7 @@ export function FeaturesSection() {
       <SmallCard emoji="⚠️" label="Health & Safety" value="Nil" />
       <SmallCard emoji="💊" label="Medications" value="Nil" />
      </div>
-     <div className="bg-[#F5EDD8]/30 rounded-[9px] p-2 h-[40px]">
+     <div className="border border-black/[0.07] bg-white rounded-[9px] p-2 h-[40px]">
       <p className="font-[family-name:var(--font-urbanist-import)] text-[7px] text-[#858c98]">Any additional comments ...</p>
      </div>
      </div>

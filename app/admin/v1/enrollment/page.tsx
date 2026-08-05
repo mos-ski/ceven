@@ -54,7 +54,7 @@ export default function EnrollmentPage() {
     {STATS.map((stat) => {
      const Icon = stat.icon;
      return (
-      <div key={stat.label} className="flex items-center gap-4 rounded-xl bg-[#F5EDD8]/30 p-5">
+      <div key={stat.label} className="flex items-center gap-4 rounded-xl border border-black/[0.07] bg-white p-5">
        <div className={`flex h-12 w-12 items-center justify-center rounded-full ${stat.bg}`}>
         <Icon className={`h-6 w-6 ${stat.color}`} />
        </div>

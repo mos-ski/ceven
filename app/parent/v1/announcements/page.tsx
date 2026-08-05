@@ -54,7 +54,7 @@ export default function ParentAnnouncementsPage() {
   <button
    key={ann.id}
    onClick={() => handleExpand(ann.id)}
-   className={`rounded-2xl bg-[#F5EDD8]/30 p-4 text-left transition-colors ${
+   className={`rounded-2xl border border-black/[0.07] bg-white p-4 text-left transition-colors ${
    !isRead ? "border-l-4 border-cg-brand" : ""
    }`}
   >

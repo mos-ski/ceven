@@ -56,7 +56,7 @@ export default function EnrollmentPage() {
    { label: "Approved Enrollment", value: approved, color: "text-emerald-600", bg: "bg-emerald-50" },
    { label: "Declined Enrollment", value: declined, color: "text-red-500", bg: "bg-red-50" },
   ].map((stat) => (
-   <div key={stat.label} className="rounded-xl bg-[#F5EDD8]/30 p-4">
+   <div key={stat.label} className="rounded-xl border border-black/[0.07] bg-white p-4">
    <p className="font-[family-name:var(--font-urbanist)] text-xs text-muted-text">{stat.label}</p>
    <p className={`mt-1 font-[family-name:var(--font-merriweather)] text-2xl font-bold ${stat.color}`}>
     {stat.value}
@@ -65,7 +65,7 @@ export default function EnrollmentPage() {
   ))}
   </div>
 
-  <div className="rounded-xl bg-[#F5EDD8]/30">
+  <div className="rounded-xl border border-black/[0.07] bg-white">
   <div className="flex flex-wrap items-center gap-3 border-b border-card-border p-4">
    <div className="relative flex-1">
    <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-text" />

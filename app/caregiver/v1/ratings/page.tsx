@@ -77,7 +77,7 @@ export default function CaregiverRatingsPage() {
   ) : (
    <div className="flex flex-col gap-2">
    {ratings.map((r) => (
-    <div key={r.id} className="rounded-2xl bg-[#F5EDD8]/30 p-4 ">
+    <div key={r.id} className="rounded-2xl border border-black/[0.07] bg-white p-4 ">
     <div className="mb-2 flex items-center justify-between">
      <div className="flex items-center gap-2">
      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 text-[10px] font-bold text-gray-600">

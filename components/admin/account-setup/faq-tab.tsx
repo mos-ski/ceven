@@ -59,7 +59,7 @@ function FaqForm({
     <select
      value={category}
      onChange={(e) => setCategory(e.target.value)}
-     className="h-11 rounded-xl border-none bg-[#F5EDD8]/30 px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+     className="h-11 rounded-xl border-none border border-black/[0.07] bg-white px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
     >
      {FAQ_CATEGORIES.map((cat) => (
       <option key={cat} value={cat}>
@@ -78,7 +78,7 @@ function FaqForm({
      value={question}
      onChange={(e) => setQuestion(e.target.value)}
      placeholder="e.g. What age groups do you accept?"
-     className="h-11 rounded-xl border-none bg-[#F5EDD8]/30 px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+     className="h-11 rounded-xl border-none border border-black/[0.07] bg-white px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] outline-none focus:ring-2 focus:ring-[#c47b2c]"
     />
    </div>
 
@@ -91,7 +91,7 @@ function FaqForm({
      value={answer}
      onChange={(e) => setAnswer(e.target.value)}
      placeholder="Type the answer here..."
-     className="resize-none rounded-xl border-none bg-[#F5EDD8]/30 px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+     className="resize-none rounded-xl border-none border border-black/[0.07] bg-white px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] outline-none focus:ring-2 focus:ring-[#c47b2c]"
     />
    </div>
 
@@ -172,7 +172,7 @@ function FaqRow({
  const [expanded, setExpanded] = useState(false);
 
  return (
-  <div className="rounded-xl bg-[#F5EDD8]/30">
+  <div className="rounded-xl border border-black/[0.07] bg-white">
    <div className="flex items-center gap-3 px-4 py-3">
     <GripVertical size={16} className="shrink-0 text-[#d0d5dd]" />
 

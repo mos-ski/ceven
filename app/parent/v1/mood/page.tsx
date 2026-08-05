@@ -53,7 +53,7 @@ function ChildMoodCard({
  const dominant = profile.weeklyMoods.reduce((prev, curr) => (curr.score > prev.score ? curr : prev));
 
  return (
- <div className="rounded-2xl bg-[#F5EDD8]/30 overflow-hidden">
+ <div className="rounded-2xl border border-black/[0.07] bg-white overflow-hidden">
  <button
  onClick={onToggle}
  className="flex w-full items-center gap-3 px-4 py-3 text-left active:bg-gray-50"

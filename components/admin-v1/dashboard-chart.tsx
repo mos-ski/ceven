@@ -15,7 +15,7 @@ import { CRECHE_REQUEST_DATA } from "@/lib/admin-v1/dashboard-data";
 const CustomTooltip = ({ active, payload, label }: { active?: boolean; payload?: Array<{ name: string; value: number; color: string }>; label?: string }) => {
  if (active && payload && payload.length) {
   return (
-   <div className="rounded-lg bg-[#F5EDD8]/30 p-3 shadow-md">
+   <div className="rounded-lg border border-black/[0.07] bg-white p-3 shadow-md">
     <p className="mb-1 text-sm font-semibold text-gray-800">{label}</p>
     {payload.map((entry, index) => (
      <div key={index} className="flex items-center gap-2 text-xs">
@@ -35,7 +35,7 @@ const CustomTooltip = ({ active, payload, label }: { active?: boolean; payload?:
 
 export function DashboardChart() {
  return (
-  <div className="rounded-xl bg-[#F5EDD8]/30 p-6">
+  <div className="rounded-xl border border-black/[0.07] bg-white p-6">
    <h2 className="mb-4 text-lg font-bold text-gray-800">Creche Request</h2>
    <div className="h-[350px] w-full">
     <ResponsiveContainer width="100%" height="100%">

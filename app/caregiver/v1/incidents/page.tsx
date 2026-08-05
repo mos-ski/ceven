@@ -41,7 +41,7 @@ export default function IncidentsPage() {
 
   <div className="flex-1 overflow-y-auto px-4 py-4 flex flex-col gap-3">
   {incidents.map((inc) => (
-   <div key={inc.id} className="rounded-2xl bg-[#F5EDD8]/30 p-4">
+   <div key={inc.id} className="rounded-2xl border border-black/[0.07] bg-white p-4">
    <div className="flex items-start justify-between gap-2 mb-2">
     <div className="flex items-center gap-2">
     <AlertTriangle size={16} className="text-red-500 shrink-0" />

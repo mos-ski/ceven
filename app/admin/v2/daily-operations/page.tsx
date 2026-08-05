@@ -445,7 +445,7 @@ function DailyLogsView() {
  {dailyLogStatsCards.map((card) => (
   <div
   key={card.title}
-  className="flex flex-col gap-1 rounded-xl bg-[#F5EDD8]/30 p-4"
+  className="flex flex-col gap-1 rounded-xl border border-black/[0.07] bg-white p-4"
   >
   <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">{card.title}</p>
   <p className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
@@ -470,7 +470,7 @@ function DailyLogsView() {
  </div>
 
  {/* Table */}
- <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
+ <div className="overflow-hidden rounded-xl border border-black/[0.07] bg-white">
  {/* Toolbar */}
  <div className="flex flex-wrap items-center justify-between gap-4 px-4 py-4">
   <span className="font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">
@@ -667,7 +667,7 @@ function DailyOperationsContent() {
   className={`flex-1 rounded-lg px-4 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium ${
   view === "qr"
   ? "bg-[#3b2513] text-[#faf2e1]"
-  : "bg-[#F5EDD8]/30 text-[#6b7280]"
+  : "border border-black/[0.07] bg-white text-[#6b7280]"
   }`}
   >
   Reception QR Station
@@ -677,7 +677,7 @@ function DailyOperationsContent() {
   className={`flex-1 rounded-lg px-4 py-2.5 font-[family-name:var(--font-urbanist)] text-sm font-medium ${
   view === "logs"
   ? "bg-[#3b2513] text-[#faf2e1]"
-  : "bg-[#F5EDD8]/30 text-[#6b7280]"
+  : "border border-black/[0.07] bg-white text-[#6b7280]"
   }`}
   >
   Daily Logs

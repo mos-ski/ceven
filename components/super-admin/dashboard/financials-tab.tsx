@@ -25,7 +25,7 @@ export default function FinancialsTab() {
   </h2>
   <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
    {STATS.map((stat) => (
-   <div key={stat.label} className="rounded-xl bg-[#F5EDD8]/30 p-4">
+   <div key={stat.label} className="rounded-xl border border-black/[0.07] bg-white p-4">
     <div className="flex items-center gap-3">
     <div className={`flex size-10 items-center justify-center rounded-full ${stat.bg}`}>
      <stat.icon className={`size-5 ${stat.color}`} />
@@ -54,7 +54,7 @@ export default function FinancialsTab() {
   </div>
   </div>
 
-  <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
+  <div className="rounded-xl border border-black/[0.07] bg-white p-4">
   <p className="mb-4 font-[family-name:var(--font-urbanist)] text-sm font-bold text-heading">
    Revenue Growth Trend
   </p>

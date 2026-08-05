@@ -2,23 +2,23 @@
 
 import { useState } from "react";
 import {
- Baby,
- CheckCircle2,
- XCircle,
- UserCog,
- Wallet,
- AlertTriangle,
- ClipboardList,
- ListTodo,
- QrCode,
- Megaphone,
- Receipt,
- MessageSquare,
- Sparkles,
- BarChart3,
- ArrowUpRight,
- FileBarChart,
+  Baby,
+  CheckCircle2,
+  XCircle,
+  UserCog,
+  Wallet,
+  AlertTriangle,
+  ClipboardList,
+  ListTodo,
+  QrCode,
+  Megaphone,
+  Receipt,
+  MessageSquare,
+  BarChart3,
+  ArrowUpRight,
+  FileBarChart,
 } from "lucide-react";
+import { CEIcon } from "@/components/admin-v3/ce-icon";
 import { useRouter } from "next/navigation";
 import EnrollChildModal from "@/components/dashboard/enroll-child-modal";
 import RaiseIncidentModal from "@/components/dashboard/raise-incident-modal";
@@ -79,7 +79,7 @@ const QUICK_ACTIONS = [
  { id: "announce", icon: Megaphone, label: "Announce" },
  { id: "new-invoice", icon: Receipt, label: "New Invoice" },
  { id: "message-parent", icon: MessageSquare, label: "Message Parent" },
- { id: "ai-insights", icon: Sparkles, label: "Insights" },
+  { id: "ai-insights", icon: CEIcon, label: "Insights" },
  { id: "view-reports", icon: BarChart3, label: "View Reports" },
 ] as const;
 
@@ -162,7 +162,7 @@ export default function DashboardV3Page() {
    onClick={() => router.push("/admin/v3/ai-command-center")}
    className="flex items-center gap-1.5 rounded-xl bg-[#C47B2C] px-3.5 py-2 text-xs font-bold text-white transition-opacity hover:opacity-90"
    >
-   <Sparkles className="h-3.5 w-3.5" /> AI Summary
+            <CEIcon className="h-3.5 w-3.5" /> AI Summary
    </button>
   </div>
   </div>
@@ -171,7 +171,7 @@ export default function DashboardV3Page() {
   <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
   <div className="mb-3 flex items-center justify-between">
    <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-[#1E2D4A] to-[#2D1810] px-3 py-1.5 text-[10px] font-bold uppercase tracking-wide text-[#F5EDD8]">
-   <Sparkles className="h-3 w-3 text-[#C47B2C]" /> Daily Brief
+            <CEIcon className="h-3 w-3 text-[#C47B2C]" /> Daily Brief
    </span>
    <button
    onClick={() => router.push("/admin/v3/ai-command-center")}

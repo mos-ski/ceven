@@ -96,7 +96,7 @@ export default function ReportPage() {
     <button
     key={child.id}
     onClick={() => handleChildTap(child.id)}
-    className="flex items-center justify-between rounded-2xl bg-[#F5EDD8]/30 p-4 text-left "
+    className="flex items-center justify-between rounded-2xl border border-black/[0.07] bg-white p-4 text-left "
     >
     <div className="flex items-center gap-3">
      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cg-quick-action">

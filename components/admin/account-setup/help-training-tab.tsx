@@ -69,7 +69,7 @@ function FaqFormDialog({
       <select
        value={category}
        onChange={(e) => setCategory(e.target.value)}
-       className="h-11 rounded-xl border-none bg-[#F5EDD8]/30 px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+       className="h-11 rounded-xl border-none border border-black/[0.07] bg-white px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] outline-none focus:ring-2 focus:ring-[#c47b2c]"
       >
        {FAQ_CATEGORIES.map((cat) => (
         <option key={cat} value={cat}>{cat.trim()}</option>
@@ -83,7 +83,7 @@ function FaqFormDialog({
        value={question}
        onChange={(e) => setQuestion(e.target.value)}
        placeholder="e.g. What age groups do you accept?"
-       className="h-11 rounded-xl border-none bg-[#F5EDD8]/30 px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+       className="h-11 rounded-xl border-none border border-black/[0.07] bg-white px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] outline-none focus:ring-2 focus:ring-[#c47b2c]"
       />
      </div>
      <div className="flex flex-col gap-1.5">
@@ -93,7 +93,7 @@ function FaqFormDialog({
        value={answer}
        onChange={(e) => setAnswer(e.target.value)}
        placeholder="Type the answer here..."
-       className="resize-none rounded-xl border-none bg-[#F5EDD8]/30 px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] outline-none focus:ring-2 focus:ring-[#c47b2c]"
+       className="resize-none rounded-xl border-none border border-black/[0.07] bg-white px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#9ca3af] outline-none focus:ring-2 focus:ring-[#c47b2c]"
       />
      </div>
      <DialogFooter className="px-0 pt-4">
@@ -286,7 +286,7 @@ function FaqRow({
  const [expanded, setExpanded] = useState(false);
 
  return (
-  <div className="rounded-xl bg-[#F5EDD8]/30">
+  <div className="rounded-xl border border-black/[0.07] bg-white">
    <div className="flex items-center gap-2 px-3 py-2.5">
     <GripVertical size={14} className="shrink-0 text-[#d0d5dd]" />
     <div className="min-w-0 flex-1">

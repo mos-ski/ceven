@@ -100,7 +100,7 @@ export default function ParentGrowthPage() {
   )}
 
   {/* Growth chart (simplified ASCII-style visualization) */}
-  <div className="mb-4 rounded-2xl bg-[#F5EDD8]/30 p-4 ">
+  <div className="mb-4 rounded-2xl border border-black/[0.07] bg-white p-4 ">
   <p className="mb-3 text-xs font-semibold text-gray-500">Height Over Time</p>
   <div className="flex items-end gap-2 h-32">
   {growthEntries.map((entry, i) => {
@@ -123,7 +123,7 @@ export default function ParentGrowthPage() {
   </div>
 
   {/* Weight chart */}
-  <div className="mb-4 rounded-2xl bg-[#F5EDD8]/30 p-4 ">
+  <div className="mb-4 rounded-2xl border border-black/[0.07] bg-white p-4 ">
   <p className="mb-3 text-xs font-semibold text-gray-500">Weight Over Time</p>
   <div className="flex items-end gap-2 h-32">
   {growthEntries.map((entry) => {
@@ -149,7 +149,7 @@ export default function ParentGrowthPage() {
   <p className="mb-2 text-xs font-semibold text-gray-500">Measurement History</p>
   <div className="flex flex-col gap-2">
   {[...growthEntries].reverse().map((entry) => (
-  <div key={entry.id} className="rounded-2xl bg-[#F5EDD8]/30 p-4 ">
+  <div key={entry.id} className="rounded-2xl border border-black/[0.07] bg-white p-4 ">
    <div className="flex items-center justify-between mb-1">
    <p className="text-sm font-semibold text-gray-800">{entry.date}</p>
    <p className="text-[10px] text-gray-400">by {entry.recordedBy}</p>
@@ -184,7 +184,7 @@ export default function ParentGrowthPage() {
    {milestones.map((m) => (
    <div key={m.id} className="relative flex gap-4 pl-10">
    <div className="absolute left-2.5 top-1 h-3 w-3 rounded-full border-2 border-cg-brand bg-white" />
-   <div className="rounded-2xl bg-[#F5EDD8]/30 p-4 flex-1">
+   <div className="rounded-2xl border border-black/[0.07] bg-white p-4 flex-1">
    <div className="flex items-center justify-between mb-1">
     <p className="text-sm font-bold text-cg-brand">{m.title}</p>
     <p className="text-[10px] text-gray-400">{m.date}</p>

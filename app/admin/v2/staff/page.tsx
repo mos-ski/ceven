@@ -195,7 +195,7 @@ function RoleFormModal({
 
  return (
  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
- <div className="w-full max-w-full sm:max-w-[600px] mx-4 rounded-2xl bg-[#F5EDD8]/30 flex flex-col max-h-[90vh]">
+ <div className="w-full max-w-full sm:max-w-[600px] mx-4 rounded-2xl border border-black/[0.07] bg-white flex flex-col max-h-[90vh]">
  {/* Header */}
  <div className="flex items-start justify-between px-6 pt-6 pb-4 border-b border-[#eaecf0]">
   <div>
@@ -318,7 +318,7 @@ function DeleteRoleModal({
 }) {
  return (
  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
- <div className="w-full max-w-[400px] rounded-2xl bg-[#F5EDD8]/30 flex flex-col">
+ <div className="w-full max-w-[400px] rounded-2xl border border-black/[0.07] bg-white flex flex-col">
  {/* Body */}
  <div className="flex flex-col items-center text-center px-8 pt-8 pb-6 gap-4">
   <AlertTriangle className="text-[#ef4444]" size={48} />
@@ -508,7 +508,7 @@ function StaffPageInner() {
 
  {/* ── Tab: Staff Members ─────────────────────────────────────────────── */}
  {activeTab === "Staff Members" && (
-  <div className="rounded-xl bg-[#F5EDD8]/30 overflow-hidden">
+  <div className="rounded-xl border border-black/[0.07] bg-white overflow-hidden">
   {/* Toolbar */}
   <div className="flex flex-wrap items-center justify-between gap-2 p-4">
   <div className="flex items-center gap-2">
@@ -712,7 +712,7 @@ function StaffPageInner() {
   </div>
 
   {/* Table */}
-  <div className="rounded-xl bg-[#F5EDD8]/30 overflow-hidden">
+  <div className="rounded-xl border border-black/[0.07] bg-white overflow-hidden">
   <div className="hidden overflow-x-auto lg:block">
   <table className="w-full text-left">
   <thead>
@@ -857,7 +857,7 @@ function StaffPageInner() {
   </div>
 
   {/* Table */}
-  <div className="rounded-xl bg-[#F5EDD8]/30 overflow-hidden">
+  <div className="rounded-xl border border-black/[0.07] bg-white overflow-hidden">
   <div className="hidden overflow-x-auto lg:block">
   <table className="w-full text-left">
   <thead>

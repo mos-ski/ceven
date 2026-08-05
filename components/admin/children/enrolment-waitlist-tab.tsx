@@ -550,7 +550,7 @@ function OverviewStats() {
  const stats = ENROLMENT_WAITLIST_OVERVIEW;
  return (
   <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 lg:gap-4">
-   <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
+   <div className="rounded-xl border border-black/[0.07] bg-white p-4">
     <p className="font-[family-name:var(--font-urbanist)] text-sm text-muted-text">Active Enquiries</p>
     <p className="mt-2 font-[family-name:var(--font-merriweather)] text-[32px] font-bold text-stat-heading">
      {stats.activeEnquiries}
@@ -559,21 +559,21 @@ function OverviewStats() {
      ↗ {stats.activeEnquiriesTrend}
     </p>
    </div>
-   <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
+   <div className="rounded-xl border border-black/[0.07] bg-white p-4">
     <p className="font-[family-name:var(--font-urbanist)] text-sm text-muted-text">Waitlisted</p>
     <p className="mt-2 font-[family-name:var(--font-merriweather)] text-[32px] font-bold text-stat-heading">
      {String(stats.waitlisted).padStart(2, "0")}
     </p>
     <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{stats.waitlistedByRoom}</p>
    </div>
-   <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
+   <div className="rounded-xl border border-black/[0.07] bg-white p-4">
     <p className="font-[family-name:var(--font-urbanist)] text-sm text-muted-text">Total Enrolled</p>
     <p className="mt-2 font-[family-name:var(--font-merriweather)] text-[32px] font-bold text-stat-heading">
      {stats.totalEnrolled}
     </p>
     <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#009061]">↗ {stats.totalEnrolledTrend}</p>
    </div>
-   <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
+   <div className="rounded-xl border border-black/[0.07] bg-white p-4">
     <p className="font-[family-name:var(--font-urbanist)] text-sm text-muted-text">Leavers</p>
     <p className="mt-2 font-[family-name:var(--font-merriweather)] text-[32px] font-bold text-stat-heading">
      {String(stats.leavers).padStart(2, "0")}
@@ -623,7 +623,7 @@ function EnrolmentTab() {
 
  return (
   <div className="space-y-4">
-   <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
+   <div className="overflow-hidden rounded-xl border border-black/[0.07] bg-white">
     <div className="flex flex-wrap items-center justify-between gap-3 p-4">
      <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
       Enrolment List
@@ -701,7 +701,7 @@ function EnrolmentTab() {
     {/* Mobile cards */}
     <div className="flex flex-col gap-2 px-4 pb-4 lg:hidden">
      {ENROLMENT_RECORDS.map((r) => (
-      <div key={r.id} className="rounded-xl bg-[#F5EDD8]/30 p-3">
+      <div key={r.id} className="rounded-xl border border-black/[0.07] bg-white p-3">
        <div className="flex items-center justify-between">
         <span className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">{r.childName}</span>
         <Badge variant="outline" className={ENROLMENT_STATUS_CLASS[r.status]}>
@@ -776,7 +776,7 @@ function EnquiryCard({
     e.dataTransfer.effectAllowed = "move";
     onDragStart(enquiry.id);
    }}
-   className={`flex w-full cursor-grab flex-col gap-1 rounded-xl border-none bg-[#F5EDD8]/30 p-3 text-left hover:border-[#c47b2c] active:cursor-grabbing ${
+   className={`flex w-full cursor-grab flex-col gap-1 rounded-xl border-none border border-black/[0.07] bg-white p-3 text-left hover:border-[#c47b2c] active:cursor-grabbing ${
     dragging ? "opacity-40" : ""
    }`}
   >
@@ -826,7 +826,7 @@ function EnquiryPipelineTab() {
 
  return (
   <>
-   <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
+   <div className="overflow-hidden rounded-xl border border-black/[0.07] bg-white">
     <div className="p-4">
      <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
       Enquiry Pipeline <span className="font-normal text-[#9ca3af]">, Kanban View</span>
@@ -1134,7 +1134,7 @@ function WaitlistTab() {
  });
 
  return (
-  <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
+  <div className="overflow-hidden rounded-xl border border-black/[0.07] bg-white">
    <div className="flex flex-wrap items-center justify-between gap-3 p-4">
     <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
      Waitlist <span className="font-normal text-[#9ca3af]">, By Room</span>
@@ -1188,7 +1188,7 @@ function WaitlistTab() {
      <div
       key={entry.id}
       onClick={() => setViewing(entry)}
-      className="cursor-pointer rounded-xl bg-[#F5EDD8]/30 p-3"
+      className="cursor-pointer rounded-xl border border-black/[0.07] bg-white p-3"
      >
       <div className="flex items-center justify-between">
        <span className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">{entry.childName}</span>
@@ -1285,7 +1285,7 @@ function TrialSessionsTab() {
 
  return (
   <>
-   <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
+   <div className="overflow-hidden rounded-xl border border-black/[0.07] bg-white">
     <div className="flex flex-wrap items-center justify-between gap-3 p-4">
      <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
       Scheduled Trial Sessions
@@ -1352,7 +1352,7 @@ function TrialSessionsTab() {
       <div
        key={session.id}
        onClick={() => setViewing(session)}
-       className="cursor-pointer rounded-xl bg-[#F5EDD8]/30 p-3"
+       className="cursor-pointer rounded-xl border border-black/[0.07] bg-white p-3"
       >
        <div className="flex items-center justify-between">
         <span className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">{session.childName}</span>
@@ -1459,7 +1459,7 @@ function LeaversTab() {
  });
 
  return (
-  <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
+  <div className="overflow-hidden rounded-xl border border-black/[0.07] bg-white">
    <div className="flex flex-wrap items-center justify-between gap-3 p-4">
     <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
      Leavers <span className="font-normal text-[#9ca3af]">, This Academic Year</span>
@@ -1518,7 +1518,7 @@ function LeaversTab() {
      <div
       key={leaver.id}
       onClick={() => setViewing(leaver)}
-      className="cursor-pointer rounded-xl bg-[#F5EDD8]/30 p-3"
+      className="cursor-pointer rounded-xl border border-black/[0.07] bg-white p-3"
      >
       <span className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">{leaver.childName}</span>
       <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">

@@ -523,7 +523,7 @@ export default function DashboardPage() {
   <button
    key={label}
    onClick={() => handleQuickAction(id)}
-   className="flex shrink-0 flex-col items-center gap-1.5 rounded-xl bg-[#F5EDD8]/30 px-4 py-3 hover:"
+   className="flex shrink-0 flex-col items-center gap-1.5 rounded-xl border border-black/[0.07] bg-white px-4 py-3 hover:"
   >
    <Icon className="h-5 w-5" style={{ color }} />
    <span className="font-[family-name:var(--font-urbanist)] text-xs font-medium text-[#2d1810]">
@@ -534,7 +534,7 @@ export default function DashboardPage() {
   <button
   onClick={() => setCustomizeOpen(true)}
   aria-label="Customize Quick Actions"
-  className="flex shrink-0 flex-col items-center gap-1.5 rounded-xl bg-[#F5EDD8]/30 px-4 py-3 text-[#3b2513] hover:"
+  className="flex shrink-0 flex-col items-center gap-1.5 rounded-xl border border-black/[0.07] bg-white px-4 py-3 text-[#3b2513] hover:"
   >
   <Settings2 className="h-5 w-5" />
   <span className="font-[family-name:var(--font-urbanist)] text-xs font-medium">Customize</span>
@@ -622,7 +622,7 @@ export default function DashboardPage() {
 
   {/* Upcoming Events (default) OR Room Occupancy (AI panel open) */}
   {!aiPanelOpen ? (
-  <div className="flex flex-col gap-4 rounded-xl border-none bg-[#F5EDD8]/30 p-4">
+  <div className="flex flex-col gap-4 rounded-xl border-none border border-black/[0.07] bg-white p-4">
   <div className="flex items-center justify-between">
    <h3 className="font-[family-name:var(--font-urbanist)] text-base font-medium text-black">
    Upcoming Events
@@ -650,7 +650,7 @@ export default function DashboardPage() {
   </div>
   </div>
   ) : (
-  <div className="flex flex-col gap-4 rounded-xl border-none bg-[#F5EDD8]/30 p-4">
+  <div className="flex flex-col gap-4 rounded-xl border-none border border-black/[0.07] bg-white p-4">
   <div className="flex items-center justify-between">
    <h3 className="font-[family-name:var(--font-urbanist)] text-base font-medium text-black">
    Room Occupancy
@@ -686,7 +686,7 @@ export default function DashboardPage() {
 
   {/* Activity Feed, coloured dots by type */}
   {!aiPanelOpen && (
-  <div className="flex flex-col gap-4 rounded-xl bg-[#F5EDD8]/30 p-4">
+  <div className="flex flex-col gap-4 rounded-xl border border-black/[0.07] bg-white p-4">
   <div className="flex items-center justify-between">
    <h3 className="font-[family-name:var(--font-urbanist)] text-base font-medium text-black">
    Activity Feed

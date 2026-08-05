@@ -330,7 +330,7 @@ export function HealthIncidentsView() {
     {statsCards.map((card) => (
      <div
       key={card.title}
-      className="flex flex-col gap-1 rounded-xl bg-[#F5EDD8]/30 p-4"
+      className="flex flex-col gap-1 rounded-xl border border-black/[0.07] bg-white p-4"
      >
       <p className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">{card.title}</p>
       <p className="font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
@@ -351,7 +351,7 @@ export function HealthIncidentsView() {
     <button className="ml-auto text-[#9ca3af] hover:text-[#6b7280]">✕</button>
    </div>
 
-   <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
+   <div className="overflow-hidden rounded-xl border border-black/[0.07] bg-white">
     <div className="flex flex-wrap items-center justify-between gap-4 p-4">
      <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
       Incident Log

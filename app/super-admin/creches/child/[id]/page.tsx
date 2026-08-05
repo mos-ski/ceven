@@ -27,7 +27,7 @@ export default function ChildProfilePage() {
 
   <div className="grid grid-cols-1 gap-4 lg:grid-cols-[280px_1fr]">
   <div className="flex flex-col gap-4">
-   <div className="flex flex-col items-center gap-3 rounded-xl bg-[#F5EDD8]/30 p-6">
+   <div className="flex flex-col items-center gap-3 rounded-xl border border-black/[0.07] bg-white p-6">
    <div className="flex size-20 items-center justify-center overflow-hidden rounded-full bg-[#edd9c0]">
     {/* eslint-disable-next-line @next/next/no-img-element */}
     <img src={profile.photo} alt={childName} className="h-full w-full object-cover" />
@@ -37,7 +37,7 @@ export default function ChildProfilePage() {
    </p>
    </div>
 
-   <div className="flex flex-col gap-1 rounded-xl bg-[#F5EDD8]/30 p-2">
+   <div className="flex flex-col gap-1 rounded-xl border border-black/[0.07] bg-white p-2">
    {TABS.map((tab) => (
     <button
     key={tab}
@@ -55,7 +55,7 @@ export default function ChildProfilePage() {
    </div>
   </div>
 
-  <div className="rounded-xl bg-[#F5EDD8]/30 p-6">
+  <div className="rounded-xl border border-black/[0.07] bg-white p-6">
    <h2 className="mb-4 font-[family-name:var(--font-merriweather)] text-lg font-bold text-heading">
    {activeTab}
    </h2>
@@ -118,7 +118,7 @@ export default function ChildProfilePage() {
 
    {activeTab === "Activity Log" && (
    <div className="flex flex-col gap-4">
-    <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
+    <div className="rounded-xl border border-black/[0.07] bg-white p-4">
     <div className="flex items-center gap-2">
      <div className="flex size-8 items-center justify-center rounded-full bg-purple-50">
      <span className="font-[family-name:var(--font-merriweather)] text-sm font-bold text-purple-600">

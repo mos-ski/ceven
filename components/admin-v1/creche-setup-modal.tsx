@@ -245,7 +245,7 @@ export function CrecheSetupModal({ open, onClose, onComplete }: CrecheSetupModal
         <button
          type="button"
          onClick={() => setFeatureDropdownOpen(!featureDropdownOpen)}
-         className="flex h-11 w-full items-center justify-between rounded-lg bg-[#F5EDD8]/30 px-3 text-sm text-gray-700 hover:border-gray-300"
+         className="flex h-11 w-full items-center justify-between rounded-lg border border-black/[0.07] bg-white px-3 text-sm text-gray-700 hover:border-gray-300"
         >
          <span className={form.features.length ? "text-gray-700" : "text-gray-400"}>
           {form.features.length
@@ -257,7 +257,7 @@ export function CrecheSetupModal({ open, onClose, onComplete }: CrecheSetupModal
          </svg>
         </button>
         {featureDropdownOpen && (
-         <div className="absolute z-20 mt-1 max-h-60 w-full overflow-y-auto rounded-lg bg-[#F5EDD8]/30 ">
+         <div className="absolute z-20 mt-1 max-h-60 w-full overflow-y-auto rounded-lg border border-black/[0.07] bg-white ">
           {CRECHE_FEATURES.map((feature) => (
            <label
             key={feature}
@@ -285,7 +285,7 @@ export function CrecheSetupModal({ open, onClose, onComplete }: CrecheSetupModal
            updateForm("state", e.target.value);
            updateForm("lga", "");
           }}
-          className="flex h-11 w-full items-center rounded-lg bg-[#F5EDD8]/30 px-3 text-sm text-gray-700 hover:border-gray-300"
+          className="flex h-11 w-full items-center rounded-lg border border-black/[0.07] bg-white px-3 text-sm text-gray-700 hover:border-gray-300"
          >
           <option value="">Select state</option>
           {Object.keys(NIGERIAN_STATES).map((state) => (
@@ -301,7 +301,7 @@ export function CrecheSetupModal({ open, onClose, onComplete }: CrecheSetupModal
           value={form.lga}
           onChange={(e) => updateForm("lga", e.target.value)}
           disabled={!form.state}
-          className="flex h-11 w-full items-center rounded-lg bg-[#F5EDD8]/30 px-3 text-sm text-gray-700 hover:border-gray-300 disabled:opacity-50"
+          className="flex h-11 w-full items-center rounded-lg border border-black/[0.07] bg-white px-3 text-sm text-gray-700 hover:border-gray-300 disabled:opacity-50"
          >
           <option value="">Select LGA</option>
           {form.state &&

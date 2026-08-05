@@ -33,7 +33,7 @@ function ActionButton() {
   <div className="relative">
    <button onClick={(e) => { e.stopPropagation(); setOpen(!open); }} className="text-gray-400 hover:text-gray-600">⋮</button>
    {open && (
-    <div className="absolute right-0 top-8 z-10 w-48 rounded-lg bg-[#F5EDD8]/30 py-1 ">
+    <div className="absolute right-0 top-8 z-10 w-48 rounded-lg border border-black/[0.07] bg-white py-1 ">
      {["View Details", "Log Picture Activity", "Log Report", "Reassign Caregiver", "Emergency"].map((item) => (
       <button
        key={item}

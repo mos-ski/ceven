@@ -285,7 +285,7 @@ function ReportsPageContent() {
   </div>
 
   {/* Photo carousel */}
-  <div className="mb-4 rounded-2xl bg-[#F5EDD8]/30 p-4 ">
+  <div className="mb-4 rounded-2xl border border-black/[0.07] bg-white p-4 ">
   <p className="mb-3 text-sm font-semibold text-gray-800">Today&apos;s Moments</p>
   <MomentPhoto tag={tagForPhoto(report)} src={report.photo} caption={report.photoCaption} />
 
@@ -302,7 +302,7 @@ function ReportsPageContent() {
   </div>
 
   {/* Comment */}
-  <div className="rounded-2xl bg-[#F5EDD8]/30 p-4 ">
+  <div className="rounded-2xl border border-black/[0.07] bg-white p-4 ">
   <p className="mb-3 text-sm font-semibold text-gray-800">Leave a comment</p>
   <div className="flex items-end gap-2 rounded-xl border border-gray-100 bg-gray-50 px-3 py-2.5">
   <textarea

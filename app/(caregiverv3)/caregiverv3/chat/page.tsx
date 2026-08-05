@@ -76,7 +76,7 @@ export default function CaregiverV3ChatPage() {
   </div>
 
   {/* Input */}
-  <div className="shrink-0 bg-[#F5EDD8]/30 px-4 py-2.5">
+  <div className="shrink-0 border border-black/[0.07] bg-white px-4 py-2.5">
   <div className="flex items-center gap-2">
    <input
    type="text"

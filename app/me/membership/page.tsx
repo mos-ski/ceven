@@ -87,7 +87,7 @@ export default function MembershipPage() {
 
    <div className="flex flex-col gap-4">
     {/* Free plan card */}
-    <div className="overflow-hidden rounded-2xl border-none bg-[#F5EDD8]/30 shadow-[0px_4px_6px_-2px_rgba(16,24,40,0.03),0px_12px_16px_-4px_rgba(16,24,40,0.08)]">
+    <div className="overflow-hidden rounded-2xl border-none border border-black/[0.07] bg-white shadow-[0px_4px_6px_-2px_rgba(16,24,40,0.03),0px_12px_16px_-4px_rgba(16,24,40,0.08)]">
      <div className="flex items-center gap-2 bg-[#5b391e] px-4 py-3">
       <div className="flex h-6 w-6 items-center justify-center rounded-full border-[3px] border-[#e0bfa0] bg-[#edd9c0]">
        <Zap size={12} className="text-cg-brand" />
@@ -107,7 +107,7 @@ export default function MembershipPage() {
     </div>
 
     {/* Premium plan card */}
-    <div className="overflow-hidden rounded-2xl border-none bg-[#F5EDD8]/30 shadow-[0px_4px_6px_-2px_rgba(16,24,40,0.03),0px_12px_16px_-4px_rgba(16,24,40,0.08)]">
+    <div className="overflow-hidden rounded-2xl border-none border border-black/[0.07] bg-white shadow-[0px_4px_6px_-2px_rgba(16,24,40,0.03),0px_12px_16px_-4px_rgba(16,24,40,0.08)]">
      <div className="flex items-center gap-2 bg-[#faf2e1] px-4 py-3">
       <div className="flex h-5 w-5 items-center justify-center rounded-full border-[3px] border-[#e0bfa0] bg-[#edd9c0]">
        <Layers size={10} className="text-cg-brand" />

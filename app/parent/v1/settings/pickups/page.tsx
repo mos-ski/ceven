@@ -145,7 +145,7 @@ export default function AuthorizedPickupsPage() {
 
  <div className="space-y-3">
   {pickups.map(person => (
-  <div key={person.id} className="flex items-center gap-3 rounded-2xl bg-[#F5EDD8]/30 p-4 ">
+  <div key={person.id} className="flex items-center gap-3 rounded-2xl border border-black/[0.07] bg-white p-4 ">
   <div className="flex h-12 w-12 items-center justify-center rounded-full text-sm font-bold text-white" style={{ backgroundColor: person.color }}>
   {person.initials}
   </div>
@@ -182,7 +182,7 @@ export default function AuthorizedPickupsPage() {
  </button>
 
  {/* Info */}
- <div className="mt-4 rounded-2xl bg-[#F5EDD8]/30 p-4 ">
+ <div className="mt-4 rounded-2xl border border-black/[0.07] bg-white p-4 ">
   <div className="flex items-center gap-2 mb-2">
   <ShieldCheck size={16} className="text-cg-brand" />
   <p className="text-sm font-semibold text-gray-800">How verification works</p>

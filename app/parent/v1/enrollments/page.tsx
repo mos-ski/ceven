@@ -111,7 +111,7 @@ function EnrollmentCard({
  return (
  <div
  onClick={onOpen}
- className="cursor-pointer rounded-2xl bg-[#F5EDD8]/30 p-4 active:scale-[0.99] transition-transform"
+ className="cursor-pointer rounded-2xl border border-black/[0.07] bg-white p-4 active:scale-[0.99] transition-transform"
  >
  <div className="mb-2 flex items-start gap-3">
  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-cg-quick-action text-sm font-bold text-cg-brand">

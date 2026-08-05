@@ -43,7 +43,7 @@ function GreetingHeader() {
 
  return (
  <div className="mb-5 flex items-center justify-between">
-  <div className="flex items-center gap-2 rounded-full bg-[#F5EDD8]/30 px-3 py-1.5">
+  <div className="flex items-center gap-2 rounded-full border border-black/[0.07] bg-white px-3 py-1.5">
   <div className="flex -space-x-1.5">
    {CHILDREN.map((child) => (
    <Avatar
@@ -63,7 +63,7 @@ function GreetingHeader() {
   {CHILDREN.map((child) => (
    <div
    key={child.id}
-   className="flex items-center gap-1 rounded-full bg-[#F5EDD8]/30 px-2 py-1"
+   className="flex items-center gap-1 rounded-full border border-black/[0.07] bg-white px-2 py-1"
    >
    <Avatar
     initials={child.avatarInitials}
@@ -88,7 +88,7 @@ function MenuChecklist() {
  };
 
  return (
- <div className="rounded-2xl bg-[#F5EDD8]/30 p-4">
+ <div className="rounded-2xl border border-black/[0.07] bg-white p-4">
   <h3 className="text-sm font-bold text-gray-800 mb-3">🍽️ Today&apos;s Menu</h3>
   <div className="space-y-2">
   {menu.map((meal) => (
@@ -101,7 +101,7 @@ function MenuChecklist() {
     className={`flex h-6 w-6 items-center justify-center rounded-lg border-2 transition-colors ${
     meal.ticked
      ? "border-cg-brand bg-cg-brand"
-     : "bg-[#F5EDD8]/30"
+     : "border border-black/[0.07] bg-white"
     }`}
    >
     {meal.ticked && (
@@ -146,7 +146,7 @@ function MedicineReminders() {
  };
 
  return (
- <div className="rounded-2xl bg-[#F5EDD8]/30 p-4">
+ <div className="rounded-2xl border border-black/[0.07] bg-white p-4">
   <h3 className="text-sm font-bold text-gray-800 mb-3">💊 Medicine</h3>
   <div className="space-y-2">
   {reminders.map((med) => {
@@ -175,7 +175,7 @@ function MedicineReminders() {
      </button>
      <button
      onClick={() => updateStatus(med.id, "skipped")}
-     className="flex-1 rounded-lg bg-[#F5EDD8]/30 py-1.5 text-[10px] font-semibold text-gray-500"
+     className="flex-1 rounded-lg border border-black/[0.07] bg-white py-1.5 text-[10px] font-semibold text-gray-500"
      >
      Skip
      </button>
@@ -218,7 +218,7 @@ function EventPrepBlock() {
  };
 
  return (
- <div className="rounded-2xl bg-[#F5EDD8]/30 p-4">
+ <div className="rounded-2xl border border-black/[0.07] bg-white p-4">
   <h3 className="text-sm font-bold text-gray-800 mb-3">🎒 Event Prep</h3>
   <div className="space-y-3">
   {events.map((event) => {
@@ -246,7 +246,7 @@ function EventPrepBlock() {
       className={`flex h-4 w-4 items-center justify-center rounded border-2 transition-colors ${
       item.packed
        ? "border-cg-brand bg-cg-brand"
-       : "bg-[#F5EDD8]/30"
+       : "border border-black/[0.07] bg-white"
       }`}
      >
       {item.packed && (

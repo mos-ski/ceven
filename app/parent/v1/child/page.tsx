@@ -256,7 +256,7 @@ export default function ChildPage() {
  </div>
 
  {pendingInvites.length > 0 && (
-  <div className="mt-4 rounded-2xl bg-[#F5EDD8]/30 p-4 ">
+  <div className="mt-4 rounded-2xl border border-black/[0.07] bg-white p-4 ">
   <p className="mb-3 text-sm font-bold text-cg-brand">Pending invites</p>
   <div className="space-y-2">
   {pendingInvites.map((invite) => (

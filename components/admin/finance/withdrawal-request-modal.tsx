@@ -102,7 +102,7 @@ export default function WithdrawalRequestModal({ open, onOpenChange }: Props) {
          value={amount}
          onChange={(e) => setAmount(e.target.value.replace(/\D/g, ""))}
          placeholder="Enter amount"
-         className="h-[52px] w-full rounded-xl border-none bg-[#F5EDD8]/30 px-4 font-[family-name:var(--font-urbanist)] text-lg text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+         className="h-[52px] w-full rounded-xl border-none border border-black/[0.07] bg-white px-4 font-[family-name:var(--font-urbanist)] text-lg text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
         />
         {belowMinimum && (
          <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#cd3030]">
@@ -173,7 +173,7 @@ export default function WithdrawalRequestModal({ open, onOpenChange }: Props) {
          value={note}
          onChange={(e) => setNote(e.target.value)}
          placeholder="e.g. Staff salary, Mrs. Sarah"
-         className="h-[52px] w-full rounded-xl border-none bg-[#F5EDD8]/30 px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+         className="h-[52px] w-full rounded-xl border-none border border-black/[0.07] bg-white px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
         />
        </div>
       </div>
@@ -299,7 +299,7 @@ export default function WithdrawalRequestModal({ open, onOpenChange }: Props) {
         value={otp}
         onChange={(e) => setOtp(e.target.value.replace(/\D/g, "").slice(0, 6))}
         placeholder="000000"
-        className="h-[52px] w-48 rounded-xl border-none bg-[#F5EDD8]/30 px-4 text-center font-[family-name:var(--font-urbanist)] text-lg tracking-[0.5em] text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+        className="h-[52px] w-48 rounded-xl border-none border border-black/[0.07] bg-white px-4 text-center font-[family-name:var(--font-urbanist)] text-lg tracking-[0.5em] text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
        />
        <button
         onClick={handleVerifyOtp}

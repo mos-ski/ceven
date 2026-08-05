@@ -54,7 +54,7 @@ export function LeaderboardTab() {
     {topThree.map((entry) => (
      <div
       key={entry.rank}
-      className="rounded-xl bg-[#F5EDD8]/30 p-4"
+      className="rounded-xl border border-black/[0.07] bg-white p-4"
      >
       <div className="flex items-center justify-between">
        <RankBadge rank={entry.rank} />
@@ -91,7 +91,7 @@ export function LeaderboardTab() {
    </div>
 
    {/* Table */}
-   <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
+   <div className="overflow-hidden rounded-xl border border-black/[0.07] bg-white">
     <div className="hidden overflow-x-auto lg:block">
      <table className="w-full text-left">
       <thead>

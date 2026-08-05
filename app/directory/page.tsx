@@ -470,7 +470,7 @@ function SummaryBlock({ summary }: { summary: Summary }) {
   { label: "Improved", text: summary.improved },
  ];
  return (
-  <div className="mt-4 flex flex-col gap-3 rounded-2xl bg-[#F5EDD8]/30 p-5">
+  <div className="mt-4 flex flex-col gap-3 rounded-2xl border border-black/[0.07] bg-white p-5">
    {rows.map((row) => (
     <p key={row.label} className="text-sm leading-relaxed">
      <span className="font-bold text-brand-accent">{row.label}: </span>
@@ -497,7 +497,7 @@ export default function DirectoryPage() {
      Versions that are live on the app store are not listed here.
     </p>
 
-    <div className="mt-6 flex items-center gap-3 rounded-xl bg-[#F5EDD8]/30 px-4 py-3 text-sm">
+    <div className="mt-6 flex items-center gap-3 rounded-xl border border-black/[0.07] bg-white px-4 py-3 text-sm">
      <span className="text-muted-text">Last updated:</span>
      <span className="font-bold text-heading">5 Aug 2026</span>
      <span className="text-muted-text">,</span>
@@ -582,7 +582,7 @@ export default function DirectoryPage() {
        { app: "Independent Caregiver", version: "v2", status: "In progress", desc: "First build for independent caregivers", href: "#" },
        { app: "Independent Tutor", version: "v2", status: "In progress", desc: "First build for independent tutors", href: "#" },
       ].map((row, i) => (
-       <div key={i} className="rounded-2xl bg-[#F5EDD8]/30 p-4">
+       <div key={i} className="rounded-2xl border border-black/[0.07] bg-white p-4">
         <div className="flex items-center justify-between">
          <div className="flex items-center gap-2">
           <span className="font-semibold text-heading">{row.app}</span>

@@ -144,7 +144,7 @@ export default function ChildrenV3Page() {
   <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
   <StatCard Icon={Baby} label="Total Enrolled" value={String(CHILDREN_STATS.totalEnrolled).padStart(2, "0")} sub="+12.5% vs last month" />
   <StatCard Icon={CheckCircle2} label="Active" value={String(CHILDREN_STATS.active).padStart(2, "0")} sub="88% attendance today" />
-   <StatCard Icon={CEIcon} label="New This Month" value={String(CHILDREN_STATS.newThisMonth).padStart(2, "0")} sub="+12.5% vs last month" />
+   <StatCard Icon={UserPlus} label="New This Month" value={String(CHILDREN_STATS.newThisMonth).padStart(2, "0")} sub="+12.5% vs last month" />
   <StatCard Icon={GraduationCap} label="Graduating Soon" value={String(GRADUATING_SOON).padStart(2, "0")} sub="Ageing out of current room" />
   </div>
 

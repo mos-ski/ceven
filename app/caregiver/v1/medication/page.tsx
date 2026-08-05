@@ -89,7 +89,7 @@ export default function MedicationPage() {
 
   <div className="flex flex-col gap-3">
    {doses.map((dose) => (
-   <div key={dose.id} className="rounded-2xl bg-[#F5EDD8]/30 p-4">
+   <div key={dose.id} className="rounded-2xl border border-black/[0.07] bg-white p-4">
     <div className="mb-2 flex items-start justify-between gap-2">
     <div className="flex items-center gap-2.5">
      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-cg-quick-action text-cg-brand">

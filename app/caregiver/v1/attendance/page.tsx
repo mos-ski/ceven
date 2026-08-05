@@ -155,7 +155,7 @@ export default function AttendancePage() {
   </p>
 
   {/* Verify pickup code section */}
-  <div className="mt-5 rounded-2xl bg-[#F5EDD8]/30 p-4 ">
+  <div className="mt-5 rounded-2xl border border-black/[0.07] bg-white p-4 ">
    <div className="mb-2 flex items-center gap-2">
    <p className="text-sm font-semibold text-cg-brand">Verify a pickup code</p>
    <NewBadge />

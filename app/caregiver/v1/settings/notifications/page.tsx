@@ -49,7 +49,7 @@ export default function NotificationsSettingsPage() {
   <div className="flex-1 overflow-y-auto px-4 pb-6">
   <p className="mb-4 text-sm text-gray-500">Choose which notifications you receive.</p>
 
-  <div className="rounded-2xl bg-[#F5EDD8]/30">
+  <div className="rounded-2xl border border-black/[0.07] bg-white">
    {NOTIFICATION_ITEMS.map(({ key, label, description }, i) => (
    <div
     key={key}

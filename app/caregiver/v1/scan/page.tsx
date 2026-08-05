@@ -36,7 +36,7 @@ export default function CaregiverScanPage() {
   />
 
   {/* Verify pickup code section */}
-  <div className="mt-6 rounded-2xl bg-[#F5EDD8]/30 p-4 ">
+  <div className="mt-6 rounded-2xl border border-black/[0.07] bg-white p-4 ">
    <p className="mb-2 text-sm font-semibold text-cg-brand">Verify a pickup code</p>
    <p className="mb-3 text-xs text-gray-400">
    Enter a parent&apos;s one-time pickup code to verify and log a pickup.

@@ -52,7 +52,7 @@ export function LegalPage({ eyebrow, title, updated, intro, sections }: LegalPag
    {sections.map((section) => (
     <section
     key={section.title}
-    className="rounded-[8px] bg-[#F5EDD8]/30 px-5 py-6 sm:px-8 sm:py-7"
+    className="rounded-[8px] border border-black/[0.07] bg-white px-5 py-6 sm:px-8 sm:py-7"
     >
     <h2 className="mb-4 font-[family-name:var(--font-merriweather-import)] text-2xl font-bold leading-tight text-[#2D1810]">
      {section.title}

@@ -47,7 +47,7 @@ export default function ParentIncidentsPage() {
  ) : (
   <div className="flex flex-col gap-3">
   {mockChildIncidents.map((inc) => (
-  <div key={inc.id} className="rounded-2xl bg-[#F5EDD8]/30 p-4 ">
+  <div key={inc.id} className="rounded-2xl border border-black/[0.07] bg-white p-4 ">
   <div className="mb-2 flex items-start justify-between gap-2">
    <div className="flex items-center gap-2">
    <AlertTriangle size={16} className="shrink-0 text-red-500" />

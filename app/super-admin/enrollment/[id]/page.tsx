@@ -60,7 +60,7 @@ export default function EnrollmentDetailPage() {
 
   <div className="grid grid-cols-1 gap-4 lg:grid-cols-[280px_1fr]">
   <div className="flex flex-col gap-4">
-   <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
+   <div className="rounded-xl border border-black/[0.07] bg-white p-4">
    <div className="mb-3 flex items-center justify-center">
     <div className="flex h-40 w-full items-center justify-center rounded-lg bg-gradient-to-br from-brand-accent/10 to-brand-dark/10">
     <span className="font-[family-name:var(--font-urbanist)] text-sm text-muted-text">Slide 1 of 1</span>
@@ -68,7 +68,7 @@ export default function EnrollmentDetailPage() {
    </div>
    </div>
 
-   <div className="flex flex-col gap-1 rounded-xl bg-[#F5EDD8]/30 p-2">
+   <div className="flex flex-col gap-1 rounded-xl border border-black/[0.07] bg-white p-2">
    {TABS.map((tab) => (
     <button
     key={tab}
@@ -86,7 +86,7 @@ export default function EnrollmentDetailPage() {
    </div>
   </div>
 
-  <div className="rounded-xl bg-[#F5EDD8]/30 p-6">
+  <div className="rounded-xl border border-black/[0.07] bg-white p-6">
    <h2 className="mb-4 font-[family-name:var(--font-merriweather)] text-lg font-bold text-heading">
    {activeTab}
    </h2>

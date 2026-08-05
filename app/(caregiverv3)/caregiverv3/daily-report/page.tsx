@@ -42,7 +42,7 @@ function ChildSection({
  const mood = DAILY_REPORT.mood[summary.childId];
 
  return (
- <div className="rounded-2xl bg-[#F5EDD8]/30 p-4">
+ <div className="rounded-2xl border border-black/[0.07] bg-white p-4">
   <div className="flex items-center gap-2 mb-3">
   <Avatar initials={child.avatarInitials} color={child.avatarColor} size={28} />
   <div className="flex-1">
@@ -121,7 +121,7 @@ function ChildSection({
 
 function SpendingSection() {
  return (
- <div className="rounded-2xl bg-[#F5EDD8]/30 p-4">
+ <div className="rounded-2xl border border-black/[0.07] bg-white p-4">
   <h3 className="text-sm font-bold text-gray-800 mb-3">💰 Spending</h3>
   <div className="flex items-center gap-3 mb-3">
   <div className="flex-1 rounded-xl bg-emerald-50 p-2.5 text-center">
@@ -153,7 +153,7 @@ function SpendingSection() {
 
 function LowStockSection() {
  return (
- <div className="rounded-2xl bg-[#F5EDD8]/30 p-4">
+ <div className="rounded-2xl border border-black/[0.07] bg-white p-4">
   <h3 className="text-sm font-bold text-gray-800 mb-3">📦 Running Low</h3>
   <div className="flex flex-wrap gap-1.5">
   {LOW_STOCK_ITEMS.map((item) => (
@@ -176,7 +176,7 @@ function MoodAndNote() {
  const moods = ["😊", "😌", "😫", "😴"];
 
  return (
- <div className="rounded-2xl bg-[#F5EDD8]/30 p-4">
+ <div className="rounded-2xl border border-black/[0.07] bg-white p-4">
   <h3 className="text-sm font-bold text-gray-800 mb-3">Mood & Note</h3>
   <div className="space-y-3 mb-3">
   {CHILDREN.map((child) => (

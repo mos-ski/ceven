@@ -331,7 +331,7 @@ export default function VibrantLibraryPreviewPage() {
     <p className="text-sm font-bold text-[#2D1810]">Care status</p>
     <div className="mt-3 grid gap-3 sm:grid-cols-3">
     {["Fed", "Napped", "Picked up"].map((label, index) => (
-     <div key={label} className="flex items-center gap-3 rounded-lg bg-[#F5EDD8]/30 p-3">
+     <div key={label} className="flex items-center gap-3 rounded-lg border border-black/[0.07] bg-white p-3">
      <span className={`flex h-5 w-5 items-center justify-center rounded border-2 ${index === 0 ? "border-[#009061] bg-[#009061]" : "border-[#9CA3AF]"}`}>
       {index === 0 ? <CheckCircle2 className="h-3.5 w-3.5 text-white" /> : null}
      </span>
@@ -339,7 +339,7 @@ export default function VibrantLibraryPreviewPage() {
      </div>
     ))}
     </div>
-    <div className="mt-5 inline-flex rounded-lg bg-[#F5EDD8]/30 p-1">
+    <div className="mt-5 inline-flex rounded-lg border border-black/[0.07] bg-white p-1">
     {["Parent", "Caregiver", "Admin"].map((item, index) => (
      <span key={item} className={`rounded-md px-4 py-2 text-sm font-bold ${index === 0 ? "bg-[#3B2513] text-[#FFF9F0]" : "text-[#3B2513]"}`}>
      {item}
@@ -367,7 +367,7 @@ export default function VibrantLibraryPreviewPage() {
      ["12:10", "Lunch completed", "#FF9A01"],
      ["14:30", "Story circle", "#7C3AED"],
      ].map(([time, label, color]) => (
-     <div key={label} className="flex gap-3 rounded-lg bg-[#F5EDD8]/30 p-3">
+     <div key={label} className="flex gap-3 rounded-lg border border-black/[0.07] bg-white p-3">
       <span className="h-10 w-1 rounded-full" style={{ backgroundColor: color }} />
       <div>
       <p className="text-xs font-bold text-[#6B7280]">{time}</p>

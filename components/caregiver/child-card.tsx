@@ -11,7 +11,7 @@ export function ChildCard({ child }: Props) {
  const [expanded, setExpanded] = useState(false);
 
  return (
-  <div className="overflow-hidden rounded-2xl bg-[#F5EDD8]/30">
+  <div className="overflow-hidden rounded-2xl border border-black/[0.07] bg-white">
    {/* Header row: name links to profile, chevron toggles expand */}
    <div className="flex w-full items-center justify-between px-4 py-3.5">
     <Link

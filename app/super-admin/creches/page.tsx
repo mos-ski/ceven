@@ -36,7 +36,7 @@ export default function CrechesPage() {
   Creches
   </h1>
 
-  <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
+  <div className="rounded-xl border border-black/[0.07] bg-white p-4">
   <div className="mb-3 flex items-center gap-2">
    <div className="flex size-8 items-center justify-center rounded-full bg-emerald-50">
    <span className="font-[family-name:var(--font-merriweather)] text-sm font-bold text-emerald-600">
@@ -47,7 +47,7 @@ export default function CrechesPage() {
   </div>
   </div>
 
-  <div className="rounded-xl bg-[#F5EDD8]/30">
+  <div className="rounded-xl border border-black/[0.07] bg-white">
   <div className="flex flex-wrap items-center gap-3 border-b border-card-border p-4">
    <div className="relative flex-1">
    <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-text" />
@@ -128,7 +128,7 @@ export default function CrechesPage() {
       <MoreVertical className="size-5" />
       </button>
       {openMenu === creche.id && (
-      <div className="absolute right-0 top-8 z-10 w-40 rounded-lg bg-[#F5EDD8]/30 py-1 ">
+      <div className="absolute right-0 top-8 z-10 w-40 rounded-lg border border-black/[0.07] bg-white py-1 ">
        <Link
        href={`/super-admin/creches/caregivers/${creche.id}`}
        className="block px-4 py-2 font-[family-name:var(--font-urbanist)] text-sm text-heading hover:bg-slate-50"

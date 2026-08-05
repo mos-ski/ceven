@@ -14,7 +14,7 @@ function cardStyle(type: CardType) {
 
 function FilterDropdown({ label }: { label: string }) {
  return (
-  <button className="flex items-center gap-1.5 rounded-lg border-none bg-[#F5EDD8]/30 px-3 py-1.5 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
+  <button className="flex items-center gap-1.5 rounded-lg border-none border border-black/[0.07] bg-white px-3 py-1.5 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
    {label}
    <ChevronDown className="h-3.5 w-3.5" />
   </button>
@@ -77,7 +77,7 @@ export function AttendanceGrid() {
      <select
       value={roomFilter}
       onChange={(e) => setRoomFilter(e.target.value)}
-      className="appearance-none rounded-lg border-none bg-[#F5EDD8]/30 px-3 py-1.5 pr-7 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]"
+      className="appearance-none rounded-lg border-none border border-black/[0.07] bg-white px-3 py-1.5 pr-7 font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]"
      >
       {rooms.map((r) => (
        <option key={r} value={r}>{r}</option>

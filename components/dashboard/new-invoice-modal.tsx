@@ -29,7 +29,7 @@ function TextField({
   <textarea
   placeholder={placeholder}
   rows={rows}
-  className="w-full resize-none rounded-xl border-none bg-[#F5EDD8]/30 px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+  className="w-full resize-none rounded-xl border-none border border-black/[0.07] bg-white px-4 py-3 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
   />
  );
  }
@@ -37,14 +37,14 @@ function TextField({
  <input
   type={type}
   placeholder={placeholder}
-  className="h-[52px] w-full rounded-xl border-none bg-[#F5EDD8]/30 px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+  className="h-[52px] w-full rounded-xl border-none border border-black/[0.07] bg-white px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
  />
  );
 }
 
 function SelectField({ options, placeholder }: { options: string[]; placeholder?: string }) {
  return (
- <select className="h-[52px] w-full appearance-none rounded-xl border-none bg-[#F5EDD8]/30 px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#111] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]">
+ <select className="h-[52px] w-full appearance-none rounded-xl border-none border border-black/[0.07] bg-white px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#111] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]">
   {placeholder && (
   <option value="" disabled selected>
    {placeholder}

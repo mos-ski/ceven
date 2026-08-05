@@ -273,7 +273,7 @@ function ComponentShowcase({ title, children }: { title?: string; children: Reac
  return (
  <div className="mb-20">
   {title && <h3 className="text-h5 text-heading mb-4">{title}</h3>}
-  <div className="rounded-[8px] bg-[#F5EDD8]/30 p-6">
+  <div className="rounded-[8px] border border-black/[0.07] bg-white p-6">
   {children}
   </div>
  </div>
@@ -404,7 +404,7 @@ export default function LibraryPage() {
 
   {/* Sidebar: fixed, internal scroll */}
   <aside className={cn(
-  "fixed inset-y-0 left-0 z-50 w-60 shrink-0 border-none bg-[#F5EDD8]/30 p-4 overflow-y-auto scrollbar-thin transition-transform duration-200 lg:translate-x-0",
+  "fixed inset-y-0 left-0 z-50 w-60 shrink-0 border-none border border-black/[0.07] bg-white p-4 overflow-y-auto scrollbar-thin transition-transform duration-200 lg:translate-x-0",
   sidebarOpen ? "translate-x-0" : "-translate-x-full"
   )}>
    <div className="mb-6 flex items-center justify-between">
@@ -499,7 +499,7 @@ export default function LibraryPage() {
     </p>
    </div>
 
-   <div className="mb-20 rounded-[8px] bg-[#F5EDD8]/30">
+   <div className="mb-20 rounded-[8px] border border-black/[0.07] bg-white">
     <button
     onClick={() => setPromptOpen(!promptOpen)}
     className="flex w-full items-center justify-between px-6 py-4 text-left"
@@ -765,7 +765,7 @@ export default function LibraryPage() {
       </div>
      </div>
      </div>
-     <div className="rounded-[8px] bg-[#F5EDD8]/30 px-4 py-2">
+     <div className="rounded-[8px] border border-black/[0.07] bg-white px-4 py-2">
      <div className="flex items-center gap-2">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="2"><path d="M15 18l-6-6 6-6"/></svg>
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="2"><path d="M9 18l6-6-6-6"/></svg>
@@ -1208,14 +1208,14 @@ export default function LibraryPage() {
     <div className="space-y-8">
      <div>
      <p className="text-caption text-muted-text mb-2">Form Submit</p>
-     <div className="rounded-[8px] bg-[#F5EDD8]/30 p-4">
+     <div className="rounded-[8px] border border-black/[0.07] bg-white p-4">
       <input placeholder="Child name" className="mb-4 w-full rounded-[8px] border border-border px-4 py-2 text-sm" />
       <Button variant="brand" className="w-full">Enroll Child</Button>
      </div>
      </div>
      <div>
      <p className="text-caption text-muted-text mb-2">Card Action</p>
-     <div className="rounded-[8px] bg-[#F5EDD8]/30 p-4">
+     <div className="rounded-[8px] border border-black/[0.07] bg-white p-4">
       <p className="text-body-sm font-medium text-heading mb-2">Daily Report</p>
       <p className="text-caption text-muted-text mb-4">View today&apos;s activities and photos.</p>
       <Button variant="outline" className="border-gray-300 w-full">View Report</Button>
@@ -1733,14 +1733,14 @@ export default function LibraryPage() {
     </SectionDescription>
     <ComponentShowcase>
     <div className="grid grid-cols-2 gap-4 max-w-md">
-     <div className="rounded-[8px] bg-[#F5EDD8]/30 p-2">
+     <div className="rounded-[8px] border border-black/[0.07] bg-white p-2">
      {["Option 1", "Option 2", "Option 3", "Option 4"].map((opt) => (
       <div key={opt} className="flex items-center justify-between rounded-[8px] px-4 py-2 text-sm hover:bg-muted cursor-pointer">
       {opt}
       </div>
      ))}
      </div>
-     <div className="rounded-[8px] bg-[#F5EDD8]/30 p-2">
+     <div className="rounded-[8px] border border-black/[0.07] bg-white p-2">
      {["Option 1", "Option 2", "Option 3", "Option 4"].map((opt, i) => (
       <div key={opt} className="flex items-center justify-between rounded-[8px] px-4 py-2 text-sm hover:bg-muted cursor-pointer">
       {opt}
@@ -1748,7 +1748,7 @@ export default function LibraryPage() {
       </div>
      ))}
      </div>
-     <div className="rounded-[8px] bg-[#F5EDD8]/30 p-2">
+     <div className="rounded-[8px] border border-black/[0.07] bg-white p-2">
      {["Option 1", "Option 2", "Option 3", "Option 4"].map((opt, i) => (
       <div key={opt} className="flex items-center justify-between rounded-[8px] px-4 py-2 text-sm hover:bg-muted cursor-pointer">
       {opt}
@@ -1762,7 +1762,7 @@ export default function LibraryPage() {
       </div>
      ))}
      </div>
-     <div className="rounded-[8px] bg-[#F5EDD8]/30 p-2">
+     <div className="rounded-[8px] border border-black/[0.07] bg-white p-2">
      {["Option 1", "Option 2", "Option 3", "Option 4"].map((opt, i) => (
       <div key={opt} className="flex items-center justify-between rounded-[8px] px-4 py-2 text-sm hover:bg-muted cursor-pointer">
       {opt}
@@ -2288,7 +2288,7 @@ export default function LibraryPage() {
     <SectionTitle>Thread List</SectionTitle>
     <SectionDescription>Chat thread list with search, avatars, and date grouping.</SectionDescription>
     <ComponentShowcase title="Parent Chat List">
-    <div className="mx-auto max-w-sm overflow-hidden rounded-[8px] bg-[#F5EDD8]/30 ">
+    <div className="mx-auto max-w-sm overflow-hidden rounded-[8px] border border-black/[0.07] bg-white ">
      {/* Search */}
      <div className="px-4 pt-3 pb-2">
      <div className="flex items-center gap-2 rounded-[8px] bg-gray-50 px-4 py-2">

@@ -80,7 +80,7 @@ export function StaffProfileView({ staff }: { staff: StaffMember }) {
     {/* Left Panel */}
     <div className="w-[280px] shrink-0 space-y-4">
      {/* Profile Card */}
-     <div className="rounded-xl border-none bg-[#F5EDD8]/30 p-5">
+     <div className="rounded-xl border-none border border-black/[0.07] bg-white p-5">
       {/* Avatar */}
       <div className="mb-4 flex flex-col items-center gap-2">
        <div className="flex size-20 items-center justify-center rounded-full bg-[#edd9c0]">
@@ -118,7 +118,7 @@ export function StaffProfileView({ staff }: { staff: StaffMember }) {
      </div>
 
      {/* Documents */}
-     <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
+     <div className="rounded-xl border border-black/[0.07] bg-white p-4">
       <p className="mb-3 font-[family-name:var(--font-merriweather)] text-sm font-bold text-[#2d1810]">
        Documents
       </p>
@@ -177,7 +177,7 @@ export function StaffProfileView({ staff }: { staff: StaffMember }) {
      </div>
 
      {/* Log History Table */}
-     <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
+     <div className="overflow-hidden rounded-xl border border-black/[0.07] bg-white">
       <div className="flex items-center justify-between p-4">
        <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
         Log History

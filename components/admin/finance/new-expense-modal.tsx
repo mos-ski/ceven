@@ -58,7 +58,7 @@ export default function NewExpenseModal({ open, onOpenChange }: Props) {
         type="date"
         value={date}
         onChange={(e) => setDate(e.target.value)}
-        className="h-[52px] w-full rounded-xl border-none bg-[#F5EDD8]/30 px-4 pr-10 font-[family-name:var(--font-urbanist)] text-sm text-black focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+        className="h-[52px] w-full rounded-xl border-none border border-black/[0.07] bg-white px-4 pr-10 font-[family-name:var(--font-urbanist)] text-sm text-black focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
        />
        <Calendar className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#6b7280]" />
       </div>
@@ -73,7 +73,7 @@ export default function NewExpenseModal({ open, onOpenChange }: Props) {
        value={vendor}
        onChange={(e) => setVendor(e.target.value)}
        placeholder="e.g. Delux Baby Care"
-       className="h-[52px] w-full rounded-xl border-none bg-[#F5EDD8]/30 px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+       className="h-[52px] w-full rounded-xl border-none border border-black/[0.07] bg-white px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
       />
      </div>
 
@@ -82,7 +82,7 @@ export default function NewExpenseModal({ open, onOpenChange }: Props) {
       <select
        value={category}
        onChange={(e) => setCategory(e.target.value as ExpenseCategory)}
-       className="h-[52px] w-full rounded-xl border-none bg-[#F5EDD8]/30 px-4 font-[family-name:var(--font-urbanist)] text-sm text-black focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+       className="h-[52px] w-full rounded-xl border-none border border-black/[0.07] bg-white px-4 font-[family-name:var(--font-urbanist)] text-sm text-black focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
       >
        <option value="" disabled>
         Select Category
@@ -102,7 +102,7 @@ export default function NewExpenseModal({ open, onOpenChange }: Props) {
        value={description}
        onChange={(e) => setDescription(e.target.value)}
        placeholder="e.g. Napkin"
-       className="h-[52px] w-full rounded-xl border-none bg-[#F5EDD8]/30 px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+       className="h-[52px] w-full rounded-xl border-none border border-black/[0.07] bg-white px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
       />
      </div>
 
@@ -113,7 +113,7 @@ export default function NewExpenseModal({ open, onOpenChange }: Props) {
        value={amount}
        onChange={(e) => setAmount(e.target.value)}
        placeholder="0"
-       className="h-[52px] w-full rounded-xl border-none bg-[#F5EDD8]/30 px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+       className="h-[52px] w-full rounded-xl border-none border border-black/[0.07] bg-white px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
       />
      </div>
 

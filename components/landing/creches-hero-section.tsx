@@ -63,7 +63,7 @@ export function CrechesHeroSection() {
 
    <FadeUp delay={0.25} amount={0.1}>
    <div className="relative -mx-4 overflow-hidden sm:-mx-8 lg:-mx-16">
-    <div className="mx-auto w-[92%] max-w-5xl overflow-hidden rounded-2xl bg-[#F5EDD8]/30">
+    <div className="mx-auto w-[92%] max-w-5xl overflow-hidden rounded-2xl border border-black/[0.07] bg-white">
     <div className="bg-[#F8F5F0] px-5 py-3 flex items-center gap-2 border-b border-[#E8DDD0]">
      <div className="w-2.5 h-2.5 rounded-full bg-[#E8DDD0]" />
      <div className="w-2.5 h-2.5 rounded-full bg-[#E8DDD0]" />

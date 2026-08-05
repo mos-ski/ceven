@@ -188,7 +188,7 @@ function LeaveBalancesTable() {
  const showOthers = typeFilter === "All Types" || typeFilter === "Others";
 
  return (
-  <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
+  <div className="overflow-hidden rounded-xl border border-black/[0.07] bg-white">
    <div className="flex flex-wrap items-center justify-between gap-3 p-4">
     <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
      Leave Balance (2025)
@@ -283,7 +283,7 @@ function LeaveCalendarView() {
 
  return (
   <div className="flex flex-col gap-4 lg:flex-row">
-   <div className="flex-1 overflow-hidden rounded-xl bg-[#F5EDD8]/30 p-4">
+   <div className="flex-1 overflow-hidden rounded-xl border border-black/[0.07] bg-white p-4">
     <div className="mb-4 flex items-center justify-between">
      <div className="flex items-center gap-2">
       <button aria-label="Previous month" className="rounded p-1 text-[#6b7280] hover:text-[#2d1810]">
@@ -344,13 +344,13 @@ function LeaveCalendarView() {
    </div>
 
    <div className="flex w-full flex-col gap-4 lg:w-[280px]">
-    <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
+    <div className="rounded-xl border border-black/[0.07] bg-white p-4">
      <h3 className="font-[family-name:var(--font-merriweather)] text-sm font-bold text-[#2d1810]">Active Leave</h3>
      <p className="mt-3 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">{ACTIVE_LEAVE.name}</p>
      <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{ACTIVE_LEAVE.leaveType}</p>
      <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#9ca3af]">{ACTIVE_LEAVE.dateRange}</p>
     </div>
-    <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
+    <div className="rounded-xl border border-black/[0.07] bg-white p-4">
      <div className="flex items-center justify-between">
       <h3 className="font-[family-name:var(--font-merriweather)] text-sm font-bold text-[#2d1810]">Upcoming Leave</h3>
       <button className="font-[family-name:var(--font-urbanist)] text-xs font-semibold text-[#3b2513]">View All</button>
@@ -399,7 +399,7 @@ function LeaveRequestTable({
    </div>
 
    {/* Table */}
-   <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
+   <div className="overflow-hidden rounded-xl border border-black/[0.07] bg-white">
     <div className="hidden overflow-x-auto lg:block">
      <table className="w-full text-left">
       <thead>

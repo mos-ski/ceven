@@ -35,7 +35,7 @@ export default function EnrollmentDetailPage({ params }: { params: Promise<{ id:
    </div>
 
    <div className="grid grid-cols-1 gap-6 lg:grid-cols-[280px_1fr]">
-    <div className="flex flex-col items-center gap-3 rounded-xl bg-[#F5EDD8]/30 p-6">
+    <div className="flex flex-col items-center gap-3 rounded-xl border border-black/[0.07] bg-white p-6">
      <div className="h-24 w-24 overflow-hidden rounded-full bg-gray-200">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={child.photo} alt={child.childName} className="h-full w-full object-cover" />
@@ -58,7 +58,7 @@ export default function EnrollmentDetailPage({ params }: { params: Promise<{ id:
      </div>
     </div>
 
-    <div className="rounded-xl bg-[#F5EDD8]/30 p-6">
+    <div className="rounded-xl border border-black/[0.07] bg-white p-6">
      {activeTab === "Personal Information" && (
       <div className="flex flex-col gap-4">
        <h3 className="text-lg font-bold text-gray-800">Personal Information</h3>

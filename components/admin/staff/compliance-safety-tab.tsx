@@ -165,7 +165,7 @@ function FilterDropdown({ label }: { label: string }) {
 
 function DbsPoliceChecksTable() {
  return (
-  <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
+  <div className="overflow-hidden rounded-xl border border-black/[0.07] bg-white">
    <div className="flex flex-wrap items-center justify-between gap-3 p-4">
     <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
      DBS/Police Check Records
@@ -226,7 +226,7 @@ function DbsPoliceChecksTable() {
 function FireSafetyDrillTable() {
  const nextDrillNote = "Next drill was due April 14, 2025 (8 weeks interval).";
  return (
-  <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
+  <div className="overflow-hidden rounded-xl border border-black/[0.07] bg-white">
    <div className="flex flex-wrap items-center justify-between gap-3 p-4">
     <div>
      <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
@@ -284,7 +284,7 @@ function FireSafetyDrillTable() {
 
 function FoodHygieneTable() {
  return (
-  <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
+  <div className="overflow-hidden rounded-xl border border-black/[0.07] bg-white">
    <div className="flex flex-wrap items-center justify-between gap-3 p-4">
     <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">Food Hygiene</h2>
    </div>
@@ -335,7 +335,7 @@ function FoodHygieneTable() {
 
 function RiskAssessmentTable() {
  return (
-  <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
+  <div className="overflow-hidden rounded-xl border border-black/[0.07] bg-white">
    <div className="flex flex-wrap items-center justify-between gap-3 p-4">
     <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">Risk Assessment</h2>
    </div>
@@ -405,28 +405,28 @@ export function ComplianceSafetyTab() {
 
     {/* Stats row */}
     <div className="flex gap-3 overflow-x-auto pb-1 lg:grid lg:grid-cols-4 lg:overflow-visible lg:pb-0">
-     <div className="min-w-[160px] flex-1 rounded-xl bg-[#F5EDD8]/30 p-4">
+     <div className="min-w-[160px] flex-1 rounded-xl border border-black/[0.07] bg-white p-4">
       <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Compliant Materials</p>
       <p className="mt-2 font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
        {String(overview.compliantMaterials).padStart(2, "0")}
       </p>
       <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#9ca3af]">Up to date</p>
      </div>
-     <div className="min-w-[160px] flex-1 rounded-xl bg-[#F5EDD8]/30 p-4">
+     <div className="min-w-[160px] flex-1 rounded-xl border border-black/[0.07] bg-white p-4">
       <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Due This Month</p>
       <p className="mt-2 font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
        {String(overview.dueThisMonth).padStart(2, "0")}
       </p>
       <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#cc8000]">⚠ {overview.dueThisMonthNote}</p>
      </div>
-     <div className="min-w-[160px] flex-1 rounded-xl bg-[#F5EDD8]/30 p-4">
+     <div className="min-w-[160px] flex-1 rounded-xl border border-black/[0.07] bg-white p-4">
       <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Overdue</p>
       <p className="mt-2 font-[family-name:var(--font-merriweather)] text-2xl font-bold text-[#2d1810]">
        {String(overview.overdue).padStart(2, "0")}
       </p>
       <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#ef4444]">⚠ {overview.overdueNote}</p>
      </div>
-     <div className="min-w-[160px] flex-1 rounded-xl bg-[#F5EDD8]/30 p-4">
+     <div className="min-w-[160px] flex-1 rounded-xl border border-black/[0.07] bg-white p-4">
       <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">Next Inspection</p>
       <p className="mt-2 font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
        {overview.nextInspection}

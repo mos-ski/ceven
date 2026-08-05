@@ -58,7 +58,7 @@ export default function NotificationsPage() {
   </button>
   </div>
 
-  <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
+  <div className="rounded-xl border border-black/[0.07] bg-white p-4">
   <div className="mb-1 flex items-center gap-2">
    <div className="flex size-8 items-center justify-center rounded-full bg-blue-50">
    <span className="font-[family-name:var(--font-merriweather)] text-sm font-bold text-blue-600">
@@ -69,7 +69,7 @@ export default function NotificationsPage() {
   </div>
   </div>
 
-  <div className="rounded-xl bg-[#F5EDD8]/30">
+  <div className="rounded-xl border border-black/[0.07] bg-white">
   <div className="flex flex-wrap items-center gap-3 border-b border-card-border p-4">
    <div className="relative flex-1">
    <Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-text" />

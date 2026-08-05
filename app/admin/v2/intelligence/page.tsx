@@ -291,7 +291,7 @@ function AICommandCenterView() {
   {/* Top 2-column grid */}
   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
   {/* Left top panel, Recent Incidents & Flags */}
-  <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
+  <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
   <GradientPill>✦ Health &amp; Welfare</GradientPill>
   <h2 className="mt-4 mb-3 text-sm font-bold font-[family-name:var(--font-merriweather)] text-[#2d1810]">
   Recent Incidents &amp; Flags
@@ -302,7 +302,7 @@ function AICommandCenterView() {
   </div>
 
   {/* Right top panel, AI Analysis & Recommendations */}
-  <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
+  <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
   <GradientPill>✦ Health &amp; Welfare Intelligence</GradientPill>
   <h2 className="mt-4 mb-3 text-sm font-bold font-[family-name:var(--font-merriweather)] text-[#2d1810]">
   Analysis &amp; Recommendations
@@ -314,7 +314,7 @@ function AICommandCenterView() {
   </div>
 
   {/* Bottom full-width card, Staff & Finance Intelligence */}
-  <div className="rounded-2xl bg-[#F5EDD8]/30 p-5">
+  <div className="rounded-2xl border border-black/[0.07] bg-white p-5">
   {/* Header row */}
   <div className="flex items-center justify-between mb-4">
   <GradientPill>✦ Staff &amp; Finance Intelligence</GradientPill>

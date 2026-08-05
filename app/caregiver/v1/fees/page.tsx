@@ -34,7 +34,7 @@ export default function FeesPage() {
 
   {/* Invoice list */}
   {mockFees.map((fee) => (
-   <div key={fee.id} className="rounded-2xl bg-[#F5EDD8]/30 p-4">
+   <div key={fee.id} className="rounded-2xl border border-black/[0.07] bg-white p-4">
    <div className="flex items-start justify-between gap-2">
     <div className="flex items-center gap-3">
     <div className="flex h-10 w-10 items-center justify-center rounded-full bg-cg-quick-action">

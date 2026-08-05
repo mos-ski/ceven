@@ -68,7 +68,7 @@ function RevenueBarChart() {
 
 function SendAnnouncementForm() {
  return (
-  <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
+  <div className="rounded-xl border border-black/[0.07] bg-white p-4">
    <h2 className="mb-4 font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
     Send Announcement
    </h2>
@@ -128,7 +128,7 @@ function SendAnnouncementForm() {
 
 function RoomEngagementPanel() {
  return (
-  <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
+  <div className="rounded-xl border border-black/[0.07] bg-white p-4">
    <h2 className="mb-3 font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">
     Room Engagement Score
    </h2>
@@ -158,13 +158,13 @@ function OverviewView() {
     ))}
    </div>
    <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-    <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
+    <div className="rounded-xl border border-black/[0.07] bg-white p-4">
      <h2 className="mb-3 font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">
       Attendance <span className="text-sm font-normal text-[#9ca3af]">(This Week)</span>
      </h2>
      <AttendanceBarChart />
     </div>
-    <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
+    <div className="rounded-xl border border-black/[0.07] bg-white p-4">
      <h2 className="mb-3 font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">Revenue</h2>
      <RevenueBarChart />
     </div>
@@ -177,7 +177,7 @@ function OverviewView() {
 
 function AttendanceView() {
  return (
-  <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
+  <div className="rounded-xl border border-black/[0.07] bg-white p-4">
    <h2 className="mb-3 font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">
     Attendance <span className="text-sm font-normal text-[#9ca3af]">(This Week)</span>
    </h2>
@@ -188,7 +188,7 @@ function AttendanceView() {
 
 function RevenueView() {
  return (
-  <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
+  <div className="rounded-xl border border-black/[0.07] bg-white p-4">
    <h2 className="mb-3 font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">Revenue</h2>
    <RevenueBarChart />
   </div>
@@ -197,7 +197,7 @@ function RevenueView() {
 
 function StaffComplianceView() {
  return (
-  <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
+  <div className="overflow-hidden rounded-xl border border-black/[0.07] bg-white">
    <h2 className="p-4 font-[family-name:var(--font-merriweather)] text-base font-bold text-[#2d1810]">
     Staff Compliance &amp; Rating
    </h2>

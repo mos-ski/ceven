@@ -93,7 +93,7 @@ export function DailyReportViewer({ onClose }: Props) {
 
      {/* Activity photos */}
      {r.photos.map((photo, i) => (
-      <div key={i} className="overflow-hidden rounded-2xl bg-[#F5EDD8]/30">
+      <div key={i} className="overflow-hidden rounded-2xl border border-black/[0.07] bg-white">
        <div className="relative">
         <div className="aspect-video w-full overflow-hidden bg-gray-200">
          <img

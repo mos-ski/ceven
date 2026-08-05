@@ -101,7 +101,7 @@ export default function HelpPage() {
   </div>
 
   <div className="flex-1 overflow-y-auto px-4 pb-6">
-  <div className="rounded-2xl bg-[#F5EDD8]/30">
+  <div className="rounded-2xl border border-black/[0.07] bg-white">
    {HELP_ITEMS.map(({ id, icon: Icon, label, description }, i) => (
    <div key={id} className={i < HELP_ITEMS.length - 1 ? "border-b border-gray-100" : ""}>
     <button

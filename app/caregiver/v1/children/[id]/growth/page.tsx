@@ -79,7 +79,7 @@ export default function ChildGrowthPage({ params }: { params: Promise<{ id: stri
     </div>
    ) : (
     [...growthEntries].reverse().map((entry) => (
-    <div key={entry.id} className="rounded-2xl bg-[#F5EDD8]/30 p-4 ">
+    <div key={entry.id} className="rounded-2xl border border-black/[0.07] bg-white p-4 ">
      <div className="flex items-center justify-between mb-1">
      <p className="text-sm font-semibold text-gray-800">{entry.date}</p>
      <p className="text-[10px] text-gray-400">by {entry.recordedBy}</p>
@@ -103,7 +103,7 @@ export default function ChildGrowthPage({ params }: { params: Promise<{ id: stri
     </div>
    ) : (
     milestones.map((m) => (
-    <div key={m.id} className="rounded-2xl bg-[#F5EDD8]/30 p-4 ">
+    <div key={m.id} className="rounded-2xl border border-black/[0.07] bg-white p-4 ">
      <div className="flex items-center justify-between mb-1">
      <p className="text-sm font-bold text-cg-brand">{m.title}</p>
      <p className="text-[10px] text-gray-400">{m.date}</p>

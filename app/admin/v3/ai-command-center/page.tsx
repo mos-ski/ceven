@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Sparkles, Bot, Send, X, RefreshCw, FileDown } from "lucide-react";
+import { Send, X, RefreshCw, FileDown } from "lucide-react";
+import { CEIcon } from "@/components/admin-v3/ce-icon";
 import { toast } from "sonner";
 import { getAdaReply } from "@/lib/ada-responses";
 
@@ -110,7 +111,7 @@ function getInitials(name: string) {
 function SectionBadge({ children }: { children: React.ReactNode }) {
  return (
  <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-[#1E2D4A] to-[#2D1810] px-3 py-1.5 text-[10px] font-bold uppercase tracking-wide text-[#F5EDD8]">
-  <Sparkles className="h-3 w-3 text-[#C47B2C]" /> {children}
+    <CEIcon className="h-3 w-3 text-[#C47B2C]" /> {children}
  </span>
  );
 }
@@ -160,7 +161,7 @@ function AIChatPanel({ onClose }: { onClose?: () => void }) {
   <div className="flex shrink-0 items-center justify-between px-4 py-4">
   <div className="flex items-center gap-3">
    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-[#1E2D4A] to-[#2D1810]">
-   <Bot className="h-5 w-5 text-[#F5EDD8]" />
+       <CEIcon className="h-5 w-5 text-[#F5EDD8]" />
    </div>
    <div>
    <p className="text-sm font-bold text-[#2D1810]">Ada</p>
@@ -180,7 +181,7 @@ function AIChatPanel({ onClose }: { onClose?: () => void }) {
    <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
    {msg.role === "ai" && (
     <div className="mr-2 mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[#1E2D4A] to-[#2D1810]">
-    <Bot className="h-3.5 w-3.5 text-[#F5EDD8]" />
+         <CEIcon className="h-3.5 w-3.5 text-[#F5EDD8]" />
     </div>
    )}
    <div
@@ -357,7 +358,7 @@ export default function AICommandCenterV3Page() {
   aria-label="Open chat"
   className="fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#1E2D4A] to-[#2D1810] text-[#F5EDD8] xl:hidden"
   >
-  <Bot className="h-6 w-6" />
+     <CEIcon className="h-6 w-6" />
   </button>
 
   {/* Mobile chat overlay */}

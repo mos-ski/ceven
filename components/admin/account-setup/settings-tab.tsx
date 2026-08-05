@@ -47,7 +47,7 @@ function RoleAccessSection() {
  const [editingRole, setEditingRole] = useState<RoleTemplate | null>(null);
 
  return (
-  <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
+  <div className="overflow-hidden rounded-xl border border-black/[0.07] bg-white">
    <div className="flex flex-wrap items-center justify-between gap-3 p-5">
     <p className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">Role & Access</p>
     <button
@@ -103,7 +103,7 @@ function RoleAccessSection() {
    {/* Mobile cards */}
    <div className="flex flex-col gap-2 p-4 lg:hidden">
     {ROLE_TEMPLATES.map((role) => (
-     <div key={role.id} className="rounded-xl bg-[#F5EDD8]/30 p-3">
+     <div key={role.id} className="rounded-xl border border-black/[0.07] bg-white p-3">
       <div className="flex items-center justify-between">
        <span className="font-[family-name:var(--font-urbanist)] text-sm font-bold text-[#2d1810]">{role.name}</span>
        <span className={`rounded-full border px-2.5 py-0.5 font-[family-name:var(--font-urbanist)] text-xs ${STATUS_BADGE_CLASS[role.status]}`}>
@@ -348,7 +348,7 @@ function FeePlansSection() {
  const [newPlanOpen, setNewPlanOpen] = useState(false);
 
  return (
-  <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
+  <div className="overflow-hidden rounded-xl border border-black/[0.07] bg-white">
    <div className="flex flex-wrap items-center justify-between gap-3 p-5">
     <p className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">Fee Plans</p>
     <button
@@ -393,7 +393,7 @@ function FeePlansSection() {
    </div>
    <div className="flex flex-col gap-2 p-4 lg:hidden">
     {plans.map((plan) => (
-     <div key={plan.id} className="rounded-xl bg-[#F5EDD8]/30 p-3">
+     <div key={plan.id} className="rounded-xl border border-black/[0.07] bg-white p-3">
       <div className="flex items-center justify-between">
        <span className="font-[family-name:var(--font-urbanist)] text-sm font-bold text-[#2d1810]">{plan.name}</span>
        <span className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">{plan.amount}</span>
@@ -453,10 +453,10 @@ function AdmissionsSection() {
    </div>
    <div className="flex flex-col gap-4">
     {steps.map((step) => (
-     <div key={step.id} className="flex flex-col gap-3 rounded-xl bg-[#F5EDD8]/30 p-4">
+     <div key={step.id} className="flex flex-col gap-3 rounded-xl border border-black/[0.07] bg-white p-4">
       <p className="font-[family-name:var(--font-urbanist)] text-base font-semibold text-[#1f2937]">{step.title}</p>
       {step.fields.map((field) => (
-       <div key={field.id} className="flex items-center gap-4 rounded-lg bg-[#F5EDD8]/30 px-3 py-3">
+       <div key={field.id} className="flex items-center gap-4 rounded-lg border border-black/[0.07] bg-white px-3 py-3">
         <button
          onClick={() => toggleField(step.id, field.id)}
          role="switch"
@@ -557,7 +557,7 @@ function AiSettingsSection() {
     <p className="font-[family-name:var(--font-urbanist)] text-base font-semibold text-black">Feature Controls</p>
     <div className="flex flex-col gap-3">
      {features.map((feat) => (
-      <div key={feat.id} className="flex items-center gap-4 rounded-lg bg-[#F5EDD8]/30 px-4 py-3">
+      <div key={feat.id} className="flex items-center gap-4 rounded-lg border border-black/[0.07] bg-white px-4 py-3">
        <button
         onClick={() => setFeatures((prev) => prev.map((f) => (f.id === feat.id ? { ...f, enabled: !f.enabled } : f)))}
         role="switch"
@@ -580,11 +580,11 @@ function AiSettingsSection() {
 
 function OtherAppsSection() {
  return (
-  <div className="flex flex-col gap-4 rounded-xl bg-[#F5EDD8]/30 p-5">
+  <div className="flex flex-col gap-4 rounded-xl border border-black/[0.07] bg-white p-5">
    <p className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">Other Apps</p>
    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
     {OTHER_APPS.map((app) => (
-     <div key={app.id} className="flex flex-col gap-3 rounded-lg bg-[#F5EDD8]/30 p-4">
+     <div key={app.id} className="flex flex-col gap-3 rounded-lg border border-black/[0.07] bg-white p-4">
       <div className="flex items-center justify-between">
        <p className="font-[family-name:var(--font-urbanist)] text-sm font-bold text-[#2d1810]">{app.name}</p>
        <span

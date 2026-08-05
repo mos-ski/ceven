@@ -70,7 +70,7 @@ export function CaregiversTab() {
 
  return (
   <div className="space-y-4">
-   <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
+   <div className="overflow-hidden rounded-xl border border-black/[0.07] bg-white">
     <div className="flex flex-wrap items-center justify-between gap-4 p-4">
      <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-heading">
       Caregivers
@@ -139,7 +139,7 @@ export function CaregiversTab() {
     {/* Mobile cards */}
     <div className="flex flex-col gap-2 px-4 pb-4 lg:hidden">
      {CAREGIVERS.map((cg) => (
-      <div key={cg.id} className="rounded-xl bg-[#F5EDD8]/30 p-3">
+      <div key={cg.id} className="rounded-xl border border-black/[0.07] bg-white p-3">
        <div className="flex items-center justify-between">
         <span className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-black">{cg.name}</span>
         <Badge

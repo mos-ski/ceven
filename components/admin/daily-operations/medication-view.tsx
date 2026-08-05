@@ -343,7 +343,7 @@ export function MedicationView() {
     </Button>
    </div>
 
-   <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
+   <div className="overflow-hidden rounded-xl border border-black/[0.07] bg-white">
     <div className="flex flex-wrap items-center justify-between gap-4 p-4">
      <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
       Medication Log

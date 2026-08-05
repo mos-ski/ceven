@@ -64,7 +64,7 @@ function CreateRoomModal({
      <FieldGroup label="Assign Caregiver">
       <SelectField options={["Mrs. Sarah Okonkwo", "Mr. Tunde Bakare", "Mrs. Ngozi Eze", "Mrs. Aisha Bello"]} placeholder="Select" />
      </FieldGroup>
-     <div className="flex items-center justify-between rounded-lg bg-[#F5EDD8]/30 p-3">
+     <div className="flex items-center justify-between rounded-lg border border-black/[0.07] bg-white p-3">
       <div>
        <p className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">Enable Waitlist</p>
        <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
@@ -133,7 +133,7 @@ export function RoomsClassesTab() {
     {ROOMS.map((room) => {
      const pct = Math.round((room.enrolled / room.capacity) * 100);
      return (
-      <div key={room.id} className="rounded-xl bg-[#F5EDD8]/30 p-4">
+      <div key={room.id} className="rounded-xl border border-black/[0.07] bg-white p-4">
        <div className="flex items-center gap-3">
         <div className="flex size-12 items-center justify-center rounded-full bg-[#edd9c0] text-2xl">
          {room.icon}

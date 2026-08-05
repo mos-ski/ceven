@@ -32,7 +32,7 @@ export default function EngagementTab() {
   </h2>
   <div className="grid grid-cols-3 gap-3">
    {STATS.map((stat) => (
-   <div key={stat.label} className="rounded-xl bg-[#F5EDD8]/30 p-4">
+   <div key={stat.label} className="rounded-xl border border-black/[0.07] bg-white p-4">
     <div className="flex items-center gap-3">
     <div className={`flex size-10 items-center justify-center rounded-full ${stat.bg}`}>
      <Activity className={`size-5 ${stat.color}`} />
@@ -60,7 +60,7 @@ export default function EngagementTab() {
   </div>
   </div>
 
-  <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
+  <div className="rounded-xl border border-black/[0.07] bg-white p-4">
   <div className="mb-4">
    <p className="font-[family-name:var(--font-urbanist)] text-sm font-bold text-heading">
    User Login Frequency

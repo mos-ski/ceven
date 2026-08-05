@@ -18,7 +18,7 @@ function EventCard({
  .filter(Boolean);
 
  return (
- <div className="rounded-2xl bg-[#F5EDD8]/30 p-4">
+ <div className="rounded-2xl border border-black/[0.07] bg-white p-4">
   <div className="flex items-center gap-2 mb-2">
   <span className="text-xl">{event.icon}</span>
   <div className="flex-1">
@@ -62,7 +62,7 @@ function EventCard({
     className={`flex h-5 w-5 items-center justify-center rounded-md border-2 transition-colors ${
     item.packed
      ? "border-cg-brand bg-cg-brand"
-     : "bg-[#F5EDD8]/30"
+     : "border border-black/[0.07] bg-white"
     }`}
    >
     {item.packed && (

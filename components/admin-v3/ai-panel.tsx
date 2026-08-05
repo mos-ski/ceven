@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Bot, Pin, PinOff, X, ArrowUp } from "lucide-react";
+import { Pin, PinOff, X, ArrowUp } from "lucide-react";
+import { CEIcon } from "@/components/admin-v3/ce-icon";
 import { getAdaReply } from "@/lib/ada-responses";
 import { useAiPanel } from "@/components/admin-v3/ai-panel-context";
 
@@ -30,7 +31,7 @@ function MessageBubble({ message }: { message: Message }) {
      isUser ? "bg-[#F5EDD8] text-[#2D1810]" : "bg-gradient-to-br from-[#1E2D4A] to-[#2D1810] text-[#F5EDD8]"
     }`}
    >
-    {isUser ? "AN" : <Bot className="h-3.5 w-3.5" />}
+     {isUser ? "AN" : <CEIcon className="h-3.5 w-3.5" />}
    </div>
    <div
     className={`max-w-[85%] whitespace-pre-line rounded-xl px-3 py-2 text-[12.5px] leading-relaxed ${
@@ -59,7 +60,7 @@ function AiPanelBody() {
   <>
    <div className="flex items-center gap-2.5 border-b border-black/[0.07] px-4 py-3.5">
     <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-[#1E2D4A] to-[#2D1810]">
-     <Bot className="h-4 w-4 text-[#F5EDD8]" />
+      <CEIcon className="h-4 w-4 text-[#F5EDD8]" />
     </div>
     <div className="min-w-0 flex-1">
      <p className="text-[13px] font-bold text-[#2D1810]">Ada</p>

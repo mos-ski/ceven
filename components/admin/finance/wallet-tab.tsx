@@ -38,7 +38,7 @@ const TYPE_BADGE: Record<WalletTransactionType, { bg: string; text: string; bord
 
 function FilterButton({ label }: { label: string }) {
  return (
-  <button className="flex items-center gap-1.5 rounded-lg border-none bg-[#F5EDD8]/30 px-3 py-2 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280] hover:border-[#3b2513] hover:text-[#3b2513]">
+  <button className="flex items-center gap-1.5 rounded-lg border-none border border-black/[0.07] bg-white px-3 py-2 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280] hover:border-[#3b2513] hover:text-[#3b2513]">
    {label}
    <ChevronDown className="h-4 w-4" />
   </button>
@@ -156,7 +156,7 @@ export default function WalletTab() {
    {/* Stat Cards */}
    <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
     {WALLET_STATS.map((s) => (
-     <div key={s.label} className="rounded-xl bg-[#F5EDD8]/30 p-4">
+     <div key={s.label} className="rounded-xl border border-black/[0.07] bg-white p-4">
       <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{s.label}</p>
       <p className="mt-2 font-[family-name:var(--font-merriweather)] text-xl font-bold text-[#2d1810]">
        {s.value}
@@ -204,7 +204,7 @@ export default function WalletTab() {
    )}
 
    {/* Transaction History */}
-   <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
+   <div className="overflow-hidden rounded-xl border border-black/[0.07] bg-white">
     <div className="flex flex-wrap items-center gap-2 px-4 py-4">
      <h3 className="font-[family-name:var(--font-merriweather)] font-bold text-[#2d1810]">
       Transaction History
@@ -213,7 +213,7 @@ export default function WalletTab() {
       <select
        value={typeFilter}
        onChange={(e) => setTypeFilter(e.target.value as "All" | WalletTransactionType)}
-       className="rounded-lg border-none bg-[#F5EDD8]/30 px-3 py-2 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280] focus:border-[#3b2513] focus:outline-none"
+       className="rounded-lg border-none border border-black/[0.07] bg-white px-3 py-2 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280] focus:border-[#3b2513] focus:outline-none"
       >
        <option value="All">All Types</option>
        <option value="Credit">Credit</option>
@@ -222,7 +222,7 @@ export default function WalletTab() {
       <select
        value={categoryFilter}
        onChange={(e) => setCategoryFilter(e.target.value as "All" | WalletTransactionCategory)}
-       className="rounded-lg border-none bg-[#F5EDD8]/30 px-3 py-2 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280] focus:border-[#3b2513] focus:outline-none"
+       className="rounded-lg border-none border border-black/[0.07] bg-white px-3 py-2 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280] focus:border-[#3b2513] focus:outline-none"
       >
        <option value="All">All Categories</option>
        {CATEGORY_FILTERS.map((c) => (
@@ -367,7 +367,7 @@ export default function WalletTab() {
    </div>
 
    {/* Bank Account Card */}
-   <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
+   <div className="rounded-xl border border-black/[0.07] bg-white p-4">
     <div className="flex items-center justify-between">
      <h3 className="font-[family-name:var(--font-merriweather)] font-bold text-[#2d1810]">Bank Account</h3>
      <button

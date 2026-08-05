@@ -83,7 +83,7 @@ export default function DepositInfoModal({ open, onOpenChange }: Props) {
          </span>
          <button
           onClick={handleCopy}
-          className="flex size-8 items-center justify-center rounded-lg border-none bg-[#F5EDD8]/30 hover:bg-[#f5edd8] transition-colors"
+          className="flex size-8 items-center justify-center rounded-lg border-none border border-black/[0.07] bg-white hover:bg-[#f5edd8] transition-colors"
           title="Copy account number"
          >
           {copied ? (
@@ -107,7 +107,7 @@ export default function DepositInfoModal({ open, onOpenChange }: Props) {
        value={amount}
        onChange={(e) => setAmount(e.target.value.replace(/\D/g, ""))}
        placeholder="Enter amount"
-       className="h-[52px] w-full rounded-xl border-none bg-[#F5EDD8]/30 px-4 font-[family-name:var(--font-urbanist)] text-lg text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+       className="h-[52px] w-full rounded-xl border-none border border-black/[0.07] bg-white px-4 font-[family-name:var(--font-urbanist)] text-lg text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
       />
       {belowMinimum && (
        <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#cd3030]">

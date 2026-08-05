@@ -53,7 +53,7 @@ export function CrechesPlatformSection() {
   <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 items-start">
    <FadeUp delay={0}>
    <div>
-    <div className="bg-[#F5EDD8]/30 rounded-2xl overflow-hidden transition-all duration-200">
+    <div className="border border-black/[0.07] bg-white rounded-2xl overflow-hidden transition-all duration-200">
     <div className="bg-[#F8F5F0] px-4 py-3 flex items-center gap-2 border-b border-[#E8DDD0]">
      <div className="w-2 h-2 rounded-full bg-[#E8DDD0]" />
      <div className="w-2 h-2 rounded-full bg-[#E8DDD0]" />

@@ -64,7 +64,7 @@ export default function ParentAttendancePage() {
  <p className="mb-2 text-sm font-semibold text-gray-700">Past 7 days</p>
  <div className="flex flex-col gap-2">
   {mockAttendanceHistory.map((event, i) => (
-  <div key={i} className="rounded-2xl bg-[#F5EDD8]/30 p-4 ">
+  <div key={i} className="rounded-2xl border border-black/[0.07] bg-white p-4 ">
   <div className="mb-1.5 flex items-center justify-between">
   <p className="text-sm font-semibold text-gray-800">{event.date}</p>
   <span className={`rounded-full px-2.5 py-0.5 text-[10px] font-semibold capitalize ${STATUS_STYLES[event.status]}`}>

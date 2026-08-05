@@ -114,7 +114,7 @@ export default function ParentMedicationPage() {
   </div>
   ) : (
   todayLogs.map((log) => (
-  <div key={log.id} className="rounded-2xl bg-[#F5EDD8]/30 p-4 ">
+  <div key={log.id} className="rounded-2xl border border-black/[0.07] bg-white p-4 ">
    <div className="mb-2 flex items-start justify-between gap-2">
    <div className="flex items-center gap-2.5">
    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-cg-quick-action text-cg-brand">
@@ -155,7 +155,7 @@ export default function ParentMedicationPage() {
   </div>
   ) : (
   history.map((log) => (
-  <div key={log.id} className="rounded-2xl bg-[#F5EDD8]/30 p-4 ">
+  <div key={log.id} className="rounded-2xl border border-black/[0.07] bg-white p-4 ">
    <div className="flex items-center justify-between mb-1">
    <p className="text-sm font-semibold text-gray-800">{log.medication} · {log.dosage}</p>
    <span className={`rounded-full px-2.5 py-1 text-[10px] font-semibold capitalize ${STATUS_STYLES[log.status]}`}>
@@ -182,7 +182,7 @@ export default function ParentMedicationPage() {
   </div>
   ) : (
   requests.map((req) => (
-  <div key={req.id} className="rounded-2xl bg-[#F5EDD8]/30 p-4 ">
+  <div key={req.id} className="rounded-2xl border border-black/[0.07] bg-white p-4 ">
    <div className="flex items-center justify-between mb-2">
    <p className="text-sm font-bold text-cg-brand">{req.medication}</p>
    <span className="rounded-full bg-emerald-100 px-2.5 py-1 text-[10px] font-semibold text-emerald-700">

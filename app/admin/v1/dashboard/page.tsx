@@ -22,7 +22,7 @@ export default function AdminV1DashboardPage() {
     <select
      value={year}
      onChange={(e) => setYear(e.target.value)}
-     className="rounded-lg bg-[#F5EDD8]/30 px-3 py-2 text-sm text-gray-700 focus:border-[#3B2513] focus:outline-none"
+     className="rounded-lg border border-black/[0.07] bg-white px-3 py-2 text-sm text-gray-700 focus:border-[#3B2513] focus:outline-none"
     >
      <option>This year</option>
      <option>Last year</option>
@@ -36,7 +36,7 @@ export default function AdminV1DashboardPage() {
      return (
       <div
        key={stat.label}
-       className="flex items-center gap-4 rounded-xl bg-[#F5EDD8]/30 p-5"
+       className="flex items-center gap-4 rounded-xl border border-black/[0.07] bg-white p-5"
       >
        <div className={`flex h-12 w-12 items-center justify-center rounded-full ${stat.bgColor}`}>
         <Icon className={`h-6 w-6 ${stat.color}`} />

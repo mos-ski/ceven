@@ -76,7 +76,7 @@ function PaymentStatusBadge({ status }: { status: "Successful" | "Failed" }) {
 
 function FilterButton({ label }: { label: string }) {
  return (
-  <button className="flex items-center gap-1.5 rounded-lg border-none bg-[#F5EDD8]/30 px-3 py-2 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280] hover:border-[#3b2513] hover:text-[#3b2513]">
+  <button className="flex items-center gap-1.5 rounded-lg border-none border border-black/[0.07] bg-white px-3 py-2 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280] hover:border-[#3b2513] hover:text-[#3b2513]">
    {label}
    <ChevronDown className="h-4 w-4" />
   </button>
@@ -102,7 +102,7 @@ function OverviewTab({ child }: { child: Child }) {
     {/* Info cards, 2 cols on mobile, 3 on desktop */}
     <div className="grid grid-cols-2 gap-3 lg:grid-cols-3">
      {infoCards.map((card) => (
-      <div key={card.label} className="rounded-xl border-none bg-[#F5EDD8]/30 p-3">
+      <div key={card.label} className="rounded-xl border-none border border-black/[0.07] bg-white p-3">
        <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{card.label}</p>
        <p className="mt-1 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">{card.value}</p>
       </div>
@@ -110,7 +110,7 @@ function OverviewTab({ child }: { child: Child }) {
     </div>
 
     {/* Primary Parent card */}
-    <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
+    <div className="rounded-xl border border-black/[0.07] bg-white p-4">
      <p className="mb-3 font-[family-name:var(--font-merriweather)] text-sm font-bold text-[#2d1810]">Primary Parent</p>
      <div className="flex items-center gap-3">
       <div className="flex size-10 items-center justify-center rounded-full bg-[#edd9c0]">
@@ -133,7 +133,7 @@ function OverviewTab({ child }: { child: Child }) {
    {/* Right sidebar col */}
    <div>
     {/* Mood Trend */}
-    <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
+    <div className="rounded-xl border border-black/[0.07] bg-white p-4">
      <p className="mb-2 font-[family-name:var(--font-merriweather)] text-sm font-bold text-[#2d1810]">Mood Trend</p>
      <div className="flex h-16 items-end gap-1">
       {[3, 4, 4, 5, 4, 3, 4].map((v, i) => (
@@ -148,7 +148,7 @@ function OverviewTab({ child }: { child: Child }) {
     </div>
 
     {/* Health Status */}
-    <div className="mt-3 rounded-xl bg-[#F5EDD8]/30 p-4">
+    <div className="mt-3 rounded-xl border border-black/[0.07] bg-white p-4">
      <p className="mb-2 font-[family-name:var(--font-merriweather)] text-sm font-bold text-[#2d1810]">Health Status</p>
      <div className="space-y-2">
       <div className="flex items-center justify-between">
@@ -190,7 +190,7 @@ function ActivityLogTab({ child }: { child: Child }) {
  return (
   <div>
    {/* Today's Log */}
-   <div className="mb-4 rounded-xl bg-[#F5EDD8]/30 p-4">
+   <div className="mb-4 rounded-xl border border-black/[0.07] bg-white p-4">
     <p className="mb-3 font-[family-name:var(--font-merriweather)] text-sm font-bold text-[#2d1810]">
      Today&apos;s Log, Oct 10, 2025
     </p>
@@ -217,7 +217,7 @@ function ActivityLogTab({ child }: { child: Child }) {
    </div>
 
    {/* Log History table */}
-   <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
+   <div className="overflow-hidden rounded-xl border border-black/[0.07] bg-white">
     <div className="flex items-center gap-3 px-4 py-4">
      <h3 className="font-[family-name:var(--font-merriweather)] font-bold text-[#2d1810]">Log History</h3>
      <div className="ml-auto flex items-center gap-3">
@@ -297,7 +297,7 @@ function HealthStatusTab({ child }: { child: Child }) {
  return (
   <>
   <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-   <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
+   <div className="rounded-xl border border-black/[0.07] bg-white p-4">
     <div className="mb-4 flex items-center justify-between">
      <p className="font-[family-name:var(--font-merriweather)] text-sm font-bold text-[#2d1810]">Health Information</p>
      <button
@@ -317,7 +317,7 @@ function HealthStatusTab({ child }: { child: Child }) {
     </div>
    </div>
 
-   <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
+   <div className="rounded-xl border border-black/[0.07] bg-white p-4">
     <p className="mb-4 font-[family-name:var(--font-merriweather)] text-sm font-bold text-[#2d1810]">Prescriptions &amp; Documents</p>
     <div className="space-y-2">
      {docs.map((doc) => (
@@ -364,7 +364,7 @@ function PaymentHistoryTab() {
    </div>
 
    {/* Table */}
-   <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
+   <div className="overflow-hidden rounded-xl border border-black/[0.07] bg-white">
     {/* Desktop table */}
     <table className="hidden w-full border-collapse lg:table">
      <thead>
@@ -441,7 +441,7 @@ function DevelopmentTab() {
 
  return (
   <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-   <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
+   <div className="rounded-xl border border-black/[0.07] bg-white p-4">
     <p className="mb-4 font-[family-name:var(--font-merriweather)] text-sm font-bold text-[#2d1810]">Development Milestones</p>
     <div className="space-y-3">
      {milestones.map((m) => (
@@ -461,7 +461,7 @@ function DevelopmentTab() {
     </div>
    </div>
 
-   <div className="rounded-xl bg-[#F5EDD8]/30 p-4">
+   <div className="rounded-xl border border-black/[0.07] bg-white p-4">
     <p className="mb-4 font-[family-name:var(--font-merriweather)] text-sm font-bold text-[#2d1810]">Photo Gallery</p>
     <div className="grid grid-cols-3 gap-2">
      {Array.from({ length: 6 }).map((_, i) => (
@@ -487,7 +487,7 @@ function ContactTab({ child }: { child: Child }) {
  ];
 
  return (
-  <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
+  <div className="overflow-hidden rounded-xl border border-black/[0.07] bg-white">
    <div className="flex items-center gap-3 px-4 py-4">
     <h3 className="font-[family-name:var(--font-merriweather)] font-bold text-[#2d1810]">Authorized Persons</h3>
     <div className="ml-auto">

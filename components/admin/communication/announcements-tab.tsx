@@ -32,7 +32,7 @@ function AnnouncementLogList() {
    </div>
    <div className="flex flex-col gap-3">
     {ANNOUNCEMENT_LOG.map((a) => (
-     <div key={a.id} className="flex flex-col gap-2 rounded-lg bg-[#F5EDD8]/30 p-4">
+     <div key={a.id} className="flex flex-col gap-2 rounded-lg border border-black/[0.07] bg-white p-4">
       <div className="flex items-center justify-between">
        <p className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-black">{a.title}</p>
        <span className="font-[family-name:var(--font-urbanist)] text-[10px] text-[#6b7280]">{a.date}</span>

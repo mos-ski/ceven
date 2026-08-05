@@ -27,7 +27,7 @@ export default function NotificationsPage() {
    <h1 className="text-2xl font-bold text-gray-800">Notifications</h1>
 
    <div className="flex items-center gap-4">
-    <div className="flex items-center gap-4 rounded-xl bg-[#F5EDD8]/30 p-5">
+    <div className="flex items-center gap-4 rounded-xl border border-black/[0.07] bg-white p-5">
      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-50">
       <Bell className="h-6 w-6 text-blue-500" />
      </div>

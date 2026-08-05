@@ -129,7 +129,7 @@ function RunPayrollModal({
        value={otp}
        onChange={(e) => setOtp(e.target.value.replace(/\D/g, "").slice(0, 6))}
        placeholder="000000"
-       className="h-[52px] w-48 rounded-xl border-none bg-[#F5EDD8]/30 px-4 text-center font-[family-name:var(--font-urbanist)] text-lg tracking-[0.5em] text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+       className="h-[52px] w-48 rounded-xl border-none border border-black/[0.07] bg-white px-4 text-center font-[family-name:var(--font-urbanist)] text-lg tracking-[0.5em] text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
       />
       <button
        type="button"
@@ -394,7 +394,7 @@ function NewSalarySetupModal({ onClose }: { onClose: () => void }) {
 
 function PayrollHistoryTable() {
  return (
-  <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
+  <div className="overflow-hidden rounded-xl border border-black/[0.07] bg-white">
    <div className="flex flex-wrap items-center justify-between gap-3 p-4">
     <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
      Payroll History
@@ -476,7 +476,7 @@ function SalarySetupRow({ setup }: { setup: SalarySetup }) {
 
 function SalarySetupTable() {
  return (
-  <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
+  <div className="overflow-hidden rounded-xl border border-black/[0.07] bg-white">
    <div className="flex flex-wrap items-center justify-between gap-3 p-4">
     <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
      Salary Setup
@@ -558,7 +558,7 @@ function ThisMonthPaymentFlow({ onOpenModal }: { onOpenModal: (ids: string[], to
   <div className="space-y-4">
    {/* Selected total bar */}
    {selected.size > 0 && (
-    <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl bg-[#F5EDD8]/30 p-4">
+    <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-black/[0.07] bg-white p-4">
      <div className="flex items-center gap-4">
       <span className="font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
        {selected.size} staff selected
@@ -578,7 +578,7 @@ function ThisMonthPaymentFlow({ onOpenModal }: { onOpenModal: (ids: string[], to
    )}
 
    {/* Staff payment list */}
-   <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
+   <div className="overflow-hidden rounded-xl border border-black/[0.07] bg-white">
     <div className="flex flex-wrap items-center justify-between gap-3 p-4">
      <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
       Staff Payment List

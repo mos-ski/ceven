@@ -55,7 +55,7 @@ export default function SubscriptionDetailPage() {
    { label: "Active Subscriptions", value: SUBSCRIPTION_STATS.activeSubscriptions },
    { label: "Expired/Overdue", value: SUBSCRIPTION_STATS.expiredOverdue },
   ].map((stat) => (
-   <div key={stat.label} className="rounded-xl bg-[#F5EDD8]/30 p-4">
+   <div key={stat.label} className="rounded-xl border border-black/[0.07] bg-white p-4">
    <p className="font-[family-name:var(--font-urbanist)] text-xs text-muted-text">{stat.label}</p>
    <p className="mt-1 font-[family-name:var(--font-merriweather)] text-2xl font-bold text-stat-heading">
     {stat.value}
@@ -64,7 +64,7 @@ export default function SubscriptionDetailPage() {
   ))}
   </div>
 
-  <div className="rounded-xl bg-[#F5EDD8]/30">
+  <div className="rounded-xl border border-black/[0.07] bg-white">
   <div className="border-b border-card-border p-4">
    <h2 className="font-[family-name:var(--font-urbanist)] text-sm font-bold text-heading">
    Subscribers for {plan.planName}

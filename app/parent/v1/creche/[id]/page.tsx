@@ -138,7 +138,7 @@ function EnrollmentWizard({
   <button
    key={c.id}
    onClick={() => setChild(c)}
-   className={`w-full rounded-2xl bg-[#F5EDD8]/30 p-4 text-left transition-colors ${
+   className={`w-full rounded-2xl border border-black/[0.07] bg-white p-4 text-left transition-colors ${
    child?.id === c.id ? "border-cg-accent" : "border-gray-100"
    }`}
   >
@@ -171,7 +171,7 @@ function EnrollmentWizard({
   <button
    key={r.id}
    onClick={() => setRoom(r)}
-   className={`w-full rounded-2xl bg-[#F5EDD8]/30 p-4 text-left transition-colors ${
+   className={`w-full rounded-2xl border border-black/[0.07] bg-white p-4 text-left transition-colors ${
    room?.id === r.id ? "border-cg-accent" : "border-gray-100"
    }`}
   >

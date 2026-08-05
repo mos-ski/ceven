@@ -171,7 +171,7 @@ function TaskDetailsModal({ task, onClose }: { task: Task; onClose: () => void }
 
 function TaskCard({ task, onClick }: { task: Task; onClick: () => void }) {
  return (
- <button onClick={onClick} className="w-full rounded-2xl bg-[#F5EDD8]/30 p-4 text-left">
+ <button onClick={onClick} className="w-full rounded-2xl border border-black/[0.07] bg-white p-4 text-left">
   <div className="mb-2 flex items-start justify-between gap-3">
   <div className="flex-1">
    <p className="text-sm font-semibold text-gray-800">{task.title}</p>

@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Wallet, Clock3, AlertTriangle, Target, Download, Phone, Sparkles } from "lucide-react";
+import { Wallet, Clock3, AlertTriangle, Target, Download, Phone } from "lucide-react";
+import { CEIcon } from "@/components/admin-v3/ce-icon";
 import { toast } from "sonner";
 
 import NewInvoiceModal from "@/components/admin/finance/new-invoice-modal";
@@ -89,7 +90,7 @@ export default function BillingV3Page() {
    onClick={() => toast.success("AI payment forecast generated")}
    className="flex items-center gap-1.5 rounded-lg border border-[#C47B2C]/40 bg-[#FAF2E1] px-4 py-2 text-sm font-semibold text-[#8A4F1C] hover:bg-[#F5E4C4]"
    >
-   <Sparkles className="h-3.5 w-3.5" /> AI Forecast
+    <CEIcon className="h-3.5 w-3.5" /> AI Forecast
    </button>
    <button
    onClick={() => setInvoiceOpen(true)}
@@ -102,7 +103,7 @@ export default function BillingV3Page() {
 
   {/* AI Insight */}
   <div className="flex items-start gap-3 rounded-2xl border border-[#C47B2C]/30 bg-[#FAF2E1] p-4">
-  <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-[#C47B2C]" />
+   <CEIcon className="mt-0.5 h-4 w-4 shrink-0 text-[#C47B2C]" />
   <p className="text-sm leading-relaxed text-[#2D1810]">
    <span className="font-bold">April will end at {pct}% collection rate</span> based on current trends. 3 high-risk families identified.{" "}
    <span className="text-[#2D1810]/60">Auto-reminders recommended for Mr. Okafor, Mrs. Adeyemi, and Mr. Balogun.</span>

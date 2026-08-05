@@ -253,7 +253,7 @@ function ConversationView({
  </div>
 
  {/* Reply area, fixed at bottom */}
- <div className="border-none p-4 bg-[#F5EDD8]/30 shrink-0">
+ <div className="border-none p-4 border border-black/[0.07] bg-white shrink-0">
  <textarea
   rows={2}
   placeholder="Write a message..."

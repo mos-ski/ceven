@@ -155,7 +155,7 @@ export default function OnboardingChecklist() {
  if (dismissed || allComplete) return null;
 
  return (
- <div className="rounded-2xl border-none bg-[#F5EDD8]/30 p-5 ">
+ <div className="rounded-2xl border-none border border-black/[0.07] bg-white p-5 ">
   {/* Header */}
   <div className="flex items-start justify-between">
   <div>

@@ -300,7 +300,7 @@ export default function ProfilesPage() {
  <div className="mb-6">
   <p className="mb-3 text-xs font-semibold text-gray-400 uppercase tracking-wide">Your Profile</p>
   {members.filter(m => m.isOwner).map(owner => (
-  <div key={owner.id} className="flex items-center gap-4 rounded-2xl bg-[#F5EDD8]/30 p-4 ">
+  <div key={owner.id} className="flex items-center gap-4 rounded-2xl border border-black/[0.07] bg-white p-4 ">
   <div className="relative">
   <div className="flex h-16 w-16 items-center justify-center rounded-2xl text-xl font-bold text-white shadow-md" style={{ backgroundColor: owner.color }}>
    {owner.initials}
@@ -360,7 +360,7 @@ export default function ProfilesPage() {
  </div>
 
  {/* How it works */}
- <div className="mt-8 rounded-2xl bg-[#F5EDD8]/30 p-4 ">
+ <div className="mt-8 rounded-2xl border border-black/[0.07] bg-white p-4 ">
   <p className="mb-2 text-sm font-semibold text-gray-800">Profile roles</p>
   <ul className="space-y-2 text-xs text-gray-500">
   <li className="flex items-start gap-2">

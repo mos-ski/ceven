@@ -47,7 +47,7 @@ export default function CaregiverAnnouncementsPage() {
   ) : (
    <div className="flex flex-col gap-3">
    {announcements.map((ann) => (
-    <div key={ann.id} className={`rounded-2xl bg-[#F5EDD8]/30 p-4 ${ann.priority === "urgent" ? "border-l-4 border-red-500" : ""}`}>
+    <div key={ann.id} className={`rounded-2xl border border-black/[0.07] bg-white p-4 ${ann.priority === "urgent" ? "border-l-4 border-red-500" : ""}`}>
     <div className="mb-2 flex items-start justify-between gap-2">
      <div className="flex items-center gap-2">
      {ann.priority === "urgent" ? (

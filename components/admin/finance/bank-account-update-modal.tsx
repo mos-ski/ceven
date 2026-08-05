@@ -99,7 +99,7 @@ export default function BankAccountUpdateModal({ open, onOpenChange }: Props) {
           setFetchedName("");
           setNameMatch(null);
          }}
-         className="h-[52px] w-full rounded-xl border-none bg-[#F5EDD8]/30 px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+         className="h-[52px] w-full rounded-xl border-none border border-black/[0.07] bg-white px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
         >
          <option value="" disabled>
           Select bank
@@ -126,7 +126,7 @@ export default function BankAccountUpdateModal({ open, onOpenChange }: Props) {
          }}
          onBlur={handleFetchAccount}
          placeholder="10-digit account number"
-         className="h-[52px] w-full rounded-xl border-none bg-[#F5EDD8]/30 px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+         className="h-[52px] w-full rounded-xl border-none border border-black/[0.07] bg-white px-4 font-[family-name:var(--font-urbanist)] text-sm text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
         />
        </div>
 
@@ -202,7 +202,7 @@ export default function BankAccountUpdateModal({ open, onOpenChange }: Props) {
         value={otp}
         onChange={(e) => setOtp(e.target.value.replace(/\D/g, "").slice(0, 6))}
         placeholder="000000"
-        className="h-[52px] w-48 rounded-xl border-none bg-[#F5EDD8]/30 px-4 text-center font-[family-name:var(--font-urbanist)] text-lg tracking-[0.5em] text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
+        className="h-[52px] w-48 rounded-xl border-none border border-black/[0.07] bg-white px-4 text-center font-[family-name:var(--font-urbanist)] text-lg tracking-[0.5em] text-[#2d1810] placeholder:text-[#6b7280] focus:border-[#c47b2c] focus:outline-none focus:ring-1 focus:ring-[#c47b2c]"
        />
        <button
         onClick={handleVerifyOtp}

@@ -84,7 +84,7 @@ export function DataTable<T extends { id: string }>({
     </button>
     <div className="flex items-center gap-1.5 text-sm text-gray-500">
      Sort by:
-     <select className="rounded-lg bg-[#F5EDD8]/30 px-2 py-1.5 text-sm text-gray-700">
+     <select className="rounded-lg border border-black/[0.07] bg-white px-2 py-1.5 text-sm text-gray-700">
       <option>Most recent</option>
       <option>Oldest</option>
      </select>
@@ -165,7 +165,7 @@ export function DataTable<T extends { id: string }>({
        setPerPage(Number(e.target.value));
        setPage(1);
       }}
-      className="rounded-lg bg-[#F5EDD8]/30 px-2 py-1.5 text-sm text-gray-700"
+      className="rounded-lg border border-black/[0.07] bg-white px-2 py-1.5 text-sm text-gray-700"
      >
       <option value={10}>10</option>
       <option value={25}>25</option>

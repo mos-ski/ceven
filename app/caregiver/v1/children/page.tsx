@@ -105,7 +105,7 @@ export default function ChildrenPage() {
    </button>
 
    {showDropdown && (
-   <div className="absolute left-0 right-0 top-full z-10 mt-1 overflow-hidden rounded-2xl bg-[#F5EDD8]/30">
+   <div className="absolute left-0 right-0 top-full z-10 mt-1 overflow-hidden rounded-2xl border border-black/[0.07] bg-white">
     <button
     onClick={() => { setSelectedClassroom("all"); setShowDropdown(false); }}
     className="flex w-full items-center justify-between px-4 py-3.5 hover:bg-gray-50"

@@ -15,7 +15,7 @@ const STATUS_BADGE_CLASS: Record<ReportStatus, string> = {
 
 function FilterButton({ label }: { label: string }) {
  return (
-  <button className="flex items-center gap-1.5 rounded-lg border-none bg-[#F5EDD8]/30 px-3 py-2 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280] hover:border-[#3b2513] hover:text-[#3b2513]">
+  <button className="flex items-center gap-1.5 rounded-lg border-none border border-black/[0.07] bg-white px-3 py-2 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280] hover:border-[#3b2513] hover:text-[#3b2513]">
    {label}
    <ChevronDown className="h-4 w-4" />
   </button>
@@ -31,7 +31,7 @@ export function ReportsTab() {
     </button>
    </div>
 
-   <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
+   <div className="overflow-hidden rounded-xl border border-black/[0.07] bg-white">
     <div className="flex flex-wrap items-center justify-between gap-3 p-4">
      <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
       Generated Reports

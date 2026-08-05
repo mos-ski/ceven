@@ -30,7 +30,7 @@ export function ParentsTab() {
     <StatCard label="Average App Rating" value="00" trendLabel="Random text" />
    </div>
 
-   <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
+   <div className="overflow-hidden rounded-xl border border-black/[0.07] bg-white">
     <div className="flex flex-wrap items-center justify-between gap-4 p-4">
      <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-heading">
       Parent Log
@@ -119,7 +119,7 @@ export function ParentsTab() {
       <Link
        key={parent.id}
        href={`/parents/${parent.id}`}
-       className="block rounded-xl bg-[#F5EDD8]/30 p-3 transition-colors hover:bg-[#faf9f7]"
+       className="block rounded-xl border border-black/[0.07] bg-white p-3 transition-colors hover:bg-[#faf9f7]"
       >
        <div className="flex items-center justify-between">
         <span className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-black">{parent.name}</span>

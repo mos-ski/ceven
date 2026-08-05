@@ -271,7 +271,7 @@ export function SpecialRequestsTab() {
      { label: "In Progress", value: stats.inProgress, color: "text-[#1a73e8]" },
      { label: "Done", value: stats.done, color: "text-[#009061]" },
     ].map((s) => (
-     <div key={s.label} className="flex flex-col gap-1 rounded-xl border-none bg-[#F5EDD8]/30 p-3">
+     <div key={s.label} className="flex flex-col gap-1 rounded-xl border-none border border-black/[0.07] bg-white p-3">
       <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">{s.label}</p>
       <p className={`font-[family-name:var(--font-merriweather)] text-xl font-bold ${s.color}`}>{s.value}</p>
      </div>
@@ -279,7 +279,7 @@ export function SpecialRequestsTab() {
    </div>
 
    {/* Table card */}
-   <div className="overflow-hidden rounded-xl bg-[#F5EDD8]/30">
+   <div className="overflow-hidden rounded-xl border border-black/[0.07] bg-white">
     {/* Toolbar */}
     <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-4">
      <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">

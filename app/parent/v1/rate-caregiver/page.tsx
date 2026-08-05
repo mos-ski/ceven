@@ -103,7 +103,7 @@ export default function ParentRateCaregiverPage() {
  ) : (
   <div className="flex flex-col gap-2">
   {ratings.map((r) => (
-  <div key={r.id} className="rounded-2xl bg-[#F5EDD8]/30 p-4 ">
+  <div key={r.id} className="rounded-2xl border border-black/[0.07] bg-white p-4 ">
   <div className="mb-2 flex items-center justify-between">
    <div className="flex gap-0.5">
    {Array.from({ length: 5 }).map((_, i) => (
