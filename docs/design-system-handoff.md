@@ -5,6 +5,18 @@ Paste the whole block under a heading to the agent that's doing the page-level r
 
 ---
 
+## Max 2 header CTAs, ever (2026-08-05)
+
+New standard, applied across every admin-v3 page: the `PageHeader` `action` slot holds **at most 2 buttons** — one primary (solid), one secondary. If a page needs 3+ actions, the secondary slot becomes a `<MoreActionsButton actions={[...]} />` (new file: `components/ui/more-actions-button.tsx`) — a dropdown listing everything beyond the primary action. Applied this to Inventory & Supplies (3→2: Add Item primary, Register Equipment + New Order in the dropdown), Billing (3→2: New Invoice primary, Record Payment + Forecast in the dropdown), and Reception (4→2: Manual Check-In primary, the 3 simulate/exception actions in the dropdown).
+
+Also went through every remaining admin-v3 page that had 0 or 1 header buttons and added a second sensible action (almost always `Export`, wired to a real `exportRowsToCsv` call, not a stub) — Compliance, Development, Enrolment, Payroll, Leave, Staff, Expenses, Financial Reports, Daily Logs, Rooms & Classes, Parents. Two of the "New X" buttons for shared v2 components (`rooms-classes-tab.tsx`'s New Room, `enrolment-waitlist-tab.tsx`'s New Enquiry) were lifted to the page header using the controlled/uncontrolled hybrid prop pattern (optional `xOpen`/`onXOpenChange` props, falls back to internal `useState` when omitted) so v2 keeps working unmodified.
+
+**Exceptions, deliberately left without a forced 2nd CTA:** Plans & Access (pricing page, the CTA is choosing a plan), Messages/Announcements (composing IS the page), Settings (tabbed config, each section has its own save action), and the Events/Calendar toolbar (specialized nav controls, not a generic list header — but its dead "New Event" button got wired to a toast, and Daily Logs' "Remind Caregivers" and Financial Reports' "Export Report" also turned out to be dead buttons with no `onClick` at all — fixed those regardless of the CTA-count work).
+
+**Rule going forward:** never add a 3rd button to a `PageHeader` `action` slot. Reach for `MoreActionsButton` instead. Never leave a page with 0 header actions unless it's a genuine exception like the ones above — default to adding `Export` if nothing else obviously fits.
+
+---
+
 ## Primary CTA must live in the page header, not floating inside the view (2026-08-05)
 
 `health`, `medication`, `inventory`, `facilities` had their primary action button (Raise Incident, Log Medication, Add Item, New Maintenance Request) rendered *inside* the shared `components/admin/daily-operations/*-view.tsx` component, in a `flex justify-end` row above the card — not in the page's `PageHeader` action slot like every other page. Every admin-v3 page's header should have at least one CTA, on the same row as the title.
