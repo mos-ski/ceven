@@ -4,6 +4,7 @@ import { useState, useCallback } from "react";
 import { ChevronDown, FileText, Trash2, X, Upload, UserPlus, CheckCircle2 } from "lucide-react";
 
 import { STAFF_CLASS_OPTIONS, STAFF_ROLE_OPTIONS } from "@/lib/mock-data/staff";
+import { addInvite, type InvitedRole } from "@/lib/staff-invites";
 
 // ── Types ───────────────────────────────────────────────────────────────────
 
@@ -14,7 +15,8 @@ type ModalView =
  | "manual-step3"
  | "bulk-upload"
  | "bulk-preview"
- | "bulk-done";
+ | "bulk-done"
+ | "invite-success";
 
 type UploadedDoc = {
  id: string;
@@ -103,6 +105,15 @@ function DropdownSelect({
 
 // ── Main Modal ──────────────────────────────────────────────────────────────
 
+const DASHBOARD_ROLES: InvitedRole[] = [
+ "Admin",
+ "Finance Manager",
+ "Caregiver",
+ "Marketer",
+ "Nurse",
+ "Operations",
+];
+
 export function AddStaffModal({ onClose }: { onClose: () => void }) {
  const [view, setView] = useState<ModalView>("choice");
 
@@ -132,11 +143,22 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
  const [idDoc, setIdDoc] = useState<UploadedDoc | null>(null);
  const [workDoc, setWorkDoc] = useState<UploadedDoc | null>(null);
 
+ // Dashboard invite state
+ const [inviteToDashboard, setInviteToDashboard] = useState(false);
+ const [dashboardRole, setDashboardRole] = useState<InvitedRole | "">("");
+ const [createdInvite, setCreatedInvite] = useState<ReturnType<typeof addInvite> | null>(null);
+
  // Bulk state
  const [bulkFile, setBulkFile] = useState<UploadedDoc | null>(null);
  const [bulkRows, setBulkRows] = useState<BulkStaffRow[]>([]);
 
- const canStep1 = name.trim() !== "" && email.trim() !== "" && phone.trim() !== "" && role !== "";
+ const canStep1 =
+  name.trim() !== "" &&
+  email.trim() !== "" &&
+  phone.trim() !== "" &&
+  role !== "" &&
+  (role !== "Caregiver" || staffClass !== "") &&
+  (!inviteToDashboard || dashboardRole !== "");
  const canStep2 = employmentType !== "" && basicSalary.trim() !== "" && bankName.trim() !== "" && accountNumber.trim() !== "";
 
  const salaryNum = Number(basicSalary) || 0;
@@ -147,8 +169,19 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
  const netPay = salaryNum - totalDeductions;
 
  const handleManualSubmit = useCallback(() => {
+  if (inviteToDashboard && dashboardRole) {
+   const invite = addInvite({
+    name: name.trim(),
+    email: email.trim(),
+    phone: phone.trim(),
+    role: dashboardRole,
+   });
+   setCreatedInvite(invite);
+   setView("invite-success");
+   return;
+  }
   onClose();
- }, [onClose]);
+ }, [inviteToDashboard, dashboardRole, name, email, phone, onClose]);
 
  const toggleBulkRow = (id: string) => {
   setBulkRows((prev) =>
@@ -175,13 +208,14 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
      <div>
       <h2 className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#171f26]">
        {view === "choice" && "Add New Staff"}
-       {view === "manual-step1" && "Staff Information"}
-       {view === "manual-step2" && "Salary Details"}
-       {view === "manual-step3" && "Documents (Optional)"}
+        {view === "manual-step1" && "Staff Information"}
+        {view === "manual-step2" && "Staff Information"}
+        {view === "manual-step3" && "Staff Information"}
        {view === "bulk-upload" && "Bulk Upload"}
        {view === "bulk-preview" && "Review Imported Staff"}
-       {view === "bulk-done" && "Staff Added"}
-      </h2>
+        {view === "bulk-done" && "Staff Added"}
+        {view === "invite-success" && "Dashboard Invite Sent"}
+       </h2>
       <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs text-[#666]">
        {view === "choice" && "Choose how you'd like to add staff members"}
        {view === "manual-step1" && "1/3, Basic information"}
@@ -190,6 +224,7 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
        {view === "bulk-upload" && "Upload an Excel file with your staff data"}
        {view === "bulk-preview" && `${selectedBulkCount} of ${bulkRows.length} staff selected`}
        {view === "bulk-done" && "All selected staff have been added"}
+       {view === "invite-success" && "Invite sent successfully"}
       </p>
      </div>
      <button
@@ -254,11 +289,57 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
         <label className="font-[family-name:var(--font-urbanist)] text-sm font-medium text-black">Date Joined</label>
         <input type="date" value={dateJoined} onChange={(e) => setDateJoined(e.target.value)} className="h-[52px] w-full rounded-xl border border-[#dcdcdc] px-4 font-[family-name:var(--font-urbanist)] text-sm text-black outline-none focus:ring-2 focus:ring-[#c47b2c]" />
        </div>
-       <div className="h-px w-full bg-[#e6ebf3]" />
-       <DropdownSelect label="Assign Role" value={role} options={STAFF_ROLE_OPTIONS} onChange={setRole} />
-       <DropdownSelect label="Assign Class" value={staffClass} options={STAFF_CLASS_OPTIONS} onChange={setStaffClass} />
-      </div>
-     )}
+        <div className="h-px w-full bg-[#e6ebf3]" />
+         <DropdownSelect
+          label="Select Job Role"
+          value={role}
+          options={STAFF_ROLE_OPTIONS}
+          onChange={(v) => {
+           setRole(v);
+           if (v !== "Caregiver") setStaffClass("");
+          }}
+         />
+
+        {/* Dashboard invite */}
+        <div className="rounded-xl border border-[#e6ebf3] p-4">
+         <label className="flex cursor-pointer items-start gap-3">
+          <input
+           type="checkbox"
+           checked={inviteToDashboard}
+           onChange={(e) => {
+            setInviteToDashboard(e.target.checked);
+            if (!e.target.checked) setDashboardRole("");
+           }}
+           className="mt-1 accent-[#3b2513] h-4 w-4"
+          />
+          <div className="flex flex-col gap-1">
+           <span className="font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#2d1810]">
+            Invite to dashboard
+           </span>
+           <span className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
+            Send an email invite so this staff can access the creche admin.
+           </span>
+          </div>
+         </label>
+
+         {inviteToDashboard && (
+          <div className="mt-4">
+            <DropdownSelect
+             label="Select Access Type"
+             value={dashboardRole}
+             options={DASHBOARD_ROLES}
+             onChange={(v) => setDashboardRole(v as InvitedRole)}
+             placeholder="Select access type"
+            />
+          </div>
+         )}
+        </div>
+
+        {role === "Caregiver" && (
+         <DropdownSelect label="Assign Class" value={staffClass} options={STAFF_CLASS_OPTIONS} onChange={setStaffClass} />
+        )}
+       </div>
+      )}
 
      {/* ── Manual Step 2: Salary Details ─────────────────────── */}
      {view === "manual-step2" && (
@@ -584,23 +665,100 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
       </div>
      )}
 
-     {/* ── Bulk Done ─────────────────────────────────────────── */}
-     {view === "bulk-done" && (
-      <div className="flex flex-col items-center py-8 text-center gap-4">
-       <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#ecfff8]">
-        <CheckCircle2 className="size-8 text-[#009061]" />
+      {/* ── Bulk Done ─────────────────────────────────────────── */}
+      {view === "bulk-done" && (
+       <div className="flex flex-col items-center py-8 text-center gap-4">
+        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#ecfff8]">
+         <CheckCircle2 className="size-8 text-[#009061]" />
+        </div>
+        <div>
+         <p className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
+          {selectedBulkCount} Staff Added
+         </p>
+         <p className="mt-1 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
+          All selected staff have been imported and are ready for payroll.
+         </p>
+        </div>
        </div>
-       <div>
-        <p className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
-         {selectedBulkCount} Staff Added
-        </p>
-        <p className="mt-1 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
-         All selected staff have been imported and are ready for payroll.
-        </p>
-       </div>
-      </div>
-     )}
-    </div>
+      )}
+
+      {/* ── Invite Success ────────────────────────────────────── */}
+      {view === "invite-success" && createdInvite && (
+       <div className="flex flex-col gap-5 py-2">
+        <div className="flex flex-col items-center text-center gap-3">
+         <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#ecfff8]">
+          <CheckCircle2 className="size-8 text-[#009061]" />
+         </div>
+         <div>
+          <p className="font-[family-name:var(--font-merriweather)] text-lg font-bold text-[#2d1810]">
+           Invite sent
+          </p>
+          <p className="mt-1 font-[family-name:var(--font-urbanist)] text-sm text-[#6b7280]">
+           An email invite has been sent to {createdInvite.email}.
+          </p>
+         </div>
+        </div>
+
+       <div className="overflow-hidden rounded-xl border border-[#e6ebf3] bg-white">
+          {/* Email header */}
+          <div className="flex items-center gap-2 bg-[#3b2513] px-4 py-3">
+           <img src="/Logo/icon.svg" alt="CEven" className="h-5 w-5" />
+           <span className="font-[family-name:var(--font-mogra)] text-sm text-[#faf2e1]">CEven</span>
+          </div>
+          {/* Email body preview */}
+          <div className="p-4">
+           <p className="font-[family-name:var(--font-urbanist)] text-xs font-semibold uppercase tracking-wide text-[#c47b2c]">
+            Invitation
+           </p>
+           <p className="mt-2 font-[family-name:var(--font-merriweather)] text-sm font-bold text-[#2d1810]">
+            Hi {createdInvite.name}, you&apos;ve been invited
+           </p>
+           <p className="mt-1 font-[family-name:var(--font-urbanist)] text-xs leading-5 text-[#6b7280]">
+            Join the CEven Crèche Admin dashboard as a{" "}
+            <strong>{createdInvite.role}</strong>.
+           </p>
+
+           <div className="mt-3 rounded-lg border border-[#e6ebf3] bg-[#faf9f7] p-3">
+            <div className="space-y-1.5 font-[family-name:var(--font-urbanist)] text-xs text-[#2d1810]">
+             <div className="flex justify-between">
+              <span className="text-[#6b7280]">Email</span>
+              <span className="font-medium">{createdInvite.email}</span>
+             </div>
+             <div className="flex justify-between">
+              <span className="text-[#6b7280]">Temp password</span>
+              <span className="font-mono font-medium">{createdInvite.tempPassword}</span>
+             </div>
+            </div>
+           </div>
+
+           <div className="mt-3">
+            <span className="inline-flex items-center rounded-lg bg-[#3b2513] px-3 py-1.5 font-[family-name:var(--font-urbanist)] text-xs font-semibold text-[#faf2e1]">
+             Activate Account →
+            </span>
+           </div>
+          </div>
+         </div>
+
+         <div className="rounded-lg border border-[#e6ebf3] bg-[#faf9f7] p-3">
+          <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
+           Invite link:
+          </p>
+          <a
+           href={`/admin/v2/invite/${createdInvite.code}`}
+           target="_blank"
+           rel="noopener noreferrer"
+           className="mt-1 block break-all font-[family-name:var(--font-urbanist)] text-xs font-medium text-[#3b2513] underline"
+          >
+           {typeof window !== "undefined" ? window.location.origin : ""}/admin/v2/invite/{createdInvite.code}
+          </a>
+         </div>
+
+         <p className="font-[family-name:var(--font-urbanist)] text-xs text-[#6b7280]">
+          The staff will use the link in the email to activate their account, then create a new password before signing in.
+         </p>
+        </div>
+       )}
+     </div>
 
     {/* Footer */}
     <div className="sticky bottom-0 z-10 flex items-center justify-end gap-3 border-t border-[#e6ebf3] bg-white px-6 py-4">
@@ -678,13 +836,33 @@ export function AddStaffModal({ onClose }: { onClose: () => void }) {
       </>
      )}
 
-     {view === "bulk-done" && (
-      <button type="button" onClick={onClose} className="flex h-11 w-40 items-center justify-center rounded-lg bg-[#3b2513] font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#faf2e1]">
-       Done
-      </button>
-     )}
+      {view === "bulk-done" && (
+       <button type="button" onClick={onClose} className="flex h-11 w-40 items-center justify-center rounded-lg bg-[#3b2513] font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#faf2e1]">
+        Done
+       </button>
+      )}
+
+      {view === "invite-success" && (
+       <>
+        <button
+         type="button"
+         onClick={() => {
+          setView("manual-step1");
+          setCreatedInvite(null);
+          setInviteToDashboard(false);
+          setDashboardRole("");
+         }}
+         className="flex h-11 items-center justify-center rounded-lg border border-[#3b2513] px-5 font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#3b2513]"
+        >
+         Invite Another
+        </button>
+        <button type="button" onClick={onClose} className="flex h-11 w-40 items-center justify-center rounded-lg bg-[#3b2513] font-[family-name:var(--font-urbanist)] text-sm font-semibold text-[#faf2e1]">
+         Done
+        </button>
+       </>
+      )}
+     </div>
     </div>
    </div>
-  </div>
- );
+  );
 }

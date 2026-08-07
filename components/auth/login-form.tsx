@@ -2,8 +2,14 @@
 
 import { useActionState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import { login } from "@/lib/auth/actions";
+import {
+ canLoginWithInvite,
+ needsPasswordChange,
+ type StaffInvite,
+} from "@/lib/staff-invites";
 import { AuthField } from "@/components/auth/auth-field";
 import { PasswordField } from "@/components/auth/password-field";
 import { SocialAuthRow } from "@/components/auth/social-auth-row";
@@ -19,11 +25,42 @@ async function loginAction(
  return login(formData);
 }
 
+const STAFF_SESSION_KEY = "ceven_staff_session";
+
+export function setStaffSession(invite: StaffInvite) {
+ if (typeof window === "undefined") return;
+ localStorage.setItem(STAFF_SESSION_KEY, JSON.stringify({
+  email: invite.email,
+  name: invite.name,
+  role: invite.role,
+  code: invite.code,
+ }));
+}
+
 export function LoginForm() {
+ const router = useRouter();
  const [state, formAction, isPending] = useActionState(loginAction, {});
 
+ function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  if (typeof window === "undefined") return;
+  const formData = new FormData(e.currentTarget);
+  const email = String(formData.get("email") ?? "");
+  const password = String(formData.get("password") ?? "");
+
+  const invite = canLoginWithInvite(email, password);
+  if (invite) {
+   e.preventDefault();
+   if (needsPasswordChange(invite, password)) {
+    router.push(`/admin/v2/invite/${invite.code}/set-password`);
+    return;
+   }
+   setStaffSession(invite);
+   router.push("/admin/v2/staff-dashboard");
+  }
+ }
+
  return (
- <form action={formAction} className="flex w-full flex-col gap-6">
+  <form action={formAction} onSubmit={handleSubmit} className="flex w-full flex-col gap-6">
   <div>
   <h1 className="font-[family-name:var(--font-merriweather)] text-[32px] font-bold text-heading">
    Stay Connected 😊
